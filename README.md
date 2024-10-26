@@ -1,2 +1,1 @@
-# extension-detail-view
-Extension Detail View
+# Extension Detail View
