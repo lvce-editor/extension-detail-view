@@ -128,5 +128,8 @@
     ],
     "ext": "ts,js",
     "exec": "node scripts/build.js"
+  },
+  "dependencies": {
+    "marked": "^14.1.3"
   }
 }
