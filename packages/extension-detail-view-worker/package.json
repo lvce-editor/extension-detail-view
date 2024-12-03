@@ -97,9 +97,10 @@
     }
   },
   "devDependencies": {
+    "@lvce-editor/i18n": "^1.1.0",
     "@lvce-editor/rpc": "^1.8.0",
     "jest": "^29.7.0",
-    "ts-jest": "^29.2.5",
-    "marked": "^15.0.3"
+    "marked": "^15.0.3",
+    "ts-jest": "^29.2.5"
   }
 }
