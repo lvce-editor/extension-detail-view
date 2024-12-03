@@ -1,19 +1,15 @@
-import * as AssetDir from '../AssetDir/AssetDir.js'
-// @ts-ignore
-import * as GetRemoteSrc from '../GetRemoteSrc/GetRemoteSrc.js'
-import * as Icon from '../Icon/Icon.js'
-import * as Platform from '../Platform/Platform.js'
+import * as Icon from '../Icon/Icon.ts'
 import * as PlatformType from '../PlatformType/PlatformType.ts'
 
-const isLanguageBasicsExtension = (extension) => {
+const isLanguageBasicsExtension = (extension: any): boolean => {
   return extension.name && extension.name.startsWith('Language Basics')
 }
 
-const isThemeExtension = (extension) => {
+const isThemeExtension = (extension: any): boolean => {
   return extension.name && extension.name.endsWith(' Theme')
 }
 
-export const getIcon = (extension) => {
+export const getIcon = (extension: any): string => {
   if (!extension) {
     return Icon.ExtensionDefaultIcon
   }
@@ -37,7 +33,7 @@ export const getIcon = (extension) => {
 
 // TODO handle case when extension is of type number|array|null|string
 
-export const getName = (extension) => {
+export const getName = (extension: any): string => {
   if (extension && extension.name) {
     return extension.name
   }
@@ -47,7 +43,7 @@ export const getName = (extension) => {
   return 'n/a'
 }
 
-export const getDescription = (extension) => {
+export const getDescription = (extension: any): string => {
   if (!extension || !extension.description) {
     return 'n/a'
   }
