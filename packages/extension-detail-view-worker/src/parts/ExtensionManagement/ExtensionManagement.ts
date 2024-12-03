@@ -1,4 +1,4 @@
-import * as ParentRpc from '../ParentRpc/ParentRpc.js'
+import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
 import * as PlatformType from '../PlatformType/PlatformType.ts'
 
 const getAllExtensions = async (platform: number) => {

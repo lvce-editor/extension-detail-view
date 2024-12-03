@@ -1,4 +1,4 @@
-import * as GetRemoteSrc from '../GetRemoteSrc/GetRemoteSrc.js'
+import * as GetRemoteSrc from '../GetRemoteSrc/GetRemoteSrc.ts'
 import * as PlatformType from '../PlatformType/PlatformType.ts'
 
 export const getBaseUrl = (extensionPath: string, platform: number): string => {
