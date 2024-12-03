@@ -19,13 +19,13 @@ const State = {
 }
 
 const RE_ANGLE_BRACKET_OPEN = /^</
-const RE_ANGLE_BRACKET_OPEN_TAG = /^<(?![\s!\%])/
+const RE_ANGLE_BRACKET_OPEN_TAG = /^<(?![\s!%])/
 const RE_ANGLE_BRACKET_CLOSE = /^>/
 const RE_SLASH = /^\//
 const RE_TAGNAME = /^[a-zA-Z\d$]+/
 const RE_CONTENT = /^[^<>]+/
 const RE_WHITESPACE = /^\s+/
-const RE_ATTRIBUTE_NAME = /^[a-zA-Z\d\-]+/
+const RE_ATTRIBUTE_NAME = /^[a-zA-Z\d-]+/
 const RE_EQUAL_SIGN = /^=/
 const RE_DOUBLE_QUOTE = /^"/
 const RE_ATTRIBUTE_VALUE_INSIDE_DOUBLE_QUOTE = /^[^"\n]+/
