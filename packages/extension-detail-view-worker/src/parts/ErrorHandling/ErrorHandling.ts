@@ -1,7 +1,7 @@
-export const logError = async (error: any) => {
+export const logError = (error: any) => {
   console.error(error)
 }
 
-export const handleError = async (error: any) => {
+export const handleError = (error: any) => {
   console.error(error)
 }
