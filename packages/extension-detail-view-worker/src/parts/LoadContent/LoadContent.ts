@@ -8,14 +8,14 @@ import * as MarkDown from '../RenderMarkdown/RenderMarkdown.ts'
 export const loadContent = async (state: any, platform: number) => {
   const { uri, width } = state
   const id = uri.slice('extension-detail://'.length)
-  const extension = await ExtensionManagement.getExtension(id)
+  const extension = await ExtensionManagement.getExtension(id, platform)
   const readmeContent = await GetExtensionReadme.loadReadmeContent(extension.path)
   // @ts-ignore
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const readmeHtml = await MarkDown.renderMarkdown(readmeContent)
   const sanitizedReadmeHtml = readmeHtml
   const normalizedReadmeHtml = sanitizedReadmeHtml
-  const iconSrc = ExtensionDisplay.getIcon(extension)
+  const iconSrc = ExtensionDisplay.getIcon(extension, platform)
   const description = ExtensionDisplay.getDescription(extension)
   const name = ExtensionDisplay.getName(extension)
   const size = GetViewletSize.getViewletSize(width)
