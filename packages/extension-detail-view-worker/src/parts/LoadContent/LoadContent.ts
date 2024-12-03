@@ -12,7 +12,9 @@ export const loadContent = async (state: any, platform: number) => {
   const readmeContent = await GetExtensionReadme.loadReadmeContent(extension.path)
   // @ts-ignore
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
-  const readmeHtml = await MarkDown.renderMarkdown(readmeContent)
+  const readmeHtml = await MarkDown.renderMarkdown(readmeContent, {
+    baseUrl,
+  })
   const sanitizedReadmeHtml = readmeHtml
   const normalizedReadmeHtml = sanitizedReadmeHtml
   const iconSrc = ExtensionDisplay.getIcon(extension, platform)
