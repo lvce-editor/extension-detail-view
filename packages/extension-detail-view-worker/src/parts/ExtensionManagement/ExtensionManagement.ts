@@ -8,7 +8,7 @@ const getAllExtensions = async (platform: number) => {
   return ParentRpc.invoke('ExtensionManagement.getAllExtensions')
 }
 
-export const getExtension = async (id: string, platform: number): any => {
+export const getExtension = async (id: string, platform: number): Promise<any> => {
   const allExtensions = await getAllExtensions(platform)
   for (const extension of allExtensions) {
     if (extension.id === id) {

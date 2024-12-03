@@ -1,3 +1,4 @@
+import * as AssetDir from '../AssetDir/AssetDir.ts'
 import * as Icon from '../Icon/Icon.ts'
 import * as PlatformType from '../PlatformType/PlatformType.ts'
 
@@ -9,7 +10,7 @@ const isThemeExtension = (extension: any): boolean => {
   return extension.name && extension.name.endsWith(' Theme')
 }
 
-export const getIcon = (extension: any): string => {
+export const getIcon = (extension: any, platform: number): string => {
   if (!extension) {
     return Icon.ExtensionDefaultIcon
   }
@@ -22,7 +23,7 @@ export const getIcon = (extension: any): string => {
     }
     return Icon.ExtensionDefaultIcon
   }
-  if (Platform.platform === PlatformType.Remote || Platform.platform === PlatformType.Electron) {
+  if (platform === PlatformType.Remote || platform === PlatformType.Electron) {
     if (extension.builtin) {
       return `${AssetDir.assetDir}/extensions/${extension.id}/${extension.icon}`
     }
