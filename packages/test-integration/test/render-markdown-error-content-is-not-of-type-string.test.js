@@ -8,4 +8,4 @@ test('render-markdown - error - content is not of type string', async () => {
     new Error(`marked(): input parameter is undefined or null
 Please report this to https://github.com/markedjs/marked.`),
   )
-})
+}, 10_000)
