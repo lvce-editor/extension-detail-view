@@ -1,0 +1,6 @@
+export const ExtensionDetailDescription = 'ExtensionDetailDescription'
+export const ExtensionDetailHeader = 'ExtensionDetailHeader'
+export const ExtensionDetailHeaderDetails = 'ExtensionDetailHeaderDetails'
+export const ExtensionDetailIcon = 'ExtensionDetailIcon'
+export const ExtensionDetailName = 'ExtensionDetailName'
+export const Markdown = 'Markdown'
