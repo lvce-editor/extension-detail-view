@@ -1,5 +1,4 @@
 import { expect, test, jest } from '@jest/globals'
-import * as LoadReadmeContent from '../src/parts/LoadReadmeContent/LoadReadmeContent.ts'
 
 let mockFileSystem: any
 
@@ -8,6 +7,7 @@ jest.unstable_mockModule('../src/parts/FileSystem/FileSystem.ts', () => ({
 }))
 
 mockFileSystem = await import('../src/parts/FileSystem/FileSystem.ts')
+const LoadReadmeContent = await import('../src/parts/LoadReadmeContent/LoadReadmeContent.ts')
 
 test('loads readme content', async () => {
   mockFileSystem.readFile.mockResolvedValue('# Test Content')
