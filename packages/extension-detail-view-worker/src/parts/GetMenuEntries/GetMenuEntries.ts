@@ -1,39 +1,16 @@
-import * as ViewletExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
-import * as MenuItemFlags from '../MenuItemFlags/MenuItemFlags.ts'
+import * as GetLinkMenuEntries from '../GetLinkMenuEntries/GetLinkMenuEntries.ts'
+import * as GetImageMenuEntries from '../GetImageMenuEntries/GetImageMenuEntries.ts'
+import * as GetCopyMenuEntry from '../GetCopyMenuEntry/GetCopyMenuEntry.ts'
+import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 
-export const getMenuEntries = (props: any): any => {
-  const menuEntries = []
-  if (props.isLink) {
-    menuEntries.push({
-      id: 'openInNewTab',
-      label: ViewletExtensionDetailStrings.openImageInNewTab(),
-      flags: MenuItemFlags.None,
-      command: 'Open.openUrl',
-      args: [props.url],
-    })
-  } else if (props.isImage) {
-    menuEntries.push(
-      {
-        id: 'openImageInNewTab',
-        label: ViewletExtensionDetailStrings.openImageInNewTab(),
-        flags: MenuItemFlags.None,
-        command: 'Open.openUrl',
-        args: [props.url],
-      },
-      {
-        id: 'saveImageAs',
-        label: ViewletExtensionDetailStrings.saveImageAs(),
-        flags: MenuItemFlags.None,
-        command: 'SaveFileAs.saveFileAs',
-        args: ['image.png', props.url],
-      },
-    )
-  }
-  menuEntries.push({
-    id: 'copy',
-    label: ViewletExtensionDetailStrings.copy(),
-    flags: MenuItemFlags.None,
-    command: 'ClipBoard.execCopy',
-  })
-  return menuEntries
+interface MenuProps {
+  isLink?: boolean
+  isImage?: boolean
+  url?: string
 }
+
+export const getMenuEntries = (props: MenuProps): MenuEntry[] => [
+  ...(props.isLink ? GetLinkMenuEntries.getLinkMenuEntries(props.url || '') : []),
+  ...(props.isImage ? GetImageMenuEntries.getImageMenuEntries(props.url || '') : []),
+  GetCopyMenuEntry.getCopyMenuEntry(),
+]

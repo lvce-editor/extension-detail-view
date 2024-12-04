@@ -7,10 +7,10 @@ test('handles isLink', () => {
   expect(GetMenuEntries.getMenuEntries({ isLink: true })).toEqual([
     {
       id: 'openInNewTab',
-      label: ExtensionDetailStrings.openImageInNewTab(),
+      label: ExtensionDetailStrings.openInNewTab(),
       flags: MenuItemFlags.None,
       command: 'Open.openUrl',
-      args: [undefined],
+      args: [''],
     },
     {
       id: 'copy',
@@ -28,14 +28,14 @@ test('handles isImage', () => {
       label: ExtensionDetailStrings.openImageInNewTab(),
       flags: MenuItemFlags.None,
       command: 'Open.openUrl',
-      args: [undefined],
+      args: [''],
     },
     {
       id: 'saveImageAs',
       label: ExtensionDetailStrings.saveImageAs(),
       flags: MenuItemFlags.None,
       command: 'SaveFileAs.saveFileAs',
-      args: ['image.png', undefined],
+      args: ['image.png', ''],
     },
     {
       id: 'copy',
