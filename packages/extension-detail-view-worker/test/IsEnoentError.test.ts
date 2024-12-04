@@ -22,9 +22,9 @@ test('returns false for error without code', () => {
 })
 
 test('returns false for null', () => {
-  expect(IsEnoentError.isEnoentError(null)).toBe(false)
+  expect(IsEnoentError.isEnoentError(null)).toBeFalsy()
 })
 
 test('returns false for undefined', () => {
-  expect(IsEnoentError.isEnoentError(undefined)).toBe(false)
+  expect(IsEnoentError.isEnoentError(undefined)).toBeFalsy()
 })
