@@ -46,7 +46,7 @@ test('getIcon returns asset path for builtin extension', () => {
     icon: 'icon.png',
     builtin: true,
   }
-  expect(ExtensionDisplay.getIcon(extension, PlatformType.Remote)).toBe('/assets/extensions/test-ext/icon.png')
+  expect(ExtensionDisplay.getIcon(extension, PlatformType.Remote)).toBe('/extensions/test-ext/icon.png')
 })
 
 test('getIcon returns empty string for web platform', () => {
