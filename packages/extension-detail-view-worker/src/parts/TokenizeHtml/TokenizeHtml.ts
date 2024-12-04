@@ -1,4 +1,5 @@
 import * as Assert from '../Assert/Assert.ts'
+import type { HtmlToken } from '../HtmlToken/HtmlToken.ts'
 import * as TokenType from '../HtmlTokenType/HtmlTokenType.ts'
 import { UnexpectedTokenError } from '../UnexpectedTokenError/UnexpectedTokenError.ts'
 
@@ -38,23 +39,14 @@ const RE_COMMENT_END = /^-->/
 const RE_TAG_TEXT = /^[^\s>]+/
 const RE_ANY_TEXT = /^[^\n]+/
 const RE_BLOCK_COMMENT_START = /^<!--/
-// @ts-ignore
-const RE_BLOCK_COMMENT_CONTENT_1 = /^.+?(?=-->)/s
-// @ts-ignore
-const RE_BLOCK_COMMENT_CONTENT_2 = /^.+$/s
-// @ts-ignore
-const RE_BLOCK_COMMENT_END = /^-->/
 const RE_SELF_CLOSING = /^\/>/
 
-/**
- * @param {string} text
- */
-export const tokenizeHtml = (text: string): any => {
+export const tokenizeHtml = (text: string): readonly HtmlToken[] => {
   Assert.string(text)
   let state = State.TopLevelContent
   let index = 0
   let next
-  const tokens = []
+  const tokens: HtmlToken[] = []
   let token = TokenType.None
   while (index < text.length) {
     const part = text.slice(index)
