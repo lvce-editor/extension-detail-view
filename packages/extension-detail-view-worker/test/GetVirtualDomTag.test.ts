@@ -54,3 +54,7 @@ test('data tags', () => {
 test('unknown tag defaults to div', () => {
   expect(GetVirtualDomTag.getVirtualDomTag('unknown')).toBe(VirtualDomElements.Div)
 })
+
+test('semantic tags', () => {
+  expect(GetVirtualDomTag.getVirtualDomTag(ElementTags.Aside)).toBe(VirtualDomElements.Aside)
+})
