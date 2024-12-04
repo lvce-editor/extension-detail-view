@@ -292,3 +292,19 @@ test('tag with boolean attribute', () => {
     },
   ])
 })
+
+test('unexpected character after closing tag slash', () => {
+  expect(() => TokenizeHtml.tokenizeHtml('<div></=')).toThrow(new UnexpectedTokenError())
+})
+
+test('unexpected character after closing tag name', () => {
+  expect(() => TokenizeHtml.tokenizeHtml('<div></a=')).toThrow(new UnexpectedTokenError())
+})
+
+test('whitespace after closing tag name', () => {
+  expect(TokenizeHtml.tokenizeHtml('<div></a ')).toEqual(expect.anything())
+})
+
+test('doctype', () => {
+  expect(TokenizeHtml.tokenizeHtml('<!DOCTYPE html>')).toEqual(expect.anything())
+})
