@@ -1,7 +1,7 @@
 import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
 import * as PlatformType from '../PlatformType/PlatformType.ts'
 
-const getAllExtensions = async (platform: number) => {
+const getAllExtensions = async (platform: number): Promise<any[]> => {
   if (platform === PlatformType.Web) {
     return []
   }

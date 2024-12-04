@@ -5,7 +5,7 @@ import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as MarkDown from '../RenderMarkdown/RenderMarkdown.ts'
 
-export const loadContent = async (state: any, platform: number) => {
+export const loadContent = async (state: any, platform: number): Promise<any> => {
   const { uri, width } = state
   const id = uri.slice('extension-detail://'.length)
   const extension = await ExtensionManagement.getExtension(id, platform)
