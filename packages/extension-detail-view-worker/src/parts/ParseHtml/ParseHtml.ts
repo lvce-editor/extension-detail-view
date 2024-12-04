@@ -6,7 +6,7 @@ import * as ParseText from '../ParseText/ParseText.ts'
 import * as TokenizeHtml from '../TokenizeHtml/TokenizeHtml.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-export const parseHtml = (html: any, allowedAttributes: any): any => {
+export const parseHtml = (html: string, allowedAttributes: readonly string[]): any => {
   Assert.string(html)
   Assert.array(allowedAttributes)
   const tokens = TokenizeHtml.tokenizeHtml(html)
