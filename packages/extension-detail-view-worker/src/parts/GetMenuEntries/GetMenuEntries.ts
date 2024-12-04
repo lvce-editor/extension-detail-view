@@ -1,16 +1,11 @@
-import * as GetLinkMenuEntries from '../GetLinkMenuEntries/GetLinkMenuEntries.ts'
-import * as GetImageMenuEntries from '../GetImageMenuEntries/GetImageMenuEntries.ts'
 import * as GetCopyMenuEntry from '../GetCopyMenuEntry/GetCopyMenuEntry.ts'
+import * as GetImageMenuEntries from '../GetImageMenuEntries/GetImageMenuEntries.ts'
+import * as GetLinkMenuEntries from '../GetLinkMenuEntries/GetLinkMenuEntries.ts'
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
+import type { MenuProps } from '../MenuProps/MenuProps.ts'
 
-interface MenuProps {
-  isLink?: boolean
-  isImage?: boolean
-  url?: string
-}
-
-export const getMenuEntries = (props: MenuProps): MenuEntry[] => [
-  ...(props.isLink ? GetLinkMenuEntries.getLinkMenuEntries(props.url || '') : []),
-  ...(props.isImage ? GetImageMenuEntries.getImageMenuEntries(props.url || '') : []),
+export const getMenuEntries = (props: MenuProps): readonly MenuEntry[] => [
+  ...GetLinkMenuEntries.getLinkMenuEntries(props),
+  ...GetImageMenuEntries.getImageMenuEntries(props),
   GetCopyMenuEntry.getCopyMenuEntry(),
 ]
