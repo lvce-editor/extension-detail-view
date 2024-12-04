@@ -6,8 +6,9 @@ import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirt
 import * as GetVirtualDomChildCount from '../GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
+import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
-export const getExtensionDetailVirtualDom = (extensionDetail: any, sanitizedReadmeHtml: any) => {
+export const getExtensionDetailVirtualDom = (extensionDetail: any, sanitizedReadmeHtml: any): readonly VirtualDomNode[] => {
   const markdownDom = GetMarkdownVirtualDom.getMarkdownVirtualDom(sanitizedReadmeHtml)
   const childCount = GetVirtualDomChildCount.getVirtualDomChildCount(markdownDom)
   const dom = [
