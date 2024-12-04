@@ -193,3 +193,102 @@ test('tag with multiple attributes', () => {
     },
   ])
 })
+
+test.skip('tag with single quotes', () => {
+  expect(TokenizeHtml.tokenizeHtml("<div class='test'>")).toEqual([
+    {
+      type: TokenType.OpeningAngleBracket,
+      text: '<',
+    },
+    {
+      type: TokenType.TagNameStart,
+      text: 'div',
+    },
+    {
+      type: TokenType.WhitespaceInsideOpeningTag,
+      text: ' ',
+    },
+    {
+      type: TokenType.AttributeName,
+      text: 'class',
+    },
+    {
+      type: TokenType.AttributeEqualSign,
+      text: '=',
+    },
+    {
+      type: TokenType.AttributeQuoteStart,
+      text: "'",
+    },
+    {
+      type: TokenType.AttributeValue,
+      text: 'test',
+    },
+    {
+      type: TokenType.AttributeQuoteEnd,
+      text: "'",
+    },
+    {
+      type: TokenType.ClosingAngleBracket,
+      text: '>',
+    },
+  ])
+})
+
+test.skip('tag with unquoted attribute', () => {
+  expect(TokenizeHtml.tokenizeHtml('<div class=test>')).toEqual([
+    {
+      type: TokenType.OpeningAngleBracket,
+      text: '<',
+    },
+    {
+      type: TokenType.TagNameStart,
+      text: 'div',
+    },
+    {
+      type: TokenType.WhitespaceInsideOpeningTag,
+      text: ' ',
+    },
+    {
+      type: TokenType.AttributeName,
+      text: 'class',
+    },
+    {
+      type: TokenType.AttributeEqualSign,
+      text: '=',
+    },
+    {
+      type: TokenType.AttributeValue,
+      text: 'test',
+    },
+    {
+      type: TokenType.ClosingAngleBracket,
+      text: '>',
+    },
+  ])
+})
+
+test('tag with boolean attribute', () => {
+  expect(TokenizeHtml.tokenizeHtml('<input disabled>')).toEqual([
+    {
+      type: TokenType.OpeningAngleBracket,
+      text: '<',
+    },
+    {
+      type: TokenType.TagNameStart,
+      text: 'input',
+    },
+    {
+      type: TokenType.WhitespaceInsideOpeningTag,
+      text: ' ',
+    },
+    {
+      type: TokenType.AttributeName,
+      text: 'disabled',
+    },
+    {
+      type: TokenType.ClosingAngleBracket,
+      text: '>',
+    },
+  ])
+})
