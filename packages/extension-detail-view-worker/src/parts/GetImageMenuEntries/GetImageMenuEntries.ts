@@ -13,14 +13,14 @@ export const getImageMenuEntries = (props: MenuProps): readonly MenuEntry[] => {
       label: ViewletExtensionDetailStrings.openImageInNewTab(),
       flags: MenuItemFlags.None,
       command: 'Open.openUrl',
-      args: [props.url],
+      args: [props.url || ''],
     },
     {
       id: 'saveImageAs',
       label: ViewletExtensionDetailStrings.saveImageAs(),
       flags: MenuItemFlags.None,
       command: 'SaveFileAs.saveFileAs',
-      args: ['image.png', props.url],
+      args: ['image.png', props.url || ''],
     },
   ]
 }
