@@ -18,6 +18,7 @@ test('loads readme content', async () => {
 
 test('handles missing readme file', async () => {
   const error = new Error('file not found')
+  // @ts-ignore
   error.code = 'ENOENT'
   mockFileSystem.readFile.mockRejectedValue(error)
   const content = await LoadReadmeContent.loadReadmeContent('/test/path')
