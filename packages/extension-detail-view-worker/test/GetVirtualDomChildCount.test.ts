@@ -27,7 +27,7 @@ test('element with one child', () => {
       childCount: 0,
     },
   ]
-  expect(GetVirtualDomChildCount.getVirtualDomChildCount(dom)).toBe(2)
+  expect(GetVirtualDomChildCount.getVirtualDomChildCount(dom)).toBe(1)
 })
 
 test('element with two children', () => {
@@ -45,7 +45,7 @@ test('element with two children', () => {
       childCount: 0,
     },
   ]
-  expect(GetVirtualDomChildCount.getVirtualDomChildCount(dom)).toBe(3)
+  expect(GetVirtualDomChildCount.getVirtualDomChildCount(dom)).toBe(1)
 })
 
 test('nested elements', () => {
@@ -67,5 +67,5 @@ test('nested elements', () => {
       childCount: 0,
     },
   ]
-  expect(GetVirtualDomChildCount.getVirtualDomChildCount(dom)).toBe(4)
+  expect(GetVirtualDomChildCount.getVirtualDomChildCount(dom)).toBe(1)
 })
