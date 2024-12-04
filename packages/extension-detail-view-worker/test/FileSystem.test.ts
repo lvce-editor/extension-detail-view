@@ -1,14 +1,11 @@
 import { expect, test, jest } from '@jest/globals'
 
-let mockParentRpc: any
-let FileSystem: any
-
 jest.unstable_mockModule('../src/parts/ParentRpc/ParentRpc.ts', () => ({
   invoke: jest.fn(),
 }))
 
-mockParentRpc = await import('../src/parts/ParentRpc/ParentRpc.ts')
-FileSystem = await import('../src/parts/FileSystem/FileSystem.ts')
+const mockParentRpc = await import('../src/parts/ParentRpc/ParentRpc.ts')
+const FileSystem = await import('../src/parts/FileSystem/FileSystem.ts')
 
 test('readFile invokes ParentRpc with correct arguments', async () => {
   mockParentRpc.invoke.mockResolvedValue('file content')
