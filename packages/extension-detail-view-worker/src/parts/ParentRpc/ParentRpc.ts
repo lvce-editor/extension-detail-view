@@ -1,13 +1,7 @@
-const state = {
-  rpc: undefined,
-}
+import * as RpcId from '../RpcId/RpcId.ts'
+import * as RpRegistry from '../RpRegistry/RpRegistry.ts'
 
 export const invoke = (method: string, ...params: any[]): Promise<any> => {
-  const rpc = state.rpc
-  // @ts-ignore
+  const rpc = RpRegistry.get(RpcId.RendererWorker)
   return rpc.invoke(method, ...params)
-}
-
-export const setRpc = (rpc: any): void => {
-  state.rpc = rpc
 }
