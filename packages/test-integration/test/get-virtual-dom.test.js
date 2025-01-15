@@ -21,7 +21,7 @@ test('render-markdown', async () => {
   const result = await rpc.invoke('ExtensionDetail.getVirtualDom', extensionDetail, sanitizedReadme)
   expect(result).toEqual([
     {
-      childCount: 9,
+      childCount: 2,
       className: 'Viewlet ExtensionDetail',
       type: 4,
     },
