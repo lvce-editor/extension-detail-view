@@ -1,3 +1,4 @@
+import * as AriaRoles from '../AriaRoles/AriaRoles.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
@@ -9,6 +10,7 @@ export const getTabVirtualDom = (tab: Tab): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
+      role: AriaRoles.Tab,
       className,
       childCount: 1,
     },
