@@ -6,7 +6,7 @@ import * as AriaRoles from '../src/parts/AriaRoles/AriaRoles.ts'
 import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
-test('extension detail virtual dom with content', () => {
+test.only('extension detail virtual dom with content', () => {
   const extensionDetail = {
     name: 'Test Extension',
     iconSrc: './test-icon.png',
@@ -17,7 +17,7 @@ test('extension detail virtual dom with content', () => {
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
-      childCount: 2,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.Div,
@@ -49,6 +49,45 @@ test('extension detail virtual dom with content', () => {
       childCount: 1,
     },
     text('Test Description'),
+    {
+      childCount: 3,
+      className: 'ExtensionDetailTabs',
+      role: 'tablist',
+      type: 4,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab ExtensionDetailTabSelected',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Details',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Features',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Changelog',
+      type: 12,
+    },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.Markdown,
@@ -107,6 +146,29 @@ test('extension detail virtual dom with empty content', () => {
       childCount: 1,
     },
     text(''),
+    {
+      childCount: 3,
+      className: 'ExtensionDetailTabs',
+      role: 'tablist',
+      type: 4,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab ExtensionDetailTabSelected',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Details',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab',
+      role: 'tab',
+      type: 4,
+    },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.Markdown,
