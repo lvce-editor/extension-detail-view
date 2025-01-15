@@ -5,7 +5,7 @@ import * as IsSelfClosingTag from '../IsSelfClosingTag/IsSelfClosingTag.ts'
 import * as ParseText from '../ParseText/ParseText.ts'
 import * as TokenizeHtml from '../TokenizeHtml/TokenizeHtml.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
-import { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
 export const parseHtml = (html: string, allowedAttributes: readonly string[]): readonly VirtualDomNode[] => {
   Assert.string(html)
