@@ -17,7 +17,7 @@ test('extension detail virtual dom with content', () => {
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
-      childCount: 2,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.Div,
@@ -50,6 +50,45 @@ test('extension detail virtual dom with content', () => {
     },
     text('Test Description'),
     {
+      childCount: 3,
+      className: 'ExtensionDetailTabs',
+      role: 'tablist',
+      type: 4,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab ExtensionDetailTabSelected',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Details',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Features',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Changelog',
+      type: 12,
+    },
+    {
       type: VirtualDomElements.Div,
       className: ClassNames.Markdown,
       role: AriaRoles.Document,
@@ -75,7 +114,7 @@ test('extension detail virtual dom with empty content', () => {
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
-      childCount: 2,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.Div,
@@ -107,6 +146,45 @@ test('extension detail virtual dom with empty content', () => {
       childCount: 1,
     },
     text(''),
+    {
+      childCount: 3,
+      className: 'ExtensionDetailTabs',
+      role: 'tablist',
+      type: 4,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab ExtensionDetailTabSelected',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Details',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Features',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Changelog',
+      type: 12,
+    },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.Markdown,

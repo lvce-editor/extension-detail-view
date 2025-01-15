@@ -21,7 +21,7 @@ test('render-markdown', async () => {
   const result = await rpc.invoke('ExtensionDetail.getVirtualDom', extensionDetail, sanitizedReadme)
   expect(result).toEqual([
     {
-      childCount: 2,
+      childCount: 3,
       className: 'Viewlet ExtensionDetail',
       type: 4,
     },
@@ -61,6 +61,45 @@ test('render-markdown', async () => {
     {
       childCount: 0,
       text: 'One Dark Theme based on Atom',
+      type: 12,
+    },
+    {
+      childCount: 3,
+      className: 'ExtensionDetailTabs',
+      role: 'tablist',
+      type: 4,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab ExtensionDetailTabSelected',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Details',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Features',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailTab',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Changelog',
       type: 12,
     },
     {
