@@ -75,7 +75,7 @@ test('extension detail virtual dom with empty content', () => {
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
-      childCount: 1,
+      childCount: 2,
     },
     {
       type: VirtualDomElements.Div,
