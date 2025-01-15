@@ -103,7 +103,7 @@ test('extension detail virtual dom with content', () => {
   ])
 })
 
-test.only('extension detail virtual dom with empty content', () => {
+test('extension detail virtual dom with empty content', () => {
   const extensionDetail = {
     name: '',
     iconSrc: '',
