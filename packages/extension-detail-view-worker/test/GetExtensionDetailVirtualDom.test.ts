@@ -114,7 +114,7 @@ test.only('extension detail virtual dom with empty content', () => {
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
-      childCount: 2,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.Div,
