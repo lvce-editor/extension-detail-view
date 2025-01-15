@@ -6,7 +6,7 @@ import * as AriaRoles from '../src/parts/AriaRoles/AriaRoles.ts'
 import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
-test.only('extension detail virtual dom with content', () => {
+test('extension detail virtual dom with content', () => {
   const extensionDetail = {
     name: 'Test Extension',
     iconSrc: './test-icon.png',
@@ -103,7 +103,7 @@ test.only('extension detail virtual dom with content', () => {
   ])
 })
 
-test('extension detail virtual dom with empty content', () => {
+test.only('extension detail virtual dom with empty content', () => {
   const extensionDetail = {
     name: '',
     iconSrc: '',
@@ -168,6 +168,11 @@ test('extension detail virtual dom with empty content', () => {
       className: 'ExtensionDetailTab',
       role: 'tab',
       type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Features',
+      type: 12,
     },
     {
       type: VirtualDomElements.Div,
