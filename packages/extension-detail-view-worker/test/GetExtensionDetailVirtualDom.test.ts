@@ -175,6 +175,17 @@ test.only('extension detail virtual dom with empty content', () => {
       type: 12,
     },
     {
+      childCount: 1,
+      className: 'ExtensionDetailTab',
+      role: 'tab',
+      type: 4,
+    },
+    {
+      childCount: 0,
+      text: 'Changelog',
+      type: 12,
+    },
+    {
       type: VirtualDomElements.Div,
       className: ClassNames.Markdown,
       role: AriaRoles.Document,
