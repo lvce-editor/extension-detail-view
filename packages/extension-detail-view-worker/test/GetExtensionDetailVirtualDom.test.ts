@@ -59,7 +59,8 @@ test('extension detail virtual dom with content', () => {
       childCount: 1,
       className: 'ExtensionDetailTab ExtensionDetailTabSelected',
       role: 'tab',
-      type: 4,
+      name: 'Details',
+      type: 1,
     },
     {
       childCount: 0,
@@ -70,7 +71,8 @@ test('extension detail virtual dom with content', () => {
       childCount: 1,
       className: 'ExtensionDetailTab',
       role: 'tab',
-      type: 4,
+      type: 1,
+      name: 'Features',
     },
     {
       childCount: 0,
@@ -81,7 +83,8 @@ test('extension detail virtual dom with content', () => {
       childCount: 1,
       className: 'ExtensionDetailTab',
       role: 'tab',
-      type: 4,
+      name: 'Changelog',
+      type: 1,
     },
     {
       childCount: 0,
