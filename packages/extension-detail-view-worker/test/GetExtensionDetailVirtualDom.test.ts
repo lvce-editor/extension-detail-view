@@ -53,6 +53,7 @@ test('extension detail virtual dom with content', () => {
       childCount: 3,
       className: 'ExtensionDetailTabs',
       role: 'tablist',
+      onClick: 'handleTabsClick',
       type: 4,
     },
     {
