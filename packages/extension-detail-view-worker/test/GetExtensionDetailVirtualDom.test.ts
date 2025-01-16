@@ -13,7 +13,8 @@ test('extension detail virtual dom with content', () => {
     description: 'Test Description',
   }
   const sanitizedReadmeHtml = '<h1>Test Header</h1>'
-  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml)).toEqual([
+  const selectedTab = 'Details'
+  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
@@ -53,13 +54,17 @@ test('extension detail virtual dom with content', () => {
       childCount: 3,
       className: 'ExtensionDetailTabs',
       role: 'tablist',
+      onClick: 'handleTabsClick',
       type: 4,
+      tabIndex: 0,
     },
     {
       childCount: 1,
       className: 'ExtensionDetailTab ExtensionDetailTabSelected',
       role: 'tab',
-      type: 4,
+      name: 'Details',
+      type: 1,
+      tabIndex: -1,
     },
     {
       childCount: 0,
@@ -70,7 +75,9 @@ test('extension detail virtual dom with content', () => {
       childCount: 1,
       className: 'ExtensionDetailTab',
       role: 'tab',
-      type: 4,
+      type: 1,
+      tabIndex: -1,
+      name: 'Features',
     },
     {
       childCount: 0,
@@ -81,7 +88,9 @@ test('extension detail virtual dom with content', () => {
       childCount: 1,
       className: 'ExtensionDetailTab',
       role: 'tab',
-      type: 4,
+      name: 'Changelog',
+      type: 1,
+      tabIndex: -1,
     },
     {
       childCount: 0,
@@ -110,7 +119,8 @@ test('extension detail virtual dom with empty content', () => {
     description: '',
   }
   const sanitizedReadmeHtml = ''
-  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml)).toEqual([
+  const selectedTab = 'Details'
+  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
@@ -149,14 +159,18 @@ test('extension detail virtual dom with empty content', () => {
     {
       childCount: 3,
       className: 'ExtensionDetailTabs',
+      onClick: 'handleTabsClick',
       role: 'tablist',
       type: 4,
+      tabIndex: 0,
     },
     {
       childCount: 1,
       className: 'ExtensionDetailTab ExtensionDetailTabSelected',
       role: 'tab',
-      type: 4,
+      name: 'Details',
+      type: 1,
+      tabIndex: -1,
     },
     {
       childCount: 0,
@@ -166,8 +180,10 @@ test('extension detail virtual dom with empty content', () => {
     {
       childCount: 1,
       className: 'ExtensionDetailTab',
+      name: 'Features',
       role: 'tab',
-      type: 4,
+      type: 1,
+      tabIndex: -1,
     },
     {
       childCount: 0,
@@ -177,8 +193,10 @@ test('extension detail virtual dom with empty content', () => {
     {
       childCount: 1,
       className: 'ExtensionDetailTab',
+      name: 'Changelog',
       role: 'tab',
-      type: 4,
+      type: 1,
+      tabIndex: -1,
     },
     {
       childCount: 0,
