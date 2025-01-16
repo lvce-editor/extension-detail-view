@@ -158,6 +158,7 @@ test('extension detail virtual dom with empty content', () => {
       onClick: 'handleTabsClick',
       role: 'tablist',
       type: 4,
+      tabIndex: 0,
     },
     {
       childCount: 1,
@@ -165,6 +166,7 @@ test('extension detail virtual dom with empty content', () => {
       role: 'tab',
       name: 'Details',
       type: 1,
+      tabIndex: -1,
     },
     {
       childCount: 0,
@@ -177,6 +179,7 @@ test('extension detail virtual dom with empty content', () => {
       name: 'Features',
       role: 'tab',
       type: 1,
+      tabIndex: -1,
     },
     {
       childCount: 0,
@@ -189,6 +192,7 @@ test('extension detail virtual dom with empty content', () => {
       name: 'Changelog',
       role: 'tab',
       type: 1,
+      tabIndex: -1,
     },
     {
       childCount: 0,
