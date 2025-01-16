@@ -56,6 +56,7 @@ test('extension detail virtual dom with content', () => {
       role: 'tablist',
       onClick: 'handleTabsClick',
       type: 4,
+      tabIndex: -1,
     },
     {
       childCount: 1,
@@ -63,6 +64,7 @@ test('extension detail virtual dom with content', () => {
       role: 'tab',
       name: 'Details',
       type: 1,
+      tabIndex: -1,
     },
     {
       childCount: 0,
@@ -74,6 +76,7 @@ test('extension detail virtual dom with content', () => {
       className: 'ExtensionDetailTab',
       role: 'tab',
       type: 1,
+      tabIndex: -1,
       name: 'Features',
     },
     {
@@ -87,6 +90,7 @@ test('extension detail virtual dom with content', () => {
       role: 'tab',
       name: 'Changelog',
       type: 1,
+      tabIndex: -1,
     },
     {
       childCount: 0,
