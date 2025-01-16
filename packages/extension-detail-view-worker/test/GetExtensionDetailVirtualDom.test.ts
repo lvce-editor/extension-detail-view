@@ -1,9 +1,9 @@
 import { expect, test } from '@jest/globals'
+import * as AriaRoles from '../src/parts/AriaRoles/AriaRoles.ts'
+import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetExtensionDetailVirtualDom from '../src/parts/GetExtensionDetailVirtualDom/GetExtensionDetailVirtualDom.ts'
 import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
-import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
-import * as AriaRoles from '../src/parts/AriaRoles/AriaRoles.ts'
-import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('extension detail virtual dom with content', () => {

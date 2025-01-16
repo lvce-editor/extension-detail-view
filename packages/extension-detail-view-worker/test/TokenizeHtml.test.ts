@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as TokenizeHtml from '../src/parts/TokenizeHtml/TokenizeHtml.ts'
 import * as TokenType from '../src/parts/HtmlTokenType/HtmlTokenType.ts'
+import * as TokenizeHtml from '../src/parts/TokenizeHtml/TokenizeHtml.ts'
 import { UnexpectedTokenError } from '../src/parts/UnexpectedTokenError/UnexpectedTokenError.ts'
 
 test('plain text', () => {

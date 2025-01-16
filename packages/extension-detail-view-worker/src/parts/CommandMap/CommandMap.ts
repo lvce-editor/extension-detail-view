@@ -1,9 +1,9 @@
 import * as GetExtensionDetailVirtualDom from '../GetExtensionDetailVirtualDom/GetExtensionDetailVirtualDom.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
+import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
-import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as Terminate from '../Terminate/Terminate.ts'
 
 export const commandMap = {

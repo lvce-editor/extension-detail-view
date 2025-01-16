@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
+import * as ElementTags from '../src/parts/ElementTags/ElementTags.ts'
 import * as GetVirtualDomTag from '../src/parts/GetVirtualDomTag/GetVirtualDomTag.ts'
 import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
-import * as ElementTags from '../src/parts/ElementTags/ElementTags.ts'
 
 test('heading tags', () => {
   expect(GetVirtualDomTag.getVirtualDomTag(ElementTags.H1)).toBe(VirtualDomElements.H1)

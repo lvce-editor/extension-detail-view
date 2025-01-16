@@ -1,5 +1,5 @@
-import * as InputName from '../InputName/InputName.ts'
 import type { Tab } from '../Tab/Tab.ts'
+import * as InputName from '../InputName/InputName.ts'
 
 export const getTabs = (selectedTab: string): readonly Tab[] => {
   const tabs: readonly Tab[] = [
