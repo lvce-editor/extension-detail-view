@@ -13,7 +13,8 @@ test('extension detail virtual dom with content', () => {
     description: 'Test Description',
   }
   const sanitizedReadmeHtml = '<h1>Test Header</h1>'
-  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml)).toEqual([
+  const selectedTab = 'Details'
+  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
@@ -114,7 +115,8 @@ test('extension detail virtual dom with empty content', () => {
     description: '',
   }
   const sanitizedReadmeHtml = ''
-  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml)).toEqual([
+  const selectedTab = 'Details'
+  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
