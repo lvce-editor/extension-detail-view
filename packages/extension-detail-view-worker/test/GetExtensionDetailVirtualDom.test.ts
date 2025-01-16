@@ -56,7 +56,7 @@ test('extension detail virtual dom with content', () => {
       role: 'tablist',
       onClick: 'handleTabsClick',
       type: 4,
-      tabIndex: -1,
+      tabIndex: 0,
     },
     {
       childCount: 1,
