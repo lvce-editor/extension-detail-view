@@ -18,7 +18,7 @@ export const getExtensionDetailVirtualDom = (extensionDetail: any, sanitizedRead
     },
     ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
-    ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(sanitizedReadmeHtml),
+    ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(sanitizedReadmeHtml, selectedTab),
   ]
   return dom
 }
