@@ -18,6 +18,7 @@ export const getTabVirtualDom = (tab: Tab): readonly VirtualDomNode[] => {
       name,
       className,
       childCount: 1,
+      tabIndex: -1,
     },
     text(label),
   ]

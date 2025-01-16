@@ -14,6 +14,7 @@ export const getTabsVirtualDom = (tabs: readonly Tab[]): readonly VirtualDomNode
       childCount: tabs.length,
       role: AriaRoles.TabList,
       onClick: DomEventListenerFunctions.HandleTabsClick,
+      tabIndex: 0,
     },
     ...tabs.flatMap(GetTabVirtualDom.getTabVirtualDom),
   ]
