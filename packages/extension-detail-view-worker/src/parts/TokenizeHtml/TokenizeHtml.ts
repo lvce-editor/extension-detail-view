@@ -1,5 +1,5 @@
-import * as Assert from '../Assert/Assert.ts'
 import type { HtmlToken } from '../HtmlToken/HtmlToken.ts'
+import * as Assert from '../Assert/Assert.ts'
 import * as TokenType from '../HtmlTokenType/HtmlTokenType.ts'
 import { UnexpectedTokenError } from '../UnexpectedTokenError/UnexpectedTokenError.ts'
 

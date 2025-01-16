@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
+import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetMenuEntries from '../src/parts/GetMenuEntries/GetMenuEntries.ts'
 import * as MenuItemFlags from '../src/parts/MenuItemFlags/MenuItemFlags.ts'
-import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 
 test('handles isLink', () => {
   expect(GetMenuEntries.getMenuEntries({ isLink: true })).toEqual([

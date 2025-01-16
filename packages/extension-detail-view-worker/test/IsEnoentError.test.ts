@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as IsEnoentError from '../src/parts/IsEnoentError/IsEnoentError.ts'
 import * as ErrorCodes from '../src/parts/ErrorCodes/ErrorCodes.ts'
+import * as IsEnoentError from '../src/parts/IsEnoentError/IsEnoentError.ts'
 
 test('returns true for ENOENT error', () => {
   const error = new Error('file not found')
