@@ -9,7 +9,6 @@ import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 export const getExtensionDetailVirtualDom = (extensionDetail: any, sanitizedReadmeHtml: string, selectedTab: string): readonly VirtualDomNode[] => {
-  console.log({ selectedTab })
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const dom = [
     {
