@@ -1,16 +1,24 @@
+import type { Feature } from '../Feature/Feature.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as GetFeatureListVirtualDom from '../GetFeatureListVirtualDom/GetFeatureListVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getFeaturesVirtualDom = (): readonly VirtualDomNode[] => {
-  // TODO set tabpanel role
+  const features: readonly Feature[] = [
+    {
+      id: 'theme',
+      label: 'Theme',
+    },
+  ]
   return [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.Features,
-      childCount: 1,
+      childCount: 2,
     },
+    ...GetFeatureListVirtualDom.getFeatureListVirtualDom(features),
     text('Not Implemented'),
   ]
 }
