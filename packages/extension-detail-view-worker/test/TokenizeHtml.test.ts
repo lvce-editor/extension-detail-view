@@ -364,3 +364,19 @@ test('content after angle bracket', () => {
 test('content after angle bracket 2', () => {
   expect(TokenizeHtml.tokenizeHtml('<?')).toEqual(expect.anything())
 })
+
+test('empty tag', () => {
+  expect(TokenizeHtml.tokenizeHtml('<>')).toEqual(expect.anything())
+})
+
+test('emoji tag', () => {
+  expect(TokenizeHtml.tokenizeHtml('<😀')).toEqual(expect.anything())
+})
+
+test('emoji closing tag', () => {
+  expect(() => TokenizeHtml.tokenizeHtml('</😀')).toThrow(new UnexpectedTokenError())
+})
+
+test('invalid doctype', () => {
+  expect(TokenizeHtml.tokenizeHtml('<!abc')).toEqual(expect.anything())
+})
