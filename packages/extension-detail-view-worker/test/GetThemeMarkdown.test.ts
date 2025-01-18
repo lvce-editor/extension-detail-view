@@ -21,11 +21,11 @@ test('getThemeMarkdown', () => {
     },
   ]
   const markdown = GetThemeMarkdown.getThemeMarkdown(themes, iconThemes, productIconThemes)
-  expect(markdown).toBe(`### Color Themes·
+  expect(markdown).toBe(`### Color Themes
 - A
-### File Icon Themes·
+### File Icon Themes
 - B
-### Product Icon Themes·
+### Product Icon Themes
 - C
 `)
 })
