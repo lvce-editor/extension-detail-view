@@ -16,7 +16,9 @@ export const create = (uid: number, uri: string, width: number, height: number, 
     secondEntries: [],
     categories: [],
     resources: [],
-    selectedFeatureMarkdown: '',
+    selectedFeatureMarkdownDom: '',
+    extension: {},
+    baseUrl: '',
   }
   ExtensionDetailStates.set(uid, state, state)
 }
