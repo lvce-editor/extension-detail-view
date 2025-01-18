@@ -5,7 +5,7 @@ import * as GetFeatureListVirtualDom from '../GetFeatureListVirtualDom/GetFeatur
 import * as GetFeatureThemesVirtualDom from '../GetFeatureThemesVirtualDom/GetFeatureThemesVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
-export const getFeaturesVirtualDom = (): readonly VirtualDomNode[] => {
+export const getFeaturesVirtualDom = (themesHtml: string): readonly VirtualDomNode[] => {
   const features: readonly Feature[] = [
     {
       id: 'theme',
@@ -16,9 +16,14 @@ export const getFeaturesVirtualDom = (): readonly VirtualDomNode[] => {
     {
       type: VirtualDomElements.Div,
       className: ClassNames.Features,
-      childCount: 2,
+      childCount: 3,
     },
     ...GetFeatureListVirtualDom.getFeatureListVirtualDom(features),
-    ...GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(),
+    {
+      type: VirtualDomElements.Div,
+      className: 'Sash SashVertical',
+      childCount: 0,
+    },
+    ...GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesHtml),
   ]
 }

@@ -2,9 +2,10 @@ import { expect, test } from '@jest/globals'
 import * as GetFeaturesVirtualDom from '../src/parts/GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
 
 test('features virtual dom', () => {
-  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom()).toEqual([
+  const themesHtml = ''
+  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(themesHtml)).toEqual([
     {
-      childCount: 2,
+      childCount: 3,
       className: 'Features',
       type: 4,
     },
@@ -23,9 +24,13 @@ test('features virtual dom', () => {
       text: 'Theme',
       type: 12,
     },
-
     {
-      childCount: 1,
+      type: 4,
+      className: 'Sash SashVertical',
+      childCount: 0,
+    },
+    {
+      childCount: 2,
       className: 'FeatureTheme',
       type: 4,
     },
@@ -37,6 +42,11 @@ test('features virtual dom', () => {
       childCount: 0,
       text: 'Themes',
       type: 12,
+    },
+    {
+      type: 4,
+      className: 'DefaultMarkdown',
+      childCount: 0,
     },
   ])
 })
