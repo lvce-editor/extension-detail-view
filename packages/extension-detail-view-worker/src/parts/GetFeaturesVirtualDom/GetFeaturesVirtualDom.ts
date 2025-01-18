@@ -16,9 +16,14 @@ export const getFeaturesVirtualDom = (themesHtml: string): readonly VirtualDomNo
     {
       type: VirtualDomElements.Div,
       className: ClassNames.Features,
-      childCount: 2,
+      childCount: 3,
     },
     ...GetFeatureListVirtualDom.getFeatureListVirtualDom(features),
+    {
+      type: VirtualDomElements.Div,
+      className: 'Sash SashVertical',
+      childCount: 0,
+    },
     ...GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesHtml),
   ]
 }
