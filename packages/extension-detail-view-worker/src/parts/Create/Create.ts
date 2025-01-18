@@ -5,6 +5,7 @@ export const create = (uid: number, uri: string, width: number, height: number, 
   const state: ExtensionDetailState = {
     description: '',
     iconSrc: '',
+    selectedFeature: '',
     name: '',
     sanitizedReadmeHtml: '',
     selectedTab: '',
