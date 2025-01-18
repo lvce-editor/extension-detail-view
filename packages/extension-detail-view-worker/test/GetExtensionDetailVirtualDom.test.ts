@@ -98,6 +98,12 @@ test('extension detail virtual dom with content', () => {
       type: 12,
     },
     {
+      childCount: 1,
+      className: 'ExtensionDetailPanel',
+      role: 'panel',
+      type: 4,
+    },
+    {
       type: VirtualDomElements.Div,
       className: ClassNames.Markdown,
       role: AriaRoles.Document,
@@ -202,6 +208,12 @@ test('extension detail virtual dom with empty content', () => {
       childCount: 0,
       text: 'Changelog',
       type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailPanel',
+      role: 'panel',
+      type: 4,
     },
     {
       type: VirtualDomElements.Div,
