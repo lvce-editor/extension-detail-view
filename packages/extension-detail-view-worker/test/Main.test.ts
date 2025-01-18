@@ -13,6 +13,5 @@ test('main', () => {
 
 test('main calls listen', async () => {
   await Main.main()
-  // @ts-ignore
   expect(Listen.listen).toHaveBeenCalledTimes(1)
 })
