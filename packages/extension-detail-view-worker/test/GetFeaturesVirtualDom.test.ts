@@ -27,6 +27,7 @@ test('features virtual dom', () => {
     {
       type: 4,
       className: 'Sash SashVertical',
+      childCount: 0,
     },
     {
       childCount: 2,
