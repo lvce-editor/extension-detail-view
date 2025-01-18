@@ -4,6 +4,7 @@ import type { Resource } from '../Resource/Resource.ts'
 
 export interface ExtensionDetailState {
   readonly selectedTab: string
+  readonly selectedFeature: string
   readonly sanitizedReadmeHtml: string
   readonly iconSrc: string
   readonly name: string
