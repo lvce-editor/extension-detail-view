@@ -1,5 +1,6 @@
 import type { Category } from '../Category/Category.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
+import type { Resource } from '../Resource/Resource.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as AriaRoles from '../AriaRoles/AriaRoles.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
@@ -46,6 +47,25 @@ export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly Virt
       label: 'Themes',
     },
   ]
+  const fourthHeading = 'Resources'
+  const resources: readonly Resource[] = [
+    {
+      label: 'Marketplace',
+      url: '#',
+    },
+    {
+      label: 'Issues',
+      url: '#',
+    },
+    {
+      label: 'Repository',
+      url: '#',
+    },
+    {
+      label: 'License',
+      url: '#',
+    },
+  ]
   const dom = [
     {
       type: VirtualDomElements.Div,
@@ -66,7 +86,16 @@ export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly Virt
       className: 'Aside',
       childCount: 1,
     },
-    ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(firstHeading, entries, secondHeading, secondEntries, thirdHeading, categories),
+    ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(
+      firstHeading,
+      entries,
+      secondHeading,
+      secondEntries,
+      thirdHeading,
+      categories,
+      fourthHeading,
+      resources,
+    ),
   ]
   return dom
 }
