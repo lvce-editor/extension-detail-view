@@ -320,3 +320,7 @@ test('invalid closing tag - whitespace after slash', () => {
 test('self closing tag with attribute', () => {
   expect(TokenizeHtml.tokenizeHtml('<img src=""/>')).toEqual(expect.anything())
 })
+
+test('attribute value newline', () => {
+  expect(() => TokenizeHtml.tokenizeHtml('<img src="\n"/>')).toThrow(new UnexpectedTokenError())
+})
