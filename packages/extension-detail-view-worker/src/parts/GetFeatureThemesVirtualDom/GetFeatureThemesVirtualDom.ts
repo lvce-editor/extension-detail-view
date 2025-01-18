@@ -21,7 +21,7 @@ export const getFeatureThemesVirtualDom = (themesHtml: string): readonly Virtual
     text(heading),
     {
       type: VirtualDomElements.Div,
-      className: 'Markdown',
+      className: 'DefaultMarkdown',
       childCount,
     },
     ...markdownDom,

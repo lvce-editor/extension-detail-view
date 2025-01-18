@@ -44,7 +44,7 @@ test('features virtual dom', () => {
     },
     {
       type: 4,
-      className: 'Markdown',
+      className: 'Defaultarkdown',
       childCount: 0,
     },
   ])
