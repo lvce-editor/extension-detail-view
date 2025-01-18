@@ -12,6 +12,7 @@ const defaultClassName = ClassNames.ExtensionDetailTab
 export const getTabVirtualDom = (tab: Tab): readonly VirtualDomNode[] => {
   const { label, selected, name } = tab
   const className = selected ? selectedClassName : defaultClassName
+  const ariaSelected = selected ? 'true' : 'false'
   return [
     {
       type: VirtualDomElements.Button,
@@ -20,6 +21,7 @@ export const getTabVirtualDom = (tab: Tab): readonly VirtualDomNode[] => {
       className,
       childCount: 1,
       tabIndex: -1,
+      ariaSelected,
     },
     text(label),
   ]
