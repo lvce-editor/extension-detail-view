@@ -1,3 +1,3 @@
-export const join = (pathSeparator: string, ...parts: string[]): string => {
+export const join = (pathSeparator: string, ...parts: readonly string[]): string => {
   return parts.join(pathSeparator)
 }
