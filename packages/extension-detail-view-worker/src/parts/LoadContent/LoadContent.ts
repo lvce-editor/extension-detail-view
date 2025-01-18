@@ -1,3 +1,4 @@
+import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import * as ExtensionDisplay from '../ExtensionDisplay/ExtensionDisplay.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
@@ -6,7 +7,7 @@ import * as InputName from '../InputName/InputName.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as MarkDown from '../RenderMarkdown/RenderMarkdown.ts'
 
-export const loadContent = async (state: any, platform: number): Promise<any> => {
+export const loadContent = async (state: ExtensionDetailState, platform: number): Promise<ExtensionDetailState> => {
   const { uri, width } = state
   const id = uri.slice('extension-detail://'.length)
   const extension = await ExtensionManagement.getExtension(id, platform)
