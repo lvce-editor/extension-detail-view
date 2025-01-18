@@ -12,6 +12,12 @@ export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly Virt
   const dom = [
     {
       type: VirtualDomElements.Div,
+      className: ClassNames.ExtensionDetailPanel,
+      childCount: 1,
+      role: AriaRoles.Panel,
+    },
+    {
+      type: VirtualDomElements.Div,
       className: ClassNames.Markdown,
       role: AriaRoles.Document,
       onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
