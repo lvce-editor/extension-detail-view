@@ -15,7 +15,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const id = uri.slice('extension-detail://'.length)
   const extension = await ExtensionManagement.getExtension(id, platform)
   const readmeContent = await GetExtensionReadme.loadReadmeContent(extension.path)
-  // @ts-ignore
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const readmeHtml = await MarkDown.renderMarkdown(readmeContent, {
     baseUrl,
