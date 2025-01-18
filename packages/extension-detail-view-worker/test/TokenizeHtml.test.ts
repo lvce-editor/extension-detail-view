@@ -344,3 +344,23 @@ test('unexpected attribute', () => {
 test('unexpected opening angle bracket', () => {
   expect(TokenizeHtml.tokenizeHtml('< <')).toEqual(expect.anything())
 })
+
+test('emoji content', () => {
+  expect(TokenizeHtml.tokenizeHtml('😀')).toEqual(expect.anything())
+})
+
+test('closing tag at start', () => {
+  expect(TokenizeHtml.tokenizeHtml('</div')).toEqual(expect.anything())
+})
+
+test('slash at start', () => {
+  expect(TokenizeHtml.tokenizeHtml('/')).toEqual(expect.anything())
+})
+
+test('content after angle bracket', () => {
+  expect(TokenizeHtml.tokenizeHtml('<.')).toEqual(expect.anything())
+})
+
+test('content after angle bracket 2', () => {
+  expect(TokenizeHtml.tokenizeHtml('<?')).toEqual(expect.anything())
+})
