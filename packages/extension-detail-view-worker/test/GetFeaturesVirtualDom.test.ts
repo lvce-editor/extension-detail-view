@@ -2,7 +2,8 @@ import { expect, test } from '@jest/globals'
 import * as GetFeaturesVirtualDom from '../src/parts/GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
 
 test('features virtual dom', () => {
-  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom()).toEqual([
+  const themesHtml = ''
+  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(themesHtml)).toEqual([
     {
       childCount: 2,
       className: 'Features',
