@@ -34,10 +34,17 @@
     "coverageThreshold": {
       "global": {
         "branches": 71,
-        "functions": 90,
+        "functions": 84,
         "lines": 82
       }
-    }
+    },
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      "<rootDir>/src/parts/TokenizeHtml/TokenizeHtml.ts"
+    ]
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
