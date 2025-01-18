@@ -5,7 +5,7 @@ test('features virtual dom', () => {
   const themesHtml = ''
   expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(themesHtml)).toEqual([
     {
-      childCount: 2,
+      childCount: 3,
       className: 'Features',
       type: 4,
     },
@@ -24,9 +24,12 @@ test('features virtual dom', () => {
       text: 'Theme',
       type: 12,
     },
-
     {
-      childCount: 1,
+      type: 4,
+      className: 'Sash SashVertical',
+    },
+    {
+      childCount: 2,
       className: 'FeatureTheme',
       type: 4,
     },
@@ -38,6 +41,11 @@ test('features virtual dom', () => {
       childCount: 0,
       text: 'Themes',
       type: 12,
+    },
+    {
+      type: 4,
+      className: 'Markdown',
+      childCount: 0,
     },
   ])
 })
