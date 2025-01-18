@@ -83,7 +83,7 @@ export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly Virt
     ...markdownDom,
     {
       type: VirtualDomElements.Div,
-      className: 'Aside',
+      className: ClassNames.Aside,
       childCount: 1,
     },
     ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(

@@ -1,8 +1,8 @@
-import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetVirtualDomChildCount from '../GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
+import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
 export const getFeatureThemesVirtualDom = (themesHtml: string): readonly VirtualDomNode[] => {
   const markdownDom = GetMarkdownVirtualDom.getMarkdownVirtualDom(themesHtml)
