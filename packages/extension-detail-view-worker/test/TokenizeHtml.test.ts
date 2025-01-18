@@ -324,3 +324,19 @@ test('self closing tag with attribute', () => {
 test('attribute value newline', () => {
   expect(() => TokenizeHtml.tokenizeHtml('<img src="\n"/>')).toThrow(new UnexpectedTokenError())
 })
+
+test('unexpected angle bracket', () => {
+  expect(TokenizeHtml.tokenizeHtml('< >')).toEqual(expect.anything())
+})
+
+test('unexpected self closing tag', () => {
+  expect(TokenizeHtml.tokenizeHtml('< />')).toEqual(expect.anything())
+})
+
+test('unexpected attribute', () => {
+  expect(TokenizeHtml.tokenizeHtml('< abc')).toEqual(expect.anything())
+})
+
+test('unexpected opening angle bracket', () => {
+  expect(TokenizeHtml.tokenizeHtml('< <')).toEqual(expect.anything())
+})
