@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
 import * as HandleTabsClick from '../src/parts/HandleTabsClick/HandleTabsClick.ts'
 
-test('handles tabs click - details tab', () => {
+test('handles tabs click - details tab', async () => {
   const state = {
     selectedTab: 'Features',
     extensionDetail: {
@@ -9,13 +9,13 @@ test('handles tabs click - details tab', () => {
     },
     sanitizedReadmeHtml: '<h1>Test</h1>',
   } as any
-  expect(HandleTabsClick.handleTabsClick(state, 'Details')).toEqual({
+  expect(await HandleTabsClick.handleTabsClick(state, 'Details')).toEqual({
     ...state,
     selectedTab: 'Details',
   })
 })
 
-test('handles tabs click - features tab', () => {
+test('handles tabs click - features tab', async () => {
   const state = {
     selectedTab: 'Details',
     extensionDetail: {
@@ -23,13 +23,13 @@ test('handles tabs click - features tab', () => {
     },
     sanitizedReadmeHtml: '<h1>Test</h1>',
   } as any
-  expect(HandleTabsClick.handleTabsClick(state, 'Features')).toEqual({
+  expect(await HandleTabsClick.handleTabsClick(state, 'Features')).toEqual({
     ...state,
     selectedTab: 'Features',
   })
 })
 
-test('handles tabs click - changelog tab', () => {
+test('handles tabs click - changelog tab', async () => {
   const state = {
     selectedTab: 'Details',
     extensionDetail: {
@@ -37,7 +37,7 @@ test('handles tabs click - changelog tab', () => {
     },
     sanitizedReadmeHtml: '<h1>Test</h1>',
   } as any
-  expect(HandleTabsClick.handleTabsClick(state, 'Changelog')).toEqual({
+  expect(await HandleTabsClick.handleTabsClick(state, 'Changelog')).toEqual({
     ...state,
     selectedTab: 'Changelog',
   })
