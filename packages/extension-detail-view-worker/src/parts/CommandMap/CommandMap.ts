@@ -5,11 +5,13 @@ import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
+import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
 import * as Terminate from '../Terminate/Terminate.ts'
 
 export const commandMap = {
   'ExtensionDetail.create': Create.create,
+  'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.getVirtualDom': GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom,
   'ExtensionDetail.loadContent': LoadContent.loadContent,
