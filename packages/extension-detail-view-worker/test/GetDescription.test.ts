@@ -24,7 +24,7 @@ test('handles empty description', () => {
     description: '',
     iconSrc: './test-icon.png',
   }
-  expect(GetDescription.getDescription(extensionDetail)).toBe('')
+  expect(GetDescription.getDescription(extensionDetail)).toBe('n/a')
 })
 
 test('handles null description', () => {
@@ -33,5 +33,5 @@ test('handles null description', () => {
     description: null,
     iconSrc: './test-icon.png',
   }
-  expect(GetDescription.getDescription(extensionDetail)).toBe('')
+  expect(GetDescription.getDescription(extensionDetail)).toBe('n/a')
 })
