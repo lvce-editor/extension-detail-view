@@ -58,7 +58,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number)
       label: 'Themes',
     },
   ]
-  const fourthHeading = 'Resources'
   const resources: readonly Resource[] = [
     {
       label: 'Marketplace',
