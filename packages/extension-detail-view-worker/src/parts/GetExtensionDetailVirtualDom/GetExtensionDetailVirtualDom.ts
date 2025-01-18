@@ -13,7 +13,7 @@ export const getExtensionDetailVirtualDom = (
   extensionDetail: any,
   sanitizedReadmeHtml: string,
   selectedTab: string,
-  newState: ExtensionDetailState,
+  newState: any,
 ): readonly VirtualDomNode[] => {
   const themesHtml = newState?.selectedFeatureMarkdownDom || ''
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
