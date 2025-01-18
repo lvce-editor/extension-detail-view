@@ -17,7 +17,6 @@ export default [
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
-      '@typescript-eslint/prefer-readonly-parameter-types': 'off',
     },
   },
 ]
