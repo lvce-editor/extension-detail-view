@@ -1,6 +1,5 @@
 import { expect, test } from '@jest/globals'
 import * as GetFeaturesVirtualDom from '../src/parts/GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
-import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('features virtual dom', () => {
   expect(GetFeaturesVirtualDom.getFeaturesVirtualDom()).toEqual([
@@ -24,6 +23,20 @@ test('features virtual dom', () => {
       text: 'Theme',
       type: 12,
     },
-    text('Not Implemented'),
+
+    {
+      childCount: 1,
+      className: 'FeatureTheme',
+      type: 4,
+    },
+    {
+      childCount: 1,
+      type: 5,
+    },
+    {
+      childCount: 0,
+      text: 'Themes',
+      type: 12,
+    },
   ])
 })
