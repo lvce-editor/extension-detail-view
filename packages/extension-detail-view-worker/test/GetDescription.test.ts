@@ -15,7 +15,7 @@ test('handles missing description', () => {
     name: 'Test Extension',
     iconSrc: './test-icon.png',
   }
-  expect(GetDescription.getDescription(extensionDetail)).toBe('')
+  expect(GetDescription.getDescription(extensionDetail)).toBe('n/a')
 })
 
 test('handles empty description', () => {
