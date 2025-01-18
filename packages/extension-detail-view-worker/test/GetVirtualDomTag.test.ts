@@ -51,10 +51,15 @@ test('data tags', () => {
   expect(GetVirtualDomTag.getVirtualDomTag(ElementTags.Data)).toBe(VirtualDomElements.Data)
 })
 
-test('unknown tag defaults to div', () => {
-  expect(GetVirtualDomTag.getVirtualDomTag('unknown')).toBe(VirtualDomElements.Div)
-})
-
 test('semantic tags', () => {
   expect(GetVirtualDomTag.getVirtualDomTag(ElementTags.Aside)).toBe(VirtualDomElements.Aside)
+})
+
+test('unknown tag defaults to div', () => {
+  expect(GetVirtualDomTag.getVirtualDomTag('unknown')).toBe(VirtualDomElements.Div)
+  expect(GetVirtualDomTag.getVirtualDomTag('')).toBe(VirtualDomElements.Div)
+  // @ts-expect-error
+  expect(GetVirtualDomTag.getVirtualDomTag(undefined)).toBe(VirtualDomElements.Div)
+  // @ts-expect-error
+  expect(GetVirtualDomTag.getVirtualDomTag(null)).toBe(VirtualDomElements.Div)
 })
