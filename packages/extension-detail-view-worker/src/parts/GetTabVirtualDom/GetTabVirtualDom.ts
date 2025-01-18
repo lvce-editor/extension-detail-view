@@ -6,11 +6,12 @@ import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
+const selectedClassName = MergeClassNames.mergeClassNames(ClassNames.ExtensionDetailTab, ClassNames.ExtensionDetailTabSelected)
+const defaultClassName = ClassNames.ExtensionDetailTab
+
 export const getTabVirtualDom = (tab: Tab): readonly VirtualDomNode[] => {
   const { label, selected, name } = tab
-  const className = selected
-    ? MergeClassNames.mergeClassNames(ClassNames.ExtensionDetailTab, ClassNames.ExtensionDetailTabSelected)
-    : ClassNames.ExtensionDetailTab
+  const className = selected ? selectedClassName : defaultClassName
   return [
     {
       type: VirtualDomElements.Button,
