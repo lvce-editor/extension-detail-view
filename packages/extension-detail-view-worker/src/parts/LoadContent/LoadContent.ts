@@ -87,5 +87,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     secondEntries,
     categories,
     resources,
+    extension,
+    baseUrl,
   }
 }

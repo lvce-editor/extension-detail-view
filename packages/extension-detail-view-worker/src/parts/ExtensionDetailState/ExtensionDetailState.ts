@@ -12,9 +12,11 @@ export interface ExtensionDetailState {
   readonly size: number
   readonly width: number
   readonly uri: string
-  readonly selectedFeatureMarkdown: string
+  readonly selectedFeatureMarkdownDom: string
   readonly entries: readonly MoreInfoEntry[]
   readonly secondEntries: readonly MoreInfoEntry[]
   readonly categories: readonly Category[]
   readonly resources: readonly Resource[]
+  readonly extension: any
+  readonly baseUrl: string
 }
