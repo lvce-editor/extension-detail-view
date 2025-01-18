@@ -2,6 +2,7 @@ import type { Category } from '../Category/Category.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetCategoriesDom from '../GetCategoriesDom/GetCategoriesDom.ts'
 import * as GetMoreInfoVirtualDom from '../GetMoreInfoVirtualDom/GetMoreInfoVirtualDom.ts'
 import * as GetResourcesVirtualDom from '../GetResourcesVirtualDom/GetResourcesVirtualDom.ts'
@@ -21,29 +22,29 @@ export const getAdditionalDetailsVirtualDom = (
   return [
     {
       type: VirtualDomElements.Div,
-      className: 'AdditionalDetails',
+      className: ClassNames.AdditionalDetails,
       childCount: 4,
     },
     {
       type: VirtualDomElements.Div,
-      className: 'AdditionalDetailsEntry',
+      className: ClassNames.AdditionalDetailsEntry,
       childCount: 2,
     },
     {
       type: VirtualDomElements.Div,
-      className: 'AdditionalDetailsTitle',
+      className: ClassNames.AdditionalDetailsTitle,
       childCount: 1,
     },
     text(firstHeading),
     ...GetMoreInfoVirtualDom.getMoreInfoVirtualDom(entries),
     {
       type: VirtualDomElements.Div,
-      className: 'AdditionalDetailsEntry',
+      className: ClassNames.AdditionalDetailsEntry,
       childCount: 2,
     },
     {
       type: VirtualDomElements.Div,
-      className: 'AdditionalDetailsTitle',
+      className: ClassNames.AdditionalDetailsTitle,
       childCount: 1,
     },
     text(secondHeading),
@@ -51,24 +52,24 @@ export const getAdditionalDetailsVirtualDom = (
 
     {
       type: VirtualDomElements.Div,
-      className: 'AdditionalDetailsEntry',
+      className: ClassNames.AdditionalDetailsEntry,
       childCount: 2,
     },
     {
       type: VirtualDomElements.Div,
-      className: 'AdditionalDetailsTitle',
+      className: ClassNames.AdditionalDetailsTitle,
       childCount: 1,
     },
     text(thirdHeading),
     ...GetCategoriesDom.getCategoriesDom(categories),
     {
       type: VirtualDomElements.Div,
-      className: 'AdditionalDetailsEntry',
+      className: ClassNames.AdditionalDetailsEntry,
       childCount: 2,
     },
     {
       type: VirtualDomElements.Div,
-      className: 'AdditionalDetailsTitle',
+      className: ClassNames.AdditionalDetailsTitle,
       childCount: 1,
     },
     text(fourthHeading),
