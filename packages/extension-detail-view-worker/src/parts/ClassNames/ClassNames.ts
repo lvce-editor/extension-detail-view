@@ -1,6 +1,7 @@
 export const Changelog = 'Changelog'
 export const ExtensionDetail = 'ExtensionDetail'
 export const ExtensionDetailDescription = 'ExtensionDetailDescription'
+export const MoreInfo = 'MoreInfo'
 export const ExtensionDetailHeader = 'ExtensionDetailHeader'
 export const ExtensionDetailHeaderDetails = 'ExtensionDetailHeaderDetails'
 export const ExtensionDetailIcon = 'ExtensionDetailIcon'
