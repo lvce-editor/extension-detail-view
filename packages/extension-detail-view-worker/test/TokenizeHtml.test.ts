@@ -308,3 +308,15 @@ test('whitespace after closing tag name', () => {
 test('doctype', () => {
   expect(TokenizeHtml.tokenizeHtml('<!DOCTYPE html>')).toEqual(expect.anything())
 })
+
+test('invalid closing tag - angle bracket after slash', () => {
+  expect(TokenizeHtml.tokenizeHtml('<div></>')).toEqual(expect.anything())
+})
+
+test('invalid closing tag - whitespace after slash', () => {
+  expect(TokenizeHtml.tokenizeHtml('<div></ ')).toEqual(expect.anything())
+})
+
+test('self closing tag with attribute', () => {
+  expect(TokenizeHtml.tokenizeHtml('<img src=""/>')).toEqual(expect.anything())
+})
