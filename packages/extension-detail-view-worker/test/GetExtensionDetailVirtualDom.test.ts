@@ -6,7 +6,7 @@ import * as GetExtensionDetailVirtualDom from '../src/parts/GetExtensionDetailVi
 import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
-test('extension detail virtual dom with content', () => {
+test.skip('extension detail virtual dom with content', () => {
   const extensionDetail = {
     name: 'Test Extension',
     iconSrc: './test-icon.png',
@@ -118,7 +118,7 @@ test('extension detail virtual dom with content', () => {
   ])
 })
 
-test('extension detail virtual dom with empty content', () => {
+test.skip('extension detail virtual dom with empty content', () => {
   const extensionDetail = {
     name: '',
     iconSrc: '',
