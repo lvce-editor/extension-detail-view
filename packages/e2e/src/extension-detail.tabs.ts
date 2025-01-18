@@ -1,6 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const skip = true
+export const name = 'extension-detail.tabs'
 
 export const test: Test = async ({ Main, Locator, expect }) => {
   // arrange
@@ -12,6 +12,8 @@ export const test: Test = async ({ Main, Locator, expect }) => {
   await expect(tabFeatures).toBeVisible()
   const tabChangelog = Locator('.ExtensionDetailTab[name="Changelog"]')
   await expect(tabChangelog).toBeVisible()
+  const markdown = Locator('.Markdown')
+  await expect(markdown).toBeVisible()
 
   // TODO use page object model
   // act
