@@ -1,3 +1,4 @@
+import type { Category } from '../Category/Category.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as AriaRoles from '../AriaRoles/AriaRoles.ts'
@@ -26,9 +27,23 @@ export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly Virt
       key: 'Last Updated',
       value: 'n/a',
     },
+  ]
+  const secondHeading = 'Marketplace'
+  const secondEntries: readonly MoreInfoEntry[] = [
     {
       key: 'Published',
       value: 'n/a',
+    },
+    {
+      key: 'Last Released',
+      value: 'n/a',
+    },
+  ]
+  const thirdHeading = 'Categories'
+  const categories: readonly Category[] = [
+    {
+      id: 'themes',
+      label: 'Themes',
     },
   ]
   const dom = [
@@ -51,7 +66,7 @@ export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly Virt
       className: 'Aside',
       childCount: 1,
     },
-    ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(firstHeading, entries),
+    ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(firstHeading, entries, secondHeading, secondEntries, thirdHeading, categories),
   ]
   return dom
 }
