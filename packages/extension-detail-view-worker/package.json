@@ -43,7 +43,8 @@
     ],
     "coveragePathIgnorePatterns": [
       "node_modules",
-      "<rootDir>/src/parts/TokenizeHtml/TokenizeHtml.ts"
+      "<rootDir>/src/parts/TokenizeHtml/TokenizeHtml.ts",
+      "<rootDir>/src/extensionDetailViewWorkerMain.ts"
     ]
   },
   "devDependencies": {
