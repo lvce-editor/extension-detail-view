@@ -11,6 +11,8 @@ import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts
 export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly VirtualDomNode[] => {
   const markdownDom = GetMarkdownVirtualDom.getMarkdownVirtualDom(sanitizedReadmeHtml)
   const childCount = GetVirtualDomChildCount.getVirtualDomChildCount(markdownDom)
+
+  const firstHeading = 'Installation'
   const entries: readonly MoreInfoEntry[] = [
     {
       key: 'Identifier',
@@ -49,7 +51,7 @@ export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly Virt
       className: 'Aside',
       childCount: 1,
     },
-    ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(entries),
+    ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(firstHeading, entries),
   ]
   return dom
 }
