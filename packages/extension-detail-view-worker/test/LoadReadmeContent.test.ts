@@ -26,11 +26,14 @@ test('handles missing readme file', async () => {
 })
 
 test('returns error message for other errors', async () => {
+  const spy = jest.spyOn(console, 'error').mockImplementation(() => {})
   const error = new Error('permission denied')
   // @ts-ignore
   mockFileSystem.readFile.mockRejectedValue(error)
   const content = await LoadReadmeContent.loadReadmeContent('/test/path')
   expect(content).toBe('Error: permission denied')
+  expect(spy).toHaveBeenCalledTimes(1)
+  expect(spy).toHaveBeenCalledWith(new Error('permission denied'))
 })
 
 test('handles empty readme file', async () => {
