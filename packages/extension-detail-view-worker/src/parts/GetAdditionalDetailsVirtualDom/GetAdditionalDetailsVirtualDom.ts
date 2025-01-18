@@ -4,25 +4,7 @@ import * as GetMoreInfoVirtualDom from '../GetMoreInfoVirtualDom/GetMoreInfoVirt
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-export const getAdditionalDetailsVirtualDom = (): readonly VirtualDomNode[] => {
-  const entries: readonly MoreInfoEntry[] = [
-    {
-      key: 'Identifier',
-      value: 'abc',
-    },
-    {
-      key: 'Version',
-      value: '1.9.5',
-    },
-    {
-      key: 'Last Updated',
-      value: '',
-    },
-    {
-      key: 'Published',
-      value: '',
-    },
-  ]
+export const getAdditionalDetailsVirtualDom = (entries: readonly MoreInfoEntry[]): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
