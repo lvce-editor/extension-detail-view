@@ -1,17 +1,16 @@
 import type { Feature } from '../Feature/Feature.ts'
-import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as GetChangelogVirtualDom from '../GetChangelogVirtualDom/GetChangelogVirtualDom.ts'
 import * as GetDetailsVirtualDom from '../GetDetailsVirtualDom/GetDetailsVirtualDom.ts'
-import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetFeaturesVirtualDom from '../GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
+import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
 export const getExtensionDetailContentVirtualDom = (
   sanitizedReadmeHtml: string,
   themesHtml: string,
   selectedTab: string,
+  features: readonly Feature[],
 ): readonly VirtualDomNode[] => {
-  const features: readonly Feature[] = GetFeatures.getFeatures()
   switch (selectedTab) {
     case InputName.Details:
       return GetDetailsVirtualDom.getDetailsVirtualDom(sanitizedReadmeHtml)

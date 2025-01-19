@@ -7,6 +7,7 @@ import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetTabsVirtualDom from '../GetTabsVirtualDom/GetTabsVirtualDom.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
+import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 
 export const getExtensionDetailVirtualDom = (
   extensionDetail: any,
@@ -15,6 +16,7 @@ export const getExtensionDetailVirtualDom = (
   newState: any,
 ): readonly VirtualDomNode[] => {
   const themesHtml = newState?.selectedFeatureMarkdownDom || ''
+  const features = newState?.features || GetFeatures.getFeatures()
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const dom = [
     {
@@ -24,7 +26,7 @@ export const getExtensionDetailVirtualDom = (
     },
     ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
-    ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(sanitizedReadmeHtml, themesHtml, selectedTab),
+    ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(sanitizedReadmeHtml, themesHtml, selectedTab, features),
   ]
   return dom
 }
