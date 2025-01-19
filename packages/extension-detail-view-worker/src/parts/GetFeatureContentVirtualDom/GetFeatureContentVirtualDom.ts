@@ -21,7 +21,7 @@ export const getFeatureContentVirtualDom = (
     case InputName.Commands:
       return GetFeatureCommandsVirtualDom.getFeatureCommandsVirtualDom(extension)
     case InputName.JsonValidation:
-      return GetFeatureJsonValidationVirtualDom.getFeatureJsonValidationVirtualDom()
+      return GetFeatureJsonValidationVirtualDom.getFeatureJsonValidationVirtualDom(extension)
     case InputName.ProgrammingLanguages:
       return GetFeatureProgrammingLanguagesVirtualDom.getFeatureProgrammingLanguagesVirtualDom()
     case InputName.Settings:
