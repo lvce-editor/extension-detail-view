@@ -5,13 +5,7 @@ import * as GetFeatureListVirtualDom from '../GetFeatureListVirtualDom/GetFeatur
 import * as GetFeatureThemesVirtualDom from '../GetFeatureThemesVirtualDom/GetFeatureThemesVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
-export const getFeaturesVirtualDom = (themesHtml: string): readonly VirtualDomNode[] => {
-  const features: readonly Feature[] = [
-    {
-      id: 'theme',
-      label: 'Theme',
-    },
-  ]
+export const getFeaturesVirtualDom = (features: readonly Feature[], themesHtml: string): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,

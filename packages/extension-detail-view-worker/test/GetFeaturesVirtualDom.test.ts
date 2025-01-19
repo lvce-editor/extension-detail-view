@@ -1,9 +1,17 @@
 import { expect, test } from '@jest/globals'
+import type { Feature } from '../src/parts/Feature/Feature.ts'
 import * as GetFeaturesVirtualDom from '../src/parts/GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
 
 test('features virtual dom', () => {
   const themesHtml = ''
-  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(themesHtml)).toEqual([
+  const features: readonly Feature[] = [
+    {
+      id: 'theme',
+      label: 'Theme',
+      selected: true,
+    },
+  ]
+  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml)).toEqual([
     {
       childCount: 3,
       className: 'Features',
@@ -13,10 +21,11 @@ test('features virtual dom', () => {
       childCount: 1,
       className: 'FeaturesList',
       type: 4,
+      onClick: 'handleFeaturesClick',
     },
     {
       childCount: 1,
-      className: 'Feature',
+      className: 'Feature FeatureSelected',
       type: 4,
     },
     {
