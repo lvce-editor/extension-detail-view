@@ -5,6 +5,7 @@ import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionDisplay from '../ExtensionDisplay/ExtensionDisplay.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
+import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetSavedSelectedTab from '../GetSavedSelectedTab/GetSavedSelectedTab.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
@@ -26,6 +27,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const name = ExtensionDisplay.getName(extension)
   const size = GetViewletSize.getViewletSize(width)
   const selectedTab = GetSavedSelectedTab.getSavedSelectedTab(savedState)
+  const features = GetFeatures.getFeatures()
   const entries: readonly MoreInfoEntry[] = [
     {
       key: 'Identifier',
@@ -89,5 +91,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     resources,
     extension,
     baseUrl,
+    features,
   }
 }
