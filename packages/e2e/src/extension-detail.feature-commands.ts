@@ -17,5 +17,7 @@ export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   await featureCommands.click()
 
   // assert
-  // TODO
+  const heading = Locator('.FeatureCommands h1')
+  await expect(heading).toBeVisible()
+  await expect(heading).toHaveText('Commands')
 }
