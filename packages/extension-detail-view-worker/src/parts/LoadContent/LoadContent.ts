@@ -27,7 +27,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const name = ExtensionDisplay.getName(extension)
   const size = GetViewletSize.getViewletSize(width)
   const selectedTab = GetSavedSelectedTab.getSavedSelectedTab(savedState)
-  const features = await GetFeatures.getFeatures()
+  const features = GetFeatures.getFeatures()
   const entries: readonly MoreInfoEntry[] = [
     {
       key: 'Identifier',
