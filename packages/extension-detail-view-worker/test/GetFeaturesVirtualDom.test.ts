@@ -6,7 +6,7 @@ test('features virtual dom', () => {
   const themesHtml = ''
   const features: readonly Feature[] = [
     {
-      id: 'theme',
+      id: 'Theme',
       label: 'Theme',
       selected: true,
     },
