@@ -9,7 +9,7 @@ export const getCellCodeVirtualDom = (value: string): readonly VirtualDomNode[] 
       childCount: 1,
     },
     {
-      type: VirtualDomElements.Code,
+      type: VirtualDomElements.Div, // TODO use code tag
       childCount: 1,
     },
     text(value),
