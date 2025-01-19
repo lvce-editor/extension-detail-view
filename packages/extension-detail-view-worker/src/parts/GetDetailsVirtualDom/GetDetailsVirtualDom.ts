@@ -10,7 +10,7 @@ import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirt
 import * as GetVirtualDomChildCount from '../GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
-export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly VirtualDomNode[] => {
+export const getDetailsVirtualDom = (sanitizedReadmeHtml: string, displaySize: string): readonly VirtualDomNode[] => {
   const markdownDom = GetMarkdownVirtualDom.getMarkdownVirtualDom(sanitizedReadmeHtml)
   const childCount = GetVirtualDomChildCount.getVirtualDomChildCount(markdownDom)
 
@@ -30,7 +30,7 @@ export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly Virt
     },
     {
       key: 'Size',
-      value: '100kB',
+      value: `${displaySize}`,
     },
   ]
   const secondHeading = 'Marketplace'
