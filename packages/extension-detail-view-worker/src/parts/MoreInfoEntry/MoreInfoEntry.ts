@@ -1,4 +1,5 @@
 export interface MoreInfoEntry {
   readonly key: string
   readonly value: string
+  readonly onClick?: string
 }
