@@ -11,7 +11,7 @@ test('features virtual dom', () => {
       selected: true,
     },
   ]
-  const selectedFeature = 'Themes'
+  const selectedFeature = 'Theme'
   const extension = {}
   expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, extension)).toEqual([
     {
