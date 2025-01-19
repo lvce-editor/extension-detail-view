@@ -1,3 +1,7 @@
+import prettyBytes from 'pretty-bytes'
+
 export const getDisplaySize = (size: number): string => {
-  return `${size}B`
+  return prettyBytes(size, {
+    maximumFractionDigits: 1,
+  })
 }
