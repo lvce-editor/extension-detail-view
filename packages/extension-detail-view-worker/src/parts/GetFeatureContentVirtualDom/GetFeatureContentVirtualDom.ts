@@ -2,6 +2,7 @@ import type { Feature } from '../Feature/Feature.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as GetFeatureCommandsVirtualDom from '../GetFeatureCommandsVirtualDom/GetFeatureCommandsVirtualDom.ts'
 import * as GetFeatureJsonValidationVirtualDom from '../GetFeatureJsonValidationVirtualDom/GetFeatureJsonValidationVirtualDom.ts'
+import * as GetFeatureSettingsVirtualDom from '../GetFeatureSettingsVirtualDom/GetFeatureSettingsVirtualDom.ts'
 import * as GetFeatureProgrammingLanguagesVirtualDom from '../GetFeatureProgrammingLanguagesVirtualDom/GetFeatureProgrammingLanguagesVirtualDom.ts'
 import * as GetFeatureThemesVirtualDom from '../GetFeatureThemesVirtualDom/GetFeatureThemesVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
@@ -23,6 +24,8 @@ export const getFeatureContentVirtualDom = (
       return GetFeatureJsonValidationVirtualDom.getFeatureJsonValidationVirtualDom()
     case InputName.ProgrammingLanguages:
       return GetFeatureProgrammingLanguagesVirtualDom.getFeatureProgrammingLanguagesVirtualDom()
+    case InputName.Settings:
+      return GetFeatureSettingsVirtualDom.getFeatureSettingsVirtualDom()
     default:
       return [
         {
