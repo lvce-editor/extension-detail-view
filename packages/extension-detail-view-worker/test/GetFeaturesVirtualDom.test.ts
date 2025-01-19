@@ -21,6 +21,7 @@ test('features virtual dom', () => {
       childCount: 1,
       className: 'FeaturesList',
       type: 4,
+      onClick: 'handleFeaturesClick',
     },
     {
       childCount: 1,
