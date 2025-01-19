@@ -26,7 +26,8 @@ test('features virtual dom', () => {
     {
       childCount: 1,
       className: 'Feature FeatureSelected',
-      type: 4,
+      type: 1,
+      name: 'Theme',
     },
     {
       childCount: 0,
