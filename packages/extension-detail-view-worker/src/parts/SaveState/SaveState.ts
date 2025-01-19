@@ -2,8 +2,9 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { SavedState } from '../SavedState/SavedState.ts'
 
 export const saveState = (state: ExtensionDetailState): SavedState => {
-  const { selectedTab } = state
+  const { selectedTab, selectedFeature } = state
   return {
     selectedTab,
+    selectedFeature,
   }
 }
