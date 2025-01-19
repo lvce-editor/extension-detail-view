@@ -23,6 +23,7 @@ export const getAdditionalDetailsVirtualDom = (
     {
       type: VirtualDomElements.Div,
       className: ClassNames.AdditionalDetails,
+      tabIndex: 0,
       childCount: 4,
     },
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(firstHeading, entries, GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
