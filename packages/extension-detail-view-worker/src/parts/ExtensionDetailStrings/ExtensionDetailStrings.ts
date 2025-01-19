@@ -16,3 +16,11 @@ export const openImageInNewTab = (): string => {
 export const saveImageAs = (): string => {
   return I18nString.i18nString(UiStrings.SaveImageAs)
 }
+
+export const fileMatch = (): string => {
+  return I18nString.i18nString(UiStrings.FileMatch)
+}
+
+export const schema = (): string => {
+  return I18nString.i18nString(UiStrings.Schema)
+}
