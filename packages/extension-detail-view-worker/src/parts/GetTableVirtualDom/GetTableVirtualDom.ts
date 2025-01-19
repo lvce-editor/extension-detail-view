@@ -1,20 +1,9 @@
-import type { Cell } from '../Cell/Cell.ts'
 import type { Row } from '../Row/Row.ts'
 import type { TableInfo } from '../TableInfo/TableInfo.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as GetCellVirtualDom from '../GetCellVirtualDom/GetCellVirtualDom.ts'
 import * as GetTableHeadingVirtualDom from '../GetTableHeadingVirtualDom/GetTableHeadingVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
-import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
-
-const getCellVirtualDom = (entry: Cell): readonly VirtualDomNode[] => {
-  return [
-    {
-      type: VirtualDomElements.Td,
-      childCount: 1,
-    },
-    text(entry.value),
-  ]
-}
 
 const getTableRowVirtualDom = (entries: Row): readonly VirtualDomNode[] => {
   return [
@@ -22,7 +11,7 @@ const getTableRowVirtualDom = (entries: Row): readonly VirtualDomNode[] => {
       type: VirtualDomElements.Tr,
       childCount: entries.length,
     },
-    ...entries.flatMap(getCellVirtualDom),
+    ...entries.flatMap(GetCellVirtualDom.getCellVirtualDom),
   ]
 }
 
