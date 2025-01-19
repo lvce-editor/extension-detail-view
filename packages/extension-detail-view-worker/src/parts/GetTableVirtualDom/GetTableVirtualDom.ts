@@ -1,3 +1,5 @@
+import type { Cell } from '../Cell/Cell.ts'
+import type { Row } from '../Row/Row.ts'
 import type { TableInfo } from '../TableInfo/TableInfo.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
@@ -13,17 +15,18 @@ const getTableHeadingVirtualDom = (heading: string): readonly VirtualDomNode[] =
   ]
 }
 
-const getCellVirtualDom = (entry: string): readonly VirtualDomNode[] => {
+const getCellVirtualDom = (entry: Cell): readonly VirtualDomNode[] => {
+  const { value } = entry
   return [
     {
       type: VirtualDomElements.Td,
       childCount: 1,
     },
-    text(entry),
+    text(value),
   ]
 }
 
-const getTableRowVirtualDom = (entries: readonly string[]): readonly VirtualDomNode[] => {
+const getTableRowVirtualDom = (entries: Row): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Tr,

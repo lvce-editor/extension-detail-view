@@ -1,4 +1,4 @@
-export type Row = readonly string[]
+import type { Row } from '../Row/Row.ts'
 
 export interface TableInfo {
   readonly headings: readonly string[]
