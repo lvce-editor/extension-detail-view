@@ -1,14 +1,15 @@
-import type { CommandTableEntry } from '../CommandTableEntry/CommandTableEntry.ts'
+import type { Row, TableInfo } from '../TableInfo/TableInfo.ts'
 
-export const getCommandTableEntries = (extension: any): readonly CommandTableEntry[] => {
-  const entries: CommandTableEntry[] = []
+export const getCommandTableEntries = (extension: any): TableInfo => {
+  // TODO maybe use a flat string array for rows
+  const rows: Row[] = []
   const commands = extension.commands || []
   for (const command of commands) {
     // TODO watch out for command being null/undefined/number/string/array
-    entries.push({
-      id: command.id,
-      label: command.label,
-    })
+    rows.push([command.id, command.label])
   }
-  return entries
+  return {
+    headings: ['ID', 'Label'],
+    rows,
+  }
 }

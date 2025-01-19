@@ -1,4 +1,4 @@
-import type { CommandTableEntry } from '../CommandTableEntry/CommandTableEntry.ts'
+import type { TableInfo } from '../TableInfo/TableInfo.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
@@ -13,27 +13,28 @@ const getTableHeadingVirtualDom = (heading: string): readonly VirtualDomNode[] =
   ]
 }
 
-const getTableRowVirtualDom = (entry: CommandTableEntry): readonly VirtualDomNode[] => {
-  const { id, label } = entry
+const getCellVirtualDom = (entry: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Tr,
-      childCount: 2,
-    },
-    {
       type: VirtualDomElements.Td,
       childCount: 1,
     },
-    text(id),
-    {
-      type: VirtualDomElements.Td,
-      childCount: 1,
-    },
-    text(label),
+    text(entry),
   ]
 }
 
-export const getTableVirtualDom = (headings: readonly string[], entries: readonly CommandTableEntry[]): readonly VirtualDomNode[] => {
+const getTableRowVirtualDom = (entries: readonly string[]): readonly VirtualDomNode[] => {
+  return [
+    {
+      type: VirtualDomElements.Tr,
+      childCount: entries.length,
+    },
+    ...entries.flatMap(getCellVirtualDom),
+  ]
+}
+
+export const getTableVirtualDom = (tableInfo: TableInfo): readonly VirtualDomNode[] => {
+  const { headings, rows } = tableInfo
   return [
     {
       type: VirtualDomElements.Table,
@@ -51,8 +52,8 @@ export const getTableVirtualDom = (headings: readonly string[], entries: readonl
     ...headings.flatMap(getTableHeadingVirtualDom),
     {
       type: VirtualDomElements.TBody,
-      childCount: entries.length,
+      childCount: rows.length,
     },
-    ...entries.flatMap(getTableRowVirtualDom),
+    ...rows.flatMap(getTableRowVirtualDom),
   ]
 }
