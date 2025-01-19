@@ -19,7 +19,7 @@ export const getFeatureContentVirtualDom = (
     case InputName.Theme:
       return GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesHtml)
     case InputName.Commands:
-      return GetFeatureCommandsVirtualDom.getFeatureCommandsVirtualDom()
+      return GetFeatureCommandsVirtualDom.getFeatureCommandsVirtualDom(extension)
     case InputName.JsonValidation:
       return GetFeatureJsonValidationVirtualDom.getFeatureJsonValidationVirtualDom()
     case InputName.ProgrammingLanguages:
