@@ -1,5 +1,6 @@
 import type { Row } from '../Row/Row.ts'
 import type { TableInfo } from '../TableInfo/TableInfo.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as TableCellType from '../TableCellType/TableCellType.ts'
 
 const getJsonValidationTableEntry = (validation: any): Row => {
@@ -20,7 +21,7 @@ export const getJsonValidationTableEntries = (extension: any): TableInfo => {
   const validations = extension.jsonValidation || []
   const rows: readonly Row[] = validations.map(getJsonValidationTableEntry)
   return {
-    headings: ['File Match', 'Schema'],
+    headings: [ExtensionDetailStrings.fileMatch(), ExtensionDetailStrings.schema()],
     rows,
   }
 }
