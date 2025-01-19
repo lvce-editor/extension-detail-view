@@ -5,11 +5,9 @@ import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getFeatureCommandsVirtualDom = (extension: any): readonly VirtualDomNode[] => {
-  const heading = 'Commands'
-  const entries = GetCommandTableEntries.getCommandTableEntries(extension)
   // TODO use i18n strings
-  const headings = ['ID', 'Label']
-  // TODO render commands table
+  const heading = 'Commands'
+  const tableInfo = GetCommandTableEntries.getCommandTableEntries(extension)
   return [
     {
       type: VirtualDomElements.Div,
@@ -21,6 +19,6 @@ export const getFeatureCommandsVirtualDom = (extension: any): readonly VirtualDo
       childCount: 1,
     },
     text(heading),
-    ...GetTableVirtualDom.getTableVirtualDom(headings, entries),
+    ...GetTableVirtualDom.getTableVirtualDom(tableInfo),
   ]
 }
