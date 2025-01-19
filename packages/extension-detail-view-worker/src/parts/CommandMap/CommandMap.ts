@@ -12,15 +12,15 @@ import * as Terminate from '../Terminate/Terminate.ts'
 
 export const commandMap = {
   'ExtensionDetail.create': Create.create,
-  'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.getVirtualDom': GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom,
-  'ExtensionDetail.loadContent': LoadContent.loadContent,
-  'ExtensionDetail.terminate': Terminate.terminate,
-  'ExtensionDetail.handleTabsClick': HandleTabsClick.handleTabsClick,
+  'ExtensionDetail.handleFeaturesClick': HandleClickFeatures.handleClickFeatures,
   'ExtensionDetail.handleIconError': HandleIconError.handleIconError,
+  'ExtensionDetail.handleTabsClick': HandleTabsClick.handleTabsClick,
+  'ExtensionDetail.loadContent': LoadContent.loadContent,
+  'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.selectTab': SelectTab.selectTab,
-  'ExtensionDetail.handleClickFeatures': HandleClickFeatures.handleClickFeatures,
+  'ExtensionDetail.terminate': Terminate.terminate,
 
   // deprecated
   'HandleIconError.handleIconError': HandleIconError.handleIconError,
