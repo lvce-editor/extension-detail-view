@@ -21,4 +21,5 @@ export interface ExtensionDetailState {
   readonly extension: any
   readonly baseUrl: string
   readonly features: readonly Feature[]
+  readonly folderSize: number
 }

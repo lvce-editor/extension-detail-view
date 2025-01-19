@@ -20,6 +20,7 @@ export const create = (uid: number, uri: string, width: number, height: number, 
     extension: {},
     baseUrl: '',
     features: [],
+    folderSize: 0,
   }
   ExtensionDetailStates.set(uid, state, state)
 }

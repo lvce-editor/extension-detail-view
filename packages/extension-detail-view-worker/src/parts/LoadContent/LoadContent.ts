@@ -6,6 +6,7 @@ import * as ExtensionDisplay from '../ExtensionDisplay/ExtensionDisplay.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
+import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
 import * as GetSavedSelectedTab from '../GetSavedSelectedTab/GetSavedSelectedTab.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
@@ -28,6 +29,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const size = GetViewletSize.getViewletSize(width)
   const selectedTab = GetSavedSelectedTab.getSavedSelectedTab(savedState)
   const features = GetFeatures.getFeatures()
+  const folderSize = await GetFolderSize.getFolderSize(extension.uri)
   const entries: readonly MoreInfoEntry[] = [
     {
       key: 'Identifier',
@@ -92,5 +94,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     extension,
     baseUrl,
     features,
+    folderSize,
   }
 }
