@@ -1,11 +1,16 @@
 import type { Feature } from '../Feature/Feature.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as GetFeatureContentVirtualDom from '../GetFeatureContentVirtualDom/GetFeatureContentVirtualDom.ts'
 import * as GetFeatureListVirtualDom from '../GetFeatureListVirtualDom/GetFeatureListVirtualDom.ts'
-import * as GetFeatureThemesVirtualDom from '../GetFeatureThemesVirtualDom/GetFeatureThemesVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
-export const getFeaturesVirtualDom = (features: readonly Feature[], themesHtml: string): readonly VirtualDomNode[] => {
+export const getFeaturesVirtualDom = (
+  features: readonly Feature[],
+  themesHtml: string,
+  selectedFeature: string,
+  extension: any,
+): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
@@ -18,6 +23,6 @@ export const getFeaturesVirtualDom = (features: readonly Feature[], themesHtml: 
       className: 'Sash SashVertical',
       childCount: 0,
     },
-    ...GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesHtml),
+    ...GetFeatureContentVirtualDom.getFeatureContentVirtualDom(features, themesHtml, selectedFeature, extension),
   ]
 }

@@ -16,12 +16,18 @@ export const getExtensionDetailVirtualDom = (
   selectedTab: string,
   newState: any,
 ): readonly VirtualDomNode[] => {
+  // TODO move this to view model so that rendering occurs like
+  // 1. state
+  // 2. view model
+  // 3. virtual dom
+  // 4. dom
   const themesHtml = newState?.selectedFeatureMarkdownDom || ''
   const selectedFeature = newState?.selectedFeature || ''
   const features = newState?.features || GetFeatures.getFeatures(selectedFeature)
   const size = newState.folderSize || 0
   const extensionId = newState?.extension?.id || 'n/a'
   const extensionVersion = newState?.extension?.version || 'n/a'
+  const extension = newState?.extension || {}
   const displaySize = GetDisplaySize.getDisplaySize(size)
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const dom = [
@@ -40,6 +46,8 @@ export const getExtensionDetailVirtualDom = (
       displaySize,
       extensionId,
       extensionVersion,
+      selectedFeature,
+      extension,
     ),
   ]
   return dom
