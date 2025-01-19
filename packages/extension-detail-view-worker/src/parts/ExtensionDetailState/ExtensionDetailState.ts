@@ -1,4 +1,5 @@
 import type { Category } from '../Category/Category.ts'
+import type { Feature } from '../Feature/Feature.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 
@@ -19,4 +20,5 @@ export interface ExtensionDetailState {
   readonly resources: readonly Resource[]
   readonly extension: any
   readonly baseUrl: string
+  readonly features: readonly Feature[]
 }
