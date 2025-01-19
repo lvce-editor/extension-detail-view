@@ -11,7 +11,9 @@ test('features virtual dom', () => {
       selected: true,
     },
   ]
-  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml)).toEqual([
+  const selectedFeature = 'Themes'
+  const extension = {}
+  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, extension)).toEqual([
     {
       childCount: 3,
       className: 'Features',
