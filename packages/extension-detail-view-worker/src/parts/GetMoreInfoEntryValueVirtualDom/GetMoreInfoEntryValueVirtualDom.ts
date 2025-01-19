@@ -16,6 +16,7 @@ export const getMoreInfoEntryValueVirtualDom = (item: MoreInfoEntry): readonly V
       type: valueTag,
       className: valueClassName,
       childCount: 1,
+      onClick,
     },
     text(value),
   ]
