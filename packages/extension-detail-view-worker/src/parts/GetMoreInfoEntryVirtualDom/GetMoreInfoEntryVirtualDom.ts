@@ -5,13 +5,23 @@ import * as GetMoreInfoEntryKeyVirtualDom from '../GetMoreInfoEntryKeyVirtualDom
 import * as GetMoreInfoEntryValueVirtualDom from '../GetMoreInfoEntryValueVirtualDom/GetMoreInfoEntryValueVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
+const parentNodeEven: VirtualDomNode = {
+  type: VirtualDomElements.Div,
+  className: ClassNames.MoreInfoEntry,
+  childCount: 2,
+}
+
+const parentNodeOdd: VirtualDomNode = {
+  type: VirtualDomElements.Div,
+  className: ClassNames.MoreInfoEntry + ' ' + 'MoreInfoEntryOdd',
+  childCount: 2,
+}
+
 export const getMoreInfoEntryVirtualDom = (item: MoreInfoEntry): readonly VirtualDomNode[] => {
+  const { odd } = item
+  const node = odd ? parentNodeOdd : parentNodeEven
   return [
-    {
-      type: VirtualDomElements.Div,
-      className: ClassNames.MoreInfoEntry,
-      childCount: 2,
-    },
+    node,
     ...GetMoreInfoEntryKeyVirtualDom.getMoreInfoEntryKeyVirtualDom(item),
     ...GetMoreInfoEntryValueVirtualDom.getMoreInfoEntryValueVirtualDom(item),
   ]
