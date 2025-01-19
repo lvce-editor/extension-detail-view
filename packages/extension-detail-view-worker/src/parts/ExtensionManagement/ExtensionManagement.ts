@@ -1,19 +1,14 @@
+import * as GetExtensionFallback from '../GetExtensionFallback/GetExtensionFallback.ts'
 import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
-import * as PlatformType from '../PlatformType/PlatformType.ts'
 
-const getAllExtensions = async (platform: number): Promise<any[]> => {
-  if (platform === PlatformType.Web) {
-    return []
-  }
-  return ParentRpc.invoke('ExtensionManagement.getAllExtensions')
+const getExtensionNew = async (id: string): Promise<any> => {
+  return ParentRpc.invoke('ExtensionManagement.getExtension', id)
 }
 
 export const getExtension = async (id: string, platform: number): Promise<any> => {
-  const allExtensions = await getAllExtensions(platform)
-  for (const extension of allExtensions) {
-    if (extension.id === id) {
-      return extension
-    }
+  try {
+    return await getExtensionNew(id)
+  } catch {
+    return GetExtensionFallback.getExtension(id, platform)
   }
-  return undefined
 }
