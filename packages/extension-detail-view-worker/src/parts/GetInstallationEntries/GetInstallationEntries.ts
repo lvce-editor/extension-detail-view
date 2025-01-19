@@ -7,10 +7,12 @@ export const getInstallationEntries = (displaySize: string, extensionId: string,
       key: 'Identifier',
       value: extensionId,
       odd: true,
+      code: true,
     },
     {
       key: 'Version',
       value: extensionVersion,
+      code: true,
     },
     {
       key: 'Last Updated',
