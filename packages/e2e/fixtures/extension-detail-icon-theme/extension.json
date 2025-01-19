@@ -3,7 +3,7 @@
   "name": "Test Icon Theme",
   "description": "Test Icon Theme",
   "categories": ["Themes"],
-  "colorThemes": [
+  "iconThemes": [
     {
       "id": "test",
       "label": "Test",
