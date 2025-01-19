@@ -4,6 +4,7 @@ import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionDisplay from '../ExtensionDisplay/ExtensionDisplay.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
+import * as GetSavedSelectedFeature from '../GetSavedSelectedFeature/GetSavedSelectedFeature.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
@@ -28,7 +29,8 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const name = ExtensionDisplay.getName(extension)
   const size = GetViewletSize.getViewletSize(width)
   const selectedTab = GetSavedSelectedTab.getSavedSelectedTab(savedState)
-  const features = GetFeatures.getFeatures()
+  const selectedFeature = GetSavedSelectedFeature.getSavedSelectedFeature(savedState)
+  const features = GetFeatures.getFeatures(selectedFeature)
   const folderSize = await GetFolderSize.getFolderSize(extension.uri)
   const entries: readonly MoreInfoEntry[] = [
     {
