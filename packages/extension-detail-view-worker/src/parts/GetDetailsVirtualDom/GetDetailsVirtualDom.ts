@@ -6,6 +6,7 @@ import * as AriaRoles from '../AriaRoles/AriaRoles.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetAdditionalDetailsVirtualDom from '../GetAdditionalDetailsVirtualDom/GetAdditionalDetailsVirtualDom.ts'
+import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
 import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetVirtualDomChildCount from '../GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
@@ -15,24 +16,7 @@ export const getDetailsVirtualDom = (sanitizedReadmeHtml: string, displaySize: s
   const childCount = GetVirtualDomChildCount.getVirtualDomChildCount(markdownDom)
 
   const firstHeading = 'Installation'
-  const entries: readonly MoreInfoEntry[] = [
-    {
-      key: 'Identifier',
-      value: 'abc',
-    },
-    {
-      key: 'Version',
-      value: '1.9.5',
-    },
-    {
-      key: 'Last Updated',
-      value: 'n/a',
-    },
-    {
-      key: 'Size',
-      value: `${displaySize}`,
-    },
-  ]
+  const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize)
   const secondHeading = 'Marketplace'
   const secondEntries: readonly MoreInfoEntry[] = [
     {
