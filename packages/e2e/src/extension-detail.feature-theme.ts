@@ -1,6 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'extension-detail.features'
+export const name = 'extension-detail.feature-theme'
 
 export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   const extensionUri = import.meta.resolve('../fixtures/extension-detail-theme')
