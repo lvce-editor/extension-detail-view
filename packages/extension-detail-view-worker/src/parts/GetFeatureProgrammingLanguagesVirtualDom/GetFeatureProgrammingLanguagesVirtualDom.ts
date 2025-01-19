@@ -2,13 +2,14 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-export const getFeatureCommandsVirtualDom = (): readonly VirtualDomNode[] => {
-  const heading = 'Commands'
-  // TODO render commands table
+export const getFeatureProgrammingLanguagesVirtualDom = (): readonly VirtualDomNode[] => {
+  // TODO use i18n string
+  const heading = 'Programming Languages'
+  // TODO
   return [
     {
       type: VirtualDomElements.Div,
-      className: 'FeatureCommands',
+      className: 'FeatureProgrammingLanguages',
       childCount: 1,
     },
     {
