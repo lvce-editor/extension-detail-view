@@ -17,7 +17,8 @@ export const getExtensionDetailVirtualDom = (
   newState: any,
 ): readonly VirtualDomNode[] => {
   const themesHtml = newState?.selectedFeatureMarkdownDom || ''
-  const features = newState?.features || GetFeatures.getFeatures()
+  const selectedFeature = newState?.selectedFeature || ''
+  const features = newState?.features || GetFeatures.getFeatures(selectedFeature)
   const size = newState.folderSize || 0
   const extensionId = newState?.extension?.id || 'n/a'
   const extensionVersion = newState?.extension?.version || 'n/a'
