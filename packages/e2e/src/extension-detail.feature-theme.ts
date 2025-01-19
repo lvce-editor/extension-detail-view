@@ -7,7 +7,7 @@ export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   await Extension.addWebExtension(extensionUri)
   console.log({ extensionUri })
   // arrange
-  await Main.openUri('extension-detail://ayu')
+  await Main.openUri('extension-detail://test.theme-test')
   const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
 
   // act
@@ -22,5 +22,5 @@ export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   const listItems = content.locator('li')
   await expect(listItems).toHaveCount(1)
   const listItem1 = listItems.nth(0)
-  await expect(listItem1).toHaveText('Ayu')
+  await expect(listItem1).toHaveText('Test')
 }
