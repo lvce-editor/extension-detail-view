@@ -25,7 +25,7 @@ export const getFeatureContentVirtualDom = (
     case InputName.ProgrammingLanguages:
       return GetFeatureProgrammingLanguagesVirtualDom.getFeatureProgrammingLanguagesVirtualDom()
     case InputName.Settings:
-      return GetFeatureSettingsVirtualDom.getFeatureSettingsVirtualDom()
+      return GetFeatureSettingsVirtualDom.getFeatureSettingsVirtualDom(extension)
     default:
       return [
         {
