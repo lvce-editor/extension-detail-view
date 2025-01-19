@@ -11,10 +11,12 @@ export const getExtensionDetailContentVirtualDom = (
   selectedTab: string,
   features: readonly Feature[],
   displaySize: string,
+  extensionId: string,
+  extensionVersion: string,
 ): readonly VirtualDomNode[] => {
   switch (selectedTab) {
     case InputName.Details:
-      return GetDetailsVirtualDom.getDetailsVirtualDom(sanitizedReadmeHtml, displaySize)
+      return GetDetailsVirtualDom.getDetailsVirtualDom(sanitizedReadmeHtml, displaySize, extensionId, extensionVersion)
     case InputName.Features:
       return GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml)
     case InputName.Changelog:

@@ -1,15 +1,15 @@
-import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 
-export const getInstallationEntries = (displaySize: string): readonly MoreInfoEntry[] => {
+export const getInstallationEntries = (displaySize: string, extensionId: string, extensionVersion: string): readonly MoreInfoEntry[] => {
   const entries: readonly MoreInfoEntry[] = [
     {
       key: 'Identifier',
-      value: 'abc',
+      value: extensionId,
     },
     {
       key: 'Version',
-      value: '1.9.5',
+      value: extensionVersion,
     },
     {
       key: 'Last Updated',
@@ -17,7 +17,7 @@ export const getInstallationEntries = (displaySize: string): readonly MoreInfoEn
     },
     {
       key: 'Size',
-      value: `${displaySize}`,
+      value: displaySize,
       onClick: DomEventListenerFunctions.HandleClickSize,
     },
   ]
