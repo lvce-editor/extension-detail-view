@@ -6,6 +6,7 @@ export const getInstallationEntries = (displaySize: string, extensionId: string,
     {
       key: 'Identifier',
       value: extensionId,
+      odd: true,
     },
     {
       key: 'Version',
@@ -14,6 +15,7 @@ export const getInstallationEntries = (displaySize: string, extensionId: string,
     {
       key: 'Last Updated',
       value: 'n/a',
+      odd: true,
     },
     {
       key: 'Size',
