@@ -19,6 +19,8 @@ export const getExtensionDetailVirtualDom = (
   const themesHtml = newState?.selectedFeatureMarkdownDom || ''
   const features = newState?.features || GetFeatures.getFeatures()
   const size = newState.folderSize || 0
+  const extensionId = newState?.extension?.id || 'n/a'
+  const extensionVersion = newState?.extension?.version || 'n/a'
   const displaySize = GetDisplaySize.getDisplaySize(size)
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const dom = [
@@ -29,7 +31,15 @@ export const getExtensionDetailVirtualDom = (
     },
     ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
-    ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(sanitizedReadmeHtml, themesHtml, selectedTab, features, displaySize),
+    ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
+      sanitizedReadmeHtml,
+      themesHtml,
+      selectedTab,
+      features,
+      displaySize,
+      extensionId,
+      extensionVersion,
+    ),
   ]
   return dom
 }
