@@ -28,6 +28,10 @@ export const getDetailsVirtualDom = (sanitizedReadmeHtml: string): readonly Virt
       key: 'Last Updated',
       value: 'n/a',
     },
+    {
+      key: 'Size',
+      value: '100kB',
+    },
   ]
   const secondHeading = 'Marketplace'
   const secondEntries: readonly MoreInfoEntry[] = [
