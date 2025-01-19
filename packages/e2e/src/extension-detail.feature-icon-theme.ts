@@ -8,9 +8,11 @@ export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   await Extension.addWebExtension(extensionUri)
   await Main.openUri('extension-detail://test.icon-theme-test')
   const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
+  await tabFeatures.click()
+  const featureTheme = Locator('.Feature[name="Theme"]')
 
   // act
-  await tabFeatures.click()
+  await featureTheme.click()
 
   // assert
   const content = Locator('.FeatureTheme')
