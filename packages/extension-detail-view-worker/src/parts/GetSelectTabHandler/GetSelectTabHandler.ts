@@ -1,14 +1,11 @@
-import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import type { SelectTabHandler } from '../SelectTabHandler/SelectTabHandler.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as SelectTabChangelog from '../SelectTabChangelog/SelectTabChangelog.ts'
+import * as SelectTabDefault from '../SelectTabDefault/SelectTabDefault.ts'
 import * as SelectTabDetails from '../SelectTabDetails/SelectTabDetails.ts'
 import * as SelectTabFeatures from '../SelectTabFeatures/SelectTabFeatures.ts'
 
-interface Handler {
-  (state: ExtensionDetailState): Promise<ExtensionDetailState>
-}
-
-export const getSelectTabHandler = (selectedTab: string): Handler => {
+export const getSelectTabHandler = (selectedTab: string): SelectTabHandler => {
   switch (selectedTab) {
     case InputName.Details:
       return SelectTabDetails.selectTabDetails
@@ -17,6 +14,6 @@ export const getSelectTabHandler = (selectedTab: string): Handler => {
     case InputName.Changelog:
       return SelectTabChangelog.selectTabChangelog
     default:
-      throw new Error(`unexpected tab`)
+      return SelectTabDefault.selectTabDefault
   }
 }
