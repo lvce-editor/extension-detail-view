@@ -1,5 +1,5 @@
-import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 
 export const getInstallationEntries = (displaySize: string, extensionId: string, extensionVersion: string): readonly MoreInfoEntry[] => {
   const entries: readonly MoreInfoEntry[] = [
