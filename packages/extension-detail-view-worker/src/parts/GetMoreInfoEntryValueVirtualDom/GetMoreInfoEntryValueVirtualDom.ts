@@ -4,7 +4,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-const getTag = (onClick: string | undefined, code: boolean | undefined) => {
+const getTag = (onClick: string | undefined, code: boolean | undefined): number => {
   if (onClick) {
     return VirtualDomElements.A
   }
@@ -15,7 +15,7 @@ const getTag = (onClick: string | undefined, code: boolean | undefined) => {
   return VirtualDomElements.Div
 }
 
-const getClassName = (onClick: string | undefined, code: boolean | undefined) => {
+const getClassName = (onClick: string | undefined, code: boolean | undefined): string => {
   if (onClick) {
     return ClassNames.MoreInfoEntryValue + ' Link'
   }
