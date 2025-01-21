@@ -1,17 +1,18 @@
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetCommandTableEntries from '../GetCommandTableEntries/GetCommandTableEntries.ts'
 import * as GetTableVirtualDom from '../GetTableVirtualDom/GetTableVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getFeatureCommandsVirtualDom = (extension: any): readonly VirtualDomNode[] => {
-  // TODO use i18n strings
-  const heading = 'Commands'
+  const heading = ExtensionDetailStrings.commands()
   const tableInfo = GetCommandTableEntries.getCommandTableEntries(extension)
   return [
     {
       type: VirtualDomElements.Div,
-      className: 'FeatureCommands',
+      className: ClassNames.FeatureCommands,
       childCount: 2,
     },
     {
