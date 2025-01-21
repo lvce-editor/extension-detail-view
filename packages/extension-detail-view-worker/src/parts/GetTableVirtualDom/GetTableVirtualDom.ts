@@ -1,6 +1,7 @@
 import type { Row } from '../Row/Row.ts'
 import type { TableInfo } from '../TableInfo/TableInfo.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetCellVirtualDom from '../GetCellVirtualDom/GetCellVirtualDom.ts'
 import * as GetTableHeadingVirtualDom from '../GetTableHeadingVirtualDom/GetTableHeadingVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
@@ -20,7 +21,7 @@ export const getTableVirtualDom = (tableInfo: TableInfo): readonly VirtualDomNod
   return [
     {
       type: VirtualDomElements.Table,
-      className: 'Table',
+      className: ClassNames.Table,
       childCount: 2,
     },
     {
