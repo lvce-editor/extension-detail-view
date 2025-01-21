@@ -23,11 +23,11 @@ export const getExtensionDetailVirtualDom = (
   // 4. dom
   const themesHtml = newState?.selectedFeatureMarkdownDom || ''
   const selectedFeature = newState?.selectedFeature || ''
-  const features = newState?.features || GetFeatures.getFeatures(selectedFeature)
+  const extension = newState?.extension || {}
+  const features = GetFeatures.getFeatures(selectedFeature, extension)
   const size = newState.folderSize || 0
   const extensionId = newState?.extension?.id || 'n/a'
   const extensionVersion = newState?.extension?.version || 'n/a'
-  const extension = newState?.extension || {}
   const displaySize = GetDisplaySize.getDisplaySize(size)
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const dom = [
