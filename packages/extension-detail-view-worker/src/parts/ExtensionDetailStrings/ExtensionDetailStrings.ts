@@ -24,3 +24,23 @@ export const fileMatch = (): string => {
 export const schema = (): string => {
   return I18nString.i18nString(UiStrings.Schema)
 }
+
+export const theme = (): string => {
+  return I18nString.i18nString(UiStrings.Theme)
+}
+
+export const commands = (): string => {
+  return I18nString.i18nString(UiStrings.Commands)
+}
+
+export const jsonValidation = (): string => {
+  return I18nString.i18nString(UiStrings.JsonValidation)
+}
+
+export const programmingLanguages = (): string => {
+  return I18nString.i18nString(UiStrings.ProgrammingLanguages)
+}
+
+export const settings = (): string => {
+  return I18nString.i18nString(UiStrings.Settings)
+}
