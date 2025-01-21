@@ -52,6 +52,40 @@ const getJsonValidationFeatures = (selectedFeature: string, extension: any): rea
   ]
 }
 
+const hasProgrammingLanguages = (extension: any): boolean => {
+  return extension && extension.programmingLanguages
+}
+
+const getProgrammingLanguagesFeatures = (selectedFeature: string, extension: any): readonly Feature[] => {
+  if (!hasProgrammingLanguages(extension)) {
+    return []
+  }
+  return [
+    {
+      id: InputName.ProgrammingLanguages,
+      label: 'Programming Languages',
+      selected: selectedFeature === InputName.ProgrammingLanguages,
+    },
+  ]
+}
+
+const hasSettings = (extension: any): boolean => {
+  return extension && extension.settings
+}
+
+const getSettingsFeatures = (selectedFeature: string, extension: any): readonly Feature[] => {
+  if (!hasSettings(extension)) {
+    return []
+  }
+  return [
+    {
+      id: InputName.Settings,
+      label: 'Settings',
+      selected: selectedFeature === InputName.Settings,
+    },
+  ]
+}
+
 export const getFeatures = (selectedFeature: string, extension: any): readonly Feature[] => {
   if (!selectedFeature) {
     selectedFeature = InputName.Theme
@@ -60,16 +94,8 @@ export const getFeatures = (selectedFeature: string, extension: any): readonly F
     ...getThemeFeatures(selectedFeature, extension),
     ...getCommandFeatures(selectedFeature, extension),
     ...getJsonValidationFeatures(selectedFeature, extension),
-    {
-      id: InputName.ProgrammingLanguages,
-      label: 'Programming Languages',
-      selected: selectedFeature === InputName.ProgrammingLanguages,
-    },
-    {
-      id: InputName.Settings,
-      label: 'Settings',
-      selected: selectedFeature === InputName.Settings,
-    },
+    ...getProgrammingLanguagesFeatures(selectedFeature, extension),
+    ...getSettingsFeatures(selectedFeature, extension),
   ]
   return features
 }
