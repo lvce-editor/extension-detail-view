@@ -6,6 +6,7 @@ export const getCellTextVirtualDom = (value: string): readonly VirtualDomNode[] 
   return [
     {
       type: VirtualDomElements.Td,
+      className: 'TableCell',
       childCount: 1,
     },
     text(value),
