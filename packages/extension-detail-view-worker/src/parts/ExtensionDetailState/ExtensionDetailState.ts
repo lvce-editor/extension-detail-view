@@ -10,7 +10,7 @@ export interface ExtensionDetailState {
   readonly iconSrc: string
   readonly name: string
   readonly description: string
-  readonly size: number
+  readonly sizeOnDisk: number
   readonly width: number
   readonly uri: string
   readonly selectedFeatureMarkdownDom: string
