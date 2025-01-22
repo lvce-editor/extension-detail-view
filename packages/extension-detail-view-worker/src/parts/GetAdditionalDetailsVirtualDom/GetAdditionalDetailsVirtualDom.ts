@@ -10,6 +10,7 @@ import * as GetResourcesVirtualDom from '../GetResourcesVirtualDom/GetResourcesV
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 export const getAdditionalDetailsVirtualDom = (
+  showAdditionalDetails: boolean,
   firstHeading: string,
   entries: readonly MoreInfoEntry[],
   secondHeading: string,
@@ -19,6 +20,9 @@ export const getAdditionalDetailsVirtualDom = (
   fourthHeading: string,
   resources: readonly Resource[],
 ): readonly VirtualDomNode[] => {
+  if (!showAdditionalDetails) {
+    return []
+  }
   return [
     {
       type: VirtualDomElements.Div,
