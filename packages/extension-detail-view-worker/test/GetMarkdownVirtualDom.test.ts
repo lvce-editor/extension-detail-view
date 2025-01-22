@@ -4,15 +4,39 @@ import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomE
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('empty string', () => {
-  expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('')).toEqual([])
+  expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('')).toEqual([
+    {
+      childCount: 0,
+      className: 'Markdown',
+      onContextMenu: 'handleReadmeContextMenu',
+      role: 'document',
+      type: 4,
+    },
+  ])
 })
 
 test('plain text', () => {
-  expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('Hello World')).toEqual([text('Hello World')])
+  expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('Hello World')).toEqual([
+    {
+      childCount: 1,
+      className: 'Markdown',
+      onContextMenu: 'handleReadmeContextMenu',
+      role: 'document',
+      type: 4,
+    },
+    text('Hello World'),
+  ])
 })
 
 test('heading', () => {
   expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('<h1>Hello World</h1>')).toEqual([
+    {
+      childCount: 1,
+      className: 'Markdown',
+      onContextMenu: 'handleReadmeContextMenu',
+      role: 'document',
+      type: 4,
+    },
     {
       type: VirtualDomElements.H1,
       childCount: 1,
@@ -23,6 +47,13 @@ test('heading', () => {
 
 test('nested elements', () => {
   expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('<div><p>Hello World</p></div>')).toEqual([
+    {
+      childCount: 1,
+      className: 'Markdown',
+      onContextMenu: 'handleReadmeContextMenu',
+      role: 'document',
+      type: 4,
+    },
     {
       type: VirtualDomElements.Div,
       childCount: 1,
