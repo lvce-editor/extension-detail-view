@@ -56,9 +56,16 @@ test('features virtual dom', () => {
       type: 12,
     },
     {
-      type: 4,
+      childCount: 1,
       className: 'DefaultMarkdown',
+      type: 4,
+    },
+    {
       childCount: 0,
+      className: 'Markdown',
+      onContextMenu: 'handleReadmeContextMenu',
+      role: 'document',
+      type: 4,
     },
   ])
 })
