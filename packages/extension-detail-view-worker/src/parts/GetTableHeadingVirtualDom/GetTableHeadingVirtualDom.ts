@@ -6,6 +6,7 @@ export const getTableHeadingVirtualDom = (heading: string): readonly VirtualDomN
   return [
     {
       type: VirtualDomElements.Th,
+      className: 'TableHeading',
       childCount: 1,
     },
     text(heading),
