@@ -31,6 +31,7 @@ export const getExtensionDetailVirtualDom = (
   const extensionId = newState?.extension?.id || 'n/a'
   const extensionVersion = newState?.extension?.version || 'n/a'
   const displaySize = GetDisplaySize.getDisplaySize(size)
+  const width = newState?.width || 500
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeValue = GetViewletSize.getViewletSize(newState?.width || 0)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
@@ -52,6 +53,7 @@ export const getExtensionDetailVirtualDom = (
       extensionVersion,
       selectedFeature,
       extension,
+      width,
     ),
   ]
   return dom

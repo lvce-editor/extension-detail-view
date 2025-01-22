@@ -17,9 +17,10 @@ export const getDetailsVirtualDom = (
   displaySize: string,
   extensionId: string,
   extensionVersion: string,
+  width: number,
 ): readonly VirtualDomNode[] => {
   const markdownDom = GetMarkdownVirtualDom.getMarkdownVirtualDom(sanitizedReadmeHtml)
-  const childCount = GetVirtualDomChildCount.getVirtualDomChildCount(markdownDom)
+  const markdownChildCount = GetVirtualDomChildCount.getVirtualDomChildCount(markdownDom)
 
   const firstHeading = 'Installation'
   const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion)
@@ -51,11 +52,14 @@ export const getDetailsVirtualDom = (
       url: '#',
     },
   ]
+  const showAdditionalDetailsBreakpoint = 600
+  const showAdditionalDetails = width > showAdditionalDetailsBreakpoint
+  const childCount = showAdditionalDetails ? 2 : 1
   const dom = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailPanel,
-      childCount: 2,
+      childCount: childCount,
       role: AriaRoles.Panel,
     },
     {
@@ -63,10 +67,11 @@ export const getDetailsVirtualDom = (
       className: ClassNames.Markdown,
       role: AriaRoles.Document,
       onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
-      childCount,
+      childCount: markdownChildCount,
     },
     ...markdownDom,
     ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(
+      showAdditionalDetails,
       firstHeading,
       entries,
       secondHeading,
