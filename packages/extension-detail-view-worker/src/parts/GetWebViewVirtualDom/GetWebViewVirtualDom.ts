@@ -1,4 +1,5 @@
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
@@ -16,6 +17,10 @@ const pre: VirtualDomNode = {
 
 export const getWebViewVirtualDom = (webView: any): readonly VirtualDomNode[] => {
   const { id, selector, contentSecurityPolicy, elements } = webView
+  const textId = ExtensionDetailStrings.id()
+  const textSelector = ExtensionDetailStrings.selector()
+  const textContentSecurityPolicy = ExtensionDetailStrings.contentSecurityPolicy()
+  const textElements = ExtensionDetailStrings.elements()
   return [
     {
       type: VirtualDomElements.Div,
@@ -28,7 +33,7 @@ export const getWebViewVirtualDom = (webView: any): readonly VirtualDomNode[] =>
       childCount: 2,
     },
     heading,
-    text('ID'),
+    text(textId),
     pre,
     text(id),
     {
@@ -37,7 +42,7 @@ export const getWebViewVirtualDom = (webView: any): readonly VirtualDomNode[] =>
       childCount: 2,
     },
     heading,
-    text('Selector'),
+    text(textSelector),
     pre,
     text(JSON.stringify(selector)),
     {
@@ -46,7 +51,7 @@ export const getWebViewVirtualDom = (webView: any): readonly VirtualDomNode[] =>
       childCount: 1,
     },
     heading,
-    text('Content Security Policy'),
+    text(textContentSecurityPolicy),
     pre,
     text(JSON.stringify(contentSecurityPolicy)),
     {
@@ -55,7 +60,7 @@ export const getWebViewVirtualDom = (webView: any): readonly VirtualDomNode[] =>
       childCount: 1,
     },
     heading,
-    text('Elements'),
+    text(textElements),
     pre,
     text(JSON.stringify(elements)),
   ]
