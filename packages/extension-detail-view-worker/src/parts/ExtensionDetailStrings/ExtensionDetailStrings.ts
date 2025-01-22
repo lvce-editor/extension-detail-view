@@ -48,3 +48,19 @@ export const programmingLanguages = (): string => {
 export const settings = (): string => {
   return I18nString.i18nString(UiStrings.Settings)
 }
+
+export const id = (): string => {
+  return I18nString.i18nString(UiStrings.Id)
+}
+
+export const selector = (): string => {
+  return I18nString.i18nString(UiStrings.Selector)
+}
+
+export const contentSecurityPolicy = (): string => {
+  return I18nString.i18nString(UiStrings.ContentSecurityPolicy)
+}
+
+export const elements = (): string => {
+  return I18nString.i18nString(UiStrings.Elements)
+}
