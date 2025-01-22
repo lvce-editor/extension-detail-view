@@ -1,5 +1,5 @@
-import * as ViewletSize from '../ViewletSize/ViewletSize.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as ViewletSize from '../ViewletSize/ViewletSize.ts'
 
 export const getClassNames = (size: number): string => {
   switch (size) {
