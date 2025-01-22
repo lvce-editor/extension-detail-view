@@ -66,11 +66,6 @@ export const getDetailsVirtualDom = (
       childCount,
     },
     ...markdownDom,
-    {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Aside,
-      childCount: 1,
-    },
     ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(
       firstHeading,
       entries,
