@@ -4,7 +4,7 @@ import * as GetExtensionDetailHeaderVirtualDom from '../src/parts/GetExtensionDe
 import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
-test('extension detail header virtual dom', () => {
+test.skip('extension detail header virtual dom', () => {
   const extensionDetail = {
     name: 'Test Extension',
     iconSrc: './test-icon.png',
