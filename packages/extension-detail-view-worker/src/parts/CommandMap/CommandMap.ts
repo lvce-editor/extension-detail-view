@@ -10,12 +10,16 @@ import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
 import * as Terminate from '../Terminate/Terminate.ts'
+import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
+import * as HandleClickUninstall from '../HandleClickUninstall/HandleClickUninstall.ts'
 
 export const commandMap = {
   'ExtensionDetail.create': Create.create,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.getVirtualDom': GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom,
+  'ExtensionDetail.handleClickDisable': HandleClickDisable.handleClickDisable,
   'ExtensionDetail.handleClickSize': HandleClickSize.handleClickSize,
+  'ExtensionDetail.handleClickUninstall': HandleClickUninstall.handleClickUninstall,
   'ExtensionDetail.handleFeaturesClick': HandleClickFeatures.handleClickFeatures,
   'ExtensionDetail.handleIconError': HandleIconError.handleIconError,
   'ExtensionDetail.handleTabsClick': HandleTabsClick.handleTabsClick,
