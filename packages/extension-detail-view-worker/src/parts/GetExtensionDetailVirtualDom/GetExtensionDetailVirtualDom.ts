@@ -7,7 +7,9 @@ import * as GetExtensionDetailHeaderVirtualDom from '../GetExtensionDetailHeader
 import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetTabsVirtualDom from '../GetTabsVirtualDom/GetTabsVirtualDom.ts'
+import * as ViewletSizeMap from '../ViewletSizeMap/ViewletSizeMap.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
+import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 export const getExtensionDetailVirtualDom = (
@@ -30,10 +32,12 @@ export const getExtensionDetailVirtualDom = (
   const extensionVersion = newState?.extension?.version || 'n/a'
   const displaySize = GetDisplaySize.getDisplaySize(size)
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
+  const sizeValue = GetViewletSize.getViewletSize(newState?.width || 0)
+  const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
   const dom = [
     {
       type: VirtualDomElements.Div,
-      className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.ExtensionDetail),
+      className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.ExtensionDetail, sizeClass),
       childCount: 3,
     },
     ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail),
