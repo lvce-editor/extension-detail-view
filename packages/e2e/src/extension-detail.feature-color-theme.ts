@@ -19,7 +19,7 @@ export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   await expect(content).toBeVisible()
   const heading = content.locator('h1')
   await expect(heading).toBeVisible()
-  await expect(heading).toHaveText('Themes')
+  await expect(heading).toHaveText('Theme')
   const listItems = content.locator('li')
   await expect(listItems).toHaveCount(1)
   const listItem1 = listItems.nth(0)

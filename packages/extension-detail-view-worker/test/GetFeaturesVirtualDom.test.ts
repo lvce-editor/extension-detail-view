@@ -52,7 +52,7 @@ test('features virtual dom', () => {
     },
     {
       childCount: 0,
-      text: 'Themes',
+      text: 'Theme',
       type: 12,
     },
     {
