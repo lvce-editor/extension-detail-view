@@ -43,7 +43,7 @@ test('features virtual dom', () => {
     },
     {
       childCount: 2,
-      className: 'FeatureTheme',
+      className: 'FeatureContent',
       type: 4,
     },
     {
