@@ -1,18 +1,25 @@
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const heading: VirtualDomNode = {
   type: VirtualDomElements.H2,
-  className: 'DefinitionListItemHeading',
+  className: ClassNames.DefinitionListItemHeading,
   childCount: 1,
 }
 
 const pre: VirtualDomNode = {
   type: VirtualDomElements.Pre,
-  className: 'DefinitionListItemValue',
+  className: ClassNames.DefinitionListItemValue,
   childCount: 1,
+}
+
+const item: VirtualDomNode = {
+  type: VirtualDomElements.Div,
+  className: ClassNames.DefinitionListItem,
+  childCount: 2,
 }
 
 export const getWebViewVirtualDom = (webView: any): readonly VirtualDomNode[] => {
@@ -24,44 +31,28 @@ export const getWebViewVirtualDom = (webView: any): readonly VirtualDomNode[] =>
   return [
     {
       type: VirtualDomElements.Div,
-      className: 'FeatureWebView',
+      className: ClassNames.FeatureWebView,
       childCount: 5,
     },
-    {
-      type: VirtualDomElements.Div,
-      className: 'DefinitionListItem',
-      childCount: 2,
-    },
+    item,
     heading,
     text(textId),
     pre,
     text(id),
-    {
-      type: VirtualDomElements.Div,
-      className: 'DefinitionListItem',
-      childCount: 2,
-    },
+    item,
     heading,
     text(textSelector),
     pre,
     text(JSON.stringify(selector)),
-    {
-      type: VirtualDomElements.Div,
-      className: 'DefinitionListItem',
-      childCount: 1,
-    },
+    item,
     heading,
     text(textContentSecurityPolicy),
     pre,
     text(JSON.stringify(contentSecurityPolicy)),
-    {
-      type: VirtualDomElements.Div,
-      className: 'DefinitionListItem',
-      childCount: 1,
-    },
+    item,
     heading,
     text(textElements),
     pre,
-    text(JSON.stringify(elements)),
+    text(JSON.stringify(elements, null, 2)),
   ]
 }
