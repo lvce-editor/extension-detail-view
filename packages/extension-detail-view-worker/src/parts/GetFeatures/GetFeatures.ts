@@ -21,6 +21,10 @@ const hasSettings = (extension: any): boolean => {
   return extension && extension.settings
 }
 
+const hasWebViews = (extension: any): boolean => {
+  return extension && extension.webViews
+}
+
 const ifElseFeature = (
   id: string,
   label: string,
@@ -50,6 +54,7 @@ export const getFeatures = (selectedFeature: string, extension: any): readonly F
     ...ifElseFeature(InputName.JsonValidation, 'Json Validation', hasJsonValidation, selectedFeature, extension),
     ...ifElseFeature(InputName.ProgrammingLanguages, 'Programming Languages', hasProgrammingLanguages, selectedFeature, extension),
     ...ifElseFeature(InputName.Settings, 'Settings', hasSettings, selectedFeature, extension),
+    ...ifElseFeature(InputName.WebViews, 'WebViews', hasWebViews, selectedFeature, extension),
   ]
   return features
 }
