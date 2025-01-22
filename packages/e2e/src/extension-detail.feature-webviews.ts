@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-webviews'
 
-export const skip = 1
-
 export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-webviews')
@@ -20,5 +18,13 @@ export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   const heading = Locator('.FeatureCommands h1')
   await expect(heading).toBeVisible()
   await expect(heading).toHaveText('WebViews')
+
+  const id = Locator('.FeatureWebView h2').nth(0)
+  await expect(id).toBeVisible()
+  await expect(id).toHaveText('ID')
+
+  // const idValue = Locator('.FeatureWebView h2~p')
+  // await expect(idValue).toBeVisible()
+  // await expect(idValue).toHaveText('ID')
   // TODO
 }
