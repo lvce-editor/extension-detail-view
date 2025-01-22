@@ -15,7 +15,7 @@ export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   await featureTheme.click()
 
   // assert
-  const content = Locator('.FeatureTheme')
+  const content = Locator('.FeatureContent')
   await expect(content).toBeVisible()
   const heading = content.locator('h1')
   await expect(heading).toBeVisible()

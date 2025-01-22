@@ -15,11 +15,11 @@ export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   await featureWebViews.click()
 
   // assert
-  const heading = Locator('.FeatureCommands h1')
+  const heading = Locator('.FeatureContent h1')
   await expect(heading).toBeVisible()
   await expect(heading).toHaveText('WebViews')
 
-  const id = Locator('.FeatureWebView h2').nth(0)
+  const id = Locator('.FeatureContent h2').nth(0)
   await expect(id).toBeVisible()
   await expect(id).toHaveText('ID')
 
