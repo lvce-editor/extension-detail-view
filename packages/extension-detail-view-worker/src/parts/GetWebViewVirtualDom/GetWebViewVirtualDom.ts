@@ -10,6 +10,7 @@ const heading: VirtualDomNode = {
 
 const pre: VirtualDomNode = {
   type: VirtualDomElements.Pre,
+  className: 'DefinitionListItemValue',
   childCount: 1,
 }
 
