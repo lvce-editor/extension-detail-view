@@ -1,7 +1,8 @@
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import * as GetButtonVirtualDom from '../GetButtonVirtualDom/GetButtonVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
-import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getExtensionDetailHeaderActionsVirtualDom = (): readonly VirtualDomNode[] => {
   const dom: readonly VirtualDomNode[] = [
@@ -10,18 +11,8 @@ export const getExtensionDetailHeaderActionsVirtualDom = (): readonly VirtualDom
       className: ClassNames.ExtensionDetailHeaderActions,
       childCount: 2,
     },
-    {
-      type: VirtualDomElements.Button,
-      className: ClassNames.Button + ' ButtonPrimary',
-      childCount: 1,
-    },
-    text('Disable'),
-    {
-      type: VirtualDomElements.Button,
-      className: ClassNames.Button + ' ' + ClassNames.ButtonPrimary,
-      childCount: 1,
-    },
-    text('Uninstall'),
+    ...GetButtonVirtualDom.getButtonVirtualDom('Disable', DomEventListenerFunctions.HandleClickDisable),
+    ...GetButtonVirtualDom.getButtonVirtualDom('Uninstall', DomEventListenerFunctions.HandleClickUninstall),
   ]
   return dom
 }
