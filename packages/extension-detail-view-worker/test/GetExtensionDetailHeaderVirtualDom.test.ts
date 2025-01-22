@@ -89,6 +89,7 @@ test('handles missing extension details', () => {
     {
       childCount: 1,
       className: 'Button ButtonPrimary',
+      onClick: 'handleClickDisable',
       type: 1,
     },
     {
@@ -99,6 +100,7 @@ test('handles missing extension details', () => {
     {
       childCount: 1,
       className: 'Button ButtonPrimary',
+      onClick: 'handleClickUninstall',
       type: 1,
     },
     {
