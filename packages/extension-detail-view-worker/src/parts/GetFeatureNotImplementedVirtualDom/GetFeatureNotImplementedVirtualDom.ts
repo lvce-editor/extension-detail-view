@@ -8,7 +8,7 @@ export const getFeatureNotImplementedVirtualDom = (): readonly VirtualDomNode[] 
   return [
     {
       type: VirtualDomElements.Div,
-      className: ClassNames.FeatureJsonValidation,
+      className: ClassNames.FeatureContent,
       childCount: 1,
     },
     {

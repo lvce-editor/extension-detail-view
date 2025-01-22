@@ -15,10 +15,10 @@ export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   await featureJsonValidation.click()
 
   // assert
-  const heading = Locator('.FeatureJsonValidation h1')
+  const heading = Locator('.FeatureContent h1')
   await expect(heading).toBeVisible()
   await expect(heading).toHaveText('Json Validation')
-  const commandsTable = Locator('.FeatureJsonValidation .Table')
+  const commandsTable = Locator('.FeatureContent .Table')
   await expect(commandsTable).toBeVisible()
   const heading1 = commandsTable.locator('th').nth(0)
   await expect(heading1).toHaveText('File Match')

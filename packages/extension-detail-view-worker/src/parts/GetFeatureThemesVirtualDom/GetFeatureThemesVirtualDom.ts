@@ -1,4 +1,5 @@
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetVirtualDomChildCount from '../GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
@@ -12,7 +13,7 @@ export const getFeatureThemesVirtualDom = (themesHtml: string): readonly Virtual
   return [
     {
       type: VirtualDomElements.Div,
-      className: 'FeatureTheme',
+      className: ClassNames.FeatureContent,
       childCount: 2,
     },
     {

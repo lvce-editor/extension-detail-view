@@ -10,7 +10,7 @@ export const getFeatureProgrammingLanguagesVirtualDom = (): readonly VirtualDomN
   return [
     {
       type: VirtualDomElements.Div,
-      className: ClassNames.FeatureProgrammingLanguages,
+      className: ClassNames.FeatureContent,
       childCount: 1,
     },
     {

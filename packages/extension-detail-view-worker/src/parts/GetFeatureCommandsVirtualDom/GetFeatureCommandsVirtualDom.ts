@@ -12,7 +12,7 @@ export const getFeatureCommandsVirtualDom = (extension: any): readonly VirtualDo
   return [
     {
       type: VirtualDomElements.Div,
-      className: ClassNames.FeatureCommands,
+      className: ClassNames.FeatureContent,
       childCount: 2,
     },
     {

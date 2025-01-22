@@ -12,7 +12,7 @@ export const getFeatureJsonValidationVirtualDom = (extension: any): readonly Vir
   return [
     {
       type: VirtualDomElements.Div,
-      className: ClassNames.FeatureJsonValidation,
+      className: ClassNames.FeatureContent,
       childCount: 2,
     },
     {

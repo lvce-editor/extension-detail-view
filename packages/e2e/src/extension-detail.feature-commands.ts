@@ -15,10 +15,10 @@ export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   await featureCommands.click()
 
   // assert
-  const heading = Locator('.FeatureCommands h1')
+  const heading = Locator('.FeatureContent h1')
   await expect(heading).toBeVisible()
   await expect(heading).toHaveText('Commands')
-  const commandsTable = Locator('.FeatureCommands .Table')
+  const commandsTable = Locator('.FeatureContent .Table')
   await expect(commandsTable).toBeVisible()
   const heading1 = commandsTable.locator('th').nth(0)
   await expect(heading1).toHaveText('ID')
