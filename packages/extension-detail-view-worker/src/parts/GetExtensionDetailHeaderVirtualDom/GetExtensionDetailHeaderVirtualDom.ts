@@ -1,6 +1,7 @@
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
+import * as GetExtensionDetailHeaderActionsVirtualDom from '../GetExtensionDetailHeaderActionsVirtualDom/GetExtensionDetailHeaderActionsVirtualDom.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getExtensionDetailHeaderVirtualDom = (extensionDetail: any): readonly VirtualDomNode[] => {
@@ -22,7 +23,7 @@ export const getExtensionDetailHeaderVirtualDom = (extensionDetail: any): readon
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeaderDetails,
-      childCount: 2,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.Div,
@@ -36,6 +37,7 @@ export const getExtensionDetailHeaderVirtualDom = (extensionDetail: any): readon
       childCount: 1,
     },
     text(description),
+    ...GetExtensionDetailHeaderActionsVirtualDom.getExtensionDetailHeaderActionsVirtualDom(),
   ]
   return dom
 }
