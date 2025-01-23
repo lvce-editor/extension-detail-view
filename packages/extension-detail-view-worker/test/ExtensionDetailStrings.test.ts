@@ -34,7 +34,7 @@ test('commands', () => {
 })
 
 test('webViews', () => {
-  expect(ExtensionDetailStrings.webViews()).toBe('Web Views')
+  expect(ExtensionDetailStrings.webViews()).toBe('WebViews')
 })
 
 test('jsonValidation', () => {
@@ -50,7 +50,7 @@ test('settings', () => {
 })
 
 test('id', () => {
-  expect(ExtensionDetailStrings.id()).toBe('Id')
+  expect(ExtensionDetailStrings.id()).toBe('ID')
 })
 
 test('selector', () => {
