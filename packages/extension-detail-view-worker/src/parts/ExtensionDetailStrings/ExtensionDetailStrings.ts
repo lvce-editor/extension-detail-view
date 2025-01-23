@@ -9,6 +9,10 @@ export const openInNewTab = (): string => {
   return I18nString.i18nString(UiStrings.OpenInNewTab)
 }
 
+export const label = (): string => {
+  return I18nString.i18nString(UiStrings.Label)
+}
+
 export const openImageInNewTab = (): string => {
   return I18nString.i18nString(UiStrings.OpenImageInNewTab)
 }
