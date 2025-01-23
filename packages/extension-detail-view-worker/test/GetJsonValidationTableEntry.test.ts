@@ -5,7 +5,7 @@ import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 test('get json validation table entry with fileMatch and schema', () => {
   const jsonValidation = {
     fileMatch: ['package.json'],
-    url: 'https://example.com/schema.json',
+    schema: 'https://example.com/schema.json',
   }
   expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
     {
@@ -22,7 +22,7 @@ test('get json validation table entry with fileMatch and schema', () => {
 test('get json validation table entry with multiple fileMatches', () => {
   const jsonValidation = {
     fileMatch: ['package.json', 'composer.json'],
-    url: 'https://example.com/schema.json',
+    schema: 'https://example.com/schema.json',
   }
   expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
     {
@@ -39,7 +39,7 @@ test('get json validation table entry with multiple fileMatches', () => {
 test('get json validation table entry with empty values', () => {
   const jsonValidation = {
     fileMatch: [],
-    url: '',
+    schema: '',
   }
   expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
     {
