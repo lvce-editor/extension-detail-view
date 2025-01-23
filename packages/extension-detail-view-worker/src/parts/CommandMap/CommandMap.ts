@@ -19,7 +19,7 @@ import * as WrapCommand from '../WrapCommand/WrapCommand.ts'
 export const commandMap = {
   'ExtensionDetail.create': Create.create,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
-  'ExtensionDetail.getVirtualDom2': WrapCommand.wrapCommand(GetExtensionDetailVirtualDom2.getExtensionDetailVirtualDom2),
+  'ExtensionDetail.getVirtualDom2': GetExtensionDetailVirtualDom2.getExtensionDetailVirtualDom2,
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
   'ExtensionDetail.handleClickSize': WrapCommand.wrapCommand(HandleClickSize.handleClickSize),
   'ExtensionDetail.handleClickUninstall': WrapCommand.wrapCommand(HandleClickUninstall.handleClickUninstall),
