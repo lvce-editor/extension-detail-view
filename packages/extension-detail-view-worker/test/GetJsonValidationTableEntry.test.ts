@@ -1,12 +1,22 @@
 import { expect, test } from '@jest/globals'
 import * as GetJsonValidationTableEntry from '../src/parts/GetJsonValidationTableEntry/GetJsonValidationTableEntry.ts'
+import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 
 test('get json validation table entry with fileMatch and schema', () => {
   const jsonValidation = {
     fileMatch: ['package.json'],
     url: 'https://example.com/schema.json',
   }
-  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual(['package.json', 'https://example.com/schema.json'])
+  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
+    {
+      type: TableCellType.Code,
+      value: 'package.json',
+    },
+    {
+      type: TableCellType.Code,
+      value: 'https://example.com/schema.json',
+    },
+  ])
 })
 
 test('get json validation table entry with multiple fileMatches', () => {
@@ -15,8 +25,14 @@ test('get json validation table entry with multiple fileMatches', () => {
     url: 'https://example.com/schema.json',
   }
   expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
-    'package.json, composer.json',
-    'https://example.com/schema.json',
+    {
+      type: TableCellType.Code,
+      value: 'package.json, composer.json',
+    },
+    {
+      type: TableCellType.Code,
+      value: 'https://example.com/schema.json',
+    },
   ])
 })
 
@@ -25,5 +41,14 @@ test('get json validation table entry with empty values', () => {
     fileMatch: [],
     url: '',
   }
-  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual(['', ''])
+  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
+    {
+      type: TableCellType.Code,
+      value: '',
+    },
+    {
+      type: TableCellType.Code,
+      value: '',
+    },
+  ])
 })
