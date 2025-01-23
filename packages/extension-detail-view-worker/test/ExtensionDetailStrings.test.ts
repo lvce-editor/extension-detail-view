@@ -16,3 +16,51 @@ test('openImageInNewTab', () => {
 test('saveImageAs', () => {
   expect(ExtensionDetailStrings.saveImageAs()).toBe('Save Image as')
 })
+
+test('fileMatch', () => {
+  expect(ExtensionDetailStrings.fileMatch()).toBe('File Match')
+})
+
+test('schema', () => {
+  expect(ExtensionDetailStrings.schema()).toBe('Schema')
+})
+
+test('theme', () => {
+  expect(ExtensionDetailStrings.theme()).toBe('Theme')
+})
+
+test('commands', () => {
+  expect(ExtensionDetailStrings.commands()).toBe('Commands')
+})
+
+test('webViews', () => {
+  expect(ExtensionDetailStrings.webViews()).toBe('WebViews')
+})
+
+test('jsonValidation', () => {
+  expect(ExtensionDetailStrings.jsonValidation()).toBe('Json Validation')
+})
+
+test('programmingLanguages', () => {
+  expect(ExtensionDetailStrings.programmingLanguages()).toBe('Programming Languages')
+})
+
+test('settings', () => {
+  expect(ExtensionDetailStrings.settings()).toBe('Settings')
+})
+
+test('id', () => {
+  expect(ExtensionDetailStrings.id()).toBe('ID')
+})
+
+test('selector', () => {
+  expect(ExtensionDetailStrings.selector()).toBe('Selector')
+})
+
+test('contentSecurityPolicy', () => {
+  expect(ExtensionDetailStrings.contentSecurityPolicy()).toBe('ContentSecurityPolicy')
+})
+
+test('elements', () => {
+  expect(ExtensionDetailStrings.elements()).toBe('Elements')
+})
