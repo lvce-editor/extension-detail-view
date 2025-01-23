@@ -12,20 +12,21 @@ import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
 import * as Terminate from '../Terminate/Terminate.ts'
+import * as WrapCommand from '../WrapCommand/WrapCommand.ts'
 
 export const commandMap = {
   'ExtensionDetail.create': Create.create,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
-  'ExtensionDetail.getVirtualDom': GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom,
-  'ExtensionDetail.handleClickDisable': HandleClickDisable.handleClickDisable,
-  'ExtensionDetail.handleClickSize': HandleClickSize.handleClickSize,
-  'ExtensionDetail.handleClickUninstall': HandleClickUninstall.handleClickUninstall,
-  'ExtensionDetail.handleFeaturesClick': HandleClickFeatures.handleClickFeatures,
-  'ExtensionDetail.handleIconError': HandleIconError.handleIconError,
-  'ExtensionDetail.handleTabsClick': HandleTabsClick.handleTabsClick,
-  'ExtensionDetail.loadContent': LoadContent.loadContent,
+  'ExtensionDetail.getVirtualDom': WrapCommand.wrapCommand(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom),
+  'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
+  'ExtensionDetail.handleClickSize': WrapCommand.wrapCommand(HandleClickSize.handleClickSize),
+  'ExtensionDetail.handleClickUninstall': WrapCommand.wrapCommand(HandleClickUninstall.handleClickUninstall),
+  'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),
+  'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
+  'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
+  'ExtensionDetail.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
   'ExtensionDetail.saveState': SaveState.saveState,
-  'ExtensionDetail.selectTab': SelectTab.selectTab,
+  'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
   'ExtensionDetail.terminate': Terminate.terminate,
 
   // deprecated
