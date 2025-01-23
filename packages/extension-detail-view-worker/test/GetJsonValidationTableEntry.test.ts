@@ -10,7 +10,7 @@ test('get json validation table entry with fileMatch and schema', () => {
   expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
     {
       type: TableCellType.Code,
-      value: 'package.json',
+      value: ['package.json'],
     },
     {
       type: TableCellType.Code,
@@ -27,7 +27,7 @@ test('get json validation table entry with multiple fileMatches', () => {
   expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
     {
       type: TableCellType.Code,
-      value: 'package.json, composer.json',
+      value: ['package.json', 'composer.json'],
     },
     {
       type: TableCellType.Code,
@@ -44,7 +44,7 @@ test('get json validation table entry with empty values', () => {
   expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
     {
       type: TableCellType.Code,
-      value: '',
+      value: [],
     },
     {
       type: TableCellType.Code,
