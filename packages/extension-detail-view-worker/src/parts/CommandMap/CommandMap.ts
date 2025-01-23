@@ -9,6 +9,7 @@ import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
+import * as Resize from '../Resize/Resize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
 import * as Terminate from '../Terminate/Terminate.ts'
@@ -27,6 +28,7 @@ export const commandMap = {
   'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.selectTab': SelectTab.selectTab,
   'ExtensionDetail.terminate': Terminate.terminate,
+  'ExtensionDetail.resize': Resize.resize,
 
   // deprecated
   'HandleIconError.handleIconError': HandleIconError.handleIconError,
