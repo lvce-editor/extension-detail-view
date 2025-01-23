@@ -16,11 +16,5 @@ test('resource virtual dom', () => {
       childCount: 1,
     },
     text('Test Resource'),
-    {
-      type: VirtualDomElements.Div,
-      className: 'ResourcePath',
-      childCount: 1,
-    },
-    text('https://test.com'),
   ])
 })
