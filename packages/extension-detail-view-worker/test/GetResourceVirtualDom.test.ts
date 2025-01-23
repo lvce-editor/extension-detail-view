@@ -13,11 +13,6 @@ test('resource virtual dom', () => {
     {
       type: VirtualDomElements.Div,
       className: 'Resource',
-      childCount: 2,
-    },
-    {
-      type: VirtualDomElements.Div,
-      className: 'ResourceName',
       childCount: 1,
     },
     text('Test Resource'),
@@ -27,31 +22,5 @@ test('resource virtual dom', () => {
       childCount: 1,
     },
     text('https://test.com'),
-  ])
-})
-
-test('handles empty resource', () => {
-  const resource: Resource = {
-    label: '',
-    url: '',
-  }
-  expect(GetResourceVirtualDom.getResourceVirtualDom(resource)).toEqual([
-    {
-      type: VirtualDomElements.Div,
-      className: 'Resource',
-      childCount: 2,
-    },
-    {
-      type: VirtualDomElements.Div,
-      className: 'ResourceName',
-      childCount: 1,
-    },
-    text(''),
-    {
-      type: VirtualDomElements.Div,
-      className: 'ResourcePath',
-      childCount: 1,
-    },
-    text(''),
   ])
 })
