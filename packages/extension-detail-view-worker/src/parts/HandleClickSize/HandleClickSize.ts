@@ -2,7 +2,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
 
 export const handleClickSize = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const {uri} = state.extension
+  const { uri } = state.extension
   await ParentRpc.invoke('OpenNativeFolder.openNativeFolder', uri)
   return state
 }
