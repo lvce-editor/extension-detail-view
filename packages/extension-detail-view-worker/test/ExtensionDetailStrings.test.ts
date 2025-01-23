@@ -58,7 +58,7 @@ test('selector', () => {
 })
 
 test('contentSecurityPolicy', () => {
-  expect(ExtensionDetailStrings.contentSecurityPolicy()).toBe('Content Security Policy')
+  expect(ExtensionDetailStrings.contentSecurityPolicy()).toBe('ContentSecurityPolicy')
 })
 
 test('elements', () => {
