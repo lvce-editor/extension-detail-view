@@ -1,4 +1,5 @@
 import * as Create from '../Create/Create.ts'
+import * as GetExtensionDetailVirtualDom2 from '../GetExtensionDetailVirtualDom2/GetExtensionDetailVirtualDom2.ts'
 import * as GetExtensionDetailVirtualDom from '../GetExtensionDetailVirtualDom/GetExtensionDetailVirtualDom.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
@@ -18,7 +19,7 @@ import * as WrapCommand from '../WrapCommand/WrapCommand.ts'
 export const commandMap = {
   'ExtensionDetail.create': Create.create,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
-  'ExtensionDetail.getVirtualDom': WrapCommand.wrapCommand(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom),
+  'ExtensionDetail.getVirtualDom2': WrapCommand.wrapCommand(GetExtensionDetailVirtualDom2.getExtensionDetailVirtualDom2),
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
   'ExtensionDetail.handleClickSize': WrapCommand.wrapCommand(HandleClickSize.handleClickSize),
   'ExtensionDetail.handleClickUninstall': WrapCommand.wrapCommand(HandleClickUninstall.handleClickUninstall),
@@ -26,12 +27,13 @@ export const commandMap = {
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
   'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
+  'ExtensionDetail.resize': Resize.resize,
   'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
   'ExtensionDetail.terminate': Terminate.terminate,
-  'ExtensionDetail.resize': Resize.resize,
 
   // deprecated
+  'ExtensionDetail.getVirtualDom': WrapCommand.wrapCommand(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom),
   'HandleIconError.handleIconError': HandleIconError.handleIconError,
   'RenderMarkdown.renderMarkdown': RenderMarkdown.renderMarkdown,
 }
