@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as GetCellRenderer from '../src/parts/GetCellRenderer/GetCellRenderer.ts'
 import * as GetCellCodeVirtualDom from '../src/parts/GetCellCodeVirtualDom/GetCellCodeVirtualDom.ts'
+import * as GetCellRenderer from '../src/parts/GetCellRenderer/GetCellRenderer.ts'
 import * as GetCellTextVirtualDom from '../src/parts/GetCellTextVirtualDom/GetCellTextVirtualDom.ts'
 import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 
