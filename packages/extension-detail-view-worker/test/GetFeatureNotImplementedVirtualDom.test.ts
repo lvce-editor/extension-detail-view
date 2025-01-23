@@ -7,7 +7,11 @@ test('feature not implemented virtual dom', () => {
   expect(GetFeatureNotImplementedVirtualDom.getFeatureNotImplementedVirtualDom()).toEqual([
     {
       type: VirtualDomElements.Div,
-      className: 'Message',
+      className: 'FeatureContent',
+      childCount: 1,
+    },
+    {
+      type: 5,
       childCount: 1,
     },
     text('Not implemented'),
