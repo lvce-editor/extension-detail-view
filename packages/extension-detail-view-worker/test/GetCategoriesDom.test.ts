@@ -21,20 +21,17 @@ test('categories dom with categories', () => {
       type: VirtualDomElements.Div,
       className: ClassNames.Categories,
       childCount: categories.length,
-      onClick: 'handleCategoriesClick',
     },
     {
       type: VirtualDomElements.Div,
       className: ClassNames.Category,
       childCount: 1,
-      name: 'programming-languages',
     },
     text('Programming Languages'),
     {
       type: VirtualDomElements.Div,
       className: ClassNames.Category,
       childCount: 1,
-      name: 'snippets',
     },
     text('Snippets'),
   ])
@@ -47,7 +44,6 @@ test('categories dom with empty categories', () => {
       type: VirtualDomElements.Div,
       className: ClassNames.Categories,
       childCount: 0,
-      onClick: 'handleCategoriesClick',
     },
   ])
 })
