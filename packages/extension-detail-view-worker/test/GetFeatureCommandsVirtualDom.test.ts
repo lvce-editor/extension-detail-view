@@ -96,10 +96,6 @@ test('feature commands virtual dom with commands', () => {
       className: ClassNames.TableCell,
       childCount: 1,
     },
-    {
-      type: VirtualDomElements.Div,
-      childCount: 1,
-    },
     text('Save File'),
   ])
 })
