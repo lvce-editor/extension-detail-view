@@ -13,7 +13,7 @@ const parentNodeEven: VirtualDomNode = {
 
 const parentNodeOdd: VirtualDomNode = {
   type: VirtualDomElements.Div,
-  className: ClassNames.MoreInfoEntry + ' ' + 'MoreInfoEntryOdd',
+  className: ClassNames.MoreInfoEntry + ' ' + ClassNames.MoreInfoEntryOdd,
   childCount: 2,
 }
 
