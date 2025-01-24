@@ -1,4 +1,5 @@
 import type { Feature } from '../Feature/Feature.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as InputName from '../InputName/InputName.ts'
 
 const hasThemes = (extension: any): boolean => {
@@ -48,13 +49,19 @@ export const getFeatures = (selectedFeature: string, extension: any): readonly F
   if (!selectedFeature) {
     selectedFeature = InputName.Theme
   }
+  const textTheme = ExtensionDetailStrings.theme()
+  const textCommands = ExtensionDetailStrings.commands()
+  const textJsonValidation = ExtensionDetailStrings.jsonValidation()
+  const programmingLanguages = ExtensionDetailStrings.programmingLanguages()
+  const settings = ExtensionDetailStrings.settings()
+  const webViews = ExtensionDetailStrings.webViews()
   const features: readonly Feature[] = [
-    ...ifElseFeature(InputName.Theme, 'Theme', hasThemes, selectedFeature, extension),
-    ...ifElseFeature(InputName.Commands, 'Commands', hasCommands, selectedFeature, extension),
-    ...ifElseFeature(InputName.JsonValidation, 'Json Validation', hasJsonValidation, selectedFeature, extension),
-    ...ifElseFeature(InputName.ProgrammingLanguages, 'Programming Languages', hasProgrammingLanguages, selectedFeature, extension),
-    ...ifElseFeature(InputName.Settings, 'Settings', hasSettings, selectedFeature, extension),
-    ...ifElseFeature(InputName.WebViews, 'WebViews', hasWebViews, selectedFeature, extension),
+    ...ifElseFeature(InputName.Theme, textTheme, hasThemes, selectedFeature, extension),
+    ...ifElseFeature(InputName.Commands, textCommands, hasCommands, selectedFeature, extension),
+    ...ifElseFeature(InputName.JsonValidation, textJsonValidation, hasJsonValidation, selectedFeature, extension),
+    ...ifElseFeature(InputName.ProgrammingLanguages, programmingLanguages, hasProgrammingLanguages, selectedFeature, extension),
+    ...ifElseFeature(InputName.Settings, settings, hasSettings, selectedFeature, extension),
+    ...ifElseFeature(InputName.WebViews, webViews, hasWebViews, selectedFeature, extension),
   ]
   return features
 }
