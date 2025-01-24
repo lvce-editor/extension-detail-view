@@ -22,5 +22,5 @@ test('get folder size', async () => {
 test('get folder size - error case', async () => {
   RpcRegistry.set(1, mockRpc)
   mockRpc.invoke.mockRejectedValue(new Error('access denied'))
-  await expect(GetFolderSize.getFolderSize('/test/path')).rejects.toThrow(new Error('access denied'))
+  expect(await GetFolderSize.getFolderSize('/test/path')).toBe(0)
 })
