@@ -1,6 +1,6 @@
 import { expect, jest, test } from '@jest/globals'
-import * as RpcRegistry from '../src/parts/RpcRegistry/RpcRegistry.ts'
 import * as HandleClickSize from '../src/parts/HandleClickSize/HandleClickSize.ts'
+import * as RpcRegistry from '../src/parts/RpcRegistry/RpcRegistry.ts'
 
 const mockRpc = {
   invoke: jest.fn(),
@@ -10,7 +10,8 @@ test('handle click size', async () => {
   RpcRegistry.set(1, mockRpc)
   mockRpc.invoke.mockResolvedValue(1024)
   const state = {
-    extensionDetail: {
+    extension: {
+      uri: 'test://sample-folder',
       id: 'test-id',
     },
   } as any
@@ -26,7 +27,8 @@ test('handles error during size calculation', async () => {
   const error = new Error('Failed to get folder size')
   mockRpc.invoke.mockRejectedValue(error)
   const state = {
-    extensionDetail: {
+    extension: {
+      uri: 'test://sample-folder',
       id: 'test-id',
     },
   } as any
@@ -36,7 +38,10 @@ test('handles error during size calculation', async () => {
 test('handles missing extension id', async () => {
   RpcRegistry.set(1, mockRpc)
   const state = {
-    extensionDetail: {},
+    extension: {
+      uri: 'test://sample-folder',
+      id: 'test-id',
+    },
   } as any
   expect(await HandleClickSize.handleClickSize(state)).toEqual(state)
   expect(mockRpc.invoke).not.toHaveBeenCalled()
