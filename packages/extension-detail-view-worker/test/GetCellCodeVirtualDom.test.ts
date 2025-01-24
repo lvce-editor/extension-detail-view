@@ -11,6 +11,10 @@ test('get cell code virtual dom with string value', () => {
       className: 'TableCell',
       childCount: 1,
     },
+    {
+      type: 4,
+      childCount: 1,
+    },
     text('npm install'),
   ])
 })
