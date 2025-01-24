@@ -6,43 +6,15 @@ const mockRpc = {
   invoke: jest.fn(),
 } as any
 
-test('handle click size', async () => {
+test('handle click size - opens folder', async () => {
   RpcRegistry.set(1, mockRpc)
-  mockRpc.invoke.mockResolvedValue(1024)
   const state = {
     extension: {
       uri: 'test://sample-folder',
       id: 'test-id',
     },
   } as any
-  expect(await HandleClickSize.handleClickSize(state)).toEqual({
-    ...state,
-    folderSize: 1024,
-  })
-  expect(mockRpc.invoke).toHaveBeenCalledWith('ExtensionManagement.getFolderSize', 'test-id')
-})
+  await HandleClickSize.handleClickSize(state)
 
-test('handles error during size calculation', async () => {
-  RpcRegistry.set(1, mockRpc)
-  const error = new Error('Failed to get folder size')
-  mockRpc.invoke.mockRejectedValue(error)
-  const state = {
-    extension: {
-      uri: 'test://sample-folder',
-      id: 'test-id',
-    },
-  } as any
-  await expect(HandleClickSize.handleClickSize(state)).rejects.toThrow('Failed to get folder size')
-})
-
-test('handles missing extension id', async () => {
-  RpcRegistry.set(1, mockRpc)
-  const state = {
-    extension: {
-      uri: 'test://sample-folder',
-      id: 'test-id',
-    },
-  } as any
-  expect(await HandleClickSize.handleClickSize(state)).toEqual(state)
-  expect(mockRpc.invoke).not.toHaveBeenCalled()
+  expect(mockRpc.invoke).toHaveBeenCalledWith('test://sample-folder')
 })
