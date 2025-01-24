@@ -26,11 +26,11 @@ test('get command table entry with empty values', () => {
   }
   expect(GetCommandTableEntry.getCommandTableEntry(command)).toEqual([
     {
-      type: TableCellType.Text,
+      type: TableCellType.Code,
       value: '',
     },
     {
-      type: TableCellType.Code,
+      type: TableCellType.Text,
       value: '',
     },
   ])
