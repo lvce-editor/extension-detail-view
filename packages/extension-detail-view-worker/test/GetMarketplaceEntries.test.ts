@@ -5,6 +5,7 @@ test('returns marketplace entries', () => {
   expect(GetMarketplaceEntries.getMarketplaceEntries()).toEqual([
     {
       key: 'Published',
+      odd: true,
       value: 'n/a',
     },
     {
