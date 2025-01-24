@@ -55,6 +55,18 @@ test('semantic tags', () => {
   expect(GetVirtualDomTag.getVirtualDomTag(ElementTags.Aside)).toBe(VirtualDomElements.Aside)
 })
 
+test('search', () => {
+  expect(GetVirtualDomTag.getVirtualDomTag(ElementTags.Search)).toBe(VirtualDomElements.Search)
+})
+
+test('hr', () => {
+  expect(GetVirtualDomTag.getVirtualDomTag(ElementTags.Hr)).toBe(VirtualDomElements.Hr)
+})
+
+test('tfoot', () => {
+  expect(GetVirtualDomTag.getVirtualDomTag(ElementTags.Tfoot)).toBe(VirtualDomElements.Tfoot)
+})
+
 test('unknown tag defaults to div', () => {
   expect(GetVirtualDomTag.getVirtualDomTag('unknown')).toBe(VirtualDomElements.Div)
   expect(GetVirtualDomTag.getVirtualDomTag('')).toBe(VirtualDomElements.Div)
