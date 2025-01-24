@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as GetInstallationEntries from '../src/parts/GetInstallationEntries/GetInstallationEntries.ts'
 import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import * as GetInstallationEntries from '../src/parts/GetInstallationEntries/GetInstallationEntries.ts'
 
 test('get installation entries with all fields', () => {
   expect(GetInstallationEntries.getInstallationEntries('2.5MB', 'test-extension', '1.0.0')).toEqual([
