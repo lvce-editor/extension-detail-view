@@ -4,8 +4,8 @@ import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 
 test('get command table entry with title and command', () => {
   const command = {
-    title: 'Open File',
-    command: 'workbench.action.openFile',
+    id: 'workbench.action.openFile',
+    label: 'Open File',
   }
   expect(GetCommandTableEntry.getCommandTableEntry(command)).toEqual([
     {
@@ -21,8 +21,8 @@ test('get command table entry with title and command', () => {
 
 test('get command table entry with empty values', () => {
   const command = {
-    title: '',
-    command: '',
+    id: '',
+    label: '',
   }
   expect(GetCommandTableEntry.getCommandTableEntry(command)).toEqual([
     {
@@ -52,8 +52,8 @@ test('get command table entry with missing values', () => {
 
 test('get command table entry with additional properties', () => {
   const command = {
-    title: 'Save File',
-    command: 'workbench.action.saveFile',
+    id: 'workbench.action.saveFile',
+    label: 'Save File',
     shortcut: 'Ctrl+S',
     category: 'File',
   }
