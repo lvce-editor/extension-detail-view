@@ -9,7 +9,7 @@ test('get cell code virtual dom with string value', () => {
     {
       type: VirtualDomElements.Div,
       className: 'TableCell',
-      childCount: 1,
+      childCount: 11,
     },
     {
       type: 4,
