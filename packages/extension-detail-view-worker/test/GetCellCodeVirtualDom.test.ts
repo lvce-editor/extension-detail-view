@@ -7,12 +7,12 @@ test('get cell code virtual dom with string value', () => {
   const value = 'npm install'
   expect(GetCellCodeVirtualDom.getCellCodeVirtualDom(value)).toEqual([
     {
-      type: VirtualDomElements.Div,
+      type: 11,
       className: 'TableCell',
       childCount: 1,
     },
     {
-      type: 11,
+      type: 4,
       childCount: 1,
     },
     text('npm install'),
