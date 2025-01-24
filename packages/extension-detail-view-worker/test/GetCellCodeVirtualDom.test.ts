@@ -9,10 +9,10 @@ test('get cell code virtual dom with string value', () => {
     {
       type: VirtualDomElements.Div,
       className: 'TableCell',
-      childCount: 11,
+      childCount: 1,
     },
     {
-      type: 4,
+      type: 11,
       childCount: 1,
     },
     text('npm install'),
