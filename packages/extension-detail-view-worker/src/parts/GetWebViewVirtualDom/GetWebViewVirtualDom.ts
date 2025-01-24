@@ -22,6 +22,7 @@ const item: VirtualDomNode = {
   childCount: 2,
 }
 
+// TODO move json stringify to view model
 export const getWebViewVirtualDom = (webView: any): readonly VirtualDomNode[] => {
   const { id, selector, contentSecurityPolicy, elements } = webView
   const textId = ExtensionDetailStrings.id()
