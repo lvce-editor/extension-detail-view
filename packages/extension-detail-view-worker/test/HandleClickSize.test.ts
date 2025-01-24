@@ -16,5 +16,5 @@ test('handle click size - opens folder', async () => {
   } as any
   await HandleClickSize.handleClickSize(state)
 
-  expect(mockRpc.invoke).toHaveBeenCalledWith('test://sample-folder')
+  expect(mockRpc.invoke).toHaveBeenCalledWith('OpenNativeFolder.openNativeFolder', 'test://sample-folder')
 })
