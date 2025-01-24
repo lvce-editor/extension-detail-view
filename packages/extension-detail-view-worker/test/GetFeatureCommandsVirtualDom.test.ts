@@ -86,7 +86,11 @@ test('feature commands virtual dom with commands', () => {
       className: ClassNames.TableCell,
       childCount: 1,
     },
-    text('Save File'),
+    {
+      type: VirtualDomElements.Div,
+      childCount: 1,
+    },
+    text('workbench.action.saveFile'),
     {
       type: VirtualDomElements.Td,
       className: ClassNames.TableCell,
@@ -96,6 +100,6 @@ test('feature commands virtual dom with commands', () => {
       type: VirtualDomElements.Div,
       childCount: 1,
     },
-    text('workbench.action.saveFile'),
+    text('Save File'),
   ])
 })
