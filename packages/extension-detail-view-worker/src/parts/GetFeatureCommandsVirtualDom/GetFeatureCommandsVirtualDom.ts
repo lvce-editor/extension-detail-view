@@ -6,6 +6,7 @@ import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeading
 import * as GetTableVirtualDom from '../GetTableVirtualDom/GetTableVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
+// TODO have typed view-model
 export const getFeatureCommandsVirtualDom = (extension: any): readonly VirtualDomNode[] => {
   const heading = ExtensionDetailStrings.commands()
   const tableInfo = GetCommandTableEntries.getCommandTableEntries(extension)
