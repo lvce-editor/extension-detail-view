@@ -66,7 +66,11 @@ test('feature commands virtual dom with commands', () => {
       className: ClassNames.TableCell,
       childCount: 1,
     },
-    text('Open File'),
+    {
+      type: VirtualDomElements.Div,
+      childCount: 1,
+    },
+    text('workbench.action.openFile'),
     {
       type: VirtualDomElements.Td,
       className: ClassNames.TableCell,
