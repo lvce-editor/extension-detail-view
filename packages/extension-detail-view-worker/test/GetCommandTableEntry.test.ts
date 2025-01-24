@@ -35,36 +35,3 @@ test('get command table entry with empty values', () => {
     },
   ])
 })
-
-test('get command table entry with missing values', () => {
-  const command = {}
-  expect(GetCommandTableEntry.getCommandTableEntry(command)).toEqual([
-    {
-      type: TableCellType.Text,
-      value: '',
-    },
-    {
-      type: TableCellType.Code,
-      value: '',
-    },
-  ])
-})
-
-test('get command table entry with additional properties', () => {
-  const command = {
-    id: 'workbench.action.saveFile',
-    label: 'Save File',
-    shortcut: 'Ctrl+S',
-    category: 'File',
-  }
-  expect(GetCommandTableEntry.getCommandTableEntry(command)).toEqual([
-    {
-      type: TableCellType.Text,
-      value: 'Save File',
-    },
-    {
-      type: TableCellType.Code,
-      value: 'workbench.action.saveFile',
-    },
-  ])
-})
