@@ -9,12 +9,12 @@ test('get command table entry with title and command', () => {
   }
   expect(GetCommandTableEntry.getCommandTableEntry(command)).toEqual([
     {
-      type: TableCellType.Text,
-      value: 'Open File',
-    },
-    {
       type: TableCellType.Code,
       value: 'workbench.action.openFile',
+    },
+    {
+      type: TableCellType.Text,
+      value: 'Open File',
     },
   ])
 })
