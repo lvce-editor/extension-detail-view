@@ -16,7 +16,7 @@ test('get folder size', async () => {
     return '1.2 MB'
   })
   expect(await GetFolderSize.getFolderSize('/test/path')).toBe('1.2 MB')
-  expect(mockRpc.invoke).toHaveBeenCalledWith('GetFolderSize.getFolderSize', '/test/path')
+  expect(mockRpc.invoke).toHaveBeenCalledWith('FileSystem.getFolderSize', '/test/path')
 })
 
 test('get folder size - error case', async () => {
