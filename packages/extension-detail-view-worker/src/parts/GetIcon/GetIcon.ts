@@ -1,4 +1,3 @@
-import * as AssetDir from '../AssetDir/AssetDir.ts'
 import * as Icon from '../Icon/Icon.ts'
 import * as IsLanguageBasicsExtension from '../IsLanguageBasicsExtension/IsLanguageBasicsExtension.ts'
 import * as IsThemeExtension from '../IsThemeExtension/IsThemeExtension.ts'
@@ -10,12 +9,12 @@ export const getIcon = (extension: any, platform: number, assetDir: string): str
   }
   if (!extension.path || !extension.icon) {
     if (IsLanguageBasicsExtension.isLanguageBasicsExtension(extension)) {
-      return Icon.extensionLanguageBasics(AssetDir.assetDir)
+      return Icon.extensionLanguageBasics(assetDir)
     }
     if (IsThemeExtension.isThemeExtension(extension)) {
-      return Icon.extensionTheme(AssetDir.assetDir)
+      return Icon.extensionTheme(assetDir)
     }
-    return Icon.extensionDefaultIcon(AssetDir.assetDir)
+    return Icon.extensionDefaultIcon(assetDir)
   }
   if (platform === PlatformType.Remote || platform === PlatformType.Electron) {
     if (extension.builtin) {
