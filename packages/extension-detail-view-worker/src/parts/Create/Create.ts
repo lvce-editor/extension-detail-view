@@ -1,7 +1,7 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 
-export const create = (uid: number, uri: string, width: number, height: number, platform: number): void => {
+export const create = (uid: number, uri: string, width: number, height: number, platform: number, assetDir: string): void => {
   const state: ExtensionDetailState = {
     description: '',
     iconSrc: '',
@@ -21,6 +21,7 @@ export const create = (uid: number, uri: string, width: number, height: number, 
     baseUrl: '',
     features: [],
     folderSize: 0,
+    assetDir,
   }
   ExtensionDetailStates.set(uid, state, state)
 }
