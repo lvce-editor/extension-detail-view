@@ -1,4 +1,5 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import * as AssetDir from '../AssetDir/AssetDir.ts'
 import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 
 export const create = (uid: number, uri: string, width: number, height: number, platform: number, assetDir: string): void => {
@@ -21,7 +22,7 @@ export const create = (uid: number, uri: string, width: number, height: number, 
     baseUrl: '',
     features: [],
     folderSize: 0,
-    assetDir,
+    assetDir: assetDir || AssetDir.assetDir,
   }
   ExtensionDetailStates.set(uid, state, state)
 }
