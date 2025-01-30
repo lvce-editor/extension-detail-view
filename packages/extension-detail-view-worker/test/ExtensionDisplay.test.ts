@@ -18,16 +18,16 @@ test('getName returns n/a for invalid extension', () => {
 })
 
 test('getIcon returns default icon for invalid extension', () => {
-  expect(ExtensionDisplay.getIcon(null, PlatformType.Remote, '')).toBe(Icon.ExtensionDefaultIcon)
-  expect(ExtensionDisplay.getIcon(undefined, PlatformType.Remote, '')).toBe(Icon.ExtensionDefaultIcon)
+  expect(ExtensionDisplay.getIcon(null, PlatformType.Remote, '')).toBe(Icon.extensionDefaultIcon(''))
+  expect(ExtensionDisplay.getIcon(undefined, PlatformType.Remote, '')).toBe(Icon.extensionDefaultIcon(''))
 })
 
 test('getIcon returns language basics icon', () => {
-  expect(ExtensionDisplay.getIcon({ name: 'Language Basics Test' }, PlatformType.Remote, '')).toBe(Icon.ExtensionLanguageBasics)
+  expect(ExtensionDisplay.getIcon({ name: 'Language Basics Test' }, PlatformType.Remote, '')).toBe(Icon.extensionLanguageBasics(''))
 })
 
 test('getIcon returns theme icon', () => {
-  expect(ExtensionDisplay.getIcon({ name: 'Test Theme' }, PlatformType.Remote, '')).toBe(Icon.ExtensionTheme)
+  expect(ExtensionDisplay.getIcon({ name: 'Test Theme' }, PlatformType.Remote, '')).toBe(Icon.extensionTheme(''))
 })
 
 test('getIcon returns remote path for non-builtin extension', () => {
