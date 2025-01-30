@@ -1,17 +1,18 @@
 import { expect, test } from '@jest/globals'
+import type { WebView } from '../src/parts/WebView/WebView.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetWebViewVirtualDom from '../src/parts/GetWebViewVirtualDom/GetWebViewVirtualDom.ts'
 import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('webview virtual dom', () => {
-  const webView = {
+  const webView: WebView = {
     id: 'test-webview',
-    selector: { viewType: 'test.view' },
-    contentSecurityPolicy: { 'default-src': "'none'" },
-    elements: {
+    selectorString: JSON.stringify({ viewType: 'test.view' }),
+    contentSecurityPolicyString: JSON.stringify({ 'default-src': "'none'" }),
+    elementsString: JSON.stringify({
       button: { tag: 'button', text: 'Click me' },
-    },
+    }),
   }
   expect(GetWebViewVirtualDom.getWebViewVirtualDom(webView)).toEqual([
     {

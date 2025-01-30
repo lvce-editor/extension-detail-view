@@ -1,4 +1,5 @@
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import type { WebView } from '../WebView/WebView.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
@@ -22,9 +23,8 @@ const item: VirtualDomNode = {
   childCount: 2,
 }
 
-// TODO move json stringify to view model
-export const getWebViewVirtualDom = (webView: any): readonly VirtualDomNode[] => {
-  const { id, selector, contentSecurityPolicy, elements } = webView
+export const getWebViewVirtualDom = (webView: WebView): readonly VirtualDomNode[] => {
+  const { id, selectorString, contentSecurityPolicyString, elementsString } = webView
   const textId = ExtensionDetailStrings.id()
   const textSelector = ExtensionDetailStrings.selector()
   const textContentSecurityPolicy = ExtensionDetailStrings.contentSecurityPolicy()
@@ -44,16 +44,16 @@ export const getWebViewVirtualDom = (webView: any): readonly VirtualDomNode[] =>
     heading,
     text(textSelector),
     pre,
-    text(JSON.stringify(selector)),
+    text(selectorString),
     item,
     heading,
     text(textContentSecurityPolicy),
     pre,
-    text(JSON.stringify(contentSecurityPolicy)),
+    text(contentSecurityPolicyString),
     item,
     heading,
     text(textElements),
     pre,
-    text(JSON.stringify(elements, null, 2)),
+    text(elementsString),
   ]
 }
