@@ -20,6 +20,7 @@ test('replaces icon with default icon when error occurs', () => {
   expect(HandleIconError.handleIconError(state)).toEqual({
     iconSrc: Icon.extensionDefaultIcon(''),
     name: 'test',
+    assetDir: '',
   })
 })
 
@@ -36,5 +37,6 @@ test('preserves other state properties when replacing icon', () => {
     name: 'test',
     description: 'test description',
     version: '1.0.0',
+    assetDir: '',
   })
 })
