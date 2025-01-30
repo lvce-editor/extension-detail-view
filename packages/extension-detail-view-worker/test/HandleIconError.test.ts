@@ -4,7 +4,7 @@ import * as Icon from '../src/parts/Icon/Icon.ts'
 
 test('returns same state if icon is already default icon', () => {
   const state = {
-    iconSrc: Icon.ExtensionDefaultIcon,
+    iconSrc: Icon.extensionDefaultIcon(''),
     name: 'test',
   } as any
   expect(HandleIconError.handleIconError(state)).toBe(state)
@@ -16,7 +16,7 @@ test('replaces icon with default icon when error occurs', () => {
     name: 'test',
   } as any
   expect(HandleIconError.handleIconError(state)).toEqual({
-    iconSrc: Icon.ExtensionDefaultIcon,
+    iconSrc: Icon.extensionDefaultIcon(''),
     name: 'test',
   })
 })
@@ -29,7 +29,7 @@ test('preserves other state properties when replacing icon', () => {
     version: '1.0.0',
   } as any
   expect(HandleIconError.handleIconError(state)).toEqual({
-    iconSrc: Icon.ExtensionDefaultIcon,
+    iconSrc: Icon.extensionDefaultIcon(''),
     name: 'test',
     description: 'test description',
     version: '1.0.0',

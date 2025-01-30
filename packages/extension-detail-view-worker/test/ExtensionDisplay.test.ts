@@ -18,8 +18,8 @@ test('getName returns n/a for invalid extension', () => {
 })
 
 test('getIcon returns default icon for invalid extension', () => {
-  expect(ExtensionDisplay.getIcon(null, PlatformType.Remote, '')).toBe(Icon.ExtensionDefaultIcon)
-  expect(ExtensionDisplay.getIcon(undefined, PlatformType.Remote, '')).toBe(Icon.ExtensionDefaultIcon)
+  expect(ExtensionDisplay.getIcon(null, PlatformType.Remote, '')).toBe(Icon.extensionDefaultIcon(''))
+  expect(ExtensionDisplay.getIcon(undefined, PlatformType.Remote, '')).toBe(Icon.extensionDefaultIcon(''))
 })
 
 test('getIcon returns language basics icon', () => {

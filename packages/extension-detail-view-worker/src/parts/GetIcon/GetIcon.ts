@@ -5,7 +5,7 @@ import * as PlatformType from '../PlatformType/PlatformType.ts'
 
 export const getIcon = (extension: any, platform: number, assetDir: string): string => {
   if (!extension) {
-    return Icon.ExtensionDefaultIcon
+    return Icon.extensionDefaultIcon(assetDir)
   }
   if (!extension.path || !extension.icon) {
     if (IsLanguageBasicsExtension.isLanguageBasicsExtension(extension)) {

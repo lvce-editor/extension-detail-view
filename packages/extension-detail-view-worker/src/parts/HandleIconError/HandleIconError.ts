@@ -2,12 +2,12 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import * as Icon from '../Icon/Icon.ts'
 
 export const handleIconError = (state: ExtensionDetailState): ExtensionDetailState => {
-  const { iconSrc } = state
-  if (iconSrc === Icon.ExtensionDefaultIcon) {
+  const { iconSrc, assetDir } = state
+  if (iconSrc === Icon.extensionDefaultIcon(assetDir)) {
     return state
   }
   return {
     ...state,
-    iconSrc: Icon.ExtensionDefaultIcon,
+    iconSrc: Icon.extensionDefaultIcon(assetDir),
   }
 }
