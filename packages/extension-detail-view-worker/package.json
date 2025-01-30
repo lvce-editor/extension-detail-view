@@ -2,7 +2,6 @@
   "name": "@lvce-editor/extension-detail-view",
   "version": "0.0.0-dev",
   "description": "Extension Detail View Worker",
-  "keywords": [],
   "license": "MIT",
   "author": "Lvce Editor",
   "type": "module",
