@@ -14,7 +14,7 @@ import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as MarkDown from '../RenderMarkdown/RenderMarkdown.ts'
 
 export const loadContent = async (state: ExtensionDetailState, platform: number, savedState: unknown): Promise<ExtensionDetailState> => {
-  const { uri, width } = state
+  const { uri, width, assetDir } = state
   const id = uri.slice('extension-detail://'.length)
   const extension = await ExtensionManagement.getExtension(id, platform)
   const readmeContent = await GetExtensionReadme.loadReadmeContent(extension.path)
@@ -24,7 +24,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   })
   const sanitizedReadmeHtml = readmeHtml
   const normalizedReadmeHtml = sanitizedReadmeHtml
-  const iconSrc = ExtensionDisplay.getIcon(extension, platform)
+  const iconSrc = ExtensionDisplay.getIcon(extension, platform, assetDir)
   const description = ExtensionDisplay.getDescription(extension)
   const name = ExtensionDisplay.getName(extension)
   const size = GetViewletSize.getViewletSize(width)

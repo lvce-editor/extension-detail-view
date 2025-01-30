@@ -18,16 +18,16 @@ test('getName returns n/a for invalid extension', () => {
 })
 
 test('getIcon returns default icon for invalid extension', () => {
-  expect(ExtensionDisplay.getIcon(null, PlatformType.Remote)).toBe(Icon.ExtensionDefaultIcon)
-  expect(ExtensionDisplay.getIcon(undefined, PlatformType.Remote)).toBe(Icon.ExtensionDefaultIcon)
+  expect(ExtensionDisplay.getIcon(null, PlatformType.Remote, '')).toBe(Icon.ExtensionDefaultIcon)
+  expect(ExtensionDisplay.getIcon(undefined, PlatformType.Remote, '')).toBe(Icon.ExtensionDefaultIcon)
 })
 
 test('getIcon returns language basics icon', () => {
-  expect(ExtensionDisplay.getIcon({ name: 'Language Basics Test' }, PlatformType.Remote)).toBe(Icon.ExtensionLanguageBasics)
+  expect(ExtensionDisplay.getIcon({ name: 'Language Basics Test' }, PlatformType.Remote, '')).toBe(Icon.ExtensionLanguageBasics)
 })
 
 test('getIcon returns theme icon', () => {
-  expect(ExtensionDisplay.getIcon({ name: 'Test Theme' }, PlatformType.Remote)).toBe(Icon.ExtensionTheme)
+  expect(ExtensionDisplay.getIcon({ name: 'Test Theme' }, PlatformType.Remote, '')).toBe(Icon.ExtensionTheme)
 })
 
 test('getIcon returns remote path for non-builtin extension', () => {
@@ -36,7 +36,7 @@ test('getIcon returns remote path for non-builtin extension', () => {
     icon: 'icon.png',
     builtin: false,
   }
-  expect(ExtensionDisplay.getIcon(extension, PlatformType.Remote)).toBe('/remote/test/path/icon.png')
+  expect(ExtensionDisplay.getIcon(extension, PlatformType.Remote, '')).toBe('/remote/test/path/icon.png')
 })
 
 test('getIcon returns asset path for builtin extension', () => {
@@ -46,7 +46,7 @@ test('getIcon returns asset path for builtin extension', () => {
     icon: 'icon.png',
     builtin: true,
   }
-  expect(ExtensionDisplay.getIcon(extension, PlatformType.Remote)).toBe('/extensions/test-ext/icon.png')
+  expect(ExtensionDisplay.getIcon(extension, PlatformType.Remote, '')).toBe('/extensions/test-ext/icon.png')
 })
 
 test('getIcon returns empty string for web platform', () => {
@@ -54,5 +54,5 @@ test('getIcon returns empty string for web platform', () => {
     path: 'test/path',
     icon: 'icon.png',
   }
-  expect(ExtensionDisplay.getIcon(extension, PlatformType.Web)).toBe('')
+  expect(ExtensionDisplay.getIcon(extension, PlatformType.Web, '')).toBe('')
 })

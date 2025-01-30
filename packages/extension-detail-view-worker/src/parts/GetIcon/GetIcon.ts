@@ -4,9 +4,7 @@ import * as IsLanguageBasicsExtension from '../IsLanguageBasicsExtension/IsLangu
 import * as IsThemeExtension from '../IsThemeExtension/IsThemeExtension.ts'
 import * as PlatformType from '../PlatformType/PlatformType.ts'
 
-export const getIcon = (extension: any, platform: number): string => {
-  // TODO make it dynamic
-  const {assetDir} = AssetDir
+export const getIcon = (extension: any, platform: number, assetDir: string): string => {
   if (!extension) {
     return Icon.ExtensionDefaultIcon
   }
