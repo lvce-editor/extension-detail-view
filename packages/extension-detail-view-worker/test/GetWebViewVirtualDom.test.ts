@@ -10,9 +10,13 @@ test('webview virtual dom', () => {
     id: 'test-webview',
     selectorString: JSON.stringify({ viewType: 'test.view' }),
     contentSecurityPolicyString: JSON.stringify({ 'default-src': "'none'" }),
-    elementsString: JSON.stringify({
-      button: { tag: 'button', text: 'Click me' },
-    }),
+    elementsString: JSON.stringify(
+      {
+        button: { tag: 'button', text: 'Click me' },
+      },
+      null,
+      2,
+    ),
   }
   expect(GetWebViewVirtualDom.getWebViewVirtualDom(webView)).toEqual([
     {
