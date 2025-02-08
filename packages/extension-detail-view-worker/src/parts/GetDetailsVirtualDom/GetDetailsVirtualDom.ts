@@ -10,13 +10,13 @@ import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirt
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
-export const getDetailsVirtualDom = (
+export const getDetailsVirtualDom = async (
   sanitizedReadmeHtml: string,
   displaySize: string,
   extensionId: string,
   extensionVersion: string,
   width: number,
-): readonly VirtualDomNode[] => {
+): Promise<readonly VirtualDomNode[]> => {
   const firstHeading = 'Installation'
   const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion)
   const secondHeading = 'Marketplace'
@@ -57,7 +57,7 @@ export const getDetailsVirtualDom = (
       childCount: childCount,
       role: AriaRoles.Panel,
     },
-    ...GetMarkdownVirtualDom.getMarkdownVirtualDom(sanitizedReadmeHtml),
+    ...(await GetMarkdownVirtualDom.getMarkdownVirtualDom(sanitizedReadmeHtml)),
     ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(
       showAdditionalDetails,
       firstHeading,
