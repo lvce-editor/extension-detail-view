@@ -1,6 +1,6 @@
 export const Text = 1
 export const Code = 2
-const CodeBlock = 3
-const KeyBinding = 4
-const Color = 5
-const Markdown = 6
+export const CodeBlock = 3
+export const KeyBinding = 4
+export const Color = 5
+export const Markdown = 6
