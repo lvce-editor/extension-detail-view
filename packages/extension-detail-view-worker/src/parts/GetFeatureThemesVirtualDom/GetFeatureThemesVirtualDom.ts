@@ -6,8 +6,8 @@ import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirt
 import * as GetVirtualDomChildCount from '../GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
-export const getFeatureThemesVirtualDom = (themesHtml: string): readonly VirtualDomNode[] => {
-  const markdownDom = GetMarkdownVirtualDom.getMarkdownVirtualDom(themesHtml)
+export const getFeatureThemesVirtualDom = async (themesHtml: string): Promise<readonly VirtualDomNode[]> => {
+  const markdownDom = await GetMarkdownVirtualDom.getMarkdownVirtualDom(themesHtml)
   const childCount = GetVirtualDomChildCount.getVirtualDomChildCount(markdownDom)
   const heading = ExtensionDetailStrings.theme()
   return [

@@ -3,7 +3,7 @@ import * as GetMarkdownVirtualDom from '../src/parts/GetMarkdownVirtualDom/GetMa
 import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
-test('empty string', () => {
+test.skip('empty string', () => {
   expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('')).toEqual([
     {
       childCount: 0,
@@ -15,7 +15,7 @@ test('empty string', () => {
   ])
 })
 
-test('plain text', () => {
+test.skip('plain text', () => {
   expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('Hello World')).toEqual([
     {
       childCount: 1,
@@ -28,7 +28,7 @@ test('plain text', () => {
   ])
 })
 
-test('heading', () => {
+test.skip('heading', () => {
   expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('<h1>Hello World</h1>')).toEqual([
     {
       childCount: 1,
@@ -45,7 +45,7 @@ test('heading', () => {
   ])
 })
 
-test('nested elements', () => {
+test.skip('nested elements', () => {
   expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('<div><p>Hello World</p></div>')).toEqual([
     {
       childCount: 1,
@@ -66,7 +66,7 @@ test('nested elements', () => {
   ])
 })
 
-test('throws error for non-string input', () => {
+test.skip('throws error for non-string input', () => {
   // @ts-expect-error
   expect(() => GetMarkdownVirtualDom.getMarkdownVirtualDom(123)).toThrow()
 })

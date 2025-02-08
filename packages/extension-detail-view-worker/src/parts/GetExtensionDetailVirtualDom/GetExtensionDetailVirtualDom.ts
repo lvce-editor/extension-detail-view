@@ -12,12 +12,12 @@ import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as ViewletSizeMap from '../ViewletSizeMap/ViewletSizeMap.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
-export const getExtensionDetailVirtualDom = (
+export const getExtensionDetailVirtualDom = async (
   extensionDetail: any,
   sanitizedReadmeHtml: string,
   selectedTab: string,
   newState: any,
-): readonly VirtualDomNode[] => {
+): Promise<readonly VirtualDomNode[]> => {
   // TODO move this to view model so that rendering occurs like
   // 1. state
   // 2. view model
@@ -43,7 +43,7 @@ export const getExtensionDetailVirtualDom = (
     },
     ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
-    ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
+    ...(await GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
       sanitizedReadmeHtml,
       themesHtml,
       selectedTab,
@@ -54,7 +54,7 @@ export const getExtensionDetailVirtualDom = (
       selectedFeature,
       extension,
       width,
-    ),
+    )),
   ]
   return dom
 }

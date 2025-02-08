@@ -9,15 +9,15 @@ import * as GetFeatureThemesVirtualDom from '../GetFeatureThemesVirtualDom/GetFe
 import * as GetFeatureWebViewsVirtualDom from '../GetFeatureWebViewsVirtualDom/GetFeatureWebViewsVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
 
-export const getFeatureContentVirtualDom = (
+export const getFeatureContentVirtualDom = async (
   features: readonly Feature[],
   themesHtml: string,
   selectedFeature: string,
   extension: any,
-): readonly VirtualDomNode[] => {
+): Promise<readonly VirtualDomNode[]> => {
   switch (selectedFeature) {
     case InputName.Theme:
-      return GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesHtml)
+      return await GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesHtml)
     case InputName.Commands:
       return GetFeatureCommandsVirtualDom.getFeatureCommandsVirtualDom(extension)
     case InputName.JsonValidation:

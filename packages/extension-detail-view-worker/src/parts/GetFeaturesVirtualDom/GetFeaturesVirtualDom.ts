@@ -6,12 +6,12 @@ import * as GetFeatureListVirtualDom from '../GetFeatureListVirtualDom/GetFeatur
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-export const getFeaturesVirtualDom = (
+export const getFeaturesVirtualDom = async (
   features: readonly Feature[],
   themesHtml: string,
   selectedFeature: string,
   extension: any,
-): readonly VirtualDomNode[] => {
+): Promise<readonly VirtualDomNode[]> => {
   if (features.length === 0) {
     return [
       {
@@ -34,6 +34,6 @@ export const getFeaturesVirtualDom = (
       className: 'Sash SashVertical',
       childCount: 0,
     },
-    ...GetFeatureContentVirtualDom.getFeatureContentVirtualDom(features, themesHtml, selectedFeature, extension),
+    ...(await GetFeatureContentVirtualDom.getFeatureContentVirtualDom(features, themesHtml, selectedFeature, extension)),
   ]
 }
