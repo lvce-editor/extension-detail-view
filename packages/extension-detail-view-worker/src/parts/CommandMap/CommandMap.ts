@@ -1,6 +1,5 @@
 import * as Create from '../Create/Create.ts'
 import * as GetExtensionDetailVirtualDom2 from '../GetExtensionDetailVirtualDom2/GetExtensionDetailVirtualDom2.ts'
-import * as GetExtensionDetailVirtualDom from '../GetExtensionDetailVirtualDom/GetExtensionDetailVirtualDom.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
 import * as HandleClickFeatures from '../HandleClickFeatures/HandleClickFeatures.ts'
@@ -10,7 +9,6 @@ import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as LoadContent from '../LoadContent/LoadContent.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
-import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as Resize from '../Resize/Resize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
@@ -33,9 +31,4 @@ export const commandMap = {
   'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
   'ExtensionDetail.terminate': Terminate.terminate,
-
-  // deprecated
-  'ExtensionDetail.getVirtualDom': WrapCommand.wrapCommand(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom),
-  'HandleIconError.handleIconError': HandleIconError.handleIconError,
-  'RenderMarkdown.renderMarkdown': RenderMarkdown.renderMarkdown,
 }
