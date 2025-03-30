@@ -1,5 +1,6 @@
 import * as DiffFocus from '../DiffFocus/DiffFocus.ts'
+import * as DiffItems from '../DiffItems/DiffItems.ts'
 
-export const modules = [DiffFocus.isEqual]
+export const modules = [DiffItems.isEqual, DiffFocus.isEqual]
 
-export const numbers = [DiffFocus.diffType]
+export const numbers = [DiffItems.diffType, DiffFocus.diffType]
