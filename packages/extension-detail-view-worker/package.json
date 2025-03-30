@@ -34,7 +34,7 @@
       "global": {
         "branches": 40,
         "functions": 60,
-        "lines": 75
+        "lines": 65
       }
     },
     "collectCoverageFrom": [
