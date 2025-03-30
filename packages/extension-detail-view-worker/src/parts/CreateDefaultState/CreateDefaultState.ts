@@ -21,6 +21,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     features: [],
     folderSize: 0,
     assetDir: '/test/asset/dir',
+    platform: 0,
     ...overrides,
   }
 }

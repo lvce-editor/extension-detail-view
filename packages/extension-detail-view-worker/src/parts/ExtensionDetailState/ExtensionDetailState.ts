@@ -23,4 +23,5 @@ export interface ExtensionDetailState {
   readonly features: readonly Feature[]
   readonly folderSize: number
   readonly assetDir: string
+  readonly platform: number
 }
