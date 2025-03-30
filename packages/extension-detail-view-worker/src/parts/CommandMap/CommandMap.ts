@@ -33,7 +33,7 @@ export const commandMap = {
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
   'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.loadContent2': WrapCommand.wrapCommand(LoadContent2.loadContent2),
-  'ExtensionDetail.render2': WrapCommand.wrapCommand(Render2.render2),
+  'ExtensionDetail.render2': Render2.render2,
   'ExtensionDetail.renderEventListeners': RenderEventListeners.renderEventListeners,
   'ExtensionDetail.resize': Resize.resize,
   'ExtensionDetail.saveState': SaveState.saveState,
