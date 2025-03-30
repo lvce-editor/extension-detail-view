@@ -25,6 +25,7 @@ test('dispose removes state for given uid', () => {
     features: [],
     folderSize: 0,
     assetDir: '',
+    platform: 0,
   }
   ExtensionDetailStates.set(uid, state, state)
 

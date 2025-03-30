@@ -23,6 +23,7 @@ export const create = (uid: number, uri: string, width: number, height: number, 
     features: [],
     folderSize: 0,
     assetDir: assetDir || AssetDir.assetDir,
+    platform,
   }
   ExtensionDetailStates.set(uid, state, state)
 }
