@@ -1,4 +1,5 @@
 import * as Create from '../Create/Create.ts'
+import * as Diff2 from '../Diff2/Diff2.ts'
 import * as GetExtensionDetailVirtualDom2 from '../GetExtensionDetailVirtualDom2/GetExtensionDetailVirtualDom2.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
@@ -27,6 +28,7 @@ export const commandMap = {
   'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
   'ExtensionDetail.renderEventListeners': RenderEventListeners.renderEventListeners,
+  'ExtensionDetail.diff2': Diff2.diff2,
   'ExtensionDetail.resize': Resize.resize,
   'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
