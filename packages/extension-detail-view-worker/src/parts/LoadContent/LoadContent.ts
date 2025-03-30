@@ -7,11 +7,10 @@ import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
-import * as GetSavedSelectedFeature from '../GetSavedSelectedFeature/GetSavedSelectedFeature.ts'
-import * as GetSavedSelectedTab from '../GetSavedSelectedTab/GetSavedSelectedTab.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as MarkDown from '../RenderMarkdown/RenderMarkdown.ts'
+import * as RestoreState from '../RestoreState/RestoreState.ts'
 
 export const loadContent = async (state: ExtensionDetailState, platform: number, savedState: unknown): Promise<ExtensionDetailState> => {
   const { uri, width, assetDir } = state
@@ -28,8 +27,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const description = ExtensionDisplay.getDescription(extension)
   const name = ExtensionDisplay.getName(extension)
   const size = GetViewletSize.getViewletSize(width)
-  const selectedTab = GetSavedSelectedTab.getSavedSelectedTab(savedState)
-  const selectedFeature = GetSavedSelectedFeature.getSavedSelectedFeature(savedState)
+  const { selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
   const features = GetFeatures.getFeatures(selectedFeature, extension)
   const folderSize = await GetFolderSize.getFolderSize(extension.uri)
   const entries: readonly MoreInfoEntry[] = [
