@@ -1,3 +1,4 @@
+import { VError } from '@lvce-editor/verror'
 import * as FileSystem from '../FileSystem/FileSystem.ts'
 import * as IsEnoentError from '../IsEnoentError/IsEnoentError.ts'
 import * as Path from '../Path/Path.ts'
@@ -11,7 +12,7 @@ export const loadReadmeContent = async (path: string): Promise<string> => {
     if (IsEnoentError.isEnoentError(error)) {
       return ''
     }
-    console.error(error)
+    console.error(new VError(error, 'Failed to load Readme content'))
     return `${error}`
   }
 }
