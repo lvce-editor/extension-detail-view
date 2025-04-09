@@ -19,7 +19,7 @@ export const getFeatureThemesVirtualDom = async (themesHtml: string): Promise<re
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
       type: VirtualDomElements.Div,
-      className: 'DefaultMarkdown',
+      className: ClassNames.DefaultMarkdown,
       childCount,
     },
     ...markdownDom,
