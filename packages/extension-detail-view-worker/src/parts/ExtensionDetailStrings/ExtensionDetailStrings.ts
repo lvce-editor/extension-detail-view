@@ -5,6 +5,10 @@ export const copy = (): string => {
   return I18nString.i18nString(UiStrings.Copy)
 }
 
+export const none = (): string => {
+  return I18nString.i18nString(UiStrings.None)
+}
+
 export const openInNewTab = (): string => {
   return I18nString.i18nString(UiStrings.OpenInNewTab)
 }
