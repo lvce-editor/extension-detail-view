@@ -33,7 +33,7 @@ test('returns error message for other errors', async () => {
   const content = await LoadReadmeContent.loadReadmeContent('/test/path')
   expect(content).toBe('Error: permission denied')
   expect(spy).toHaveBeenCalledTimes(1)
-  expect(spy).toHaveBeenCalledWith(new Error('permission denied'))
+  expect(spy).toHaveBeenCalledWith(new Error('Failed to load Readme content: permission denied'))
 })
 
 test('handles empty readme file', async () => {
