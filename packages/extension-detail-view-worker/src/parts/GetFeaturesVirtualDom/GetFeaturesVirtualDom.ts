@@ -3,6 +3,7 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetFeatureContentVirtualDom from '../GetFeatureContentVirtualDom/GetFeatureContentVirtualDom.ts'
 import * as GetFeatureListVirtualDom from '../GetFeatureListVirtualDom/GetFeatureListVirtualDom.ts'
+import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
@@ -31,7 +32,7 @@ export const getFeaturesVirtualDom = async (
     ...GetFeatureListVirtualDom.getFeatureListVirtualDom(features),
     {
       type: VirtualDomElements.Div,
-      className: 'Sash SashVertical',
+      className: MergeClassNames.mergeClassNames(ClassNames.Sash, ClassNames.SashVertical),
       childCount: 0,
     },
     ...(await GetFeatureContentVirtualDom.getFeatureContentVirtualDom(features, themesHtml, selectedFeature, extension)),
