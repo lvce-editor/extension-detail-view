@@ -1,16 +1,23 @@
-import * as ExplorerStates from '../ExtensionDetailStates/ExtensionDetailStates.ts'
+import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 
-export const wrapCommand = (fn: any): any => {
+export interface WrappedFn {
+  (uid: number, ...args: readonly any[]): Promise<void>
+}
+
+interface Fn {
+  (state: ExtensionDetailState, ...args: readonly any[]): ExtensionDetailState | Promise<ExtensionDetailState>
+}
+
+export const wrapCommand = (fn: Fn): WrappedFn => {
   const wrapped = async (uid: number, ...args: readonly any[]): Promise<void> => {
-    if (typeof uid === 'number') {
-      const { newState } = ExplorerStates.get(uid)
-      const newerState = await fn(newState, ...args)
-      ExplorerStates.set(uid, newState, newerState)
-    } else {
-      // deprecated
-      const newerState = await fn(uid, ...args)
-      return newerState
+    const { newState } = ExtensionDetailStates.get(uid)
+    const newerState = await fn(newState, ...args)
+    if (newState === newerState) {
+      return
     }
+    const latest = ExtensionDetailStates.get(uid)
+    ExtensionDetailStates.set(uid, latest.oldState, newerState)
   }
   return wrapped
 }
