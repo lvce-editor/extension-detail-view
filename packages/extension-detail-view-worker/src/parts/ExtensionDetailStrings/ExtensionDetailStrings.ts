@@ -68,3 +68,7 @@ export const contentSecurityPolicy = (): string => {
 export const elements = (): string => {
   return I18nString.i18nString(UiStrings.Elements)
 }
+
+export const notImplemented = (): string => {
+  return I18nString.i18nString(UiStrings.NotImplemented)
+}
