@@ -1,4 +1,4 @@
-import { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 
 export interface WrappedFn {
