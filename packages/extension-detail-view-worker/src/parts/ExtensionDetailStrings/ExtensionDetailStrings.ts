@@ -5,6 +5,10 @@ export const copy = (): string => {
   return I18nString.i18nString(UiStrings.Copy)
 }
 
+export const none = (): string => {
+  return I18nString.i18nString(UiStrings.None)
+}
+
 export const openInNewTab = (): string => {
   return I18nString.i18nString(UiStrings.OpenInNewTab)
 }
@@ -67,4 +71,8 @@ export const contentSecurityPolicy = (): string => {
 
 export const elements = (): string => {
   return I18nString.i18nString(UiStrings.Elements)
+}
+
+export const notImplemented = (): string => {
+  return I18nString.i18nString(UiStrings.NotImplemented)
 }

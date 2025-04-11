@@ -3,6 +3,7 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetMoreInfoEntryKeyVirtualDom from '../GetMoreInfoEntryKeyVirtualDom/GetMoreInfoEntryKeyVirtualDom.ts'
 import * as GetMoreInfoEntryValueVirtualDom from '../GetMoreInfoEntryValueVirtualDom/GetMoreInfoEntryValueVirtualDom.ts'
+import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 const parentNodeEven: VirtualDomNode = {
@@ -13,7 +14,7 @@ const parentNodeEven: VirtualDomNode = {
 
 const parentNodeOdd: VirtualDomNode = {
   type: VirtualDomElements.Div,
-  className: ClassNames.MoreInfoEntry + ' ' + ClassNames.MoreInfoEntryOdd,
+  className: MergeClassNames.mergeClassNames(ClassNames.MoreInfoEntry, ClassNames.MoreInfoEntryOdd),
   childCount: 2,
 }
 
