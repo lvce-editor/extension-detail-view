@@ -6,15 +6,17 @@ import * as GetJsonValidationTableEntries from '../GetJsonValidationTableEntries
 import * as GetTableVirtualDom from '../GetTableVirtualDom/GetTableVirtualDom.ts'
 import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
+const parentNode: VirtualDomNode = {
+  type: VirtualDomElements.Div,
+  className: ClassNames.FeatureContent,
+  childCount: 2,
+}
+
 export const getFeatureJsonValidationVirtualDom = (extension: any): readonly VirtualDomNode[] => {
   const heading = ExtensionDetailStrings.jsonValidation()
   const tableInfo = GetJsonValidationTableEntries.getJsonValidationTableEntries(extension)
   return [
-    {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
-      childCount: 2,
-    },
+    parentNode,
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     ...GetTableVirtualDom.getTableVirtualDom(tableInfo),
   ]
