@@ -5,6 +5,7 @@ import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionDisplay from '../ExtensionDisplay/ExtensionDisplay.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
+import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
@@ -14,7 +15,7 @@ import * as RestoreState from '../RestoreState/RestoreState.ts'
 
 export const loadContent = async (state: ExtensionDetailState, platform: number, savedState: unknown): Promise<ExtensionDetailState> => {
   const { uri, width, assetDir } = state
-  const id = uri.slice('extension-detail://'.length)
+  const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
   const readmeContent = await GetExtensionReadme.loadReadmeContent(extension.path)
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
