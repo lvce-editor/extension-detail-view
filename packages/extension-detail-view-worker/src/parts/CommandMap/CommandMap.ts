@@ -3,7 +3,6 @@ import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
 import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
-import * as GetExtensionDetailVirtualDom2 from '../GetExtensionDetailVirtualDom2/GetExtensionDetailVirtualDom2.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
 import * as HandleClickFeatures from '../HandleClickFeatures/HandleClickFeatures.ts'
@@ -12,7 +11,6 @@ import * as HandleClickUninstall from '../HandleClickUninstall/HandleClickUninst
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as LoadContent2 from '../LoadContent2/LoadContent2.ts'
-import * as LoadContent from '../LoadContent/LoadContent.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as Resize from '../Resize/Resize.ts'
@@ -39,8 +37,4 @@ export const commandMap = {
   'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
   'ExtensionDetail.terminate': Terminate.terminate,
-
-  // deprecated
-  'ExtensionDetail.getVirtualDom2': GetExtensionDetailVirtualDom2.getExtensionDetailVirtualDom2,
-  'ExtensionDetail.loadContent': WrapCommand.wrapCommand(LoadContent.loadContent),
 }
