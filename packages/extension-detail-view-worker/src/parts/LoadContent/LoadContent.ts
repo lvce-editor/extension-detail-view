@@ -30,7 +30,8 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const size = GetViewletSize.getViewletSize(width)
   const { selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
   const features = GetFeatures.getFeatures(selectedFeature, extension)
-  const folderSize = await GetFolderSize.getFolderSize(extension.uri)
+  const extensionUri = extension.uri || extension.path
+  const folderSize = await GetFolderSize.getFolderSize(extensionUri)
   const entries: readonly MoreInfoEntry[] = [
     {
       key: 'Identifier',
