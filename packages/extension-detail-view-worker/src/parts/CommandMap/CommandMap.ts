@@ -18,7 +18,7 @@ import * as Resize from '../Resize/Resize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
 import * as Terminate from '../Terminate/Terminate.ts'
-import * as WrapCommand from '../WrapCommand/WrapCommand.ts'
+import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 
 export const commandMap = {
   'ExtensionDetail.create': Create.create,
