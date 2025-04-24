@@ -80,7 +80,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     },
   ]
 
-  console.log('did load')
   return {
     ...state,
     selectedTab,
