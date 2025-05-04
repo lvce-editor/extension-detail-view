@@ -1,6 +1,6 @@
 import { beforeEach, expect, jest, test } from '@jest/globals'
 import * as GetFolderSize from '../src/parts/GetFolderSize/GetFolderSize.ts'
-import * as RpcRegistry from '../src/parts/RpcRegistry/RpcRegistry.ts'
+import * as ParentRpc from '../src/parts/ParentRpc/ParentRpc.ts'
 
 const mockRpc = {
   invoke: jest.fn(),
@@ -11,7 +11,7 @@ beforeEach(() => {
 })
 
 test('get folder size', async () => {
-  RpcRegistry.set(1, mockRpc)
+  ParentRpc.set(mockRpc)
   mockRpc.invoke.mockImplementation(() => {
     return '1.2 MB'
   })
@@ -20,7 +20,7 @@ test('get folder size', async () => {
 })
 
 test('get folder size - error case', async () => {
-  RpcRegistry.set(1, mockRpc)
+  ParentRpc.set(mockRpc)
   mockRpc.invoke.mockRejectedValue(new Error('access denied'))
   expect(await GetFolderSize.getFolderSize('/test/path')).toBe(0)
 })

@@ -1,7 +1,3 @@
-import * as RpcId from '../RpcId/RpcId.ts'
-import * as RpcRegistry from '../RpcRegistry/RpcRegistry.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 
-export const invoke = (method: string, ...params: readonly any[]): Promise<any> => {
-  const rpc = RpcRegistry.get(RpcId.RendererWorker)
-  return rpc.invoke(method, ...params)
-}
+export const { invoke, set } = RendererWorker
