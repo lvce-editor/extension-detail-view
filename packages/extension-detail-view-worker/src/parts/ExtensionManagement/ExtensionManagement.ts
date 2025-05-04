@@ -2,6 +2,7 @@ import * as GetExtensionFallback from '../GetExtensionFallback/GetExtensionFallb
 import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
 
 const getExtensionNew = async (id: string): Promise<any> => {
+  // @ts-ignore todo
   return ParentRpc.invoke('ExtensionManagement.getExtension', id)
 }
 
