@@ -1,9 +1,9 @@
 import * as GetExtensionFallback from '../GetExtensionFallback/GetExtensionFallback.ts'
-import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
+import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 const getExtensionNew = async (id: string): Promise<any> => {
   // @ts-ignore todo
-  return ParentRpc.invoke('ExtensionManagement.getExtension', id)
+  return RendererWorker.invoke('ExtensionManagement.getExtension', id)
 }
 
 export const getExtension = async (id: string, platform: number): Promise<any> => {

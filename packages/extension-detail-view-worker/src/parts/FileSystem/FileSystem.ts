@@ -1,4 +1,4 @@
-import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
+import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 export const readFile = async (uri: string): Promise<string> => {
   if (uri.startsWith('http://') || uri.startsWith('https://')) {
@@ -9,5 +9,5 @@ export const readFile = async (uri: string): Promise<string> => {
     const result = await response.text()
     return result
   }
-  return ParentRpc.invoke('FileSystem.readFile', uri)
+  return RendererWorker.invoke('FileSystem.readFile', uri)
 }
