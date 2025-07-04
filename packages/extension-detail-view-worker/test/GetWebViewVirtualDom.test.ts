@@ -1,8 +1,8 @@
 import { expect, test } from '@jest/globals'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { WebView } from '../src/parts/WebView/WebView.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetWebViewVirtualDom from '../src/parts/GetWebViewVirtualDom/GetWebViewVirtualDom.ts'
-import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('webview virtual dom', () => {

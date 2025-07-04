@@ -1,10 +1,10 @@
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as AriaRoles from '../AriaRoles/AriaRoles.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetTabVirtualDom from '../GetTabVirtualDom/GetTabVirtualDom.ts'
-import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 export const getTabsVirtualDom = (tabs: readonly Tab[]): readonly VirtualDomNode[] => {
   return [
