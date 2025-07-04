@@ -1,3 +1,4 @@
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Category } from '../Category/Category.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
@@ -7,7 +8,6 @@ import * as GetAdditionalDetailsEntryVirtualDom from '../GetAdditionalDetailsEnt
 import * as GetCategoriesDom from '../GetCategoriesDom/GetCategoriesDom.ts'
 import * as GetMoreInfoVirtualDom from '../GetMoreInfoVirtualDom/GetMoreInfoVirtualDom.ts'
 import * as GetResourcesVirtualDom from '../GetResourcesVirtualDom/GetResourcesVirtualDom.ts'
-import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 export const getAdditionalDetailsVirtualDom = (
   showAdditionalDetails: boolean,

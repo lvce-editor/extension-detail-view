@@ -1,3 +1,4 @@
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
@@ -10,7 +11,6 @@ import * as GetTabsVirtualDom from '../GetTabsVirtualDom/GetTabsVirtualDom.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as ViewletSizeMap from '../ViewletSizeMap/ViewletSizeMap.ts'
-import * as VirtualDomElements from '../VirtualDomElements/VirtualDomElements.ts'
 
 export const getExtensionDetailVirtualDom = async (
   extensionDetail: any,
