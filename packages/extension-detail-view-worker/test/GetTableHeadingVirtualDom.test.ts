@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as GetTableHeadingVirtualDom from '../src/parts/GetTableHeadingVirtualDom/GetTableHeadingVirtualDom.ts'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as GetTableHeadingVirtualDom from '../src/parts/GetTableHeadingVirtualDom/GetTableHeadingVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('creates table heading virtual dom', () => {

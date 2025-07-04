@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Resource } from '../src/parts/Resource/Resource.ts'
 import * as GetResourceVirtualDom from '../src/parts/GetResourceVirtualDom/GetResourceVirtualDom.ts'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('resource virtual dom', () => {

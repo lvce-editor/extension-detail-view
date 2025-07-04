@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as GetMarkdownVirtualDom from '../src/parts/GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as GetMarkdownVirtualDom from '../src/parts/GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test.skip('empty string', () => {

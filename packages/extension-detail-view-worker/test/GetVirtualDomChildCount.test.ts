@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as GetVirtualDomChildCount from '../src/parts/GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as GetVirtualDomChildCount from '../src/parts/GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 
 test('empty array', () => {
   expect(GetVirtualDomChildCount.getVirtualDomChildCount([])).toBe(0)
