@@ -12,9 +12,9 @@
   "license": "MIT",
   "description": "",
   "devDependencies": {
-    "@jest/globals": "^30.0.0",
+    "@jest/globals": "^30.0.4",
     "@types/node": "^22.14.0",
-    "jest": "^30.0.0",
+    "jest": "^30.0.4",
     "ts-jest": "^29.4.0"
   },
   "jest": {
