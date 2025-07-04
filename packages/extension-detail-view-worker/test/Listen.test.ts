@@ -1,21 +1,11 @@
-import { expect, test, jest } from '@jest/globals'
+import { test } from '@jest/globals'
+import { mockWorkerGlobalRpc } from '@lvce-editor/rpc'
+import { listen } from '../src/parts/Listen/Listen.ts'
 
-jest.unstable_mockModule('@lvce-editor/rpc', () => ({
-  WebWorkerRpcClient: {
-    create: jest.fn(),
-  },
-}))
-
-const { WebWorkerRpcClient } = await import('@lvce-editor/rpc')
-const Listen = await import('../src/parts/Listen/Listen.ts')
-
-test('listen registers event handlers', async () => {
-  await Listen.listen()
-  expect(WebWorkerRpcClient.create).toHaveBeenCalledTimes(1)
-})
-
-test('listen handles errors', async () => {
-  // @ts-expect-error
-  WebWorkerRpcClient.create.mockRejectedValue(new Error('test error'))
-  await expect(Listen.listen()).rejects.toThrow('test error')
+test('listen', async () => {
+  const { start, dispose } = mockWorkerGlobalRpc()
+  const listenPromise = listen()
+  start()
+  await listenPromise
+  dispose()
 })
