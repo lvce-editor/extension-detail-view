@@ -4,7 +4,7 @@ import * as AriaRoles from '../src/parts/AriaRoles/AriaRoles.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetTabsVirtualDom from '../src/parts/GetTabsVirtualDom/GetTabsVirtualDom.ts'
-import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 
 test('getTabsVirtualDom - returns correct virtual dom structure', () => {
   const tabs: readonly Tab[] = [

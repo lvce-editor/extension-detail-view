@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import type { Category } from '../src/parts/Category/Category.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetCategoriesDom from '../src/parts/GetCategoriesDom/GetCategoriesDom.ts'
-import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('categories dom with categories', () => {

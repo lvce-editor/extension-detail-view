@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import type { MoreInfoEntry } from '../src/parts/MoreInfoEntry/MoreInfoEntry.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetMoreInfoVirtualDom from '../src/parts/GetMoreInfoVirtualDom/GetMoreInfoVirtualDom.ts'
-import * as VirtualDomElements from '../src/parts/VirtualDomElements/VirtualDomElements.ts'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 
 test('more info virtual dom with entries', () => {
   const entries: readonly MoreInfoEntry[] = []
