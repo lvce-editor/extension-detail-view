@@ -9,5 +9,5 @@ export const readFile = async (uri: string): Promise<string> => {
     const result = await response.text()
     return result
   }
-  return RendererWorker.invoke('FileSystem.readFile', uri)
+  return RendererWorker.readFile(uri)
 }

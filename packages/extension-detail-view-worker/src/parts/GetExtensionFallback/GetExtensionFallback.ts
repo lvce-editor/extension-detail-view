@@ -5,7 +5,8 @@ const getAllExtensions = async (platform: number): Promise<readonly any[]> => {
   if (platform === PlatformType.Web) {
     return []
   }
-  return RendererWorker.invoke('ExtensionManagement.getAllExtensions')
+  // @ts-ignore
+  return RendererWorker.getAllExtensions()
 }
 
 export const getExtension = async (id: string, platform: number): Promise<any> => {
