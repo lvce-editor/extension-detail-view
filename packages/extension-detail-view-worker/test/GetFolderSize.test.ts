@@ -1,6 +1,6 @@
 import { beforeEach, expect, jest, test } from '@jest/globals'
 import * as GetFolderSize from '../src/parts/GetFolderSize/GetFolderSize.ts'
-import * as ParentRpc from '../src/parts/ParentRpc/ParentRpc.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 const mockRpc = {
   invoke: jest.fn(),
@@ -11,7 +11,7 @@ beforeEach(() => {
 })
 
 test('get folder size', async () => {
-  ParentRpc.set(mockRpc)
+  RendererWorker.set(mockRpc)
   mockRpc.invoke.mockImplementation(() => {
     return '1.2 MB'
   })
@@ -20,7 +20,7 @@ test('get folder size', async () => {
 })
 
 test('get folder size - error case', async () => {
-  ParentRpc.set(mockRpc)
+  RendererWorker.set(mockRpc)
   mockRpc.invoke.mockRejectedValue(new Error('access denied'))
   expect(await GetFolderSize.getFolderSize('/test/path')).toBe(0)
 })

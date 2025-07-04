@@ -1,8 +1,8 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
-import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
+import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 export const handleClickSize = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
   const { uri } = state.extension
-  await ParentRpc.invoke('OpenNativeFolder.openNativeFolder', uri)
+  await RendererWorker.invoke('OpenNativeFolder.openNativeFolder', uri)
   return state
 }

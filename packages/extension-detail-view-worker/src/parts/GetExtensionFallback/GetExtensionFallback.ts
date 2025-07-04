@@ -1,11 +1,11 @@
-import * as ParentRpc from '../ParentRpc/ParentRpc.ts'
+import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 import * as PlatformType from '../PlatformType/PlatformType.ts'
 
 const getAllExtensions = async (platform: number): Promise<readonly any[]> => {
   if (platform === PlatformType.Web) {
     return []
   }
-  return ParentRpc.invoke('ExtensionManagement.getAllExtensions')
+  return RendererWorker.invoke('ExtensionManagement.getAllExtensions')
 }
 
 export const getExtension = async (id: string, platform: number): Promise<any> => {

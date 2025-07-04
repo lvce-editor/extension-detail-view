@@ -1,5 +1,5 @@
 import { expect, jest, test } from '@jest/globals'
-import * as ParentRpc from '../src/parts/ParentRpc/ParentRpc.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import * as UninstallExtension from '../src/parts/UninstallExtension/UninstallExtension.ts'
 
 const mockRpc = {
@@ -7,13 +7,13 @@ const mockRpc = {
 } as any
 
 test('uninstall extension', async () => {
-  ParentRpc.set(mockRpc)
+  RendererWorker.set(mockRpc)
   await UninstallExtension.uninstallExtension('test-id')
   expect(mockRpc.invoke).toHaveBeenCalledWith('ExtensionManagement.uninstall', 'test-id')
 })
 
 test('handles error during uninstall', async () => {
-  ParentRpc.set(mockRpc)
+  RendererWorker.set(mockRpc)
   const error = new Error('Failed to uninstall extension')
   mockRpc.invoke.mockRejectedValue(error)
   await expect(UninstallExtension.uninstallExtension('test-id')).rejects.toThrow('Failed to uninstall extension')
