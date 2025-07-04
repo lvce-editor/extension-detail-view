@@ -17,6 +17,7 @@ export default [
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
+      'jest/no-restricted-jest-methods': 'off',
     },
   },
 ]
