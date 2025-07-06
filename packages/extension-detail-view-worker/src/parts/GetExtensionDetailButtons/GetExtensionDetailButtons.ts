@@ -6,7 +6,7 @@ import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
 export const getExtensionDetailButtons = (extension: any): readonly ExtensionDetailButton[] => {
   const allActions: ExtensionDetailButton[] = [
     {
-      label: 'Set Color Theme',
+      label: ExtensionDetailStrings.setColorTheme(),
       onClick: DomEventListenerFunctions.HandleClickSetColorTheme,
       enabled: HasColorThemes.hasColorThemes(extension)
     },

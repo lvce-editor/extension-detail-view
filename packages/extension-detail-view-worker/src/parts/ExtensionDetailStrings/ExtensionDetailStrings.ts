@@ -37,6 +37,10 @@ export const schema = (): string => {
   return I18nString.i18nString(UiStrings.Schema)
 }
 
+export const setColorTheme = (): string => {
+  return I18nString.i18nString(UiStrings.SetColorTheme)
+}
+
 export const theme = (): string => {
   return I18nString.i18nString(UiStrings.Theme)
 }
