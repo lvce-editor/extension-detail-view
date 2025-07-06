@@ -1,15 +1,15 @@
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 export const {
-  invoke,
-  set,
-  readFile,
+  disableExtension,
   getAllExtensions,
-  renderMarkdown,
-  getFolderSize,
-  openNativeFolder,
-  uninstallExtension,
-  getMarkdownDom,
   getExtension,
+  getFolderSize,
+  getMarkdownDom,
+  openNativeFolder,
+  readFile,
+  renderMarkdown,
+  set,
   setColorTheme,
+  uninstallExtension,
 } = RendererWorker
