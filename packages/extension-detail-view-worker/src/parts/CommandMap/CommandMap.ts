@@ -6,6 +6,7 @@ import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
 import * as HandleClickFeatures from '../HandleClickFeatures/HandleClickFeatures.ts'
+import * as HandleClickSetColorTheme from '../HandleClickSetColorTheme/HandleClickSetColorTheme.ts'
 import * as HandleClickSize from '../HandleClickSize/HandleClickSize.ts'
 import * as HandleClickUninstall from '../HandleClickUninstall/HandleClickUninstall.ts'
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
@@ -25,6 +26,7 @@ export const commandMap = {
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
+  'ExtensionDetail.handleClickSetColorTheme': WrapCommand.wrapCommand(HandleClickSetColorTheme.handleClickSetColorTheme),
   'ExtensionDetail.handleClickSize': WrapCommand.wrapCommand(HandleClickSize.handleClickSize),
   'ExtensionDetail.handleClickUninstall': WrapCommand.wrapCommand(HandleClickUninstall.handleClickUninstall),
   'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),
