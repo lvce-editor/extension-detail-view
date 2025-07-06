@@ -19,7 +19,7 @@ export const getExtensionDetailHeaderActionsVirtualDom = (extension: any): reado
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeaderActions,
-      childCount: buttons.length,
+      childCount: buttons.length / 2,
     },
     ...buttons,
   ]

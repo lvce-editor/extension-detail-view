@@ -10,7 +10,7 @@ test.skip('extension detail header virtual dom', () => {
     iconSrc: './test-icon.png',
     description: 'Test Description',
   }
-  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail)).toEqual([
+  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, {})).toEqual([
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeader,
@@ -50,7 +50,7 @@ test('handles missing extension details', () => {
     iconSrc: '',
     description: '',
   }
-  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail)).toEqual([
+  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, {})).toEqual([
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeader,
