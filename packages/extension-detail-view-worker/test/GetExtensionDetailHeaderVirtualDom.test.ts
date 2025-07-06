@@ -110,3 +110,62 @@ test('handles missing extension details', () => {
     },
   ])
 })
+
+test('handles builtin extension - shows only disable button', () => {
+  const extensionDetail = {
+    name: 'Builtin Extension',
+    iconSrc: './builtin-icon.png',
+    description: 'Builtin extension description',
+  }
+  const extension = {
+    builtin: true,
+  }
+  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, extension)).toEqual([
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.ExtensionDetailHeader,
+      childCount: 2,
+    },
+    {
+      type: VirtualDomElements.Img,
+      className: ClassNames.ExtensionDetailIcon,
+      alt: '',
+      draggable: false,
+      childCount: 0,
+      src: './builtin-icon.png',
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.ExtensionDetailHeaderDetails,
+      childCount: 3,
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.ExtensionDetailName,
+      childCount: 1,
+    },
+    text('Builtin Extension'),
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.ExtensionDetailDescription,
+      childCount: 1,
+    },
+    text('Builtin extension description'),
+    {
+      childCount: 1,
+      className: 'ExtensionDetailHeaderActions',
+      type: 4,
+    },
+    {
+      childCount: 1,
+      className: 'Button ButtonPrimary',
+      onClick: 'handleClickDisable',
+      type: 1,
+    },
+    {
+      childCount: 0,
+      text: 'Disable',
+      type: 12,
+    },
+  ])
+})
