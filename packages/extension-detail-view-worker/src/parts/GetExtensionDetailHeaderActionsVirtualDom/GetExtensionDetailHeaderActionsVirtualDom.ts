@@ -3,18 +3,16 @@ import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/Extensi
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetButtonVirtualDom from '../GetButtonVirtualDom/GetButtonVirtualDom.ts'
-import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 
-export const getExtensionDetailHeaderActionsVirtualDom = (extension: any): readonly VirtualDomNode[] => {
-  const buttonDefs = getExtensionDetailButtons(extension)
+export const getExtensionDetailHeaderActionsVirtualDom = (buttonDefs: readonly ExtensionDetailButton[]): readonly VirtualDomNode[] => {
   const buttons: VirtualDomNode[] = buttonDefs.flatMap((btn: ExtensionDetailButton) =>
-    GetButtonVirtualDom.getButtonVirtualDom(btn.label, btn.onClick)
+    GetButtonVirtualDom.getButtonVirtualDom(btn.label, btn.onClick),
   )
   const dom: readonly VirtualDomNode[] = [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeaderActions,
-      childCount: buttons.length / 2,
+      childCount: buttonDefs.length,
     },
     ...buttons,
   ]
