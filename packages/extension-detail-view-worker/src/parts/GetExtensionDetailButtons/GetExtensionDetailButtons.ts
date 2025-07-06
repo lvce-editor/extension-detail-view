@@ -1,0 +1,15 @@
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
+import type { ExtensionDetailButton } from './ExtensionDetailButton.ts'
+
+export const getExtensionDetailButtons = (extension: any): readonly ExtensionDetailButton[] => {
+  const buttons: ExtensionDetailButton[] = []
+  if (HasColorThemes.hasColorThemes(extension)) {
+    buttons.push({ label: 'Set Color Theme', onClick: DomEventListenerFunctions.HandleClickSetColorTheme })
+  }
+  buttons.push(
+    { label: 'Disable', onClick: DomEventListenerFunctions.HandleClickDisable },
+    { label: 'Uninstall', onClick: DomEventListenerFunctions.HandleClickUninstall },
+  )
+  return buttons
+}
