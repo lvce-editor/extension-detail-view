@@ -12,6 +12,7 @@ export const getExtensionDetailHeaderVirtualDom = (
   description: string,
   badge: string,
   buttonDefs: readonly ExtensionDetailButton[],
+  settingsButtonEnabled: boolean,
 ): readonly VirtualDomNode[] => {
   const dom = [
     {
@@ -34,7 +35,7 @@ export const getExtensionDetailHeaderVirtualDom = (
     },
     ...getExtensionDetailNameVirtualDom(name, badge),
     ...getExtensionDetailDescriptionVirtualDom(description),
-    ...GetExtensionDetailHeaderActionsVirtualDom.getExtensionDetailHeaderActionsVirtualDom(buttonDefs),
+    ...GetExtensionDetailHeaderActionsVirtualDom.getExtensionDetailHeaderActionsVirtualDom(buttonDefs, settingsButtonEnabled),
   ]
   return dom
 }

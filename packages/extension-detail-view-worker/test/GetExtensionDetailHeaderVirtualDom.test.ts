@@ -20,6 +20,7 @@ test.skip('extension detail header virtual dom', () => {
       extensionDetail.description,
       '',
       buttonDefs,
+      true,
     ),
   ).toEqual([
     {
@@ -69,6 +70,7 @@ test('handles missing extension details', () => {
       extensionDetail.description,
       '',
       buttonDefs,
+      true,
     ),
   ).toEqual([
     {
@@ -102,7 +104,7 @@ test('handles missing extension details', () => {
     },
     text(''),
     {
-      childCount: 3,
+      childCount: 4,
       className: 'ExtensionDetailHeaderActions',
       type: 4,
     },
@@ -161,6 +163,7 @@ test('handles builtin extension - shows only disable button', () => {
       extensionDetail.description,
       'builtin',
       buttonDefs,
+      true,
     ),
   ).toEqual([
     {
@@ -200,7 +203,7 @@ test('handles builtin extension - shows only disable button', () => {
     },
     text('Builtin extension description'),
     {
-      childCount: 2,
+      childCount: 3,
       className: 'ExtensionDetailHeaderActions',
       type: 4,
     },

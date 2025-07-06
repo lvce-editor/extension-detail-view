@@ -1,4 +1,5 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
@@ -17,7 +18,7 @@ export const getExtensionDetailVirtualDom = async (
   extensionDetail: any,
   sanitizedReadmeHtml: string,
   selectedTab: string,
-  newState: any,
+  newState: ExtensionDetailState,
 ): Promise<readonly VirtualDomNode[]> => {
   // TODO move this to view model so that rendering occurs like
   // 1. state
@@ -39,13 +40,14 @@ export const getExtensionDetailVirtualDom = async (
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(extension)
   const { name, iconSrc, description } = extensionDetail
   const badge = ''
+  const {settingsButtonEnabled} = newState
   const dom = [
     {
       type: VirtualDomElements.Div,
       className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.ExtensionDetail, sizeClass),
       childCount: 3,
     },
-    ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(name, iconSrc, description, badge, buttonDefs),
+    ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(name, iconSrc, description, badge, buttonDefs, settingsButtonEnabled),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
     ...(await GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
       sanitizedReadmeHtml,

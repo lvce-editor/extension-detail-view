@@ -24,6 +24,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     folderSize: 0,
     assetDir: assetDir || AssetDir.assetDir,
     platform,
+    settingsButtonEnabled: false,
   }
   ExtensionDetailStates.set(uid, state, state)
 }
