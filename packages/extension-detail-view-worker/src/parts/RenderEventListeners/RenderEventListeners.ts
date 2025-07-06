@@ -28,6 +28,10 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       params: ['handleClickDisable'],
     },
     {
+      name: DomEventListenerFunctions.HandleClickSettings,
+      params: ['handleClickSettings'],
+    },
+    {
       name: DomEventListenerFunctions.HandleClickUninstall,
       params: ['handleClickUninstall'],
     },
