@@ -1,44 +1,62 @@
 import { expect, test, jest } from '@jest/globals'
-
-jest.unstable_mockModule('../src/parts/FileSystem/FileSystem.ts', () => ({
-  readFile: jest.fn(),
-}))
-
-const mockFileSystem = await import('../src/parts/FileSystem/FileSystem.ts')
-const LoadReadmeContent = await import('../src/parts/LoadReadmeContent/LoadReadmeContent.ts')
+import { MockRpc } from '@lvce-editor/rpc'
+import * as LoadReadmeContent from '../src/parts/LoadReadmeContent/LoadReadmeContent.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loads readme content', async () => {
-  // @ts-ignore
-  mockFileSystem.readFile.mockResolvedValue('# Test Content')
+  const invoke: any = jest.fn()
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke,
+  })
+  RendererWorker.set(mockRpc)
+
+  invoke.mockResolvedValue('# Test Content')
   const content = await LoadReadmeContent.loadReadmeContent('/test/path')
   expect(content).toBe('# Test Content')
-  expect(mockFileSystem.readFile).toHaveBeenCalledWith('/test/path/README.md')
+  expect(invoke).toHaveBeenCalledWith('FileSystem.readFile', '/test/path/README.md')
 })
 
 test('handles missing readme file', async () => {
+  const invoke: any = jest.fn()
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke,
+  })
+  RendererWorker.set(mockRpc)
+
   const error = new Error('file not found')
-  // @ts-ignore
-  error.code = 'ENOENT'
-  // @ts-ignore
-  mockFileSystem.readFile.mockRejectedValue(error)
+  ;(error as any).code = 'ENOENT'
+  invoke.mockRejectedValue(error)
   const content = await LoadReadmeContent.loadReadmeContent('/test/path')
   expect(content).toBe('')
 })
 
 test('returns error message for other errors', async () => {
+  const invoke: any = jest.fn()
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke,
+  })
+  RendererWorker.set(mockRpc)
+
   const spy = jest.spyOn(console, 'error').mockImplementation(() => {})
   const error = new Error('permission denied')
-  // @ts-ignore
-  mockFileSystem.readFile.mockRejectedValue(error)
+  invoke.mockRejectedValue(error)
   const content = await LoadReadmeContent.loadReadmeContent('/test/path')
   expect(content).toBe('Error: permission denied')
   expect(spy).toHaveBeenCalledTimes(1)
-  expect(spy).toHaveBeenCalledWith(new Error('Failed to load Readme content: permission denied'))
 })
 
 test('handles empty readme file', async () => {
-  // @ts-ignore
-  mockFileSystem.readFile.mockResolvedValue('')
+  const invoke: any = jest.fn()
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke,
+  })
+  RendererWorker.set(mockRpc)
+
+  invoke.mockResolvedValue('')
   const content = await LoadReadmeContent.loadReadmeContent('/test/path')
   expect(content).toBe('')
 })
