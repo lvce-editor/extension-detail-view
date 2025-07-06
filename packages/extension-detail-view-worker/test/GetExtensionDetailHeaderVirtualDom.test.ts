@@ -1,6 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetExtensionDetailButtons from '../src/parts/GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../src/parts/GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
@@ -85,7 +86,7 @@ test('handles missing extension details', () => {
     },
     text(''),
     {
-      childCount: 2,
+      childCount: 3,
       className: 'ExtensionDetailHeaderActions',
       type: 4,
     },
@@ -97,7 +98,7 @@ test('handles missing extension details', () => {
     },
     {
       childCount: 0,
-      text: 'Disable',
+      text: ExtensionDetailStrings.disable(),
       type: 12,
     },
     {
@@ -108,8 +109,21 @@ test('handles missing extension details', () => {
     },
     {
       childCount: 0,
-      text: 'Uninstall',
+      text: ExtensionDetailStrings.uninstall(),
       type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsButton',
+      onClick: 'handleClickSettings',
+      title: ExtensionDetailStrings.settings(),
+      type: 1,
+    },
+    {
+      childCount: 0,
+      className: 'SettingsIcon',
+      text: '⚙️',
+      type: 8,
     },
   ])
 })
@@ -156,7 +170,7 @@ test('handles builtin extension - shows only disable button', () => {
     },
     text('Builtin extension description'),
     {
-      childCount: 1,
+      childCount: 2,
       className: 'ExtensionDetailHeaderActions',
       type: 4,
     },
@@ -168,8 +182,21 @@ test('handles builtin extension - shows only disable button', () => {
     },
     {
       childCount: 0,
-      text: 'Disable',
+      text: ExtensionDetailStrings.disable(),
       type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'SettingsButton',
+      onClick: 'handleClickSettings',
+      title: ExtensionDetailStrings.settings(),
+      type: 1,
+    },
+    {
+      childCount: 0,
+      className: 'SettingsIcon',
+      text: '⚙️',
+      type: 8,
     },
   ])
 })

@@ -1,5 +1,6 @@
 import type { ExtensionDetailButton } from './ExtensionDetailButton.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
 
 export const getExtensionDetailButtons = (extension: any): readonly ExtensionDetailButton[] => {
@@ -7,9 +8,9 @@ export const getExtensionDetailButtons = (extension: any): readonly ExtensionDet
   if (HasColorThemes.hasColorThemes(extension)) {
     buttons.push({ label: 'Set Color Theme', onClick: DomEventListenerFunctions.HandleClickSetColorTheme })
   }
-  buttons.push({ label: 'Disable', onClick: DomEventListenerFunctions.HandleClickDisable })
+  buttons.push({ label: ExtensionDetailStrings.disable(), onClick: DomEventListenerFunctions.HandleClickDisable })
   if (!extension?.builtin) {
-    buttons.push({ label: 'Uninstall', onClick: DomEventListenerFunctions.HandleClickUninstall })
+    buttons.push({ label: ExtensionDetailStrings.uninstall(), onClick: DomEventListenerFunctions.HandleClickUninstall })
   }
   return buttons
 }
