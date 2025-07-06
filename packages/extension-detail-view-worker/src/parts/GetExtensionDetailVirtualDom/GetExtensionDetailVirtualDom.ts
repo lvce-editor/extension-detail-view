@@ -37,13 +37,15 @@ export const getExtensionDetailVirtualDom = async (
   const sizeValue = GetViewletSize.getViewletSize(newState?.width || 0)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(extension)
+  const { name, iconSrc, description } = extensionDetail
+  const badge = ''
   const dom = [
     {
       type: VirtualDomElements.Div,
       className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.ExtensionDetail, sizeClass),
       childCount: 3,
     },
-    ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, extension, buttonDefs),
+    ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(name, iconSrc, description, badge, buttonDefs),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
     ...(await GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
       sanitizedReadmeHtml,
