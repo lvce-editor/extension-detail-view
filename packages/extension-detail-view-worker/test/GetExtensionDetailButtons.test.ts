@@ -10,51 +10,56 @@ test('returns all buttons when extension has color themes and is not builtin', (
   }
   const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(extension)
   expect(result).toEqual([
-    { label: 'Set Color Theme', onClick: 'handleClickSetColorTheme' },
-    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable' },
-    { label: ExtensionDetailStrings.uninstall(), onClick: 'handleClickUninstall' },
+    { label: 'Set Color Theme', onClick: 'handleClickSetColorTheme', enabled: true },
+    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable', enabled: true },
+    { label: ExtensionDetailStrings.uninstall(), onClick: 'handleClickUninstall', enabled: true },
   ])
 })
 
-test('returns only disable and uninstall when no color themes and not builtin', () => {
+test('returns all buttons when no color themes and not builtin', () => {
   const extension = {
     colorThemes: [],
     builtin: false,
   }
   const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(extension)
   expect(result).toEqual([
-    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable' },
-    { label: ExtensionDetailStrings.uninstall(), onClick: 'handleClickUninstall' },
+    { label: 'Set Color Theme', onClick: 'handleClickSetColorTheme', enabled: false },
+    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable', enabled: true },
+    { label: ExtensionDetailStrings.uninstall(), onClick: 'handleClickUninstall', enabled: true },
   ])
 })
 
-test('returns only disable when extension is builtin', () => {
+test('returns all buttons when extension is builtin', () => {
   const extension = {
     colorThemes: [],
     builtin: true,
   }
   const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(extension)
   expect(result).toEqual([
-    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable' },
+    { label: 'Set Color Theme', onClick: 'handleClickSetColorTheme', enabled: false },
+    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable', enabled: true },
+    { label: ExtensionDetailStrings.uninstall(), onClick: 'handleClickUninstall', enabled: false },
   ])
 })
 
-test('returns only disable and uninstall when extension is null', () => {
+test('returns all buttons when extension is null', () => {
   const extension = null
   const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(extension)
   expect(result).toEqual([
-    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable' },
-    { label: ExtensionDetailStrings.uninstall(), onClick: 'handleClickUninstall' },
+    { label: 'Set Color Theme', onClick: 'handleClickSetColorTheme', enabled: false },
+    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable', enabled: true },
+    { label: ExtensionDetailStrings.uninstall(), onClick: 'handleClickUninstall', enabled: true },
   ])
 })
 
-test('returns disable and uninstall when extension has no builtin property', () => {
+test('returns all buttons when extension has no builtin property', () => {
   const extension = {
     colorThemes: [],
   }
   const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(extension)
   expect(result).toEqual([
-    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable' },
-    { label: ExtensionDetailStrings.uninstall(), onClick: 'handleClickUninstall' },
+    { label: 'Set Color Theme', onClick: 'handleClickSetColorTheme', enabled: false },
+    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable', enabled: true },
+    { label: ExtensionDetailStrings.uninstall(), onClick: 'handleClickUninstall', enabled: true },
   ])
 })

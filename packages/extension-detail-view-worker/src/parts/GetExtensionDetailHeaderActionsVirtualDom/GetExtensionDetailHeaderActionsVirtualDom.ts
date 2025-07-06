@@ -6,7 +6,8 @@ import * as GetButtonVirtualDom from '../GetButtonVirtualDom/GetButtonVirtualDom
 import * as GetSettingsButtonVirtualDom from '../GetSettingsButtonVirtualDom/GetSettingsButtonVirtualDom.ts'
 
 export const getExtensionDetailHeaderActionsVirtualDom = (buttonDefs: readonly ExtensionDetailButton[]): readonly VirtualDomNode[] => {
-  const buttons: readonly VirtualDomNode[] = buttonDefs.flatMap((btn: ExtensionDetailButton) =>
+  const enabledButtons = buttonDefs.filter(btn => btn.enabled)
+  const buttons: readonly VirtualDomNode[] = enabledButtons.flatMap((btn: ExtensionDetailButton) =>
     GetButtonVirtualDom.getButtonVirtualDom(btn.label, btn.onClick),
   )
   const settingsButton: readonly VirtualDomNode[] = GetSettingsButtonVirtualDom.getSettingsButtonVirtualDom()
@@ -14,7 +15,7 @@ export const getExtensionDetailHeaderActionsVirtualDom = (buttonDefs: readonly E
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeaderActions,
-      childCount: buttonDefs.length + 1,
+      childCount: enabledButtons.length + 1,
     },
     ...buttons,
     ...settingsButton,
