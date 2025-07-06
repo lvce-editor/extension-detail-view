@@ -1,26 +1,29 @@
-import { beforeEach, expect, jest, test } from '@jest/globals'
+import { expect, test } from '@jest/globals'
+import { MockRpc } from '@lvce-editor/rpc'
 import * as GetFolderSize from '../src/parts/GetFolderSize/GetFolderSize.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
-const mockRpc = {
-  invoke: jest.fn(),
-} as any
-
-beforeEach(() => {
-  jest.resetAllMocks()
-})
-
 test('get folder size', async () => {
-  RendererWorker.set(mockRpc)
-  mockRpc.invoke.mockImplementation(() => {
-    return '1.2 MB'
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'FileSystem.getFolderSize') {
+        return '1.2 MB'
+      }
+      throw new Error(`unexpected method ${method}`)
+    },
   })
+  RendererWorker.set(mockRpc)
   expect(await GetFolderSize.getFolderSize('/test/path')).toBe('1.2 MB')
-  expect(mockRpc.invoke).toHaveBeenCalledWith('FileSystem.getFolderSize', '/test/path')
 })
 
 test('get folder size - error case', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      throw new Error('access denied')
+    },
+  })
   RendererWorker.set(mockRpc)
-  mockRpc.invoke.mockRejectedValue(new Error('access denied'))
   expect(await GetFolderSize.getFolderSize('/test/path')).toBe(0)
 })
