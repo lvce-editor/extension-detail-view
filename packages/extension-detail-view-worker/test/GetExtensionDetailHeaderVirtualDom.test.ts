@@ -1,6 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as GetExtensionDetailButtons from '../src/parts/GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../src/parts/GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
@@ -10,7 +11,8 @@ test.skip('extension detail header virtual dom', () => {
     iconSrc: './test-icon.png',
     description: 'Test Description',
   }
-  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, {})).toEqual([
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons({})
+  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, {}, buttonDefs)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeader,
@@ -27,7 +29,7 @@ test.skip('extension detail header virtual dom', () => {
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeaderDetails,
-      childCount: 2,
+      childCount: 3,
     },
     {
       type: VirtualDomElements.Div,
@@ -50,7 +52,8 @@ test('handles missing extension details', () => {
     iconSrc: '',
     description: '',
   }
-  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, {})).toEqual([
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons({})
+  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, {}, buttonDefs)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeader,
@@ -120,7 +123,8 @@ test('handles builtin extension - shows only disable button', () => {
   const extension = {
     builtin: true,
   }
-  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, extension)).toEqual([
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(extension)
+  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, extension, buttonDefs)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeader,
