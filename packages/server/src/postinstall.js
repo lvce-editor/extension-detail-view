@@ -1,8 +1,8 @@
-import { cp, readFile, readdir, writeFile } from 'node:fs/promises'
-import { dirname, join } from 'node:path'
-import { fileURLToPath, pathToFileURL } from 'node:url'
+import { readFile, readdir, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = import.meta.dirname
 
 const root = join(__dirname, '..', '..', '..')
 
@@ -12,6 +12,8 @@ export const getRemoteUrl = (path) => {
 }
 
 const nodeModulesPath = join(root, 'packages', 'server', 'node_modules')
+
+const workerPath = join(root, '.tmp', 'dist', 'dist', 'extensionDetailViewWorkerMain.js')
 
 const serverStaticPath = join(nodeModulesPath, '@lvce-editor', 'static-server', 'static')
 
@@ -26,14 +28,12 @@ const rendererWorkerMainPath = join(serverStaticPath, commitHash, 'packages', 'r
 
 const content = await readFile(rendererWorkerMainPath, 'utf-8')
 
-const workerPath = join(root, '.tmp/dist/dist/extensionDetailViewWorkerMain.js')
-
 const remoteUrl = getRemoteUrl(workerPath)
 if (!content.includes('// const extensionDetailViewWorkerUrl = ')) {
-  await cp(rendererWorkerMainPath, rendererWorkerMainPath + '.original')
   const occurrence = `const extensionDetailViewWorkerUrl = \`\${assetDir}/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js\``
   const replacement = `// const extensionDetailViewWorkerUrl = \`\${assetDir}/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js\`
-  const extensionDetailViewWorkerUrl = \`${remoteUrl}\``
+const extensionDetailViewWorkerUrl = \`${remoteUrl}\``
+
   const newContent = content.replace(occurrence, replacement)
   await writeFile(rendererWorkerMainPath, newContent)
 }

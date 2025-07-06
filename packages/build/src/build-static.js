@@ -1,7 +1,7 @@
+import { cp, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { root } from './root.js'
-import { cp } from 'node:fs/promises'
 
 const sharedProcessPath = join(root, 'packages', 'server', 'node_modules', '@lvce-editor', 'shared-process', 'index.js')
 
@@ -15,18 +15,24 @@ const { commitHash } = await sharedProcess.exportStatic({
   extensionPath: '',
 })
 
-await cp(
-  join(root, '.tmp', 'dist', 'dist', 'extensionDetailViewWorkerMain.js'),
-  join(root, 'dist', commitHash, 'packages', 'extension-detail-view-worker', 'dist', 'extensionDetailViewWorkerMain.js'),
-)
+const rendererWorkerPath = join(root, 'dist', commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js')
 
-const nodeModulesPath = join(root, 'packages', 'server', 'node_modules')
+export const getRemoteUrl = (path) => {
+  const url = pathToFileURL(path).toString().slice(8)
+  return `/remote/${url}`
+}
 
-const serverStaticPath = join(nodeModulesPath, '@lvce-editor', 'static-server', 'static')
+const content = await readFile(rendererWorkerPath, 'utf8')
+const workerPath = join(root, '.tmp/dist/dist/extensionDetailViewWorkerMain.js')
+const remoteUrl = getRemoteUrl(workerPath)
 
-await cp(
-  join(serverStaticPath, commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js.original'),
-  join(root, 'dist', commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js'),
-)
+const occurrence = `// const extensionDetailViewWorkerUrl = \`\${assetDir}/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js\`
+const extensionDetailViewWorkerUrl = \`${remoteUrl}\``
+const replacement = `const extensionDetailViewWorkerUrl = \`\${assetDir}/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js\``
+if (!content.includes(occurrence)) {
+  throw new Error('occurrence not found')
+}
+const newContent = content.replace(occurrence, replacement)
+await writeFile(rendererWorkerPath, newContent)
 
 await cp(join(root, 'dist'), join(root, '.tmp', 'static'), { recursive: true })
