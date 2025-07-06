@@ -1,8 +1,8 @@
 import { expect, test, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import * as ExtensionManagement from '../src/parts/ExtensionManagement/ExtensionManagement.ts'
 import * as PlatformType from '../src/parts/PlatformType/PlatformType.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test.skip('get extension - web platform', async () => {
   const invoke: any = jest.fn()
