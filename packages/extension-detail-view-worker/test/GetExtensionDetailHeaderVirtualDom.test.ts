@@ -13,7 +13,15 @@ test.skip('extension detail header virtual dom', () => {
     description: 'Test Description',
   }
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons({})
-  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail.name, extensionDetail.iconSrc, extensionDetail.description, '', buttonDefs)).toEqual([
+  expect(
+    GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
+      extensionDetail.name,
+      extensionDetail.iconSrc,
+      extensionDetail.description,
+      '',
+      buttonDefs,
+    ),
+  ).toEqual([
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeader,
@@ -54,7 +62,15 @@ test('handles missing extension details', () => {
     description: '',
   }
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons({})
-  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail.name, extensionDetail.iconSrc, extensionDetail.description, '', buttonDefs)).toEqual([
+  expect(
+    GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
+      extensionDetail.name,
+      extensionDetail.iconSrc,
+      extensionDetail.description,
+      '',
+      buttonDefs,
+    ),
+  ).toEqual([
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeader,
@@ -138,7 +154,15 @@ test('handles builtin extension - shows only disable button', () => {
     builtin: true,
   }
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(extension)
-  expect(GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail.name, extensionDetail.iconSrc, extensionDetail.description, 'builtin', buttonDefs)).toEqual([
+  expect(
+    GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
+      extensionDetail.name,
+      extensionDetail.iconSrc,
+      extensionDetail.description,
+      'builtin',
+      buttonDefs,
+    ),
+  ).toEqual([
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeader,

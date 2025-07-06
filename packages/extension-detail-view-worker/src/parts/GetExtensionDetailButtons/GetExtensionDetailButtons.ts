@@ -8,18 +8,18 @@ export const getExtensionDetailButtons = (extension: any): readonly ExtensionDet
     {
       label: ExtensionDetailStrings.setColorTheme(),
       onClick: DomEventListenerFunctions.HandleClickSetColorTheme,
-      enabled: HasColorThemes.hasColorThemes(extension)
+      enabled: HasColorThemes.hasColorThemes(extension),
     },
     {
       label: ExtensionDetailStrings.disable(),
       onClick: DomEventListenerFunctions.HandleClickDisable,
-      enabled: true
+      enabled: true,
     },
     {
       label: ExtensionDetailStrings.uninstall(),
       onClick: DomEventListenerFunctions.HandleClickUninstall,
-      enabled: !extension?.builtin
-    }
+      enabled: !extension?.builtin,
+    },
   ]
 
   return allActions
