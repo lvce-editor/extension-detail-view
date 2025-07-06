@@ -1,6 +1,7 @@
 export const HandleClickDisable = 'handleClickDisable'
 export const HandleClickSize = 'handleClickSize'
 export const HandleClickUninstall = 'handleClickUninstall'
+export const HandleClickSetColorTheme = 'handleClickSetColorTheme'
 export const HandleFeaturesClick = 'handleFeaturesClick'
 export const HandleIconError = 'handleIconError'
 export const HandleReadmeContextMenu = 'handleReadmeContextMenu'

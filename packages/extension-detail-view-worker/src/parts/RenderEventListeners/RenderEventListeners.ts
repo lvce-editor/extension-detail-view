@@ -31,5 +31,9 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       name: DomEventListenerFunctions.HandleClickUninstall,
       params: ['handleClickUninstall'],
     },
+    {
+      name: DomEventListenerFunctions.HandleClickSetColorTheme,
+      params: ['handleClickSetColorTheme'],
+    },
   ]
 }
