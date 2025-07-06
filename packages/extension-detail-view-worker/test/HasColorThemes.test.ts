@@ -3,10 +3,7 @@ import * as HasColorThemes from '../src/parts/HasColorThemes/HasColorThemes.ts'
 
 test('has color themes - true', () => {
   const extension = {
-    colorThemes: [
-      { label: 'Dark Theme' },
-      { label: 'Light Theme' },
-    ],
+    colorThemes: [{ label: 'Dark Theme' }, { label: 'Light Theme' }],
   }
   expect(HasColorThemes.hasColorThemes(extension)).toBe(true)
 })

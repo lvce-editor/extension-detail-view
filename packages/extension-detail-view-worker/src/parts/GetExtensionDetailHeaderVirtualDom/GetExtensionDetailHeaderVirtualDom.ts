@@ -5,7 +5,11 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetExtensionDetailHeaderActionsVirtualDom from '../GetExtensionDetailHeaderActionsVirtualDom/GetExtensionDetailHeaderActionsVirtualDom.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-export const getExtensionDetailHeaderVirtualDom = (extensionDetail: any, extension: any, buttonDefs: readonly ExtensionDetailButton[]): readonly VirtualDomNode[] => {
+export const getExtensionDetailHeaderVirtualDom = (
+  extensionDetail: any,
+  extension: any,
+  buttonDefs: readonly ExtensionDetailButton[],
+): readonly VirtualDomNode[] => {
   const { name, iconSrc, description } = extensionDetail
   const dom = [
     {
