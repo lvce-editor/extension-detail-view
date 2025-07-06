@@ -1,4 +1,4 @@
 export interface ExtensionDetailButton {
-  label: string
-  onClick: string
+  readonly label: string
+  readonly onClick: string
 }
