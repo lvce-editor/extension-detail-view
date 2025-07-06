@@ -2,8 +2,7 @@ import * as GetExtensionFallback from '../GetExtensionFallback/GetExtensionFallb
 import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 const getExtensionNew = async (id: string): Promise<any> => {
-  // @ts-ignore todo
-  return RendererWorker.invoke('ExtensionManagement.getExtension', id)
+  return RendererWorker.getExtension(id)
 }
 
 export const getExtension = async (id: string, platform: number): Promise<any> => {

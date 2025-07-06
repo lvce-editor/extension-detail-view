@@ -3,6 +3,6 @@ import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 export const handleClickSize = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
   const { uri } = state.extension
-  await RendererWorker.invoke('OpenNativeFolder.openNativeFolder', uri)
+  await RendererWorker.openNativeFolder(uri)
   return state
 }
