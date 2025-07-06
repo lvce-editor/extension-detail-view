@@ -6,7 +6,13 @@ import { getExtensionDetailDescriptionVirtualDom } from '../GetExtensionDetailDe
 import * as GetExtensionDetailHeaderActionsVirtualDom from '../GetExtensionDetailHeaderActionsVirtualDom/GetExtensionDetailHeaderActionsVirtualDom.ts'
 import { getExtensionDetailNameVirtualDom } from '../GetExtensionDetailNameVirtualDom/GetExtensionDetailNameVirtualDom.ts'
 
-export const getExtensionDetailHeaderVirtualDom = (name: string, iconSrc: string, description: string, badge: string, buttonDefs: readonly ExtensionDetailButton[]): readonly VirtualDomNode[] => {
+export const getExtensionDetailHeaderVirtualDom = (
+  name: string,
+  iconSrc: string,
+  description: string,
+  badge: string,
+  buttonDefs: readonly ExtensionDetailButton[],
+): readonly VirtualDomNode[] => {
   const dom = [
     {
       type: VirtualDomElements.Div,
