@@ -1,6 +1,7 @@
 export const commandIds = [
   'getMenuEntries',
   'handleClickDisable',
+  'handleClickSetColorTheme',
   'handleClickSize',
   'handleClickUninstall',
   'handleFeaturesClick',
