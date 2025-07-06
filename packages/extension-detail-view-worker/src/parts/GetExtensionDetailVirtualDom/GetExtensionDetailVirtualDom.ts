@@ -41,7 +41,7 @@ export const getExtensionDetailVirtualDom = async (
       className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.ExtensionDetail, sizeClass),
       childCount: 3,
     },
-    ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail),
+    ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(extensionDetail, extension),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
     ...(await GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
       sanitizedReadmeHtml,
