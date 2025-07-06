@@ -19,7 +19,7 @@ test('selected tab', () => {
       className: `${ClassNames.ExtensionDetailTab} ${ClassNames.ExtensionDetailTabSelected}`,
       childCount: 1,
       tabIndex: -1,
-      ariaSelected: 'true',
+      ariaSelected: true,
     },
     text('Details'),
   ])
@@ -39,7 +39,7 @@ test('unselected tab', () => {
       className: ClassNames.ExtensionDetailTab,
       childCount: 1,
       tabIndex: -1,
-      ariaSelected: 'false',
+      ariaSelected: false,
     },
     text('Features'),
   ])
@@ -59,7 +59,7 @@ test('tab with different label and name', () => {
       className: ClassNames.ExtensionDetailTab,
       childCount: 1,
       tabIndex: -1,
-      ariaSelected: 'false',
+      ariaSelected: false,
     },
     text('Display Label'),
   ])
