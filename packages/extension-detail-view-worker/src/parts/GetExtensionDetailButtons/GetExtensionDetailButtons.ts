@@ -4,13 +4,23 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
 
 export const getExtensionDetailButtons = (extension: any): readonly ExtensionDetailButton[] => {
-  const buttons: ExtensionDetailButton[] = []
-  if (HasColorThemes.hasColorThemes(extension)) {
-    buttons.push({ label: 'Set Color Theme', onClick: DomEventListenerFunctions.HandleClickSetColorTheme })
-  }
-  buttons.push({ label: ExtensionDetailStrings.disable(), onClick: DomEventListenerFunctions.HandleClickDisable })
-  if (!extension?.builtin) {
-    buttons.push({ label: ExtensionDetailStrings.uninstall(), onClick: DomEventListenerFunctions.HandleClickUninstall })
-  }
-  return buttons
+  const allActions: ExtensionDetailButton[] = [
+    {
+      label: 'Set Color Theme',
+      onClick: DomEventListenerFunctions.HandleClickSetColorTheme,
+      enabled: HasColorThemes.hasColorThemes(extension)
+    },
+    {
+      label: ExtensionDetailStrings.disable(),
+      onClick: DomEventListenerFunctions.HandleClickDisable,
+      enabled: true
+    },
+    {
+      label: ExtensionDetailStrings.uninstall(),
+      onClick: DomEventListenerFunctions.HandleClickUninstall,
+      enabled: !extension?.builtin
+    }
+  ]
+
+  return allActions
 }
