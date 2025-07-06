@@ -5,8 +5,6 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getExtensionDetailDescriptionVirtualDom } from '../GetExtensionDetailDescriptionVirtualDom/GetExtensionDetailDescriptionVirtualDom.ts'
 import * as GetExtensionDetailHeaderActionsVirtualDom from '../GetExtensionDetailHeaderActionsVirtualDom/GetExtensionDetailHeaderActionsVirtualDom.ts'
 import { getExtensionDetailNameVirtualDom } from '../GetExtensionDetailNameVirtualDom/GetExtensionDetailNameVirtualDom.ts'
-import { getNameBadgeVirtualDom } from '../GetNameBadgeVirtualDom/GetNameBadgeVirtualDom.ts'
-import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getExtensionDetailHeaderVirtualDom = (name: string, iconSrc: string, description: string, badge: string, buttonDefs: readonly ExtensionDetailButton[]): readonly VirtualDomNode[] => {
   const dom = [
