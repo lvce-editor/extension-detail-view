@@ -5,6 +5,10 @@ export const copy = (): string => {
   return I18nString.i18nString(UiStrings.Copy)
 }
 
+export const disable = (): string => {
+  return I18nString.i18nString(UiStrings.Disable)
+}
+
 export const none = (): string => {
   return I18nString.i18nString(UiStrings.None)
 }
@@ -75,4 +79,8 @@ export const elements = (): string => {
 
 export const notImplemented = (): string => {
   return I18nString.i18nString(UiStrings.NotImplemented)
+}
+
+export const uninstall = (): string => {
+  return I18nString.i18nString(UiStrings.Uninstall)
 }
