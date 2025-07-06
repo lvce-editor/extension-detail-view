@@ -1,9 +1,9 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/ExtensionDetailButton.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetButtonVirtualDom from '../GetButtonVirtualDom/GetButtonVirtualDom.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
-import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/ExtensionDetailButton.ts'
 
 export const getExtensionDetailHeaderActionsVirtualDom = (extension: any): readonly VirtualDomNode[] => {
   const buttonDefs = getExtensionDetailButtons(extension)

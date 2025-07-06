@@ -1,6 +1,6 @@
 import { test, expect } from '@jest/globals'
-import { getExtensionDetailButtons } from '../src/parts/GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import type { ExtensionDetailButton } from '../src/parts/GetExtensionDetailButtons/ExtensionDetailButton.ts'
+import { getExtensionDetailButtons } from '../src/parts/GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 
 test('returns all buttons when extension has color themes', () => {
   const extension = {

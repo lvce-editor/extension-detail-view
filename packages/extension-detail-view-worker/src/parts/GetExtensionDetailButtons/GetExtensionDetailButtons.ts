@@ -1,6 +1,6 @@
+import type { ExtensionDetailButton } from './ExtensionDetailButton.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
-import type { ExtensionDetailButton } from './ExtensionDetailButton.ts'
 
 export const getExtensionDetailButtons = (extension: any): readonly ExtensionDetailButton[] => {
   const buttons: ExtensionDetailButton[] = []
