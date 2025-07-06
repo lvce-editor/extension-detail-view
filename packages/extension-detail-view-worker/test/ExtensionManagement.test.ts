@@ -1,45 +1,63 @@
 import { expect, test, jest } from '@jest/globals'
-
-jest.unstable_mockModule('../src/parts/RendererWorker/RendererWorker.ts', () => ({
-  invoke: jest.fn(),
-}))
-
-const mockRendererWorker = await import('../src/parts/RendererWorker/RendererWorker.ts')
-const ExtensionManagement = await import('../src/parts/ExtensionManagement/ExtensionManagement.ts')
-const PlatformType = await import('../src/parts/PlatformType/PlatformType.ts')
+import { MockRpc } from '@lvce-editor/rpc'
+import * as ExtensionManagement from '../src/parts/ExtensionManagement/ExtensionManagement.ts'
+import * as PlatformType from '../src/parts/PlatformType/PlatformType.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test.skip('get extension - web platform', async () => {
+  const invoke: any = jest.fn()
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke,
+  })
+  RendererWorker.set(mockRpc)
+
   const result = await ExtensionManagement.getExtension('test-id', PlatformType.Web)
   expect(result).toBeUndefined()
-  // @ts-ignore
-  expect(mockRendererWorker.invoke).not.toHaveBeenCalled()
+  expect(invoke).not.toHaveBeenCalled()
 })
 
 test.skip('get extension - found', async () => {
+  const invoke: any = jest.fn()
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke,
+  })
+  RendererWorker.set(mockRpc)
+
   const mockExtensions = [
     { id: 'test-id', name: 'Test Extension' },
     { id: 'other-id', name: 'Other Extension' },
   ]
-  // @ts-ignore
-  mockRendererWorker.invoke.mockResolvedValue(mockExtensions)
+  invoke.mockResolvedValue(mockExtensions)
   const result = await ExtensionManagement.getExtension('test-id', PlatformType.Remote)
   expect(result).toEqual({ id: 'test-id', name: 'Test Extension' })
-  // @ts-ignore
-  expect(mockRendererWorker.invoke).toHaveBeenCalledWith('ExtensionManagement.getAllExtensions')
+  expect(invoke).toHaveBeenCalledWith('ExtensionManagement.getAllExtensions')
 })
 
 test.skip('get extension - not found', async () => {
-  // @ts-ignore
-  mockRendererWorker.invoke.mockResolvedValue([])
+  const invoke: any = jest.fn()
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke,
+  })
+  RendererWorker.set(mockRpc)
+
+  invoke.mockResolvedValue([])
   const result = await ExtensionManagement.getExtension('test-id', PlatformType.Remote)
   expect(result).toBeUndefined()
-  // @ts-ignore
-  expect(mockRendererWorker.invoke).toHaveBeenCalledWith('ExtensionManagement.getAllExtensions')
+  expect(invoke).toHaveBeenCalledWith('ExtensionManagement.getAllExtensions')
 })
 
 test.skip('get extension - error handling', async () => {
+  const invoke: any = jest.fn()
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke,
+  })
+  RendererWorker.set(mockRpc)
+
   const error = new Error('Failed to get extensions')
-  // @ts-ignore
-  mockRendererWorker.invoke.mockRejectedValue(error)
+  invoke.mockRejectedValue(error)
   await expect(ExtensionManagement.getExtension('test-id', PlatformType.Remote)).rejects.toThrow('Failed to get extensions')
 })
