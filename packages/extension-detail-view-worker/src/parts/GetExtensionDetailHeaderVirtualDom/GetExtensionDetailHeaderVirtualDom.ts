@@ -2,17 +2,15 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/ExtensionDetailButton.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
-import { getExtensionDetailDescriptionVirtualDom } from '../GetExtensionDetailDescriptionVirtualDom/GetExtensionDetailDescriptionVirtualDom.ts'
 import * as GetExtensionDetailHeaderActionsVirtualDom from '../GetExtensionDetailHeaderActionsVirtualDom/GetExtensionDetailHeaderActionsVirtualDom.ts'
-import { getExtensionDetailNameVirtualDom } from '../GetExtensionDetailNameVirtualDom/GetExtensionDetailNameVirtualDom.ts'
+import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getExtensionDetailHeaderVirtualDom = (
-  name: string,
-  iconSrc: string,
-  description: string,
-  badge: string,
+  extensionDetail: any,
+  extension: any,
   buttonDefs: readonly ExtensionDetailButton[],
 ): readonly VirtualDomNode[] => {
+  const { name, iconSrc, description } = extensionDetail
   const dom = [
     {
       type: VirtualDomElements.Div,
@@ -32,8 +30,18 @@ export const getExtensionDetailHeaderVirtualDom = (
       className: ClassNames.ExtensionDetailHeaderDetails,
       childCount: 3,
     },
-    ...getExtensionDetailNameVirtualDom(name, badge),
-    ...getExtensionDetailDescriptionVirtualDom(description),
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.ExtensionDetailName,
+      childCount: 1,
+    },
+    text(name),
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.ExtensionDetailDescription,
+      childCount: 1,
+    },
+    text(description),
     ...GetExtensionDetailHeaderActionsVirtualDom.getExtensionDetailHeaderActionsVirtualDom(buttonDefs),
   ]
   return dom
