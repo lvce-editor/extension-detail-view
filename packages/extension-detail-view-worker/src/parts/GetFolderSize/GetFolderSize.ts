@@ -6,8 +6,7 @@ export const getFolderSize = async (uri: string): Promise<number> => {
     throw new VError(`uri is required`)
   }
   try {
-    // @ts-ignore todo
-    return await RendererWorker.invoke('FileSystem.getFolderSize', uri)
+    return await RendererWorker.getFolderSize(uri)
   } catch {
     return 0
   }
