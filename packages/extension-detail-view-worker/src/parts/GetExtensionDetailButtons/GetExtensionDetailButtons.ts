@@ -7,9 +7,9 @@ export const getExtensionDetailButtons = (extension: any): readonly ExtensionDet
   if (HasColorThemes.hasColorThemes(extension)) {
     buttons.push({ label: 'Set Color Theme', onClick: DomEventListenerFunctions.HandleClickSetColorTheme })
   }
-  buttons.push(
-    { label: 'Disable', onClick: DomEventListenerFunctions.HandleClickDisable },
-    { label: 'Uninstall', onClick: DomEventListenerFunctions.HandleClickUninstall },
-  )
+  buttons.push({ label: 'Disable', onClick: DomEventListenerFunctions.HandleClickDisable })
+  if (!extension?.builtin) {
+    buttons.push({ label: 'Uninstall', onClick: DomEventListenerFunctions.HandleClickUninstall })
+  }
   return buttons
 }
