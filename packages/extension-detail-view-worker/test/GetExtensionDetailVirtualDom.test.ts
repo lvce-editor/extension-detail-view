@@ -1,20 +1,23 @@
 import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import * as AriaRoles from '../src/parts/AriaRoles/AriaRoles.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetExtensionDetailVirtualDom from '../src/parts/GetExtensionDetailVirtualDom/GetExtensionDetailVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test.skip('extension detail virtual dom with content', async () => {
-  const extensionDetail = {
+  const extensionDetail: ExtensionDetailState = {
+    ...createDefaultState(),
     name: 'Test Extension',
     iconSrc: './test-icon.png',
     description: 'Test Description',
   }
   const sanitizedReadmeHtml = '<h1>Test Header</h1>'
   const selectedTab = 'Details'
-  const state = {}
+  const state = extensionDetail
   expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab, state)).toEqual([
     {
       type: VirtualDomElements.Div,
@@ -120,14 +123,15 @@ test.skip('extension detail virtual dom with content', async () => {
 })
 
 test.skip('extension detail virtual dom with empty content', async () => {
-  const extensionDetail = {
+  const extensionDetail: ExtensionDetailState = {
+    ...createDefaultState(),
     name: '',
     iconSrc: '',
     description: '',
   }
   const sanitizedReadmeHtml = ''
   const selectedTab = 'Details'
-  const state = {}
+  const state = extensionDetail
   expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab, state)).toEqual([
     {
       type: VirtualDomElements.Div,

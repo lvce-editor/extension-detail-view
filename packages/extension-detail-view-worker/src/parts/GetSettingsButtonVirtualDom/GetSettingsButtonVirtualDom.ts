@@ -3,7 +3,10 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 
-export const getSettingsButtonVirtualDom = (): readonly VirtualDomNode[] => {
+export const getSettingsButtonVirtualDom = (enabled: boolean): readonly VirtualDomNode[] => {
+  if (!enabled) {
+    return []
+  }
   return [
     {
       type: VirtualDomElements.Button,
