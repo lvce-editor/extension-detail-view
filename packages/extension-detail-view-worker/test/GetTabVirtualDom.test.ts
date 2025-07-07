@@ -28,7 +28,7 @@ test('selected tab', () => {
 
 test('unselected tab', () => {
   const tab = {
-    label: 'Features',
+    label: ExtensionDetailStrings.features(),
     name: 'Features',
     selected: false,
   }
@@ -42,7 +42,7 @@ test('unselected tab', () => {
       tabIndex: -1,
       ariaSelected: false,
     },
-    text('Features'),
+    text(ExtensionDetailStrings.features()),
   ])
 })
 
