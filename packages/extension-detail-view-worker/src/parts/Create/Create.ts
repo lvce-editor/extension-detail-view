@@ -22,7 +22,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     baseUrl: '',
     features: [],
     folderSize: 0,
-    assetDir: assetDir || AssetDir.assetDir,
+    assetDir: assetDir || '',
     platform,
     settingsButtonEnabled: false,
   }
