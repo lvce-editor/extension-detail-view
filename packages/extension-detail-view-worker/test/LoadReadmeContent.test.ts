@@ -40,6 +40,7 @@ test('returns error message for other errors', async () => {
   })
   RendererWorker.set(mockRpc)
 
+  // @ts-ignore TODO
   const spy = jest.spyOn(console, 'error').mockImplementation(() => {})
   const error = new Error('permission denied')
   invoke.mockRejectedValue(error)
