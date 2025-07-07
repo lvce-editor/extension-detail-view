@@ -17,6 +17,7 @@ import * as LoadContent2 from '../LoadContent2/LoadContent2.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as Resize from '../Resize/Resize.ts'
+import * as Initialize from '../Initialize/Initialize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
 
@@ -41,4 +42,5 @@ export const commandMap = {
   'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
   'ExtensionDetail.terminate': terminate,
+  'ExtensionDetail.initialize': Initialize.initialize,
 }
