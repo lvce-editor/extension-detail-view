@@ -10,12 +10,12 @@ export const getTabs = (selectedTab: string): readonly Tab[] => {
       selected: selectedTab === InputName.Details,
     },
     {
-      label: 'Features',
+      label: ExtensionDetailStrings.features(),
       name: InputName.Features,
       selected: selectedTab === InputName.Features,
     },
     {
-      label: 'Changelog',
+      label: ExtensionDetailStrings.changelog(),
       name: InputName.Changelog,
       selected: selectedTab === InputName.Changelog,
     },
