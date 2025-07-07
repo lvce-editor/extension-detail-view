@@ -67,7 +67,7 @@ test('feature commands virtual dom with commands', () => {
       childCount: 1,
     },
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Code,
       childCount: 1,
     },
     text('workbench.action.openFile'),
@@ -87,7 +87,7 @@ test('feature commands virtual dom with commands', () => {
       childCount: 1,
     },
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Code,
       childCount: 1,
     },
     text('workbench.action.saveFile'),
