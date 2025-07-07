@@ -7,7 +7,7 @@ import * as GetSettingsButtonVirtualDom from '../GetSettingsButtonVirtualDom/Get
 
 export const getExtensionDetailHeaderActionsVirtualDom = (
   buttonDefs: readonly ExtensionDetailButton[],
-  settingsButtonEnabled: boolean
+  settingsButtonEnabled: boolean,
 ): readonly VirtualDomNode[] => {
   const enabledButtons = buttonDefs.filter((btn) => btn.enabled)
   const buttons: readonly VirtualDomNode[] = enabledButtons.flatMap((btn: ExtensionDetailButton) =>
