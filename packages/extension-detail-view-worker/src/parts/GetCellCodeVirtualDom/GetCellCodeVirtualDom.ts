@@ -11,7 +11,7 @@ export const getCellCodeVirtualDom = (value: string): readonly VirtualDomNode[] 
       childCount: 1,
     },
     {
-      type: VirtualDomElements.Div, // TODO use code tag
+      type: VirtualDomElements.Code,
       childCount: 1,
     },
     text(value),
