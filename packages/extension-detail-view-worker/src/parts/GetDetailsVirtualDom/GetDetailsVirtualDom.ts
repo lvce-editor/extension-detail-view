@@ -5,10 +5,13 @@ import type { Resource } from '../Resource/Resource.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as AriaRoles from '../AriaRoles/AriaRoles.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetAdditionalDetailsVirtualDom from '../GetAdditionalDetailsVirtualDom/GetAdditionalDetailsVirtualDom.ts'
+import { getCategories } from '../GetCategories/GetCategories.ts'
 import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
 import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
+import { getResources } from '../GetResources/GetResources.ts'
 
 export const getDetailsVirtualDom = async (
   sanitizedReadmeHtml: string,
@@ -17,36 +20,14 @@ export const getDetailsVirtualDom = async (
   extensionVersion: string,
   width: number,
 ): Promise<readonly VirtualDomNode[]> => {
-  const firstHeading = 'Installation'
+  const firstHeading = ExtensionDetailStrings.installation()
   const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion)
-  const secondHeading = 'Marketplace'
+  const secondHeading = ExtensionDetailStrings.marketplace()
   const secondEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries()
-  const thirdHeading = 'Categories'
-  const categories: readonly Category[] = [
-    {
-      id: 'themes',
-      label: 'Themes',
-    },
-  ]
-  const fourthHeading = 'Resources'
-  const resources: readonly Resource[] = [
-    {
-      label: 'Marketplace',
-      url: '#',
-    },
-    {
-      label: 'Issues',
-      url: '#',
-    },
-    {
-      label: 'Repository',
-      url: '#',
-    },
-    {
-      label: 'License',
-      url: '#',
-    },
-  ]
+  const thirdHeading = ExtensionDetailStrings.categories()
+  const categories: readonly Category[] = getCategories()
+  const fourthHeading = ExtensionDetailStrings.resources()
+  const resources: readonly Resource[] = getResources()
   const showAdditionalDetailsBreakpoint = 600
   const showAdditionalDetails = width > showAdditionalDetailsBreakpoint
   const childCount = showAdditionalDetails ? 2 : 1
