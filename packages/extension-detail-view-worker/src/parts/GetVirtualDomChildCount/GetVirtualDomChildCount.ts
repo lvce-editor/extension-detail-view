@@ -1,4 +1,4 @@
-import { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
+import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 
 export const getVirtualDomChildCount = (dom: readonly VirtualDomNode[]): number => {
   const max = dom.length - 1
