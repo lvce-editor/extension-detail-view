@@ -1,3 +1,4 @@
+import { terminate } from '@lvce-editor/viewlet-registry'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
@@ -18,7 +19,6 @@ import * as RenderEventListeners from '../RenderEventListeners/RenderEventListen
 import * as Resize from '../Resize/Resize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
-import * as Terminate from '../Terminate/Terminate.ts'
 
 export const commandMap = {
   'ExtensionDetail.create': Create.create,
@@ -40,5 +40,5 @@ export const commandMap = {
   'ExtensionDetail.resize': Resize.resize,
   'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
-  'ExtensionDetail.terminate': Terminate.terminate,
+  'ExtensionDetail.terminate': terminate,
 }
