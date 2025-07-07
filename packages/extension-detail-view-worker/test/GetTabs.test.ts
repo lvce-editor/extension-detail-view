@@ -12,12 +12,12 @@ test('returns all tabs with details selected', () => {
       selected: true,
     },
     {
-      label: 'Features',
+      label: ExtensionDetailStrings.features(),
       name: InputName.Features,
       selected: false,
     },
     {
-      label: 'Changelog',
+      label: ExtensionDetailStrings.changelog(),
       name: InputName.Changelog,
       selected: false,
     },
