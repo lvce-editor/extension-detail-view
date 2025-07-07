@@ -13,6 +13,7 @@ import * as HandleClickSize from '../HandleClickSize/HandleClickSize.ts'
 import * as HandleClickUninstall from '../HandleClickUninstall/HandleClickUninstall.ts'
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
+import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent2 from '../LoadContent2/LoadContent2.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
@@ -41,4 +42,5 @@ export const commandMap = {
   'ExtensionDetail.saveState': SaveState.saveState,
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
   'ExtensionDetail.terminate': terminate,
+  'ExtensionDetail.initialize': Initialize.initialize,
 }
