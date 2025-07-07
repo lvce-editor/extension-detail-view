@@ -12,6 +12,8 @@ export const loadReadmeContent = async (path: string): Promise<string> => {
     if (IsEnoentError.isEnoentError(error)) {
       return ''
     }
+    // TODO send message to error worker
+    // @ts-ignore
     console.error(new VError(error, 'Failed to load Readme content'))
     return `${error}`
   }
