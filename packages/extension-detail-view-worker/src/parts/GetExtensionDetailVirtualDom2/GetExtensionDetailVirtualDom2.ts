@@ -4,5 +4,5 @@ import * as GetExtensionDetailVirtualDom from '../GetExtensionDetailVirtualDom/G
 
 export const getExtensionDetailVirtualDom2 = async (uid: number): Promise<readonly VirtualDomNode[]> => {
   const { newState } = ExtensionDetailStates.get(uid)
-  return await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(newState, newState.sanitizedReadmeHtml, newState.selectedTab, newState)
+  return await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(newState, newState.sanitizedReadmeHtml, newState.selectedTab)
 }

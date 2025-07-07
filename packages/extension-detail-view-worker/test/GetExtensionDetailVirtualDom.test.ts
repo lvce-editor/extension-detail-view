@@ -17,8 +17,7 @@ test.skip('extension detail virtual dom with content', async () => {
   }
   const sanitizedReadmeHtml = '<h1>Test Header</h1>'
   const selectedTab = 'Details'
-  const state = extensionDetail
-  expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab, state)).toEqual([
+  expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
@@ -131,8 +130,7 @@ test.skip('extension detail virtual dom with empty content', async () => {
   }
   const sanitizedReadmeHtml = ''
   const selectedTab = 'Details'
-  const state = extensionDetail
-  expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab, state)).toEqual([
+  expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,

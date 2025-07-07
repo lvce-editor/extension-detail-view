@@ -15,10 +15,9 @@ import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as ViewletSizeMap from '../ViewletSizeMap/ViewletSizeMap.ts'
 
 export const getExtensionDetailVirtualDom = async (
-  extensionDetail: any,
+  newState: ExtensionDetailState,
   sanitizedReadmeHtml: string,
   selectedTab: string,
-  newState: ExtensionDetailState,
 ): Promise<readonly VirtualDomNode[]> => {
   // TODO move this to view model so that rendering occurs like
   // 1. state
@@ -38,9 +37,9 @@ export const getExtensionDetailVirtualDom = async (
   const sizeValue = GetViewletSize.getViewletSize(newState?.width || 0)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(extension)
-  const { name, iconSrc, description } = extensionDetail
+  const { name, iconSrc, description } = newState
   const badge = ''
-  const {settingsButtonEnabled} = newState
+  const { settingsButtonEnabled } = newState
   const dom = [
     {
       type: VirtualDomElements.Div,
