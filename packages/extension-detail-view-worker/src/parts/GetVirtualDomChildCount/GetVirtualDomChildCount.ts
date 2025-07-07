@@ -1,8 +1,10 @@
-export const getVirtualDomChildCount = (markdownDom: any): number => {
-  const max = markdownDom.length - 1
-  let stack: any[] = []
+import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
+
+export const getVirtualDomChildCount = (dom: readonly VirtualDomNode[]): number => {
+  const max = dom.length - 1
+  let stack: VirtualDomNode[] = []
   for (let i = max; i >= 0; i--) {
-    const element = markdownDom[i]
+    const element = dom[i]
     if (element.childCount > 0) {
       stack = stack.slice(element.childCount)
     }
