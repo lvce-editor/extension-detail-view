@@ -5,9 +5,13 @@ import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionDisplay from '../ExtensionDisplay/ExtensionDisplay.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
+import * as GetCategories from '../GetCategories/GetCategories.ts'
+import * as GetEntries from '../GetEntries/GetEntries.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
+import * as GetResources from '../GetResources/GetResources.ts'
+import * as GetSecondEntries from '../GetSecondEntries/GetSecondEntries.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as MarkDown from '../RenderMarkdown/RenderMarkdown.ts'
@@ -32,54 +36,10 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const features = GetFeatures.getFeatures(selectedFeature, extension)
   const extensionUri = extension.uri || extension.path
   const folderSize = await GetFolderSize.getFolderSize(extensionUri)
-  const entries: readonly MoreInfoEntry[] = [
-    {
-      key: 'Identifier',
-      value: 'abc',
-    },
-    {
-      key: 'Version',
-      value: '1.9.5',
-    },
-    {
-      key: 'Last Updated',
-      value: 'n/a',
-    },
-  ]
-  const secondEntries: readonly MoreInfoEntry[] = [
-    {
-      key: 'Published',
-      value: 'n/a',
-    },
-    {
-      key: 'Last Released',
-      value: 'n/a',
-    },
-  ]
-  const categories: readonly Category[] = [
-    {
-      id: 'themes',
-      label: 'Themes',
-    },
-  ]
-  const resources: readonly Resource[] = [
-    {
-      label: 'Marketplace',
-      url: '#',
-    },
-    {
-      label: 'Issues',
-      url: '#',
-    },
-    {
-      label: 'Repository',
-      url: '#',
-    },
-    {
-      label: 'License',
-      url: '#',
-    },
-  ]
+  const entries: readonly MoreInfoEntry[] = GetEntries.getEntries()
+  const secondEntries: readonly MoreInfoEntry[] = GetSecondEntries.getSecondEntries()
+  const categories: readonly Category[] = GetCategories.getCategories()
+  const resources: readonly Resource[] = GetResources.getResources()
 
   return {
     ...state,
