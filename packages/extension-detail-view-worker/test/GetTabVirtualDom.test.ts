@@ -2,12 +2,13 @@ import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as AriaRoles from '../src/parts/AriaRoles/AriaRoles.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetTabVirtualDom from '../src/parts/GetTabVirtualDom/GetTabVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('selected tab', () => {
   const tab = {
-    label: 'Details',
+    label: ExtensionDetailStrings.details(),
     name: 'Details',
     selected: true,
   }
@@ -21,7 +22,7 @@ test('selected tab', () => {
       tabIndex: -1,
       ariaSelected: true,
     },
-    text('Details'),
+    text(ExtensionDetailStrings.details()),
   ])
 })
 

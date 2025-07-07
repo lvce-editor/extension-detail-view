@@ -5,8 +5,20 @@ export const copy = (): string => {
   return I18nString.i18nString(UiStrings.Copy)
 }
 
+export const changelog = (): string => {
+  return I18nString.i18nString(UiStrings.Changelog)
+}
+
+export const details = (): string => {
+  return I18nString.i18nString(UiStrings.Details)
+}
+
 export const disable = (): string => {
   return I18nString.i18nString(UiStrings.Disable)
+}
+
+export const features = (): string => {
+  return I18nString.i18nString(UiStrings.Features)
 }
 
 export const none = (): string => {
