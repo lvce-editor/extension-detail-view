@@ -1,3 +1,7 @@
+export const Installation = 'Installation'
+export const Marketplace = 'Marketplace'
+export const Categories = 'Categories'
+export const Resources = 'Resources'
 export const Changelog = 'Changelog'
 export const Commands = 'Commands'
 export const ContentSecurityPolicy = 'ContentSecurityPolicy'
