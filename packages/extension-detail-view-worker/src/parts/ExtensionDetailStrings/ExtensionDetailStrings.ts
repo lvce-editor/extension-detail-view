@@ -1,6 +1,22 @@
 import * as I18nString from '../I18nString/I18nString.ts'
 import * as UiStrings from '../UiStrings/UiStrings.ts'
 
+export const installation = (): string => {
+  return I18nString.i18nString(UiStrings.Installation)
+}
+
+export const marketplace = (): string => {
+  return I18nString.i18nString(UiStrings.Marketplace)
+}
+
+export const categories = (): string => {
+  return I18nString.i18nString(UiStrings.Categories)
+}
+
+export const resources = (): string => {
+  return I18nString.i18nString(UiStrings.Resources)
+}
+
 export const copy = (): string => {
   return I18nString.i18nString(UiStrings.Copy)
 }
