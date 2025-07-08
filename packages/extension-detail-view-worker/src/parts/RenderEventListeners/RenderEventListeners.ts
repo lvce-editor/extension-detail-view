@@ -32,6 +32,10 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       params: ['handleClickDisable'],
     },
     {
+      name: DomEventListenerFunctions.HandleClickScrollToTop,
+      params: ['handleClickScrollToTop'],
+    },
+    {
       name: DomEventListenerFunctions.HandleClickSettings,
       params: ['handleClickSettings'],
     },
