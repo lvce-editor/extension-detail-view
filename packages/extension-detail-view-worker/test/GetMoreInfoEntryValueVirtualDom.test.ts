@@ -19,3 +19,21 @@ test('string value', () => {
     text('MIT'),
   ])
 })
+
+test('get more info entry value virtual dom with title', () => {
+  const item = {
+    key: 'Size',
+    value: '2.5MB',
+    title: '/test/path',
+  }
+  const result = GetMoreInfoEntryValueVirtualDom.getMoreInfoEntryValueVirtualDom(item)
+  expect(result).toEqual([
+    {
+      type: VirtualDomElements.Div,
+      className: ClassNames.MoreInfoEntryValue,
+      childCount: 1,
+      title: '/test/path',
+    },
+    text('2.5MB'),
+  ])
+})

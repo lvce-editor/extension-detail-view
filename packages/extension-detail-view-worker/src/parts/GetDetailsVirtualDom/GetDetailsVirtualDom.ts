@@ -19,9 +19,10 @@ export const getDetailsVirtualDom = async (
   extensionId: string,
   extensionVersion: string,
   width: number,
+  extensionUri: string,
 ): Promise<readonly VirtualDomNode[]> => {
   const firstHeading = ExtensionDetailStrings.installation()
-  const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion)
+  const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion, extensionUri)
   const secondHeading = ExtensionDetailStrings.marketplace()
   const secondEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries()
   const thirdHeading = ExtensionDetailStrings.categories()
