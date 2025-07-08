@@ -6,6 +6,7 @@ import type { Resource } from '../Resource/Resource.ts'
 export interface ExtensionDetailState {
   readonly assetDir: string
   readonly baseUrl: string
+  readonly builtinExtensionsBadgeEnabled: boolean
   readonly categories: readonly Category[]
   readonly description: string
   readonly entries: readonly MoreInfoEntry[]

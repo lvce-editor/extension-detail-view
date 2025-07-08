@@ -3,6 +3,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as GetBadge from '../GetBadge/GetBadge.ts'
 import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
 import * as GetExtensionDetailButtons from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailContentVirtualDom from '../GetExtensionDetailContentVirtualDom/GetExtensionDetailContentVirtualDom.ts'
@@ -38,7 +39,7 @@ export const getExtensionDetailVirtualDom = async (
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(extension)
   const { name, iconSrc, description } = newState
-  const badge = ''
+  const badge = GetBadge.getBadge(extension, newState)
   const { settingsButtonEnabled } = newState
   const dom = [
     {

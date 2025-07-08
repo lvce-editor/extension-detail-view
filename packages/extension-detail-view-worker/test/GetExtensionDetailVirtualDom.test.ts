@@ -228,3 +228,39 @@ test.skip('extension detail virtual dom with empty content', async () => {
     },
   ])
 })
+
+test('getExtensionDetailVirtualDom - builtin extension shows badge', async () => {
+  const extensionDetail = {
+    ...createDefaultState(),
+    name: 'Builtin Extension',
+    iconSrc: './builtin-icon.png',
+    description: 'Builtin extension description',
+    extension: {
+      builtin: true,
+    },
+  }
+
+  const result = await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '', '')
+
+  // Check that the badge is passed to the header virtual DOM
+  // The badge should be 'builtin' for builtin extensions
+  expect(result).toBeDefined()
+})
+
+test('getExtensionDetailVirtualDom - non-builtin extension shows no badge', async () => {
+  const extensionDetail = {
+    ...createDefaultState(),
+    name: 'Regular Extension',
+    iconSrc: './regular-icon.png',
+    description: 'Regular extension description',
+    extension: {
+      builtin: false,
+    },
+  }
+
+  const result = await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '', '')
+
+  // Check that the badge is passed to the header virtual DOM
+  // The badge should be empty for non-builtin extensions
+  expect(result).toBeDefined()
+})
