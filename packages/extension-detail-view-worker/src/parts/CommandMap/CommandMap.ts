@@ -7,6 +7,7 @@ import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
 import * as HandleClickFeatures from '../HandleClickFeatures/HandleClickFeatures.ts'
+import * as HandleClickScrollToTop from '../HandleClickScrollToTop/HandleClickScrollToTop.ts'
 import * as HandleClickSetColorTheme from '../HandleClickSetColorTheme/HandleClickSetColorTheme.ts'
 import * as HandleClickSettings from '../HandleClickSettings/HandleClickSettings.ts'
 import * as HandleClickSize from '../HandleClickSize/HandleClickSize.ts'
@@ -29,6 +30,7 @@ export const commandMap = {
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
+  'ExtensionDetail.handleClickScrollToTop': WrapCommand.wrapCommand(HandleClickScrollToTop.handleClickScrollToTop),
   'ExtensionDetail.handleClickSettings': WrapCommand.wrapCommand(HandleClickSettings.handleClickSettings),
   'ExtensionDetail.handleClickSetColorTheme': WrapCommand.wrapCommand(HandleClickSetColorTheme.handleClickSetColorTheme),
   'ExtensionDetail.handleClickSize': WrapCommand.wrapCommand(HandleClickSize.handleClickSize),

@@ -1,6 +1,7 @@
 export const commandIds = [
   'getMenuEntries',
   'handleClickDisable',
+  'handleClickScrollToTop',
   'handleClickSettings',
   'handleClickSetColorTheme',
   'handleClickSize',
