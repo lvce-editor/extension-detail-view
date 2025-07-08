@@ -23,6 +23,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     assetDir: '/test/asset/dir',
     platform: 0,
     settingsButtonEnabled: false,
+    builtinExtensionsBadgeEnabled: true,
     ...overrides,
   }
 }

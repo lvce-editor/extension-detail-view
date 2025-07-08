@@ -39,7 +39,7 @@ export const getExtensionDetailVirtualDom = async (
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(extension)
   const { name, iconSrc, description } = newState
-  const badge = GetBadge.getBadge(extension)
+  const badge = GetBadge.getBadge(extension, newState)
   const { settingsButtonEnabled } = newState
   const dom = [
     {
