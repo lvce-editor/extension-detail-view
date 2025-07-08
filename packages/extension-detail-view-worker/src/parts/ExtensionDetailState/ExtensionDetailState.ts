@@ -16,6 +16,7 @@ export interface ExtensionDetailState {
   readonly iconSrc: string
   readonly name: string
   readonly platform: number
+  readonly readmeScrollTop: number
   readonly resources: readonly Resource[]
   readonly sanitizedReadmeHtml: string
   readonly secondEntries: readonly MoreInfoEntry[]

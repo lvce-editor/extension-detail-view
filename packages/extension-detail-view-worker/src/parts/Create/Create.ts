@@ -23,6 +23,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     folderSize: 0,
     assetDir: assetDir || '',
     platform,
+    readmeScrollTop: 0,
     settingsButtonEnabled: false,
     builtinExtensionsBadgeEnabled: true,
   }
