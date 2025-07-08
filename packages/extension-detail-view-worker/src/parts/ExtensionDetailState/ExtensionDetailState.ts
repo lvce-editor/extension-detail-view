@@ -24,6 +24,7 @@ export interface ExtensionDetailState {
   readonly selectedFeatureMarkdownDom: string
   readonly selectedTab: string
   readonly settingsButtonEnabled: boolean
+  readonly scrollToTopButtonEnabled: boolean
   readonly sizeOnDisk: number
   readonly uri: string
   readonly width: number
