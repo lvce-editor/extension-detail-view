@@ -8,6 +8,7 @@ export const commandIds = [
   'handleFeaturesClick',
   'handleIconError',
   'handleTabsClick',
+  'handleWheel',
   'renderEventListeners',
   'resize',
   'saveState',
