@@ -24,6 +24,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     assetDir: assetDir || '',
     platform,
     settingsButtonEnabled: false,
+    builtinExtensionsBadgeEnabled: true,
   }
   ExtensionDetailStates.set(uid, state, state)
 }
