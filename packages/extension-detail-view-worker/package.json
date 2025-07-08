@@ -39,15 +39,7 @@
         "functions": 60,
         "lines": 65
       }
-    },
-    "collectCoverageFrom": [
-      "src/**/*.ts"
-    ],
-    "coveragePathIgnorePatterns": [
-      "node_modules",
-      "<rootDir>/src/parts/TokenizeHtml/TokenizeHtml.ts",
-      "<rootDir>/src/extensionDetailViewWorkerMain.ts"
-    ]
+    }
   },
   "devDependencies": {
     "@jest/globals": "^30.0.4",
