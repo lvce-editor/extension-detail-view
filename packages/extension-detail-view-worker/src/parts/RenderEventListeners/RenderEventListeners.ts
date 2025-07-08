@@ -12,6 +12,10 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       params: ['handleReadmeContextMenu', 'event.clientX', 'event.clientY', 'event.target.href', 'event.target.src'],
     },
     {
+      name: DomEventListenerFunctions.HandleReadmeWheel,
+      params: ['handleWheel', 'event.deltaX', 'event.deltaY'],
+    },
+    {
       name: DomEventListenerFunctions.HandleTabsClick,
       params: ['handleTabsClick', 'event.target.name'],
     },
