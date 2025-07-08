@@ -26,7 +26,7 @@ const getClassName = (onClick: string | undefined, code: boolean | undefined): s
 }
 
 export const getMoreInfoEntryValueVirtualDom = (item: MoreInfoEntry): readonly VirtualDomNode[] => {
-  const { value, onClick, code } = item
+  const { value, onClick, code, title } = item
   const type = getTag(onClick, code)
   const className = getClassName(onClick, code)
   return [
@@ -35,6 +35,7 @@ export const getMoreInfoEntryValueVirtualDom = (item: MoreInfoEntry): readonly V
       className,
       childCount: 1,
       onClick,
+      title,
     },
     text(value),
   ]

@@ -4,4 +4,5 @@ export interface MoreInfoEntry {
   readonly onClick?: string
   readonly odd?: boolean
   readonly code?: boolean
+  readonly title?: string
 }
