@@ -4,6 +4,7 @@ import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetExtensionDetailButtons from '../src/parts/GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../src/parts/GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
+import * as InputName from '../src/parts/InputName/InputName.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test.skip('extension detail header virtual dom', () => {
@@ -112,6 +113,7 @@ test('handles missing extension details', () => {
       childCount: 1,
       className: 'Button ButtonPrimary',
       onClick: 'handleClickDisable',
+      name: InputName.Disable,
       type: 1,
     },
     {
@@ -123,6 +125,7 @@ test('handles missing extension details', () => {
       childCount: 1,
       className: 'Button ButtonPrimary',
       onClick: 'handleClickUninstall',
+      name: InputName.Uninstall,
       type: 1,
     },
     {
@@ -135,6 +138,7 @@ test('handles missing extension details', () => {
       className: 'SettingsButton',
       onClick: 'handleClickSettings',
       title: ExtensionDetailStrings.settings(),
+      name: InputName.Settings,
       type: 1,
     },
     {
@@ -211,6 +215,7 @@ test('handles builtin extension - shows only disable button', () => {
       childCount: 1,
       className: 'Button ButtonPrimary',
       onClick: 'handleClickDisable',
+      name: InputName.Disable,
       type: 1,
     },
     {
@@ -223,6 +228,7 @@ test('handles builtin extension - shows only disable button', () => {
       className: 'SettingsButton',
       onClick: 'handleClickSettings',
       title: ExtensionDetailStrings.settings(),
+      name: InputName.Settings,
       type: 1,
     },
     {
