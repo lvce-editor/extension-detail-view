@@ -12,7 +12,7 @@ import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirt
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
 import * as GetScrollToTopVirtualDom from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 
-const getChildCount = (additionalDetails: boolean, scrollToTopEnabled: boolean) => {
+const getChildCount = (additionalDetails: boolean, scrollToTopEnabled: boolean): number => {
   let count = 1
   if (additionalDetails) {
     count++
