@@ -8,16 +8,15 @@ import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctio
 import * as GetExtensionDetailVirtualDom from '../src/parts/GetExtensionDetailVirtualDom/GetExtensionDetailVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
-test.skip('extension detail virtual dom with content', async () => {
+test.skip('extension detail virtual dom with content', () => {
   const extensionDetail: ExtensionDetailState = {
     ...createDefaultState(),
     name: 'Test Extension',
     iconSrc: './test-icon.png',
     description: 'Test Description',
   }
-  const sanitizedReadmeHtml = '<h1>Test Header</h1>'
   const selectedTab = 'Details'
-  expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab)).toEqual([
+  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
@@ -121,16 +120,15 @@ test.skip('extension detail virtual dom with content', async () => {
   ])
 })
 
-test.skip('extension detail virtual dom with empty content', async () => {
+test.skip('extension detail virtual dom with empty content', () => {
   const extensionDetail: ExtensionDetailState = {
     ...createDefaultState(),
     name: '',
     iconSrc: '',
     description: '',
   }
-  const sanitizedReadmeHtml = ''
   const selectedTab = 'Details'
-  expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab)).toEqual([
+  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
@@ -229,7 +227,7 @@ test.skip('extension detail virtual dom with empty content', async () => {
   ])
 })
 
-test('getExtensionDetailVirtualDom - builtin extension shows badge', async () => {
+test('getExtensionDetailVirtualDom - builtin extension shows badge', () => {
   const extensionDetail = {
     ...createDefaultState(),
     name: 'Builtin Extension',
@@ -240,14 +238,14 @@ test('getExtensionDetailVirtualDom - builtin extension shows badge', async () =>
     },
   }
 
-  const result = await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '', '')
+  const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, '')
 
   // Check that the badge is passed to the header virtual DOM
   // The badge should be 'builtin' for builtin extensions
   expect(result).toBeDefined()
 })
 
-test('getExtensionDetailVirtualDom - non-builtin extension shows no badge', async () => {
+test('getExtensionDetailVirtualDom - non-builtin extension shows no badge', () => {
   const extensionDetail = {
     ...createDefaultState(),
     name: 'Regular Extension',
@@ -258,7 +256,7 @@ test('getExtensionDetailVirtualDom - non-builtin extension shows no badge', asyn
     },
   }
 
-  const result = await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '', '')
+  const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, '')
 
   // Check that the badge is passed to the header virtual DOM
   // The badge should be empty for non-builtin extensions

@@ -32,8 +32,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
   })
-  const sanitizedReadmeHtml = readmeHtml
-  const normalizedReadmeHtml = sanitizedReadmeHtml
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml)
   const iconSrc = ExtensionDisplay.getIcon(extension, platform, assetDir)
   const description = ExtensionDisplay.getDescription(extension)
@@ -53,7 +51,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   return {
     ...state,
     selectedTab,
-    sanitizedReadmeHtml: normalizedReadmeHtml,
     baseUrl,
     categories,
     description,

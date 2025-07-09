@@ -20,7 +20,6 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     platform: 0,
     readmeScrollTop: 0,
     resources: [],
-    sanitizedReadmeHtml: '',
     scrollToTopButtonEnabled: false,
     secondEntries: [],
     selectedFeature: '',

@@ -21,7 +21,6 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     platform,
     readmeScrollTop: 0,
     resources: [],
-    sanitizedReadmeHtml: '',
     scrollToTopButtonEnabled: false,
     secondEntries: [],
     selectedFeature: '',

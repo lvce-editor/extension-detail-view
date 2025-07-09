@@ -25,7 +25,6 @@ export interface ExtensionDetailState {
   readonly platform: number
   readonly readmeScrollTop: number
   readonly resources: readonly Resource[]
-  readonly sanitizedReadmeHtml: string
   readonly scrollToTopButtonEnabled: boolean
   readonly secondEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
