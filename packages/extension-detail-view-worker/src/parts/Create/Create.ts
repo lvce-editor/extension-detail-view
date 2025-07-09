@@ -16,7 +16,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     secondEntries: [],
     categories: [],
     resources: [],
-    selectedFeatureMarkdownDom: '',
+    themesMarkdownDom: [],
     extension: {},
     baseUrl: '',
     features: [],

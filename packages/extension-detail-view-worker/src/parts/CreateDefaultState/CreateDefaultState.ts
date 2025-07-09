@@ -11,7 +11,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     sizeOnDisk: 0,
     width: 500,
     uri: 'extension-detail://test-extension',
-    selectedFeatureMarkdownDom: '',
+    themesMarkdownDom: [],
     entries: [],
     secondEntries: [],
     categories: [],

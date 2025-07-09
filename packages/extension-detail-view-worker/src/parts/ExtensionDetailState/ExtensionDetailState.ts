@@ -22,7 +22,7 @@ export interface ExtensionDetailState {
   readonly sanitizedReadmeHtml: string
   readonly secondEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
-  readonly selectedFeatureMarkdownDom: string
+  readonly themesMarkdownDom: readonly VirtualDomNode[]
   readonly selectedTab: string
   readonly settingsButtonEnabled: boolean
   readonly scrollToTopButtonEnabled: boolean
