@@ -2,6 +2,7 @@ import type { Category } from '../Category/Category.ts'
 import type { Feature } from '../Feature/Feature.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
+import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
 export interface ExtensionDetailState {
   readonly assetDir: string
@@ -28,4 +29,8 @@ export interface ExtensionDetailState {
   readonly sizeOnDisk: number
   readonly uri: string
   readonly width: number
+  // Viewmodel properties for each tab's virtual DOM
+  readonly detailsVirtualDom: readonly VirtualDomNode[]
+  readonly featuresVirtualDom: readonly VirtualDomNode[]
+  readonly changelogVirtualDom: readonly VirtualDomNode[]
 }

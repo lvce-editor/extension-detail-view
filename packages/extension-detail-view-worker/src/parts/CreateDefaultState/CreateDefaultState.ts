@@ -26,6 +26,10 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     settingsButtonEnabled: false,
     builtinExtensionsBadgeEnabled: true,
     scrollToTopButtonEnabled: false,
+    // Initialize viewmodel properties as empty arrays
+    detailsVirtualDom: [],
+    featuresVirtualDom: [],
+    changelogVirtualDom: [],
     ...overrides,
   }
 }
