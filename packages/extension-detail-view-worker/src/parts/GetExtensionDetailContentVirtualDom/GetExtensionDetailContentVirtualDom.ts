@@ -24,7 +24,17 @@ export const getExtensionDetailContentVirtualDom = async (
 ): Promise<readonly VirtualDomNode[]> => {
   switch (selectedTab) {
     case InputName.Details:
-      return await GetDetailsVirtualDom.getDetailsVirtualDom(sanitizedReadmeHtml, displaySize, extensionId, extensionVersion, width, extension.uri || extension.path || '', scrollToTopButtonEnabled, categories, resources)
+      return await GetDetailsVirtualDom.getDetailsVirtualDom(
+        sanitizedReadmeHtml,
+        displaySize,
+        extensionId,
+        extensionVersion,
+        width,
+        extension.uri || extension.path || '',
+        scrollToTopButtonEnabled,
+        categories,
+        resources,
+      )
     case InputName.Features:
       return await GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, extension)
     case InputName.Changelog:
