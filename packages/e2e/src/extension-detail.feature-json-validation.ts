@@ -2,11 +2,11 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-json-validation'
 
-export const test: Test = async ({ Main, Locator, expect, Extension }) => {
+export const test: Test = async ({ Main, Locator, expect, Extension, ExtensionDetail }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-json-validation')
   await Extension.addWebExtension(extensionUri)
-  await Main.openUri('extension-detail://test.json-validation-test')
+  await ExtensionDetail.open('test.json-validation-test')
   const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
   const featureJsonValidation = Locator('.Feature[name="JsonValidation"]')
   await tabFeatures.click()

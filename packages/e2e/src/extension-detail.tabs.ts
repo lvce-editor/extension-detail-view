@@ -2,9 +2,9 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.tabs'
 
-export const test: Test = async ({ Main, Locator, expect }) => {
+export const test: Test = async ({ Main, Locator, expect, ExtensionDetail }) => {
   // arrange
-  await Main.openUri('extension-detail://builtin.theme-ayu')
+  await ExtensionDetail.open('builtin.theme-ayu')
   const tabDetails = Locator('.ExtensionDetailTab[name="Details"]')
   await expect(tabDetails).toBeVisible()
   await expect(tabDetails).toHaveAttribute('aria-selected', 'true')

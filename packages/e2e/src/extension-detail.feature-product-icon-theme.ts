@@ -2,11 +2,11 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-product-icon-theme'
 
-export const test: Test = async ({ Main, Locator, expect, Extension }) => {
+export const test: Test = async ({ Main, Locator, expect, Extension, ExtensionDetail }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-detail-product-icon-theme')
   await Extension.addWebExtension(extensionUri)
-  await Main.openUri('extension-detail://test.product-icon-theme-test')
+  await ExtensionDetail.open('test.product-icon-theme-test')
   const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
   await tabFeatures.click()
   const featureTheme = Locator('.Feature[name="Theme"]')
