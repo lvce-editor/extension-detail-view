@@ -49,7 +49,7 @@ export const getExtensionDetailVirtualDom = async (
     },
     ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(name, iconSrc, description, badge, buttonDefs, settingsButtonEnabled),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
-    ...(await GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
+    ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
       sanitizedReadmeHtml,
       themesHtml,
       selectedTab,
@@ -64,7 +64,7 @@ export const getExtensionDetailVirtualDom = async (
       newState.categories,
       newState.resources,
       newState.showAdditionalDetailsBreakpoint,
-    )),
+    ),
   ]
   return dom
 }

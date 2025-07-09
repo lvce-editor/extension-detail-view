@@ -5,7 +5,7 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
 import * as GetVirtualDomChildCount from '../GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 
-export const getFeatureThemesVirtualDom = async (themesDom: readonly VirtualDomNode[]): Promise<readonly VirtualDomNode[]> => {
+export const getFeatureThemesVirtualDom = (themesDom: readonly VirtualDomNode[]): readonly VirtualDomNode[] => {
   const childCount = GetVirtualDomChildCount.getVirtualDomChildCount(themesDom)
   const heading = ExtensionDetailStrings.theme()
   return [
