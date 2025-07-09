@@ -31,6 +31,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     sizeOnDisk: 0,
     uri,
     width,
+    sizeValue: 0,
   }
   ExtensionDetailStates.set(uid, state, state)
 }

@@ -30,6 +30,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     sizeOnDisk: 0,
     uri: 'extension-detail://test-extension',
     width: 500,
+    sizeValue: 0,
     ...overrides,
   }
 }
