@@ -35,4 +35,5 @@ export interface ExtensionDetailState {
   readonly themesMarkdownDom: readonly VirtualDomNode[]
   readonly uri: string
   readonly width: number
+  readonly sizeValue: number
 }

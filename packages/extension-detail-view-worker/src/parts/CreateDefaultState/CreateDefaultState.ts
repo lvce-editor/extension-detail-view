@@ -32,6 +32,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     width: 500,
     hasColorTheme: false,
     isBuiltin: false,
+    sizeValue: 0,
     ...overrides,
   }
 }
