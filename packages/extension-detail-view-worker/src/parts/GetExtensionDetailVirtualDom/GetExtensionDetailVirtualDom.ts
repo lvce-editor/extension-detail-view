@@ -14,11 +14,7 @@ import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as ViewletSizeMap from '../ViewletSizeMap/ViewletSizeMap.ts'
 
-export const getExtensionDetailVirtualDom = (
-  newState: ExtensionDetailState,
-  sanitizedReadmeHtml: readonly VirtualDomNode[],
-  selectedTab: string,
-): readonly VirtualDomNode[] => {
+export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, selectedTab: string): readonly VirtualDomNode[] => {
   // TODO move this to view model so that rendering occurs like
   // 1. state
   // 2. view model
@@ -48,7 +44,7 @@ export const getExtensionDetailVirtualDom = (
     ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(name, iconSrc, description, badge, buttonDefs, settingsButtonEnabled),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
     ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
-      sanitizedReadmeHtml,
+      newState.detailsVirtualDom,
       themesHtml,
       selectedTab,
       features,

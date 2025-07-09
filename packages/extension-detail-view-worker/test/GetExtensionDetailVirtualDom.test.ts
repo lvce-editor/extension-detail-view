@@ -16,7 +16,7 @@ test.skip('extension detail virtual dom with content', () => {
     description: 'Test Description',
   }
   const selectedTab = 'Details'
-  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, selectedTab)).toEqual([
+  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
@@ -128,7 +128,7 @@ test.skip('extension detail virtual dom with empty content', () => {
     description: '',
   }
   const selectedTab = 'Details'
-  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, selectedTab)).toEqual([
+  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
@@ -238,7 +238,7 @@ test('getExtensionDetailVirtualDom - builtin extension shows badge', () => {
     },
   }
 
-  const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, '')
+  const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '')
 
   // Check that the badge is passed to the header virtual DOM
   // The badge should be 'builtin' for builtin extensions
@@ -256,7 +256,7 @@ test('getExtensionDetailVirtualDom - non-builtin extension shows no badge', () =
     },
   }
 
-  const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, '')
+  const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '')
 
   // Check that the badge is passed to the header virtual DOM
   // The badge should be empty for non-builtin extensions
