@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.tabs'
 
-export const test: Test = async ({ Main, Locator, expect, ExtensionDetail }) => {
+export const test: Test = async ({ Locator, expect, ExtensionDetail }) => {
   // arrange
   await ExtensionDetail.open('builtin.theme-ayu')
   const tabDetails = Locator('.ExtensionDetailTab[name="Details"]')
