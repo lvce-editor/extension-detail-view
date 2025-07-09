@@ -12,6 +12,17 @@ import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirt
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
 import * as GetScrollToTopVirtualDom from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 
+const getChildCount = (additionalDetails: boolean, scrollToTopEnabled: boolean): number => {
+  let count = 1
+  if (additionalDetails) {
+    count++
+  }
+  if (scrollToTopEnabled) {
+    count++
+  }
+  return count
+}
+
 export const getDetailsVirtualDom = async (
   sanitizedReadmeHtml: string,
   displaySize: string,
@@ -31,7 +42,7 @@ export const getDetailsVirtualDom = async (
   const fourthHeading = ExtensionDetailStrings.resources()
   const showAdditionalDetailsBreakpoint = 600
   const showAdditionalDetails = width > showAdditionalDetailsBreakpoint
-  const childCount = showAdditionalDetails ? 2 : 1
+  const childCount = getChildCount(showAdditionalDetails, scrollToTopButtonEnabled)
   const dom = [
     {
       type: VirtualDomElements.Div,
