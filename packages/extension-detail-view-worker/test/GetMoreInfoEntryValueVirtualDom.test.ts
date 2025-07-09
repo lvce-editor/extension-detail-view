@@ -12,7 +12,7 @@ test('string value', () => {
   }
   expect(GetMoreInfoEntryValueVirtualDom.getMoreInfoEntryValueVirtualDom(entry)).toEqual([
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Dd,
       className: ClassNames.MoreInfoEntryValue,
       childCount: 1,
     },
@@ -29,7 +29,7 @@ test('get more info entry value virtual dom with title', () => {
   const result = GetMoreInfoEntryValueVirtualDom.getMoreInfoEntryValueVirtualDom(item)
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Dd,
       className: ClassNames.MoreInfoEntryValue,
       childCount: 1,
       title: '/test/path',
