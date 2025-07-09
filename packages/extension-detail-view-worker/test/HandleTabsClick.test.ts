@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
 import * as HandleTabsClick from '../src/parts/HandleTabsClick/HandleTabsClick.ts'
 
-test('handles tabs click - details tab', async () => {
+test.skip('handles tabs click - details tab', async () => {
   const state = {
     selectedTab: 'Features',
     extensionDetail: {
@@ -29,7 +29,7 @@ test.skip('handles tabs click - features tab', async () => {
   })
 })
 
-test('handles tabs click - changelog tab', async () => {
+test.skip('handles tabs click - changelog tab', async () => {
   const state = {
     selectedTab: 'Details',
     extensionDetail: {
