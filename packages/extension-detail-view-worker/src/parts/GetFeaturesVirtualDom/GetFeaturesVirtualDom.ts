@@ -8,12 +8,12 @@ import * as GetFeatureListVirtualDom from '../GetFeatureListVirtualDom/GetFeatur
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-export const getFeaturesVirtualDom = async (
+export const getFeaturesVirtualDom = (
   features: readonly Feature[],
   themesDom: readonly VirtualDomNode[],
   selectedFeature: string,
   extension: any,
-): Promise<readonly VirtualDomNode[]> => {
+): readonly VirtualDomNode[] => {
   if (features.length === 0) {
     const none = ExtensionDetailStrings.none()
     return [
@@ -37,6 +37,6 @@ export const getFeaturesVirtualDom = async (
       className: MergeClassNames.mergeClassNames(ClassNames.Sash, ClassNames.SashVertical),
       childCount: 0,
     },
-    ...(await GetFeatureContentVirtualDom.getFeatureContentVirtualDom(features, themesDom, selectedFeature, extension)),
+    ...GetFeatureContentVirtualDom.getFeatureContentVirtualDom(features, themesDom, selectedFeature, extension),
   ]
 }

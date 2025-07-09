@@ -7,8 +7,8 @@ import * as GetDetailsVirtualDom from '../GetDetailsVirtualDom/GetDetailsVirtual
 import * as GetFeaturesVirtualDom from '../GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
 
-export const getExtensionDetailContentVirtualDom = async (
-  sanitizedReadmeHtml: string,
+export const getExtensionDetailContentVirtualDom = (
+  sanitizedReadmeHtml: readonly VirtualDomNode[],
   themesDom: readonly VirtualDomNode[],
   selectedTab: string,
   features: readonly Feature[],
@@ -22,10 +22,10 @@ export const getExtensionDetailContentVirtualDom = async (
   categories: readonly Category[],
   resources: readonly Resource[],
   breakpoint: number,
-): Promise<readonly VirtualDomNode[]> => {
+): readonly VirtualDomNode[] => {
   switch (selectedTab) {
     case InputName.Details:
-      return await GetDetailsVirtualDom.getDetailsVirtualDom(
+      return GetDetailsVirtualDom.getDetailsVirtualDom(
         sanitizedReadmeHtml,
         displaySize,
         extensionId,
@@ -38,7 +38,7 @@ export const getExtensionDetailContentVirtualDom = async (
         breakpoint,
       )
     case InputName.Features:
-      return await GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesDom, selectedFeature, extension)
+      return GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesDom, selectedFeature, extension)
     case InputName.Changelog:
       return GetChangelogVirtualDom.getChangelogVirtualDom()
     default:
