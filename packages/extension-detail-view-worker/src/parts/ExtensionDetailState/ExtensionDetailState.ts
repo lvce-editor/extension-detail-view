@@ -18,7 +18,9 @@ export interface ExtensionDetailState {
   readonly features: readonly Feature[]
   readonly featuresVirtualDom: readonly VirtualDomNode[]
   readonly folderSize: number
+  readonly hasColorTheme: boolean
   readonly iconSrc: string
+  readonly isBuiltin: boolean
   readonly name: string
   readonly platform: number
   readonly readmeScrollTop: number

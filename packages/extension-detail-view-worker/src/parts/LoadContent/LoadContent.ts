@@ -15,6 +15,7 @@ import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtu
 import * as GetResources from '../GetResources/GetResources.ts'
 import * as GetSecondEntries from '../GetSecondEntries/GetSecondEntries.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
+import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
@@ -45,23 +46,26 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const secondEntries: readonly MoreInfoEntry[] = GetSecondEntries.getSecondEntries()
   const categories: readonly Category[] = GetCategories.getCategories()
   const resources: readonly Resource[] = GetResources.getResources()
-
+  const isBuiltin = extension?.builtin
+  const hasColorTheme = HasColorThemes.hasColorThemes(extension)
   return {
     ...state,
     selectedTab,
-    iconSrc,
-    detailsVirtualDom,
-    name,
-    description,
-    sizeOnDisk: size,
-    entries,
-    secondEntries,
-    categories,
-    resources,
-    extension,
     baseUrl,
+    categories,
+    description,
+    detailsVirtualDom,
+    displaySize,
+    entries,
+    extension,
     features,
     folderSize,
-    displaySize,
+    hasColorTheme,
+    iconSrc,
+    isBuiltin,
+    name,
+    resources,
+    secondEntries,
+    sizeOnDisk: size,
   }
 }

@@ -1,7 +1,5 @@
-import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
-
-export const getBadge = (extension: any, state: ExtensionDetailState): string => {
-  if (extension?.builtin && state.builtinExtensionsBadgeEnabled) {
+export const getBadge = (builtin: boolean, badgeEnabled: boolean): string => {
+  if (builtin && badgeEnabled) {
     return 'builtin'
   }
   return ''

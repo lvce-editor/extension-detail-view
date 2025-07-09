@@ -35,9 +35,9 @@ export const getExtensionDetailVirtualDom = (
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeValue = GetViewletSize.getViewletSize(newState?.width || 0)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(extension)
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(newState.hasColorTheme, newState.isBuiltin)
   const { name, iconSrc, description } = newState
-  const badge = GetBadge.getBadge(extension, newState)
+  const badge = GetBadge.getBadge(newState.isBuiltin, newState.builtinExtensionsBadgeEnabled) // TODO compute in loadContent
   const { settingsButtonEnabled } = newState
   const dom = [
     {
