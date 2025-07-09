@@ -33,6 +33,7 @@ export const getDetailsVirtualDom = async (
   scrollToTopButtonEnabled: boolean,
   categories: readonly Category[],
   resources: readonly Resource[],
+  showAdditionalDetailsBreakpoint: number, // new parameter, no default
 ): Promise<readonly VirtualDomNode[]> => {
   const firstHeading = ExtensionDetailStrings.installation()
   const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion, extensionUri)
@@ -40,7 +41,6 @@ export const getDetailsVirtualDom = async (
   const secondEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries()
   const thirdHeading = ExtensionDetailStrings.categories()
   const fourthHeading = ExtensionDetailStrings.resources()
-  const showAdditionalDetailsBreakpoint = 600
   const showAdditionalDetails = width > showAdditionalDetailsBreakpoint
   const childCount = getChildCount(showAdditionalDetails, scrollToTopButtonEnabled)
   const dom = [

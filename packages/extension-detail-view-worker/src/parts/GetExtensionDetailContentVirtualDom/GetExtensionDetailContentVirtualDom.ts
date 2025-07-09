@@ -21,6 +21,7 @@ export const getExtensionDetailContentVirtualDom = async (
   scrollToTopButtonEnabled: boolean,
   categories: readonly Category[],
   resources: readonly Resource[],
+  breakpoint: number,
 ): Promise<readonly VirtualDomNode[]> => {
   switch (selectedTab) {
     case InputName.Details:
@@ -34,6 +35,7 @@ export const getExtensionDetailContentVirtualDom = async (
         scrollToTopButtonEnabled,
         categories,
         resources,
+        breakpoint,
       )
     case InputName.Features:
       return await GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, extension)
