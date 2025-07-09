@@ -4,6 +4,7 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getExtensionDetailDescriptionVirtualDom } from '../GetExtensionDetailDescriptionVirtualDom/GetExtensionDetailDescriptionVirtualDom.ts'
 import * as GetExtensionDetailHeaderActionsVirtualDom from '../GetExtensionDetailHeaderActionsVirtualDom/GetExtensionDetailHeaderActionsVirtualDom.ts'
+import { getExtensionDetailIconVirtualDom } from '../GetExtensionDetailIconVirtualDom/GetExtensionDetailIconVirtualDom.ts'
 import { getExtensionDetailNameVirtualDom } from '../GetExtensionDetailNameVirtualDom/GetExtensionDetailNameVirtualDom.ts'
 
 export const getExtensionDetailHeaderVirtualDom = (
@@ -20,14 +21,7 @@ export const getExtensionDetailHeaderVirtualDom = (
       className: ClassNames.ExtensionDetailHeader,
       childCount: 2,
     },
-    {
-      type: VirtualDomElements.Img,
-      className: ClassNames.ExtensionDetailIcon,
-      alt: '',
-      draggable: false,
-      childCount: 0,
-      src: iconSrc,
-    },
+    getExtensionDetailIconVirtualDom(iconSrc),
     {
       type: VirtualDomElements.Div,
       className: ClassNames.ExtensionDetailHeaderDetails,
