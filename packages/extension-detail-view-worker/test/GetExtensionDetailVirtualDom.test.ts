@@ -17,7 +17,7 @@ test.skip('extension detail virtual dom with content', async () => {
   }
   const sanitizedReadmeHtml = '<h1>Test Header</h1>'
   const selectedTab = 'Details'
-  expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab)).toEqual([
+  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
@@ -130,7 +130,7 @@ test.skip('extension detail virtual dom with empty content', async () => {
   }
   const sanitizedReadmeHtml = ''
   const selectedTab = 'Details'
-  expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, sanitizedReadmeHtml, selectedTab)).toEqual([
+  expect(await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, selectedTab)).toEqual([
     {
       type: VirtualDomElements.Div,
       className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
@@ -240,7 +240,7 @@ test('getExtensionDetailVirtualDom - builtin extension shows badge', async () =>
     },
   }
 
-  const result = await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '', '')
+  const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, '')
 
   // Check that the badge is passed to the header virtual DOM
   // The badge should be 'builtin' for builtin extensions
@@ -258,7 +258,7 @@ test('getExtensionDetailVirtualDom - non-builtin extension shows no badge', asyn
     },
   }
 
-  const result = await GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '', '')
+  const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, extensionDetail.detailsVirtualDom, '')
 
   // Check that the badge is passed to the header virtual DOM
   // The badge should be empty for non-builtin extensions
