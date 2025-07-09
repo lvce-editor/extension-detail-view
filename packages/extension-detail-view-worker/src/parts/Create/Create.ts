@@ -3,27 +3,6 @@ import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetail
 
 export const create = (uid: number, uri: string, x: number, y: number, width: number, height: number, platform: number, assetDir: string): void => {
   const state: ExtensionDetailState = {
-<<<<<<< HEAD
-    description: '',
-    iconSrc: '',
-    selectedFeature: '',
-    name: '',
-    sanitizedReadmeHtml: '',
-    selectedTab: '',
-    sizeOnDisk: 0,
-    width,
-    uri,
-    entries: [],
-    secondEntries: [],
-    categories: [],
-    resources: [],
-    themesMarkdownDom: [],
-    extension: {},
-    baseUrl: '',
-    features: [],
-    folderSize: 0,
-=======
->>>>>>> origin/main
     assetDir: assetDir || '',
     baseUrl: '',
     builtinExtensionsBadgeEnabled: true,
@@ -45,7 +24,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     scrollToTopButtonEnabled: false,
     secondEntries: [],
     selectedFeature: '',
-    selectedFeatureMarkdownDom: '',
+    themesMarkdownDom: [],
     selectedTab: '',
     settingsButtonEnabled: false,
     showAdditionalDetailsBreakpoint: 600,
