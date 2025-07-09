@@ -1,8 +1,8 @@
 import { test, expect } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as GetScrollToTopVirtualDom from '../src/parts/GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import * as GetScrollToTopVirtualDom from '../src/parts/GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 
 test('getScrollToTopVirtualDom - returns empty array when disabled', () => {
   const result = GetScrollToTopVirtualDom.getScrollToTopVirtualDom(false)

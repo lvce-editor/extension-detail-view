@@ -11,8 +11,8 @@ import { getCategories } from '../GetCategories/GetCategories.ts'
 import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
 import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
-import * as GetScrollToTopVirtualDom from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 import { getResources } from '../GetResources/GetResources.ts'
+import * as GetScrollToTopVirtualDom from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 
 export const getDetailsVirtualDom = async (
   sanitizedReadmeHtml: string,
