@@ -17,7 +17,7 @@ import * as ViewletSizeMap from '../ViewletSizeMap/ViewletSizeMap.ts'
 
 export const getExtensionDetailVirtualDom = async (
   newState: ExtensionDetailState,
-  sanitizedReadmeHtml: string,
+  sanitizedReadmeHtml: readonly VirtualDomNode[],
   selectedTab: string,
 ): Promise<readonly VirtualDomNode[]> => {
   // TODO move this to view model so that rendering occurs like

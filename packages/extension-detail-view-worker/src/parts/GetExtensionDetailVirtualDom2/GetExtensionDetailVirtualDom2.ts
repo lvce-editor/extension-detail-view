@@ -4,5 +4,5 @@ import * as GetExtensionDetailVirtualDom from '../GetExtensionDetailVirtualDom/G
 
 export const getExtensionDetailVirtualDom2 = (uid: number): readonly VirtualDomNode[] => {
   const { newState } = ExtensionDetailStates.get(uid)
-  return GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(newState, newState.sanitizedReadmeHtml, newState.selectedTab)
+  return GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(newState, newState.detailsVirtualDom, newState.selectedTab)
 }
