@@ -11,6 +11,7 @@ export interface ExtensionDetailState {
   readonly changelogVirtualDom: readonly VirtualDomNode[]
   readonly description: string
   readonly detailsVirtualDom: readonly VirtualDomNode[]
+  readonly displaySize: string
   readonly entries: readonly MoreInfoEntry[]
   readonly extension: any
   readonly features: readonly Feature[]
@@ -25,8 +26,8 @@ export interface ExtensionDetailState {
   readonly scrollToTopButtonEnabled: boolean
   readonly secondEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
-  readonly themesMarkdownDom: readonly VirtualDomNode[]
   readonly selectedTab: string
+  readonly themesMarkdownDom: readonly VirtualDomNode[]
   readonly settingsButtonEnabled: boolean
   readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number
