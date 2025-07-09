@@ -63,6 +63,7 @@ export const getExtensionDetailVirtualDom = async (
       newState.scrollToTopButtonEnabled,
       newState.categories,
       newState.resources,
+      newState.showAdditionalDetailsBreakpoint,
     )),
   ]
   return dom

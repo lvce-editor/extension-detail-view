@@ -3,6 +3,7 @@ import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetail
 
 export const create = (uid: number, uri: string, x: number, y: number, width: number, height: number, platform: number, assetDir: string): void => {
   const state: ExtensionDetailState = {
+<<<<<<< HEAD
     description: '',
     iconSrc: '',
     selectedFeature: '',
@@ -21,16 +22,36 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     baseUrl: '',
     features: [],
     folderSize: 0,
+=======
+>>>>>>> origin/main
     assetDir: assetDir || '',
+    baseUrl: '',
+    builtinExtensionsBadgeEnabled: true,
+    categories: [],
+    changelogVirtualDom: [],
+    description: '',
+    detailsVirtualDom: [],
+    entries: [],
+    extension: {},
+    features: [],
+    featuresVirtualDom: [],
+    folderSize: 0,
+    iconSrc: '',
+    name: '',
     platform,
     readmeScrollTop: 0,
-    settingsButtonEnabled: false,
-    builtinExtensionsBadgeEnabled: true,
+    resources: [],
+    sanitizedReadmeHtml: '',
     scrollToTopButtonEnabled: false,
-    // Initialize viewmodel properties as empty arrays
-    detailsVirtualDom: [],
-    featuresVirtualDom: [],
-    changelogVirtualDom: [],
+    secondEntries: [],
+    selectedFeature: '',
+    selectedFeatureMarkdownDom: '',
+    selectedTab: '',
+    settingsButtonEnabled: false,
+    showAdditionalDetailsBreakpoint: 600,
+    sizeOnDisk: 0,
+    uri,
+    width,
   }
   ExtensionDetailStates.set(uid, state, state)
 }

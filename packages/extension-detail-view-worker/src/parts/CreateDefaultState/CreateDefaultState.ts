@@ -2,11 +2,21 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 
 export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}): ExtensionDetailState => {
   return {
-    selectedTab: '',
-    selectedFeature: '',
-    sanitizedReadmeHtml: '',
+    assetDir: '/test/asset/dir',
+    baseUrl: '',
+    builtinExtensionsBadgeEnabled: true,
+    categories: [],
+    changelogVirtualDom: [],
+    description: '',
+    detailsVirtualDom: [],
+    entries: [],
+    extension: {},
+    features: [],
+    featuresVirtualDom: [],
+    folderSize: 0,
     iconSrc: '',
     name: '',
+<<<<<<< HEAD
     description: '',
     sizeOnDisk: 0,
     width: 500,
@@ -21,15 +31,22 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     features: [],
     folderSize: 0,
     assetDir: '/test/asset/dir',
+=======
+>>>>>>> origin/main
     platform: 0,
     readmeScrollTop: 0,
-    settingsButtonEnabled: false,
-    builtinExtensionsBadgeEnabled: true,
+    resources: [],
+    sanitizedReadmeHtml: '',
     scrollToTopButtonEnabled: false,
-    // Initialize viewmodel properties as empty arrays
-    detailsVirtualDom: [],
-    featuresVirtualDom: [],
-    changelogVirtualDom: [],
+    secondEntries: [],
+    selectedFeature: '',
+    selectedFeatureMarkdownDom: '',
+    selectedTab: '',
+    settingsButtonEnabled: false,
+    showAdditionalDetailsBreakpoint: 600,
+    sizeOnDisk: 0,
+    uri: 'extension-detail://test-extension',
+    width: 500,
     ...overrides,
   }
 }
