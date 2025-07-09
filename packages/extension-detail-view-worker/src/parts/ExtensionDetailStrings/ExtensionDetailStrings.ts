@@ -116,3 +116,7 @@ export const notImplemented = (): string => {
 export const uninstall = (): string => {
   return I18nString.i18nString(UiStrings.Uninstall)
 }
+
+export const scrollToTop = (): string => {
+  return I18nString.i18nString(UiStrings.ScrollToTop)
+}
