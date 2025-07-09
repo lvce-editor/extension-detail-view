@@ -1,0 +1,11 @@
+{
+  "id": "test.extension-changelog",
+  "name": "Test",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ]
+}
