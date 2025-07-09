@@ -1,4 +1,6 @@
+import type { Category } from '../Category/Category.ts'
 import type { Feature } from '../Feature/Feature.ts'
+import type { Resource } from '../Resource/Resource.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as GetChangelogVirtualDom from '../GetChangelogVirtualDom/GetChangelogVirtualDom.ts'
 import * as GetDetailsVirtualDom from '../GetDetailsVirtualDom/GetDetailsVirtualDom.ts'
@@ -17,10 +19,12 @@ export const getExtensionDetailContentVirtualDom = async (
   extension: any,
   width: number,
   scrollToTopButtonEnabled: boolean,
+  categories: readonly Category[],
+  resources: readonly Resource[],
 ): Promise<readonly VirtualDomNode[]> => {
   switch (selectedTab) {
     case InputName.Details:
-      return await GetDetailsVirtualDom.getDetailsVirtualDom(sanitizedReadmeHtml, displaySize, extensionId, extensionVersion, width, extension.uri || extension.path || '', scrollToTopButtonEnabled)
+      return await GetDetailsVirtualDom.getDetailsVirtualDom(sanitizedReadmeHtml, displaySize, extensionId, extensionVersion, width, extension.uri || extension.path || '', scrollToTopButtonEnabled, categories, resources)
     case InputName.Features:
       return await GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, extension)
     case InputName.Changelog:
