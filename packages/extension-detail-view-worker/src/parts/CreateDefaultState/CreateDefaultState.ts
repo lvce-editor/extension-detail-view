@@ -25,7 +25,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     readmeScrollTop: 0,
     settingsButtonEnabled: false,
     builtinExtensionsBadgeEnabled: true,
-    scrollToTopButtonEnabled: true,
+    scrollToTopButtonEnabled: false,
     ...overrides,
   }
 }
