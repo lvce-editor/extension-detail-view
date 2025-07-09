@@ -13,7 +13,7 @@ test('returns details tab handler', () => {
 
 test('returns features tab handler', () => {
   const handler = GetSelectTabHandler.getSelectTabHandler(InputName.Features)
-  expect(handler).toBe(SelectTabFeatures.selectTab)
+  expect(handler).toBe(SelectTabFeatures.selectTabFeatures)
 })
 
 test('returns changelog tab handler', () => {

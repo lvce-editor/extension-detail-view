@@ -10,7 +10,7 @@ export const getSelectTabHandler = (selectedTab: string): SelectTabHandler => {
     case InputName.Details:
       return SelectTabDetails.selectTabDetails
     case InputName.Features:
-      return SelectTabFeatures.selectTab
+      return SelectTabFeatures.selectTabFeatures
     case InputName.Changelog:
       return SelectTabChangelog.selectTabChangelog
     default:

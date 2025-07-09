@@ -3,7 +3,7 @@ import * as GetThemeMarkdown from '../GetThemeMarkdown/GetThemeMarkdown.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
-export const selectTab = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
+export const selectTabFeatures = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
   const { extension, baseUrl } = state
   const { colorThemes, iconThemes, productIconThemes } = extension
   // TODO do this depending on featured tab content
