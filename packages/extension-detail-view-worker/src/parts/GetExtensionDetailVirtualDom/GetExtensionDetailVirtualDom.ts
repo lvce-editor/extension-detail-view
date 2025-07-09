@@ -39,7 +39,7 @@ export const getExtensionDetailVirtualDom = async (
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(newState.hasColorTheme, newState.isBuiltin)
   const { name, iconSrc, description } = newState
-  const badge = GetBadge.getBadge(extension, newState)
+  const badge = GetBadge.getBadge(newState.isBuiltin, newState.builtinExtensionsBadgeEnabled) // TODO compute in loadContent
   const { settingsButtonEnabled } = newState
   const dom = [
     {
