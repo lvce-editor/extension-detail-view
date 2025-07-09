@@ -9,10 +9,13 @@ export interface ExtensionDetailState {
   readonly baseUrl: string
   readonly builtinExtensionsBadgeEnabled: boolean
   readonly categories: readonly Category[]
+  readonly changelogVirtualDom: readonly VirtualDomNode[]
   readonly description: string
+  readonly detailsVirtualDom: readonly VirtualDomNode[]
   readonly entries: readonly MoreInfoEntry[]
   readonly extension: any
   readonly features: readonly Feature[]
+  readonly featuresVirtualDom: readonly VirtualDomNode[]
   readonly folderSize: number
   readonly iconSrc: string
   readonly name: string
@@ -20,18 +23,14 @@ export interface ExtensionDetailState {
   readonly readmeScrollTop: number
   readonly resources: readonly Resource[]
   readonly sanitizedReadmeHtml: string
+  readonly scrollToTopButtonEnabled: boolean
   readonly secondEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
   readonly selectedFeatureMarkdownDom: string
   readonly selectedTab: string
   readonly settingsButtonEnabled: boolean
-  readonly scrollToTopButtonEnabled: boolean
   readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number
   readonly uri: string
   readonly width: number
-  // Viewmodel properties for each tab's virtual DOM
-  readonly detailsVirtualDom: readonly VirtualDomNode[]
-  readonly featuresVirtualDom: readonly VirtualDomNode[]
-  readonly changelogVirtualDom: readonly VirtualDomNode[]
 }
