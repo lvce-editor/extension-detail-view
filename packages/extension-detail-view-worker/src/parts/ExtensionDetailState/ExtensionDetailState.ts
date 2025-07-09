@@ -26,6 +26,7 @@ export interface ExtensionDetailState {
   readonly selectedTab: string
   readonly settingsButtonEnabled: boolean
   readonly scrollToTopButtonEnabled: boolean
+  readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number
   readonly uri: string
   readonly width: number
