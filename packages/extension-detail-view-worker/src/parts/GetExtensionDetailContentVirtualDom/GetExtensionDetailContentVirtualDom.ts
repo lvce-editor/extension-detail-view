@@ -16,10 +16,11 @@ export const getExtensionDetailContentVirtualDom = async (
   selectedFeature: string,
   extension: any,
   width: number,
+  scrollToTopButtonEnabled: boolean,
 ): Promise<readonly VirtualDomNode[]> => {
   switch (selectedTab) {
     case InputName.Details:
-      return await GetDetailsVirtualDom.getDetailsVirtualDom(sanitizedReadmeHtml, displaySize, extensionId, extensionVersion, width, extension.uri || extension.path || '')
+      return await GetDetailsVirtualDom.getDetailsVirtualDom(sanitizedReadmeHtml, displaySize, extensionId, extensionVersion, width, extension.uri || extension.path || '', scrollToTopButtonEnabled)
     case InputName.Features:
       return await GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, extension)
     case InputName.Changelog:

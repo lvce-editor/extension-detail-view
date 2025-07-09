@@ -60,6 +60,7 @@ export const getExtensionDetailVirtualDom = async (
       selectedFeature,
       extension,
       width,
+      newState.scrollToTopButtonEnabled,
     )),
   ]
   return dom

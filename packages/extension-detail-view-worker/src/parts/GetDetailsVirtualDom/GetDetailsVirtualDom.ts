@@ -12,6 +12,7 @@ import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallati
 import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
 import { getResources } from '../GetResources/GetResources.ts'
+import * as GetScrollToTopVirtualDom from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 
 export const getDetailsVirtualDom = async (
   sanitizedReadmeHtml: string,
@@ -20,6 +21,7 @@ export const getDetailsVirtualDom = async (
   extensionVersion: string,
   width: number,
   extensionUri: string,
+  scrollToTopButtonEnabled: boolean,
 ): Promise<readonly VirtualDomNode[]> => {
   const firstHeading = ExtensionDetailStrings.installation()
   const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion, extensionUri)
@@ -39,6 +41,7 @@ export const getDetailsVirtualDom = async (
       childCount: childCount,
       role: AriaRoles.Panel,
     },
+    ...GetScrollToTopVirtualDom.getScrollToTopVirtualDom(scrollToTopButtonEnabled),
     ...(await GetMarkdownVirtualDom.getMarkdownVirtualDom(sanitizedReadmeHtml)),
     ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(
       showAdditionalDetails,
