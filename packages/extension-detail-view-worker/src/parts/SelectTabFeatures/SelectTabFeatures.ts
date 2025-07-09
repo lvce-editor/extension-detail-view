@@ -1,9 +1,9 @@
+import { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
-import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetThemeMarkdown from '../GetThemeMarkdown/GetThemeMarkdown.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
-import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 
 export const selectTabFeatures = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
   const { extension, baseUrl, selectedFeature } = state
@@ -22,6 +22,6 @@ export const selectTabFeatures = async (state: ExtensionDetailState): Promise<Ex
   return {
     ...state,
     selectedTab: InputName.Features,
-    themesMarkdownDom,
+    themesMarkdownDom: themesMarkdownDom,
   }
 }

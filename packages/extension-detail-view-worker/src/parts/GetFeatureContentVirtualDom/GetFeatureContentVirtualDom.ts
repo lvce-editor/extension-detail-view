@@ -11,13 +11,13 @@ import * as InputName from '../InputName/InputName.ts'
 
 export const getFeatureContentVirtualDom = async (
   features: readonly Feature[],
-  themesHtml: string,
+  themesDom: readonly VirtualDomNode[],
   selectedFeature: string,
   extension: any,
 ): Promise<readonly VirtualDomNode[]> => {
   switch (selectedFeature) {
     case InputName.Theme:
-      return await GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesHtml)
+      return await GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesDom)
     case InputName.Commands:
       return GetFeatureCommandsVirtualDom.getFeatureCommandsVirtualDom(extension)
     case InputName.JsonValidation:
