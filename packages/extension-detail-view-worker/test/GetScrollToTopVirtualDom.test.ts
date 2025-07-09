@@ -16,5 +16,6 @@ test('getScrollToTopVirtualDom - returns button when enabled', () => {
     className: ClassNames.ScrollToTopButton,
     childCount: 0,
     onClick: DomEventListenerFunctions.HandleClickScrollToTop,
+    name: 'scrolltotop',
   }])
 })

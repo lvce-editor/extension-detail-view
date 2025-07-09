@@ -12,5 +12,6 @@ export const getScrollToTopVirtualDom = (scrollToTopButtonEnabled: boolean): rea
     className: ClassNames.ScrollToTopButton,
     childCount: 0,
     onClick: DomEventListenerFunctions.HandleClickScrollToTop,
+    name: 'scrolltotop',
   }]
 }
