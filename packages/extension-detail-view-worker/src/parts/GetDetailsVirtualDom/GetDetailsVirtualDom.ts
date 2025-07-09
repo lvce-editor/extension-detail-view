@@ -8,7 +8,6 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetAdditionalDetailsVirtualDom from '../GetAdditionalDetailsVirtualDom/GetAdditionalDetailsVirtualDom.ts'
 import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
-import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
 import * as GetScrollToTopVirtualDom from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 
