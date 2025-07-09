@@ -3,12 +3,10 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
-import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetVirtualDomChildCount from '../GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 
-export const getFeatureThemesVirtualDom = async (themesHtml: string): Promise<readonly VirtualDomNode[]> => {
-  const markdownDom = await GetMarkdownVirtualDom.getMarkdownVirtualDom(themesHtml)
-  const childCount = GetVirtualDomChildCount.getVirtualDomChildCount(markdownDom)
+export const getFeatureThemesVirtualDom = async (themesDom: readonly VirtualDomNode[]): Promise<readonly VirtualDomNode[]> => {
+  const childCount = GetVirtualDomChildCount.getVirtualDomChildCount(themesDom)
   const heading = ExtensionDetailStrings.theme()
   return [
     {
@@ -22,6 +20,6 @@ export const getFeatureThemesVirtualDom = async (themesHtml: string): Promise<re
       className: ClassNames.DefaultMarkdown,
       childCount,
     },
-    ...markdownDom,
+    ...themesDom,
   ]
 }

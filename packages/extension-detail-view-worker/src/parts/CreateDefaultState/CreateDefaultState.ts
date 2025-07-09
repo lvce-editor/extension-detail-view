@@ -23,7 +23,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     scrollToTopButtonEnabled: false,
     secondEntries: [],
     selectedFeature: '',
-    selectedFeatureMarkdownDom: '',
+    themesMarkdownDom: [],
     selectedTab: '',
     settingsButtonEnabled: false,
     showAdditionalDetailsBreakpoint: 600,

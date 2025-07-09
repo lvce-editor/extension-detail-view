@@ -26,7 +26,7 @@ export interface ExtensionDetailState {
   readonly scrollToTopButtonEnabled: boolean
   readonly secondEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
-  readonly selectedFeatureMarkdownDom: string
+  readonly themesMarkdownDom: readonly VirtualDomNode[]
   readonly selectedTab: string
   readonly settingsButtonEnabled: boolean
   readonly showAdditionalDetailsBreakpoint: number

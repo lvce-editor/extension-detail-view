@@ -25,7 +25,7 @@ export const getExtensionDetailVirtualDom = async (
   // 2. view model
   // 3. virtual dom
   // 4. dom
-  const themesHtml = newState?.selectedFeatureMarkdownDom || ''
+  const themesHtml = newState.themesMarkdownDom
   const selectedFeature = newState?.selectedFeature || ''
   const extension = newState?.extension || {}
   const features = GetFeatures.getFeatures(selectedFeature, extension)

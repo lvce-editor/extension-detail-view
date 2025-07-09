@@ -24,7 +24,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     scrollToTopButtonEnabled: false,
     secondEntries: [],
     selectedFeature: '',
-    selectedFeatureMarkdownDom: '',
+    themesMarkdownDom: [],
     selectedTab: '',
     settingsButtonEnabled: false,
     showAdditionalDetailsBreakpoint: 600,
