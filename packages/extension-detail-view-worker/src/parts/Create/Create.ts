@@ -10,6 +10,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     changelogVirtualDom: [],
     description: '',
     detailsVirtualDom: [],
+    displaySize: '',
     entries: [],
     extension: {},
     features: [],

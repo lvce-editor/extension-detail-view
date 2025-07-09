@@ -6,6 +6,7 @@ import * as ExtensionDisplay from '../ExtensionDisplay/ExtensionDisplay.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import * as GetCategories from '../GetCategories/GetCategories.ts'
+import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
 import * as GetEntries from '../GetEntries/GetEntries.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
@@ -39,6 +40,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const features = GetFeatures.getFeatures(selectedFeature, extension)
   const extensionUri = extension.uri || extension.path
   const folderSize = await GetFolderSize.getFolderSize(extensionUri)
+  const displaySize = GetDisplaySize.getDisplaySize(size)
   const entries: readonly MoreInfoEntry[] = GetEntries.getEntries()
   const secondEntries: readonly MoreInfoEntry[] = GetSecondEntries.getSecondEntries()
   const categories: readonly Category[] = GetCategories.getCategories()
@@ -60,5 +62,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     baseUrl,
     features,
     folderSize,
+    displaySize,
   }
 }
