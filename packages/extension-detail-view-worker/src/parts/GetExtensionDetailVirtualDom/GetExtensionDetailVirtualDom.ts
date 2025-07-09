@@ -4,7 +4,6 @@ import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetBadge from '../GetBadge/GetBadge.ts'
-import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
 import * as GetExtensionDetailButtons from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailContentVirtualDom from '../GetExtensionDetailContentVirtualDom/GetExtensionDetailContentVirtualDom.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
@@ -29,10 +28,9 @@ export const getExtensionDetailVirtualDom = async (
   const selectedFeature = newState?.selectedFeature || ''
   const extension = newState?.extension || {}
   const features = GetFeatures.getFeatures(selectedFeature, extension)
-  const size = newState.folderSize || 0
   const extensionId = newState?.extension?.id || 'n/a'
   const extensionVersion = newState?.extension?.version || 'n/a'
-  const displaySize = GetDisplaySize.getDisplaySize(size)
+  const { displaySize } = newState
   const width = newState?.width || 500
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeValue = GetViewletSize.getViewletSize(newState?.width || 0)
