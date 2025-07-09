@@ -6,7 +6,6 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
 export interface ExtensionDetailState {
   readonly assetDir: string
-  readonly baseUrl: string
   readonly builtinExtensionsBadgeEnabled: boolean
   readonly categories: readonly Category[]
   readonly changelogVirtualDom: readonly VirtualDomNode[]
@@ -33,4 +32,5 @@ export interface ExtensionDetailState {
   readonly sizeOnDisk: number
   readonly uri: string
   readonly width: number
+  readonly baseUrl: string
 }
