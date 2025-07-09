@@ -21,6 +21,9 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const { uri, width, assetDir } = state
   const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
+  if (!extension) {
+    throw new Error(`extension not found: ${id}`)
+  }
   const readmeContent = await GetExtensionReadme.loadReadmeContent(extension.path)
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
