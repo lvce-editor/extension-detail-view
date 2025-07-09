@@ -11,6 +11,7 @@ import * as GetEntries from '../GetEntries/GetEntries.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
+import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetResources from '../GetResources/GetResources.ts'
 import * as GetSecondEntries from '../GetSecondEntries/GetSecondEntries.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
@@ -32,6 +33,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   })
   const sanitizedReadmeHtml = readmeHtml
   const normalizedReadmeHtml = sanitizedReadmeHtml
+  const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml)
   const iconSrc = ExtensionDisplay.getIcon(extension, platform, assetDir)
   const description = ExtensionDisplay.getDescription(extension)
   const name = ExtensionDisplay.getName(extension)
@@ -51,6 +53,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     selectedTab,
     sanitizedReadmeHtml: normalizedReadmeHtml,
     iconSrc,
+    detailsVirtualDom,
     name,
     description,
     sizeOnDisk: size,
