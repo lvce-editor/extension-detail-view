@@ -46,11 +46,11 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const secondEntries: readonly MoreInfoEntry[] = GetSecondEntries.getSecondEntries()
   const categories: readonly Category[] = GetCategories.getCategories()
   const resources: readonly Resource[] = GetResources.getResources()
+  const sizeValue = GetViewletSize.getViewletSize(width || 0)
   const isBuiltin = extension?.builtin
   const hasColorTheme = HasColorThemes.hasColorThemes(extension)
   return {
     ...state,
-    selectedTab,
     baseUrl,
     categories,
     description,
@@ -66,6 +66,8 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     name,
     resources,
     secondEntries,
+    selectedTab,
     sizeOnDisk: size,
+    sizeValue,
   }
 }
