@@ -9,7 +9,7 @@ import * as InputName from '../InputName/InputName.ts'
 
 export const getExtensionDetailContentVirtualDom = async (
   sanitizedReadmeHtml: string,
-  themesHtml: string,
+  themesDom: readonly VirtualDomNode[],
   selectedTab: string,
   features: readonly Feature[],
   displaySize: string,
@@ -38,7 +38,7 @@ export const getExtensionDetailContentVirtualDom = async (
         breakpoint,
       )
     case InputName.Features:
-      return await GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, extension)
+      return await GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesDom, selectedFeature, extension)
     case InputName.Changelog:
       return GetChangelogVirtualDom.getChangelogVirtualDom()
     default:

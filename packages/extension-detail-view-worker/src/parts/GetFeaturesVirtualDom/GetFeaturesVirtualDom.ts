@@ -10,7 +10,7 @@ import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getFeaturesVirtualDom = async (
   features: readonly Feature[],
-  themesHtml: string,
+  themesDom: readonly VirtualDomNode[],
   selectedFeature: string,
   extension: any,
 ): Promise<readonly VirtualDomNode[]> => {
@@ -37,6 +37,6 @@ export const getFeaturesVirtualDom = async (
       className: MergeClassNames.mergeClassNames(ClassNames.Sash, ClassNames.SashVertical),
       childCount: 0,
     },
-    ...(await GetFeatureContentVirtualDom.getFeatureContentVirtualDom(features, themesHtml, selectedFeature, extension)),
+    ...(await GetFeatureContentVirtualDom.getFeatureContentVirtualDom(features, themesDom, selectedFeature, extension)),
   ]
 }
