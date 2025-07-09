@@ -12,7 +12,7 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   const featureTheme = Locator('.Feature[name="Theme"]')
 
   // act
-  await featureTheme.click()
+  await featureTheme.click() // TODO use page object model
 
   // assert
   const content = Locator('.FeatureContent')
