@@ -8,11 +8,14 @@ export const getScrollToTopVirtualDom = (scrollToTopButtonEnabled: boolean): rea
   if (!scrollToTopButtonEnabled) {
     return []
   }
-  return [{
-    type: VirtualDomElements.Button,
-    className: ClassNames.ScrollToTopButton,
-    childCount: 0,
-    onClick: DomEventListenerFunctions.HandleClickScrollToTop,
-    ariaLabel: ExtensionDetailStrings.scrollToTop(),
-  }]
+  return [
+    {
+      type: VirtualDomElements.Button,
+      className: ClassNames.ScrollToTopButton,
+      childCount: 0,
+      onClick: DomEventListenerFunctions.HandleClickScrollToTop,
+      ariaLabel: ExtensionDetailStrings.scrollToTop(),
+      name: 'scrolltotop',
+    },
+  ]
 }

@@ -12,11 +12,14 @@ test('getScrollToTopVirtualDom - returns empty array when disabled', () => {
 
 test('getScrollToTopVirtualDom - returns button when enabled', () => {
   const result = GetScrollToTopVirtualDom.getScrollToTopVirtualDom(true)
-  expect(result).toEqual([{
-    type: VirtualDomElements.Button,
-    className: ClassNames.ScrollToTopButton,
-    childCount: 0,
-    onClick: DomEventListenerFunctions.HandleClickScrollToTop,
-    ariaLabel: ExtensionDetailStrings.scrollToTop(),
-  }])
+  expect(result).toEqual([
+    {
+      type: VirtualDomElements.Button,
+      className: ClassNames.ScrollToTopButton,
+      childCount: 0,
+      onClick: DomEventListenerFunctions.HandleClickScrollToTop,
+      ariaLabel: ExtensionDetailStrings.scrollToTop(),
+      name: 'scrolltotop',
+    },
+  ])
 })
