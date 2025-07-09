@@ -1,10 +1,12 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const test: Test = async ({ Main, Locator, expect }) => {
+export const test: Test = async ({ Main, Locator, expect, Extension }) => {
   // arrange
+  const uri = new URL('../fixtures/sample.extension-basics', import.meta.url).toString()
+  await Extension.addWebExtension(uri)
 
   // act
-  await Main.openUri('extension-detail://builtin.theme-ayu')
+  await Main.openUri('extension-detail://builtin.extension-basics')
 
   // assert
   const detailView = Locator('.ExtensionDetail')

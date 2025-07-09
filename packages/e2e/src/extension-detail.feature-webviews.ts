@@ -2,11 +2,11 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-webviews'
 
-export const test: Test = async ({ Main, Locator, expect, Extension }) => {
+export const test: Test = async ({ Main, Locator, expect, Extension, ExtensionDetail }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-webviews')
   await Extension.addWebExtension(extensionUri)
-  await Main.openUri('extension-detail://test.webviews-test')
+  await ExtensionDetail.open('test.webviews-test')
   const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
   const featureWebViews = Locator('.Feature[name="WebViews"]')
   await tabFeatures.click()
