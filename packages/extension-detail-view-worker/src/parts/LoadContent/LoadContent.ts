@@ -47,6 +47,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const secondEntries: readonly MoreInfoEntry[] = GetSecondEntries.getSecondEntries()
   const categories: readonly Category[] = GetCategories.getCategories()
   const resources: readonly Resource[] = GetResources.getResources()
+  const sizeValue = GetViewletSize.getViewletSize(width || 0)
 
   return {
     ...state,
@@ -66,5 +67,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     features,
     folderSize,
     displaySize,
+    sizeValue,
   }
 }
