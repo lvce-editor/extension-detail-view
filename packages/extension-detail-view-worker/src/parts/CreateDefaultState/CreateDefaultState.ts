@@ -9,6 +9,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     changelogVirtualDom: [],
     description: '',
     detailsVirtualDom: [],
+    displaySize: '',
     entries: [],
     extension: {},
     features: [],
