@@ -11,7 +11,7 @@ export const getExtensionDetailHeaderActionsVirtualDom = (
 ): readonly VirtualDomNode[] => {
   const enabledButtons = buttonDefs.filter((btn) => btn.enabled)
   const buttons: readonly VirtualDomNode[] = enabledButtons.flatMap((btn: ExtensionDetailButton) =>
-    GetButtonVirtualDom.getButtonVirtualDom(btn.label, btn.onClick),
+    GetButtonVirtualDom.getButtonVirtualDom(btn.label, btn.onClick, btn.name),
   )
   const settingsButton: readonly VirtualDomNode[] = GetSettingsButtonVirtualDom.getSettingsButtonVirtualDom(settingsButtonEnabled)
   const dom: readonly VirtualDomNode[] = [
