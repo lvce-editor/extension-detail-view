@@ -27,6 +27,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     settingsButtonEnabled: false,
     builtinExtensionsBadgeEnabled: true,
     scrollToTopButtonEnabled: false,
+    showAdditionalDetailsBreakpoint: 600,
     // Initialize viewmodel properties as empty arrays
     detailsVirtualDom: [],
     featuresVirtualDom: [],
