@@ -26,7 +26,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     readmeScrollTop: 0,
     settingsButtonEnabled: false,
     builtinExtensionsBadgeEnabled: true,
-    scrollToTopButtonEnabled: true,
+    scrollToTopButtonEnabled: false,
   }
   ExtensionDetailStates.set(uid, state, state)
 }
