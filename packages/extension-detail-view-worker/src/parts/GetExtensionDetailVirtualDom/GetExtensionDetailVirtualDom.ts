@@ -10,7 +10,6 @@ import * as GetExtensionDetailHeaderVirtualDom from '../GetExtensionDetailHeader
 import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetTabsVirtualDom from '../GetTabsVirtualDom/GetTabsVirtualDom.ts'
-import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as ViewletSizeMap from '../ViewletSizeMap/ViewletSizeMap.ts'
 
