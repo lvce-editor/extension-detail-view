@@ -1,4 +1,4 @@
-import { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
+import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetThemeMarkdown from '../GetThemeMarkdown/GetThemeMarkdown.ts'
