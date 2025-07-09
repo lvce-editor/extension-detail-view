@@ -7,11 +7,9 @@ import * as AriaRoles from '../AriaRoles/AriaRoles.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetAdditionalDetailsVirtualDom from '../GetAdditionalDetailsVirtualDom/GetAdditionalDetailsVirtualDom.ts'
-import { getCategories } from '../GetCategories/GetCategories.ts'
 import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
 import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
-import { getResources } from '../GetResources/GetResources.ts'
 import * as GetScrollToTopVirtualDom from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 
 export const getDetailsVirtualDom = async (
@@ -22,15 +20,15 @@ export const getDetailsVirtualDom = async (
   width: number,
   extensionUri: string,
   scrollToTopButtonEnabled: boolean,
+  categories: readonly Category[],
+  resources: readonly Resource[],
 ): Promise<readonly VirtualDomNode[]> => {
   const firstHeading = ExtensionDetailStrings.installation()
   const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion, extensionUri)
   const secondHeading = ExtensionDetailStrings.marketplace()
   const secondEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries()
   const thirdHeading = ExtensionDetailStrings.categories()
-  const categories: readonly Category[] = getCategories()
   const fourthHeading = ExtensionDetailStrings.resources()
-  const resources: readonly Resource[] = getResources()
   const showAdditionalDetailsBreakpoint = 600
   const showAdditionalDetails = width > showAdditionalDetailsBreakpoint
   const childCount = showAdditionalDetails ? 2 : 1
