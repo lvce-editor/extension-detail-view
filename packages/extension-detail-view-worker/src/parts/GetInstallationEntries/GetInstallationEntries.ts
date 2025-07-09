@@ -1,7 +1,12 @@
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 
-export const getInstallationEntries = (displaySize: string, extensionId: string, extensionVersion: string, extensionUri: string): readonly MoreInfoEntry[] => {
+export const getInstallationEntries = (
+  displaySize: string,
+  extensionId: string,
+  extensionVersion: string,
+  extensionUri: string,
+): readonly MoreInfoEntry[] => {
   const entries: readonly MoreInfoEntry[] = [
     {
       key: 'Identifier',
