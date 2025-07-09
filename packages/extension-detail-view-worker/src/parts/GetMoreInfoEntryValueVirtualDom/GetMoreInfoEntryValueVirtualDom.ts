@@ -2,6 +2,7 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const getTag = (onClick: string | undefined, code: boolean | undefined): number => {
@@ -17,10 +18,10 @@ const getTag = (onClick: string | undefined, code: boolean | undefined): number 
 
 const getClassName = (onClick: string | undefined, code: boolean | undefined): string => {
   if (onClick) {
-    return ClassNames.MoreInfoEntryValue + ' Link'
+    return MergeClassNames.mergeClassNames(ClassNames.MoreInfoEntryValue, ClassNames.Link)
   }
   if (code) {
-    return ClassNames.MoreInfoEntryValue + ' Code'
+    return MergeClassNames.mergeClassNames(ClassNames.MoreInfoEntryValue, ClassNames.Code)
   }
   return ClassNames.MoreInfoEntryValue
 }
