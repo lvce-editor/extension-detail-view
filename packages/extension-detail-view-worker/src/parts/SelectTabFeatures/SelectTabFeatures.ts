@@ -10,7 +10,7 @@ export const selectTabFeatures = async (state: ExtensionDetailState): Promise<Ex
 
   // Only generate theme markdown when the selected feature is actually "Theme"
   let themesMarkdownDom: readonly VirtualDomNode[] = []
-  if (selectedFeature === InputName.Theme) {
+  if (!selectedFeature || selectedFeature === InputName.Theme) {
     const { colorThemes, iconThemes, productIconThemes } = extension
     const markdown = GetThemeMarkdown.getThemeMarkdown(colorThemes || [], iconThemes || [], productIconThemes || [])
     const rendered = await RenderMarkdown.renderMarkdown(markdown, {
