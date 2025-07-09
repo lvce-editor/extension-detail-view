@@ -9,8 +9,7 @@ const getTag = (onClick: string | undefined, code: boolean | undefined): number 
     return VirtualDomElements.A
   }
   if (code) {
-    // TODO use code tag
-    return VirtualDomElements.Div
+    return VirtualDomElements.Code
   }
   return VirtualDomElements.Div
 }
