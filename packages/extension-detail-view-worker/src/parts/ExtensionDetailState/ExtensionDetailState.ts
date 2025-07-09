@@ -16,7 +16,9 @@ export interface ExtensionDetailState {
   readonly features: readonly Feature[]
   readonly featuresVirtualDom: readonly VirtualDomNode[]
   readonly folderSize: number
+  readonly hasColorTheme: boolean
   readonly iconSrc: string
+  readonly isBuiltin: boolean
   readonly name: string
   readonly platform: number
   readonly readmeScrollTop: number
@@ -25,11 +27,11 @@ export interface ExtensionDetailState {
   readonly scrollToTopButtonEnabled: boolean
   readonly secondEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
-  readonly themesMarkdownDom: readonly VirtualDomNode[]
   readonly selectedTab: string
   readonly settingsButtonEnabled: boolean
   readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number
+  readonly themesMarkdownDom: readonly VirtualDomNode[]
   readonly uri: string
   readonly width: number
   readonly baseUrl: string

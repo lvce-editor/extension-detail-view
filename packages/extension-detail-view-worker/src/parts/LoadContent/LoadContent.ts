@@ -13,6 +13,7 @@ import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
 import * as GetResources from '../GetResources/GetResources.ts'
 import * as GetSecondEntries from '../GetSecondEntries/GetSecondEntries.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
+import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
@@ -43,7 +44,8 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const secondEntries: readonly MoreInfoEntry[] = GetSecondEntries.getSecondEntries()
   const categories: readonly Category[] = GetCategories.getCategories()
   const resources: readonly Resource[] = GetResources.getResources()
-
+  const isBuiltin = !extension?.builtin
+  const hasColorTheme = HasColorThemes.hasColorThemes(extension)
   return {
     ...state,
     selectedTab,
@@ -60,5 +62,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     baseUrl,
     features,
     folderSize,
+    hasColorTheme,
+    isBuiltin,
   }
 }
