@@ -5,6 +5,7 @@ import * as Dispose from '../Dispose/Dispose.ts'
 import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
+import * as HandleClickCategory from '../HandleClickCategory/HandleClickCategory.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
 import * as HandleClickFeatures from '../HandleClickFeatures/HandleClickFeatures.ts'
 import * as HandleClickScrollToTop from '../HandleClickScrollToTop/HandleClickScrollToTop.ts'
@@ -29,6 +30,7 @@ export const commandMap = {
   'ExtensionDetail.dispose': Dispose.dispose,
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
+  'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
   'ExtensionDetail.handleClickScrollToTop': WrapCommand.wrapCommand(HandleClickScrollToTop.handleClickScrollToTop),
   'ExtensionDetail.handleClickSettings': WrapCommand.wrapCommand(HandleClickSettings.handleClickSettings),

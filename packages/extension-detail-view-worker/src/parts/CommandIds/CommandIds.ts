@@ -1,5 +1,6 @@
 export const commandIds = [
   'getMenuEntries',
+  'handleClickCategory',
   'handleClickDisable',
   'handleClickScrollToTop',
   'handleClickSettings',

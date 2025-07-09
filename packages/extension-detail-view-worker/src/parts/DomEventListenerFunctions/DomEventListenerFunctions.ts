@@ -1,3 +1,4 @@
+export const HandleClickCategory = 'handleClickCategory'
 export const HandleClickDisable = 'handleClickDisable'
 export const HandleClickScrollToTop = 'handleClickScrollToTop'
 export const HandleClickSetColorTheme = 'handleClickSetColorTheme'
