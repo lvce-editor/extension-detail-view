@@ -11,8 +11,6 @@ export const getFeatureDetailsHandler = (featureName: string): FeatureDetailsHan
       return getFeatureDetailsCommand
     case InputName.JsonValidation:
       return getFeatureDetailsJsonValidation
-    case InputName.JsonValidation:
-      return getFeatureDetailsJsonValidation
     case InputName.WebViews:
       return getFeatureDetailsWebView
     default:
