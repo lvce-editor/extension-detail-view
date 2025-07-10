@@ -6,7 +6,7 @@ import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 test('getFeatureDetailsTheme - extension with themes', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'Markdown.renderMarkdown') {
         return '<h1>Color Themes</h1><p>Theme content</p>'
       }
@@ -34,7 +34,7 @@ test('getFeatureDetailsTheme - extension with themes', async () => {
 test('getFeatureDetailsTheme - extension without themes', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'Markdown.renderMarkdown') {
         return ''
       }
@@ -58,7 +58,7 @@ test('getFeatureDetailsTheme - extension without themes', async () => {
 test('getFeatureDetailsTheme - extension with null themes', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'Markdown.renderMarkdown') {
         return ''
       }
