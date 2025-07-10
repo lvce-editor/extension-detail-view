@@ -1,11 +1,12 @@
 import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loadContent - successful load', async () => {
-  const mockExtension = {
+  const mockExtension: any = {
     id: 'test-extension',
     name: 'Test Extension',
     description: 'A test extension',
@@ -41,13 +42,13 @@ test('loadContent - successful load', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = createDefaultState({
+  const state: ExtensionDetailState = createDefaultState({
     uri: 'extension-detail://test-extension',
     width: 800,
     assetDir: '/test/assets',
   })
 
-  const result = await LoadContent.loadContent(state, 1, {})
+  const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
   expect(result.extension).toEqual(mockExtension)
   expect(result.name).toBe('Test Extension')
@@ -81,7 +82,7 @@ test('loadContent - extension not found', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = createDefaultState({
+  const state: ExtensionDetailState = createDefaultState({
     uri: 'extension-detail://non-existent-extension',
   })
 
@@ -89,7 +90,7 @@ test('loadContent - extension not found', async () => {
 })
 
 test('loadContent - with builtin extension', async () => {
-  const mockExtension = {
+  const mockExtension: any = {
     id: 'builtin-extension',
     name: 'Builtin Extension',
     description: 'A builtin extension',
@@ -124,18 +125,18 @@ test('loadContent - with builtin extension', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = createDefaultState({
+  const state: ExtensionDetailState = createDefaultState({
     uri: 'extension-detail://builtin-extension',
   })
 
-  const result = await LoadContent.loadContent(state, 1, {})
+  const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
   expect(result.isBuiltin).toBe(true)
   expect(result.extension).toEqual(mockExtension)
 })
 
 test('loadContent - with saved state', async () => {
-  const mockExtension = {
+  const mockExtension: any = {
     id: 'test-extension',
     name: 'Test Extension',
     description: 'A test extension',
@@ -170,23 +171,23 @@ test('loadContent - with saved state', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = createDefaultState({
+  const state: ExtensionDetailState = createDefaultState({
     uri: 'extension-detail://test-extension',
   })
 
-  const savedState = {
+  const savedState: any = {
     selectedFeature: 'commands',
     selectedTab: 'details',
   }
 
-  const result = await LoadContent.loadContent(state, 1, savedState)
+  const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, savedState)
 
   expect(result.selectedFeature).toBe('')
   expect(result.selectedTab).toBe('details')
 })
 
 test('loadContent - with different platform', async () => {
-  const mockExtension = {
+  const mockExtension: any = {
     id: 'test-extension',
     name: 'Test Extension',
     description: 'A test extension',
@@ -222,11 +223,11 @@ test('loadContent - with different platform', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = createDefaultState({
+  const state: ExtensionDetailState = createDefaultState({
     uri: 'extension-detail://test-extension',
   })
 
-  const result = await LoadContent.loadContent(state, 2, {})
+  const result: ExtensionDetailState = await LoadContent.loadContent(state, 2, {})
 
   expect(result.extension).toEqual(mockExtension)
   expect(result.baseUrl).toBe('/remote/test/path/')
