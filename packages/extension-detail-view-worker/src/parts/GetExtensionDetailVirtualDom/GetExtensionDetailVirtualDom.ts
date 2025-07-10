@@ -7,7 +7,6 @@ import * as GetBadge from '../GetBadge/GetBadge.ts'
 import * as GetExtensionDetailButtons from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailContentVirtualDom from '../GetExtensionDetailContentVirtualDom/GetExtensionDetailContentVirtualDom.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
-import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetTabsVirtualDom from '../GetTabsVirtualDom/GetTabsVirtualDom.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
@@ -37,10 +36,10 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     iconSrc,
     description,
     detailsVirtualDom,
+    features,
+    extensionId,
+    extensionVersion,
   } = newState
-  const features = GetFeatures.getFeatures(selectedFeature, extension)
-  const extensionId = extension?.id || 'n/a'
-  const extensionVersion = extension?.version || 'n/a'
   const width = newState?.width || 500
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
