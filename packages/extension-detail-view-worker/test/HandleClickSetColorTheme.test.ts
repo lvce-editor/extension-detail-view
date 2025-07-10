@@ -61,11 +61,12 @@ test('handleClickSetColorTheme - extension with color theme', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = CreateDefaultState.createDefaultState({
+  const state = {
+    ...CreateDefaultState.createDefaultState(),
     extension: {
       colorThemes: [{ id: 'theme1', label: 'Theme 1' }],
     },
-  })
+  }
 
   const result = await HandleClickSetColorTheme.handleClickSetColorTheme(state)
   expect(result).toBe(state)
@@ -80,9 +81,10 @@ test('handleClickSetColorTheme - extension without color theme', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = CreateDefaultState.createDefaultState({
+  const state = {
+    ...CreateDefaultState.createDefaultState(),
     extension: {},
-  })
+  }
 
   const result = await HandleClickSetColorTheme.handleClickSetColorTheme(state)
   expect(result).toBe(state)
@@ -97,11 +99,12 @@ test('handleClickSetColorTheme - extension with empty color themes', async () =>
   })
   RendererWorker.set(mockRpc)
 
-  const state = CreateDefaultState.createDefaultState({
+  const state = {
+    ...CreateDefaultState.createDefaultState(),
     extension: {
       colorThemes: [],
     },
-  })
+  }
 
   const result = await HandleClickSetColorTheme.handleClickSetColorTheme(state)
   expect(result).toBe(state)
