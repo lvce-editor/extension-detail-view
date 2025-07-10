@@ -5,8 +5,8 @@ import * as SelectTabDefault from '../SelectTabDefault/SelectTabDefault.ts'
 import * as SelectTabDetails from '../SelectTabDetails/SelectTabDetails.ts'
 import * as SelectTabFeatures from '../SelectTabFeatures/SelectTabFeatures.ts'
 
-export const getSelectTabHandler = (selectedTab: string): SelectTabHandler => {
-  switch (selectedTab) {
+export const getSelectTabHandler = (name: string): SelectTabHandler => {
+  switch (name) {
     case InputName.Details:
       return SelectTabDetails.selectTabDetails
     case InputName.Features:
