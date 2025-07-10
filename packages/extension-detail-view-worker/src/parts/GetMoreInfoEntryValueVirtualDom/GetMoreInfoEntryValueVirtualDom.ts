@@ -12,7 +12,7 @@ const getTag = (onClick: string | undefined, code: boolean | undefined): number 
   if (code) {
     return VirtualDomElements.Code
   }
-  return VirtualDomElements.Div
+  return VirtualDomElements.Dd
 }
 
 const getClassName = (onClick: string | undefined, code: boolean | undefined): string => {

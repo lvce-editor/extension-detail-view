@@ -5,7 +5,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const parentNode: VirtualDomNode = {
-  type: VirtualDomElements.Div,
+  type: VirtualDomElements.Dt,
   className: ClassNames.MoreInfoEntryKey,
   childCount: 1,
 }

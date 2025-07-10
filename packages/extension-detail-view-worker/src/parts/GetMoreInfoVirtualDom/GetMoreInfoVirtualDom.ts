@@ -7,7 +7,7 @@ import * as GetMoreInfoEntryVirtualDom from '../GetMoreInfoEntryVirtualDom/GetMo
 export const getMoreInfoVirtualDom = (items: readonly MoreInfoEntry[]): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Dl,
       className: ClassNames.MoreInfo,
       childCount: items.length,
     },

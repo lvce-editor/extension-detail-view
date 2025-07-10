@@ -8,7 +8,7 @@ test('more info virtual dom with entries', () => {
   const entries: readonly MoreInfoEntry[] = []
   expect(GetMoreInfoVirtualDom.getMoreInfoVirtualDom(entries)).toEqual([
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Dl,
       className: ClassNames.MoreInfo,
       childCount: 0,
     },
