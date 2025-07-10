@@ -12,6 +12,7 @@ export const {
   set,
   setColorTheme,
   uninstallExtension,
+  sendMessagePortToMarkdownWorker,
 } = RendererWorker
 
 // Temporary stub for clipboard image copy
