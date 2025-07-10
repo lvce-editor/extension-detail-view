@@ -35,6 +35,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     isBuiltin: false,
     sizeValue: 0,
     webViews: [],
+    settings: [],
   }
   ExtensionDetailStates.set(uid, state, state)
 }

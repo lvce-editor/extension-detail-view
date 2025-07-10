@@ -34,6 +34,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     isBuiltin: false,
     sizeValue: 0,
     webViews: [],
+    settings: [],
     ...overrides,
   }
 }
