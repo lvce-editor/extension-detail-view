@@ -12,6 +12,7 @@ export interface ExtensionDetailState {
   readonly builtinExtensionsBadgeEnabled: boolean
   readonly categories: readonly Category[]
   readonly changelogVirtualDom: readonly VirtualDomNode[]
+  readonly commands: readonly Row[]
   readonly description: string
   readonly detailsVirtualDom: readonly VirtualDomNode[]
   readonly displaySize: string
