@@ -1,6 +1,6 @@
 import { expect, jest, test } from '@jest/globals'
-import * as RenderMarkdown from '../src/parts/RenderMarkdown/RenderMarkdown.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import * as RenderMarkdown from '../src/parts/RenderMarkdown/RenderMarkdown.ts'
 
 const mockRpc = {
   invoke: jest.fn(),
