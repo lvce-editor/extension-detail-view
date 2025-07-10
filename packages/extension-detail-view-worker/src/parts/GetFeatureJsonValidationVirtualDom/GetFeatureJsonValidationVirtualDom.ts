@@ -1,4 +1,5 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { Row } from '../Row/Row.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
@@ -12,9 +13,9 @@ const parentNode: VirtualDomNode = {
   childCount: 2,
 }
 
-export const getFeatureJsonValidationVirtualDom = (extension: any): readonly VirtualDomNode[] => {
+export const getFeatureJsonValidationVirtualDom = (jsonValidation: readonly Row[]): readonly VirtualDomNode[] => {
   const heading = ExtensionDetailStrings.jsonValidation()
-  const tableInfo = GetJsonValidationTableEntries.getJsonValidationTableEntries(extension)
+  const tableInfo = GetJsonValidationTableEntries.getJsonValidationTableEntries(jsonValidation)
   return [
     parentNode,
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),

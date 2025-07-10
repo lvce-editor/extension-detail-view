@@ -2,10 +2,11 @@ import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetFeatureCommandsVirtualDom from '../src/parts/GetFeatureCommandsVirtualDom/GetFeatureCommandsVirtualDom.ts'
+import { getFeatureDetailsCommand } from '../src/parts/GetFeatureDetailsCommands/GetFeatureDetailsCommands.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('feature commands virtual dom with commands', () => {
-  const exension = {
+  const extension = {
     commands: [
       {
         label: 'Open File',
@@ -17,7 +18,8 @@ test('feature commands virtual dom with commands', () => {
       },
     ],
   }
-  expect(GetFeatureCommandsVirtualDom.getFeatureCommandsVirtualDom(exension)).toEqual([
+  const { commands } = getFeatureDetailsCommand(extension)
+  expect(GetFeatureCommandsVirtualDom.getFeatureCommandsVirtualDom(commands || [])).toEqual([
     {
       type: VirtualDomElements.Div,
       className: ClassNames.FeatureContent,

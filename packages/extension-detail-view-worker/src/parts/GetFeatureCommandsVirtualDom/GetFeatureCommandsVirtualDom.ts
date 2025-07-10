@@ -1,4 +1,5 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { Row } from '../Row/Row.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
@@ -7,9 +8,9 @@ import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeading
 import * as GetTableVirtualDom from '../GetTableVirtualDom/GetTableVirtualDom.ts'
 
 // TODO have typed view-model
-export const getFeatureCommandsVirtualDom = (extension: any): readonly VirtualDomNode[] => {
+export const getFeatureCommandsVirtualDom = (commands: readonly Row[]): readonly VirtualDomNode[] => {
   const heading = ExtensionDetailStrings.commands()
-  const tableInfo = GetCommandTableEntries.getCommandTableEntries(extension)
+  const tableInfo = GetCommandTableEntries.getCommandTableEntries(commands)
   return [
     {
       type: VirtualDomElements.Div,

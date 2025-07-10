@@ -1,5 +1,6 @@
-import type { Feature } from '../Feature/Feature.ts'
+import type { Row } from '../Row/Row.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import type { WebView } from '../WebView/WebView.ts'
 import * as GetFeatureCommandsVirtualDom from '../GetFeatureCommandsVirtualDom/GetFeatureCommandsVirtualDom.ts'
 import * as GetFeatureJsonValidationVirtualDom from '../GetFeatureJsonValidationVirtualDom/GetFeatureJsonValidationVirtualDom.ts'
 import * as GetFeatureNotImplementedVirtualDom from '../GetFeatureNotImplementedVirtualDom/GetFeatureNotImplementedVirtualDom.ts'
@@ -10,24 +11,26 @@ import * as GetFeatureWebViewsVirtualDom from '../GetFeatureWebViewsVirtualDom/G
 import * as InputName from '../InputName/InputName.ts'
 
 export const getFeatureContentVirtualDom = (
-  features: readonly Feature[],
   themesDom: readonly VirtualDomNode[],
   selectedFeature: string,
-  extension: any,
+  commands: readonly Row[],
+  jsonValidation: readonly Row[],
+  settings: readonly Row[],
+  webViews: readonly WebView[],
 ): readonly VirtualDomNode[] => {
   switch (selectedFeature) {
     case InputName.Theme:
       return GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesDom)
     case InputName.Commands:
-      return GetFeatureCommandsVirtualDom.getFeatureCommandsVirtualDom(extension)
+      return GetFeatureCommandsVirtualDom.getFeatureCommandsVirtualDom(commands)
     case InputName.JsonValidation:
-      return GetFeatureJsonValidationVirtualDom.getFeatureJsonValidationVirtualDom(extension)
+      return GetFeatureJsonValidationVirtualDom.getFeatureJsonValidationVirtualDom(jsonValidation)
     case InputName.ProgrammingLanguages:
       return GetFeatureProgrammingLanguagesVirtualDom.getFeatureProgrammingLanguagesVirtualDom()
     case InputName.Settings:
-      return GetFeatureSettingsVirtualDom.getFeatureSettingsVirtualDom(extension)
+      return GetFeatureSettingsVirtualDom.getFeatureSettingsVirtualDom(settings)
     case InputName.WebViews:
-      return GetFeatureWebViewsVirtualDom.getFeatureWebViewsVirtualDom(extension)
+      return GetFeatureWebViewsVirtualDom.getFeatureWebViewsVirtualDom(webViews)
     default:
       return GetFeatureNotImplementedVirtualDom.getFeatureNotImplementedVirtualDom()
   }

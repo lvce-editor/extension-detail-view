@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+import { getFeatureDetailsSettings } from '../src/parts/GetFeatureDetailsSettings/GetFeatureDetailsSettings.ts'
 import * as GetSettingsTableEntries from '../src/parts/GetSettingsTableEntries/GetSettingsTableEntries.ts'
 
 test('get settings table entries with settings', () => {
@@ -18,7 +19,8 @@ test('get settings table entries with settings', () => {
       },
     ],
   }
-  expect(GetSettingsTableEntries.getSettingsTableEntries(extension)).toEqual({
+  const { settings } = getFeatureDetailsSettings(extension)
+  expect(GetSettingsTableEntries.getSettingsTableEntries(settings || [])).toEqual({
     headings: ['ID', 'Label'],
     rows: [
       [
