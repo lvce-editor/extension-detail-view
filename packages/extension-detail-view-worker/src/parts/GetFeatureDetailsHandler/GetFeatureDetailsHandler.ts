@@ -1,5 +1,6 @@
 import type { FeatureDetailsHandler } from '../FeatureDetailsHandler/FeatureDetailsHandler.ts'
 import { getFeatureDetailsCommand } from '../GetFeatureDetailsCommands/GetFeatureDetailsCommands.ts'
+import { getFeatureDetailsJsonValidation } from '../GetFeatureDetailsJsonValidation/GetFeatureDetailsJsonValidation.ts'
 import { getFeatureDetailsTheme } from '../GetFeatureDetailsTheme/GetFeatureDetailsTheme.ts'
 import * as InputName from '../InputName/InputName.ts'
 
@@ -7,6 +8,8 @@ export const getFeatureDetailsHandler = (featureName: string): FeatureDetailsHan
   switch (featureName) {
     case InputName.Commands:
       return getFeatureDetailsCommand
+    case InputName.JsonValidation:
+      return getFeatureDetailsJsonValidation
     default:
       return getFeatureDetailsTheme
   }
