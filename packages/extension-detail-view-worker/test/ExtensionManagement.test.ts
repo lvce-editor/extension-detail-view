@@ -27,7 +27,7 @@ test('getExtension - fallback to getAllExtensions when getExtension fails', asyn
   ]
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionManagement.getExtension') {
         throw new Error('getExtension failed')
       }
@@ -60,7 +60,7 @@ test('getExtension - web platform returns undefined', async () => {
 test('getExtension - not found in fallback', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionManagement.getExtension') {
         throw new Error('getExtension failed')
       }
@@ -99,7 +99,7 @@ test('getExtension - remote platform with fallback', async () => {
   ]
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionManagement.getExtension') {
         throw new Error('getExtension failed')
       }
