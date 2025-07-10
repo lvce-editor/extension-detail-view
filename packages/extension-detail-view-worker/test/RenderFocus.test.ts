@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as RenderFocus from '../src/parts/RenderFocus/RenderFocus.ts'
 import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as RenderFocus from '../src/parts/RenderFocus/RenderFocus.ts'
 
 test('renderFocus - returns focus command', () => {
   const oldState = CreateDefaultState.createDefaultState()
