@@ -17,6 +17,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     featuresVirtualDom: [],
     folderSize: 0,
     iconSrc: '',
+    jsonValidation: [],
     name: '',
     platform,
     readmeScrollTop: 0,

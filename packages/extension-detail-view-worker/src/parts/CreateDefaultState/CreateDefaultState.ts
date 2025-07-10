@@ -16,6 +16,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     featuresVirtualDom: [],
     folderSize: 0,
     iconSrc: '',
+    jsonValidation: [],
     name: '',
     platform: 0,
     readmeScrollTop: 0,
