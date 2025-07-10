@@ -1,8 +1,8 @@
 import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
-import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 
 test('loadContent - successful load', async () => {
   const mockExtension = {
@@ -26,6 +26,12 @@ test('loadContent - successful load', async () => {
       }
       if (method === 'FileSystem.getFolderSize') {
         return 1024
+      }
+      if (method === 'Markdown.renderMarkdown') {
+        return '<h1>Test README Content</h1>'
+      }
+      if (method === 'Markdown.getMarkdownDom') {
+        return [{ type: 'h1', children: ['Test README Content'] }]
       }
       throw new Error(`unexpected method ${method}`)
     },
@@ -100,6 +106,12 @@ test('loadContent - with builtin extension', async () => {
       }
       if (method === 'FileSystem.getFolderSize') {
         return 2048
+      }
+      if (method === 'Markdown.renderMarkdown') {
+        return '<h1>Builtin README Content</h1>'
+      }
+      if (method === 'Markdown.getMarkdownDom') {
+        return [{ type: 'h1', children: ['Builtin README Content'] }]
       }
       throw new Error(`unexpected method ${method}`)
     },
