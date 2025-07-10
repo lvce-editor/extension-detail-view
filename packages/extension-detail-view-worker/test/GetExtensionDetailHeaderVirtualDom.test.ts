@@ -4,6 +4,7 @@ import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetExtensionDetailButtons from '../src/parts/GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../src/parts/GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
+import * as InputName from '../src/parts/InputName/InputName.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test.skip('extension detail header virtual dom', () => {
@@ -12,7 +13,7 @@ test.skip('extension detail header virtual dom', () => {
     iconSrc: './test-icon.png',
     description: 'Test Description',
   }
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons({})
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, false)
   expect(
     GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
       extensionDetail.name,
@@ -62,7 +63,7 @@ test('handles missing extension details', () => {
     iconSrc: '',
     description: '',
   }
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons({})
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, false)
   expect(
     GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
       extensionDetail.name,
@@ -112,6 +113,7 @@ test('handles missing extension details', () => {
       childCount: 1,
       className: 'Button ButtonPrimary',
       onClick: 'handleClickDisable',
+      name: InputName.Disable,
       type: 1,
     },
     {
@@ -123,6 +125,7 @@ test('handles missing extension details', () => {
       childCount: 1,
       className: 'Button ButtonPrimary',
       onClick: 'handleClickUninstall',
+      name: InputName.Uninstall,
       type: 1,
     },
     {
@@ -135,6 +138,7 @@ test('handles missing extension details', () => {
       className: 'SettingsButton',
       onClick: 'handleClickSettings',
       title: ExtensionDetailStrings.settings(),
+      name: InputName.Settings,
       type: 1,
     },
     {
@@ -152,10 +156,7 @@ test('handles builtin extension - shows only disable button', () => {
     iconSrc: './builtin-icon.png',
     description: 'Builtin extension description',
   }
-  const extension = {
-    builtin: true,
-  }
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(extension)
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, true)
   expect(
     GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
       extensionDetail.name,
@@ -211,6 +212,7 @@ test('handles builtin extension - shows only disable button', () => {
       childCount: 1,
       className: 'Button ButtonPrimary',
       onClick: 'handleClickDisable',
+      name: InputName.Disable,
       type: 1,
     },
     {
@@ -223,6 +225,7 @@ test('handles builtin extension - shows only disable button', () => {
       className: 'SettingsButton',
       onClick: 'handleClickSettings',
       title: ExtensionDetailStrings.settings(),
+      name: InputName.Settings,
       type: 1,
     },
     {

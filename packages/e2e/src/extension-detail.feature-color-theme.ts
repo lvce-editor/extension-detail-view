@@ -2,17 +2,17 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-color-theme'
 
-export const test: Test = async ({ Main, Locator, expect, Extension }) => {
+export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-detail-theme')
   await Extension.addWebExtension(extensionUri)
-  await Main.openUri('extension-detail://test.theme-test')
+  await ExtensionDetail.open('test.theme-test')
   const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
   await tabFeatures.click()
   const featureTheme = Locator('.Feature[name="Theme"]')
 
   // act
-  await featureTheme.click()
+  await featureTheme.click() // TODO use page object model
 
   // assert
   const content = Locator('.FeatureContent')

@@ -8,7 +8,6 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetAdditionalDetailsVirtualDom from '../GetAdditionalDetailsVirtualDom/GetAdditionalDetailsVirtualDom.ts'
 import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
-import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
 import * as GetScrollToTopVirtualDom from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 
@@ -23,8 +22,8 @@ const getChildCount = (additionalDetails: boolean, scrollToTopEnabled: boolean):
   return count
 }
 
-export const getDetailsVirtualDom = async (
-  sanitizedReadmeHtml: string,
+export const getDetailsVirtualDom = (
+  sanitizedReadmeHtml: readonly VirtualDomNode[],
   displaySize: string,
   extensionId: string,
   extensionVersion: string,
@@ -33,14 +32,14 @@ export const getDetailsVirtualDom = async (
   scrollToTopButtonEnabled: boolean,
   categories: readonly Category[],
   resources: readonly Resource[],
-): Promise<readonly VirtualDomNode[]> => {
+  showAdditionalDetailsBreakpoint: number, // new parameter, no default
+): readonly VirtualDomNode[] => {
   const firstHeading = ExtensionDetailStrings.installation()
   const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion, extensionUri)
   const secondHeading = ExtensionDetailStrings.marketplace()
   const secondEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries()
   const thirdHeading = ExtensionDetailStrings.categories()
   const fourthHeading = ExtensionDetailStrings.resources()
-  const showAdditionalDetailsBreakpoint = 600
   const showAdditionalDetails = width > showAdditionalDetailsBreakpoint
   const childCount = getChildCount(showAdditionalDetails, scrollToTopButtonEnabled)
   const dom = [
@@ -51,7 +50,7 @@ export const getDetailsVirtualDom = async (
       role: AriaRoles.Panel,
     },
     ...GetScrollToTopVirtualDom.getScrollToTopVirtualDom(scrollToTopButtonEnabled),
-    ...(await GetMarkdownVirtualDom.getMarkdownVirtualDom(sanitizedReadmeHtml)),
+    ...sanitizedReadmeHtml,
     ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(
       showAdditionalDetails,
       firstHeading,

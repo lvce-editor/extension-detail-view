@@ -1,9 +1,10 @@
+import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import { expect, test } from '@jest/globals'
 import type { Feature } from '../src/parts/Feature/Feature.ts'
 import * as GetFeaturesVirtualDom from '../src/parts/GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
 
 test.skip('features virtual dom', async () => {
-  const themesHtml = ''
+  const themesHtml: readonly VirtualDomNode[] = []
   const features: readonly Feature[] = [
     {
       id: 'Theme',
@@ -13,7 +14,7 @@ test.skip('features virtual dom', async () => {
   ]
   const selectedFeature = 'Theme'
   const extension = {}
-  expect(await GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, extension)).toEqual([
+  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, extension)).toEqual([
     {
       childCount: 3,
       className: 'Features',

@@ -7,9 +7,9 @@ import * as GetDetailsVirtualDom from '../GetDetailsVirtualDom/GetDetailsVirtual
 import * as GetFeaturesVirtualDom from '../GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
 
-export const getExtensionDetailContentVirtualDom = async (
-  sanitizedReadmeHtml: string,
-  themesHtml: string,
+export const getExtensionDetailContentVirtualDom = (
+  sanitizedReadmeHtml: readonly VirtualDomNode[],
+  themesDom: readonly VirtualDomNode[],
   selectedTab: string,
   features: readonly Feature[],
   displaySize: string,
@@ -21,10 +21,11 @@ export const getExtensionDetailContentVirtualDom = async (
   scrollToTopButtonEnabled: boolean,
   categories: readonly Category[],
   resources: readonly Resource[],
-): Promise<readonly VirtualDomNode[]> => {
+  breakpoint: number,
+): readonly VirtualDomNode[] => {
   switch (selectedTab) {
     case InputName.Details:
-      return await GetDetailsVirtualDom.getDetailsVirtualDom(
+      return GetDetailsVirtualDom.getDetailsVirtualDom(
         sanitizedReadmeHtml,
         displaySize,
         extensionId,
@@ -34,9 +35,10 @@ export const getExtensionDetailContentVirtualDom = async (
         scrollToTopButtonEnabled,
         categories,
         resources,
+        breakpoint,
       )
     case InputName.Features:
-      return await GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, extension)
+      return GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesDom, selectedFeature, extension)
     case InputName.Changelog:
       return GetChangelogVirtualDom.getChangelogVirtualDom()
     default:

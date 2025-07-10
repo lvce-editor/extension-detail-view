@@ -2,6 +2,7 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import * as InputName from '../InputName/InputName.ts'
 
 export const getSettingsButtonVirtualDom = (enabled: boolean): readonly VirtualDomNode[] => {
   if (!enabled) {
@@ -14,6 +15,7 @@ export const getSettingsButtonVirtualDom = (enabled: boolean): readonly VirtualD
       onClick: DomEventListenerFunctions.HandleClickSettings,
       childCount: 1,
       title: 'Settings',
+      name: InputName.Settings,
     },
     {
       type: VirtualDomElements.Span,

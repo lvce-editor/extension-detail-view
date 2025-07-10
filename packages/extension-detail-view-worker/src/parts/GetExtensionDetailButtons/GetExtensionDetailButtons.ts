@@ -1,24 +1,27 @@
 import type { ExtensionDetailButton } from './ExtensionDetailButton.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
-import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
+import * as InputName from '../InputName/InputName.ts'
 
-export const getExtensionDetailButtons = (extension: any): readonly ExtensionDetailButton[] => {
+export const getExtensionDetailButtons = (hasColorTheme: boolean, isBuiltin: boolean): readonly ExtensionDetailButton[] => {
   const allActions: ExtensionDetailButton[] = [
     {
       label: ExtensionDetailStrings.setColorTheme(),
       onClick: DomEventListenerFunctions.HandleClickSetColorTheme,
-      enabled: HasColorThemes.hasColorThemes(extension),
+      enabled: hasColorTheme,
+      name: InputName.SetColorTheme,
     },
     {
       label: ExtensionDetailStrings.disable(),
       onClick: DomEventListenerFunctions.HandleClickDisable,
       enabled: true,
+      name: InputName.Disable,
     },
     {
       label: ExtensionDetailStrings.uninstall(),
       onClick: DomEventListenerFunctions.HandleClickUninstall,
-      enabled: !extension?.builtin,
+      enabled: !isBuiltin,
+      name: InputName.Uninstall,
     },
   ]
 
