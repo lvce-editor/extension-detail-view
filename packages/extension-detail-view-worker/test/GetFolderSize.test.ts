@@ -27,3 +27,8 @@ test('get folder size - error case', async () => {
   RendererWorker.set(mockRpc)
   expect(await GetFolderSize.getFolderSize('/test/path')).toBe(0)
 })
+
+test('get folder size - missing uri', async () => {
+  const uri = ''
+  expect(() => GetFolderSize.getFolderSize(uri)).toThrow(new Error('missing uri'))
+})
