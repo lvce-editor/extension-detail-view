@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as CopyImage from '../src/parts/CopyImage/CopyImage.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 
 test('returns state as is', () => {
   const state = createDefaultState({ uri: 'test-uri', width: 800 })
