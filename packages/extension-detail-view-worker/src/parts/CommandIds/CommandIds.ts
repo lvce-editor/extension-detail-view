@@ -1,4 +1,5 @@
 export const commandIds = [
+  'copyImage',
   'getMenuEntries',
   'handleClickCategory',
   'handleClickDisable',
