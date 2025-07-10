@@ -1,8 +1,8 @@
 import { expect, test, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import * as ErrorCodes from '../src/parts/ErrorCodes/ErrorCodes.ts'
 import * as LoadChangelogContent from '../src/parts/LoadChangelogContent/LoadChangelogContent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
-import * as ErrorCodes from '../src/parts/ErrorCodes/ErrorCodes.ts'
 
 test('loadChangelogContent successfully loads changelog', async () => {
   const invoke: any = jest.fn()
