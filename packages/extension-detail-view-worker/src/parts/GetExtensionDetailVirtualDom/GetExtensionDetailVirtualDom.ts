@@ -43,6 +43,7 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     settings,
     webViews,
     extension,
+    changelogVirtualDom,
   } = newState
   const extensionUri = extension.uri || extension.path || ''
 
@@ -78,6 +79,7 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
       settings,
       webViews,
       extensionUri,
+      changelogVirtualDom,
     ),
   ]
   return dom
