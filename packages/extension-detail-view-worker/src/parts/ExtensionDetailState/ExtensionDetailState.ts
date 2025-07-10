@@ -7,6 +7,7 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
 
 export interface ExtensionDetailState {
+  readonly activationEvents: readonly string[]
   readonly assetDir: string
   readonly baseUrl: string
   readonly builtinExtensionsBadgeEnabled: boolean

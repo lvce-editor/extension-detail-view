@@ -2,6 +2,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 
 export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}): ExtensionDetailState => {
   return {
+    activationEvents: [],
     assetDir: '/test/asset/dir',
     baseUrl: '',
     builtinExtensionsBadgeEnabled: true,
