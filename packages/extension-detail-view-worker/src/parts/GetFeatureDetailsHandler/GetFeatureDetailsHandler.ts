@@ -22,7 +22,6 @@ const getFeatureDetailsTheme = async (extension: any, baseUrl: string): Promise<
 
 export const getFeatureDetailsHandler = (featureName: string): FeatureDetailsHandler => {
   switch (featureName) {
-    case InputName.Theme:
     default:
       return getFeatureDetailsTheme
   }
