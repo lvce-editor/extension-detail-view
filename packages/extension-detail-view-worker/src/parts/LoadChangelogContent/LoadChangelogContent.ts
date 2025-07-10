@@ -5,7 +5,7 @@ import * as Path from '../Path/Path.ts'
 
 export const loadChangelogContent = async (path: string): Promise<string> => {
   try {
-    const changelogUrl = Path.join('/', path, 'CHANGELOG.md')
+    const changelogUrl = Path.join(path, 'CHANGELOG.md')
     const changelogContent = await FileSystem.readFile(changelogUrl)
     return changelogContent
   } catch (error) {
