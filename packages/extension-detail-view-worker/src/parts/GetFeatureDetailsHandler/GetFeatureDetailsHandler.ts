@@ -3,7 +3,6 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { FeatureDetailsHandler } from '../FeatureDetailsHandler/FeatureDetailsHandler.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetThemeMarkdown from '../GetThemeMarkdown/GetThemeMarkdown.ts'
-import * as InputName from '../InputName/InputName.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
 const getFeatureDetailsTheme = async (extension: any, baseUrl: string): Promise<Partial<ExtensionDetailState>> => {
