@@ -1,10 +1,11 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import { getFeatureDetailsHandler } from '../GetFeatureDetailsHandler/GetFeatureDetailsHandler.ts'
 
 export const selectFeature = async (state: ExtensionDetailState, name: string): Promise<ExtensionDetailState> => {
   if (!name) {
     return state
   }
-  const { features } = state
+  const { features, extension, baseUrl } = state
   const newFeatures = features.map((feature) => {
     if (feature.id === name) {
       return {
@@ -17,8 +18,11 @@ export const selectFeature = async (state: ExtensionDetailState, name: string): 
       selected: false,
     }
   })
+  const fn = getFeatureDetailsHandler(name)
+  const partialNewState = await fn(extension, baseUrl)
   return {
     ...state,
+    ...partialNewState,
     selectedFeature: name,
     features: newFeatures,
   }
