@@ -33,6 +33,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     hasColorTheme: false,
     isBuiltin: false,
     sizeValue: 0,
+    webViews: [],
     ...overrides,
   }
 }
