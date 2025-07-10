@@ -1,72 +1,50 @@
 import { expect, test } from '@jest/globals'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { MockRpc } from '@lvce-editor/rpc'
 import * as GetMarkdownVirtualDom from '../src/parts/GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
-import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
-test.skip('empty string', () => {
-  expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('')).toEqual([
-    {
-      childCount: 0,
-      className: 'Markdown',
-      onContextMenu: 'handleReadmeContextMenu',
-      role: 'document',
-      type: 4,
+const mockDom = [{ tag: 'div', children: ['Hello'] }]
+
+test('getMarkdownVirtualDom - valid markdown', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, html: string) => {
+      if (method === 'Markdown.getVirtualDom') {
+        return mockDom
+      }
+      throw new Error('unexpected method')
     },
-  ])
+  })
+  RendererWorker.set(mockRpc)
+  const result = await GetMarkdownVirtualDom.getMarkdownVirtualDom('# Hello')
+  expect(result).toEqual(mockDom)
 })
 
-test.skip('plain text', () => {
-  expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('Hello World')).toEqual([
-    {
-      childCount: 1,
-      className: 'Markdown',
-      onContextMenu: 'handleReadmeContextMenu',
-      role: 'document',
-      type: 4,
+test('getMarkdownVirtualDom - empty string', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, html: string) => {
+      if (method === 'Markdown.getVirtualDom') {
+        return []
+      }
+      throw new Error('unexpected method')
     },
-    text('Hello World'),
-  ])
+  })
+  RendererWorker.set(mockRpc)
+  const result = await GetMarkdownVirtualDom.getMarkdownVirtualDom('')
+  expect(result).toEqual([])
 })
 
-test.skip('heading', () => {
-  expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('<h1>Hello World</h1>')).toEqual([
-    {
-      childCount: 1,
-      className: 'Markdown',
-      onContextMenu: 'handleReadmeContextMenu',
-      role: 'document',
-      type: 4,
+test('getMarkdownVirtualDom - error propagation', async () => {
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'Markdown.getVirtualDom') {
+        throw new Error('fail')
+      }
+      throw new Error('unexpected method')
     },
-    {
-      type: VirtualDomElements.H1,
-      childCount: 1,
-    },
-    text('Hello World'),
-  ])
-})
-
-test.skip('nested elements', () => {
-  expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('<div><p>Hello World</p></div>')).toEqual([
-    {
-      childCount: 1,
-      className: 'Markdown',
-      onContextMenu: 'handleReadmeContextMenu',
-      role: 'document',
-      type: 4,
-    },
-    {
-      type: VirtualDomElements.Div,
-      childCount: 1,
-    },
-    {
-      type: VirtualDomElements.P,
-      childCount: 1,
-    },
-    text('Hello World'),
-  ])
-})
-
-test.skip('throws error for non-string input', () => {
-  // @ts-expect-error
-  expect(() => GetMarkdownVirtualDom.getMarkdownVirtualDom(123)).toThrow()
+  })
+  RendererWorker.set(mockRpc)
+  await expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('bad')).rejects.toThrow('fail')
 })
