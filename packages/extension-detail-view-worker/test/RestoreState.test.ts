@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
-import * as RestoreState from '../src/parts/RestoreState/RestoreState.ts'
-import * as InputName from '../src/parts/InputName/InputName.ts'
 import type { RestoredState } from '../src/parts/RestoredState/RestoredState.ts'
+import * as InputName from '../src/parts/InputName/InputName.ts'
+import * as RestoreState from '../src/parts/RestoreState/RestoreState.ts'
 
 test('restoreState - valid saved state', () => {
   const savedState = {
