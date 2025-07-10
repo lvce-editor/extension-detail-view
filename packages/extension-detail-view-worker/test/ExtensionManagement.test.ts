@@ -5,7 +5,7 @@ import * as PlatformType from '../src/parts/PlatformType/PlatformType.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('getExtension - successful getExtension', async () => {
-  const mockExtension = { id: 'test-id', name: 'Test Extension' }
+  const mockExtension: any = { id: 'test-id', name: 'Test Extension' }
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, id: string) => {
@@ -16,12 +16,12 @@ test('getExtension - successful getExtension', async () => {
     },
   })
   RendererWorker.set(mockRpc)
-  const result = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
+  const result: any = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
   expect(result).toEqual(mockExtension)
 })
 
 test('getExtension - fallback to getAllExtensions when getExtension fails', async () => {
-  const mockExtensions = [
+  const mockExtensions: any[] = [
     { id: 'test-id', name: 'Test Extension' },
     { id: 'other-id', name: 'Other Extension' },
   ]
@@ -38,7 +38,7 @@ test('getExtension - fallback to getAllExtensions when getExtension fails', asyn
     },
   })
   RendererWorker.set(mockRpc)
-  const result = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
+  const result: any = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
   expect(result).toEqual({ id: 'test-id', name: 'Test Extension' })
 })
 
@@ -53,7 +53,7 @@ test('getExtension - web platform returns undefined', async () => {
     },
   })
   RendererWorker.set(mockRpc)
-  const result = await ExtensionManagement.getExtension('test-id', PlatformType.Web)
+  const result: any = await ExtensionManagement.getExtension('test-id', PlatformType.Web)
   expect(result).toBeUndefined()
 })
 
@@ -71,7 +71,7 @@ test('getExtension - not found in fallback', async () => {
     },
   })
   RendererWorker.set(mockRpc)
-  const result = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
+  const result: any = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
   expect(result).toBeUndefined()
 })
 
@@ -93,7 +93,7 @@ test('getExtension - both getExtension and getAllExtensions fail', async () => {
 })
 
 test('getExtension - remote platform with fallback', async () => {
-  const mockExtensions = [
+  const mockExtensions: any[] = [
     { id: 'test-id', name: 'Test Extension' },
     { id: 'other-id', name: 'Other Extension' },
   ]
@@ -110,6 +110,6 @@ test('getExtension - remote platform with fallback', async () => {
     },
   })
   RendererWorker.set(mockRpc)
-  const result = await ExtensionManagement.getExtension('other-id', PlatformType.Remote)
+  const result: any = await ExtensionManagement.getExtension('other-id', PlatformType.Remote)
   expect(result).toEqual({ id: 'other-id', name: 'Other Extension' })
 })

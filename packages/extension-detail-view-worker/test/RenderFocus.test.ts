@@ -1,51 +1,52 @@
 import { expect, test } from '@jest/globals'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as RenderFocus from '../src/parts/RenderFocus/RenderFocus.ts'
 
 test('renderFocus - returns focus command', () => {
-  const oldState = CreateDefaultState.createDefaultState()
-  const newState = CreateDefaultState.createDefaultState()
+  const oldState: ExtensionDetailState = CreateDefaultState.createDefaultState()
+  const newState: ExtensionDetailState = CreateDefaultState.createDefaultState()
 
-  const result = RenderFocus.renderFocus(oldState, newState)
+  const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
 
   expect(result).toEqual(['Viewlet.focusElementByName', ''])
 })
 
 test('renderFocus - with different states', () => {
-  const oldState = {
+  const oldState: ExtensionDetailState = {
     ...CreateDefaultState.createDefaultState(),
     selectedTab: 'Features',
     selectedFeature: 'Commands',
   }
-  const newState = {
+  const newState: ExtensionDetailState = {
     ...CreateDefaultState.createDefaultState(),
     selectedTab: 'Settings',
     selectedFeature: 'General',
   }
 
-  const result = RenderFocus.renderFocus(oldState, newState)
+  const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
 
   expect(result).toEqual(['Viewlet.focusElementByName', ''])
 })
 
 test('renderFocus - with empty states', () => {
-  const oldState = CreateDefaultState.createDefaultState()
-  const newState = CreateDefaultState.createDefaultState()
+  const oldState: ExtensionDetailState = CreateDefaultState.createDefaultState()
+  const newState: ExtensionDetailState = CreateDefaultState.createDefaultState()
 
-  const result = RenderFocus.renderFocus(oldState, newState)
+  const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
 
   expect(result).toEqual(['Viewlet.focusElementByName', ''])
 })
 
 test('renderFocus - with complex states', () => {
-  const oldState = {
+  const oldState: ExtensionDetailState = {
     ...CreateDefaultState.createDefaultState(),
     extensionId: 'test-extension',
     name: 'Test Extension',
     selectedTab: 'Details',
     selectedFeature: 'Features',
   }
-  const newState = {
+  const newState: ExtensionDetailState = {
     ...CreateDefaultState.createDefaultState(),
     extensionId: 'test-extension',
     name: 'Test Extension',
@@ -53,7 +54,7 @@ test('renderFocus - with complex states', () => {
     selectedFeature: 'Commands',
   }
 
-  const result = RenderFocus.renderFocus(oldState, newState)
+  const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
 
   expect(result).toEqual(['Viewlet.focusElementByName', ''])
 })
