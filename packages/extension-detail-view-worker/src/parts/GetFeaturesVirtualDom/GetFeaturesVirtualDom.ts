@@ -1,6 +1,8 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Feature } from '../Feature/Feature.ts'
+import type { Row } from '../Row/Row.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import type { WebView } from '../WebView/WebView.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetFeatureContentVirtualDom from '../GetFeatureContentVirtualDom/GetFeatureContentVirtualDom.ts'
@@ -12,7 +14,10 @@ export const getFeaturesVirtualDom = (
   features: readonly Feature[],
   themesDom: readonly VirtualDomNode[],
   selectedFeature: string,
-  extension: any,
+  commands: readonly Row[],
+  jsonValidation: readonly Row[],
+  settings: readonly Row[],
+  webViews: readonly WebView[],
 ): readonly VirtualDomNode[] => {
   if (features.length === 0) {
     const none = ExtensionDetailStrings.none()
@@ -37,6 +42,6 @@ export const getFeaturesVirtualDom = (
       className: MergeClassNames.mergeClassNames(ClassNames.Sash, ClassNames.SashVertical),
       childCount: 0,
     },
-    ...GetFeatureContentVirtualDom.getFeatureContentVirtualDom(features, themesDom, selectedFeature, extension),
+    ...GetFeatureContentVirtualDom.getFeatureContentVirtualDom(themesDom, selectedFeature, commands, jsonValidation, settings, webViews),
   ]
 }

@@ -1,5 +1,6 @@
 import { expect, test } from '@jest/globals'
 import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import { getFeatureDetailsJsonValidation } from '../src/parts/GetFeatureDetailsJsonValidation/GetFeatureDetailsJsonValidation.ts'
 import * as GetJsonValidationTableEntries from '../src/parts/GetJsonValidationTableEntries/GetJsonValidationTableEntries.ts'
 import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 
@@ -16,7 +17,8 @@ test('get json validation table entries with validations', () => {
       },
     ],
   }
-  expect(GetJsonValidationTableEntries.getJsonValidationTableEntries(extension)).toEqual({
+  const { jsonValidation } = getFeatureDetailsJsonValidation(extension)
+  expect(GetJsonValidationTableEntries.getJsonValidationTableEntries(jsonValidation || [])).toEqual({
     headings: [ExtensionDetailStrings.fileMatch(), ExtensionDetailStrings.schema()],
     rows: [
       [
@@ -45,7 +47,8 @@ test('get json validation table entries with validations', () => {
 
 test('get json validation table entries with no validations', () => {
   const extension = {}
-  expect(GetJsonValidationTableEntries.getJsonValidationTableEntries(extension)).toEqual({
+  const { jsonValidation } = getFeatureDetailsJsonValidation(extension)
+  expect(GetJsonValidationTableEntries.getJsonValidationTableEntries(jsonValidation || [])).toEqual({
     headings: [ExtensionDetailStrings.fileMatch(), ExtensionDetailStrings.schema()],
     rows: [],
   })
@@ -55,7 +58,9 @@ test('get json validation table entries with empty validations array', () => {
   const extension = {
     jsonValidation: [],
   }
-  expect(GetJsonValidationTableEntries.getJsonValidationTableEntries(extension)).toEqual({
+  const { jsonValidation } = getFeatureDetailsJsonValidation(extension)
+
+  expect(GetJsonValidationTableEntries.getJsonValidationTableEntries(jsonValidation || [])).toEqual({
     headings: [ExtensionDetailStrings.fileMatch(), ExtensionDetailStrings.schema()],
     rows: [],
   })

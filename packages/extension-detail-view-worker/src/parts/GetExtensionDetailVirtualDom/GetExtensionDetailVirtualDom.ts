@@ -22,7 +22,6 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     displaySize,
     themesMarkdownDom,
     selectedFeature,
-    extension,
     sizeValue,
     isBuiltin,
     categories,
@@ -39,7 +38,14 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     features,
     extensionId,
     extensionVersion,
+    commands,
+    jsonValidation,
+    settings,
+    webViews,
+    extension,
   } = newState
+  const extensionUri = extension.uri || extension.path || ''
+
   const width = newState?.width || 500
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
@@ -62,12 +68,16 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
       extensionId,
       extensionVersion,
       selectedFeature,
-      extension,
       width,
       scrollToTopButtonEnabled,
       categories,
       resources,
       showAdditionalDetailsBreakpoint,
+      commands,
+      jsonValidation,
+      settings,
+      webViews,
+      extensionUri,
     ),
   ]
   return dom
