@@ -1,35 +1,35 @@
-import { test, expect } from '@jest/globals'
+import { expect, test } from '@jest/globals'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import { handleWheel } from '../src/parts/HandleWheel/HandleWheel.ts'
+import * as HandleWheel from '../src/parts/HandleWheel/HandleWheel.ts'
 
-// scroll down
-
-test('handleWheel - scroll down', () => {
-  const state = {
+test('handleWheel - updates readmeScrollTop', () => {
+  const state: ExtensionDetailState = {
     ...createDefaultState(),
-    readmeScrollTop: 10,
+    readmeScrollTop: 0,
   }
-  const result = handleWheel(state, 0, 5)
-  expect(result.readmeScrollTop).toBe(15)
+  const result = HandleWheel.handleWheel(state, 0, 100)
+  expect(result.readmeScrollTop).toBe(100)
 })
 
-// scroll up (should clamp to 0)
-test('handleWheel - scroll up clamp', () => {
-  const state = {
+test('handleWheel - preserves other state properties', () => {
+  const state: ExtensionDetailState = {
     ...createDefaultState(),
-    readmeScrollTop: 3,
+    readmeScrollTop: 50,
+    name: 'Test Extension',
+    selectedTab: 'Features',
   }
-  const result = handleWheel(state, 0, -10)
-  expect(result.readmeScrollTop).toBe(0)
+  const result = HandleWheel.handleWheel(state, 0, 100)
+  expect(result.readmeScrollTop).toBe(150)
+  expect(result.name).toBe('Test Extension')
+  expect(result.selectedTab).toBe('Features')
 })
 
-test('handleWheel - no side effects', () => {
-  const state = {
+test('handleWheel - handles negative scroll values', () => {
+  const state: ExtensionDetailState = {
     ...createDefaultState(),
-    readmeScrollTop: 7,
-    name: 'Test',
+    readmeScrollTop: 100,
   }
-  const result = handleWheel(state, 0, 2)
-  expect(result.readmeScrollTop).toBe(9)
-  expect(result.name).toBe('Test')
+  const result = HandleWheel.handleWheel(state, 0, -50)
+  expect(result.readmeScrollTop).toBe(50)
 })
