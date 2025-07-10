@@ -3,7 +3,7 @@ import type { Feature } from '../Feature/Feature.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
-import { WebView } from '../WebView/WebView.ts'
+import type { WebView } from '../WebView/WebView.ts'
 
 export interface ExtensionDetailState {
   readonly assetDir: string
