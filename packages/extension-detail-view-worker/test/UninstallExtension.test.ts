@@ -16,7 +16,7 @@ test('uninstall extension', async () => {
 
 test('handles error during uninstall', async () => {
   const error = new Error('Failed to uninstall extension')
-  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockRejectedValue(error)
+  const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockRejectedValue(error)
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
