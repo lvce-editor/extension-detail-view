@@ -150,6 +150,12 @@ test('loadContent - with saved state', async () => {
       if (method === 'FileSystem.getFolderSize') {
         return 1024
       }
+      if (method === 'Markdown.renderMarkdown') {
+        return '<h1>Test README Content</h1>'
+      }
+      if (method === 'Markdown.getMarkdownDom') {
+        return [{ type: 'h1', children: ['Test README Content'] }]
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
