@@ -12,4 +12,5 @@ export const {
   set,
   setColorTheme,
   uninstallExtension,
+  sendMessagePortToMarkdownWorker,
 } = RendererWorker
