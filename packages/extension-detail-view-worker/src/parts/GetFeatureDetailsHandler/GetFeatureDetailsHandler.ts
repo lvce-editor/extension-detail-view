@@ -13,13 +13,15 @@ export const getFeatureDetailsHandler = (featureName: string): FeatureDetailsHan
       return getFeatureDetailsCommand
     case InputName.JsonValidation:
       return getFeatureDetailsJsonValidation
-    case InputName.WebViews:
-      return getFeatureDetailsWebView
-    case InputName.Settings:
-      return getFeatureDetailsSettings
     case InputName.ProgrammingLanguages:
       return getFeatureDetailsProgrammingLanguages
-    default:
+    case InputName.Settings:
+      return getFeatureDetailsSettings
+    case InputName.WebViews:
+      return getFeatureDetailsWebView
+    case InputName.Theme:
       return getFeatureDetailsTheme
+    default:
+      throw new Error(`unknown feature details handler: ${featureName}`)
   }
 }
