@@ -2,6 +2,7 @@ import type { Category } from '../Category/Category.ts'
 import type { Feature } from '../Feature/Feature.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
+import type { Row } from '../Row/Row.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
 
@@ -32,6 +33,7 @@ export interface ExtensionDetailState {
   readonly secondEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
   readonly selectedTab: string
+  readonly settings: readonly Row[]
   readonly settingsButtonEnabled: boolean
   readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number

@@ -28,6 +28,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     secondEntries: [],
     selectedFeature: '',
     selectedTab: '',
+    settings: [],
     settingsButtonEnabled: false,
     showAdditionalDetailsBreakpoint: 600,
     sizeOnDisk: 0,

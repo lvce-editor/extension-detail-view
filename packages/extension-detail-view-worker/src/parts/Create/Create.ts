@@ -29,6 +29,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     secondEntries: [],
     selectedFeature: '',
     selectedTab: '',
+    settings: [],
     settingsButtonEnabled: false,
     showAdditionalDetailsBreakpoint: 600,
     sizeOnDisk: 0,
