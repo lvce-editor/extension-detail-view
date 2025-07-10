@@ -17,6 +17,8 @@ export interface ExtensionDetailState {
   readonly displaySize: string
   readonly entries: readonly MoreInfoEntry[]
   readonly extension: any
+  readonly extensionId: string
+  readonly extensionVersion: string
   readonly features: readonly Feature[]
   readonly featuresVirtualDom: readonly VirtualDomNode[]
   readonly folderSize: number
@@ -32,6 +34,7 @@ export interface ExtensionDetailState {
   readonly secondEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
   readonly selectedTab: string
+  readonly settings: readonly Row[]
   readonly settingsButtonEnabled: boolean
   readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number
