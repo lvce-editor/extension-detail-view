@@ -42,11 +42,12 @@ test('loadContent - successful load', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state: ExtensionDetailState = createDefaultState({
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
     uri: 'extension-detail://test-extension',
     width: 800,
     assetDir: '/test/assets',
-  })
+  }
 
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
@@ -82,9 +83,10 @@ test('loadContent - extension not found', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state: ExtensionDetailState = createDefaultState({
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
     uri: 'extension-detail://non-existent-extension',
-  })
+  }
 
   await expect(LoadContent.loadContent(state, 1, {})).rejects.toThrow('extension not found: non-existent-extension')
 })
@@ -125,9 +127,10 @@ test('loadContent - with builtin extension', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state: ExtensionDetailState = createDefaultState({
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
     uri: 'extension-detail://builtin-extension',
-  })
+  }
 
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
@@ -171,9 +174,10 @@ test('loadContent - with saved state', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state: ExtensionDetailState = createDefaultState({
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
     uri: 'extension-detail://test-extension',
-  })
+  }
 
   const savedState: any = {
     selectedFeature: 'commands',
@@ -223,9 +227,10 @@ test('loadContent - with different platform', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state: ExtensionDetailState = createDefaultState({
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
     uri: 'extension-detail://test-extension',
-  })
+  }
 
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 2, {})
 
