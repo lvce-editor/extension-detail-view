@@ -16,7 +16,7 @@ test('disable extension', async () => {
 
 test('handles error during disable', async () => {
   const error = new Error('Failed to disable extension')
-  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockRejectedValue(error)
+  const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockRejectedValue(error)
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
