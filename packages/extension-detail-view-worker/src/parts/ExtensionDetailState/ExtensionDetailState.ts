@@ -29,6 +29,7 @@ export interface ExtensionDetailState {
   readonly jsonValidation: readonly Row[]
   readonly name: string
   readonly platform: number
+  readonly programmingLanguages: readonly Row[]
   readonly readmeScrollTop: number
   readonly resources: readonly Resource[]
   readonly scrollToTopButtonEnabled: boolean

@@ -24,6 +24,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     jsonValidation: [],
     name: '',
     platform: 0,
+    programmingLanguages: [],
     readmeScrollTop: 0,
     resources: [],
     scrollToTopButtonEnabled: false,
