@@ -4,7 +4,7 @@ import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import * as UninstallExtension from '../src/parts/UninstallExtension/UninstallExtension.ts'
 
 test('uninstall extension', async () => {
-  const invoke: any = jest.fn()
+  const invoke = jest.fn()
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
@@ -15,13 +15,12 @@ test('uninstall extension', async () => {
 })
 
 test('handles error during uninstall', async () => {
-  const invoke: any = jest.fn()
+  const error = new Error('Failed to uninstall extension')
+  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockRejectedValue(error)
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
   })
   RendererWorker.set(mockRpc)
-  const error = new Error('Failed to uninstall extension')
-  invoke.mockRejectedValue(error)
   await expect(UninstallExtension.uninstallExtension('test-id')).rejects.toThrow('Failed to uninstall extension')
 })
