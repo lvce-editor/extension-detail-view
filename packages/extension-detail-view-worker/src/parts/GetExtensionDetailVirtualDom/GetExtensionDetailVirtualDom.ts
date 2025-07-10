@@ -19,21 +19,33 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
   // 2. view model
   // 3. virtual dom
   // 4. dom
-  const themesHtml = newState.themesMarkdownDom
-  const selectedFeature = newState?.selectedFeature || ''
-  const extension = newState?.extension || {}
+  const {
+    displaySize,
+    themesMarkdownDom,
+    selectedFeature,
+    extension,
+    sizeValue,
+    isBuiltin,
+    categories,
+    resources,
+    showAdditionalDetailsBreakpoint,
+    scrollToTopButtonEnabled,
+    hasColorTheme,
+    builtinExtensionsBadgeEnabled,
+    settingsButtonEnabled,
+    name,
+    iconSrc,
+    description,
+    detailsVirtualDom,
+  } = newState
   const features = GetFeatures.getFeatures(selectedFeature, extension)
-  const extensionId = newState?.extension?.id || 'n/a'
-  const extensionVersion = newState?.extension?.version || 'n/a'
-  const { displaySize } = newState
+  const extensionId = extension?.id || 'n/a'
+  const extensionVersion = extension?.version || 'n/a'
   const width = newState?.width || 500
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
-  const { sizeValue } = newState
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(newState.hasColorTheme, newState.isBuiltin)
-  const { name, iconSrc, description } = newState
-  const badge = GetBadge.getBadge(newState.isBuiltin, newState.builtinExtensionsBadgeEnabled) // TODO compute in loadContent
-  const { settingsButtonEnabled } = newState
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(hasColorTheme, isBuiltin)
+  const badge = GetBadge.getBadge(isBuiltin, builtinExtensionsBadgeEnabled) // TODO compute in loadContent
   const dom = [
     {
       type: VirtualDomElements.Div,
@@ -43,8 +55,8 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(name, iconSrc, description, badge, buttonDefs, settingsButtonEnabled),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
     ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
-      newState.detailsVirtualDom,
-      themesHtml,
+      detailsVirtualDom,
+      themesMarkdownDom,
       selectedTab,
       features,
       displaySize,
@@ -53,10 +65,10 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
       selectedFeature,
       extension,
       width,
-      newState.scrollToTopButtonEnabled,
-      newState.categories,
-      newState.resources,
-      newState.showAdditionalDetailsBreakpoint,
+      scrollToTopButtonEnabled,
+      categories,
+      resources,
+      showAdditionalDetailsBreakpoint,
     ),
   ]
   return dom
