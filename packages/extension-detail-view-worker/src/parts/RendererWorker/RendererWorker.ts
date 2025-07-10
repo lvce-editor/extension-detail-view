@@ -13,3 +13,9 @@ export const {
   setColorTheme,
   uninstallExtension,
 } = RendererWorker
+
+// Temporary stub for clipboard image copy
+export const copyImageToClipboard = async (blob: unknown): Promise<void> => {
+  // TODO: implement actual call to renderer worker
+  return
+}
