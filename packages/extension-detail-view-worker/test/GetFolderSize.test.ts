@@ -30,5 +30,5 @@ test('get folder size - error case', async () => {
 
 test('get folder size - missing uri', async () => {
   const uri = ''
-  expect(() => GetFolderSize.getFolderSize(uri)).toThrow(new Error('missing uri'))
+  expect(() => GetFolderSize.getFolderSize(uri)).rejects.toThrow(new Error('missing uri'))
 })
