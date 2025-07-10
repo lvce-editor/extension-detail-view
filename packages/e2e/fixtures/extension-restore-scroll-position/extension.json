@@ -1,0 +1,11 @@
+{
+  "id": "test.restore-scroll-position",
+  "name": "Test",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ]
+}
