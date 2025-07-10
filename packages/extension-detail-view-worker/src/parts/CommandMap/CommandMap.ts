@@ -26,7 +26,7 @@ import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
 
 export const commandMap = {
-  'ExtensionDetail.copyImage': CopyImage.copyImage,
+  'ExtensionDetail.copyImage': WrapCommand.wrapCommand(CopyImage.copyImage),
   'ExtensionDetail.create': Create.create,
   'ExtensionDetail.diff2': Diff2.diff2,
   'ExtensionDetail.dispose': Dispose.dispose,
