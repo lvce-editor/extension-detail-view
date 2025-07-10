@@ -1,12 +1,14 @@
 import { expect, jest, test } from '@jest/globals'
+import { MockRpc } from '@lvce-editor/rpc'
 import * as HandleClickSize from '../src/parts/HandleClickSize/HandleClickSize.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
-const mockRpc = {
-  invoke: jest.fn(),
-} as any
-
 test('handle click size - opens folder', async () => {
+  const invoke: any = jest.fn()
+  const mockRpc = MockRpc.create({
+    commandMap: {},
+    invoke,
+  })
   RendererWorker.set(mockRpc)
   const state = {
     extension: {
@@ -16,5 +18,5 @@ test('handle click size - opens folder', async () => {
   } as any
   await HandleClickSize.handleClickSize(state)
 
-  expect(mockRpc.invoke).toHaveBeenCalledWith('OpenNativeFolder.openNativeFolder', 'test://sample-folder')
+  expect(invoke).toHaveBeenCalledWith('OpenNativeFolder.openNativeFolder', 'test://sample-folder')
 })
