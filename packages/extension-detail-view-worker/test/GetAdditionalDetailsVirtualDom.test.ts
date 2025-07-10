@@ -1,10 +1,10 @@
 import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as GetAdditionalDetailsVirtualDom from '../src/parts/GetAdditionalDetailsVirtualDom/GetAdditionalDetailsVirtualDom.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetAdditionalDetailsEntryVirtualDom from '../src/parts/GetAdditionalDetailsEntryVirtualDom/GetAdditionalDetailsEntryVirtualDom.ts'
-import * as GetMoreInfoVirtualDom from '../src/parts/GetMoreInfoVirtualDom/GetMoreInfoVirtualDom.ts'
+import * as GetAdditionalDetailsVirtualDom from '../src/parts/GetAdditionalDetailsVirtualDom/GetAdditionalDetailsVirtualDom.ts'
 import * as GetCategoriesDom from '../src/parts/GetCategoriesDom/GetCategoriesDom.ts'
+import * as GetMoreInfoVirtualDom from '../src/parts/GetMoreInfoVirtualDom/GetMoreInfoVirtualDom.ts'
 import * as GetResourcesVirtualDom from '../src/parts/GetResourcesVirtualDom/GetResourcesVirtualDom.ts'
 
 test('getAdditionalDetailsVirtualDom - showAdditionalDetails false', () => {
