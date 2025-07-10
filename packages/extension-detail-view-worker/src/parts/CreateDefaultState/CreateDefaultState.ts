@@ -7,6 +7,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     builtinExtensionsBadgeEnabled: true,
     categories: [],
     changelogVirtualDom: [],
+    commands: [],
     description: '',
     detailsVirtualDom: [],
     displaySize: '',

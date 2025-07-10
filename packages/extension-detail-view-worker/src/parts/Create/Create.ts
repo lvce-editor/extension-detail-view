@@ -8,6 +8,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     builtinExtensionsBadgeEnabled: true,
     categories: [],
     changelogVirtualDom: [],
+    commands: [],
     description: '',
     detailsVirtualDom: [],
     displaySize: '',

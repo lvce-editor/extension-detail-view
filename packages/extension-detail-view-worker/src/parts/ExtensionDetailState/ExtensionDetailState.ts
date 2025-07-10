@@ -2,6 +2,7 @@ import type { Category } from '../Category/Category.ts'
 import type { Feature } from '../Feature/Feature.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
+import type { Row } from '../Row/Row.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
 
@@ -11,6 +12,7 @@ export interface ExtensionDetailState {
   readonly builtinExtensionsBadgeEnabled: boolean
   readonly categories: readonly Category[]
   readonly changelogVirtualDom: readonly VirtualDomNode[]
+  readonly commands: readonly Row[]
   readonly description: string
   readonly detailsVirtualDom: readonly VirtualDomNode[]
   readonly displaySize: string
