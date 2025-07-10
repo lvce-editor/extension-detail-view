@@ -1,7 +1,6 @@
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
-import * as AriaRoles from '../AriaRoles/AriaRoles.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetTabVirtualDom from '../GetTabVirtualDom/GetTabVirtualDom.ts'

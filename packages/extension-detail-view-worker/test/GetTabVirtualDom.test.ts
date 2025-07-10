@@ -1,6 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as AriaRoles from '../src/parts/AriaRoles/AriaRoles.ts'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetTabVirtualDom from '../src/parts/GetTabVirtualDom/GetTabVirtualDom.ts'
