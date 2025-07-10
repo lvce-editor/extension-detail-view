@@ -26,6 +26,7 @@ export interface ExtensionDetailState {
   readonly hasColorTheme: boolean
   readonly iconSrc: string
   readonly isBuiltin: boolean
+  readonly jsonValidation: readonly Row[]
   readonly name: string
   readonly platform: number
   readonly readmeScrollTop: number

@@ -21,6 +21,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     hasColorTheme: false,
     iconSrc: '',
     isBuiltin: false,
+    jsonValidation: [],
     name: '',
     platform: 0,
     readmeScrollTop: 0,
