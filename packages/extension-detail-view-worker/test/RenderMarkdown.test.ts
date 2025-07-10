@@ -4,7 +4,7 @@ import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import * as RenderMarkdown from '../src/parts/RenderMarkdown/RenderMarkdown.ts'
 
 test('renderMarkdown - basic markdown', async () => {
-  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockResolvedValue('<p>Hello World</p>')
+  const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockResolvedValue('<p>Hello World</p>')
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
@@ -17,7 +17,7 @@ test('renderMarkdown - basic markdown', async () => {
 })
 
 test('renderMarkdown - with baseUrl option', async () => {
-  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockResolvedValue('<p>Test with baseUrl</p>')
+  const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockResolvedValue('<p>Test with baseUrl</p>')
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
@@ -30,7 +30,7 @@ test('renderMarkdown - with baseUrl option', async () => {
 })
 
 test('renderMarkdown - empty markdown', async () => {
-  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockResolvedValue('')
+  const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockResolvedValue('')
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
@@ -43,7 +43,9 @@ test('renderMarkdown - empty markdown', async () => {
 })
 
 test('renderMarkdown - complex markdown', async () => {
-  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockResolvedValue('<h1>Title</h1><p><strong>Bold text</strong> and <em>italic text</em></p>')
+  const invoke = jest
+    .fn<(...args: readonly any[]) => Promise<any>>()
+    .mockResolvedValue('<h1>Title</h1><p><strong>Bold text</strong> and <em>italic text</em></p>')
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
@@ -56,7 +58,7 @@ test('renderMarkdown - complex markdown', async () => {
 })
 
 test('renderMarkdown - without options', async () => {
-  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockResolvedValue('<p>Simple text</p>')
+  const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockResolvedValue('<p>Simple text</p>')
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
