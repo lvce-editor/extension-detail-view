@@ -37,10 +37,10 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     iconSrc,
     description,
     detailsVirtualDom,
+    features,
+    extensionId,
+    extensionVersion,
   } = newState
-  const features = GetFeatures.getFeatures(selectedFeature, extension)
-  const extensionId = extension?.id || 'n/a'
-  const extensionVersion = extension?.version || 'n/a'
   const width = newState?.width || 500
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)

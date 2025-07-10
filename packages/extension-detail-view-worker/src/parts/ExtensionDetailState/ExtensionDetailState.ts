@@ -32,8 +32,10 @@ export interface ExtensionDetailState {
   readonly settingsButtonEnabled: boolean
   readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number
+  readonly sizeValue: number
   readonly themesMarkdownDom: readonly VirtualDomNode[]
   readonly uri: string
   readonly width: number
-  readonly sizeValue: number
+  readonly extensionId: string
+  readonly extensionVersion: string
 }

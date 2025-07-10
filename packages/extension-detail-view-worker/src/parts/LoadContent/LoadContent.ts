@@ -49,6 +49,8 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
   const isBuiltin = extension?.builtin
   const hasColorTheme = HasColorThemes.hasColorThemes(extension)
+  const extensionId = extension?.id || 'n/a'
+  const extensionVersion = extension?.version || 'n/a'
   return {
     ...state,
     baseUrl,
@@ -69,5 +71,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     selectedTab,
     sizeOnDisk: size,
     sizeValue,
+    extensionId,
+    extensionVersion,
   }
 }
