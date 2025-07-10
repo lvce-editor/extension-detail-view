@@ -3,6 +3,7 @@ import type { Feature } from '../Feature/Feature.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import { WebView } from '../WebView/WebView.ts'
 
 export interface ExtensionDetailState {
   readonly assetDir: string
@@ -32,8 +33,9 @@ export interface ExtensionDetailState {
   readonly settingsButtonEnabled: boolean
   readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number
+  readonly sizeValue: number
   readonly themesMarkdownDom: readonly VirtualDomNode[]
   readonly uri: string
+  readonly webViews: readonly WebView[]
   readonly width: number
-  readonly sizeValue: number
 }
