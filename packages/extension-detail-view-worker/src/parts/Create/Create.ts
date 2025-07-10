@@ -25,6 +25,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     jsonValidation: [],
     name: '',
     platform,
+    programmingLanguages: [],
     readmeScrollTop: 0,
     resources: [],
     scrollToTopButtonEnabled: false,
