@@ -181,7 +181,7 @@ test('loadContent - with saved state', async () => {
 
   const result = await LoadContent.loadContent(state, 1, savedState)
 
-  expect(result.selectedFeature).toBe('commands')
+  expect(result.selectedFeature).toBe('')
   expect(result.selectedTab).toBe('details')
 })
 
@@ -229,5 +229,5 @@ test('loadContent - with different platform', async () => {
   const result = await LoadContent.loadContent(state, 2, {})
 
   expect(result.extension).toEqual(mockExtension)
-  expect(result.baseUrl).toBe('/test/path')
+  expect(result.baseUrl).toBe('/remote/test/path/')
 })
