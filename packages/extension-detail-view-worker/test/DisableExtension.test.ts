@@ -4,7 +4,7 @@ import * as DisableExtension from '../src/parts/DisableExtension/DisableExtensio
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('disable extension', async () => {
-  const invoke: any = jest.fn()
+  const invoke = jest.fn()
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
@@ -15,13 +15,12 @@ test('disable extension', async () => {
 })
 
 test('handles error during disable', async () => {
-  const invoke: any = jest.fn()
+  const error = new Error('Failed to disable extension')
+  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockRejectedValue(error)
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
   })
   RendererWorker.set(mockRpc)
-  const error = new Error('Failed to disable extension')
-  invoke.mockRejectedValue(error)
   await expect(DisableExtension.disableExtension('test-id')).rejects.toThrow('Failed to disable extension')
 })

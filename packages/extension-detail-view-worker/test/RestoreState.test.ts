@@ -4,7 +4,7 @@ import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as RestoreState from '../src/parts/RestoreState/RestoreState.ts'
 
 test('restoreState - valid saved state', () => {
-  const savedState = {
+  const savedState: unknown = {
     selectedTab: 'Features',
     selectedFeature: 'Commands',
   }
@@ -16,7 +16,7 @@ test('restoreState - valid saved state', () => {
 })
 
 test('restoreState - invalid saved state', () => {
-  const savedState = {
+  const savedState: unknown = {
     selectedTab: 123,
     selectedFeature: null,
   }
@@ -44,7 +44,7 @@ test('restoreState - undefined saved state', () => {
 })
 
 test('restoreState - partial saved state', () => {
-  const savedState = {
+  const savedState: unknown = {
     selectedTab: 'Settings',
   }
   const result: RestoredState = RestoreState.restoreState(savedState)
@@ -55,7 +55,7 @@ test('restoreState - partial saved state', () => {
 })
 
 test('restoreState - empty object', () => {
-  const savedState = {}
+  const savedState: unknown = {}
   const result: RestoredState = RestoreState.restoreState(savedState)
   expect(result).toEqual({
     selectedTab: InputName.Details,
@@ -64,7 +64,7 @@ test('restoreState - empty object', () => {
 })
 
 test('restoreState - non-object saved state', () => {
-  const savedState = 'not an object'
+  const savedState: unknown = 'not an object'
   const result: RestoredState = RestoreState.restoreState(savedState)
   expect(result).toEqual({
     selectedTab: InputName.Details,

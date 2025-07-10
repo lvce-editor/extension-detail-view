@@ -3,7 +3,7 @@ import type { WebView } from '../src/parts/WebView/WebView.ts'
 import * as GetWebViews from '../src/parts/GetWebViews/GetWebViews.ts'
 
 test('getWebViews - extension with webViews', () => {
-  const extension = {
+  const extension: any = {
     webViews: [
       {
         id: 'webview1',
@@ -36,25 +36,25 @@ test('getWebViews - extension with webViews', () => {
 })
 
 test('getWebViews - extension without webViews', () => {
-  const extension = {}
+  const extension: any = {}
   const result: readonly WebView[] = GetWebViews.getWebViews(extension)
   expect(result).toHaveLength(0)
 })
 
 test('getWebViews - extension with null webViews', () => {
-  const extension = { webViews: null }
+  const extension: any = { webViews: null }
   const result: readonly WebView[] = GetWebViews.getWebViews(extension)
   expect(result).toHaveLength(0)
 })
 
 test('getWebViews - extension with empty webViews array', () => {
-  const extension = { webViews: [] }
+  const extension: any = { webViews: [] }
   const result: readonly WebView[] = GetWebViews.getWebViews(extension)
   expect(result).toHaveLength(0)
 })
 
 test('getWebViews - single webView', () => {
-  const extension = {
+  const extension: any = {
     webViews: [
       {
         id: 'single-webview',

@@ -5,15 +5,13 @@ import * as LoadChangelogContent from '../src/parts/LoadChangelogContent/LoadCha
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loadChangelogContent successfully loads changelog', async () => {
-  const invoke: any = jest.fn()
+  const changelogContent = '# Changelog\n\n## Version 1.0.0\n- Initial release'
+  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockResolvedValue(changelogContent)
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
   })
   RendererWorker.set(mockRpc)
-
-  const changelogContent = '# Changelog\n\n## Version 1.0.0\n- Initial release'
-  invoke.mockResolvedValue(changelogContent)
 
   const result = await LoadChangelogContent.loadChangelogContent('/test/extension')
   expect(result).toBe(changelogContent)
@@ -21,16 +19,14 @@ test('loadChangelogContent successfully loads changelog', async () => {
 })
 
 test('loadChangelogContent returns empty string when file not found', async () => {
-  const invoke: any = jest.fn()
+  const enoentError = new Error('File not found')
+  ;(enoentError as any).code = ErrorCodes.ENOENT
+  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockRejectedValue(enoentError)
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
   })
   RendererWorker.set(mockRpc)
-
-  const enoentError = new Error('File not found')
-  ;(enoentError as any).code = ErrorCodes.ENOENT
-  invoke.mockRejectedValue(enoentError)
 
   const result = await LoadChangelogContent.loadChangelogContent('/test/extension')
   expect(result).toBe('')
@@ -38,15 +34,13 @@ test('loadChangelogContent returns empty string when file not found', async () =
 })
 
 test('loadChangelogContent returns error message for other errors', async () => {
-  const invoke: any = jest.fn()
+  const error = new Error('Permission denied')
+  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockRejectedValue(error)
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
   })
   RendererWorker.set(mockRpc)
-
-  const error = new Error('Permission denied')
-  invoke.mockRejectedValue(error)
 
   const result = await LoadChangelogContent.loadChangelogContent('/test/extension')
   expect(result).toBe('Error: Permission denied')
@@ -54,14 +48,12 @@ test('loadChangelogContent returns error message for other errors', async () => 
 })
 
 test('loadChangelogContent handles different path formats', async () => {
-  const invoke: any = jest.fn()
+  const invoke = jest.fn<(...args: any[]) => Promise<any>>().mockResolvedValue('changelog content')
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke,
   })
   RendererWorker.set(mockRpc)
-
-  invoke.mockResolvedValue('changelog content')
 
   await LoadChangelogContent.loadChangelogContent('extension-name')
   expect(invoke).toHaveBeenCalledWith('FileSystem.readFile', 'extension-name/CHANGELOG.md')

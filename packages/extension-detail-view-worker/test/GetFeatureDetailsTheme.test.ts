@@ -18,14 +18,14 @@ test('getFeatureDetailsTheme - extension with themes', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const extension = {
+  const extension: any = {
     colorThemes: [{ name: 'Dark Theme', id: 'dark' }],
     iconThemes: [{ name: 'Material Icons', id: 'material' }],
     productIconThemes: [{ name: 'Product Icons', id: 'product' }],
   }
-  const baseUrl = 'https://example.com'
+  const baseUrl: string = 'https://example.com'
 
-  const result = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)
+  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)
   expect(result).toEqual({
     themesMarkdownDom: [{ tag: 'div', children: ['Theme content'] }],
   })
@@ -46,10 +46,10 @@ test('getFeatureDetailsTheme - extension without themes', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const extension = {}
-  const baseUrl = 'https://example.com'
+  const extension: any = {}
+  const baseUrl: string = 'https://example.com'
 
-  const result = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)
+  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)
   expect(result).toEqual({
     themesMarkdownDom: [],
   })
@@ -70,14 +70,14 @@ test('getFeatureDetailsTheme - extension with null themes', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const extension = {
+  const extension: any = {
     colorThemes: null,
     iconThemes: null,
     productIconThemes: null,
   }
-  const baseUrl = 'https://example.com'
+  const baseUrl: string = 'https://example.com'
 
-  const result = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)
+  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)
   expect(result).toEqual({
     themesMarkdownDom: [],
   })
@@ -95,10 +95,10 @@ test('getFeatureDetailsTheme - error propagation', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const extension = {
+  const extension: any = {
     colorThemes: [{ name: 'Dark Theme', id: 'dark' }],
   }
-  const baseUrl = 'https://example.com'
+  const baseUrl: string = 'https://example.com'
 
   await expect(GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)).rejects.toThrow('render error')
 })
