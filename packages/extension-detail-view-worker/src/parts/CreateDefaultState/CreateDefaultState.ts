@@ -41,6 +41,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     uri: 'extension-detail://test-extension',
     webViews: [],
     width: 500,
+    scrollSource: 0,
     ...overrides,
   }
 }

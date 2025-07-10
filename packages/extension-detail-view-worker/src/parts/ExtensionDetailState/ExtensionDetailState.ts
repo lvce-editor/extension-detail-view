@@ -33,6 +33,7 @@ export interface ExtensionDetailState {
   readonly programmingLanguages: readonly Row[]
   readonly readmeScrollTop: number
   readonly resources: readonly Resource[]
+  readonly scrollSource: number
   readonly scrollToTopButtonEnabled: boolean
   readonly secondEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
