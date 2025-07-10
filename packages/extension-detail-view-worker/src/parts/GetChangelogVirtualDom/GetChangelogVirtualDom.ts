@@ -1,6 +1,6 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as ClassNames from '../ClassNames/ClassNames.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 
 export const getChangelogVirtualDom = (changelogDom: readonly VirtualDomNode[]): readonly VirtualDomNode[] => {
   // const notImplemented = ExtensionDetailStrings.notImplemented()
