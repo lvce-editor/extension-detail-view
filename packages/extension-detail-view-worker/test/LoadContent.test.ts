@@ -214,6 +214,9 @@ test('loadContent - with different platform', async () => {
       if (method === 'Markdown.getMarkdownDom') {
         return [{ type: 'h1', children: ['Test README Content'] }]
       }
+      if (method === 'Markdown.getVirtualDom') {
+        return [{ type: 'h1', children: ['Test README Content'] }]
+      }
       throw new Error(`unexpected method ${method}`)
     },
   })
