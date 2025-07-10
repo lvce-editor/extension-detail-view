@@ -17,6 +17,8 @@ export interface ExtensionDetailState {
   readonly displaySize: string
   readonly entries: readonly MoreInfoEntry[]
   readonly extension: any
+  readonly extensionId: string
+  readonly extensionVersion: string
   readonly features: readonly Feature[]
   readonly featuresVirtualDom: readonly VirtualDomNode[]
   readonly folderSize: number
