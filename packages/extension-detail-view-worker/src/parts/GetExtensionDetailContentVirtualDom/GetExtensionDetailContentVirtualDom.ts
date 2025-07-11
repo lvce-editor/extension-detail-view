@@ -29,6 +29,7 @@ export const getExtensionDetailContentVirtualDom = (
   webViews: readonly WebView[],
   extensionUri: string,
   changelogDom: readonly VirtualDomNode[],
+  activationEvents: readonly string[],
 ): readonly VirtualDomNode[] => {
   switch (selectedTab) {
     case InputName.Details:
@@ -45,7 +46,16 @@ export const getExtensionDetailContentVirtualDom = (
         breakpoint,
       )
     case InputName.Features:
-      return GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesDom, selectedFeature, commands, jsonValidation, settings, webViews)
+      return GetFeaturesVirtualDom.getFeaturesVirtualDom(
+        features,
+        themesDom,
+        selectedFeature,
+        commands,
+        jsonValidation,
+        settings,
+        webViews,
+        activationEvents,
+      )
     case InputName.Changelog:
       return GetChangelogVirtualDom.getChangelogVirtualDom(changelogDom)
     default:

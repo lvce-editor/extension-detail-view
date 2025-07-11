@@ -18,6 +18,7 @@ export const getFeaturesVirtualDom = (
   jsonValidation: readonly Row[],
   settings: readonly Row[],
   webViews: readonly WebView[],
+  activationEvents: readonly string[],
 ): readonly VirtualDomNode[] => {
   if (features.length === 0) {
     const none = ExtensionDetailStrings.none()
@@ -42,6 +43,14 @@ export const getFeaturesVirtualDom = (
       className: MergeClassNames.mergeClassNames(ClassNames.Sash, ClassNames.SashVertical),
       childCount: 0,
     },
-    ...GetFeatureContentVirtualDom.getFeatureContentVirtualDom(themesDom, selectedFeature, commands, jsonValidation, settings, webViews),
+    ...GetFeatureContentVirtualDom.getFeatureContentVirtualDom(
+      themesDom,
+      selectedFeature,
+      commands,
+      jsonValidation,
+      settings,
+      webViews,
+      activationEvents,
+    ),
   ]
 }

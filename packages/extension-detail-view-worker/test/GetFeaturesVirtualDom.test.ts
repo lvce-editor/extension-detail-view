@@ -13,7 +13,7 @@ test.skip('features virtual dom', async () => {
     },
   ]
   const selectedFeature = 'Theme'
-  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, [], [], [], [])).toEqual([
+  expect(GetFeaturesVirtualDom.getFeaturesVirtualDom(features, themesHtml, selectedFeature, [], [], [], [], [])).toEqual([
     {
       childCount: 3,
       className: 'Features',
