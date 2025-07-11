@@ -84,7 +84,11 @@ test('getAdditionalDetailsVirtualDom - with sample data', () => {
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Info', mockEntries, GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('More Info', mockEntries, GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Categories', mockCategories, GetCategoriesDom.getCategoriesDom),
-    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Resources', mockResources, GetResourcesVirtualDom.getResourcesVirtualDom),
+    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(
+      'Resources',
+      mockResources,
+      GetResourcesVirtualDom.getResourcesVirtualDom,
+    ),
   ])
 })
 

@@ -1,7 +1,7 @@
+import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as Assert from '../Assert/Assert.ts'
 import { getScrollToTopVirtualDom } from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 import * as MarkdownWorker from '../MarkdownWorker/MarkdownWorker.ts'
-import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
 interface MarkdownOptions {
   readonly scrollToTopEnabled?: boolean

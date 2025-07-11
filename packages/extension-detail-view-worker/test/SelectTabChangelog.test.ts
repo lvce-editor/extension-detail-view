@@ -2,8 +2,8 @@ import { test, expect } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { selectTabChangelog } from '../src/parts/SelectTabChangelog/SelectTabChangelog.ts'
 
 test('selectTabChangelog should update state with changelog tab and virtual dom', async () => {
