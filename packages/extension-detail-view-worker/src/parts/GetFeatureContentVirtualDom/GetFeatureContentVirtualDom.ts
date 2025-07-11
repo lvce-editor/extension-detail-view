@@ -1,3 +1,6 @@
+import type { Row } from '../Row/Row.ts'
+import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import type { WebView } from '../WebView/WebView.ts'
 import { getFeatureActivationEventsVirtualDom } from '../GetFeatureActivationEventsVirtualDom/GetFeatureActivationEventsVirtualDom.ts'
 import * as GetFeatureCommandsVirtualDom from '../GetFeatureCommandsVirtualDom/GetFeatureCommandsVirtualDom.ts'
 import * as GetFeatureJsonValidationVirtualDom from '../GetFeatureJsonValidationVirtualDom/GetFeatureJsonValidationVirtualDom.ts'
@@ -7,9 +10,6 @@ import * as GetFeatureSettingsVirtualDom from '../GetFeatureSettingsVirtualDom/G
 import * as GetFeatureThemesVirtualDom from '../GetFeatureThemesVirtualDom/GetFeatureThemesVirtualDom.ts'
 import * as GetFeatureWebViewsVirtualDom from '../GetFeatureWebViewsVirtualDom/GetFeatureWebViewsVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
-import type { Row } from '../Row/Row.ts'
-import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
-import type { WebView } from '../WebView/WebView.ts'
 
 export const getFeatureContentVirtualDom = (
   themesDom: readonly VirtualDomNode[],
