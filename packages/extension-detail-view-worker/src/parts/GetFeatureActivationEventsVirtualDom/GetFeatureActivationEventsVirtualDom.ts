@@ -5,7 +5,13 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
 
 const getActivationEventVirtualDom = (event: string): readonly VirtualDomNode[] => {
-  return [text(event)]
+  return [
+    {
+      type: VirtualDomElements.Li,
+      childCount: 1,
+    },
+    text(event),
+  ]
 }
 
 export const getFeatureActivationEventsVirtualDom = (activationEvents: readonly string[]): readonly VirtualDomNode[] => {
@@ -18,7 +24,7 @@ export const getFeatureActivationEventsVirtualDom = (activationEvents: readonly 
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Ul,
       childCount: activationEvents.length,
     },
     ...activationEvents.flatMap(getActivationEventVirtualDom),
