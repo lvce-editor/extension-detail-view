@@ -26,6 +26,10 @@ const hasWebViews = (extension: any): boolean => {
   return extension && extension.webViews
 }
 
+const hasActivationEvents = (extension: any): boolean => {
+  return extension && extension.activation
+}
+
 const ifElseFeature = (
   id: string,
   label: string,
@@ -55,7 +59,9 @@ export const getFeatures = (selectedFeature: string, extension: any): readonly F
   const programmingLanguages = ExtensionDetailStrings.programmingLanguages()
   const settings = ExtensionDetailStrings.settings()
   const webViews = ExtensionDetailStrings.webViews()
+  const textActivationEvents = ExtensionDetailStrings.activationEvents()
   const features: readonly Feature[] = [
+    ...ifElseFeature(InputName.ActivationEvents, textActivationEvents, hasActivationEvents, selectedFeature, extension),
     ...ifElseFeature(InputName.Theme, textTheme, hasThemes, selectedFeature, extension),
     ...ifElseFeature(InputName.Commands, textCommands, hasCommands, selectedFeature, extension),
     ...ifElseFeature(InputName.JsonValidation, textJsonValidation, hasJsonValidation, selectedFeature, extension),
