@@ -8,16 +8,16 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 import * as GetAdditionalDetailsVirtualDom from '../GetAdditionalDetailsVirtualDom/GetAdditionalDetailsVirtualDom.ts'
 import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
-import * as GetScrollToTopVirtualDom from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
+// import * as GetScrollToTopVirtualDom from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 
 const getChildCount = (additionalDetails: boolean, scrollToTopEnabled: boolean): number => {
   let count = 1
   if (additionalDetails) {
     count++
   }
-  if (scrollToTopEnabled) {
-    count++
-  }
+  // if (scrollToTopEnabled) {
+  //   count++
+  // }
   return count
 }
 
@@ -48,7 +48,7 @@ export const getDetailsVirtualDom = (
       childCount: childCount,
       role: AriaRoles.Panel,
     },
-    ...GetScrollToTopVirtualDom.getScrollToTopVirtualDom(scrollToTopButtonEnabled),
+    // ...GetScrollToTopVirtualDom.getScrollToTopVirtualDom(scrollToTopButtonEnabled),
     ...sanitizedReadmeHtml,
     ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(
       showAdditionalDetails,

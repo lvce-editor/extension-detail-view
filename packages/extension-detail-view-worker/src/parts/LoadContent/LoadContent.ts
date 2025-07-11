@@ -32,7 +32,9 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
   })
-  const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml)
+  const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
+    scrollToTopEnabled: true,
+  })
   const iconSrc = ExtensionDisplay.getIcon(extension, platform, assetDir)
   const description = ExtensionDisplay.getDescription(extension)
   const name = ExtensionDisplay.getName(extension)
@@ -73,5 +75,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     sizeValue,
     extensionId,
     extensionVersion,
+    scrollToTopButtonEnabled: true,
   }
 }

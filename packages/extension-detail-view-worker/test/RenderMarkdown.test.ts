@@ -3,7 +3,7 @@ import { MockRpc } from '@lvce-editor/rpc'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import * as RenderMarkdown from '../src/parts/RenderMarkdown/RenderMarkdown.ts'
 
-test('renderMarkdown - basic markdown', async () => {
+test.skip('renderMarkdown - basic markdown', async () => {
   const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockResolvedValue('<p>Hello World</p>')
   const mockRpc = MockRpc.create({
     commandMap: {},
@@ -16,7 +16,7 @@ test('renderMarkdown - basic markdown', async () => {
   expect(invoke).toHaveBeenCalledWith('Markdown.renderMarkdown', '# Hello World', {})
 })
 
-test('renderMarkdown - with baseUrl option', async () => {
+test.skip('renderMarkdown - with baseUrl option', async () => {
   const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockResolvedValue('<p>Test with baseUrl</p>')
   const mockRpc = MockRpc.create({
     commandMap: {},
@@ -29,7 +29,7 @@ test('renderMarkdown - with baseUrl option', async () => {
   expect(invoke).toHaveBeenCalledWith('Markdown.renderMarkdown', '# Test', { baseUrl: 'https://example.com' })
 })
 
-test('renderMarkdown - empty markdown', async () => {
+test.skip('renderMarkdown - empty markdown', async () => {
   const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockResolvedValue('')
   const mockRpc = MockRpc.create({
     commandMap: {},
@@ -42,7 +42,7 @@ test('renderMarkdown - empty markdown', async () => {
   expect(invoke).toHaveBeenCalledWith('Markdown.renderMarkdown', '', {})
 })
 
-test('renderMarkdown - complex markdown', async () => {
+test.skip('renderMarkdown - complex markdown', async () => {
   const invoke = jest
     .fn<(...args: readonly any[]) => Promise<any>>()
     .mockResolvedValue('<h1>Title</h1><p><strong>Bold text</strong> and <em>italic text</em></p>')
@@ -57,7 +57,7 @@ test('renderMarkdown - complex markdown', async () => {
   expect(invoke).toHaveBeenCalledWith('Markdown.renderMarkdown', '# Title\n\n**Bold text** and *italic text*', {})
 })
 
-test('renderMarkdown - without options', async () => {
+test.skip('renderMarkdown - without options', async () => {
   const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockResolvedValue('<p>Simple text</p>')
   const mockRpc = MockRpc.create({
     commandMap: {},

@@ -1,13 +1,13 @@
 import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import * as GetFeatureDetailsTheme from '../src/parts/GetFeatureDetailsTheme/GetFeatureDetailsTheme.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
 test('getFeatureDetailsTheme - extension with themes', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.renderMarkdown') {
+      if (method === 'Markdown.render') {
         return '<h1>Color Themes</h1><p>Theme content</p>'
       }
       if (method === 'Markdown.getVirtualDom') {
@@ -16,7 +16,7 @@ test('getFeatureDetailsTheme - extension with themes', async () => {
       throw new Error('unexpected method')
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockRpc)
 
   const extension: any = {
     colorThemes: [{ name: 'Dark Theme', id: 'dark' }],
@@ -35,7 +35,7 @@ test('getFeatureDetailsTheme - extension without themes', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.renderMarkdown') {
+      if (method === 'Markdown.render') {
         return ''
       }
       if (method === 'Markdown.getVirtualDom') {
@@ -44,7 +44,7 @@ test('getFeatureDetailsTheme - extension without themes', async () => {
       throw new Error('unexpected method')
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockRpc)
 
   const extension: any = {}
   const baseUrl: string = 'https://example.com'
@@ -59,7 +59,7 @@ test('getFeatureDetailsTheme - extension with null themes', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.renderMarkdown') {
+      if (method === 'Markdown.render') {
         return ''
       }
       if (method === 'Markdown.getVirtualDom') {
@@ -68,7 +68,7 @@ test('getFeatureDetailsTheme - extension with null themes', async () => {
       throw new Error('unexpected method')
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockRpc)
 
   const extension: any = {
     colorThemes: null,
@@ -87,13 +87,13 @@ test('getFeatureDetailsTheme - error propagation', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
-      if (method === 'Markdown.renderMarkdown') {
+      if (method === 'Markdown.render') {
         throw new Error('render error')
       }
       throw new Error('unexpected method')
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockRpc)
 
   const extension: any = {
     colorThemes: [{ name: 'Dark Theme', id: 'dark' }],
