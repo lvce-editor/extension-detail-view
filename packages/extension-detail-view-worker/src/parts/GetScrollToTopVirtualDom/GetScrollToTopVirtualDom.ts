@@ -3,6 +3,7 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import * as InputName from '../InputName/InputName.ts'
 
 export const getScrollToTopVirtualDom = (scrollToTopButtonEnabled: boolean): readonly VirtualDomNode[] => {
   if (!scrollToTopButtonEnabled) {
@@ -15,7 +16,7 @@ export const getScrollToTopVirtualDom = (scrollToTopButtonEnabled: boolean): rea
       childCount: 0,
       onClick: DomEventListenerFunctions.HandleClickScrollToTop,
       ariaLabel: ExtensionDetailStrings.scrollToTop(),
-      name: 'scrolltotop',
+      name: InputName.ScrollToTop,
     },
   ]
 }
