@@ -81,6 +81,10 @@ export const webViews = (): string => {
   return I18nString.i18nString(UiStrings.WebViews)
 }
 
+export const activationEvents = (): string => {
+  return I18nString.i18nString(UiStrings.ActivationEvents)
+}
+
 export const jsonValidation = (): string => {
   return I18nString.i18nString(UiStrings.JsonValidation)
 }
