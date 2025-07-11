@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import * as GetMarkdownVirtualDom from '../src/parts/GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
 const mockDom = [{ tag: 'div', children: ['Hello'] }]
 
@@ -15,7 +15,7 @@ test('getMarkdownVirtualDom - valid markdown', async () => {
       throw new Error('unexpected method')
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockRpc)
   const result = await GetMarkdownVirtualDom.getMarkdownVirtualDom('# Hello')
   expect(result).toEqual(mockDom)
 })
@@ -30,7 +30,7 @@ test('getMarkdownVirtualDom - empty string', async () => {
       throw new Error('unexpected method')
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockRpc)
   const result = await GetMarkdownVirtualDom.getMarkdownVirtualDom('')
   expect(result).toEqual([])
 })
@@ -45,6 +45,6 @@ test('getMarkdownVirtualDom - error propagation', async () => {
       throw new Error('unexpected method')
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockRpc)
   await expect(GetMarkdownVirtualDom.getMarkdownVirtualDom('bad')).rejects.toThrow('fail')
 })

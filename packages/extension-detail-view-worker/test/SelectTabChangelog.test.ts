@@ -3,16 +3,25 @@ import { MockRpc } from '@lvce-editor/rpc'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 import { selectTabChangelog } from '../src/parts/SelectTabChangelog/SelectTabChangelog.ts'
 
 test('selectTabChangelog should update state with changelog tab and virtual dom', async () => {
-  const mockRpc = MockRpc.create({
+  const mockRendererRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
       if (method === 'FileSystem.readFile') {
         return 'test changelog content'
       }
-      if (method === 'Markdown.renderMarkdown') {
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRendererRpc)
+
+  const mockMarkdownRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'Markdown.render') {
         return '<div>test changelog html</div>'
       }
       if (method === 'Markdown.getVirtualDom') {
@@ -21,7 +30,7 @@ test('selectTabChangelog should update state with changelog tab and virtual dom'
       throw new Error(`unexpected method ${method}`)
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockMarkdownRpc)
 
   const state = createDefaultState()
   const result = await selectTabChangelog(state)

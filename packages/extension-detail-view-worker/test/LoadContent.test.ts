@@ -4,6 +4,7 @@ import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/Ext
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
 test('loadContent - successful load', async () => {
   const mockExtension: any = {
@@ -16,7 +17,7 @@ test('loadContent - successful load', async () => {
     builtin: false,
   }
 
-  const mockRpc = MockRpc.create({
+  const mockRendererRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionManagement.getExtension') {
@@ -28,7 +29,15 @@ test('loadContent - successful load', async () => {
       if (method === 'FileSystem.getFolderSize') {
         return 1024
       }
-      if (method === 'Markdown.renderMarkdown') {
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRendererRpc)
+
+  const mockMarkdownRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, ...args: readonly any[]) => {
+      if (method === 'Markdown.render') {
         return '<h1>Test README Content</h1>'
       }
       if (method === 'Markdown.getMarkdownDom') {
@@ -40,7 +49,7 @@ test('loadContent - successful load', async () => {
       throw new Error(`unexpected method ${method}`)
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -101,7 +110,7 @@ test('loadContent - with builtin extension', async () => {
     builtin: true,
   }
 
-  const mockRpc = MockRpc.create({
+  const mockRendererRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionManagement.getExtension') {
@@ -113,7 +122,15 @@ test('loadContent - with builtin extension', async () => {
       if (method === 'FileSystem.getFolderSize') {
         return 2048
       }
-      if (method === 'Markdown.renderMarkdown') {
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRendererRpc)
+
+  const mockMarkdownRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, ...args: readonly any[]) => {
+      if (method === 'Markdown.render') {
         return '<h1>Builtin README Content</h1>'
       }
       if (method === 'Markdown.getMarkdownDom') {
@@ -125,7 +142,7 @@ test('loadContent - with builtin extension', async () => {
       throw new Error(`unexpected method ${method}`)
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -148,7 +165,7 @@ test('loadContent - with saved state', async () => {
     builtin: false,
   }
 
-  const mockRpc = MockRpc.create({
+  const mockRendererRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionManagement.getExtension') {
@@ -160,7 +177,15 @@ test('loadContent - with saved state', async () => {
       if (method === 'FileSystem.getFolderSize') {
         return 1024
       }
-      if (method === 'Markdown.renderMarkdown') {
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRendererRpc)
+
+  const mockMarkdownRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, ...args: readonly any[]) => {
+      if (method === 'Markdown.render') {
         return '<h1>Test README Content</h1>'
       }
       if (method === 'Markdown.getMarkdownDom') {
@@ -172,7 +197,7 @@ test('loadContent - with saved state', async () => {
       throw new Error(`unexpected method ${method}`)
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -201,7 +226,7 @@ test('loadContent - with different platform', async () => {
     builtin: false,
   }
 
-  const mockRpc = MockRpc.create({
+  const mockRendererRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'ExtensionManagement.getExtension') {
@@ -213,7 +238,15 @@ test('loadContent - with different platform', async () => {
       if (method === 'FileSystem.getFolderSize') {
         return 1024
       }
-      if (method === 'Markdown.renderMarkdown') {
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRendererRpc)
+
+  const mockMarkdownRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, ...args: readonly any[]) => {
+      if (method === 'Markdown.render') {
         return '<h1>Test README Content</h1>'
       }
       if (method === 'Markdown.getMarkdownDom') {
@@ -225,7 +258,7 @@ test('loadContent - with different platform', async () => {
       throw new Error(`unexpected method ${method}`)
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
