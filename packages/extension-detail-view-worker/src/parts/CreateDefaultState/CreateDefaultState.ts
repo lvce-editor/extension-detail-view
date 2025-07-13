@@ -1,6 +1,6 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 
-export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}): ExtensionDetailState => {
+export const createDefaultState = (): ExtensionDetailState => {
   return {
     activationEvents: [],
     assetDir: '/test/asset/dir',
@@ -43,6 +43,5 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
     webViews: [],
     width: 500,
     scrollSource: 0,
-    ...overrides,
   }
 }

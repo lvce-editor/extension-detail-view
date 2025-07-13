@@ -1,4 +1,5 @@
 import { test, expect } from '@jest/globals'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { diffType, isEqual } from '../src/parts/DiffFocus/DiffFocus.ts'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
@@ -14,29 +15,29 @@ test('isEqual should return true when states are the same object', () => {
 })
 
 test('isEqual should return false when states are different objects with same content', () => {
-  const oldState = createDefaultState({ name: 'test-extension' })
-  const newState = createDefaultState({ name: 'test-extension' })
+  const oldState: ExtensionDetailState = { ...createDefaultState(), name: 'test-extension' }
+  const newState: ExtensionDetailState = { ...createDefaultState(), name: 'test-extension' }
   const result = isEqual(oldState, newState)
   expect(result).toBe(false)
 })
 
 test('isEqual should return false when states have different content', () => {
-  const oldState = createDefaultState({ name: 'old-extension' })
-  const newState = createDefaultState({ name: 'new-extension' })
+  const oldState: ExtensionDetailState = { ...createDefaultState(), name: 'old-extension' }
+  const newState: ExtensionDetailState = { ...createDefaultState(), name: 'new-extension' }
   const result = isEqual(oldState, newState)
   expect(result).toBe(false)
 })
 
 test('isEqual should return false when states have different selectedFeature', () => {
-  const oldState = createDefaultState({ selectedFeature: 'feature1' })
-  const newState = createDefaultState({ selectedFeature: 'feature2' })
+  const oldState: ExtensionDetailState = { ...createDefaultState(), selectedFeature: 'feature1' }
+  const newState: ExtensionDetailState = { ...createDefaultState(), selectedFeature: 'feature2' }
   const result = isEqual(oldState, newState)
   expect(result).toBe(false)
 })
 
 test('isEqual should return false when states have different readmeScrollTop', () => {
-  const oldState = createDefaultState({ readmeScrollTop: 0 })
-  const newState = createDefaultState({ readmeScrollTop: 100 })
+  const oldState: ExtensionDetailState = { ...createDefaultState(), readmeScrollTop: 0 }
+  const newState: ExtensionDetailState = { ...createDefaultState(), readmeScrollTop: 100 }
   const result = isEqual(oldState, newState)
   expect(result).toBe(false)
 })

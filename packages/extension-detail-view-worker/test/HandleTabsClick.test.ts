@@ -1,5 +1,6 @@
 import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { registerAllFeatures } from '../src/parts/FeatureFactory/FeatureFactory.ts'
 import { clearRegistry } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
@@ -33,10 +34,11 @@ test('handles tabs click - details tab', async () => {
   })
   MarkdownWorker.set(mockMarkdownRpc)
 
-  const state = createDefaultState({
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
     selectedTab: 'Features',
     name: 'Test Extension',
-  })
+  }
 
   const result = await HandleTabsClick.handleTabsClick(state, 'Details')
 
@@ -70,7 +72,8 @@ test('handles tabs click - features tab', async () => {
   })
   MarkdownWorker.set(mockMarkdownRpc)
 
-  const state = createDefaultState({
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
     selectedTab: 'Details',
     name: 'Test Extension',
     features: [
@@ -80,7 +83,7 @@ test('handles tabs click - features tab', async () => {
         selected: true,
       },
     ],
-  })
+  }
 
   const result = await HandleTabsClick.handleTabsClick(state, 'Features')
 
@@ -117,14 +120,15 @@ test('handles tabs click - changelog tab', async () => {
   })
   MarkdownWorker.set(mockMarkdownRpc)
 
-  const state = createDefaultState({
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
     selectedTab: 'Details',
     name: 'Test Extension',
     extension: {
       path: '/test/path',
     },
     baseUrl: 'http://test.com',
-  })
+  }
 
   const result = await HandleTabsClick.handleTabsClick(state, 'Changelog')
 
@@ -149,10 +153,11 @@ test('handles tabs click - unknown tab', async () => {
   })
   MarkdownWorker.set(mockMarkdownRpc)
 
-  const state = createDefaultState({
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
     selectedTab: 'Details',
     name: 'Test Extension',
-  })
+  }
 
   const result = await HandleTabsClick.handleTabsClick(state, 'UnknownTab')
 
