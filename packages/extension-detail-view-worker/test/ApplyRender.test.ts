@@ -1,11 +1,12 @@
 import { test, expect } from '@jest/globals'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { applyRender } from '../src/parts/ApplyRender/ApplyRender.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 
 test('applyRender with RenderItems diff type', () => {
   const oldState = createDefaultState()
-  const newState = createDefaultState({ name: 'test-extension' })
+  const newState: ExtensionDetailState = { ...createDefaultState(), name: 'test-extension' }
   const diffResult = [DiffType.RenderItems]
 
   const commands = applyRender(oldState, newState, diffResult)
@@ -17,7 +18,7 @@ test('applyRender with RenderItems diff type', () => {
 
 test('applyRender with RenderFocus diff type', () => {
   const oldState = createDefaultState()
-  const newState = createDefaultState({ selectedFeature: 'test-feature' })
+  const newState: ExtensionDetailState = { ...createDefaultState(), selectedFeature: 'test-feature' }
   const diffResult = [DiffType.RenderFocus]
 
   const commands = applyRender(oldState, newState, diffResult)
@@ -29,7 +30,7 @@ test('applyRender with RenderFocus diff type', () => {
 
 test('applyRender with RenderScrollTop diff type', () => {
   const oldState = createDefaultState()
-  const newState = createDefaultState({ readmeScrollTop: 100 })
+  const newState: ExtensionDetailState = { ...createDefaultState(), readmeScrollTop: 100 }
   const diffResult = [DiffType.RenderScrollTop]
 
   const commands = applyRender(oldState, newState, diffResult)

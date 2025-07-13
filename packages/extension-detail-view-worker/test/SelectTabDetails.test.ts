@@ -1,5 +1,6 @@
 import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
@@ -33,7 +34,8 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
   })
   MarkdownWorker.set(mockMarkdownRpc)
 
-  const state = createDefaultState({
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
     extension: {
       id: 'test-extension',
       name: 'Test Extension',
@@ -42,7 +44,7 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
     },
     baseUrl: '/test/baseUrl',
     platform: 0,
-  })
+  }
 
   const result = await SelectTabDetails.selectTabDetails(state)
 
