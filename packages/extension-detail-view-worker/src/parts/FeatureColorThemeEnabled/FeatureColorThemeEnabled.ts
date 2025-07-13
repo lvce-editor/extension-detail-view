@@ -1,10 +1,6 @@
 export const featureColorThemeEnabled = (extension: unknown): boolean => {
-  if (!extension || typeof extension !== 'object') {
+  if (!extension || typeof extension !== 'object' || !('colorThemes' in extension)) {
     return false
   }
-  if (!('colorThemes' in extension)) {
-    return false
-  }
-  const colorThemes = extension.colorThemes
-  return Array.isArray(colorThemes)
+  return Array.isArray(extension.colorThemes)
 }
