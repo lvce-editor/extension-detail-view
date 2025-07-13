@@ -2,7 +2,9 @@ export const featureSettingsEnabled = (extension: unknown): boolean => {
   if (!extension || typeof extension !== 'object') {
     return false
   }
-  // @ts-expect-error
-  const settings = extension.settings
-  return Boolean(Array.isArray(settings) && settings.length > 0)
+  if (!('settings' in extension)) {
+    return false
+  }
+  const settings = (extension as { settings?: unknown }).settings
+  return Array.isArray(settings) && settings.length > 0
 }

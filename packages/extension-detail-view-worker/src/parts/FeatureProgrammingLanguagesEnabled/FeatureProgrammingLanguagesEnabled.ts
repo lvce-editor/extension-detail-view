@@ -6,5 +6,5 @@ export const featureProgrammingLanguagesEnabled = (extension: unknown): boolean 
     return false
   }
   const programmingLanguages = (extension as { programmingLanguages?: unknown }).programmingLanguages
-  return Boolean(Array.isArray(programmingLanguages) && programmingLanguages.length > 0)
+  return Array.isArray(programmingLanguages) && programmingLanguages.length > 0
 }
