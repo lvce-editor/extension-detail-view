@@ -82,7 +82,7 @@ test('getFeatures marks selected feature correctly', () => {
   expect(unselectedFeature?.selected).toBe(false)
 })
 
-test('getFeatureDetailsHandler returns handler for existing feature', (): void => {
+test('getFeatureDetailsHandler returns handler for existing feature', () => {
   const mockHandler = jest.fn((): Promise<{}> => Promise.resolve({}))
   const mockFeature = {
     id: 'test-feature',
