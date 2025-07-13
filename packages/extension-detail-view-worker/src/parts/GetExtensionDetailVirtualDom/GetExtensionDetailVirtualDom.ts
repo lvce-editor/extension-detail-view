@@ -1,15 +1,15 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as ClassNames from '../ClassNames/ClassNames.ts'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import type { Tab } from '../Tab/Tab.ts'
+import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetExtensionDetailButtons from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailContentVirtualDom from '../GetExtensionDetailContentVirtualDom/GetExtensionDetailContentVirtualDom.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetTabsVirtualDom from '../GetTabsVirtualDom/GetTabsVirtualDom.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
-import type { Tab } from '../Tab/Tab.ts'
 import * as ViewletSizeMap from '../ViewletSizeMap/ViewletSizeMap.ts'
-import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
 export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, selectedTab: string): readonly VirtualDomNode[] => {
   // TODO move this to view model so that rendering occurs like
