@@ -1,6 +1,8 @@
-import { expect, jest, test } from '@jest/globals'
+import { expect, jest, test, beforeEach } from '@jest/globals'
 import { FeatureNotFoundError } from '../src/parts/FeatureNotFoundError/FeatureNotFoundError.ts'
-import { getFeatureDetailsHandler, getFeatures, getFeatureVirtualDomHandler, register } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
+import { getFeatureDetailsHandler, getFeatures, getFeatureVirtualDomHandler, register, clearRegistry } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
+
+beforeEach(clearRegistry)
 
 test('register adds feature to registry', () => {
   const mockFeature = {
