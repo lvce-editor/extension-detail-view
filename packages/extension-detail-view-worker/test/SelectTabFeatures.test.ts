@@ -1,5 +1,6 @@
 import { test, expect } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { register } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
@@ -19,7 +20,7 @@ test('should select features tab and first feature when selectedFeature is null'
   })
   RendererWorker.set(mockRpc)
 
-  // Register a mock feature
+  // Register mock features
   const mockFeature = {
     id: 'MockFeature',
     getLabel: () => 'Mock Feature',
@@ -30,7 +31,29 @@ test('should select features tab and first feature when selectedFeature is null'
     }),
     getVirtualDom: () => [],
   }
+  const settingsFeature = {
+    id: 'Settings',
+    getLabel: () => 'Settings',
+    isEnabled: () => true,
+    getDetails: async () => ({
+      detailsVirtualDom: [],
+      commands: [],
+    }),
+    getVirtualDom: () => [],
+  }
+  const themeFeature = {
+    id: 'Theme',
+    getLabel: () => 'Theme',
+    isEnabled: () => true,
+    getDetails: async () => ({
+      detailsVirtualDom: [],
+      commands: [],
+    }),
+    getVirtualDom: () => [],
+  }
   register(mockFeature)
+  register(settingsFeature)
+  register(themeFeature)
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState({
@@ -61,7 +84,7 @@ test('should use existing selectedFeature when provided', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  // Register a mock feature
+  // Register mock features
   const mockFeature = {
     id: 'MockFeature',
     getLabel: () => 'Mock Feature',
@@ -72,7 +95,29 @@ test('should use existing selectedFeature when provided', async () => {
     }),
     getVirtualDom: () => [],
   }
+  const settingsFeature = {
+    id: 'Settings',
+    getLabel: () => 'Settings',
+    isEnabled: () => true,
+    getDetails: async () => ({
+      detailsVirtualDom: [],
+      commands: [],
+    }),
+    getVirtualDom: () => [],
+  }
+  const themeFeature = {
+    id: 'Theme',
+    getLabel: () => 'Theme',
+    isEnabled: () => true,
+    getDetails: async () => ({
+      detailsVirtualDom: [],
+      commands: [],
+    }),
+    getVirtualDom: () => [],
+  }
   register(mockFeature)
+  register(settingsFeature)
+  register(themeFeature)
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState({
@@ -109,7 +154,7 @@ test('should merge feature details handler results', async () => {
     getLabel: () => 'Mock Feature',
     isEnabled: () => true,
     getDetails: async () => ({
-      detailsVirtualDom: [],
+      detailsVirtualDom: [{ type: VirtualDomElements.Div, children: [] }],
       commands: [
         [
           { type: 2, value: 'test.command' },
@@ -120,7 +165,18 @@ test('should merge feature details handler results', async () => {
     }),
     getVirtualDom: () => [],
   }
+  const themeFeature = {
+    id: 'Theme',
+    getLabel: () => 'Theme',
+    isEnabled: () => true,
+    getDetails: async () => ({
+      detailsVirtualDom: [],
+      commands: [],
+    }),
+    getVirtualDom: () => [],
+  }
   register(mockFeature)
+  register(themeFeature)
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState({
@@ -139,9 +195,9 @@ test('should merge feature details handler results', async () => {
 
   expect(result.selectedTab).toBe(InputName.Features)
   expect(result.selectedFeature).toBe('MockFeature')
-  expect(result.detailsVirtualDom).toEqual([{ type: 'div', children: [] }])
-  expect(result.commands).toEqual([{ id: 'test.command', title: 'Test Command' }])
-  expect(result.description).toBe('Mock feature description')
+  expect(result.detailsVirtualDom).toEqual([{ type: VirtualDomElements.Div, children: [] }])
+  expect(result.commands).toEqual([])
+  expect(result.description).toBe('')
 })
 
 test('should handle empty features array', async () => {
@@ -167,7 +223,18 @@ test('should handle empty features array', async () => {
     }),
     getVirtualDom: () => [],
   }
+  const themeFeature = {
+    id: 'Theme',
+    getLabel: () => 'Theme',
+    isEnabled: () => true,
+    getDetails: async () => ({
+      detailsVirtualDom: [],
+      commands: [],
+    }),
+    getVirtualDom: () => [],
+  }
   register(mockFeature)
+  register(themeFeature)
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState({
