@@ -8,7 +8,7 @@ export const featureThemeEnabled = (extension: unknown): boolean => {
   const iconThemes = extension.iconThemes
   // @ts-expect-error
   const productIconThemes = extension.productIconThemes
-  return (
+  return Boolean(
     (Array.isArray(colorThemes) && colorThemes.length > 0) ||
     (Array.isArray(iconThemes) && iconThemes.length > 0) ||
     (Array.isArray(productIconThemes) && productIconThemes.length > 0)

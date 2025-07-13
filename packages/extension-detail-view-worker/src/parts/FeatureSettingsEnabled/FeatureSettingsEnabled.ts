@@ -4,5 +4,5 @@ export const featureSettingsEnabled = (extension: unknown): boolean => {
   }
   // @ts-expect-error
   const settings = extension.settings
-  return Array.isArray(settings) && settings.length > 0
+  return Boolean(Array.isArray(settings) && settings.length > 0)
 }

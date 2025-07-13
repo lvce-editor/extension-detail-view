@@ -4,5 +4,5 @@ export const featureJsonValidationEnabled = (extension: unknown): boolean => {
   }
   // @ts-expect-error
   const jsonValidation = extension.jsonValidation
-  return Array.isArray(jsonValidation) && jsonValidation.length > 0
+  return Boolean(Array.isArray(jsonValidation) && jsonValidation.length > 0)
 }

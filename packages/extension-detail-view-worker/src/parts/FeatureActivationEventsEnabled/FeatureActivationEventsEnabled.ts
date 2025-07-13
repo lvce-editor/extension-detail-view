@@ -4,5 +4,5 @@ export const featureActivationEventsEnabled = (extension: unknown): boolean => {
   }
   // @ts-expect-error
   const activation = extension.activation
-  return activation && typeof activation === 'object' && Object.keys(activation).length > 0
+  return Boolean(activation && typeof activation === 'object' && Object.keys(activation).length > 0)
 }
