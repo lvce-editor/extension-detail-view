@@ -110,7 +110,7 @@ test('getFeatureVirtualDomHandler returns handler for existing feature', () => {
     id: 'test-feature',
     getLabel: (): string => 'Test Feature',
     isEnabled: jest.fn((): boolean => true),
-    getDetails: jest.fn((): Promise<{}> => Promise.resolve({})),
+    getDetails: jest.fn((): Promise<object> => Promise.resolve({})),
     getVirtualDom: mockHandler,
   }
 
