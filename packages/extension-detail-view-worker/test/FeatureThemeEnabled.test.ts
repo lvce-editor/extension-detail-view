@@ -2,22 +2,22 @@ import { expect, test } from '@jest/globals'
 import { featureThemeEnabled } from '../src/parts/FeatureThemeEnabled/FeatureThemeEnabled.ts'
 
 test('featureThemeEnabled returns true when extension has colorThemes', () => {
-  const extension = { colorThemes: [{ label: 'Test Theme', uiTheme: 'vs-dark' }] }
+  const extension: unknown = { colorThemes: [{ label: 'Test Theme', uiTheme: 'vs-dark' }] }
   expect(featureThemeEnabled(extension)).toBe(true)
 })
 
 test('featureThemeEnabled returns true when extension has iconThemes', () => {
-  const extension = { iconThemes: [{ label: 'Test Icon Theme', id: 'test-icon-theme' }] }
+  const extension: unknown = { iconThemes: [{ label: 'Test Icon Theme', id: 'test-icon-theme' }] }
   expect(featureThemeEnabled(extension)).toBe(true)
 })
 
 test('featureThemeEnabled returns true when extension has productIconThemes', () => {
-  const extension = { productIconThemes: [{ label: 'Test Product Icon Theme', id: 'test-product-icon-theme' }] }
+  const extension: unknown = { productIconThemes: [{ label: 'Test Product Icon Theme', id: 'test-product-icon-theme' }] }
   expect(featureThemeEnabled(extension)).toBe(true)
 })
 
 test('featureThemeEnabled returns true when extension has multiple theme types', () => {
-  const extension = {
+  const extension: unknown = {
     colorThemes: [{ label: 'Test Color Theme' }],
     iconThemes: [{ label: 'Test Icon Theme' }],
   }
@@ -25,19 +25,21 @@ test('featureThemeEnabled returns true when extension has multiple theme types',
 })
 
 test('featureThemeEnabled returns false when extension has no theme properties', () => {
-  const extension = { name: 'test-extension' }
+  const extension: unknown = { name: 'test-extension' }
   expect(featureThemeEnabled(extension)).toBe(false)
 })
 
 test('featureThemeEnabled returns false when extension is null', () => {
-  expect(featureThemeEnabled(null)).toBe(false)
+  const extension: unknown = null
+  expect(featureThemeEnabled(extension)).toBe(false)
 })
 
 test('featureThemeEnabled returns false when extension is undefined', () => {
-  expect(featureThemeEnabled(undefined)).toBe(false)
+  const extension: unknown = undefined
+  expect(featureThemeEnabled(extension)).toBe(false)
 })
 
 test('featureThemeEnabled returns false when all theme properties are empty arrays', () => {
-  const extension = { colorThemes: [], iconThemes: [], productIconThemes: [] }
+  const extension: unknown = { colorThemes: [], iconThemes: [], productIconThemes: [] }
   expect(featureThemeEnabled(extension)).toBe(false)
 })
