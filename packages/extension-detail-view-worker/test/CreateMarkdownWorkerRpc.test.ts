@@ -1,27 +1,42 @@
-import { jest, test, expect } from '@jest/globals'
+import { test, expect } from '@jest/globals'
+import { MockRpc } from '@lvce-editor/rpc'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { VError } from '@lvce-editor/verror'
 import { createMarkdownWorkerRpc } from '../src/parts/CreateMarkdownWorkerRpc/CreateMarkdownWorkerRpc.ts'
 
-const mockRpc = {
-  invoke: () => {
-    throw new Error('unexpected method')
-  },
-}
-
 test('createMarkdownWorkerRpc creates RPC successfully', async () => {
-  // Dynamically import and mock TransferMessagePortRpcParent.create
-  const rpcModule = await import('@lvce-editor/rpc')
-  jest.spyOn(rpcModule.TransferMessagePortRpcParent, 'create').mockResolvedValueOnce(mockRpc as any)
-
+  const mockRpc = await MockRpc.create({
+    commandMap: {
+      sendMessagePortToMarkdownWorker: () => {},
+    },
+    invoke: (method: string) => {
+      if (method === 'sendMessagePortToMarkdownWorker') {
+        return undefined
+      }
+      throw new Error(`unexpected method: ${method}`)
+    },
+  })
+  RendererWorker.set(mockRpc)
   const rpc = await createMarkdownWorkerRpc()
-  expect(rpc).toBe(mockRpc)
+  expect(rpc).toBeDefined()
   expect(typeof rpc.invoke).toBe('function')
 })
 
-test('createMarkdownWorkerRpc throws VError when creation fails', async () => {
-  const rpcModule = await import('@lvce-editor/rpc')
-  jest.spyOn(rpcModule.TransferMessagePortRpcParent, 'create').mockRejectedValueOnce(new Error('Test error'))
-
+test('createMarkdownWorkerRpc throws VError when sendMessagePortToMarkdownWorker fails', async () => {
+  const mockRpc = await MockRpc.create({
+    commandMap: {
+      sendMessagePortToMarkdownWorker: () => {
+        throw new Error('fail')
+      },
+    },
+    invoke: (method: string) => {
+      if (method === 'sendMessagePortToMarkdownWorker') {
+        throw new Error('fail')
+      }
+      throw new Error(`unexpected method: ${method}`)
+    },
+  })
+  RendererWorker.set(mockRpc)
   await expect(createMarkdownWorkerRpc()).rejects.toThrow(VError)
   await expect(createMarkdownWorkerRpc()).rejects.toThrow('Failed to create markdown worker rpc')
 })
