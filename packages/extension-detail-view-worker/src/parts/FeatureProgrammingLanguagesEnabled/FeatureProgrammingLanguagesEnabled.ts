@@ -1,10 +1,6 @@
 export const featureProgrammingLanguagesEnabled = (extension: unknown): boolean => {
-  if (!extension || typeof extension !== 'object') {
+  if (!extension) {
     return false
   }
-  if (!('programmingLanguages' in extension)) {
-    return false
-  }
-  const programmingLanguages = (extension as { programmingLanguages?: unknown }).programmingLanguages
-  return Array.isArray(programmingLanguages) && programmingLanguages.length > 0
+  return typeof extension === 'object' && 'programmingLanguages' in extension && Array.isArray(extension.programmingLanguages)
 }

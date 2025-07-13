@@ -1,10 +1,6 @@
 export const featureJsonValidationEnabled = (extension: unknown): boolean => {
-  if (!extension || typeof extension !== 'object') {
+  if (!extension) {
     return false
   }
-  if (!('jsonValidation' in extension)) {
-    return false
-  }
-  const jsonValidation = (extension as { jsonValidation?: unknown }).jsonValidation
-  return Array.isArray(jsonValidation) && jsonValidation.length > 0
+  return typeof extension === 'object' && 'jsonValidation' in extension && Array.isArray(extension.jsonValidation)
 }

@@ -1,6 +1,6 @@
 export const featureWebViewsEnabled = (extension: unknown): boolean => {
-  if (!extension) {
+  if (!extension || typeof extension !== 'object') {
     return false
   }
-  return typeof extension === 'object' && 'webViews' in extension && Array.isArray(extension.webViews)
+  return 'webViews' in extension && Array.isArray(extension.webViews)
 }
