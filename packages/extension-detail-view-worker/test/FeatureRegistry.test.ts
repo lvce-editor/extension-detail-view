@@ -99,12 +99,12 @@ test('getFeatureDetailsHandler throws error for non-existent feature', (): void 
 })
 
 test('getFeatureVirtualDomHandler returns handler for existing feature', (): void => {
-  const mockHandler = jest.fn(() => [])
+  const mockHandler = jest.fn((): any[] => [])
   const mockFeature = {
     id: 'test-feature',
-    getLabel: () => 'Test Feature',
-    isEnabled: jest.fn(() => true),
-    getDetails: jest.fn(() => Promise.resolve({})),
+    getLabel: (): string => 'Test Feature',
+    isEnabled: jest.fn((): boolean => true),
+    getDetails: jest.fn((): Promise<{}> => Promise.resolve({})),
     getVirtualDom: mockHandler,
   }
 
