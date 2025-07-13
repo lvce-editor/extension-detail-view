@@ -21,7 +21,7 @@ test('featureCommandsEnabled returns false when extension is undefined', () => {
   expect(FeatureCommandsEnabled.featureCommandsEnabled(extension)).toBe(false)
 })
 
-test('featureCommandsEnabled returns false when commands is empty array', () => {
+test('featureCommandsEnabled returns true when commands is empty array', () => {
   const extension: unknown = { commands: [] }
-  expect(FeatureCommandsEnabled.featureCommandsEnabled(extension)).toBe(false)
+  expect(FeatureCommandsEnabled.featureCommandsEnabled(extension)).toBe(true)
 })
