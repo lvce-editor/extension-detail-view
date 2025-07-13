@@ -1,6 +1,12 @@
 import { expect, jest, test, beforeEach } from '@jest/globals'
 import { FeatureNotFoundError } from '../src/parts/FeatureNotFoundError/FeatureNotFoundError.ts'
-import { getFeatureDetailsHandler, getFeatures, getFeatureVirtualDomHandler, register, clearRegistry } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
+import {
+  getFeatureDetailsHandler,
+  getFeatures,
+  getFeatureVirtualDomHandler,
+  register,
+  clearRegistry,
+} from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 
 beforeEach(clearRegistry)
 
@@ -48,7 +54,7 @@ test('getFeatures returns only enabled features', () => {
   expect(features.find((f) => f.id === 'disabled-feature')).toBeUndefined()
 })
 
-test('getFeatures marks selected feature correctly', (): void => {
+test('getFeatures marks selected feature correctly', () => {
   const feature1 = {
     id: 'feature-1',
     getLabel: (): string => 'Feature 1',
