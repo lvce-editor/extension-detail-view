@@ -3,7 +3,7 @@ import type { FeatureDefinition } from '../FeatureDefinition/FeatureDefinition.t
 import type { FeatureDetailsHandler, FeatureDomHandler } from '../FeatureDetailsHandler/FeatureDetailsHandler.ts'
 import { FeatureNotFoundError } from '../FeatureNotFoundError/FeatureNotFoundError.ts'
 
-const features = Object.create(null) as Record<string, FeatureDefinition>
+const features: Record<string, FeatureDefinition> = Object.create(null)
 
 export const register = (feature: FeatureDefinition): void => {
   features[feature.id] = feature
