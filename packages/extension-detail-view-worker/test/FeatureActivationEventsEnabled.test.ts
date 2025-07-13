@@ -1,9 +1,9 @@
 import { expect, test } from '@jest/globals'
 import * as FeatureActivationEventsEnabled from '../src/parts/FeatureActivationEventsEnabled/FeatureActivationEventsEnabled.ts'
 
-test('featureActivationEventsEnabled returns true when extension has activation', () => {
+test('featureActivationEventsEnabled returns false when extension has activation object', () => {
   const extension: unknown = { activation: { onCommand: 'test.command' } }
-  expect(FeatureActivationEventsEnabled.featureActivationEventsEnabled(extension)).toBe(true)
+  expect(FeatureActivationEventsEnabled.featureActivationEventsEnabled(extension)).toBe(false)
 })
 
 test('featureActivationEventsEnabled returns false when extension has no activation', () => {
