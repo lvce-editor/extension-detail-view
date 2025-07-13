@@ -21,7 +21,7 @@ test('featureActivationEventsEnabled returns false when extension is undefined',
   expect(FeatureActivationEventsEnabled.featureActivationEventsEnabled(extension)).toBe(false)
 })
 
-test('featureActivationEventsEnabled returns false when activation is empty object', () => {
-  const extension: unknown = { activation: {} }
-  expect(FeatureActivationEventsEnabled.featureActivationEventsEnabled(extension)).toBe(false)
+test('featureActivationEventsEnabled returns true when activation is empty array', () => {
+  const extension: unknown = { activation: [] }
+  expect(FeatureActivationEventsEnabled.featureActivationEventsEnabled(extension)).toBe(true)
 })
