@@ -19,3 +19,7 @@ export const featureIconThemeEnabled = (extension: unknown): boolean => {
   const iconThemes = extension.iconThemes
   return Array.isArray(iconThemes)
 }
+
+export const featureThemeEnabled = (extension: unknown): boolean => {
+  return featureColorThemeEnabled(extension) || featureIconThemeEnabled(extension)
+}
