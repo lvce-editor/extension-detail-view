@@ -2,6 +2,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { Feature } from '../Feature/Feature.ts'
 import type { FeatureDefinition } from '../FeatureDefinition/FeatureDefinition.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import { FeatureNotFoundError } from '../FeatureNotFoundError/FeatureNotFoundError.ts'
 
 export interface FeatureRegistry {
   readonly register: (feature: FeatureDefinition) => void
@@ -24,7 +25,7 @@ export const getFeatures = (selectedFeature: string, extension: any): readonly F
     if (feature.isEnabled(extension)) {
       result.push({
         id,
-        label: feature.label,
+        label: feature.getLabel(),
         selected: selectedFeature === id,
       })
     }
@@ -36,7 +37,7 @@ export const getFeatures = (selectedFeature: string, extension: any): readonly F
 export const getFeatureDetails = async (featureName: string, extension: any, baseUrl: string): Promise<Partial<ExtensionDetailState>> => {
   const feature = features[featureName]
   if (!feature) {
-    throw new Error(`unknown feature: ${featureName}`)
+    throw new FeatureNotFoundError(featureName)
   }
   return feature.getDetails(extension, baseUrl)
 }
@@ -44,7 +45,7 @@ export const getFeatureDetails = async (featureName: string, extension: any, bas
 export const getFeatureVirtualDom = (featureName: string, state: ExtensionDetailState): readonly VirtualDomNode[] => {
   const feature = features[featureName]
   if (!feature) {
-    throw new Error(`unknown feature: ${featureName}`)
+    throw new FeatureNotFoundError(featureName)
   }
   return feature.getVirtualDom(state)
 }
