@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import * as LoadHeaderContent from '../src/parts/LoadHeaderContent/LoadHeaderContent.ts'
+import { loadHeaderContent, type HeaderData } from '../src/parts/LoadHeaderContent/LoadHeaderContent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loadHeaderContent - successful load', async () => {
@@ -16,24 +16,13 @@ test('loadHeaderContent - successful load', async () => {
     builtin: false,
   }
 
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'ExtensionManagement.getExtension') {
-        return mockExtension
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
-  RendererWorker.set(mockRpc)
-
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     uri: 'extension-detail://test-extension',
     assetDir: '/test/assets',
   }
 
-  const result = await LoadHeaderContent.loadHeaderContent(state, 1)
+  const result: HeaderData = loadHeaderContent(state, 1, mockExtension)
 
   expect(result.extension).toEqual(mockExtension)
   expect(result.name).toBe('Test Extension')
@@ -61,7 +50,7 @@ test('loadHeaderContent - extension not found', async () => {
     uri: 'extension-detail://non-existent-extension',
   }
 
-  await expect(LoadHeaderContent.loadHeaderContent(state, 1)).rejects.toThrow('extension not found: non-existent-extension')
+  await expect(loadHeaderContent(state, 1, { id: 'non-existent-extension' })).rejects.toThrow('extension not found: non-existent-extension')
 })
 
 test('loadHeaderContent - with builtin extension', async () => {
@@ -74,23 +63,12 @@ test('loadHeaderContent - with builtin extension', async () => {
     builtin: true,
   }
 
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'ExtensionManagement.getExtension') {
-        return mockExtension
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
-  RendererWorker.set(mockRpc)
-
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     uri: 'extension-detail://builtin-extension',
   }
 
-  const result = await LoadHeaderContent.loadHeaderContent(state, 1)
+  const result: HeaderData = loadHeaderContent(state, 1, mockExtension)
 
   expect(result.extension).toEqual(mockExtension)
   expect(result.extensionId).toBe('builtin-extension')
@@ -102,23 +80,12 @@ test('loadHeaderContent - with fallback values', async () => {
     path: '/test/path',
   }
 
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'ExtensionManagement.getExtension') {
-        return mockExtension
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
-  RendererWorker.set(mockRpc)
-
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     uri: 'extension-detail://test-extension',
   }
 
-  const result = await LoadHeaderContent.loadHeaderContent(state, 1)
+  const result: HeaderData = loadHeaderContent(state, 1, mockExtension)
 
   expect(result.extensionId).toBe('n/a')
   expect(result.extensionVersion).toBe('n/a')

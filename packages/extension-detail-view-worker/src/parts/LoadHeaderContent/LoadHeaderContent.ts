@@ -11,15 +11,18 @@ export interface HeaderData {
   extension: any
 }
 
-export const loadHeaderContent = (state: ExtensionDetailState, platform: number, extension: any): HeaderData => {
+export const loadHeaderContent = (
+  state: ExtensionDetailState,
+  platform: number,
+  extension: any
+): HeaderData => {
   const { assetDir } = state
-  const iconSrc: string = ExtensionDisplay.getIcon(extension, platform, assetDir)
-  const description: string = ExtensionDisplay.getDescription(extension)
-  const name: string = ExtensionDisplay.getName(extension)
-  const extensionUri: string = extension.uri || extension.path
-  const extensionId: string = extension?.id || 'n/a'
-  const extensionVersion: string = extension?.version || 'n/a'
-
+  const iconSrc = ExtensionDisplay.getIcon(extension, platform, assetDir)
+  const description = ExtensionDisplay.getDescription(extension)
+  const name = ExtensionDisplay.getName(extension)
+  const extensionUri = extension.uri || extension.path
+  const extensionId = extension?.id || 'n/a'
+  const extensionVersion = extension?.version || 'n/a'
   return {
     extensionId,
     name,

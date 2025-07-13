@@ -15,7 +15,7 @@ import * as GetSecondEntries from '../GetSecondEntries/GetSecondEntries.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
 import * as InputName from '../InputName/InputName.ts'
-import { loadHeaderContent, type HeaderData } from '../LoadHeaderContent/LoadHeaderContent.ts'
+import * as LoadHeaderContent from '../LoadHeaderContent/LoadHeaderContent.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
@@ -29,10 +29,8 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   if (!extension) {
     throw new Error(`extension not found: ${id}`)
   }
-
-  const headerData: HeaderData = loadHeaderContent(state, platform, extension)
+  const headerData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
   const { extensionId, name, extensionUri, iconSrc, extensionVersion, description } = headerData
-
   const readmeContent = await GetExtensionReadme.loadReadmeContent(extension.path)
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
