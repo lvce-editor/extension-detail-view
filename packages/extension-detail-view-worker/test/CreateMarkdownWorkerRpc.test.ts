@@ -15,6 +15,8 @@ test('createMarkdownWorkerRpc creates RPC successfully', async () => {
       }
       throw new Error(`unexpected method: ${method}`)
     },
+    // Add invokeAndTransfer to satisfy the interface
+    invokeAndTransfer: () => {},
   })
   RendererWorker.set(mockRpc)
   const rpc = await createMarkdownWorkerRpc()
@@ -34,6 +36,9 @@ test('createMarkdownWorkerRpc throws VError when sendMessagePortToMarkdownWorker
         throw new Error('fail')
       }
       throw new Error(`unexpected method: ${method}`)
+    },
+    invokeAndTransfer: () => {
+      throw new Error('fail')
     },
   })
   RendererWorker.set(mockRpc)
