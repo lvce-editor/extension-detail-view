@@ -5,7 +5,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { selectFeature } from '../src/parts/SelectFeature/SelectFeature.ts'
 
-test.skip('should return same state when name is empty', async () => {
+test('should return same state when name is empty', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
@@ -27,7 +27,7 @@ test.skip('should return same state when name is empty', async () => {
   expect(result).toBe(initialState)
 })
 
-test.skip('should return same state when name is null', async () => {
+test('should return same state when name is null', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
@@ -113,7 +113,7 @@ test.skip('should call feature details handler and merge results', async () => {
   expect(result.commands).toBeDefined()
 })
 
-test.skip('should handle unknown feature gracefully', async () => {
+test('should handle unknown feature gracefully', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
@@ -130,5 +130,5 @@ test.skip('should handle unknown feature gracefully', async () => {
     ],
   }
 
-  await expect(selectFeature(initialState, 'UnknownFeature')).rejects.toThrow('unknown feature details handler: UnknownFeature')
+  await expect(selectFeature(initialState, 'UnknownFeature')).rejects.toThrow('unknown feature: UnknownFeature')
 })
