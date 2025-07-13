@@ -5,7 +5,7 @@ import { VError } from '@lvce-editor/verror'
 import { createMarkdownWorkerRpc } from '../src/parts/CreateMarkdownWorkerRpc/CreateMarkdownWorkerRpc.ts'
 
 test('createMarkdownWorkerRpc creates RPC successfully', async () => {
-  const mockRpc = await MockRpc.create({
+  const mockRpc = MockRpc.create({
     commandMap: {
       sendMessagePortToMarkdownWorker: () => {},
     },
@@ -25,7 +25,7 @@ test('createMarkdownWorkerRpc creates RPC successfully', async () => {
 })
 
 test('createMarkdownWorkerRpc throws VError when sendMessagePortToMarkdownWorker fails', async () => {
-  const mockRpc = await MockRpc.create({
+  const mockRpc = MockRpc.create({
     commandMap: {
       sendMessagePortToMarkdownWorker: () => {
         throw new Error('fail')
