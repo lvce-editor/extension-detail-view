@@ -5,6 +5,7 @@ import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionDisplay from '../ExtensionDisplay/ExtensionDisplay.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
+import * as GetBadge from '../GetBadge/GetBadge.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import * as GetCategories from '../GetCategories/GetCategories.ts'
 import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
@@ -22,7 +23,7 @@ import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
 
 export const loadContent = async (state: ExtensionDetailState, platform: number, savedState: unknown): Promise<ExtensionDetailState> => {
-  const { uri, width, assetDir } = state
+  const { uri, width, assetDir, builtinExtensionsBadgeEnabled } = state
   const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
   if (!extension) {
@@ -54,8 +55,10 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const hasColorTheme = HasColorThemes.hasColorThemes(extension)
   const extensionId = extension?.id || 'n/a'
   const extensionVersion = extension?.version || 'n/a'
+  const badge = GetBadge.getBadge(isBuiltin, builtinExtensionsBadgeEnabled)
   return {
     ...state,
+    badge,
     baseUrl,
     categories,
     description,
@@ -63,20 +66,20 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     displaySize,
     entries,
     extension,
+    extensionId,
+    extensionVersion,
     features,
     folderSize,
     hasColorTheme,
     iconSrc,
     isBuiltin,
     name,
+    readmeScrollTop,
     resources,
+    scrollToTopButtonEnabled: true,
     secondEntries,
     selectedTab,
     sizeOnDisk: size,
     sizeValue,
-    extensionId,
-    extensionVersion,
-    scrollToTopButtonEnabled: true,
-    readmeScrollTop,
   }
 }
