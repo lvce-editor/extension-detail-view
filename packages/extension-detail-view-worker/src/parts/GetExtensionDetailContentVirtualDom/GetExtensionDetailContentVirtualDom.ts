@@ -1,4 +1,5 @@
 import type { Category } from '../Category/Category.ts'
+import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { Feature } from '../Feature/Feature.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import type { Row } from '../Row/Row.ts'
@@ -6,9 +7,8 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
 import * as GetChangelogVirtualDom from '../GetChangelogVirtualDom/GetChangelogVirtualDom.ts'
 import * as GetDetailsVirtualDom from '../GetDetailsVirtualDom/GetDetailsVirtualDom.ts'
-import * as InputName from '../InputName/InputName.ts'
-import { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import { getFeaturesVirtualDom2 } from '../GetFeaturesVirtualDom2/GetFeaturesVirtualDom2.ts'
+import * as InputName from '../InputName/InputName.ts'
 
 export const getExtensionDetailContentVirtualDom = (
   sanitizedReadmeHtml: readonly VirtualDomNode[],
