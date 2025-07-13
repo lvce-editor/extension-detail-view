@@ -1,8 +1,8 @@
 import { test, expect } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { VError } from '@lvce-editor/verror'
 import { createMarkdownWorkerRpc } from '../src/parts/CreateMarkdownWorkerRpc/CreateMarkdownWorkerRpc.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('createMarkdownWorkerRpc creates RPC successfully', async () => {
   const mockRpc = MockRpc.create({
