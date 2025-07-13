@@ -51,7 +51,7 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
   const width = newState?.width || 500
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(hasColorTheme, isBuiltin)
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(hasColorTheme, isBuiltin) // TODO compute in loadContent
   const badge = GetBadge.getBadge(isBuiltin, builtinExtensionsBadgeEnabled) // TODO compute in loadContent
   const dom = [
     {
@@ -82,6 +82,7 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
       extensionUri,
       changelogVirtualDom,
       activationEvents,
+      newState,
     ),
   ]
   return dom

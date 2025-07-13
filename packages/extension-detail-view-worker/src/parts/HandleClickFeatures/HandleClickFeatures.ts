@@ -1,6 +1,6 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
-import * as SelectFeature from '../SelectFeature/SelectFeature.ts'
+import { selectFeature2 } from '../SelectFeature2/SelectFeature2.ts'
 
 export const handleClickFeatures = async (state: ExtensionDetailState, name: string): Promise<ExtensionDetailState> => {
-  return SelectFeature.selectFeature(state, name)
+  return selectFeature2(state, name)
 }

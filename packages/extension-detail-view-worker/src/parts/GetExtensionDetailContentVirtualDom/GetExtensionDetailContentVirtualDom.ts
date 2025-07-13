@@ -1,4 +1,5 @@
 import type { Category } from '../Category/Category.ts'
+import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { Feature } from '../Feature/Feature.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import type { Row } from '../Row/Row.ts'
@@ -6,7 +7,7 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
 import * as GetChangelogVirtualDom from '../GetChangelogVirtualDom/GetChangelogVirtualDom.ts'
 import * as GetDetailsVirtualDom from '../GetDetailsVirtualDom/GetDetailsVirtualDom.ts'
-import * as GetFeaturesVirtualDom from '../GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
+import { getFeaturesVirtualDom2 } from '../GetFeaturesVirtualDom2/GetFeaturesVirtualDom2.ts'
 import * as InputName from '../InputName/InputName.ts'
 
 export const getExtensionDetailContentVirtualDom = (
@@ -30,6 +31,7 @@ export const getExtensionDetailContentVirtualDom = (
   extensionUri: string,
   changelogDom: readonly VirtualDomNode[],
   activationEvents: readonly string[],
+  state: ExtensionDetailState,
 ): readonly VirtualDomNode[] => {
   switch (selectedTab) {
     case InputName.Details:
@@ -46,16 +48,7 @@ export const getExtensionDetailContentVirtualDom = (
         breakpoint,
       )
     case InputName.Features:
-      return GetFeaturesVirtualDom.getFeaturesVirtualDom(
-        features,
-        themesDom,
-        selectedFeature,
-        commands,
-        jsonValidation,
-        settings,
-        webViews,
-        activationEvents,
-      )
+      return getFeaturesVirtualDom2(state.features, state.selectedFeature, state)
     case InputName.Changelog:
       return GetChangelogVirtualDom.getChangelogVirtualDom(changelogDom)
     default:
