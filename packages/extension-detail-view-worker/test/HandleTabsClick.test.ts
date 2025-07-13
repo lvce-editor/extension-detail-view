@@ -1,11 +1,11 @@
 import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
-import * as HandleTabsClick from '../src/parts/HandleTabsClick/HandleTabsClick.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
-import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { registerAllFeatures } from '../src/parts/FeatureFactory/FeatureFactory.ts'
 import { clearRegistry } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
+import * as HandleTabsClick from '../src/parts/HandleTabsClick/HandleTabsClick.ts'
+import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('handles tabs click - details tab', async () => {
   const mockRendererRpc = MockRpc.create({
