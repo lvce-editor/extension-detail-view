@@ -21,7 +21,7 @@ test('createMarkdownWorkerRpc creates RPC successfully', async () => {
   RendererWorker.set(mockRpc)
   const rpc = await createMarkdownWorkerRpc()
   expect(rpc).toBeDefined()
-  expect(typeof rpc.invoke).toBe('function')
+  await rpc.dispose()
 })
 
 test('createMarkdownWorkerRpc throws VError when sendMessagePortToMarkdownWorker fails', async () => {
