@@ -19,7 +19,7 @@ test('featureThemeEnabled returns true when extension has productIconThemes', ()
 test('featureThemeEnabled returns true when extension has multiple theme types', () => {
   const extension = {
     colorThemes: [{ label: 'Test Color Theme' }],
-    iconThemes: [{ label: 'Test Icon Theme' }]
+    iconThemes: [{ label: 'Test Icon Theme' }],
   }
   expect(featureThemeEnabled(extension)).toBe(true)
 })
