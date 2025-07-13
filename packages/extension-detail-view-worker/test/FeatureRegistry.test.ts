@@ -4,13 +4,13 @@ import { getFeatureDetailsHandler, getFeatures, getFeatureVirtualDomHandler, reg
 
 beforeEach(clearRegistry)
 
-test('register adds feature to registry', () => {
+test('register adds feature to registry', (): void => {
   const mockFeature = {
     id: 'test-feature',
-    getLabel: () => 'Test Feature',
-    isEnabled: jest.fn(() => true),
-    getDetails: jest.fn(() => Promise.resolve({})),
-    getVirtualDom: jest.fn(() => []),
+    getLabel: (): string => 'Test Feature',
+    isEnabled: jest.fn((): boolean => true),
+    getDetails: jest.fn((): Promise<{}> => Promise.resolve({})),
+    getVirtualDom: jest.fn((): any[] => []),
   }
 
   register(mockFeature)
@@ -22,21 +22,21 @@ test('register adds feature to registry', () => {
   expect(features[0].selected).toBe(true)
 })
 
-test('getFeatures returns only enabled features', () => {
+test('getFeatures returns only enabled features', (): void => {
   const enabledFeature = {
     id: 'enabled-feature',
-    getLabel: () => 'Enabled Feature',
-    isEnabled: jest.fn(() => true),
-    getDetails: jest.fn(() => Promise.resolve({})),
-    getVirtualDom: jest.fn(() => []),
+    getLabel: (): string => 'Enabled Feature',
+    isEnabled: jest.fn((): boolean => true),
+    getDetails: jest.fn((): Promise<{}> => Promise.resolve({})),
+    getVirtualDom: jest.fn((): any[] => []),
   }
 
   const disabledFeature = {
     id: 'disabled-feature',
-    getLabel: () => 'Disabled Feature',
-    isEnabled: jest.fn(() => false),
-    getDetails: jest.fn(() => Promise.resolve({})),
-    getVirtualDom: jest.fn(() => []),
+    getLabel: (): string => 'Disabled Feature',
+    isEnabled: jest.fn((): boolean => false),
+    getDetails: jest.fn((): Promise<{}> => Promise.resolve({})),
+    getVirtualDom: jest.fn((): any[] => []),
   }
 
   register(enabledFeature)
@@ -48,21 +48,21 @@ test('getFeatures returns only enabled features', () => {
   expect(features.find((f) => f.id === 'disabled-feature')).toBeUndefined()
 })
 
-test('getFeatures marks selected feature correctly', () => {
+test('getFeatures marks selected feature correctly', (): void => {
   const feature1 = {
     id: 'feature-1',
-    getLabel: () => 'Feature 1',
-    isEnabled: jest.fn(() => true),
-    getDetails: jest.fn(() => Promise.resolve({})),
-    getVirtualDom: jest.fn(() => []),
+    getLabel: (): string => 'Feature 1',
+    isEnabled: jest.fn((): boolean => true),
+    getDetails: jest.fn((): Promise<{}> => Promise.resolve({})),
+    getVirtualDom: jest.fn((): any[] => []),
   }
 
   const feature2 = {
     id: 'feature-2',
-    getLabel: () => 'Feature 2',
-    isEnabled: jest.fn(() => true),
-    getDetails: jest.fn(() => Promise.resolve({})),
-    getVirtualDom: jest.fn(() => []),
+    getLabel: (): string => 'Feature 2',
+    isEnabled: jest.fn((): boolean => true),
+    getDetails: jest.fn((): Promise<{}> => Promise.resolve({})),
+    getVirtualDom: jest.fn((): any[] => []),
   }
 
   register(feature1)
@@ -76,14 +76,14 @@ test('getFeatures marks selected feature correctly', () => {
   expect(unselectedFeature?.selected).toBe(false)
 })
 
-test('getFeatureDetailsHandler returns handler for existing feature', () => {
-  const mockHandler = jest.fn(() => Promise.resolve({}))
+test('getFeatureDetailsHandler returns handler for existing feature', (): void => {
+  const mockHandler = jest.fn((): Promise<{}> => Promise.resolve({}))
   const mockFeature = {
     id: 'test-feature',
-    getLabel: () => 'Test Feature',
-    isEnabled: jest.fn(() => true),
+    getLabel: (): string => 'Test Feature',
+    isEnabled: jest.fn((): boolean => true),
     getDetails: mockHandler,
-    getVirtualDom: jest.fn(() => []),
+    getVirtualDom: jest.fn((): any[] => []),
   }
 
   register(mockFeature)
@@ -92,13 +92,13 @@ test('getFeatureDetailsHandler returns handler for existing feature', () => {
   expect(handler).toBe(mockHandler)
 })
 
-test('getFeatureDetailsHandler throws error for non-existent feature', () => {
+test('getFeatureDetailsHandler throws error for non-existent feature', (): void => {
   expect(() => {
     getFeatureDetailsHandler('non-existent-feature')
   }).toThrow(FeatureNotFoundError)
 })
 
-test('getFeatureVirtualDomHandler returns handler for existing feature', () => {
+test('getFeatureVirtualDomHandler returns handler for existing feature', (): void => {
   const mockHandler = jest.fn(() => [])
   const mockFeature = {
     id: 'test-feature',
