@@ -76,13 +76,13 @@ test('getFeatures marks selected feature correctly', () => {
 })
 
 test('getFeatureDetailsHandler returns handler for existing feature', () => {
-  const mockHandler = jest.fn()
+  const mockHandler = jest.fn(() => Promise.resolve({}))
   const mockFeature = {
     id: 'test-feature',
     getLabel: () => 'Test Feature',
     isEnabled: jest.fn(() => true),
     getDetails: mockHandler,
-    getVirtualDom: jest.fn(),
+    getVirtualDom: jest.fn(() => []),
   }
 
   register(mockFeature)
@@ -98,12 +98,12 @@ test('getFeatureDetailsHandler throws error for non-existent feature', () => {
 })
 
 test('getFeatureVirtualDomHandler returns handler for existing feature', () => {
-  const mockHandler = jest.fn()
+  const mockHandler = jest.fn(() => [])
   const mockFeature = {
     id: 'test-feature',
     getLabel: () => 'Test Feature',
     isEnabled: jest.fn(() => true),
-    getDetails: jest.fn(),
+    getDetails: jest.fn(() => Promise.resolve({})),
     getVirtualDom: mockHandler,
   }
 
