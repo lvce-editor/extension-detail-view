@@ -1,7 +1,6 @@
-import { jest, test, expect } from '@jest/globals'
-import { register, getFeatures, getFeatureDetailsHandler, getFeatureVirtualDomHandler } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
+import { expect, jest, test } from '@jest/globals'
 import { FeatureNotFoundError } from '../src/parts/FeatureNotFoundError/FeatureNotFoundError.ts'
-import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { getFeatureDetailsHandler, getFeatures, getFeatureVirtualDomHandler, register } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 
 test('register adds feature to registry', () => {
   const mockFeature = {
@@ -43,8 +42,8 @@ test('getFeatures returns only enabled features', () => {
 
   const features = getFeatures('enabled-feature', {})
   expect(features).toHaveLength(2)
-  expect(features.find(f => f.id === 'enabled-feature')).toBeDefined()
-  expect(features.find(f => f.id === 'disabled-feature')).toBeDefined()
+  expect(features.find((f) => f.id === 'enabled-feature')).toBeDefined()
+  expect(features.find((f) => f.id === 'disabled-feature')).toBeDefined()
 })
 
 test('getFeatures marks selected feature correctly', () => {
@@ -68,8 +67,8 @@ test('getFeatures marks selected feature correctly', () => {
   register(feature2)
 
   const features = getFeatures('feature-1', {})
-  const selectedFeature = features.find(f => f.id === 'feature-1')
-  const unselectedFeature = features.find(f => f.id === 'feature-2')
+  const selectedFeature = features.find((f) => f.id === 'feature-1')
+  const unselectedFeature = features.find((f) => f.id === 'feature-2')
 
   expect(selectedFeature?.selected).toBe(true)
   expect(unselectedFeature?.selected).toBe(false)
