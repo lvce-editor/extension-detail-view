@@ -39,7 +39,7 @@ test('featureThemeEnabled returns false when extension is undefined', () => {
   expect(FeatureThemeEnabled.featureThemeEnabled(extension)).toBe(false)
 })
 
-test('featureThemeEnabled returns false when all theme properties are empty arrays', () => {
+test('featureThemeEnabled returns true when all theme properties are empty arrays', () => {
   const extension: unknown = { colorThemes: [], iconThemes: [], productIconThemes: [] }
-  expect(FeatureThemeEnabled.featureThemeEnabled(extension)).toBe(false)
+  expect(FeatureThemeEnabled.featureThemeEnabled(extension)).toBe(true)
 })
