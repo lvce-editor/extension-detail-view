@@ -12,6 +12,7 @@ test('restoreState - valid saved state', () => {
   expect(result).toEqual({
     selectedTab: 'Features',
     selectedFeature: 'Commands',
+    readmeScrollTop: 0,
   })
 })
 
@@ -24,6 +25,7 @@ test('restoreState - invalid saved state', () => {
   expect(result).toEqual({
     selectedTab: InputName.Details,
     selectedFeature: InputName.Details,
+    readmeScrollTop: 0,
   })
 })
 
@@ -32,6 +34,7 @@ test('restoreState - null saved state', () => {
   expect(result).toEqual({
     selectedTab: InputName.Details,
     selectedFeature: InputName.Details,
+    readmeScrollTop: 0,
   })
 })
 
@@ -40,6 +43,7 @@ test('restoreState - undefined saved state', () => {
   expect(result).toEqual({
     selectedTab: InputName.Details,
     selectedFeature: InputName.Details,
+    readmeScrollTop: 0,
   })
 })
 
@@ -51,6 +55,7 @@ test('restoreState - partial saved state', () => {
   expect(result).toEqual({
     selectedTab: 'Settings',
     selectedFeature: InputName.Details,
+    readmeScrollTop: 0,
   })
 })
 
@@ -60,6 +65,7 @@ test('restoreState - empty object', () => {
   expect(result).toEqual({
     selectedTab: InputName.Details,
     selectedFeature: InputName.Details,
+    readmeScrollTop: 0,
   })
 })
 
@@ -69,5 +75,6 @@ test('restoreState - non-object saved state', () => {
   expect(result).toEqual({
     selectedTab: InputName.Details,
     selectedFeature: InputName.Details,
+    readmeScrollTop: 0,
   })
 })
