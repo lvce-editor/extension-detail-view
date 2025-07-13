@@ -3,7 +3,6 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
-import * as GetBadge from '../GetBadge/GetBadge.ts'
 import * as GetExtensionDetailButtons from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailContentVirtualDom from '../GetExtensionDetailContentVirtualDom/GetExtensionDetailContentVirtualDom.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
@@ -20,7 +19,6 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
   // 4. dom
   const {
     activationEvents,
-    builtinExtensionsBadgeEnabled,
     categories,
     changelogVirtualDom,
     commands,
@@ -45,6 +43,7 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     sizeValue,
     themesMarkdownDom,
     webViews,
+    badge,
   } = newState
   const extensionUri = extension.uri || extension.path || ''
 
@@ -52,7 +51,6 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(hasColorTheme, isBuiltin) // TODO compute in loadContent
-  const badge = GetBadge.getBadge(isBuiltin, builtinExtensionsBadgeEnabled) // TODO compute in loadContent
   const dom = [
     {
       type: VirtualDomElements.Div,
