@@ -1,5 +1,5 @@
 export const featureThemeEnabled = (extension: unknown): boolean => {
-  if (!extension) {
+  if (!extension || typeof extension !== 'object') {
     return false
   }
   return (
