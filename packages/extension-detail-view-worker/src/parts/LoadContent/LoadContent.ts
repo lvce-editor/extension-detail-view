@@ -39,7 +39,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const description = ExtensionDisplay.getDescription(extension)
   const name = ExtensionDisplay.getName(extension)
   const size = GetViewletSize.getViewletSize(width)
-  const { selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
+  const { selectedFeature, selectedTab, readmeScrollTop } = RestoreState.restoreState(savedState)
   const features = GetFeatures.getFeatures(selectedFeature, extension)
   const extensionUri = extension.uri || extension.path
   const folderSize = await GetFolderSize.getFolderSize(extensionUri)
@@ -76,5 +76,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     extensionId,
     extensionVersion,
     scrollToTopButtonEnabled: true,
+    readmeScrollTop,
   }
 }

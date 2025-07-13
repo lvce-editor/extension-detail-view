@@ -8,5 +8,6 @@ test('saves state with selected tab and feature', () => {
   expect(savedState).toEqual({
     selectedTab: '',
     selectedFeature: '',
+    readmeScrollTop: 0,
   })
 })

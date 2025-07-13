@@ -3,9 +3,10 @@ import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetail
 
 export const saveState = (uid: number): SavedState => {
   const { newState } = ExtensionDetailStates.get(uid)
-  const { selectedTab, selectedFeature } = newState
+  const { selectedTab, selectedFeature, readmeScrollTop } = newState
   return {
     selectedTab,
     selectedFeature,
+    readmeScrollTop,
   }
 }
