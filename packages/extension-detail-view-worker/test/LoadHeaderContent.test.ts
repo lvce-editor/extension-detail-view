@@ -1,9 +1,7 @@
 import { expect, test } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as LoadHeaderContent from '../src/parts/LoadHeaderContent/LoadHeaderContent.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loadHeaderContent - successful load', async () => {
   const mockExtension: any = {
