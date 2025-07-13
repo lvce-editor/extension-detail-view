@@ -1,3 +1,8 @@
-export const featureProgrammingLanguagesEnabled = (extension: any): boolean => {
-  return !!(extension && extension.programmingLanguages && extension.programmingLanguages.length > 0)
+export const featureProgrammingLanguagesEnabled = (extension: unknown): boolean => {
+  if (!extension || typeof extension !== 'object') {
+    return false
+  }
+  // @ts-expect-error
+  const programmingLanguages = extension.programmingLanguages
+  return Boolean(Array.isArray(programmingLanguages) && programmingLanguages.length > 0)
 }

@@ -1,3 +1,8 @@
-export const featureJsonValidationEnabled = (extension: any): boolean => {
-  return !!(extension && extension.jsonValidation && extension.jsonValidation.length > 0)
+export const featureJsonValidationEnabled = (extension: unknown): boolean => {
+  if (!extension || typeof extension !== 'object') {
+    return false
+  }
+  // @ts-expect-error
+  const jsonValidation = extension.jsonValidation
+  return Array.isArray(jsonValidation) && jsonValidation.length > 0
 }

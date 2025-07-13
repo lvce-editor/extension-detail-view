@@ -1,3 +1,8 @@
-export const featureCommandsEnabled = (extension: any): boolean => {
-  return !!(extension && extension.commands && extension.commands.length > 0)
+export const featureCommandsEnabled = (extension: unknown): boolean => {
+  if (!extension || typeof extension !== 'object') {
+    return false
+  }
+  // @ts-expect-error
+  const commands = extension.commands
+  return Array.isArray(commands) && commands.length > 0
 }
