@@ -1,10 +1,6 @@
 export const featureProductIconThemeEnabled = (extension: unknown): boolean => {
-  if (!extension || typeof extension !== 'object') {
+  if (!extension || typeof extension !== 'object' || !('productIconThemes' in extension)) {
     return false
   }
-  if (!('productIconThemes' in extension)) {
-    return false
-  }
-  const { productIconThemes } = extension
-  return Array.isArray(productIconThemes)
+  return Array.isArray(extension.productIconThemes)
 }
