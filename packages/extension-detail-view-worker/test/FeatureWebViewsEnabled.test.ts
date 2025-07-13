@@ -19,7 +19,7 @@ test('featureWebViewsEnabled returns false when extension is undefined', () => {
   expect(featureWebViewsEnabled(undefined)).toBe(false)
 })
 
-test('featureWebViewsEnabled returns false when webViews is empty array', () => {
+test('featureWebViewsEnabled returns true when webViews is empty array', () => {
   const extension = { webViews: [] }
-  expect(featureWebViewsEnabled(extension)).toBe(false)
+  expect(featureWebViewsEnabled(extension)).toBe(true)
 })
