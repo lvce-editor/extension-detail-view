@@ -4,6 +4,7 @@ import type { HeaderData } from '../HeaderData/HeaderData.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
+import { ExtensionNotFoundError } from '../ExtensionNotFoundError/ExtensionNotFoundError.ts'
 import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import * as GetCategories from '../GetCategories/GetCategories.ts'
@@ -26,7 +27,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
   if (!extension) {
-    throw new Error(`extension not found: ${id}`)
+    throw new ExtensionNotFoundError(id)
   }
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
   const { badge, description, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name } = headerData
