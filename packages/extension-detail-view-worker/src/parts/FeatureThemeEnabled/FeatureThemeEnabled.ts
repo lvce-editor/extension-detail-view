@@ -20,6 +20,17 @@ export const featureIconThemeEnabled = (extension: unknown): boolean => {
   return Array.isArray(iconThemes)
 }
 
+export const featureProductIconThemeEnabled = (extension: unknown): boolean => {
+  if (!extension || typeof extension !== 'object') {
+    return false
+  }
+  if (!('productIconThemes' in extension)) {
+    return false
+  }
+  const productIconThemes = extension.productIconThemes
+  return Array.isArray(productIconThemes)
+}
+
 export const featureThemeEnabled = (extension: unknown): boolean => {
-  return featureColorThemeEnabled(extension) || featureIconThemeEnabled(extension)
+  return featureColorThemeEnabled(extension) || featureIconThemeEnabled(extension) || featureProductIconThemeEnabled(extension)
 }
