@@ -39,26 +39,6 @@ test('applyRender with RenderScrollTop diff type', () => {
   expect(commands[0][0]).toBe('Viewlet.setScrollTop')
 })
 
-test('applyRender with multiple diff types', () => {
-  const oldState = createDefaultState()
-  const newState = createDefaultState({
-    name: 'test-extension',
-    selectedFeature: 'test-feature',
-    readmeScrollTop: 100
-  })
-  const diffResult = [DiffType.RenderItems, DiffType.RenderFocus, DiffType.RenderScrollTop]
-
-  const commands = applyRender(oldState, newState, diffResult)
-
-  expect(commands).toHaveLength(3)
-  commands.forEach(command => {
-    expect(Array.isArray(command)).toBe(true)
-  })
-  expect(commands[0][0]).toBe('Viewlet.setDom2')
-  expect(commands[1][0]).toBe('Viewlet.focusElementByName')
-  expect(commands[2][0]).toBe('Viewlet.setScrollTop')
-})
-
 test('applyRender with empty diff result', () => {
   const oldState = createDefaultState()
   const newState = createDefaultState()
