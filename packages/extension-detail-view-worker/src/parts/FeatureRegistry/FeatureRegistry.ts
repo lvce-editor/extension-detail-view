@@ -38,3 +38,9 @@ export const getFeatureVirtualDomHandler = (featureName: string): FeatureDomHand
   }
   return feature.getVirtualDom
 }
+
+export const clearRegistry = (): void => {
+  for (const key of Object.keys(features)) {
+    delete features[key]
+  }
+}
