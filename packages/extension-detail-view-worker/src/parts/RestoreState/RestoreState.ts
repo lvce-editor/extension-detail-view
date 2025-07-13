@@ -1,5 +1,5 @@
 import type { RestoredState } from '../RestoredState/RestoredState.ts'
-import * as GetSavedReadmeScrollTop from '../GetSavedReadmeScrollTop.ts'
+import * as GetSavedReadmeScrollTop from '../GetSavedReadmeScrollTop/GetSavedReadmeScrollTop.ts'
 import * as GetSavedSelectedFeature from '../GetSavedSelectedFeature/GetSavedSelectedFeature.ts'
 import * as GetSavedSelectedTab from '../GetSavedSelectedTab/GetSavedSelectedTab.ts'
 
