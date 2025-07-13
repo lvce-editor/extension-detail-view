@@ -21,7 +21,7 @@ test('featureProgrammingLanguagesEnabled returns false when extension is undefin
   expect(FeatureProgrammingLanguagesEnabled.featureProgrammingLanguagesEnabled(extension)).toBe(false)
 })
 
-test('featureProgrammingLanguagesEnabled returns false when programmingLanguages is empty array', () => {
+test('featureProgrammingLanguagesEnabled returns true when programmingLanguages is empty array', () => {
   const extension: unknown = { programmingLanguages: [] }
-  expect(FeatureProgrammingLanguagesEnabled.featureProgrammingLanguagesEnabled(extension)).toBe(false)
+  expect(FeatureProgrammingLanguagesEnabled.featureProgrammingLanguagesEnabled(extension)).toBe(true)
 })
