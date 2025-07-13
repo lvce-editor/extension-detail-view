@@ -2,6 +2,7 @@ import { test, expect } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
+import type { FeatureDefinition } from '../src/parts/FeatureDefinition/FeatureDefinition.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { register } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
@@ -21,7 +22,7 @@ test('should select features tab and first feature when selectedFeature is null'
   RendererWorker.set(mockRpc)
 
   // Register mock features
-  const mockFeature = {
+  const mockFeature: FeatureDefinition = {
     id: 'MockFeature',
     getLabel: () => 'Mock Feature',
     isEnabled: () => true,
@@ -31,7 +32,7 @@ test('should select features tab and first feature when selectedFeature is null'
     }),
     getVirtualDom: () => [],
   }
-  const settingsFeature = {
+  const settingsFeature: FeatureDefinition = {
     id: 'Settings',
     getLabel: () => 'Settings',
     isEnabled: () => true,
