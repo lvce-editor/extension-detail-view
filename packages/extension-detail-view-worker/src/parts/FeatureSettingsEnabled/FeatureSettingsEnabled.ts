@@ -1,6 +1,6 @@
 export const featureSettingsEnabled = (extension: unknown): boolean => {
-  if (!extension) {
+  if (!extension || typeof extension !== 'object') {
     return false
   }
-  return typeof extension === 'object' && 'settings' in extension && Array.isArray(extension.settings)
+  return 'settings' in extension && Array.isArray(extension.settings)
 }
