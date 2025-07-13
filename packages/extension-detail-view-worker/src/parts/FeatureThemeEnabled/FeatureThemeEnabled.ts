@@ -8,7 +8,7 @@ export const featureProductIconThemeEnabled = (extension: unknown): boolean => {
   if (!('productIconThemes' in extension)) {
     return false
   }
-  const productIconThemes = extension.productIconThemes
+  const {productIconThemes} = extension
   return Array.isArray(productIconThemes)
 }
 

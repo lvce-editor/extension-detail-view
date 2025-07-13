@@ -5,6 +5,6 @@ export const featureActivationEventsEnabled = (extension: unknown): boolean => {
   if (!('activation' in extension)) {
     return false
   }
-  const activation = extension.activation
+  const {activation} = extension
   return typeof activation === 'object' && activation !== null
 }
