@@ -1,25 +1,37 @@
 import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import * as HandleTabsClick from '../src/parts/HandleTabsClick/HandleTabsClick.ts'
+import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { registerAllFeatures } from '../src/parts/FeatureFactory/FeatureFactory.ts'
 import { clearRegistry } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
-import * as HandleTabsClick from '../src/parts/HandleTabsClick/HandleTabsClick.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('handles tabs click - details tab', async () => {
-  const mockRpc = MockRpc.create({
+  const mockRendererRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
       if (method === 'FileSystem.readFile') {
         return '<h1>Test Details</h1>'
       }
-      if (method === 'MarkdownWorker.render') {
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRendererRpc)
+
+  const mockMarkdownRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'Markdown.render') {
         return '<h1>Test Details</h1>'
+      }
+      if (method === 'Markdown.getVirtualDom') {
+        return [{ type: 'element', tag: 'h1', children: [] }]
       }
       throw new Error(`unexpected method ${method}`)
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockMarkdownRpc)
 
   const state = createDefaultState({
     selectedTab: 'Features',
@@ -36,13 +48,27 @@ test('handles tabs click - features tab', async () => {
   // Register features first
   registerAllFeatures()
 
-  const mockRpc = MockRpc.create({
+  const mockRendererRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
       throw new Error(`unexpected method ${method}`)
     },
   })
-  RendererWorker.set(mockRpc)
+  RendererWorker.set(mockRendererRpc)
+
+  const mockMarkdownRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'Markdown.render') {
+        return '<h1>Theme Details</h1>'
+      }
+      if (method === 'Markdown.getVirtualDom') {
+        return [{ type: 'element', tag: 'h1', children: [] }]
+      }
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  MarkdownWorker.set(mockMarkdownRpc)
 
   const state = createDefaultState({
     selectedTab: 'Details',
@@ -66,19 +92,30 @@ test('handles tabs click - features tab', async () => {
 })
 
 test('handles tabs click - changelog tab', async () => {
-  const mockRpc = MockRpc.create({
+  const mockRendererRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
       if (method === 'FileSystem.readFile') {
         return '# Changelog\n\nVersion 1.0.0'
       }
-      if (method === 'MarkdownWorker.render') {
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  RendererWorker.set(mockRendererRpc)
+
+  const mockMarkdownRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      if (method === 'Markdown.render') {
         return '<h1>Changelog</h1><p>Version 1.0.0</p>'
+      }
+      if (method === 'Markdown.getVirtualDom') {
+        return [{ type: 'element', tag: 'h1', children: [] }]
       }
       throw new Error(`unexpected method ${method}`)
     },
   })
-  RendererWorker.set(mockRpc)
+  MarkdownWorker.set(mockMarkdownRpc)
 
   const state = createDefaultState({
     selectedTab: 'Details',
@@ -96,13 +133,21 @@ test('handles tabs click - changelog tab', async () => {
 })
 
 test('handles tabs click - unknown tab', async () => {
-  const mockRpc = MockRpc.create({
+  const mockRendererRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
       throw new Error(`unexpected method ${method}`)
     },
   })
-  RendererWorker.set(mockRpc)
+  RendererWorker.set(mockRendererRpc)
+
+  const mockMarkdownRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string) => {
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  MarkdownWorker.set(mockMarkdownRpc)
 
   const state = createDefaultState({
     selectedTab: 'Details',
