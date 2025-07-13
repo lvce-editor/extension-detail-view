@@ -9,7 +9,7 @@ import * as GetCategories from '../GetCategories/GetCategories.ts'
 import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
 import * as GetEntries from '../GetEntries/GetEntries.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
-import * as GetFeatures2 from '../GetFeatures/GetFeatures.ts'
+import * as GetFeatures from '../GetFeatures/GetFeatures.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetResources from '../GetResources/GetResources.ts'
@@ -40,7 +40,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const name = ExtensionDisplay.getName(extension)
   const size = GetViewletSize.getViewletSize(width)
   const { selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
-  const features = GetFeatures2.getFeatures(selectedFeature, extension)
+  const features = GetFeatures.getFeatures(selectedFeature, extension)
   const extensionUri = extension.uri || extension.path
   const folderSize = await GetFolderSize.getFolderSize(extensionUri)
   const displaySize = GetDisplaySize.getDisplaySize(size)
