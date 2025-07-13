@@ -104,7 +104,7 @@ test('getFeatureDetailsHandler throws error for non-existent feature', () => {
   }).toThrow(FeatureNotFoundError)
 })
 
-test('getFeatureVirtualDomHandler returns handler for existing feature', (): void => {
+test('getFeatureVirtualDomHandler returns handler for existing feature', () => {
   const mockHandler = jest.fn((): any[] => [])
   const mockFeature = {
     id: 'test-feature',
