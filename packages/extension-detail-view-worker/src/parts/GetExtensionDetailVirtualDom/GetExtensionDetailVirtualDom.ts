@@ -45,6 +45,7 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     sizeValue,
     themesMarkdownDom,
     webViews,
+    badge,
   } = newState
   const extensionUri = extension.uri || extension.path || ''
 
@@ -52,7 +53,6 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(hasColorTheme, isBuiltin) // TODO compute in loadContent
-  const badge = GetBadge.getBadge(isBuiltin, builtinExtensionsBadgeEnabled) // TODO compute in loadContent
   const dom = [
     {
       type: VirtualDomElements.Div,
