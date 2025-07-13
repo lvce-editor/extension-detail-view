@@ -7,7 +7,7 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
 import * as GetChangelogVirtualDom from '../GetChangelogVirtualDom/GetChangelogVirtualDom.ts'
 import * as GetDetailsVirtualDom from '../GetDetailsVirtualDom/GetDetailsVirtualDom.ts'
-import { getFeaturesVirtualDom2 } from '../GetFeaturesVirtualDom2/GetFeaturesVirtualDom2.ts'
+import { getFeaturesVirtualDom } from '../GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
 
 export const getExtensionDetailContentVirtualDom = (
@@ -48,7 +48,7 @@ export const getExtensionDetailContentVirtualDom = (
         breakpoint,
       )
     case InputName.Features:
-      return getFeaturesVirtualDom2(state.features, state.selectedFeature, state)
+      return getFeaturesVirtualDom(state.features, state.selectedFeature, state)
     case InputName.Changelog:
       return GetChangelogVirtualDom.getChangelogVirtualDom(changelogDom)
     default:

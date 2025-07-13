@@ -15,12 +15,11 @@ test.skip('should return same state when name is empty', async () => {
   RendererWorker.set(mockRpc)
 
   const initialState: ExtensionDetailState = {
-    ...createDefaultState({
-      features: [
-        { id: 'Commands', label: 'Commands', selected: false },
-        { id: 'Settings', label: 'Settings', selected: true },
-      ],
-    }),
+    ...createDefaultState(),
+    features: [
+      { id: 'Commands', label: 'Commands', selected: false },
+      { id: 'Settings', label: 'Settings', selected: true },
+    ],
   }
 
   const result = await selectFeature(initialState, '')
@@ -38,12 +37,11 @@ test.skip('should return same state when name is null', async () => {
   RendererWorker.set(mockRpc)
 
   const initialState: ExtensionDetailState = {
-    ...createDefaultState({
-      features: [
-        { id: 'Commands', label: 'Commands', selected: false },
-        { id: 'Settings', label: 'Settings', selected: true },
-      ],
-    }),
+    ...createDefaultState(),
+    features: [
+      { id: 'Commands', label: 'Commands', selected: false },
+      { id: 'Settings', label: 'Settings', selected: true },
+    ],
   }
 
   const result = await selectFeature(initialState, null as any)
@@ -64,14 +62,13 @@ test.skip('should select feature and update state', async () => {
   RendererWorker.set(mockRpc)
 
   const initialState: ExtensionDetailState = {
-    ...createDefaultState({
-      features: [
-        { id: 'Commands', label: 'Commands', selected: false },
-        { id: 'Settings', label: 'Settings', selected: true },
-        { id: 'Theme', label: 'Theme', selected: false },
-      ],
-      selectedFeature: 'Settings',
-    }),
+    ...createDefaultState(),
+    features: [
+      { id: 'Commands', label: 'Commands', selected: false },
+      { id: 'Settings', label: 'Settings', selected: true },
+      { id: 'Theme', label: 'Theme', selected: false },
+    ],
+    selectedFeature: 'Settings',
   }
 
   const result = await selectFeature(initialState, 'Commands')
@@ -97,14 +94,13 @@ test.skip('should call feature details handler and merge results', async () => {
   RendererWorker.set(mockRpc)
 
   const initialState: ExtensionDetailState = {
-    ...createDefaultState({
-      features: [
-        { id: 'Commands', label: 'Commands', selected: false },
-        { id: 'Settings', label: 'Settings', selected: true },
-      ],
-      selectedFeature: 'Settings',
-      commands: [],
-    }),
+    ...createDefaultState(),
+    features: [
+      { id: 'Commands', label: 'Commands', selected: false },
+      { id: 'Settings', label: 'Settings', selected: true },
+    ],
+    selectedFeature: 'Settings',
+    commands: [],
   }
 
   const result = await selectFeature(initialState, 'Commands')
@@ -127,12 +123,11 @@ test.skip('should handle unknown feature gracefully', async () => {
   RendererWorker.set(mockRpc)
 
   const initialState: ExtensionDetailState = {
-    ...createDefaultState({
-      features: [
-        { id: 'Commands', label: 'Commands', selected: false },
-        { id: 'Settings', label: 'Settings', selected: true },
-      ],
-    }),
+    ...createDefaultState(),
+    features: [
+      { id: 'Commands', label: 'Commands', selected: false },
+      { id: 'Settings', label: 'Settings', selected: true },
+    ],
   }
 
   await expect(selectFeature(initialState, 'UnknownFeature')).rejects.toThrow('unknown feature details handler: UnknownFeature')

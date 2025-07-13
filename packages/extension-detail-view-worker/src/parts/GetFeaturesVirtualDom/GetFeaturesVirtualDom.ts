@@ -9,7 +9,7 @@ import * as GetFeatureListVirtualDom from '../GetFeatureListVirtualDom/GetFeatur
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-export const getFeaturesVirtualDom2 = (
+export const getFeaturesVirtualDom = (
   features: readonly Feature[],
   selectedFeature: string,
   state: ExtensionDetailState,
