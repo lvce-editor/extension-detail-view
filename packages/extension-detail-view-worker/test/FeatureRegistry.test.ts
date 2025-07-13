@@ -98,7 +98,7 @@ test('getFeatureDetailsHandler returns handler for existing feature', () => {
   expect(handler).toBe(mockHandler)
 })
 
-test('getFeatureDetailsHandler throws error for non-existent feature', (): void => {
+test('getFeatureDetailsHandler throws error for non-existent feature', () => {
   expect(() => {
     getFeatureDetailsHandler('non-existent-feature')
   }).toThrow(FeatureNotFoundError)
