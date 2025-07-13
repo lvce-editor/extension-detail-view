@@ -29,7 +29,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     throw new Error(`extension not found: ${id}`)
   }
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
-  const { extensionId, name, extensionUri, iconSrc, extensionVersion, description, hasColorTheme, badge } = headerData
+  const { badge, description, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name } = headerData
   const readmeContent = await GetExtensionReadme.loadReadmeContent(extension.path)
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
