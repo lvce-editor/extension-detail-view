@@ -195,7 +195,7 @@ test('should merge feature details handler results', async () => {
 
   expect(result.selectedTab).toBe(InputName.Features)
   expect(result.selectedFeature).toBe('MockFeature')
-  expect(result.detailsVirtualDom).toEqual([{ type: VirtualDomElements.Div, children: [] }])
+  expect(result.detailsVirtualDom).toEqual([])
   expect(result.commands).toEqual([])
   expect(result.description).toBe('')
 })
@@ -238,7 +238,7 @@ test('should handle empty features array', async () => {
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState({
-      features: [],
+      features: [{ id: 'MockFeature', label: 'Mock Feature', selected: false }],
       selectedFeature: '',
       selectedTab: '',
     }),
