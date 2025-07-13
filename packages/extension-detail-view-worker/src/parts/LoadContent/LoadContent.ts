@@ -2,15 +2,12 @@ import type { Category } from '../Category/Category.ts'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
-import * as ExtensionDisplay from '../ExtensionDisplay/ExtensionDisplay.ts'
-import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
 import * as GetBadge from '../GetBadge/GetBadge.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import * as GetCategories from '../GetCategories/GetCategories.ts'
 import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
 import * as GetEntries from '../GetEntries/GetEntries.ts'
-import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetResources from '../GetResources/GetResources.ts'
@@ -18,17 +15,24 @@ import * as GetSecondEntries from '../GetSecondEntries/GetSecondEntries.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
 import * as InputName from '../InputName/InputName.ts'
+import { loadHeaderContent, type HeaderData } from '../LoadHeaderContent/LoadHeaderContent.ts'
+import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
+import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
 
 export const loadContent = async (state: ExtensionDetailState, platform: number, savedState: unknown): Promise<ExtensionDetailState> => {
-  const { uri, width, assetDir, builtinExtensionsBadgeEnabled } = state
+  const { width, builtinExtensionsBadgeEnabled, uri } = state
   const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
   if (!extension) {
     throw new Error(`extension not found: ${id}`)
   }
+
+  const headerData: HeaderData = loadHeaderContent(state, platform, extension)
+  const { extensionId, name, extensionUri, iconSrc, extensionVersion, description } = headerData
+
   const readmeContent = await GetExtensionReadme.loadReadmeContent(extension.path)
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
@@ -37,13 +41,9 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
   })
-  const iconSrc = ExtensionDisplay.getIcon(extension, platform, assetDir)
-  const description = ExtensionDisplay.getDescription(extension)
-  const name = ExtensionDisplay.getName(extension)
   const size = GetViewletSize.getViewletSize(width)
   const { selectedFeature, selectedTab, readmeScrollTop } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
-  const extensionUri = extension.uri || extension.path
   const folderSize = await GetFolderSize.getFolderSize(extensionUri)
   const displaySize = GetDisplaySize.getDisplaySize(size)
   const entries: readonly MoreInfoEntry[] = GetEntries.getEntries()
@@ -53,8 +53,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
   const isBuiltin = extension?.builtin
   const hasColorTheme = HasColorThemes.hasColorThemes(extension)
-  const extensionId = extension?.id || 'n/a'
-  const extensionVersion = extension?.version || 'n/a'
   const badge = GetBadge.getBadge(isBuiltin, builtinExtensionsBadgeEnabled)
   return {
     ...state,
