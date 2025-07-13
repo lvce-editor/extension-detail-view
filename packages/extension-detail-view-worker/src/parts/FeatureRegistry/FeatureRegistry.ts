@@ -1,6 +1,7 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { Feature } from '../Feature/Feature.ts'
 import type { FeatureDefinition } from '../FeatureDefinition/FeatureDefinition.ts'
+import type { FeatureDetailsHandler, FeatureDomHandler } from '../FeatureDetailsHandler/FeatureDetailsHandler.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import { FeatureNotFoundError } from '../FeatureNotFoundError/FeatureNotFoundError.ts'
 
@@ -34,18 +35,18 @@ export const getFeatures = (selectedFeature: string, extension: any): readonly F
   return result
 }
 
-export const getFeatureDetails = async (featureName: string, extension: any, baseUrl: string): Promise<Partial<ExtensionDetailState>> => {
+export const getFeatureDetailsHandler = (featureName: string): FeatureDetailsHandler => {
   const feature = features[featureName]
   if (!feature) {
     throw new FeatureNotFoundError(featureName)
   }
-  return feature.getDetails(extension, baseUrl)
+  return feature.getDetails
 }
 
-export const getFeatureVirtualDom = (featureName: string, state: ExtensionDetailState): readonly VirtualDomNode[] => {
+export const getFeatureVirtualDomHandler = (featureName: string): FeatureDomHandler => {
   const feature = features[featureName]
   if (!feature) {
     throw new FeatureNotFoundError(featureName)
   }
-  return feature.getVirtualDom(state)
+  return feature.getVirtualDom
 }
