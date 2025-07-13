@@ -10,20 +10,17 @@ export const register = (feature: FeatureDefinition): void => {
 }
 
 export const getFeatures = (selectedFeature: string, extension: any): readonly Feature[] => {
-  const result: Feature[] = []
-
-  for (const id in features) {
-    const feature = features[id]
-    if (feature.isEnabled(extension)) {
-      result.push({
-        id,
-        label: feature.getLabel(),
-        selected: selectedFeature === id,
-      })
+  const allFeatures = Object.values(features)
+  const enabledFeatures = allFeatures.filter((item) => item.isEnabled(extension))
+  const converted: readonly Feature[] = enabledFeatures.map((item) => {
+    return {
+      id: item.id,
+      label: item.getLabel(),
+      selected: item.id === selectedFeature,
     }
-  }
+  })
 
-  return result
+  return converted
 }
 
 export const getFeatureDetailsHandler = (featureName: string): FeatureDetailsHandler => {
