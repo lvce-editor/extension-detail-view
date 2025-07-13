@@ -1,16 +1,7 @@
-import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { Feature } from '../Feature/Feature.ts'
 import type { FeatureDefinition } from '../FeatureDefinition/FeatureDefinition.ts'
 import type { FeatureDetailsHandler, FeatureDomHandler } from '../FeatureDetailsHandler/FeatureDetailsHandler.ts'
-import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import { FeatureNotFoundError } from '../FeatureNotFoundError/FeatureNotFoundError.ts'
-
-export interface FeatureRegistry {
-  readonly register: (feature: FeatureDefinition) => void
-  readonly getFeatures: (selectedFeature: string, extension: any) => readonly Feature[]
-  readonly getFeatureDetails: (featureName: string, extension: any, baseUrl: string) => Promise<Partial<ExtensionDetailState>>
-  readonly getFeatureVirtualDom: (featureName: string, state: ExtensionDetailState) => readonly VirtualDomNode[]
-}
 
 const features = Object.create(null) as Record<string, FeatureDefinition>
 
