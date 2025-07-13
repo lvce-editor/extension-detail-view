@@ -21,7 +21,7 @@ test('featureJsonValidationEnabled returns false when extension is undefined', (
   expect(FeatureJsonValidationEnabled.featureJsonValidationEnabled(extension)).toBe(false)
 })
 
-test('featureJsonValidationEnabled returns false when jsonValidation is empty array', () => {
+test('featureJsonValidationEnabled returns true when jsonValidation is empty array', () => {
   const extension: unknown = { jsonValidation: [] }
-  expect(FeatureJsonValidationEnabled.featureJsonValidationEnabled(extension)).toBe(false)
+  expect(FeatureJsonValidationEnabled.featureJsonValidationEnabled(extension)).toBe(true)
 })

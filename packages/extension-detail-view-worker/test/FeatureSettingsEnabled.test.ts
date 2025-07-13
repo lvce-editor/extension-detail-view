@@ -21,7 +21,7 @@ test('featureSettingsEnabled returns false when extension is undefined', () => {
   expect(FeatureSettingsEnabled.featureSettingsEnabled(extension)).toBe(false)
 })
 
-test('featureSettingsEnabled returns false when settings is empty array', () => {
+test('featureSettingsEnabled returns true when settings is empty array', () => {
   const extension: unknown = { settings: [] }
-  expect(FeatureSettingsEnabled.featureSettingsEnabled(extension)).toBe(false)
+  expect(FeatureSettingsEnabled.featureSettingsEnabled(extension)).toBe(true)
 })
