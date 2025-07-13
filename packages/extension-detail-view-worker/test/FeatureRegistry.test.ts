@@ -41,9 +41,9 @@ test('getFeatures returns only enabled features', () => {
   register(disabledFeature)
 
   const features = getFeatures('enabled-feature', {})
-  expect(features).toHaveLength(2)
+  expect(features).toHaveLength(1)
   expect(features.find((f) => f.id === 'enabled-feature')).toBeDefined()
-  expect(features.find((f) => f.id === 'disabled-feature')).toBeDefined()
+  expect(features.find((f) => f.id === 'disabled-feature')).toBeUndefined()
 })
 
 test('getFeatures marks selected feature correctly', () => {

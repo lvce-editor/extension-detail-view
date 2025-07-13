@@ -17,6 +17,6 @@ test('sends message port to markdown worker', async () => {
   await SendMessagePortToMarkdownWorker.sendMessagePortToMarkdownWorker(mockPort)
 
   expect(invokeAndTransfer).toHaveBeenCalled()
-  const call = (invokeAndTransfer.mock.calls[0] as unknown) as [string, any, any]
+  const call = invokeAndTransfer.mock.calls[0] as unknown as [string, any, any]
   expect(call[1]).toBe(mockPort)
 })
