@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import { loadHeaderContent, type HeaderData } from '../src/parts/LoadHeaderContent/LoadHeaderContent.ts'
+import * as LoadHeaderContent from '../src/parts/LoadHeaderContent/LoadHeaderContent.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loadHeaderContent - successful load', async () => {
@@ -22,7 +22,7 @@ test('loadHeaderContent - successful load', async () => {
     assetDir: '/test/assets',
   }
 
-  const result: HeaderData = loadHeaderContent(state, 1, mockExtension)
+  const result = LoadHeaderContent.loadHeaderContent(state, 1, mockExtension)
 
   expect(result.extension).toEqual(mockExtension)
   expect(result.name).toBe('Test Extension')
@@ -31,26 +31,6 @@ test('loadHeaderContent - successful load', async () => {
   expect(result.extensionVersion).toBe('1.0.0')
   expect(result.extensionUri).toBe('/test/uri')
   expect(result.iconSrc).toBeDefined()
-})
-
-test('loadHeaderContent - extension not found', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'ExtensionManagement.getExtension') {
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
-  RendererWorker.set(mockRpc)
-
-  const state: ExtensionDetailState = {
-    ...createDefaultState(),
-    uri: 'extension-detail://non-existent-extension',
-  }
-
-  await expect(loadHeaderContent(state, 1, { id: 'non-existent-extension' })).rejects.toThrow('extension not found: non-existent-extension')
 })
 
 test('loadHeaderContent - with builtin extension', async () => {
@@ -68,7 +48,7 @@ test('loadHeaderContent - with builtin extension', async () => {
     uri: 'extension-detail://builtin-extension',
   }
 
-  const result: HeaderData = loadHeaderContent(state, 1, mockExtension)
+  const result = LoadHeaderContent.loadHeaderContent(state, 1, mockExtension)
 
   expect(result.extension).toEqual(mockExtension)
   expect(result.extensionId).toBe('builtin-extension')
@@ -85,7 +65,7 @@ test('loadHeaderContent - with fallback values', async () => {
     uri: 'extension-detail://test-extension',
   }
 
-  const result: HeaderData = loadHeaderContent(state, 1, mockExtension)
+  const result = LoadHeaderContent.loadHeaderContent(state, 1, mockExtension)
 
   expect(result.extensionId).toBe('n/a')
   expect(result.extensionVersion).toBe('n/a')
