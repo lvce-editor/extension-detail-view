@@ -37,7 +37,7 @@ test('diff2 should return DiffScrollTop when DiffScrollTop.isEqual returns false
   const oldState = createDefaultState({ readmeScrollTop: 0 })
   const newState = createDefaultState({
     readmeScrollTop: 100,
-    scrollSource: 2 // Script
+    scrollSource: 2, // Script
   })
   ExtensionDetailStates.set(4, oldState, newState)
 
@@ -50,13 +50,13 @@ test('diff2 should return multiple diff types when multiple modules return false
   const oldState = createDefaultState({
     name: 'old-extension',
     selectedFeature: 'feature1',
-    readmeScrollTop: 0
+    readmeScrollTop: 0,
   })
   const newState = createDefaultState({
     name: 'new-extension',
     selectedFeature: 'feature2',
     readmeScrollTop: 100,
-    scrollSource: 2 // Script
+    scrollSource: 2, // Script
   })
   ExtensionDetailStates.set(5, oldState, newState)
 

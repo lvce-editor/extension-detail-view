@@ -12,7 +12,7 @@ test('isEqual should return true when scrollSource is User', () => {
   const oldState = createDefaultState({ readmeScrollTop: 0 })
   const newState = createDefaultState({
     readmeScrollTop: 100,
-    scrollSource: InputSource.User
+    scrollSource: InputSource.User,
   })
   const result = isEqual(oldState, newState)
   expect(result).toBe(true)
@@ -22,7 +22,7 @@ test('isEqual should return true when readmeScrollTop values are equal', () => {
   const oldState = createDefaultState({ readmeScrollTop: 50 })
   const newState = createDefaultState({
     readmeScrollTop: 50,
-    scrollSource: InputSource.Script
+    scrollSource: InputSource.Script,
   })
   const result = isEqual(oldState, newState)
   expect(result).toBe(true)
@@ -32,7 +32,7 @@ test('isEqual should return false when scrollSource is not User and readmeScroll
   const oldState = createDefaultState({ readmeScrollTop: 0 })
   const newState = createDefaultState({
     readmeScrollTop: 100,
-    scrollSource: InputSource.Script
+    scrollSource: InputSource.Script,
   })
   const result = isEqual(oldState, newState)
   expect(result).toBe(false)
@@ -42,7 +42,7 @@ test('isEqual should return true when scrollSource is User even with different r
   const oldState = createDefaultState({ readmeScrollTop: 0 })
   const newState = createDefaultState({
     readmeScrollTop: 200,
-    scrollSource: InputSource.User
+    scrollSource: InputSource.User,
   })
   const result = isEqual(oldState, newState)
   expect(result).toBe(true)
@@ -52,7 +52,7 @@ test('isEqual should return false when scrollSource is Script and readmeScrollTo
   const oldState = createDefaultState({ readmeScrollTop: 50 })
   const newState = createDefaultState({
     readmeScrollTop: 150,
-    scrollSource: InputSource.Script
+    scrollSource: InputSource.Script,
   })
   const result = isEqual(oldState, newState)
   expect(result).toBe(false)
