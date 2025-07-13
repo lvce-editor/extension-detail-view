@@ -3,8 +3,9 @@ import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetail
 
 export const create = (uid: number, uri: string, x: number, y: number, width: number, height: number, platform: number, assetDir: string): void => {
   const state: ExtensionDetailState = {
-    assetDir: assetDir || '',
     activationEvents: [],
+    assetDir: assetDir || '',
+    badge: '',
     baseUrl: '',
     builtinExtensionsBadgeEnabled: true,
     categories: [],
@@ -29,6 +30,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     programmingLanguages: [],
     readmeScrollTop: 0,
     resources: [],
+    scrollSource: 0,
     scrollToTopButtonEnabled: false,
     secondEntries: [],
     selectedFeature: '',
@@ -42,7 +44,6 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     uri,
     webViews: [],
     width,
-    scrollSource: 0,
   }
   ExtensionDetailStates.set(uid, state, state)
 }

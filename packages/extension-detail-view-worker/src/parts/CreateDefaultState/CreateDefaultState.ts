@@ -4,6 +4,7 @@ export const createDefaultState = (overrides: Partial<ExtensionDetailState> = {}
   return {
     activationEvents: [],
     assetDir: '/test/asset/dir',
+    badge: '',
     baseUrl: '',
     builtinExtensionsBadgeEnabled: true,
     categories: [],
