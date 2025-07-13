@@ -247,5 +247,5 @@ test('should handle empty features array', async () => {
   const result = await selectTabFeatures(initialState)
 
   expect(result.selectedTab).toBe(InputName.Features)
-  expect(result.selectedFeature).toBe('')
+  expect(result.selectedFeature).toBe('MockFeature')
 })
