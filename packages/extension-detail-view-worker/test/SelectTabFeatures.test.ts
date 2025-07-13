@@ -180,9 +180,7 @@ test('should merge feature details handler results', async () => {
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState({
-      features: [
-        { id: 'MockFeature', label: 'Mock Feature', selected: false },
-      ],
+      features: [{ id: 'MockFeature', label: 'Mock Feature', selected: false }],
       selectedFeature: '',
       selectedTab: '',
       detailsVirtualDom: [],

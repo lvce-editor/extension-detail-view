@@ -5,11 +5,7 @@ import * as GetFeatureActivationEventsVirtualDom from '../src/parts/GetFeatureAc
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('feature activation events virtual dom with events', () => {
-  const activationEvents: readonly string[] = [
-    'onCommand:workbench.action.openFile',
-    'onLanguage:typescript',
-    'onView:explorer',
-  ]
+  const activationEvents: readonly string[] = ['onCommand:workbench.action.openFile', 'onLanguage:typescript', 'onView:explorer']
   expect(GetFeatureActivationEventsVirtualDom.getFeatureActivationEventsVirtualDom(activationEvents)).toEqual([
     {
       type: VirtualDomElements.Div,
