@@ -1,11 +1,11 @@
 export interface HeaderData {
-  extensionId: string
-  name: string
-  extensionUri: string
-  iconSrc: string
-  extensionVersion: string
-  description: string
-  extension: any
-  hasColorTheme: boolean
-  badge: string
+  readonly badge: string
+  readonly description: string
+  readonly extension: any
+  readonly extensionId: string
+  readonly extensionUri: string
+  readonly extensionVersion: string
+  readonly hasColorTheme: boolean
+  readonly iconSrc: string
+  readonly name: string
 }

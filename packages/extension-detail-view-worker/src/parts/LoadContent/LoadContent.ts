@@ -1,5 +1,6 @@
 import type { Category } from '../Category/Category.ts'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import type { HeaderData } from '../HeaderData/HeaderData.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
@@ -19,7 +20,6 @@ import * as LoadHeaderContent from '../LoadHeaderContent/LoadHeaderContent.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
-import { HeaderData } from '../HeaderData/HeaderData.ts'
 
 export const loadContent = async (state: ExtensionDetailState, platform: number, savedState: unknown): Promise<ExtensionDetailState> => {
   const { width, uri } = state
