@@ -1,25 +1,25 @@
 import { expect, test } from '@jest/globals'
 import { featureWebViewsEnabled } from '../src/parts/FeatureWebViewsEnabled/FeatureWebViewsEnabled.ts'
 
-test('featureWebViewsEnabled returns webViews when extension has webViews', () => {
+test('featureWebViewsEnabled returns true when extension has webViews', () => {
   const extension = { webViews: [{ id: 'test-view', path: 'test.html' }] }
-  expect(featureWebViewsEnabled(extension)).toEqual([{ id: 'test-view', path: 'test.html' }])
+  expect(featureWebViewsEnabled(extension)).toBe(true)
 })
 
-test('featureWebViewsEnabled returns undefined when extension has no webViews', () => {
+test('featureWebViewsEnabled returns false when extension has no webViews', () => {
   const extension = { name: 'test-extension' }
-  expect(featureWebViewsEnabled(extension)).toBeUndefined()
+  expect(featureWebViewsEnabled(extension)).toBe(false)
 })
 
-test('featureWebViewsEnabled returns null when extension is null', () => {
-  expect(featureWebViewsEnabled(null)).toBeNull()
+test('featureWebViewsEnabled returns false when extension is null', () => {
+  expect(featureWebViewsEnabled(null)).toBe(false)
 })
 
-test('featureWebViewsEnabled returns undefined when extension is undefined', () => {
-  expect(featureWebViewsEnabled(undefined)).toBeUndefined()
+test('featureWebViewsEnabled returns false when extension is undefined', () => {
+  expect(featureWebViewsEnabled(undefined)).toBe(false)
 })
 
-test('featureWebViewsEnabled returns empty array when webViews is empty array', () => {
+test('featureWebViewsEnabled returns false when webViews is empty array', () => {
   const extension = { webViews: [] }
-  expect(featureWebViewsEnabled(extension)).toEqual([])
+  expect(featureWebViewsEnabled(extension)).toBe(false)
 })
