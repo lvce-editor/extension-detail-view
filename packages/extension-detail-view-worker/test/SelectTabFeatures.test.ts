@@ -56,14 +56,13 @@ test('should select features tab and first feature when selectedFeature is null'
   register(themeFeature)
 
   const initialState: ExtensionDetailState = {
-    ...createDefaultState({
-      features: [
-        { id: 'MockFeature', label: 'Mock Feature', selected: false },
-        { id: 'Settings', label: 'Settings', selected: true },
-      ],
-      selectedFeature: '',
-      selectedTab: '',
-    }),
+    ...createDefaultState(),
+    features: [
+      { id: 'MockFeature', label: 'Mock Feature', selected: false },
+      { id: 'Settings', label: 'Settings', selected: true },
+    ],
+    selectedFeature: '',
+    selectedTab: '',
   }
 
   const result = await selectTabFeatures(initialState)
@@ -120,14 +119,13 @@ test('should use existing selectedFeature when provided', async () => {
   register(themeFeature)
 
   const initialState: ExtensionDetailState = {
-    ...createDefaultState({
-      features: [
-        { id: 'MockFeature', label: 'Mock Feature', selected: false },
-        { id: 'Settings', label: 'Settings', selected: true },
-      ],
-      selectedFeature: 'Settings',
-      selectedTab: '',
-    }),
+    ...createDefaultState(),
+    features: [
+      { id: 'MockFeature', label: 'Mock Feature', selected: false },
+      { id: 'Settings', label: 'Settings', selected: true },
+    ],
+    selectedFeature: 'Settings',
+    selectedTab: '',
   }
 
   const result = await selectTabFeatures(initialState)
@@ -179,14 +177,13 @@ test('should merge feature details handler results', async () => {
   register(themeFeature)
 
   const initialState: ExtensionDetailState = {
-    ...createDefaultState({
-      features: [{ id: 'MockFeature', label: 'Mock Feature', selected: false }],
-      selectedFeature: '',
-      selectedTab: '',
-      detailsVirtualDom: [],
-      commands: [],
-      description: '',
-    }),
+    ...createDefaultState(),
+    features: [{ id: 'MockFeature', label: 'Mock Feature', selected: false }],
+    selectedFeature: '',
+    selectedTab: '',
+    detailsVirtualDom: [],
+    commands: [],
+    description: '',
   }
 
   const result = await selectTabFeatures(initialState)
@@ -235,11 +232,10 @@ test('should handle empty features array', async () => {
   register(themeFeature)
 
   const initialState: ExtensionDetailState = {
-    ...createDefaultState({
-      features: [{ id: 'MockFeature', label: 'Mock Feature', selected: false }],
-      selectedFeature: '',
-      selectedTab: '',
-    }),
+    ...createDefaultState(),
+    features: [{ id: 'MockFeature', label: 'Mock Feature', selected: false }],
+    selectedFeature: '',
+    selectedTab: '',
   }
 
   const result = await selectTabFeatures(initialState)
