@@ -13,6 +13,7 @@ export interface ExtensionDetailState {
   readonly baseUrl: string
   readonly builtinExtensionsBadgeEnabled: boolean
   readonly categories: readonly Category[]
+  readonly changelogScrollTop: number
   readonly changelogVirtualDom: readonly VirtualDomNode[]
   readonly commands: readonly Row[]
   readonly description: string
