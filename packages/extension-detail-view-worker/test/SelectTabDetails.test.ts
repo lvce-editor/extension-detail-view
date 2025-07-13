@@ -10,7 +10,7 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
   const expectedDom = [{ type: 'element', tag: 'h1', children: [] }]
   const mockRendererRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'FileSystem.readFile') {
         return 'README CONTENT'
       }
@@ -21,7 +21,7 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
 
   const mockMarkdownRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: any[]) => {
+    invoke: (method: string, ...args: readonly any[]) => {
       if (method === 'Markdown.render') {
         return '<h1>README CONTENT</h1>'
       }
