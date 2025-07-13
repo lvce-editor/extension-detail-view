@@ -4,7 +4,7 @@ import { getFeatureDetailsHandler, getFeatures, getFeatureVirtualDomHandler, reg
 
 beforeEach(clearRegistry)
 
-test('register adds feature to registry', (): void => {
+test('register adds feature to registry', () => {
   const mockFeature = {
     id: 'test-feature',
     getLabel: (): string => 'Test Feature',
@@ -22,7 +22,7 @@ test('register adds feature to registry', (): void => {
   expect(features[0].selected).toBe(true)
 })
 
-test('getFeatures returns only enabled features', (): void => {
+test('getFeatures returns only enabled features', () => {
   const enabledFeature = {
     id: 'enabled-feature',
     getLabel: (): string => 'Enabled Feature',
