@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { featureColorThemeEnabled } from '../src/parts/FeatureThemeEnabled/FeatureThemeEnabled.ts'
+import { featureColorThemeEnabled } from '../src/parts/FeatureColorThemeEnabled/FeatureColorThemeEnabled.ts'
 
 test('featureColorThemeEnabled returns true when extension has colorThemes', () => {
   const extension = { colorThemes: [{ label: 'Test Theme', uiTheme: 'vs-dark' }] }
