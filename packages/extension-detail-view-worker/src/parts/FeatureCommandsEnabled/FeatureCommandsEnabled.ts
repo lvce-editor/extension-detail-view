@@ -1,10 +1,6 @@
 export const featureCommandsEnabled = (extension: unknown): boolean => {
-  if (!extension || typeof extension !== 'object') {
+  if (!extension || typeof extension !== 'object'|| (!('commands' in extension)) {
     return false
   }
-  if (!('commands' in extension)) {
-    return false
-  }
-  const {commands} = extension
-  return Array.isArray(commands)
+  return Array.isArray(extension.commands)
 }
