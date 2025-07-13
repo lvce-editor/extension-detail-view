@@ -49,12 +49,3 @@ export const getFeatureVirtualDom = (featureName: string, state: ExtensionDetail
   }
   return feature.getVirtualDom(state)
 }
-
-export const createFeatureRegistry = (): FeatureRegistry => {
-  return {
-    register,
-    getFeatures,
-    getFeatureDetails,
-    getFeatureVirtualDom,
-  }
-}
