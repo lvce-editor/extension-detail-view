@@ -4,6 +4,7 @@ import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/Extensi
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import type { Row } from '../Row/Row.ts'
+import { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
 
@@ -27,6 +28,7 @@ export interface ExtensionDetailState {
   readonly extensionVersion: string
   readonly features: readonly Feature[]
   readonly featuresVirtualDom: readonly VirtualDomNode[]
+  readonly focus: number
   readonly folderSize: number
   readonly hasColorTheme: boolean
   readonly iconSrc: string
@@ -44,13 +46,13 @@ export interface ExtensionDetailState {
   readonly selectedTab: string
   readonly settings: readonly Row[]
   readonly settingsButtonEnabled: boolean
-  readonly uid: number
   readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number
   readonly sizeValue: number
+  readonly tabs: readonly Tab[]
   readonly themesMarkdownDom: readonly VirtualDomNode[]
+  readonly uid: number
   readonly uri: string
   readonly webViews: readonly WebView[]
   readonly width: number
-  readonly focus: number
 }
