@@ -1,11 +1,9 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
-import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetExtensionDetailContentVirtualDom from '../GetExtensionDetailContentVirtualDom/GetExtensionDetailContentVirtualDom.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
-import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetTabsVirtualDom from '../GetTabsVirtualDom/GetTabsVirtualDom.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as ViewletSizeMap from '../ViewletSizeMap/ViewletSizeMap.ts'
@@ -30,10 +28,10 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     settingsButtonEnabled,
     showAdditionalDetailsBreakpoint,
     sizeValue,
+    tabs,
   } = newState
 
   const width = newState?.width || 500
-  const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
   const dom = [
     {

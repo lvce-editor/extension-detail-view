@@ -11,11 +11,13 @@ test('getTabsVirtualDom - returns correct virtual dom structure', () => {
       label: 'Tab 1',
       name: 'tab1',
       selected: true,
+      enabled: true,
     },
     {
       label: 'Tab 2',
       name: 'tab2',
       selected: false,
+      enabled: true,
     },
   ]
 
