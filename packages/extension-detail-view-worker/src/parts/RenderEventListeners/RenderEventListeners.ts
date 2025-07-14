@@ -16,7 +16,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       params: ['handleReadmeContextMenu', 'event.clientX', 'event.clientY', 'event.target.href', 'event.target.src'],
     },
     {
-      name: DomEventListenerFunctions.HandleReadmeWheel,
+      name: DomEventListenerFunctions.HandleReadmeScroll,
       params: ['handleWheel', 'event.deltaX', 'event.deltaY'],
       passive: true,
     },
