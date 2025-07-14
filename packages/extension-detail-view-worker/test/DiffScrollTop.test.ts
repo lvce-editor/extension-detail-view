@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { isEqual } from '../src/parts/DiffScrollTop/DiffScrollTop.ts'
-import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import * as InputSource from '../src/parts/InputSource/InputSource.ts'
 
 test('isEqual should return true when scrollSource is User', () => {
