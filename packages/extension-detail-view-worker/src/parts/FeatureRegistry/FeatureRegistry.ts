@@ -2,6 +2,7 @@ import type { Feature } from '../Feature/Feature.ts'
 import type { FeatureDefinition } from '../FeatureDefinition/FeatureDefinition.ts'
 import type { FeatureDetailsHandler, FeatureDomHandler } from '../FeatureDetailsHandler/FeatureDetailsHandler.ts'
 import { FeatureNotFoundError } from '../FeatureNotFoundError/FeatureNotFoundError.ts'
+import { getFeatureUnsupportedVirtualDom } from '../FeatureUnsupportedVirtualDom/FeatureUnsupportedVirtualDom.ts'
 
 const features: Record<string, FeatureDefinition> = Object.create(null)
 
@@ -38,7 +39,7 @@ export const getFeatureDetailsHandler = (featureName: string): FeatureDetailsHan
 export const getFeatureVirtualDomHandler = (featureName: string): FeatureDomHandler => {
   const feature = features[featureName]
   if (!feature) {
-    throw new FeatureNotFoundError(featureName)
+    return getFeatureUnsupportedVirtualDom
   }
   return feature.getVirtualDom
 }
