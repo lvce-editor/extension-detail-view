@@ -15,7 +15,7 @@ test('register adds feature to registry', () => {
     id: 'test-feature',
     getLabel: (): string => 'Test Feature',
     isEnabled: jest.fn((): boolean => true),
-    getDetails: jest.fn((): Promise<object> => Promise.resolve({})),
+    getDetails: jest.fn(async (): Promise<object> => ({})),
     getVirtualDom: jest.fn((): any[] => []),
   }
 
@@ -33,7 +33,7 @@ test('getFeatures returns only enabled features', () => {
     id: 'enabled-feature',
     getLabel: (): string => 'Enabled Feature',
     isEnabled: jest.fn((): boolean => true),
-    getDetails: jest.fn((): Promise<object> => Promise.resolve({})),
+    getDetails: jest.fn(async (): Promise<object> => ({})),
     getVirtualDom: jest.fn((): any[] => []),
   }
 
@@ -41,7 +41,7 @@ test('getFeatures returns only enabled features', () => {
     id: 'disabled-feature',
     getLabel: (): string => 'Disabled Feature',
     isEnabled: jest.fn((): boolean => false),
-    getDetails: jest.fn((): Promise<object> => Promise.resolve({})),
+    getDetails: jest.fn(async (): Promise<object> => ({})),
     getVirtualDom: jest.fn((): any[] => []),
   }
 
@@ -59,7 +59,7 @@ test('getFeatures marks selected feature correctly', () => {
     id: 'feature-1',
     getLabel: (): string => 'Feature 1',
     isEnabled: jest.fn((): boolean => true),
-    getDetails: jest.fn((): Promise<object> => Promise.resolve({})),
+    getDetails: jest.fn(async (): Promise<object> => ({})),
     getVirtualDom: jest.fn((): any[] => []),
   }
 
@@ -67,7 +67,7 @@ test('getFeatures marks selected feature correctly', () => {
     id: 'feature-2',
     getLabel: (): string => 'Feature 2',
     isEnabled: jest.fn((): boolean => true),
-    getDetails: jest.fn((): Promise<object> => Promise.resolve({})),
+    getDetails: jest.fn(async (): Promise<object> => ({})),
     getVirtualDom: jest.fn((): any[] => []),
   }
 
@@ -110,7 +110,7 @@ test('getFeatureVirtualDomHandler returns handler for existing feature', () => {
     id: 'test-feature',
     getLabel: (): string => 'Test Feature',
     isEnabled: jest.fn((): boolean => true),
-    getDetails: jest.fn((): Promise<object> => Promise.resolve({})),
+    getDetails: jest.fn(async (): Promise<object> => ({})),
     getVirtualDom: mockHandler,
   }
 
