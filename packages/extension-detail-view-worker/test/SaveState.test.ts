@@ -9,5 +9,6 @@ test('saves state with selected tab and feature', () => {
     selectedTab: '',
     selectedFeature: '',
     readmeScrollTop: 0,
+    changelogScrollTop: 0,
   })
 })
