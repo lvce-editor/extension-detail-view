@@ -15,7 +15,8 @@ export const isEqual = (oldState: ExtensionDetailState, newState: ExtensionDetai
     oldState.jsonValidation === newState.jsonValidation &&
     oldState.selectedFeature === newState.selectedFeature &&
     oldState.selectedTab === newState.selectedTab &&
-    oldState.webViews === newState.webViews &&
-    oldState.themesMarkdownDom === newState.themesMarkdownDom
+    oldState.settings === newState.settings &&
+    oldState.themesMarkdownDom === newState.themesMarkdownDom &&
+    oldState.webViews === newState.webViews
   )
 }
