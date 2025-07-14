@@ -9,7 +9,7 @@ export const register = (feature: FeatureDefinition): void => {
   features[feature.id] = feature
 }
 
-export const has = (id: string) => {
+export const has = (id: string): boolean => {
   return id in features
 }
 
