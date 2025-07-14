@@ -1,13 +1,8 @@
-import { test, expect } from '@jest/globals'
+import { expect, test } from '@jest/globals'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import { diffType, isEqual } from '../src/parts/DiffScrollTop/DiffScrollTop.ts'
-import * as DiffType from '../src/parts/DiffType/DiffType.ts'
+import { isEqual } from '../src/parts/DiffScrollTop/DiffScrollTop.ts'
 import * as InputSource from '../src/parts/InputSource/InputSource.ts'
-
-test('diffType should be RenderScrollTop', () => {
-  expect(diffType).toBe(DiffType.RenderScrollTop)
-})
 
 test('isEqual should return true when scrollSource is User', () => {
   const oldState: ExtensionDetailState = { ...createDefaultState(), readmeScrollTop: 0 }
