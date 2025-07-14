@@ -1,6 +1,9 @@
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 
-export const getMarketplaceEntries = (): readonly MoreInfoEntry[] => {
+export const getMarketplaceEntries = (isBuiltin: boolean): readonly MoreInfoEntry[] => {
+  if (isBuiltin) {
+    return []
+  }
   return [
     {
       key: 'Published',
