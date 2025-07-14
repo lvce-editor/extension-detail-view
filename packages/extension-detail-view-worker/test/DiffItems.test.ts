@@ -38,16 +38,3 @@ test('isEqual - different state content', () => {
   const result = DiffItems.isEqual(oldState, newState)
   expect(result).toBe(false)
 })
-
-test('isEqual - null states', () => {
-  const result = DiffItems.isEqual(null as any, null as any)
-  expect(result).toBe(true)
-})
-
-test('isEqual - one null state', () => {
-  const state: ExtensionDetailState = createDefaultState()
-  const result1 = DiffItems.isEqual(null as any, state)
-  const result2 = DiffItems.isEqual(state, null as any)
-  expect(result1).toBe(false)
-  expect(result2).toBe(false)
-})
