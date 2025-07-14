@@ -43,5 +43,6 @@ export const createDefaultState = (): ExtensionDetailState => {
     webViews: [],
     width: 500,
     scrollSource: 0,
+    focus: 0,
   }
 }

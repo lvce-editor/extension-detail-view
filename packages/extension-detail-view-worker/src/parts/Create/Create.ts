@@ -44,6 +44,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     uri,
     webViews: [],
     width,
+    focus: 0,
   }
   ExtensionDetailStates.set(uid, state, state)
 }
