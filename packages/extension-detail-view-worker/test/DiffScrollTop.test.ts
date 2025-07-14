@@ -4,12 +4,12 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { isEqual } from '../src/parts/DiffScrollTop/DiffScrollTop.ts'
 import * as InputSource from '../src/parts/InputSource/InputSource.ts'
 
-test('isEqual should return true when scrollSource is User', () => {
+test('isEqual should return true when scrollSource is Script', () => {
   const oldState: ExtensionDetailState = { ...createDefaultState(), readmeScrollTop: 0 }
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
     readmeScrollTop: 100,
-    scrollSource: InputSource.User,
+    scrollSource: InputSource.Script,
   }
   const result = isEqual(oldState, newState)
   expect(result).toBe(true)
@@ -31,7 +31,7 @@ test('isEqual should return false when scrollSource is not User and readmeScroll
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
     readmeScrollTop: 100,
-    scrollSource: InputSource.Script,
+    scrollSource: InputSource.User,
   }
   const result = isEqual(oldState, newState)
   expect(result).toBe(false)
@@ -42,7 +42,7 @@ test('isEqual should return true when scrollSource is User even with different r
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
     readmeScrollTop: 200,
-    scrollSource: InputSource.User,
+    scrollSource: InputSource.Script,
   }
   const result = isEqual(oldState, newState)
   expect(result).toBe(true)
@@ -53,7 +53,7 @@ test('isEqual should return false when scrollSource is Script and readmeScrollTo
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
     readmeScrollTop: 150,
-    scrollSource: InputSource.Script,
+    scrollSource: InputSource.User,
   }
   const result = isEqual(oldState, newState)
   expect(result).toBe(false)
