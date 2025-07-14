@@ -1,5 +1,6 @@
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as Assert from '../Assert/Assert.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getScrollToTopVirtualDom } from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
 import * as MarkdownWorker from '../MarkdownWorker/MarkdownWorker.ts'
 
@@ -12,6 +13,7 @@ export const getMarkdownVirtualDom = async (html: string, options?: MarkdownOpti
   const dom = await MarkdownWorker.getVirtualDom(html)
   const newDom = [...dom]
   if (options?.scrollToTopEnabled) {
+    newDom[0].onScroll = DomEventListenerFunctions.HandleReadmeScroll
     newDom[0].childCount++
     const extraDom = getScrollToTopVirtualDom(true)
     newDom.splice(1, 0, ...extraDom)
