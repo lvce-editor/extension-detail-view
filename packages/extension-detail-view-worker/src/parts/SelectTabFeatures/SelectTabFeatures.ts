@@ -4,6 +4,9 @@ import * as InputName from '../InputName/InputName.ts'
 
 export const selectTabFeatures = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
   const { extension, baseUrl, selectedFeature, features } = state
+  if (features.length === 0) {
+    return state
+  }
   const actualSelectedFeature = selectedFeature || InputName.Theme
   const fn = getFeatureDetailsHandler(actualSelectedFeature)
   const partialNewState = await fn(extension, baseUrl)
