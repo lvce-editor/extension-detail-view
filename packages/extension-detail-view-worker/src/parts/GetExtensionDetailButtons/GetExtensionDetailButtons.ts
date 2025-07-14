@@ -14,7 +14,7 @@ export const getExtensionDetailButtons = (hasColorTheme: boolean, isBuiltin: boo
     {
       label: ExtensionDetailStrings.disable(),
       onClick: DomEventListenerFunctions.HandleClickDisable,
-      enabled: true,
+      enabled: !isBuiltin,
       name: InputName.Disable,
     },
     {
