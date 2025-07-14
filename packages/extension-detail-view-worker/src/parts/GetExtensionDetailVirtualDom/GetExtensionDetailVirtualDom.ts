@@ -31,7 +31,6 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     features,
     hasColorTheme,
     iconSrc,
-    isBuiltin,
     jsonValidation,
     name,
     resources,
@@ -50,7 +49,7 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
   const width = newState?.width || 500
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(hasColorTheme, isBuiltin) // TODO compute in loadContent
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(hasColorTheme) // TODO compute in loadContent
   const dom = [
     {
       type: VirtualDomElements.Div,
