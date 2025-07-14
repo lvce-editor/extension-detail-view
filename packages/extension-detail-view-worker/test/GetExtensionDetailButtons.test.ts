@@ -26,7 +26,7 @@ test('returns all buttons when extension is builtin', () => {
   const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(false, true)
   expect(result).toEqual([
     { label: 'Set Color Theme', onClick: 'handleClickSetColorTheme', enabled: false, name: InputName.SetColorTheme },
-    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable', enabled: false, name: InputName.Disable },
+    { label: ExtensionDetailStrings.disable(), onClick: 'handleClickDisable', enabled: true, name: InputName.Disable },
     { label: ExtensionDetailStrings.uninstall(), onClick: 'handleClickUninstall', enabled: false, name: InputName.Uninstall },
   ])
 })
