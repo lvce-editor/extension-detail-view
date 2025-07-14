@@ -3,7 +3,6 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
-import * as GetExtensionDetailButtons from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailContentVirtualDom from '../GetExtensionDetailContentVirtualDom/GetExtensionDetailContentVirtualDom.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
@@ -44,20 +43,20 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     themesMarkdownDom,
     webViews,
     badge,
+    buttons,
   } = newState
   const extensionUri = extension.uri || extension.path || ''
 
   const width = newState?.width || 500
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(hasColorTheme, isBuiltin) // TODO compute in loadContent
   const dom = [
     {
       type: VirtualDomElements.Div,
       className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.ExtensionDetail, sizeClass),
       childCount: 3,
     },
-    ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(name, iconSrc, description, badge, buttonDefs, settingsButtonEnabled),
+    ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(name, iconSrc, description, badge, buttons, settingsButtonEnabled),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
     ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
       detailsVirtualDom,
