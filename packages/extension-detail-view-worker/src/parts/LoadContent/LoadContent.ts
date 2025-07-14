@@ -9,15 +9,16 @@ import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import * as GetCategories from '../GetCategories/GetCategories.ts'
 import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
-import * as GetEntries from '../GetEntries/GetEntries.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
+import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
+import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
 import * as GetResources from '../GetResources/GetResources.ts'
-import * as GetSecondEntries from '../GetSecondEntries/GetSecondEntries.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
+import * as InputSource from '../InputSource/InputSource.ts'
 import * as LoadHeaderContent from '../LoadHeaderContent/LoadHeaderContent.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
@@ -40,16 +41,22 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
   })
-  const buttons = getExtensionDetailButtons(hasColorTheme, extension?.builtin)
+  const isBuiltin = extension?.isBuiltin
+  const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin)
   const size = GetViewletSize.getViewletSize(width)
-  const { selectedFeature, selectedTab, readmeScrollTop } = RestoreState.restoreState(savedState)
+  const { selectedFeature, selectedTab, readmeScrollTop, changelogScrollTop } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
   const folderSize = await GetFolderSize.getFolderSize(extensionUri)
   const displaySize = GetDisplaySize.getDisplaySize(folderSize)
-  const entries: readonly MoreInfoEntry[] = GetEntries.getEntries()
-  const secondEntries: readonly MoreInfoEntry[] = GetSecondEntries.getSecondEntries()
+  const installationEntries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(
+    displaySize,
+    extensionId,
+    extensionVersion,
+    extensionUri,
+  )
+  const marketplaceEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries(isBuiltin)
   const categories: readonly Category[] = GetCategories.getCategories()
-  const resources: readonly Resource[] = GetResources.getResources()
+  const resources: readonly Resource[] = GetResources.getResources(isBuiltin)
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
   return {
     ...state,
@@ -57,10 +64,11 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     baseUrl,
     buttons,
     categories,
+    changelogScrollTop,
     description,
     detailsVirtualDom,
     displaySize,
-    entries,
+    entries: installationEntries,
     extension,
     extensionId,
     extensionVersion,
@@ -72,9 +80,10 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     readmeScrollTop,
     resources,
     scrollToTopButtonEnabled: true,
-    secondEntries,
+    secondEntries: marketplaceEntries,
     selectedTab,
     sizeOnDisk: size,
     sizeValue,
+    scrollSource: InputSource.Script,
   }
 }

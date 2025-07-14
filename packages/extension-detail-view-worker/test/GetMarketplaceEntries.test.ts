@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import * as GetMarketplaceEntries from '../src/parts/GetMarketplaceEntries/GetMarketplaceEntries.ts'
 
 test('returns marketplace entries', () => {
-  expect(GetMarketplaceEntries.getMarketplaceEntries()).toEqual([
+  expect(GetMarketplaceEntries.getMarketplaceEntries(false)).toEqual([
     {
       key: 'Published',
       odd: true,

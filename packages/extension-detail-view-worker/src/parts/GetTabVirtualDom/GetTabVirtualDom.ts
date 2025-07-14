@@ -1,16 +1,12 @@
 import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
-import * as ClassNames from '../ClassNames/ClassNames.ts'
-import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
+import { getTabClassName } from '../GetTabClassName/GetTabClassName.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
-
-const selectedClassName = MergeClassNames.mergeClassNames(ClassNames.ExtensionDetailTab, ClassNames.ExtensionDetailTabSelected)
-const defaultClassName = ClassNames.ExtensionDetailTab
 
 export const getTabVirtualDom = (tab: Tab): readonly VirtualDomNode[] => {
   const { label, selected, name } = tab
-  const className = selected ? selectedClassName : defaultClassName
+  const className = getTabClassName(selected)
   const ariaSelected = selected
 
   return [

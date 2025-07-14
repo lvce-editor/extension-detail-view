@@ -1,6 +1,10 @@
 import type { Resource } from '../Resource/Resource.ts'
 
-export const getResources = (): readonly Resource[] => {
+export const getResources = (isBuiltin: boolean): readonly Resource[] => {
+  if (isBuiltin) {
+    return []
+  }
+  // TODO
   return [
     {
       label: 'Marketplace',
