@@ -10,6 +10,7 @@ import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import * as GetCategories from '../GetCategories/GetCategories.ts'
 import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
 import * as GetEntries from '../GetEntries/GetEntries.ts'
+import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
@@ -39,6 +40,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
   })
+  const buttons = getExtensionDetailButtons(hasColorTheme, extension?.builtin)
   const size = GetViewletSize.getViewletSize(width)
   const { selectedFeature, selectedTab, readmeScrollTop } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
@@ -54,6 +56,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     ...state,
     badge,
     baseUrl,
+    buttons,
     categories,
     description,
     detailsVirtualDom,
