@@ -2,14 +2,13 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 
 export const createDefaultState = (): ExtensionDetailState => {
   return {
-    uid: 0,
     activationEvents: [],
     assetDir: '/test/asset/dir',
     badge: '',
     baseUrl: '',
     builtinExtensionsBadgeEnabled: true,
-    categories: [],
     buttons: [],
+    categories: [],
     changelogScrollTop: 0,
     changelogVirtualDom: [],
     commands: [],
@@ -22,6 +21,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     extensionVersion: '',
     features: [],
     featuresVirtualDom: [],
+    focus: 0,
     folderSize: 0,
     hasColorTheme: false,
     iconSrc: '',
@@ -32,6 +32,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     programmingLanguages: [],
     readmeScrollTop: 0,
     resources: [],
+    scrollSource: 0,
     scrollToTopButtonEnabled: false,
     secondEntries: [],
     selectedFeature: '',
@@ -41,11 +42,11 @@ export const createDefaultState = (): ExtensionDetailState => {
     showAdditionalDetailsBreakpoint: 600,
     sizeOnDisk: 0,
     sizeValue: 0,
+    tabs: [],
     themesMarkdownDom: [],
+    uid: 0,
     uri: 'extension-detail://test-extension',
     webViews: [],
     width: 500,
-    scrollSource: 0,
-    focus: 0,
   }
 }
