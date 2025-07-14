@@ -54,4 +54,5 @@ export interface ExtensionDetailState {
   readonly uri: string
   readonly webViews: readonly WebView[]
   readonly width: number
+  readonly readmeUrl: string
 }

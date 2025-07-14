@@ -47,5 +47,6 @@ export const createDefaultState = (): ExtensionDetailState => {
     uri: 'extension-detail://test-extension',
     webViews: [],
     width: 500,
+    readmeUrl: '',
   }
 }
