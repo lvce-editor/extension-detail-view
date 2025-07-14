@@ -3,6 +3,7 @@ import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetail
 
 export const create = (uid: number, uri: string, x: number, y: number, width: number, height: number, platform: number, assetDir: string): void => {
   const state: ExtensionDetailState = {
+    uid,
     activationEvents: [],
     assetDir: assetDir || '',
     badge: '',
