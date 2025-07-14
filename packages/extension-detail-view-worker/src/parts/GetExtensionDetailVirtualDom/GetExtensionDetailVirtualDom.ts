@@ -17,14 +17,12 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
   // 3. virtual dom
   // 4. dom
   const {
+    badge,
+    buttons,
     categories,
     changelogVirtualDom,
     description,
     detailsVirtualDom,
-    displaySize,
-    extension,
-    extensionId,
-    extensionVersion,
     iconSrc,
     name,
     resources,
@@ -32,10 +30,7 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     settingsButtonEnabled,
     showAdditionalDetailsBreakpoint,
     sizeValue,
-    badge,
-    buttons,
   } = newState
-  const extensionUri = extension.uri || extension.path || ''
 
   const width = newState?.width || 500
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab)
@@ -51,15 +46,11 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
       detailsVirtualDom,
       selectedTab,
-      displaySize,
-      extensionId,
-      extensionVersion,
       width,
       scrollToTopButtonEnabled,
       categories,
       resources,
       showAdditionalDetailsBreakpoint,
-      extensionUri,
       changelogVirtualDom,
       newState,
     ),

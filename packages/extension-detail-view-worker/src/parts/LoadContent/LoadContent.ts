@@ -40,18 +40,23 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
   })
-  const buttons = getExtensionDetailButtons(hasColorTheme, extension?.builtin)
+  const isBuiltin = extension?.isBuiltin
+  const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin)
   const size = GetViewletSize.getViewletSize(width)
   const { selectedFeature, selectedTab, readmeScrollTop } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
   const folderSize = await GetFolderSize.getFolderSize(extensionUri)
   const displaySize = GetDisplaySize.getDisplaySize(folderSize)
-  const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion, extensionUri)
-  const secondEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries()
+  const installationEntries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(
+    displaySize,
+    extensionId,
+    extensionVersion,
+    extensionUri,
+  )
+  const marketplaceEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries(isBuiltin)
   const categories: readonly Category[] = GetCategories.getCategories()
-  const resources: readonly Resource[] = GetResources.getResources()
+  const resources: readonly Resource[] = GetResources.getResources(isBuiltin)
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
-  const isBuiltin = extension?.builtin
   return {
     ...state,
     badge,
@@ -61,7 +66,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     description,
     detailsVirtualDom,
     displaySize,
-    entries,
+    entries: installationEntries,
     extension,
     extensionId,
     extensionVersion,
@@ -74,7 +79,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     readmeScrollTop,
     resources,
     scrollToTopButtonEnabled: true,
-    secondEntries,
+    secondEntries: marketplaceEntries,
     selectedTab,
     sizeOnDisk: size,
     sizeValue,
