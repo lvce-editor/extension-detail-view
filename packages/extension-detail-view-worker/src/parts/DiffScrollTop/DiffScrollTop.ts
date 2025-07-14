@@ -2,5 +2,5 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import * as InputSource from '../InputSource/InputSource.ts'
 
 export const isEqual = (oldState: ExtensionDetailState, newState: ExtensionDetailState): boolean => {
-  return newState.scrollSource === InputSource.User || oldState.readmeScrollTop === newState.readmeScrollTop
+  return newState.scrollSource === InputSource.Script || oldState.readmeScrollTop === newState.readmeScrollTop
 }
