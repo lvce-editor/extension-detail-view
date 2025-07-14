@@ -20,6 +20,7 @@ import * as GetResources from '../GetResources/GetResources.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
+import * as InputSource from '../InputSource/InputSource.ts'
 import * as LoadHeaderContent from '../LoadHeaderContent/LoadHeaderContent.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
@@ -45,7 +46,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const isBuiltin = extension?.isBuiltin
   const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin)
   const size = GetViewletSize.getViewletSize(width)
-  const { selectedFeature, selectedTab, readmeScrollTop } = RestoreState.restoreState(savedState)
+  const { selectedFeature, selectedTab, readmeScrollTop, changelogScrollTop } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
   const hasFeatures = features.length > 0
   const hasReadme = true // TODO
@@ -70,6 +71,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     baseUrl,
     buttons,
     categories,
+    changelogScrollTop,
     description,
     detailsVirtualDom,
     displaySize,
@@ -87,6 +89,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     resources,
     scrollToTopButtonEnabled: true,
     secondEntries: marketplaceEntries,
+    scrollSource: InputSource.Script,
     selectedTab,
     sizeOnDisk: size,
     sizeValue,
