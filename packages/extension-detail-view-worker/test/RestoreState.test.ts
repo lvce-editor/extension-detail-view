@@ -13,6 +13,7 @@ test('restoreState - valid saved state', () => {
     selectedTab: 'Features',
     selectedFeature: 'Commands',
     readmeScrollTop: 0,
+    changelogScrollTop: 0,
   })
 })
 
@@ -26,6 +27,7 @@ test('restoreState - invalid saved state', () => {
     selectedTab: InputName.Details,
     selectedFeature: InputName.Details,
     readmeScrollTop: 0,
+    changelogScrollTop: 0,
   })
 })
 
@@ -35,6 +37,7 @@ test('restoreState - null saved state', () => {
     selectedTab: InputName.Details,
     selectedFeature: InputName.Details,
     readmeScrollTop: 0,
+    changelogScrollTop: 0,
   })
 })
 
@@ -44,6 +47,7 @@ test('restoreState - undefined saved state', () => {
     selectedTab: InputName.Details,
     selectedFeature: InputName.Details,
     readmeScrollTop: 0,
+    changelogScrollTop: 0,
   })
 })
 
@@ -56,6 +60,7 @@ test('restoreState - partial saved state', () => {
     selectedTab: 'Settings',
     selectedFeature: InputName.Details,
     readmeScrollTop: 0,
+    changelogScrollTop: 0,
   })
 })
 
@@ -66,6 +71,7 @@ test('restoreState - empty object', () => {
     selectedTab: InputName.Details,
     selectedFeature: InputName.Details,
     readmeScrollTop: 0,
+    changelogScrollTop: 0,
   })
 })
 
@@ -76,5 +82,6 @@ test('restoreState - non-object saved state', () => {
     selectedTab: InputName.Details,
     selectedFeature: InputName.Details,
     readmeScrollTop: 0,
+    changelogScrollTop: 0,
   })
 })
