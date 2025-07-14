@@ -12,7 +12,7 @@ test('loads readme content', async () => {
   RendererWorker.set(mockRpc)
 
   invoke.mockResolvedValue('# Test Content')
-  const content = await LoadReadmeContent.loadReadmeContent('/test/path')
+  const content = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
   expect(content).toBe('# Test Content')
   expect(invoke).toHaveBeenCalledWith('FileSystem.readFile', '/test/path/README.md')
 })
@@ -28,7 +28,7 @@ test('handles missing readme file', async () => {
   const error = new Error('file not found')
   ;(error as any).code = 'ENOENT'
   invoke.mockRejectedValue(error)
-  const content = await LoadReadmeContent.loadReadmeContent('/test/path')
+  const content = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
   expect(content).toBe('')
 })
 
@@ -44,7 +44,7 @@ test('returns error message for other errors', async () => {
   const spy = jest.spyOn(console, 'error').mockImplementation(() => {})
   const error = new Error('permission denied')
   invoke.mockRejectedValue(error)
-  const content = await LoadReadmeContent.loadReadmeContent('/test/path')
+  const content = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
   expect(content).toBe('Error: permission denied')
   expect(spy).toHaveBeenCalledTimes(1)
 })
@@ -58,6 +58,6 @@ test('handles empty readme file', async () => {
   RendererWorker.set(mockRpc)
 
   invoke.mockResolvedValue('')
-  const content = await LoadReadmeContent.loadReadmeContent('/test/path')
+  const content = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
   expect(content).toBe('')
 })

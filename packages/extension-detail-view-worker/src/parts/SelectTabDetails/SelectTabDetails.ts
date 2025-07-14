@@ -5,8 +5,8 @@ import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
 export const selectTabDetails = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const { extension, baseUrl } = state
-  const readmeContent = await GetExtensionReadme.loadReadmeContent(extension.path)
+  const { baseUrl, readmeUrl } = state
+  const readmeContent = await GetExtensionReadme.loadReadmeContent(readmeUrl)
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
   })
