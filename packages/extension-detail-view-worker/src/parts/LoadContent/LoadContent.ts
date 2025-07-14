@@ -9,13 +9,13 @@ import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import * as GetCategories from '../GetCategories/GetCategories.ts'
 import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
-import * as GetEntries from '../GetEntries/GetEntries.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
+import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
+import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
 import * as GetResources from '../GetResources/GetResources.ts'
-import * as GetSecondEntries from '../GetSecondEntries/GetSecondEntries.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as LoadHeaderContent from '../LoadHeaderContent/LoadHeaderContent.ts'
@@ -46,8 +46,8 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
   const folderSize = await GetFolderSize.getFolderSize(extensionUri)
   const displaySize = GetDisplaySize.getDisplaySize(folderSize)
-  const entries: readonly MoreInfoEntry[] = GetEntries.getEntries()
-  const secondEntries: readonly MoreInfoEntry[] = GetSecondEntries.getSecondEntries()
+  const entries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(displaySize, extensionId, extensionVersion, extensionUri)
+  const secondEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries()
   const categories: readonly Category[] = GetCategories.getCategories()
   const resources: readonly Resource[] = GetResources.getResources()
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
