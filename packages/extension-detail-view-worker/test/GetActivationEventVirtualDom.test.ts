@@ -10,6 +10,10 @@ test('activation event virtual dom', () => {
       type: VirtualDomElements.Li,
       childCount: 1,
     },
+    {
+      type: VirtualDomElements.Code,
+      childCount: 1,
+    },
     text('onCommand:workbench.action.openFile'),
   ])
 })
@@ -21,6 +25,10 @@ test('activation event virtual dom with different event', () => {
       type: VirtualDomElements.Li,
       childCount: 1,
     },
+    {
+      type: VirtualDomElements.Code,
+      childCount: 1,
+    },
     text('onLanguage:typescript'),
   ])
 })
@@ -30,6 +38,10 @@ test('activation event virtual dom with empty event', () => {
   expect(GetActivationEventVirtualDom.getActivationEventVirtualDom(event)).toEqual([
     {
       type: VirtualDomElements.Li,
+      childCount: 1,
+    },
+    {
+      type: VirtualDomElements.Code,
       childCount: 1,
     },
     text(''),
