@@ -37,7 +37,7 @@ test('applyRender with RenderScrollTop diff type', () => {
 
   expect(commands).toHaveLength(1)
   expect(Array.isArray(commands[0])).toBe(true)
-  expect(commands[0][0]).toBe('Viewlet.setScrollTop')
+  expect(commands[0][0]).toBe('Viewlet.setProperty')
 })
 
 test('applyRender with empty diff result', () => {
