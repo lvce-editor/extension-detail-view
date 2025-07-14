@@ -17,7 +17,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleReadmeScroll,
-      params: ['handleWheel', 'event.deltaX', 'event.deltaY'],
+      params: ['handleScroll', 'event.target.scrollTop'],
       passive: true,
     },
     {

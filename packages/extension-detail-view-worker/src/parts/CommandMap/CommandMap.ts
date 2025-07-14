@@ -15,8 +15,8 @@ import * as HandleClickSettings from '../HandleClickSettings/HandleClickSettings
 import * as HandleClickSize from '../HandleClickSize/HandleClickSize.ts'
 import * as HandleClickUninstall from '../HandleClickUninstall/HandleClickUninstall.ts'
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
+import * as HandleScroll from '../HandleScroll/HandleScroll.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
-import * as HandleWheel from '../HandleWheel/HandleWheel.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent2 from '../LoadContent2/LoadContent2.ts'
 import * as Render2 from '../Render2/Render2.ts'
@@ -35,14 +35,15 @@ export const commandMap = {
   'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
   'ExtensionDetail.handleClickScrollToTop': WrapCommand.wrapCommand(HandleClickScrollToTop.handleClickScrollToTop),
-  'ExtensionDetail.handleClickSettings': WrapCommand.wrapCommand(HandleClickSettings.handleClickSettings),
   'ExtensionDetail.handleClickSetColorTheme': WrapCommand.wrapCommand(HandleClickSetColorTheme.handleClickSetColorTheme),
+  'ExtensionDetail.handleClickSettings': WrapCommand.wrapCommand(HandleClickSettings.handleClickSettings),
   'ExtensionDetail.handleClickSize': WrapCommand.wrapCommand(HandleClickSize.handleClickSize),
   'ExtensionDetail.handleClickUninstall': WrapCommand.wrapCommand(HandleClickUninstall.handleClickUninstall),
   'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
+  'ExtensionDetail.handleScroll': WrapCommand.wrapCommand(HandleScroll.handleScroll),
   'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
-  'ExtensionDetail.handleWheel': WrapCommand.wrapCommand(HandleWheel.handleWheel),
+  'ExtensionDetail.handleWheel': WrapCommand.wrapCommand(HandleScroll.handleScroll), // deprecated
   'ExtensionDetail.loadContent2': WrapCommand.wrapCommand(LoadContent2.loadContent2),
   'ExtensionDetail.render2': Render2.render2,
   'ExtensionDetail.renderEventListeners': RenderEventListeners.renderEventListeners,

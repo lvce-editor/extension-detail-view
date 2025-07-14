@@ -1,8 +1,8 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import * as InputSource from '../InputSource/InputSource.ts'
 
-export const handleWheel = (state: ExtensionDetailState, deltaX: number, deltaY: number): ExtensionDetailState => {
-  const newScrollTop = Math.max(0, state.readmeScrollTop + deltaY)
+export const handleScroll = (state: ExtensionDetailState, scrollTop: number): ExtensionDetailState => {
+  const newScrollTop = Math.max(0, scrollTop)
   return {
     ...state,
     readmeScrollTop: newScrollTop,
