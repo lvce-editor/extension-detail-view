@@ -49,7 +49,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const categories: readonly Category[] = GetCategories.getCategories()
   const resources: readonly Resource[] = GetResources.getResources()
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
-  const isBuiltin = extension?.builtin
   return {
     ...state,
     badge,
@@ -66,7 +65,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     folderSize,
     hasColorTheme,
     iconSrc,
-    isBuiltin,
     name,
     readmeScrollTop,
     resources,

@@ -25,7 +25,6 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     folderSize: 0,
     hasColorTheme: false,
     iconSrc: '',
-    isBuiltin: false,
     jsonValidation: [],
     name: '',
     platform,

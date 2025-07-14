@@ -24,7 +24,6 @@ export const createDefaultState = (): ExtensionDetailState => {
     folderSize: 0,
     hasColorTheme: false,
     iconSrc: '',
-    isBuiltin: false,
     jsonValidation: [],
     name: '',
     platform: 0,
