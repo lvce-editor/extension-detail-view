@@ -3,6 +3,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { HeaderData } from '../HeaderData/HeaderData.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
+import type { Tab } from '../Tab/Tab.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import { ExtensionNotFoundError } from '../ExtensionNotFoundError/ExtensionNotFoundError.ts'
 import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
@@ -16,6 +17,7 @@ import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallati
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
 import * as GetResources from '../GetResources/GetResources.ts'
+import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as LoadHeaderContent from '../LoadHeaderContent/LoadHeaderContent.ts'
@@ -45,6 +47,11 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const size = GetViewletSize.getViewletSize(width)
   const { selectedFeature, selectedTab, readmeScrollTop } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
+  const hasFeatures = features.length > 0
+  const hasReadme = true // TODO
+  const hasChangelog = true // TODO
+  const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog)
+  const enabledTabs = tabs.filter((tab) => tab.enabled)
   const folderSize = await GetFolderSize.getFolderSize(extensionUri)
   const displaySize = GetDisplaySize.getDisplaySize(folderSize)
   const installationEntries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(
@@ -83,5 +90,6 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     selectedTab,
     sizeOnDisk: size,
     sizeValue,
+    tabs: enabledTabs,
   }
 }
