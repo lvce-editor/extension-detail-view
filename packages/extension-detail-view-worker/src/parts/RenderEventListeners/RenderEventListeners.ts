@@ -18,6 +18,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     {
       name: DomEventListenerFunctions.HandleReadmeWheel,
       params: ['handleWheel', 'event.deltaX', 'event.deltaY'],
+      passive: true,
     },
     {
       name: DomEventListenerFunctions.HandleTabsClick,
