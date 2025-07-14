@@ -2,6 +2,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 
 export const createDefaultState = (): ExtensionDetailState => {
   return {
+    uid: 0,
     activationEvents: [],
     assetDir: '/test/asset/dir',
     badge: '',
