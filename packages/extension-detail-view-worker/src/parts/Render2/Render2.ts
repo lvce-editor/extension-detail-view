@@ -4,7 +4,7 @@ import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetail
 
 export const render2 = (uid: number, diffResult: readonly number[]): readonly VirtualDomNode[] => {
   const { oldState, newState } = ExtensionDetailStates.get(uid)
-  ExtensionDetailStates.set(uid, oldState, newState)
+  ExtensionDetailStates.set(uid, newState, newState)
   const commands = ApplyRender.applyRender(oldState, newState, diffResult)
   return commands
 }
