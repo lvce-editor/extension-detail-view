@@ -43,6 +43,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   })
   const isBuiltin = extension?.isBuiltin
   const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin)
+  const enabledButtons = buttons.filter((button) => button.enabled)
   const size = GetViewletSize.getViewletSize(width)
   const { selectedFeature, selectedTab, readmeScrollTop, changelogScrollTop } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
@@ -62,7 +63,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     ...state,
     badge,
     baseUrl,
-    buttons,
+    buttons: enabledButtons,
     categories,
     changelogScrollTop,
     description,
