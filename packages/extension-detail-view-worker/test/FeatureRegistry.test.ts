@@ -83,7 +83,7 @@ test('getFeatures marks selected feature correctly', () => {
 })
 
 test('getFeatureDetailsHandler returns handler for existing feature', () => {
-  const mockHandler = jest.fn((): Promise<object> => Promise.resolve({}))
+  const mockHandler = jest.fn(async (): Promise<object> => ({}))
   const mockFeature = {
     id: 'test-feature',
     getLabel: (): string => 'Test Feature',
