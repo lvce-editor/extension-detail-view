@@ -26,15 +26,13 @@ export const getExtensionDetailContentVirtualDom = (
     case InputName.Details:
       return GetDetailsVirtualDom.getDetailsVirtualDom(
         sanitizedReadmeHtml,
-        displaySize,
-        extensionId,
-        extensionVersion,
         width,
-        extensionUri,
         scrollToTopButtonEnabled,
         categories,
         resources,
         breakpoint,
+        state.entries,
+        state.secondEntries,
       )
     case InputName.Features:
       return getFeaturesVirtualDom(state.features, state.selectedFeature, state)
