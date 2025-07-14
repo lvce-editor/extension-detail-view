@@ -7,6 +7,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     activationEvents: [],
     assetDir: assetDir || '',
     badge: '',
+    buttons: [],
     baseUrl: '',
     builtinExtensionsBadgeEnabled: true,
     categories: [],
