@@ -156,7 +156,7 @@ test('handles builtin extension - shows only disable button', () => {
     iconSrc: './builtin-icon.png',
     description: 'Builtin extension description',
   }
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, false)
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, true)
   expect(
     GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
       extensionDetail.name,
