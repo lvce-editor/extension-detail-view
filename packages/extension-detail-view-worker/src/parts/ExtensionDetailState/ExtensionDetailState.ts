@@ -1,5 +1,6 @@
 import type { Category } from '../Category/Category.ts'
 import type { Feature } from '../Feature/Feature.ts'
+import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/ExtensionDetailButton.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import type { Row } from '../Row/Row.ts'
@@ -7,12 +8,12 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
 
 export interface ExtensionDetailState {
-  readonly uid: number
   readonly activationEvents: readonly string[]
   readonly assetDir: string
   readonly badge: string
   readonly baseUrl: string
   readonly builtinExtensionsBadgeEnabled: boolean
+  readonly buttons: readonly ExtensionDetailButton[]
   readonly categories: readonly Category[]
   readonly changelogScrollTop: number
   readonly changelogVirtualDom: readonly VirtualDomNode[]
@@ -42,6 +43,7 @@ export interface ExtensionDetailState {
   readonly selectedTab: string
   readonly settings: readonly Row[]
   readonly settingsButtonEnabled: boolean
+  readonly uid: number
   readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number
   readonly sizeValue: number

@@ -9,6 +9,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     baseUrl: '',
     builtinExtensionsBadgeEnabled: true,
     categories: [],
+    buttons: [],
     changelogScrollTop: 0,
     changelogVirtualDom: [],
     commands: [],

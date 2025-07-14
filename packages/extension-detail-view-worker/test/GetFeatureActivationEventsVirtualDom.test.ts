@@ -25,14 +25,26 @@ test('feature activation events virtual dom with events', () => {
       type: VirtualDomElements.Li,
       childCount: 1,
     },
+    {
+      type: VirtualDomElements.Code,
+      childCount: 1,
+    },
     text('onCommand:workbench.action.openFile'),
     {
       type: VirtualDomElements.Li,
       childCount: 1,
     },
+    {
+      type: VirtualDomElements.Code,
+      childCount: 1,
+    },
     text('onLanguage:typescript'),
     {
       type: VirtualDomElements.Li,
+      childCount: 1,
+    },
+    {
+      type: VirtualDomElements.Code,
       childCount: 1,
     },
     text('onView:explorer'),
