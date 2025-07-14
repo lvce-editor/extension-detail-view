@@ -1,10 +1,10 @@
 import { expect, test } from '@jest/globals'
 import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { Tab } from '../src/parts/Tab/Tab.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetTabVirtualDom from '../src/parts/GetTabVirtualDom/GetTabVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
-import { Tab } from '../src/parts/Tab/Tab.ts'
 
 test('selected tab', () => {
   const tab: Tab = {
