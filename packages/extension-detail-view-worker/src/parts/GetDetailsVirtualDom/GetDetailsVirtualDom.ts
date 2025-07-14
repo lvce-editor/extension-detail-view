@@ -44,7 +44,6 @@ export const getDetailsVirtualDom = (
       className: ClassNames.ExtensionDetailPanel,
       childCount: childCount,
       role: AriaRoles.Panel,
-      onScroll: DomEventListenerFunctions.HandleReadmeScroll,
     },
     ...sanitizedReadmeHtml,
     ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(
