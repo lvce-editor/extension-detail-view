@@ -4,7 +4,7 @@ import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/Extensi
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import type { Row } from '../Row/Row.ts'
-import { Tab } from '../Tab/Tab.ts'
+import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
 
