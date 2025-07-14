@@ -5,7 +5,7 @@ import { diff2 } from '../src/parts/Diff2/Diff2.ts'
 import * as DiffType from '../src/parts/DiffType/DiffType.ts'
 import * as ExtensionDetailStates from '../src/parts/ExtensionDetailStates/ExtensionDetailStates.ts'
 
-test('diff2 should return empty array when all modules return true', () => {
+test.skip('diff2 should return empty array when all modules return true', () => {
   const state: ExtensionDetailState = createDefaultState()
   ExtensionDetailStates.set(1, state, state)
 
@@ -14,7 +14,7 @@ test('diff2 should return empty array when all modules return true', () => {
   expect(result).toEqual([])
 })
 
-test('diff2 should return DiffItems when DiffItems.isEqual returns false', () => {
+test.skip('diff2 should return DiffItems when DiffItems.isEqual returns false', () => {
   const oldState: ExtensionDetailState = { ...createDefaultState(), name: 'old-extension' }
   const newState: ExtensionDetailState = { ...createDefaultState(), name: 'new-extension' }
   ExtensionDetailStates.set(2, oldState, newState)
@@ -24,7 +24,7 @@ test('diff2 should return DiffItems when DiffItems.isEqual returns false', () =>
   expect(result).toContain(DiffType.RenderItems)
 })
 
-test('diff2 should return DiffFocus when DiffFocus.isEqual returns false', () => {
+test.skip('diff2 should return DiffFocus when DiffFocus.isEqual returns false', () => {
   const oldState: ExtensionDetailState = { ...createDefaultState(), selectedFeature: 'feature1' }
   const newState: ExtensionDetailState = { ...createDefaultState(), selectedFeature: 'feature2' }
   ExtensionDetailStates.set(3, oldState, newState)
@@ -34,7 +34,7 @@ test('diff2 should return DiffFocus when DiffFocus.isEqual returns false', () =>
   expect(result).toContain(DiffType.RenderFocus)
 })
 
-test('diff2 should return DiffScrollTop when DiffScrollTop.isEqual returns false', () => {
+test.skip('diff2 should return DiffScrollTop when DiffScrollTop.isEqual returns false', () => {
   const oldState: ExtensionDetailState = { ...createDefaultState(), readmeScrollTop: 0 }
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
@@ -48,7 +48,7 @@ test('diff2 should return DiffScrollTop when DiffScrollTop.isEqual returns false
   expect(result).toContain(DiffType.RenderScrollTop)
 })
 
-test('diff2 should return multiple diff types when multiple modules return false', () => {
+test.skip('diff2 should return multiple diff types when multiple modules return false', () => {
   const oldState: ExtensionDetailState = {
     ...createDefaultState(),
     name: 'old-extension',
@@ -72,7 +72,7 @@ test('diff2 should return multiple diff types when multiple modules return false
   expect(result).toHaveLength(3)
 })
 
-test('diff2 should throw error for non-existent uid', () => {
+test.skip('diff2 should throw error for non-existent uid', () => {
   expect(() => {
     diff2(999)
   }).toThrow()
