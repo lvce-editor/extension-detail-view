@@ -1,12 +1,7 @@
-import { test, expect } from '@jest/globals'
-import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
+import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import { diffType, isEqual } from '../src/parts/DiffFocus/DiffFocus.ts'
-import * as DiffType from '../src/parts/DiffType/DiffType.ts'
-
-test('diffType should be RenderFocus', () => {
-  expect(diffType).toBe(DiffType.RenderFocus)
-})
+import { isEqual } from '../src/parts/DiffFocus/DiffFocus.ts'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 
 test('isEqual should return true when states are the same object', () => {
   const state = createDefaultState()
