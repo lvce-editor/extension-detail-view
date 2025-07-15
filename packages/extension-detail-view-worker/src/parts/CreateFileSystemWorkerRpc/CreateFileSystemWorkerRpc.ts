@@ -6,7 +6,7 @@ export const createFileSystemWorkerRpc = async (): Promise<Rpc> => {
   try {
     const rpc = await TransferMessagePortRpcParent.create({
       commandMap: {},
-      send: SendMessagePortToFileSystemWorker.sendMessagePortToMarkdownWorker,
+      send: SendMessagePortToFileSystemWorker.sendMessagePortToFileSystemWorker,
     })
     return rpc
   } catch (error) {
