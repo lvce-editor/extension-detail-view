@@ -1,7 +1,7 @@
 import { createFileSystemWorkerRpc } from '../CreateFileSystemWorkerRpc/CreateFileSystemWorkerRpc.ts'
-import * as MarkdownWorker from '../MarkdownWorker/MarkdownWorker.ts'
+import * as FileSystemWorker from '../FileSystemWorker/FileSystemWorker.ts'
 
 export const initializeFileSystemWorker = async (): Promise<void> => {
   const rpc = await createFileSystemWorkerRpc()
-  MarkdownWorker.set(rpc)
+  FileSystemWorker.set(rpc)
 }
