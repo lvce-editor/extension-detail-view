@@ -1,3 +1,3 @@
-import { MarkdownWorker } from '@lvce-editor/rpc-registry'
+import { FileSystemWorker } from '@lvce-editor/rpc-registry'
 
-export const { set, getVirtualDom, render } = MarkdownWorker
+export const { set, exists, readDirWithFileTypes } = FileSystemWorker
