@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as GetFolderSize from '../src/parts/GetFolderSize/GetFolderSize.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('get folder size', async () => {
   const mockRpc = MockRpc.create({
@@ -13,7 +13,7 @@ test('get folder size', async () => {
       throw new Error(`unexpected method ${method}`)
     },
   })
-  RendererWorker.set(mockRpc)
+  FileSystemWorker.set(mockRpc)
   expect(await GetFolderSize.getFolderSize('/test/path')).toBe('1.2 MB')
 })
 
@@ -24,7 +24,7 @@ test('get folder size - error case', async () => {
       throw new Error('access denied')
     },
   })
-  RendererWorker.set(mockRpc)
+  FileSystemWorker.set(mockRpc)
   expect(await GetFolderSize.getFolderSize('/test/path')).toBe(0)
 })
 

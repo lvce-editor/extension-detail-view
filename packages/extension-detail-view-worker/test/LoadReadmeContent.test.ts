@@ -1,7 +1,7 @@
 import { expect, test, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
+import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as LoadReadmeContent from '../src/parts/LoadReadmeContent/LoadReadmeContent.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loads readme content', async () => {
   const invoke: any = jest.fn()
@@ -9,7 +9,7 @@ test('loads readme content', async () => {
     commandMap: {},
     invoke,
   })
-  RendererWorker.set(mockRpc)
+  FileSystemWorker.set(mockRpc)
 
   invoke.mockResolvedValue('# Test Content')
   const content = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
@@ -23,7 +23,7 @@ test('handles missing readme file', async () => {
     commandMap: {},
     invoke,
   })
-  RendererWorker.set(mockRpc)
+  FileSystemWorker.set(mockRpc)
 
   const error = new Error('file not found')
   ;(error as any).code = 'ENOENT'
@@ -38,7 +38,7 @@ test('returns error message for other errors', async () => {
     commandMap: {},
     invoke,
   })
-  RendererWorker.set(mockRpc)
+  FileSystemWorker.set(mockRpc)
 
   // @ts-ignore TODO
   const spy = jest.spyOn(console, 'error').mockImplementation(() => {})
@@ -55,7 +55,7 @@ test('handles empty readme file', async () => {
     commandMap: {},
     invoke,
   })
-  RendererWorker.set(mockRpc)
+  FileSystemWorker.set(mockRpc)
 
   invoke.mockResolvedValue('')
   const content = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')

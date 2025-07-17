@@ -1,3 +1,3 @@
 import { FileSystemWorker } from '@lvce-editor/rpc-registry'
 
-export const { set, exists, readDirWithFileTypes } = FileSystemWorker
+export const { set, exists, readDirWithFileTypes, readFile, invoke } = FileSystemWorker

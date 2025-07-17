@@ -1,5 +1,5 @@
-import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
+import * as FileSystemWorker from '../FileSystemWorker/FileSystemWorker.ts'
 
 export const readFile = async (uri: string): Promise<string> => {
-  return RendererWorker.readFile(uri)
+  return FileSystemWorker.readFile(uri)
 }
