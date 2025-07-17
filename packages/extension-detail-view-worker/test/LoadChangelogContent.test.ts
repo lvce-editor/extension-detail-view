@@ -1,8 +1,8 @@
 import { expect, test, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import * as ErrorCodes from '../src/parts/ErrorCodes/ErrorCodes.ts'
+import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as LoadChangelogContent from '../src/parts/LoadChangelogContent/LoadChangelogContent.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('loadChangelogContent successfully loads changelog', async () => {
   const changelogContent = '# Changelog\n\n## Version 1.0.0\n- Initial release'
@@ -11,7 +11,7 @@ test('loadChangelogContent successfully loads changelog', async () => {
     commandMap: {},
     invoke,
   })
-  RendererWorker.set(mockRpc)
+  FileSystemWorker.set(mockRpc)
 
   const result = await LoadChangelogContent.loadChangelogContent('/test/extension')
   expect(result).toBe(changelogContent)
@@ -26,7 +26,7 @@ test('loadChangelogContent returns empty string when file not found', async () =
     commandMap: {},
     invoke,
   })
-  RendererWorker.set(mockRpc)
+  FileSystemWorker.set(mockRpc)
 
   const result = await LoadChangelogContent.loadChangelogContent('/test/extension')
   expect(result).toBe('')
@@ -40,7 +40,7 @@ test('loadChangelogContent returns error message for other errors', async () => 
     commandMap: {},
     invoke,
   })
-  RendererWorker.set(mockRpc)
+  FileSystemWorker.set(mockRpc)
 
   const result = await LoadChangelogContent.loadChangelogContent('/test/extension')
   expect(result).toBe('Error: Permission denied')
@@ -53,7 +53,7 @@ test('loadChangelogContent handles different path formats', async () => {
     commandMap: {},
     invoke,
   })
-  RendererWorker.set(mockRpc)
+  FileSystemWorker.set(mockRpc)
 
   await LoadChangelogContent.loadChangelogContent('extension-name')
   expect(invoke).toHaveBeenCalledWith('FileSystem.readFile', 'extension-name/CHANGELOG.md')
