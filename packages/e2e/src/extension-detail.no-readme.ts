@@ -13,5 +13,5 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await expect(detailView).toBeVisible()
   const icon = Locator('.Markdown')
   await expect(icon).toBeVisible()
-  await expect(icon).toHaveText('Error: Failed to get text: Not Found\n')
+  await expect(icon).toHaveText('Error: Not Found\n')
 }
