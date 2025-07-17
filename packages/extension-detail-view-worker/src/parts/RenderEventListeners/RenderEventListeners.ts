@@ -1,5 +1,6 @@
 import type { DomEventListener } from '../DomEventListener/DomEventListener.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import * as InputSource from '../InputSource/InputSource.ts'
 
 export const renderEventListeners = (): readonly DomEventListener[] => {
   return [
@@ -17,7 +18,8 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleReadmeScroll,
-      params: ['handleScroll', 'event.target.scrollTop'],
+      // @ts-ignore
+      params: ['handleScroll', 'event.target.scrollTop', InputSource.User],
       passive: true,
     },
     {
