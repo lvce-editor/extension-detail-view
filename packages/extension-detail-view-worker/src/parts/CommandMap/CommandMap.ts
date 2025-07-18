@@ -48,7 +48,8 @@ export const commandMap = {
   'ExtensionDetail.render2': Render2.render2,
   'ExtensionDetail.renderEventListeners': RenderEventListeners.renderEventListeners,
   'ExtensionDetail.resize': Resize.resize,
-  'ExtensionDetail.saveState': SaveState.saveState,
+  // @ts-ignore
+  'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
   'ExtensionDetail.terminate': terminate,
   'ExtensionDetail.initialize': Initialize.initialize,
