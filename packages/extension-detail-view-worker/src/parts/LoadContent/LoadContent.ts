@@ -29,10 +29,9 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   }
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
   const { badge, description, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name } = headerData
-  const readmeUrl = Path.join(extension.path, 'README.md')
-  const changelogUrl = Path.join(extension.path, 'CHANGELOG.md')
-  const hasReadme = await existsFile(readmeUrl)
-  const hasChangelog = await existsFile(changelogUrl)
+  const readmeUrl = Path.join(extensionUri, 'README.md')
+  const changelogUrl = Path.join(extensionUri, 'CHANGELOG.md')
+  const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUrl), existsFile(changelogUrl)])
   const readmeContent = await GetExtensionReadme.loadReadmeContent(readmeUrl)
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
@@ -67,7 +66,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     description,
     detailsVirtualDom,
     displaySize,
-    entries: installationEntries,
+    installationEntries,
     extension,
     extensionId,
     extensionVersion,
@@ -81,7 +80,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
     resources,
     scrollSource: InputSource.Script,
     scrollToTopButtonEnabled: true,
-    secondEntries: marketplaceEntries,
+    marketplaceEntries,
     selectedTab,
     sizeOnDisk: size,
     sizeValue,
