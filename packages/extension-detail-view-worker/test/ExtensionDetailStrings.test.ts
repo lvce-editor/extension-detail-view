@@ -152,3 +152,13 @@ test('scrollToTop', () => {
   const result = ExtensionDetailStrings.scrollToTop()
   expect(result).toBe(I18nString.i18nString(UiStrings.ScrollToTop))
 })
+
+test('activationEvents', () => {
+  const result = ExtensionDetailStrings.activationEvents()
+  expect(result).toBe(I18nString.i18nString(UiStrings.ActivationEvents))
+})
+
+test('noReadmeFound', () => {
+  const result = ExtensionDetailStrings.noReadmeFound()
+  expect(result).toBe(I18nString.i18nString(UiStrings.NoReadmeFound))
+})
