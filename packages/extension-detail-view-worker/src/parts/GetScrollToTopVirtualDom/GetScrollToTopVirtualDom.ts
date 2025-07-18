@@ -1,4 +1,4 @@
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
@@ -13,10 +13,16 @@ export const getScrollToTopVirtualDom = (scrollToTopButtonEnabled: boolean): rea
     {
       type: VirtualDomElements.Button,
       className: ClassNames.ScrollToTopButton,
-      childCount: 0,
+      childCount: 1,
       onClick: DomEventListenerFunctions.HandleClickScrollToTop,
       ariaLabel: ExtensionDetailStrings.scrollToTop(),
       name: InputName.ScrollToTop,
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: 'MaskIcon MaskIconChevronUp',
+      childCount: 0,
+      role: AriaRoles.None,
     },
   ]
 }

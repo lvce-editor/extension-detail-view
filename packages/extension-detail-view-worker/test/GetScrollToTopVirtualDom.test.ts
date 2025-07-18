@@ -16,10 +16,16 @@ test('getScrollToTopVirtualDom - returns button when enabled', () => {
     {
       type: VirtualDomElements.Button,
       className: ClassNames.ScrollToTopButton,
-      childCount: 0,
+      childCount: 1,
       onClick: DomEventListenerFunctions.HandleClickScrollToTop,
       ariaLabel: ExtensionDetailStrings.scrollToTop(),
       name: 'scrolltotop',
+    },
+    {
+      childCount: 0,
+      className: 'MaskIcon MaskIconChevronUp',
+      role: 'none',
+      type: 4,
     },
   ])
 })
