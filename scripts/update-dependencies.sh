@@ -32,8 +32,6 @@ cd packages/e2e                                     && updateDependencies && cd 
 cd packages/memory                                  && updateDependencies && cd ../.. &&
 cd packages/server                                  && updateDependencies && cd ../.. &&
 cd packages/extension-detail-view-worker            && updateDependencies && cd ../.. &&
-cd packages/test-integration                        && updateDependencies && cd ../.. &&
-cd packages/test-integration-util                   && updateDependencies && cd ../.. &&
 
 echo "Great Success!"
 
