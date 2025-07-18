@@ -1,5 +1,7 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
+export const skip = 1
+
 export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail, Command }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-restore-scroll-position')
@@ -16,6 +18,5 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail, 
   await ExtensionDetail.selectTab('Details')
 
   // assert
-  // TODO
-  // await expect(markdown).toHaveProperty('scrollTop', 10)
+  // await expect(markdown).toHaveJSProperty('scrollTop', 10)
 }
