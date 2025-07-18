@@ -22,8 +22,8 @@ export const getDetailsVirtualDom = (
   categories: readonly Category[],
   resources: readonly Resource[],
   showAdditionalDetailsBreakpoint: number,
-  marketplaceEntries: readonly MoreInfoEntry[],
   installationEntries: readonly MoreInfoEntry[],
+  marketplaceEntries: readonly MoreInfoEntry[],
 ): readonly VirtualDomNode[] => {
   const firstHeading = ExtensionDetailStrings.installation()
   const secondHeading = ExtensionDetailStrings.marketplace()
