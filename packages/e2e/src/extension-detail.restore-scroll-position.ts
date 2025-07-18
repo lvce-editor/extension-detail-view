@@ -7,8 +7,8 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail, 
   await ExtensionDetail.open('test.restore-scroll-position')
   const detailView = Locator('.ExtensionDetail')
   await expect(detailView).toBeVisible()
-  const icon = Locator('.Markdown')
-  await expect(icon).toBeVisible()
+  const markdown = Locator('.Markdown')
+  await expect(markdown).toBeVisible()
   await Command.execute('ExtensionDetail.handleScroll', 10)
   await ExtensionDetail.selectTab('Features')
 
@@ -16,6 +16,6 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail, 
   await ExtensionDetail.selectTab('Details')
 
   // assert
-
   // TODO
+  // await expect(markdown).toHaveProperty('scrollTop', 10)
 }
