@@ -32,7 +32,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const readmeUrl = Path.join(extensionUri, 'README.md')
   const changelogUrl = Path.join(extensionUri, 'CHANGELOG.md')
   const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUrl), existsFile(changelogUrl)])
-  const readmeContent = await GetExtensionReadme.loadReadmeContent(readmeUrl)
+  const readmeContent = hasReadme ? await GetExtensionReadme.loadReadmeContent(readmeUrl) : ''
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
