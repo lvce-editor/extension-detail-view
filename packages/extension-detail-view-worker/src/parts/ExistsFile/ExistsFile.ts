@@ -1,4 +1,5 @@
+import * as FileSystemWorker from '../FileSystemWorker/FileSystemWorker.ts'
+
 export const existsFile = async (uri: string): Promise<boolean> => {
-  // TODO ask file system worker
-  return true
+  return FileSystemWorker.exists(uri)
 }

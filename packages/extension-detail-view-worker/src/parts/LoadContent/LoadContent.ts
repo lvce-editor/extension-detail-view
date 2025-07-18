@@ -2,6 +2,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { HeaderData } from '../HeaderData/HeaderData.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import { existsFile } from '../ExistsFile/ExistsFile.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import { ExtensionNotFoundError } from '../ExtensionNotFoundError/ExtensionNotFoundError.ts'
 import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
@@ -32,7 +33,7 @@ export const loadContent = async (state: ExtensionDetailState, platform: number,
   const readmeUrl = Path.join(extensionUri, 'README.md')
   const changelogUrl = Path.join(extensionUri, 'CHANGELOG.md')
   const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUrl), existsFile(changelogUrl)])
-  const readmeContent = await GetExtensionReadme.loadReadmeContent(readmeUrl)
+  const readmeContent = hasReadme ? await GetExtensionReadme.loadReadmeContent(readmeUrl) : ExtensionDetailStrings.noReadmeFound()
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
