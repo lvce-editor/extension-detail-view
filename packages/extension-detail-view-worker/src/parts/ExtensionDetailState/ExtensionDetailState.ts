@@ -22,7 +22,7 @@ export interface ExtensionDetailState {
   readonly description: string
   readonly detailsVirtualDom: readonly VirtualDomNode[]
   readonly displaySize: string
-  readonly entries: readonly MoreInfoEntry[]
+  readonly installationEntries: readonly MoreInfoEntry[]
   readonly extension: any
   readonly extensionId: string
   readonly extensionVersion: string
@@ -40,7 +40,7 @@ export interface ExtensionDetailState {
   readonly resources: readonly Resource[]
   readonly scrollSource: number
   readonly scrollToTopButtonEnabled: boolean
-  readonly secondEntries: readonly MoreInfoEntry[]
+  readonly marketplaceEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
   readonly selectedTab: string
   readonly settings: readonly Row[]
