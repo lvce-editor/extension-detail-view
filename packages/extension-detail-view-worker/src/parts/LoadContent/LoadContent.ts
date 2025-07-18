@@ -2,6 +2,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { HeaderData } from '../HeaderData/HeaderData.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import { existsFile } from '../ExistsFile/ExistsFile.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import { ExtensionNotFoundError } from '../ExtensionNotFoundError/ExtensionNotFoundError.ts'
 import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
@@ -19,7 +20,6 @@ import { loadSideBarContent } from '../LoadSideBarContent/LoadSideBarContent.ts'
 import * as Path from '../Path/Path.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
-import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 
 export const loadContent = async (state: ExtensionDetailState, platform: number, savedState: unknown): Promise<ExtensionDetailState> => {
   const { width, uri } = state
