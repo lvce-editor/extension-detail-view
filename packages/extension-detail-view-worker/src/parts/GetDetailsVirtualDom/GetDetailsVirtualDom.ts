@@ -1,4 +1,4 @@
-import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Category } from '../Category/Category.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
@@ -24,6 +24,7 @@ export const getDetailsVirtualDom = (
   showAdditionalDetailsBreakpoint: number,
   installationEntries: readonly MoreInfoEntry[],
   marketplaceEntries: readonly MoreInfoEntry[],
+  hasReadme: boolean,
 ): readonly VirtualDomNode[] => {
   const firstHeading = ExtensionDetailStrings.installation()
   const secondHeading = ExtensionDetailStrings.marketplace()
@@ -31,6 +32,16 @@ export const getDetailsVirtualDom = (
   const fourthHeading = ExtensionDetailStrings.resources()
   const showAdditionalDetails = width > showAdditionalDetailsBreakpoint
   const childCount = getChildCount(showAdditionalDetails, scrollToTopButtonEnabled)
+  const contentDom = hasReadme
+    ? sanitizedReadmeHtml
+    : [
+        {
+          type: VirtualDomElements.Div,
+          childCount: 1,
+          className: 'Markdown',
+        },
+        text(ExtensionDetailStrings.noReadmeFound()),
+      ]
   const dom = [
     {
       type: VirtualDomElements.Div,
@@ -38,7 +49,7 @@ export const getDetailsVirtualDom = (
       childCount: childCount,
       role: AriaRoles.Panel,
     },
-    ...sanitizedReadmeHtml,
+    ...contentDom,
     ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(
       showAdditionalDetails,
       firstHeading,

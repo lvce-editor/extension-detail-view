@@ -29,6 +29,7 @@ export const getExtensionDetailContentVirtualDom = (
         breakpoint,
         state.installationEntries,
         state.marketplaceEntries,
+        state.hasReadme,
       )
     case InputName.Features:
       return getFeaturesVirtualDom(state.features, state.selectedFeature, state)
