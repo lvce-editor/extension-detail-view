@@ -124,3 +124,7 @@ export const uninstall = (): string => {
 export const scrollToTop = (): string => {
   return I18nString.i18nString(UiStrings.ScrollToTop)
 }
+
+export const noReadmeFound = (): string => {
+  return I18nString.i18nString(UiStrings.NoReadmeFound)
+}
