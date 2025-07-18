@@ -5,7 +5,10 @@ export const applyRender = (oldState: ExtensionDetailState, newState: ExtensionD
   const commands = []
   for (const item of diffResult) {
     const fn = GetRenderer.getRenderer(item)
-    commands.push(fn(oldState, newState))
+    const instanceCommands = fn(oldState, newState)
+    if (instanceCommands.length > 0) {
+      commands.push(instanceCommands)
+    }
   }
   return commands
 }

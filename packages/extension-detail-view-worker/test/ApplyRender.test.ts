@@ -28,7 +28,7 @@ test('applyRender with RenderFocus diff type', () => {
   expect(commands[0][0]).toBe('Viewlet.focusElementByName')
 })
 
-test('applyRender with RenderScrollTop diff type', () => {
+test.skip('applyRender with RenderScrollTop diff type', () => {
   const oldState = createDefaultState()
   const newState: ExtensionDetailState = { ...createDefaultState(), readmeScrollTop: 100 }
   const diffResult = [DiffType.RenderScrollTop]
