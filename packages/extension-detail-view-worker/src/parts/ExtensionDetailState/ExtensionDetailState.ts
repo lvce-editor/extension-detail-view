@@ -22,7 +22,6 @@ export interface ExtensionDetailState {
   readonly description: string
   readonly detailsVirtualDom: readonly VirtualDomNode[]
   readonly displaySize: string
-  readonly installationEntries: readonly MoreInfoEntry[]
   readonly extension: any
   readonly extensionId: string
   readonly extensionVersion: string
@@ -31,16 +30,19 @@ export interface ExtensionDetailState {
   readonly focus: number
   readonly folderSize: number
   readonly hasColorTheme: boolean
+  readonly hasReadme: boolean
   readonly iconSrc: string
+  readonly installationEntries: readonly MoreInfoEntry[]
   readonly jsonValidation: readonly Row[]
+  readonly marketplaceEntries: readonly MoreInfoEntry[]
   readonly name: string
   readonly platform: number
   readonly programmingLanguages: readonly Row[]
   readonly readmeScrollTop: number
+  readonly readmeUrl: string
   readonly resources: readonly Resource[]
   readonly scrollSource: number
   readonly scrollToTopButtonEnabled: boolean
-  readonly marketplaceEntries: readonly MoreInfoEntry[]
   readonly selectedFeature: string
   readonly selectedTab: string
   readonly settings: readonly Row[]
@@ -54,5 +56,4 @@ export interface ExtensionDetailState {
   readonly uri: string
   readonly webViews: readonly WebView[]
   readonly width: number
-  readonly readmeUrl: string
 }

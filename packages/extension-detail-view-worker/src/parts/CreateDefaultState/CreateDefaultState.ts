@@ -14,6 +14,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     commands: [],
     description: '',
     detailsVirtualDom: [],
+    hasReadme: false,
     displaySize: '',
     installationEntries: [],
     extension: {},
