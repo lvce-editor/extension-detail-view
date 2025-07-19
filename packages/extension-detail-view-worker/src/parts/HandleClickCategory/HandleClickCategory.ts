@@ -5,6 +5,7 @@ export const handleClickCategory = async (state: ExtensionDetailState, categoryI
   if (!categoryId) {
     return state
   }
-  await openExtensionSearch(categoryId)
+  const searchValue = `@category:"${categoryId}"`
+  await openExtensionSearch(searchValue)
   return state
 }
