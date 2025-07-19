@@ -6,12 +6,14 @@ export const {
   getExtension,
   getFolderSize,
   invoke,
+  openExtensionSearch,
   openNativeFolder,
   readFile,
   sendMessagePortToFileSystemWorker,
   sendMessagePortToMarkdownWorker,
   set,
   setColorTheme,
+  setExtensionsSearchValue,
   uninstallExtension,
 } = RendererWorker
 
