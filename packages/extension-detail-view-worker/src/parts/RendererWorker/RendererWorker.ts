@@ -6,15 +6,15 @@ export const {
   getExtension,
   getFolderSize,
   invoke,
+  openExtensionSearch,
   openNativeFolder,
   readFile,
   sendMessagePortToFileSystemWorker,
   sendMessagePortToMarkdownWorker,
   set,
   setColorTheme,
-  uninstallExtension,
   setExtensionsSearchValue,
-  openExtensionSearch,
+  uninstallExtension,
 } = RendererWorker
 
 // Temporary stub for clipboard image copy
