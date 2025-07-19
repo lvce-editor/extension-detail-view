@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const skip = 1
 
-export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }) => {
+export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail, Command }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
@@ -13,7 +13,12 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await expect(category).toHaveText('Themes')
 
   // act
-  await category.click()
+  await Command.execute('ExtensionDetail.handleClickCategory', 'Themes')
 
   // assert
+  const extensionSearchView = Locator('.Extensions')
+  await expect(extensionSearchView).toBeVisible()
+  const searchInput = Locator('[name="extensions"]')
+  await expect(searchInput).toBeVisible()
+  await expect(searchInput).toHaveValue('@category:"Themes"')
 }
