@@ -18,7 +18,6 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleReadmeScroll,
-      // @ts-ignore
       params: ['handleScroll', 'event.target.scrollTop', InputSource.User],
       passive: true,
     },
