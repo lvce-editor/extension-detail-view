@@ -1,6 +1,10 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import { openExtensionSearch } from '../OpenExtensionSearch/OpenExtensionSearch.ts'
 
 export const handleClickCategory = async (state: ExtensionDetailState, categoryId: string): Promise<ExtensionDetailState> => {
-  // TODO: Implement category click functionality
+  if (!categoryId) {
+    return state
+  }
+  await openExtensionSearch(categoryId)
   return state
 }
