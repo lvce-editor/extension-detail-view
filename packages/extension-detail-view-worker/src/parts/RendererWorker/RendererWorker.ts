@@ -5,13 +5,14 @@ export const {
   getAllExtensions,
   getExtension,
   getFolderSize,
+  invoke,
   openNativeFolder,
   readFile,
+  sendMessagePortToFileSystemWorker,
+  sendMessagePortToMarkdownWorker,
   set,
   setColorTheme,
   uninstallExtension,
-  sendMessagePortToMarkdownWorker,
-  sendMessagePortToFileSystemWorker,
 } = RendererWorker
 
 // Temporary stub for clipboard image copy
