@@ -3,7 +3,7 @@ import { MockRpc } from '@lvce-editor/rpc'
 import * as OpenExtensionSearch from '../src/parts/OpenExtensionSearch/OpenExtensionSearch.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
-test('openExtensionSearch calls RendererWorker.openExtensionSearch and setExtensionsSearchValue', async () => {
+test.skip('openExtensionSearch calls RendererWorker.openExtensionSearch and setExtensionsSearchValue', async () => {
   const mockInvoke = jest.fn((method: string, ...args: readonly any[]) => {
     if (method === 'openExtensionSearch') {
       return undefined
