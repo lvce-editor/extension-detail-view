@@ -1,31 +1,30 @@
-import { expect, test } from '@jest/globals'
+import { expect, test, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import * as OpenExtensionSearch from '../src/parts/OpenExtensionSearch/OpenExtensionSearch.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('openExtensionSearch calls RendererWorker.openExtensionSearch and setExtensionsSearchValue', async () => {
-  let setExtensionsSearchValueCalled = false
-  let setExtensionsSearchValueArg: string | undefined
-  const invokedMethods: string[] = []
+  const setExtensionsSearchValueMock = jest.fn()
+  const openExtensionSearchMock = jest.fn()
+  const openViewletMock = jest.fn()
 
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, ...args: readonly any[]) => {
-      invokedMethods.push(method)
       if (method === 'openExtensionSearch') {
+        openExtensionSearchMock(...args)
         return undefined
       }
       if (method === 'setExtensionsSearchValue') {
-        setExtensionsSearchValueCalled = true
-        setExtensionsSearchValueArg = args[0]
+        setExtensionsSearchValueMock(...args)
         return undefined
       }
       if (method === 'Extensions.handleInput') {
-        setExtensionsSearchValueCalled = true
-        setExtensionsSearchValueArg = args[0]
+        setExtensionsSearchValueMock(...args)
         return undefined
       }
       if (method === 'SideBar.openViewlet') {
+        openViewletMock(...args)
         return undefined
       }
       throw new Error(`unexpected method ${method}`)
@@ -36,7 +35,6 @@ test('openExtensionSearch calls RendererWorker.openExtensionSearch and setExtens
   const searchValue = 'test-search'
   await OpenExtensionSearch.openExtensionSearch(searchValue)
 
-  expect(setExtensionsSearchValueCalled).toBe(true)
-  expect(setExtensionsSearchValueArg).toBe(searchValue)
-  expect(invokedMethods).toContain('SideBar.openViewlet')
+  expect(setExtensionsSearchValueMock).toHaveBeenCalledWith(searchValue)
+  expect(openViewletMock).toHaveBeenCalled()
 })
