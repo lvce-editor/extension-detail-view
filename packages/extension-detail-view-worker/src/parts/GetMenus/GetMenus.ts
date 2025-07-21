@@ -15,6 +15,13 @@ export const getMenus = (): readonly Menu[] => {
           command: 'ExtensionDetail.copyImage',
           args: [],
         },
+        {
+          id: 'openImageInNewTab',
+          label: ExtensionDetailStrings.openImageInNewTab(),
+          flags: MenuItemFlags.None,
+          command: 'ExtensionDetail.openImageInNewTab',
+          args: [],
+        },
       ],
     },
   ]
