@@ -21,6 +21,7 @@ import * as HandleScroll from '../HandleScroll/HandleScroll.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent2 from '../LoadContent2/LoadContent2.ts'
+import * as OpenImageInNewTab from '../OpenImageInNewTab/OpenImageInNewTab.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as Resize from '../Resize/Resize.ts'
@@ -29,12 +30,12 @@ import * as SelectTab from '../SelectTab/SelectTab.ts'
 
 export const commandMap = {
   'ExtensionDetail.copyImage': WrapCommand.wrapCommand(CopyImage.copyImage),
-  'ExtensionDetail.getMenus': GetMenus.getMenus,
   'ExtensionDetail.create': Create.create,
   'ExtensionDetail.diff2': Diff2.diff2,
   'ExtensionDetail.dispose': Dispose.dispose,
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
+  'ExtensionDetail.getMenus': GetMenus.getMenus,
   'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
   'ExtensionDetail.handleClickScrollToTop': WrapCommand.wrapCommand(HandleClickScrollToTop.handleClickScrollToTop),
@@ -44,13 +45,14 @@ export const commandMap = {
   'ExtensionDetail.handleClickUninstall': WrapCommand.wrapCommand(HandleClickUninstall.handleClickUninstall),
   'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
+  'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
   'ExtensionDetail.handleScroll': WrapCommand.wrapCommand(HandleScroll.handleScroll),
   'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.handleWheel': WrapCommand.wrapCommand(HandleScroll.handleScroll), // deprecated
   'ExtensionDetail.loadContent2': WrapCommand.wrapCommand(LoadContent2.loadContent2),
+  'ExtensionDetail.openImageInNewTab': WrapCommand.wrapCommand(OpenImageInNewTab.openImageInNewTab),
   'ExtensionDetail.render2': Render2.render2,
   'ExtensionDetail.renderEventListeners': RenderEventListeners.renderEventListeners,
-  'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
   'ExtensionDetail.resize': WrapCommand.wrapCommand(Resize.resize),
   // @ts-ignore
   'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
