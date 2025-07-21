@@ -20,7 +20,7 @@ export const {
   writeClipBoardImage,
 } = RendererWorker
 
-export const openExternal = async (uri: string): Promise<void> => {
+export const openUrl = async (uri: string): Promise<void> => {
   // @ts-ignore
-  await invoke('Open.openExternal', uri)
+  await invoke('Open.openUrl', uri)
 }
