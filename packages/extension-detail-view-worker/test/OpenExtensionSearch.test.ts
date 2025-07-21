@@ -8,27 +8,29 @@ test('openExtensionSearch calls RendererWorker.openExtensionSearch and setExtens
   const openExtensionSearchMock = jest.fn()
   const openViewletMock = jest.fn()
 
+  const mockInvoke = (method: string, ...args: readonly any[]) => {
+    if (method === 'openExtensionSearch') {
+      openExtensionSearchMock(...args)
+      return undefined
+    }
+    if (method === 'setExtensionsSearchValue') {
+      setExtensionsSearchValueMock(...args)
+      return undefined
+    }
+    if (method === 'Extensions.handleInput') {
+      setExtensionsSearchValueMock(...args)
+      return undefined
+    }
+    if (method === 'SideBar.openViewlet') {
+      openViewletMock(...args)
+      return undefined
+    }
+    throw new Error(`unexpected method ${method}`)
+  }
+
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'openExtensionSearch') {
-        openExtensionSearchMock(...args)
-        return undefined
-      }
-      if (method === 'setExtensionsSearchValue') {
-        setExtensionsSearchValueMock(...args)
-        return undefined
-      }
-      if (method === 'Extensions.handleInput') {
-        setExtensionsSearchValueMock(...args)
-        return undefined
-      }
-      if (method === 'SideBar.openViewlet') {
-        openViewletMock(...args)
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
+    invoke: mockInvoke,
   })
   RendererWorker.set(mockRpc)
 
