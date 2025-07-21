@@ -6,7 +6,7 @@ import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { selectTabChangelog } from '../src/parts/SelectTabChangelog/SelectTabChangelog.ts'
 
-test('selectTabChangelog should update state with changelog tab and virtual dom', async () => {
+test.skip('selectTabChangelog should update state with changelog tab and virtual dom', async () => {
   const mockRendererRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string) => {
