@@ -11,12 +11,6 @@ test('openExtensionSearch calls RendererWorker.openExtensionSearch and setExtens
     if (method === 'setExtensionsSearchValue') {
       return undefined
     }
-    if (method === 'Extensions.handleInput') {
-      return undefined
-    }
-    if (method === 'SideBar.openViewlet') {
-      return undefined
-    }
     throw new Error(`unexpected method ${method}`)
   })
 
@@ -29,6 +23,6 @@ test('openExtensionSearch calls RendererWorker.openExtensionSearch and setExtens
   const searchValue = 'test-search'
   await OpenExtensionSearch.openExtensionSearch(searchValue)
 
+  expect(mockInvoke).toHaveBeenCalledWith('openExtensionSearch')
   expect(mockInvoke).toHaveBeenCalledWith('setExtensionsSearchValue', searchValue)
-  expect(mockInvoke).toHaveBeenCalledWith('SideBar.openViewlet')
 })
