@@ -10,7 +10,7 @@ export const getExtensionDetailIconVirtualDom = (iconSrc: string): VirtualDomNod
     alt: '',
     childCount: 0,
     draggable: false,
-    onClick: DomEventListenerFunctions.HandleImageContextMenu,
+    onContextMenu: DomEventListenerFunctions.HandleImageContextMenu,
     src: iconSrc,
   }
 }

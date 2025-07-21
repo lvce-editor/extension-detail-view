@@ -86,7 +86,7 @@ test('handles missing extension details', () => {
       draggable: false,
       childCount: 0,
       src: '',
-      onClick: 'handleImageContextMenu',
+      onContextMenu: 'handleImageContextMenu',
     },
     {
       type: VirtualDomElements.Div,
@@ -180,7 +180,7 @@ test('handles builtin extension - shows only disable button', () => {
       draggable: false,
       childCount: 0,
       src: './builtin-icon.png',
-      onClick: 'handleImageContextMenu',
+      onContextMenu: 'handleImageContextMenu',
     },
     {
       type: VirtualDomElements.Div,
