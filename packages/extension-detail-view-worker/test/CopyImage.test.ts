@@ -15,8 +15,6 @@ Object.defineProperty(globalThis, 'location', {
   writable: true,
 })
 
-
-
 test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state unchanged', async () => {
   let readFileAsBlobCalled = false
   let readFileAsBlobArg: string | undefined

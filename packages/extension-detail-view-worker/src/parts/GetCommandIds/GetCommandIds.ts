@@ -1,5 +1,1 @@
-
-
-
-
-export {getCommandIds} from '../ExtensionDetailStates/ExtensionDetailStates.ts'
+export { getCommandIds } from '../ExtensionDetailStates/ExtensionDetailStates.ts'
