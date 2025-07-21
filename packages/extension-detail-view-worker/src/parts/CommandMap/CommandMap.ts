@@ -15,6 +15,7 @@ import * as HandleClickSettings from '../HandleClickSettings/HandleClickSettings
 import * as HandleClickSize from '../HandleClickSize/HandleClickSize.ts'
 import * as HandleClickUninstall from '../HandleClickUninstall/HandleClickUninstall.ts'
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
+import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageContextMenu.ts'
 import * as HandleScroll from '../HandleScroll/HandleScroll.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
@@ -47,6 +48,7 @@ export const commandMap = {
   'ExtensionDetail.loadContent2': WrapCommand.wrapCommand(LoadContent2.loadContent2),
   'ExtensionDetail.render2': Render2.render2,
   'ExtensionDetail.renderEventListeners': RenderEventListeners.renderEventListeners,
+  'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
   'ExtensionDetail.resize': WrapCommand.wrapCommand(Resize.resize),
   // @ts-ignore
   'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
