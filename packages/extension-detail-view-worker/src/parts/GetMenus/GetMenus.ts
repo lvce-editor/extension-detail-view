@@ -22,6 +22,13 @@ export const getMenus = (): readonly Menu[] => {
           command: 'ExtensionDetail.copyImage',
           args: [],
         },
+        {
+          id: 'copyImageUrl',
+          label: ExtensionDetailStrings.copyImageUrl(),
+          flags: MenuItemFlags.None,
+          command: 'ExtensionDetail.copyImageUrl',
+          args: [],
+        },
       ],
     },
   ]
