@@ -15,6 +15,7 @@ export const {
   setColorTheme,
   setExtensionsSearchValue,
   uninstallExtension,
+  showContextMenu,
 } = RendererWorker
 
 // Temporary stub for clipboard image copy

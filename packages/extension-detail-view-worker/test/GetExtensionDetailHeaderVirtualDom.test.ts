@@ -86,6 +86,7 @@ test.skip('handles missing extension details', () => {
       draggable: false,
       childCount: 0,
       src: '',
+      onContextMenu: 'handleImageContextMenu',
     },
     {
       type: VirtualDomElements.Div,
@@ -179,6 +180,7 @@ test.skip('handles builtin extension - shows only disable button', () => {
       draggable: false,
       childCount: 0,
       src: './builtin-icon.png',
+      onContextMenu: 'handleImageContextMenu',
     },
     {
       type: VirtualDomElements.Div,
