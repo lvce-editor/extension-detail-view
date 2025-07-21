@@ -27,9 +27,11 @@ import * as RenderEventListeners from '../RenderEventListeners/RenderEventListen
 import * as Resize from '../Resize/Resize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
+import { copyImageUrl } from '../CopyImageUrl/CopyImageUrl.ts'
 
 export const commandMap = {
   'ExtensionDetail.copyImage': WrapCommand.wrapCommand(CopyImage.copyImage),
+  'ExtensionDetail.copyImageUrl': WrapCommand.wrapCommand(copyImageUrl),
   'ExtensionDetail.create': Create.create,
   'ExtensionDetail.diff2': Diff2.diff2,
   'ExtensionDetail.dispose': Dispose.dispose,
