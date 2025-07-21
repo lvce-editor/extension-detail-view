@@ -24,6 +24,7 @@ export interface ExtensionDetailState {
   readonly displaySize: string
   readonly extension: any
   readonly extensionId: string
+  readonly extensionUri: string
   readonly extensionVersion: string
   readonly features: readonly Feature[]
   readonly featuresVirtualDom: readonly VirtualDomNode[]

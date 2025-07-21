@@ -13,6 +13,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     categories: [],
     changelogScrollTop: 0,
     changelogVirtualDom: [],
+    extensionUri: '',
     commands: [],
     hasReadme: false,
     description: '',

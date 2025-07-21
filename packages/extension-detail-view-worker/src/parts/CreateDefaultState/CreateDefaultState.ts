@@ -13,6 +13,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     changelogVirtualDom: [],
     commands: [],
     description: '',
+    extensionUri: '',
     detailsVirtualDom: [],
     hasReadme: false,
     displaySize: '',
