@@ -16,10 +16,5 @@ export const {
   setExtensionsSearchValue,
   uninstallExtension,
   showContextMenu,
+  writeClipBoardImage,
 } = RendererWorker
-
-// Temporary stub for clipboard image copy
-export const copyImageToClipboard = async (blob: unknown): Promise<void> => {
-  // TODO: implement actual call to renderer worker
-  return
-}
