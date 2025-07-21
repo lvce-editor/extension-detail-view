@@ -8,6 +8,7 @@ export const {
   invoke,
   openExtensionSearch,
   openNativeFolder,
+  writeClipBoardText,
   readFile,
   sendMessagePortToFileSystemWorker,
   sendMessagePortToMarkdownWorker,
