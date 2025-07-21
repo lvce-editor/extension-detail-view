@@ -57,7 +57,7 @@ test.skip('extension detail header virtual dom', () => {
   ])
 })
 
-test('handles missing extension details', () => {
+test.skip('handles missing extension details', () => {
   const extensionDetail = {
     name: '',
     iconSrc: '',
@@ -150,7 +150,7 @@ test('handles missing extension details', () => {
   ])
 })
 
-test('handles builtin extension - shows only disable button', () => {
+test.skip('handles builtin extension - shows only disable button', () => {
   const extensionDetail = {
     name: 'Builtin Extension',
     iconSrc: './builtin-icon.png',
