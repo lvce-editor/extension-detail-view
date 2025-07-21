@@ -1,4 +1,6 @@
+import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
+
 export interface Menu {
   readonly id: number
-  readonly entries: readonly any[]
+  readonly entries: readonly MenuEntry[]
 }
