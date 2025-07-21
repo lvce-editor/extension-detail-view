@@ -6,6 +6,7 @@ import * as Dispose from '../Dispose/Dispose.ts'
 import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
+import * as GetMenus from '../GetMenus/GetMenus.ts'
 import * as HandleClickCategory from '../HandleClickCategory/HandleClickCategory.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
 import * as HandleClickFeatures from '../HandleClickFeatures/HandleClickFeatures.ts'
@@ -28,6 +29,7 @@ import * as SelectTab from '../SelectTab/SelectTab.ts'
 
 export const commandMap = {
   'ExtensionDetail.copyImage': WrapCommand.wrapCommand(CopyImage.copyImage),
+  'ExtensionDetail.getMenus': GetMenus.getMenus,
   'ExtensionDetail.create': Create.create,
   'ExtensionDetail.diff2': Diff2.diff2,
   'ExtensionDetail.dispose': Dispose.dispose,
