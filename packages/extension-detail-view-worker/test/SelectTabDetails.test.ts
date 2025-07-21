@@ -2,6 +2,7 @@ import { expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
@@ -19,6 +20,17 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
     },
   })
   RendererWorker.set(mockRendererRpc)
+
+  const mockFileSystemRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, ...args: readonly any[]) => {
+      if (method === 'FileSystem.readFile') {
+        return 'README CONTENT'
+      }
+      throw new Error(`unexpected method ${method}`)
+    },
+  })
+  FileSystemWorker.set(mockFileSystemRpc)
 
   const mockMarkdownRpc = MockRpc.create({
     commandMap: {},
