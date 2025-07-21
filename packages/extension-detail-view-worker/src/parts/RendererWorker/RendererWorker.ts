@@ -18,9 +18,5 @@ export const {
   showContextMenu,
   uninstallExtension,
   writeClipBoardImage,
+  openUrl,
 } = RendererWorker
-
-export const openUrl = async (uri: string): Promise<void> => {
-  // @ts-ignore
-  await invoke('Open.openUrl', uri)
-}
