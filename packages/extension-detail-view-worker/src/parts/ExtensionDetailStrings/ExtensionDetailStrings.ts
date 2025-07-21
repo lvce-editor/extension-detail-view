@@ -25,6 +25,10 @@ export const copyImage = (): string => {
   return I18nString.i18nString(UiStrings.CopyImage)
 }
 
+export const copyImageUrl = (): string => {
+  return I18nString.i18nString(UiStrings.CopyImageUrl)
+}
+
 export const changelog = (): string => {
   return I18nString.i18nString(UiStrings.Changelog)
 }
