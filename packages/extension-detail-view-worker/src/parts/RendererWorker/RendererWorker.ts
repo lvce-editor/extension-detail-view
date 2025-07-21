@@ -14,7 +14,12 @@ export const {
   set,
   setColorTheme,
   setExtensionsSearchValue,
-  uninstallExtension,
   showContextMenu,
+  uninstallExtension,
   writeClipBoardImage,
 } = RendererWorker
+
+export const openExternal = async (uri: string): Promise<void> => {
+  // @ts-ignore
+  await invoke('OpenExternal.openExternal', uri)
+}
