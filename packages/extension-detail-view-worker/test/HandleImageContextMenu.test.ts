@@ -1,4 +1,4 @@
-import { expect, test } from '@jest/globals'
+import { expect, test, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
@@ -6,19 +6,16 @@ import * as HandleImageContextMenu from '../src/parts/HandleImageContextMenu/Han
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('handleImageContextMenu calls showContextMenu and returns state unchanged', async () => {
-  let showContextMenuCalled = false
-  let showContextMenuArgs: readonly any[] = []
+  const mockInvoke = jest.fn((method: string, ...args: readonly any[]) => {
+    if (method === 'ContextMenu.show') {
+      return undefined
+    }
+    throw new Error(`unexpected method ${method}`)
+  })
 
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ContextMenu.show') {
-        showContextMenuCalled = true
-        showContextMenuArgs = args
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
+    invoke: mockInvoke,
   })
   RendererWorker.set(mockRpc)
 
@@ -30,7 +27,6 @@ test('handleImageContextMenu calls showContextMenu and returns state unchanged',
 
   const result = await HandleImageContextMenu.handleImageContextMenu(state, eventX, eventY)
 
-  expect(showContextMenuCalled).toBe(true)
-  expect(showContextMenuArgs).toEqual([eventX, eventY, 4091])
+  expect(mockInvoke).toHaveBeenCalledWith('ContextMenu.show', eventX, eventY, 4091)
   expect(result).toBe(state)
 })

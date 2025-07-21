@@ -1,22 +1,19 @@
-import { expect, test } from '@jest/globals'
+import { expect, test, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import * as ContextMenu from '../src/parts/ContextMenu/ContextMenu.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('show calls showContextMenu with correct parameters', async () => {
-  let showContextMenuCalled = false
-  let showContextMenuArgs: readonly any[] = []
+  const mockInvoke = jest.fn((method: string, ...args: readonly any[]) => {
+    if (method === 'ContextMenu.show') {
+      return undefined
+    }
+    throw new Error(`unexpected method ${method}`)
+  })
 
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ContextMenu.show') {
-        showContextMenuCalled = true
-        showContextMenuArgs = args
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
+    invoke: mockInvoke,
   })
   RendererWorker.set(mockRpc)
 
@@ -26,6 +23,5 @@ test('show calls showContextMenu with correct parameters', async () => {
 
   await ContextMenu.show(menuId, x, y)
 
-  expect(showContextMenuCalled).toBe(true)
-  expect(showContextMenuArgs).toEqual([x, y, menuId])
+  expect(mockInvoke).toHaveBeenCalledWith('ContextMenu.show', x, y, menuId)
 })

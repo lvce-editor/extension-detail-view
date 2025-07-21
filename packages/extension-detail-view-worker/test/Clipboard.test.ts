@@ -1,22 +1,19 @@
-import { expect, test } from '@jest/globals'
+import { expect, test, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import * as Clipboard from '../src/parts/Clipboard/Clipboard.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('writeClipboardImage calls writeClipBoardImage with correct blob', async () => {
-  let writeClipBoardImageCalled = false
-  let writeClipBoardImageArg: unknown
+  const mockInvoke = jest.fn((method: string, ...args: readonly any[]) => {
+    if (method === 'ClipBoard.writeImage') {
+      return undefined
+    }
+    throw new Error(`unexpected method ${method}`)
+  })
 
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ClipBoard.writeImage') {
-        writeClipBoardImageCalled = true
-        writeClipBoardImageArg = args[0]
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
+    invoke: mockInvoke,
   })
   RendererWorker.set(mockRpc)
 
@@ -24,24 +21,20 @@ test('writeClipboardImage calls writeClipBoardImage with correct blob', async ()
 
   await Clipboard.writeClipboardImage(mockBlob)
 
-  expect(writeClipBoardImageCalled).toBe(true)
-  expect(writeClipBoardImageArg).toBe(mockBlob)
+  expect(mockInvoke).toHaveBeenCalledWith('ClipBoard.writeImage', mockBlob)
 })
 
 test('writeText calls writeClipBoardText with correct text', async () => {
-  let writeClipBoardTextCalled = false
-  let writeClipBoardTextArg: string | undefined
+  const mockInvoke = jest.fn((method: string, ...args: readonly any[]) => {
+    if (method === 'ClipBoard.writeText') {
+      return undefined
+    }
+    throw new Error(`unexpected method ${method}`)
+  })
 
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ClipBoard.writeText') {
-        writeClipBoardTextCalled = true
-        writeClipBoardTextArg = args[0]
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
+    invoke: mockInvoke,
   })
   RendererWorker.set(mockRpc)
 
@@ -49,6 +42,5 @@ test('writeText calls writeClipBoardText with correct text', async () => {
 
   await Clipboard.writeText(text)
 
-  expect(writeClipBoardTextCalled).toBe(true)
-  expect(writeClipBoardTextArg).toBe(text)
+  expect(mockInvoke).toHaveBeenCalledWith('ClipBoard.writeText', text)
 })

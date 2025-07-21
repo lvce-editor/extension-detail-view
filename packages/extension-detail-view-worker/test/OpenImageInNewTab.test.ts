@@ -1,4 +1,4 @@
-import { expect, test } from '@jest/globals'
+import { expect, test, jest } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
@@ -15,19 +15,16 @@ Object.defineProperty(globalThis, 'location', {
 })
 
 test('openImageInNewTab calls openUrl with absolute icon url and returns state', async () => {
-  let openUrlCalled = false
-  let openUrlArg: string | undefined
+  const mockInvoke = jest.fn((method: string, ...args: readonly any[]) => {
+    if (method === 'Open.openUrl') {
+      return undefined
+    }
+    throw new Error(`unexpected method ${method}`)
+  })
 
   const mockRpc = MockRpc.create({
     commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Open.openUrl') {
-        openUrlCalled = true
-        openUrlArg = args[0]
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
-    },
+    invoke: mockInvoke,
   })
   RendererWorker.set(mockRpc)
 
@@ -39,7 +36,6 @@ test('openImageInNewTab calls openUrl with absolute icon url and returns state',
 
   const result = await OpenImageInNewTab.openImageInNewTab(state)
 
-  expect(openUrlCalled).toBe(true)
-  expect(openUrlArg).toBe('https://example.com/test/icon.png')
+  expect(mockInvoke).toHaveBeenCalledWith('Open.openUrl', 'https://example.com/test/icon.png')
   expect(result).toBe(state)
 })
