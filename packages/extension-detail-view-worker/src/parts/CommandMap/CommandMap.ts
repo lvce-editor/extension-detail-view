@@ -1,5 +1,6 @@
 import { terminate } from '@lvce-editor/viewlet-registry'
 import * as CopyImage from '../CopyImage/CopyImage.ts'
+import { copyImageUrl } from '../CopyImageUrl/CopyImageUrl.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
@@ -27,7 +28,6 @@ import * as RenderEventListeners from '../RenderEventListeners/RenderEventListen
 import * as Resize from '../Resize/Resize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
-import { copyImageUrl } from '../CopyImageUrl/CopyImageUrl.ts'
 
 export const commandMap = {
   'ExtensionDetail.copyImage': WrapCommand.wrapCommand(CopyImage.copyImage),
