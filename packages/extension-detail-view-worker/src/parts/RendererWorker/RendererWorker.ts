@@ -7,6 +7,7 @@ export const {
   getFolderSize,
   invoke,
   openExtensionSearch,
+  sendMessagePortToExtensionHostWorker,
   openNativeFolder,
   writeClipBoardText,
   readFile,
