@@ -14,8 +14,6 @@ Object.defineProperty(globalThis, 'location', {
   writable: true,
 })
 
-
-
 test('copyImageUrl calls writeText with absolute URL and returns state unchanged', async () => {
   let writeTextCalled = false
   let writeTextArg: string | undefined

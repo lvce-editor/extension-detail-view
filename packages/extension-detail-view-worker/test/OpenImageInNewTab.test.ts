@@ -14,8 +14,6 @@ Object.defineProperty(globalThis, 'location', {
   writable: true,
 })
 
-
-
 test('openImageInNewTab calls openUrl with absolute icon url and returns state', async () => {
   let openUrlCalled = false
   let openUrlArg: string | undefined
