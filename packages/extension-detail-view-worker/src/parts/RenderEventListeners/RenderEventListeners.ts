@@ -17,6 +17,10 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       params: ['handleReadmeContextMenu', 'event.clientX', 'event.clientY', 'event.target.href', 'event.target.src'],
     },
     {
+      name: DomEventListenerFunctions.HandleImageContextMenu,
+      params: ['handleImageContextMenu', 'event.clientX', 'event.clientY'],
+    },
+    {
       name: DomEventListenerFunctions.HandleReadmeScroll,
       params: ['handleScroll', 'event.target.scrollTop', InputSource.User],
       passive: true,
