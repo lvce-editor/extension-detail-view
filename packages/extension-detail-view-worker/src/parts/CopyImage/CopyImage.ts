@@ -2,7 +2,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import * as ClipBoard from '../Clipboard/Clipboard.ts'
 import * as FileSystemWorker from '../FileSystemWorker/FileSystemWorker.ts'
 
-export const copyImage = async (state: ExtensionDetailState): Promise<Promise<ExtensionDetailState>> => {
+export const copyImage = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
   const { iconSrc } = state
   // TODO support gitpod url prefixes
   // @ts-ignore
