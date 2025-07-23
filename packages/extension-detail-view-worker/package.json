@@ -35,9 +35,9 @@
     "collectCoverage": true,
     "coverageThreshold": {
       "global": {
-        "branches": 70,
-        "functions": 70,
-        "lines": 70
+        "branches": 87,
+        "functions": 87,
+        "lines": 87
       }
     }
   },
@@ -46,7 +46,7 @@
     "@lvce-editor/assert": "^1.4.0",
     "@lvce-editor/i18n": "^1.1.0",
     "@lvce-editor/rpc": "^4.11.0",
-    "@lvce-editor/rpc-registry": "^2.60.0",
+    "@lvce-editor/rpc-registry": "^2.61.0",
     "@lvce-editor/verror": "^1.7.0",
     "@lvce-editor/viewlet-registry": "^1.4.0",
     "@lvce-editor/virtual-dom-worker": "^2.13.0",
