@@ -4,6 +4,7 @@ export const createDefaultState = (): ExtensionDetailState => {
   return {
     wasActivatedByEvent: '',
     status: '',
+    activationTime: 0,
     activationEvents: [],
     assetDir: '/test/asset/dir',
     badge: '',

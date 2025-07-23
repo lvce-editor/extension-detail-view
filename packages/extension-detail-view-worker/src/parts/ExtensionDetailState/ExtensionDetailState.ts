@@ -10,6 +10,7 @@ import type { WebView } from '../WebView/WebView.ts'
 
 export interface ExtensionDetailState {
   readonly activationEvents: readonly string[]
+  readonly activationTime: number
   readonly assetDir: string
   readonly badge: string
   readonly baseUrl: string
