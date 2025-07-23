@@ -51,10 +51,12 @@ export interface ExtensionDetailState {
   readonly showAdditionalDetailsBreakpoint: number
   readonly sizeOnDisk: number
   readonly sizeValue: number
+  readonly status: string
   readonly tabs: readonly Tab[]
   readonly themesMarkdownDom: readonly VirtualDomNode[]
   readonly uid: number
   readonly uri: string
+  readonly wasActivatedByEvent: string
   readonly webViews: readonly WebView[]
   readonly width: number
 }

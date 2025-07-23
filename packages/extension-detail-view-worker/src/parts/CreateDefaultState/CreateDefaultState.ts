@@ -2,6 +2,8 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 
 export const createDefaultState = (): ExtensionDetailState => {
   return {
+    wasActivatedByEvent: '',
+    status: '',
     activationEvents: [],
     assetDir: '/test/asset/dir',
     badge: '',
