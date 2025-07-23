@@ -9,6 +9,12 @@ import * as GetFeatureListVirtualDom from '../GetFeatureListVirtualDom/GetFeatur
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
+const sash: VirtualDomNode = {
+  type: VirtualDomElements.Div,
+  className: MergeClassNames.mergeClassNames(ClassNames.Sash, ClassNames.SashVertical),
+  childCount: 0,
+}
+
 export const getFeaturesVirtualDom = (
   features: readonly Feature[],
   selectedFeature: string,
@@ -36,11 +42,7 @@ export const getFeaturesVirtualDom = (
       childCount: 3,
     },
     ...GetFeatureListVirtualDom.getFeatureListVirtualDom(features),
-    {
-      type: VirtualDomElements.Div,
-      className: MergeClassNames.mergeClassNames(ClassNames.Sash, ClassNames.SashVertical),
-      childCount: 0,
-    },
+    sash,
     ...featureVirtualDom,
   ]
 }
