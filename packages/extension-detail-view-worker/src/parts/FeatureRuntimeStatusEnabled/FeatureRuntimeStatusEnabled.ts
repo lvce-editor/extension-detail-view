@@ -1,6 +1,9 @@
 export const featureRuntimeStatusEnabled = (extension: unknown): boolean => {
-  if (!extension || typeof extension !== 'object' || !('main' in extension)) {
+  if (!extension || typeof extension !== 'object') {
     return false
   }
-  return Boolean(extension.main)
+  if ('main' in extension || 'browser' in extension) {
+    return true
+  }
+  return false
 }
