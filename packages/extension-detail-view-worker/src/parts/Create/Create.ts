@@ -5,7 +5,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
   const state: ExtensionDetailState = {
     wasActivatedByEvent: '',
     activationTime: 0,
-    status: '',
+    status: 0,
     uid,
     activationEvents: [],
     assetDir: assetDir || '',
