@@ -12,7 +12,11 @@ test('should initialize both workers successfully', async () => {
       sendMessagePortToExtensionHostWorker: () => {},
     },
     invoke: (method: string) => {
-      if (method === 'sendMessagePortToMarkdownWorker' || method === 'sendMessagePortToFileSystemWorker' || method === 'sendMessagePortToExtensionHostWorker') {
+      if (
+        method === 'sendMessagePortToMarkdownWorker' ||
+        method === 'sendMessagePortToFileSystemWorker' ||
+        method === 'sendMessagePortToExtensionHostWorker'
+      ) {
         return undefined
       }
       throw new Error(`unexpected method: ${method}`)
