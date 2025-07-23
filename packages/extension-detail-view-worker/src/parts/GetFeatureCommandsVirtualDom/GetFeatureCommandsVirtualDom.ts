@@ -4,11 +4,15 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetCommandTableEntries from '../GetCommandTableEntries/GetCommandTableEntries.ts'
+import { getFeatureCommandsEmptyVirtualDom } from '../GetFeatureCommandsEmptyVirtualDom/GetFeatureCommandsEmptyVirtualDom.ts'
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
 import * as GetTableVirtualDom from '../GetTableVirtualDom/GetTableVirtualDom.ts'
 
 // TODO have typed view-model
 export const getFeatureCommandsVirtualDom = (commands: readonly Row[]): readonly VirtualDomNode[] => {
+  if (commands.length === 0) {
+    return getFeatureCommandsEmptyVirtualDom()
+  }
   const heading = ExtensionDetailStrings.commands()
   const tableInfo = GetCommandTableEntries.getCommandTableEntries(commands)
   return [
