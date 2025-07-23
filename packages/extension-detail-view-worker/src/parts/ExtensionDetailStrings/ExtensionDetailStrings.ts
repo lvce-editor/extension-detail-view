@@ -93,6 +93,10 @@ export const activationEvents = (): string => {
   return I18nString.i18nString(UiStrings.ActivationEvents)
 }
 
+export const runtimeStatus = (): string => {
+  return I18nString.i18nString(UiStrings.RuntimeStatus)
+}
+
 export const jsonValidation = (): string => {
   return I18nString.i18nString(UiStrings.JsonValidation)
 }
