@@ -12,6 +12,9 @@ import * as FeatureProgrammingLanguagesDetails from '../FeatureProgrammingLangua
 import * as FeatureProgrammingLanguagesEnabled from '../FeatureProgrammingLanguagesEnabled/FeatureProgrammingLanguagesEnabled.ts'
 import * as FeatureProgrammingLanguagesVirtualDom from '../FeatureProgrammingLanguagesVirtualDom/FeatureProgrammingLanguagesVirtualDom.ts'
 import { register } from '../FeatureRegistry/FeatureRegistry.ts'
+import * as FeatureRuntimeStatusDetails from '../FeatureRuntimeStatusDetails/FeatureRuntimeStatusDetails.ts'
+import * as FeatureRuntimeStatusEnabled from '../FeatureRuntimeStatusEnabled/FeatureRuntimeStatusEnabled.ts'
+import * as FeatureRuntimeStatusVirtualDom from '../FeatureRuntimeStatusVirtualDom/FeatureRuntimeStatusVirtualDom.ts'
 import * as FeatureSettingsDetails from '../FeatureSettingsDetails/FeatureSettingsDetails.ts'
 import * as FeatureSettingsEnabled from '../FeatureSettingsEnabled/FeatureSettingsEnabled.ts'
 import * as FeatureSettingsVirtualDom from '../FeatureSettingsVirtualDom/FeatureSettingsVirtualDom.ts'
@@ -72,5 +75,12 @@ export const registerAllFeatures = (): void => {
     isEnabled: FeatureActivationEventsEnabled.featureActivationEventsEnabled,
     getDetails: FeatureActivationEventsDetails.getActivationEventsDetails,
     getVirtualDom: FeatureActivationEventsVirtualDom.getActivationEventsVirtualDom,
+  })
+  register({
+    id: InputName.RuntimeStatus,
+    getLabel: ExtensionDetailStrings.runtimeStatus,
+    isEnabled: FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled,
+    getDetails: FeatureRuntimeStatusDetails.getRuntimeStatusDetails,
+    getVirtualDom: FeatureRuntimeStatusVirtualDom.getRuntimeStatusVirtualDom,
   })
 }
