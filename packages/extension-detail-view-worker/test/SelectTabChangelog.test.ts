@@ -41,5 +41,5 @@ test('selectTabChangelog should update state with changelog content', async () =
 
   expect(result.selectedTab).toBe(InputName.Changelog)
   expect(result.changelogVirtualDom).toStrictEqual(mockDom)
-  expect(result.tabs.every(tab => tab.selected === (tab.name === InputName.Changelog))).toBe(true)
+  expect(result.tabs.every((tab) => tab.selected === (tab.name === InputName.Changelog))).toBe(true)
 })
