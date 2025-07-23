@@ -28,6 +28,16 @@ test('copy', () => {
   expect(result).toBe(I18nString.i18nString(UiStrings.Copy))
 })
 
+test('copyImage', () => {
+  const result = ExtensionDetailStrings.copyImage()
+  expect(result).toBe(I18nString.i18nString(UiStrings.CopyImage))
+})
+
+test('copyImageUrl', () => {
+  const result = ExtensionDetailStrings.copyImageUrl()
+  expect(result).toBe(I18nString.i18nString(UiStrings.CopyImageUrl))
+})
+
 test('changelog', () => {
   const result = ExtensionDetailStrings.changelog()
   expect(result).toBe(I18nString.i18nString(UiStrings.Changelog))
@@ -158,7 +168,17 @@ test('activationEvents', () => {
   expect(result).toBe(I18nString.i18nString(UiStrings.ActivationEvents))
 })
 
+test('runtimeStatus', () => {
+  const result = ExtensionDetailStrings.runtimeStatus()
+  expect(result).toBe(I18nString.i18nString(UiStrings.RuntimeStatus))
+})
+
 test('noReadmeFound', () => {
   const result = ExtensionDetailStrings.noReadmeFound()
   expect(result).toBe(I18nString.i18nString(UiStrings.NoReadmeFound))
+})
+
+test('emptyCommandsArray', () => {
+  const result = ExtensionDetailStrings.emptyCommandsArray()
+  expect(result).toBe(I18nString.i18nString(UiStrings.EmptyCommandsArray))
 })
