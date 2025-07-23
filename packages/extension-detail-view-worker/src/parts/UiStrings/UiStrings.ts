@@ -1,4 +1,5 @@
 export const ActivationEvents = 'Activation Events'
+export const RuntimeStatus = 'Runtime Status'
 export const Categories = 'Categories'
 export const Changelog = 'Changelog'
 export const Commands = 'Commands'
