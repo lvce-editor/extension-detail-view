@@ -140,3 +140,7 @@ export const scrollToTop = (): string => {
 export const noReadmeFound = (): string => {
   return I18nString.i18nString(UiStrings.NoReadmeFound)
 }
+
+export const emptyCommandsArray = (): string => {
+  return I18nString.i18nString(UiStrings.EmptyCommandsArray)
+}
