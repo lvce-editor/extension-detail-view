@@ -3,7 +3,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 export const createDefaultState = (): ExtensionDetailState => {
   return {
     wasActivatedByEvent: '',
-    status: '',
+    status: 0,
     activationTime: 0,
     activationEvents: [],
     assetDir: '/test/asset/dir',
