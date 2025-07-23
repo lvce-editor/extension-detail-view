@@ -245,7 +245,7 @@ test('loadContent - with saved state', async () => {
 
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, savedState)
 
-  expect(result.selectedFeature).toBe('')
+  expect(result.selectedFeature).toBe('commands')
   expect(result.selectedTab).toBe('details')
 })
 
