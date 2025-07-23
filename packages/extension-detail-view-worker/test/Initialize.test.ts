@@ -9,9 +9,14 @@ test('should initialize both workers successfully', async () => {
     commandMap: {
       sendMessagePortToMarkdownWorker: () => {},
       sendMessagePortToFileSystemWorker: () => {},
+      sendMessagePortToExtensionHostWorker: () => {},
     },
     invoke: (method: string) => {
-      if (method === 'sendMessagePortToMarkdownWorker' || method === 'sendMessagePortToFileSystemWorker') {
+      if (
+        method === 'sendMessagePortToMarkdownWorker' ||
+        method === 'sendMessagePortToFileSystemWorker' ||
+        method === 'sendMessagePortToExtensionHostWorker'
+      ) {
         return undefined
       }
       throw new Error(`unexpected method: ${method}`)
@@ -26,6 +31,9 @@ test('should initialize both workers successfully', async () => {
   const markdownWorker = get(RpcId.MarkdownWorker)
   expect(markdownWorker).toBeDefined()
   await markdownWorker.dispose()
+  const extensionHostWorker = get(RpcId.ExtensionHostWorker)
+  expect(extensionHostWorker).toBeDefined()
+  await extensionHostWorker.dispose()
 })
 
 test('should handle initialization errors', async () => {
