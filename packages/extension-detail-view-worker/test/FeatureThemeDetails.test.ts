@@ -7,7 +7,7 @@ test('getThemeDetails should return theme details with themes', async () => {
   const extension = {
     colorThemes: ['theme1', 'theme2'],
     iconThemes: ['icon1'],
-    productIconThemes: ['product1']
+    productIconThemes: ['product1'],
   }
   const baseUrl = 'https://example.com'
 
