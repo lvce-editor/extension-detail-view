@@ -21,7 +21,15 @@ import * as Path from '../Path/Path.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
 
-export const loadContent = async (state: ExtensionDetailState, platform: number, savedState: unknown): Promise<ExtensionDetailState> => {
+export const loadContent = async (
+  state: ExtensionDetailState,
+  platform: number,
+  savedState: unknown,
+  isTest: boolean,
+): Promise<ExtensionDetailState> => {
+  if (isTest) {
+    savedState = undefined
+  }
   const { width, uri } = state
   const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
