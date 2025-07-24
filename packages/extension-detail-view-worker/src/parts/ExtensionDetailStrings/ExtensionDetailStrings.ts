@@ -148,3 +148,55 @@ export const noReadmeFound = (): string => {
 export const emptyCommandsArray = (): string => {
   return I18nString.i18nString(UiStrings.EmptyCommandsArray)
 }
+
+export const importTime = (): string => {
+  return I18nString.i18nString(UiStrings.ImportTime)
+}
+
+export const activationTime = (): string => {
+  return I18nString.i18nString(UiStrings.ActivationTime)
+}
+
+export const unsupportedFeature = (): string => {
+  return I18nString.i18nString(UiStrings.UnsupportedFeature)
+}
+
+export const selectedFeatureUnknownOrUnsupported = (): string => {
+  return I18nString.i18nString(UiStrings.SelectedFeatureUnknownOrUnsupported)
+}
+
+export const identifier = (): string => {
+  return I18nString.i18nString(UiStrings.Identifier)
+}
+
+export const version = (): string => {
+  return I18nString.i18nString(UiStrings.Version)
+}
+
+export const lastUpdated = (): string => {
+  return I18nString.i18nString(UiStrings.LastUpdated)
+}
+
+export const size = (): string => {
+  return I18nString.i18nString(UiStrings.Size)
+}
+
+export const published = (): string => {
+  return I18nString.i18nString(UiStrings.Published)
+}
+
+export const lastReleased = (): string => {
+  return I18nString.i18nString(UiStrings.LastReleased)
+}
+
+export const issues = (): string => {
+  return I18nString.i18nString(UiStrings.Issues)
+}
+
+export const repository = (): string => {
+  return I18nString.i18nString(UiStrings.Repository)
+}
+
+export const license = (): string => {
+  return I18nString.i18nString(UiStrings.License)
+}
