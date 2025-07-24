@@ -12,6 +12,7 @@ export interface ExtensionDetailState {
   readonly activationEvents: readonly string[]
   readonly activationTime: number
   readonly assetDir: string
+  readonly importTime: number
   readonly badge: string
   readonly baseUrl: string
   readonly builtinExtensionsBadgeEnabled: boolean

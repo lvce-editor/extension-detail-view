@@ -1,63 +1,37 @@
-import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import { getActivationTimeVirtualDom } from '../GetActivationTimeVirtualDom/GetActivationTimeVirtualDom.ts'
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
-import { getStatusMessage } from '../GetStatusMessage/GetStatusMessage.ts'
+import { getStatusVirtualDom } from '../GetStatusVirtualDom/GetStatusVirtualDom.ts'
 
-const formatTime = (time: number): string => {
-  return time.toFixed(2) + 'ms'
-}
-
-const getActivationTimeVirtualDom = (activationTime: number): readonly VirtualDomNode[] => {
-  if (!activationTime) {
-    return []
-  }
-  const formattedTime = formatTime(activationTime)
-  return [
-    {
-      type: VirtualDomElements.P,
-      childCount: 2,
-    },
-    text('Activation Time: '), // i18n
-    text(formattedTime),
-  ]
-}
-
-const getStatusVirtualDom = (status: number): readonly VirtualDomNode[] => {
-  const statusString = getStatusMessage(status)
-  return [
-    {
-      type: VirtualDomElements.P,
-      childCount: 2,
-    },
-    text(`Status: `), // i18n
-    text(`${statusString}`),
-  ]
-}
-
-const getChildCount = (status: number, activationTime: number): number => {
-  let childCount = 1 // heading
-  childCount++ // status
-  if (activationTime) {
-    childCount++ // activation time
+const getChildCount = (status: number, activationTime: number, importTime: number): number => {
+  let childCount = 0
+  childCount += 2 // status
+  if (importTime || activationTime) {
+    childCount += 4
   }
   return childCount
 }
 
 export const getRuntimeStatusVirtualDom = (state: ExtensionDetailState): readonly VirtualDomNode[] => {
-  const { status, activationTime } = state
+  const { status, activationTime, importTime } = state
   const heading = ExtensionDetailStrings.runtimeStatus()
-  const childCount = getChildCount(status, activationTime)
+  const childCount = getChildCount(status, activationTime, importTime)
   return [
     {
       type: VirtualDomElements.Div,
       className: ClassNames.FeatureContent,
-      childCount: childCount,
+      childCount: 2,
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
+    {
+      type: VirtualDomElements.Dl,
+      childCount,
+    },
     ...getStatusVirtualDom(status),
-    ...getActivationTimeVirtualDom(activationTime),
+    ...getActivationTimeVirtualDom(activationTime, importTime),
   ]
 }

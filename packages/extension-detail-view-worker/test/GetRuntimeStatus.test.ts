@@ -11,6 +11,7 @@ test('getRuntimeStatus should return runtime status from ExtensionHostWorker', a
     activationEvent: 'onStartupFinished',
     status: RuntimeStatusType.Activated,
     activationTime: 1_234_567_890,
+    importTime: 0,
   }
 
   const mockRpc = MockRpc.create({
@@ -40,6 +41,7 @@ test('getRuntimeStatus should handle different extension IDs', async () => {
     activationEvent: 'onCommand',
     status: RuntimeStatusType.Error,
     activationTime: 9_876_543_210,
+    importTime: 0,
   }
 
   const mockRpc = MockRpc.create({

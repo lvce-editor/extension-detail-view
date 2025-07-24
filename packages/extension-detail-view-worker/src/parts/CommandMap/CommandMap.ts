@@ -16,6 +16,7 @@ import * as HandleClickSetColorTheme from '../HandleClickSetColorTheme/HandleCli
 import * as HandleClickSettings from '../HandleClickSettings/HandleClickSettings.ts'
 import * as HandleClickSize from '../HandleClickSize/HandleClickSize.ts'
 import * as HandleClickUninstall from '../HandleClickUninstall/HandleClickUninstall.ts'
+import * as HandleExtensionsStatusUpdate from '../HandleExtensionsStatusUpdate/HandleExtensionsStatusUpdate.ts'
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageContextMenu.ts'
 import * as HandleScroll from '../HandleScroll/HandleScroll.ts'
@@ -45,20 +46,20 @@ export const commandMap = {
   'ExtensionDetail.handleClickSettings': WrapCommand.wrapCommand(HandleClickSettings.handleClickSettings),
   'ExtensionDetail.handleClickSize': WrapCommand.wrapCommand(HandleClickSize.handleClickSize),
   'ExtensionDetail.handleClickUninstall': WrapCommand.wrapCommand(HandleClickUninstall.handleClickUninstall),
+  'ExtensionDetail.handleExtensionsStatusUpdate': WrapCommand.wrapCommand(HandleExtensionsStatusUpdate.handleExtensionsStatusUpdate),
   'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
   'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
   'ExtensionDetail.handleScroll': WrapCommand.wrapCommand(HandleScroll.handleScroll),
   'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.handleWheel': WrapCommand.wrapCommand(HandleScroll.handleScroll), // deprecated
+  'ExtensionDetail.initialize': Initialize.initialize,
   'ExtensionDetail.loadContent2': WrapCommand.wrapCommand(LoadContent2.loadContent2),
   'ExtensionDetail.openImageInNewTab': WrapCommand.wrapCommand(OpenImageInNewTab.openImageInNewTab),
   'ExtensionDetail.render2': Render2.render2,
   'ExtensionDetail.renderEventListeners': RenderEventListeners.renderEventListeners,
   'ExtensionDetail.resize': WrapCommand.wrapCommand(Resize.resize),
-  // @ts-ignore
   'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
   'ExtensionDetail.terminate': terminate,
-  'ExtensionDetail.initialize': Initialize.initialize,
 }
