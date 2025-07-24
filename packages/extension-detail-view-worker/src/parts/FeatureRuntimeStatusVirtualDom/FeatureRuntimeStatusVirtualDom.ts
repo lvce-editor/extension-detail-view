@@ -20,7 +20,6 @@ export const getRuntimeStatusVirtualDom = (state: ExtensionDetailState): readonl
   const { status, activationTime, importTime } = state
   const heading = ExtensionDetailStrings.runtimeStatus()
   const childCount = getChildCount(status, activationTime, importTime)
-  console.log({ activationTime, importTime })
   return [
     {
       type: VirtualDomElements.Div,
