@@ -50,7 +50,8 @@ export const loadContent = async (
     scrollToTopEnabled: true,
   })
   const isBuiltin = extension?.isBuiltin
-  const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin)
+  const disabled = extension?.disabled
+  const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled)
   const enabledButtons = buttons.filter((button) => button.enabled)
   const size = GetViewletSize.getViewletSize(width)
   const { selectedFeature, selectedTab, readmeScrollTop, changelogScrollTop } = RestoreState.restoreState(savedState)
@@ -74,6 +75,7 @@ export const loadContent = async (
     changelogScrollTop,
     description,
     detailsVirtualDom,
+    disabled,
     displaySize,
     extension,
     extensionId,

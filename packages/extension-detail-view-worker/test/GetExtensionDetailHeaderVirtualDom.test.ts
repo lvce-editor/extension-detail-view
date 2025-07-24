@@ -13,7 +13,7 @@ test.skip('extension detail header virtual dom', () => {
     iconSrc: './test-icon.png',
     description: 'Test Description',
   }
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, false)
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, false, false)
   expect(
     GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
       extensionDetail.name,
@@ -63,7 +63,7 @@ test.skip('handles missing extension details', () => {
     iconSrc: '',
     description: '',
   }
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, false)
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, false, false)
   expect(
     GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
       extensionDetail.name,
@@ -157,7 +157,7 @@ test.skip('handles builtin extension - shows only disable button', () => {
     iconSrc: './builtin-icon.png',
     description: 'Builtin extension description',
   }
-  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, true)
+  const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, true, false)
   expect(
     GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
       extensionDetail.name,

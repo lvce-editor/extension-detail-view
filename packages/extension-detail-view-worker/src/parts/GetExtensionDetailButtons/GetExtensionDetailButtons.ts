@@ -3,11 +3,7 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as InputName from '../InputName/InputName.ts'
 
-export const getExtensionDetailButtons = (
-  hasColorTheme: boolean,
-  isBuiltin: boolean,
-  isDisabled: boolean = false,
-): readonly ExtensionDetailButton[] => {
+export const getExtensionDetailButtons = (hasColorTheme: boolean, isBuiltin: boolean, isDisabled: boolean): readonly ExtensionDetailButton[] => {
   const allActions: ExtensionDetailButton[] = [
     {
       label: ExtensionDetailStrings.setColorTheme(),
