@@ -2,7 +2,8 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import { disableExtension } from '../DisableExtension/DisableExtension.ts'
 
 export const handleClickDisable = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  await disableExtension(state.extensionId)
+  const { extensionId } = state
+  await disableExtension(extensionId)
   // TODO when it fails, show dialog / alert?
   return state
 }
