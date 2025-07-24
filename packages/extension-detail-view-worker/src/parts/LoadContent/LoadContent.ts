@@ -25,7 +25,7 @@ export const loadContent = async (
   state: ExtensionDetailState,
   platform: number,
   savedState: unknown,
-  isTest: boolean,
+  isTest: boolean = false,
 ): Promise<ExtensionDetailState> => {
   if (isTest) {
     savedState = undefined
