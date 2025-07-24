@@ -16,7 +16,7 @@ test('getRuntimeStatusVirtualDom should return correct virtual DOM structure wit
 
   const result = getRuntimeStatusVirtualDom(state)
 
-  expect(result).toHaveLength(9) // div + h1 + h1 text + p + p text + p text + p + p text + p text
+  expect(result).toHaveLength(11) // div + h1 + h1 text + p + p text + p text + p + p text + p text
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
     className: ClassNames.FeatureContent,
@@ -47,14 +47,14 @@ test('getRuntimeStatusVirtualDom should return correct virtual DOM structure wit
   })
   expect(result[6]).toEqual({
     type: VirtualDomElements.P,
-    childCount: 2,
+    childCount: 4,
   })
-  expect(result[7]).toEqual({
+  expect(result[9]).toEqual({
     type: VirtualDomElements.Text,
     text: 'Activation Time: ',
     childCount: 0,
   })
-  expect(result[8]).toEqual({
+  expect(result[10]).toEqual({
     type: VirtualDomElements.Text,
     text: '150.75ms',
     childCount: 0,
@@ -161,7 +161,7 @@ test('getRuntimeStatusVirtualDom should format activation time correctly', () =>
 
   const result = getRuntimeStatusVirtualDom(state)
 
-  expect(result).toHaveLength(9)
+  expect(result).toHaveLength(11)
   expect(result[8]).toEqual({
     type: VirtualDomElements.Text,
     text: '123.46ms',
