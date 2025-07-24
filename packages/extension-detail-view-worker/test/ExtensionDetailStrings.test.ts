@@ -53,6 +53,11 @@ test('disable', () => {
   expect(result).toBe(I18nString.i18nString(UiStrings.Disable))
 })
 
+test('enable', () => {
+  const result = ExtensionDetailStrings.enable()
+  expect(result).toBe(I18nString.i18nString(UiStrings.Enable))
+})
+
 test('features', () => {
   const result = ExtensionDetailStrings.features()
   expect(result).toBe(I18nString.i18nString(UiStrings.Features))
