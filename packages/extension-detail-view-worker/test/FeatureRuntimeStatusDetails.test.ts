@@ -11,6 +11,7 @@ test('getRuntimeStatusDetails should return runtime status details for extension
     activationEvent: 'onStartupFinished',
     status: RuntimeStatusType.Activated,
     activationTime: 150.75,
+    importTime: 0,
   }
 
   const mockRpc = MockRpc.create({
@@ -45,6 +46,7 @@ test('getRuntimeStatusDetails should handle different activation events', async 
     activationEvent: 'onCommand:test.command',
     status: RuntimeStatusType.Activating,
     activationTime: 200,
+    importTime: 0,
   }
 
   const mockRpc = MockRpc.create({
@@ -79,6 +81,7 @@ test('getRuntimeStatusDetails should handle error status', async () => {
     activationEvent: '',
     status: RuntimeStatusType.Error,
     activationTime: 0,
+    importTime: 0,
   }
 
   const mockRpc = MockRpc.create({
