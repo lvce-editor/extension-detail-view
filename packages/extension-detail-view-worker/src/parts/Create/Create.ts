@@ -6,6 +6,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     wasActivatedByEvent: '',
     activationTime: 0,
     importTime: 0,
+    disabled: false,
     status: 0,
     uid,
     activationEvents: [],

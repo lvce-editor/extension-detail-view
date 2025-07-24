@@ -12,7 +12,6 @@ export interface ExtensionDetailState {
   readonly activationEvents: readonly string[]
   readonly activationTime: number
   readonly assetDir: string
-  readonly importTime: number
   readonly badge: string
   readonly baseUrl: string
   readonly builtinExtensionsBadgeEnabled: boolean
@@ -23,6 +22,7 @@ export interface ExtensionDetailState {
   readonly commands: readonly Row[]
   readonly description: string
   readonly detailsVirtualDom: readonly VirtualDomNode[]
+  readonly disabled: boolean // TODO change to management status number or multiple properties: disabled, builtin, linked, fromMarketPlace, deprecated, malicious
   readonly displaySize: string
   readonly extension: any
   readonly extensionId: string
@@ -35,6 +35,7 @@ export interface ExtensionDetailState {
   readonly hasColorTheme: boolean
   readonly hasReadme: boolean
   readonly iconSrc: string
+  readonly importTime: number
   readonly installationEntries: readonly MoreInfoEntry[]
   readonly jsonValidation: readonly Row[]
   readonly marketplaceEntries: readonly MoreInfoEntry[]

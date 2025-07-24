@@ -4,6 +4,7 @@ export const createDefaultState = (): ExtensionDetailState => {
   return {
     wasActivatedByEvent: '',
     status: 0,
+    disabled: false,
     activationTime: 0,
     activationEvents: [],
     assetDir: '/test/asset/dir',
