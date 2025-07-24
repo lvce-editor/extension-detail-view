@@ -187,3 +187,55 @@ test('emptyCommandsArray', () => {
   const result = ExtensionDetailStrings.emptyCommandsArray()
   expect(result).toBe(I18nString.i18nString(UiStrings.EmptyCommandsArray))
 })
+
+test('importTime returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.importTime()).toBe('Import Time: ')
+})
+
+test('activationTime returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.activationTime()).toBe('Activation Time: ')
+})
+
+test('unsupportedFeature returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.unsupportedFeature()).toBe('Unsupported Feature')
+})
+
+test('selectedFeatureUnknownOrUnsupported returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.selectedFeatureUnknownOrUnsupported()).toBe('Selected feature is unknown or unsupported')
+})
+
+test('identifier returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.identifier()).toBe('Identifier')
+})
+
+test('version returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.version()).toBe('Version')
+})
+
+test('lastUpdated returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.lastUpdated()).toBe('Last Updated')
+})
+
+test('size returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.size()).toBe('Size')
+})
+
+test('published returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.published()).toBe('Published')
+})
+
+test('lastReleased returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.lastReleased()).toBe('Last Released')
+})
+
+test('issues returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.issues()).toBe('Issues')
+})
+
+test('repository returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.repository()).toBe('Repository')
+})
+
+test('license returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.license()).toBe('License')
+})

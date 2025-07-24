@@ -1,4 +1,5 @@
 import type { Resource } from '../Resource/Resource.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 
 export const getResources = (isBuiltin: boolean): readonly Resource[] => {
   if (isBuiltin) {
@@ -7,19 +8,19 @@ export const getResources = (isBuiltin: boolean): readonly Resource[] => {
   // TODO
   return [
     {
-      label: 'Marketplace',
+      label: ExtensionDetailStrings.marketplace(),
       url: '#',
     },
     {
-      label: 'Issues',
+      label: ExtensionDetailStrings.issues(),
       url: '#',
     },
     {
-      label: 'Repository',
+      label: ExtensionDetailStrings.repository(),
       url: '#',
     },
     {
-      label: 'License',
+      label: ExtensionDetailStrings.license(),
       url: '#',
     },
   ]

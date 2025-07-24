@@ -14,6 +14,6 @@ test('feature not implemented virtual dom', () => {
       type: 5,
       childCount: 1,
     },
-    text('Not implemented'),
+    text('Not Implemented'),
   ])
 })

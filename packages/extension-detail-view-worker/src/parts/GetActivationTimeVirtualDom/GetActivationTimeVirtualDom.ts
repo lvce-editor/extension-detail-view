@@ -1,5 +1,6 @@
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import { formatTime } from '../FormatTime/FormatTime.ts'
 
 export const getActivationTimeVirtualDom = (importTime: number, activationTime: number): readonly VirtualDomNode[] => {
@@ -13,7 +14,7 @@ export const getActivationTimeVirtualDom = (importTime: number, activationTime: 
       type: VirtualDomElements.Dt,
       childCount: 1,
     },
-    text('Import Time: '), // i18n
+    text(ExtensionDetailStrings.importTime()),
     {
       type: VirtualDomElements.Dd,
       childCount: 1,
@@ -23,7 +24,7 @@ export const getActivationTimeVirtualDom = (importTime: number, activationTime: 
       type: VirtualDomElements.Dt,
       childCount: 1,
     },
-    text('Activation Time: '), // i18n
+    text(ExtensionDetailStrings.activationTime()),
     {
       type: VirtualDomElements.Dd,
       childCount: 1,

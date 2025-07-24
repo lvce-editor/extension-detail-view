@@ -1,5 +1,6 @@
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 
 export const getInstallationEntries = (
   displaySize: string,
@@ -9,23 +10,23 @@ export const getInstallationEntries = (
 ): readonly MoreInfoEntry[] => {
   const entries: readonly MoreInfoEntry[] = [
     {
-      key: 'Identifier',
+      key: ExtensionDetailStrings.identifier(),
       value: extensionId,
       odd: true,
       code: true,
     },
     {
-      key: 'Version',
+      key: ExtensionDetailStrings.version(),
       value: extensionVersion,
       code: true,
     },
     {
-      key: 'Last Updated',
+      key: ExtensionDetailStrings.lastUpdated(),
       value: 'n/a',
       odd: true,
     },
     {
-      key: 'Size',
+      key: ExtensionDetailStrings.size(),
       value: displaySize,
       onClick: DomEventListenerFunctions.HandleClickSize,
       title: extensionUri,
