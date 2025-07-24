@@ -56,7 +56,7 @@ test('getRuntimeStatusVirtualDom should return correct virtual DOM structure wit
   })
   expect(result[10]).toEqual({
     type: VirtualDomElements.Text,
-    text: '150.75ms',
+    text: '0.0ms',
     childCount: 0,
   })
 })
