@@ -65,6 +65,7 @@ export const loadContent = async (
     extensionUri,
     isBuiltin,
   )
+  const disabled = extension.disabled
   return {
     ...state,
     badge,
@@ -74,6 +75,7 @@ export const loadContent = async (
     changelogScrollTop,
     description,
     detailsVirtualDom,
+    disabled,
     displaySize,
     extension,
     extensionId,
