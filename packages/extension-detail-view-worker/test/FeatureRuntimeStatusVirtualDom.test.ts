@@ -7,8 +7,6 @@ import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/Ext
 import { getRuntimeStatusVirtualDom } from '../src/parts/FeatureRuntimeStatusVirtualDom/FeatureRuntimeStatusVirtualDom.ts'
 import * as RuntimeStatusType from '../src/parts/RuntimeStatusType/RuntimeStatusType.ts'
 
-
-
 test('getRuntimeStatusVirtualDom should return correct virtual DOM structure with activated status and activation time', () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
