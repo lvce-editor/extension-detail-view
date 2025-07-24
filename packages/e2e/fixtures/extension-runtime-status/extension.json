@@ -1,0 +1,12 @@
+{
+  "id": "test.commands-test",
+  "name": "Test Commands",
+  "description": "Test Commands",
+  "main": "index.js",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ]
+}
