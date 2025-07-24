@@ -77,6 +77,10 @@ export const setColorTheme = (): string => {
   return I18nString.i18nString(UiStrings.SetColorTheme)
 }
 
+export const enable = (): string => {
+  return I18nString.i18nString(UiStrings.Enable)
+}
+
 export const theme = (): string => {
   return I18nString.i18nString(UiStrings.Theme)
 }
