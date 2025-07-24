@@ -8,6 +8,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     activationEvents: [],
     assetDir: '/test/asset/dir',
     badge: '',
+    importTime: 0,
     baseUrl: '',
     builtinExtensionsBadgeEnabled: true,
     buttons: [],
