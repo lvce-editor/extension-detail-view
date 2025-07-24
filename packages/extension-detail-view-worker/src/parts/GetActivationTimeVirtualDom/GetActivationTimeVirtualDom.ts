@@ -10,12 +10,24 @@ export const getActivationTimeVirtualDom = (importTime: number, activationTime: 
   const formattedTime = formatTime(activationTime)
   return [
     {
-      type: VirtualDomElements.P,
-      childCount: 4,
+      type: VirtualDomElements.Dt,
+      childCount: 1,
     },
     text('Import Time: '), // i18n
+    {
+      type: VirtualDomElements.Dd,
+      childCount: 1,
+    },
     text(formattedImportTime),
+    {
+      type: VirtualDomElements.Dt,
+      childCount: 1,
+    },
     text('Activation Time: '), // i18n
+    {
+      type: VirtualDomElements.Dd,
+      childCount: 1,
+    },
     text(formattedTime),
   ]
 }
