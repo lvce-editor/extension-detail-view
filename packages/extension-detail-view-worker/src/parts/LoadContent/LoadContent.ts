@@ -65,7 +65,7 @@ export const loadContent = async (
     extensionUri,
     isBuiltin,
   )
-  const disabled = extension.disabled
+  const disabled = extension?.disabled
   return {
     ...state,
     badge,
