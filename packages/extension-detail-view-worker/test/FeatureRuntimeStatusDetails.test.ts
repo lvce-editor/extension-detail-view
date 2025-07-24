@@ -37,6 +37,7 @@ test('getRuntimeStatusDetails should return runtime status details for extension
     wasActivatedByEvent: 'onStartupFinished',
     activationTime: 150.75,
     status: RuntimeStatusType.Activated,
+    importTime: 0,
   })
 })
 
@@ -72,6 +73,7 @@ test('getRuntimeStatusDetails should handle different activation events', async 
     wasActivatedByEvent: 'onCommand:test.command',
     activationTime: 200,
     status: RuntimeStatusType.Activating,
+    importTime: 0,
   })
 })
 
@@ -107,6 +109,7 @@ test('getRuntimeStatusDetails should handle error status', async () => {
     wasActivatedByEvent: '',
     activationTime: 0,
     status: RuntimeStatusType.Error,
+    importTime: 0,
   })
 })
 
