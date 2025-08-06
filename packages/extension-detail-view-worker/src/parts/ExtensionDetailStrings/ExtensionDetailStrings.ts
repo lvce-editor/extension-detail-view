@@ -73,6 +73,10 @@ export const schema = (): string => {
   return I18nString.i18nString(UiStrings.Schema)
 }
 
+export const status = (): string => {
+  return I18nString.i18nString(UiStrings.Status)
+}
+
 export const setColorTheme = (): string => {
   return I18nString.i18nString(UiStrings.SetColorTheme)
 }
