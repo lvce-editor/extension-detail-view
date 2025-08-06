@@ -38,5 +38,6 @@ export const getRatingCount = (extension: any): string => {
     return ''
   }
 
-  return `(${ratingCount})`
+  // Format the number with commas for better readability
+  return `(${ratingCount.toLocaleString()})`
 }
