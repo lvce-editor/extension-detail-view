@@ -10,7 +10,7 @@ export const getMoreInfoEntryValueVirtualDom = (item: MoreInfoEntry): readonly V
   const className = getMoreInfoEntryValueClassName(onClick, code)
   return [
     {
-      type: type,
+      type,
       className,
       childCount: 1,
       onClick,
