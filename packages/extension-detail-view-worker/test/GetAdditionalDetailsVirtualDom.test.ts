@@ -36,7 +36,7 @@ test('getAdditionalDetailsVirtualDom - showAdditionalDetails true with empty dat
   )
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Aside,
       className: ClassNames.Aside,
       childCount: 1,
     },
@@ -71,7 +71,7 @@ test('getAdditionalDetailsVirtualDom - with sample data', () => {
   )
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Aside,
       className: ClassNames.Aside,
       childCount: 1,
     },
@@ -106,7 +106,7 @@ test('getAdditionalDetailsVirtualDom - different headings', () => {
   )
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Aside,
       className: ClassNames.Aside,
       childCount: 1,
     },
