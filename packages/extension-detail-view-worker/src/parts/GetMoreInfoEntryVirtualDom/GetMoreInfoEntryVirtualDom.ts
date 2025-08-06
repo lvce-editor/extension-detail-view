@@ -7,13 +7,13 @@ import * as GetMoreInfoEntryValueVirtualDom from '../GetMoreInfoEntryValueVirtua
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 
 const parentNodeEven: VirtualDomNode = {
-  type: VirtualDomElements.Dt,
+  type: VirtualDomElements.Div,
   className: ClassNames.MoreInfoEntry,
   childCount: 2,
 }
 
 const parentNodeOdd: VirtualDomNode = {
-  type: VirtualDomElements.Dt,
+  type: VirtualDomElements.Div,
   className: MergeClassNames.mergeClassNames(ClassNames.MoreInfoEntry, ClassNames.MoreInfoEntryOdd),
   childCount: 2,
 }
