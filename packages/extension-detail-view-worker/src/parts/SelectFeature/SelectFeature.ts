@@ -1,5 +1,5 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
-import { getFeatureDetailsHandler } from '../FeatureRegistry/FeatureRegistry.ts'
+import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
 
 export const selectFeature = async (state: ExtensionDetailState, name: string): Promise<ExtensionDetailState> => {
   if (!name) {
@@ -18,7 +18,7 @@ export const selectFeature = async (state: ExtensionDetailState, name: string): 
       selected: false,
     }
   })
-  const fn = getFeatureDetailsHandler(name)
+  const fn = FeatureRegistry.getFeatureDetailsHandler(name)
   const partialNewState = await fn(extension, baseUrl)
   return {
     ...state,
