@@ -4,7 +4,7 @@ import * as TableCellType from '../TableCellType/TableCellType.ts'
 export const getJsonValidationTableEntry = (validation: any): Row => {
   // TODO handle case when validation is invalid like null
   const { fileMatch } = validation
-  const schema = validation.schema || validation.url
+  const schema = validation.schema ?? validation.url
   return [
     {
       type: TableCellType.Code,
