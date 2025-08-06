@@ -1,7 +1,7 @@
 import { expect, jest, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
-import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import { handleClickEnable } from '../src/parts/HandleClickEnable/HandleClickEnable.ts'
+import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as HandleClickEnable from '../src/parts/HandleClickEnable/HandleClickEnable.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('handleClickEnable calls enableExtension with extensionId and returns state', async () => {
@@ -12,8 +12,8 @@ test('handleClickEnable calls enableExtension with extensionId and returns state
   })
   RendererWorker.set(mockRpc)
 
-  const state = createDefaultState()
-  const result = await handleClickEnable(state)
+  const state = CreateDefaultState.createDefaultState()
+  const result = await HandleClickEnable.handleClickEnable(state)
 
   expect(result).toBe(state)
 })
@@ -27,6 +27,6 @@ test('handleClickEnable handles error from enableExtension', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const state = createDefaultState()
-  await expect(handleClickEnable(state)).rejects.toThrow('Failed to enable extension')
+  const state = CreateDefaultState.createDefaultState()
+  await expect(HandleClickEnable.handleClickEnable(state)).rejects.toThrow('Failed to enable extension')
 })
