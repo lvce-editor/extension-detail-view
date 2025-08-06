@@ -1,0 +1,6 @@
+{
+  "id": "test.json-validation-invalid",
+  "name": "Test Json Validation Invalid",
+  "description": "Test Json Validation Invalid",
+  "jsonValidation": [null]
+}
