@@ -29,6 +29,7 @@ export const getRuntimeStatusVirtualDom = (state: ExtensionDetailState): readonl
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
       type: VirtualDomElements.Dl,
+      className: 'RuntimeStatusDefinitionList',
       childCount,
     },
     ...getStatusVirtualDom(status),
