@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals'
-import { featureRuntimeStatusEnabled } from '../src/parts/FeatureRuntimeStatusEnabled/FeatureRuntimeStatusEnabled.ts'
+import * as FeatureRuntimeStatusEnabled from '../src/parts/FeatureRuntimeStatusEnabled/FeatureRuntimeStatusEnabled.ts'
 
 test('featureRuntimeStatusEnabled should return true for extension with main property', () => {
   const extension = {
@@ -7,7 +7,7 @@ test('featureRuntimeStatusEnabled should return true for extension with main pro
     name: 'test-extension',
   }
 
-  const result = featureRuntimeStatusEnabled(extension)
+  const result = FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled(extension)
 
   expect(result).toBe(true)
 })
@@ -18,7 +18,7 @@ test('featureRuntimeStatusEnabled should return true for extension with browser 
     name: 'test-extension',
   }
 
-  const result = featureRuntimeStatusEnabled(extension)
+  const result = FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled(extension)
 
   expect(result).toBe(true)
 })
@@ -30,7 +30,7 @@ test('featureRuntimeStatusEnabled should return true for extension with both mai
     name: 'test-extension',
   }
 
-  const result = featureRuntimeStatusEnabled(extension)
+  const result = FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled(extension)
 
   expect(result).toBe(true)
 })
@@ -41,43 +41,43 @@ test('featureRuntimeStatusEnabled should return false for extension without main
     version: '1.0.0',
   }
 
-  const result = featureRuntimeStatusEnabled(extension)
+  const result = FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled(extension)
 
   expect(result).toBe(false)
 })
 
 test('featureRuntimeStatusEnabled should return false for null extension', () => {
-  const result = featureRuntimeStatusEnabled(null)
+  const result = FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled(null)
 
   expect(result).toBe(false)
 })
 
 test('featureRuntimeStatusEnabled should return false for undefined extension', () => {
-  const result = featureRuntimeStatusEnabled(undefined)
+  const result = FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled(undefined)
 
   expect(result).toBe(false)
 })
 
 test('featureRuntimeStatusEnabled should return false for string extension', () => {
-  const result = featureRuntimeStatusEnabled('test-extension')
+  const result = FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled('test-extension')
 
   expect(result).toBe(false)
 })
 
 test('featureRuntimeStatusEnabled should return false for number extension', () => {
-  const result = featureRuntimeStatusEnabled(123)
+  const result = FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled(123)
 
   expect(result).toBe(false)
 })
 
 test('featureRuntimeStatusEnabled should return false for boolean extension', () => {
-  const result = featureRuntimeStatusEnabled(true)
+  const result = FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled(true)
 
   expect(result).toBe(false)
 })
 
 test('featureRuntimeStatusEnabled should return false for empty object', () => {
-  const result = featureRuntimeStatusEnabled({})
+  const result = FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled({})
 
   expect(result).toBe(false)
 })
