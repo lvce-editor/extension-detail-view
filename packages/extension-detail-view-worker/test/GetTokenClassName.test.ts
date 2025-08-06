@@ -48,4 +48,4 @@ test('getTokenClassName - unknown token type (fallback to Token)', () => {
   const token = { type: 'unknown' as any, value: 'test' }
   const result = GetTokenClassName.getTokenClassName(token)
   expect(result).toBe(ClassNames.Token)
-}) 
+})

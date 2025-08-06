@@ -87,4 +87,4 @@ export const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
   }
 
   return tokens
-} 
+}

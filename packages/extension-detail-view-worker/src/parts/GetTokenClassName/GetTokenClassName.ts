@@ -16,4 +16,4 @@ export const getTokenClassName = (token: JsonToken): string => {
     default:
       return ClassNames.Token
   }
-} 
+}

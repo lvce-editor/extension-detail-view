@@ -27,4 +27,4 @@ test('JsonToken should support all token types', () => {
   expect(punctuationToken.type).toBe('punctuation')
   expect(propertyNameToken.type).toBe('propertyName')
   expect(propertyValueToken.type).toBe('propertyValue')
-}) 
+})

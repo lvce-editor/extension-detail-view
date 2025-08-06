@@ -78,4 +78,4 @@ test('tokenToVirtualDom - propertyValue token (fallback)', () => {
     className: ClassNames.Token,
     childCount: 1,
   })
-}) 
+})

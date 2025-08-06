@@ -138,4 +138,4 @@ test('parseJsonTokens - whitespace handling', () => {
     { type: 'number', value: '123' },
     { type: 'punctuation', value: '}' },
   ])
-}) 
+})
