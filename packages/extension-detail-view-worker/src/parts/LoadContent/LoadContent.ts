@@ -37,7 +37,7 @@ export const loadContent = async (
     throw new ExtensionNotFoundError(id)
   }
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
-  const { badge, description, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name } = headerData
+  const { badge, description, downloadCount, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name, rating } = headerData
   const readmeUrl = Path.join(extensionUri, 'README.md')
   const changelogUrl = Path.join(extensionUri, 'CHANGELOG.md')
   const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUrl), existsFile(changelogUrl)])
@@ -65,6 +65,7 @@ export const loadContent = async (
     extensionVersion,
     extensionUri,
     isBuiltin,
+    extension,
   )
   return {
     ...state,
@@ -77,6 +78,7 @@ export const loadContent = async (
     detailsVirtualDom,
     disabled,
     displaySize,
+    downloadCount,
     extension,
     extensionId,
     extensionUri,
@@ -89,6 +91,7 @@ export const loadContent = async (
     installationEntries,
     marketplaceEntries,
     name,
+    rating,
     readmeScrollTop,
     readmeUrl,
     resources,
