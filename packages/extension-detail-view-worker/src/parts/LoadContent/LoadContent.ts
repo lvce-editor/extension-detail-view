@@ -66,6 +66,8 @@ export const loadContent = async (
     extensionUri,
     isBuiltin,
   )
+  const paddingLeft = 30
+  const paddingRight = 30
   return {
     ...state,
     badge,
@@ -98,5 +100,7 @@ export const loadContent = async (
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,
+    paddingLeft,
+    paddingRight,
   }
 }
