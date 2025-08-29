@@ -65,7 +65,6 @@ export const loadContent = async (
     extensionVersion,
     extensionUri,
     isBuiltin,
-    extension,
   )
   const paddingLeft = 30
   const paddingRight = 30
