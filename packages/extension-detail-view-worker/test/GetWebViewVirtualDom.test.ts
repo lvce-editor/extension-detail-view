@@ -53,11 +53,12 @@ test('webview virtual dom', () => {
   })
 
   // Test that tokens are present
-  const hasTokenSpans = result.some(node =>
-    node.type === VirtualDomElements.Span &&
-    (node.className === ClassNames.TokenJsonString ||
-     node.className === ClassNames.TokenJsonPunctuation ||
-     node.className === ClassNames.TokenJsonNumber)
+  const hasTokenSpans = result.some(
+    (node) =>
+      node.type === VirtualDomElements.Span &&
+      (node.className === ClassNames.TokenJsonString ||
+        node.className === ClassNames.TokenJsonPunctuation ||
+        node.className === ClassNames.TokenJsonNumber),
   )
   expect(hasTokenSpans).toBe(true)
 })
