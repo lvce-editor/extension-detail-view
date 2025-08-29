@@ -13,7 +13,6 @@ const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
   let i = 0
   let depth = 0
   let inString = false
-  let stringStart = 0
   let currentString = ''
 
   while (i < jsonString.length) {
@@ -36,7 +35,6 @@ const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
       if (char === '"') {
         // Start of string
         inString = true
-        stringStart = i
         currentString = char
       } else if (char === '{' || char === '}' || char === '[' || char === ']' || char === ':' || char === ',') {
         // Punctuation
