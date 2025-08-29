@@ -10,7 +10,7 @@ import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
-import { getPadding } from '../GetPadding/GetPadding.ts'
+import { getPadding, getSideBarWidth } from '../GetPadding/GetPadding.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
@@ -68,6 +68,7 @@ export const loadContent = async (
     isBuiltin,
   )
   const padding = getPadding(width)
+  const sideBarWidth = getSideBarWidth(width)
   const showSideBar = width > showAdditionalDetailsBreakpoint
   return {
     ...state,
@@ -103,6 +104,7 @@ export const loadContent = async (
     scrollToTopButtonEnabled: true,
     selectedTab,
     showSideBar,
+    sideBarWidth,
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,
