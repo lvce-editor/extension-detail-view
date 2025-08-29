@@ -30,7 +30,7 @@ export const getExtensionDetailContentVirtualDom = (
         state.installationEntries,
         state.marketplaceEntries,
         state.hasReadme,
-        state.sideBarWidth > 0,
+        state.showSideBar,
       )
     case InputName.Features:
       return GetFeaturesVirtualDom.getFeaturesVirtualDom(state.features, state.selectedFeature, state)

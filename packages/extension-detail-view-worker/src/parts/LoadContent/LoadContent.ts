@@ -69,7 +69,7 @@ export const loadContent = async (
   )
   const padding = getPadding(width)
   const sideBarWidth = getSideBarWidth(width)
-  const showSideBar = width > showAdditionalDetailsBreakpoint
+  const showSideBar = sideBarWidth > 0
   return {
     ...state,
     badge,

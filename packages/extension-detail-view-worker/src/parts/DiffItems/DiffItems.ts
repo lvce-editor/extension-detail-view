@@ -19,7 +19,6 @@ export const isEqual = (oldState: ExtensionDetailState, newState: ExtensionDetai
     oldState.themesMarkdownDom === newState.themesMarkdownDom &&
     oldState.webViews === newState.webViews &&
     oldState.sizeValue === newState.sizeValue &&
-    oldState.showSideBar === newState.showSideBar &&
-    oldState.sideBarWidth === newState.sideBarWidth
+    oldState.showSideBar === newState.showSideBar
   )
 }
