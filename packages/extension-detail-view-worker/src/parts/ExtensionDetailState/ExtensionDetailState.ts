@@ -41,6 +41,8 @@ export interface ExtensionDetailState {
   readonly jsonValidation: readonly Row[]
   readonly marketplaceEntries: readonly MoreInfoEntry[]
   readonly name: string
+  readonly paddingLeft: number
+  readonly paddingRight: number
   readonly platform: number
   readonly programmingLanguages: readonly Row[]
   readonly rating: string

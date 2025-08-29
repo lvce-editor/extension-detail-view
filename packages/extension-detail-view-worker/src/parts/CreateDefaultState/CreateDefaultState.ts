@@ -57,5 +57,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     webViews: [],
     width: 500,
     readmeUrl: '',
+    paddingLeft: 0,
+    paddingRight: 0,
   }
 }
