@@ -40,7 +40,7 @@ test('getDetailsVirtualDom should return virtual dom with readme content', () =>
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
     className: ClassNames.ExtensionDetailPanel,
-    childCount: 1,
+    childCount: 2,
     role: AriaRoles.Panel,
   })
   expect(result[1]).toBe(sanitizedReadmeHtml[0])
@@ -73,7 +73,7 @@ test('getDetailsVirtualDom should return virtual dom with no readme message', ()
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
     className: ClassNames.ExtensionDetailPanel,
-    childCount: 1,
+    childCount: 2,
     role: AriaRoles.Panel,
   })
   expect(result[1]).toEqual({
