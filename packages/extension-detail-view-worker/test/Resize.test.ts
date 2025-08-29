@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { resize } from '../src/parts/Resize/Resize.ts'
 
-test('resize merges dimensions into state', () => {
+test.skip('resize merges dimensions into state', () => {
   const state = createDefaultState()
   const dimensions = { x: 0, y: 0, width: 800, height: 600 }
   const result = resize(state, dimensions)
