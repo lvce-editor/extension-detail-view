@@ -1,5 +1,6 @@
 import type { Renderer } from '../Renderer/Renderer.ts'
 import * as DiffType from '../DiffType/DiffType.ts'
+import { renderCss } from '../RenderCss/RenderCss.ts'
 import * as RenderDom from '../RenderDom/RenderDom.ts'
 import * as RenderFocus from '../RenderFocus/RenderFocus.ts'
 import * as RenderScrollTop from '../RenderScrollTop/RenderScrollTop.ts'
@@ -12,6 +13,8 @@ export const getRenderer = (diffType: number): Renderer => {
       return RenderFocus.renderFocus
     case DiffType.RenderScrollTop:
       return RenderScrollTop.renderScrollTop
+    case DiffType.RenderCss:
+      return renderCss
     default:
       throw new Error('unknown renderer')
   }

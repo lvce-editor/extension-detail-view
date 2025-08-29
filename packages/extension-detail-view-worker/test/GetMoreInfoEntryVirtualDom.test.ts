@@ -12,7 +12,7 @@ test('more info entry virtual dom', () => {
   }
   expect(GetMoreInfoEntryVirtualDom.getMoreInfoEntryVirtualDom(entry)).toEqual([
     {
-      type: VirtualDomElements.Dt,
+      type: VirtualDomElements.Div,
       className: ClassNames.MoreInfoEntry,
       childCount: 2,
     },

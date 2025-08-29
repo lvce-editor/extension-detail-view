@@ -34,10 +34,12 @@ test('getRuntimeStatusVirtualDom should return correct virtual DOM structure wit
   expect(result[3]).toEqual({
     type: VirtualDomElements.Dl,
     childCount: 6,
+    className: 'RuntimeStatusDefinitionList',
   })
   expect(result[4]).toEqual({
     type: VirtualDomElements.Dt,
     childCount: 1,
+    className: 'RuntimeStatusDefinitionListKey',
   })
   expect(result[5]).toEqual({
     type: VirtualDomElements.Text,
@@ -47,6 +49,7 @@ test('getRuntimeStatusVirtualDom should return correct virtual DOM structure wit
   expect(result[6]).toEqual({
     type: VirtualDomElements.Dd,
     childCount: 1,
+    className: 'RuntimeStatusDefinitionListValue',
   })
   expect(result[7]).toEqual({
     type: VirtualDomElements.Text,
@@ -118,10 +121,12 @@ test('getRuntimeStatusVirtualDom should return correct virtual DOM structure wit
   expect(result[3]).toEqual({
     type: VirtualDomElements.Dl,
     childCount: 2,
+    className: 'RuntimeStatusDefinitionList',
   })
   expect(result[4]).toEqual({
     type: VirtualDomElements.Dt,
     childCount: 1,
+    className: 'RuntimeStatusDefinitionListKey',
   })
   expect(result[5]).toEqual({
     type: VirtualDomElements.Text,
@@ -131,6 +136,7 @@ test('getRuntimeStatusVirtualDom should return correct virtual DOM structure wit
   expect(result[6]).toEqual({
     type: VirtualDomElements.Dd,
     childCount: 1,
+    className: 'RuntimeStatusDefinitionListValue',
   })
   expect(result[7]).toEqual({
     type: VirtualDomElements.Text,

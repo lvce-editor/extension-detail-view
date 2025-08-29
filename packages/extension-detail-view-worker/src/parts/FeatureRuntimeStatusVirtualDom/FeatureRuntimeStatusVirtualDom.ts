@@ -3,9 +3,9 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
-import { getActivationTimeVirtualDom } from '../GetActivationTimeVirtualDom/GetActivationTimeVirtualDom.ts'
+import * as GetActivationTimeVirtualDom from '../GetActivationTimeVirtualDom/GetActivationTimeVirtualDom.ts'
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
-import { getStatusVirtualDom } from '../GetStatusVirtualDom/GetStatusVirtualDom.ts'
+import * as GetStatusVirtualDom from '../GetStatusVirtualDom/GetStatusVirtualDom.ts'
 
 const getChildCount = (status: number, activationTime: number, importTime: number): number => {
   let childCount = 0
@@ -29,9 +29,10 @@ export const getRuntimeStatusVirtualDom = (state: ExtensionDetailState): readonl
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
       type: VirtualDomElements.Dl,
+      className: 'RuntimeStatusDefinitionList',
       childCount,
     },
-    ...getStatusVirtualDom(status),
-    ...getActivationTimeVirtualDom(activationTime, importTime),
+    ...GetStatusVirtualDom.getStatusVirtualDom(status),
+    ...GetActivationTimeVirtualDom.getActivationTimeVirtualDom(activationTime, importTime),
   ]
 }

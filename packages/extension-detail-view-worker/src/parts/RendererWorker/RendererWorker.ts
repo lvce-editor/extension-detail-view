@@ -2,15 +2,16 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 export const {
   disableExtension,
+  enableExtension,
   getAllExtensions,
   getExtension,
   getFolderSize,
   invoke,
   openExtensionSearch,
-  sendMessagePortToExtensionHostWorker,
   openNativeFolder,
-  writeClipBoardText,
+  openUrl,
   readFile,
+  sendMessagePortToExtensionHostWorker,
   sendMessagePortToFileSystemWorker,
   sendMessagePortToMarkdownWorker,
   set,
@@ -19,5 +20,5 @@ export const {
   showContextMenu,
   uninstallExtension,
   writeClipBoardImage,
-  openUrl,
+  writeClipBoardText,
 } = RendererWorker

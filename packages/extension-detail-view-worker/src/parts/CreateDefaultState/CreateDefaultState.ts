@@ -4,6 +4,7 @@ export const createDefaultState = (): ExtensionDetailState => {
   return {
     wasActivatedByEvent: '',
     status: 0,
+    disabled: false,
     activationTime: 0,
     activationEvents: [],
     assetDir: '/test/asset/dir',
@@ -21,6 +22,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     detailsVirtualDom: [],
     hasReadme: false,
     displaySize: '',
+    downloadCount: 'n/a',
     installationEntries: [],
     extension: {},
     extensionId: '',
@@ -35,6 +37,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     name: '',
     platform: 0,
     programmingLanguages: [],
+    rating: 'n/a',
     readmeScrollTop: 0,
     resources: [],
     scrollSource: 0,
@@ -54,5 +57,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     webViews: [],
     width: 500,
     readmeUrl: '',
+    paddingLeft: 0,
+    paddingRight: 0,
   }
 }

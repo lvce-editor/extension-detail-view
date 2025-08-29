@@ -1,6 +1,7 @@
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 
 export const getFeatureUnsupportedVirtualDom = (state: ExtensionDetailState): readonly VirtualDomNode[] => {
   return [
@@ -12,11 +13,11 @@ export const getFeatureUnsupportedVirtualDom = (state: ExtensionDetailState): re
       type: VirtualDomElements.H1,
       childCount: 1,
     },
-    text('Unsupported Feature'),
+    text(ExtensionDetailStrings.unsupportedFeature()),
     {
       type: VirtualDomElements.P,
       childCount: 1,
     },
-    text('Selected feature is unknown or unsupported'),
+    text(ExtensionDetailStrings.selectedFeatureUnknownOrUnsupported()),
   ]
 }

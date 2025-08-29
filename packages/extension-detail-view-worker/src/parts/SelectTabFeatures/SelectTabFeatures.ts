@@ -1,5 +1,5 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
-import { getFeatureDetailsHandler } from '../FeatureRegistry/FeatureRegistry.ts'
+import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
 import * as InputName from '../InputName/InputName.ts'
 
 export const selectTabFeatures = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
@@ -8,7 +8,7 @@ export const selectTabFeatures = async (state: ExtensionDetailState): Promise<Ex
     return state
   }
   const actualSelectedFeature = selectedFeature || InputName.Theme
-  const fn = getFeatureDetailsHandler(actualSelectedFeature)
+  const fn = FeatureRegistry.getFeatureDetailsHandler(actualSelectedFeature)
   const partialNewState = await fn(extension, baseUrl)
   const newTabs = tabs.map((tab) => {
     return {

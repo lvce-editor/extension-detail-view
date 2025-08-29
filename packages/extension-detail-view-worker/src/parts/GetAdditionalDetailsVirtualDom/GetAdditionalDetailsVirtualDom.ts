@@ -25,7 +25,7 @@ export const getAdditionalDetailsVirtualDom = (
   }
   return [
     {
-      type: VirtualDomElements.Div,
+      type: VirtualDomElements.Aside,
       className: ClassNames.Aside,
       childCount: 1,
     },

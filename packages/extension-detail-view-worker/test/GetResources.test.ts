@@ -1,8 +1,8 @@
 import { expect, test } from '@jest/globals'
-import { getResources } from '../src/parts/GetResources/GetResources.ts'
+import * as GetResources from '../src/parts/GetResources/GetResources.ts'
 
 test('getResources returns all resources', () => {
-  const resources = getResources(false)
+  const resources = GetResources.getResources(false)
   expect(resources).toEqual([
     {
       label: 'Marketplace',
