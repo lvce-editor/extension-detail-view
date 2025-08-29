@@ -19,5 +19,5 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await expect(heading).toBeVisible()
   await expect(heading).toHaveText('Commands')
   const paragraph = Locator('.FeatureContent p')
-  await expect(paragraph).toHaveText('The extension contributed an empty commands array.')
+  await expect(paragraph).toHaveText('The extension contributes an empty commands array.')
 }

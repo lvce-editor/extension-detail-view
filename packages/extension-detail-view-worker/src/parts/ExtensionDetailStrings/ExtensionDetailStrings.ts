@@ -204,3 +204,11 @@ export const repository = (): string => {
 export const license = (): string => {
   return I18nString.i18nString(UiStrings.License)
 }
+
+export const downloadCount = (): string => {
+  return I18nString.i18nString(UiStrings.DownloadCount)
+}
+
+export const rating = (): string => {
+  return I18nString.i18nString(UiStrings.Rating)
+}

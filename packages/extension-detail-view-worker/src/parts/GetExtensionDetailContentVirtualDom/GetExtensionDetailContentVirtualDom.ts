@@ -4,7 +4,7 @@ import type { Resource } from '../Resource/Resource.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as GetChangelogVirtualDom from '../GetChangelogVirtualDom/GetChangelogVirtualDom.ts'
 import * as GetDetailsVirtualDom from '../GetDetailsVirtualDom/GetDetailsVirtualDom.ts'
-import { getFeaturesVirtualDom } from '../GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
+import * as GetFeaturesVirtualDom from '../GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
 
 export const getExtensionDetailContentVirtualDom = (
@@ -32,7 +32,7 @@ export const getExtensionDetailContentVirtualDom = (
         state.hasReadme,
       )
     case InputName.Features:
-      return getFeaturesVirtualDom(state.features, state.selectedFeature, state)
+      return GetFeaturesVirtualDom.getFeaturesVirtualDom(state.features, state.selectedFeature, state)
     case InputName.Changelog:
       return GetChangelogVirtualDom.getChangelogVirtualDom(changelogDom)
     default:
