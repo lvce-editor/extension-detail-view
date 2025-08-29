@@ -31,7 +31,7 @@ export const loadContent = async (
   if (isTest) {
     savedState = undefined
   }
-  const { width, uri, showAdditionalDetailsBreakpoint } = state
+  const { width, uri } = state
   const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
   if (!extension) {
@@ -69,7 +69,7 @@ export const loadContent = async (
   )
   const padding = getPadding(width)
   const sideBarWidth = getSideBarWidth(width)
-  const showSideBar = width > showAdditionalDetailsBreakpoint
+  const showSideBar = sideBarWidth > 0
   return {
     ...state,
     badge,
