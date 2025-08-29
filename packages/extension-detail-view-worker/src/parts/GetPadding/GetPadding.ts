@@ -12,11 +12,14 @@ export const getPadding = (width: number): number => {
 }
 
 export const getSideBarWidth = (width: number): number => {
-  if (width < 600) {
+  if (width < 490) {
     return 0
   }
-  if (width < 800) {
-    return 175
+  if (width < 650) {
+    return Math.round(width / 4)
   }
-  return 320
+  if (width < 800) {
+    return Math.round(width / 4)
+  }
+  return Math.round(width / 4)
 }
