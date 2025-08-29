@@ -42,7 +42,7 @@ test('getRating returns formatted rating from marketplace.averageRating', () => 
 })
 
 test('getRating returns formatted rating from packageJSON.rating', () => {
-  const extension = { packageJSON: { rating: 5.0 } }
+  const extension = { packageJSON: { rating: 5 } }
   const result = getRating(extension)
   expect(result).toBe('5.0')
 })
