@@ -60,6 +60,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     readmeUrl: '',
     paddingLeft: 0,
     paddingRight: 0,
+    showSideBar: true,
   }
   ExtensionDetailStates.set(uid, state, state)
 }
