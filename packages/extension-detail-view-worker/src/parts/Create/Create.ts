@@ -58,6 +58,8 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     webViews: [],
     width,
     readmeUrl: '',
+    paddingLeft: 0,
+    paddingRight: 0,
   }
   ExtensionDetailStates.set(uid, state, state)
 }
