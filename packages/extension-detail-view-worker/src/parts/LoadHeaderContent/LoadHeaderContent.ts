@@ -15,9 +15,12 @@ export const loadHeaderContent = (state: ExtensionDetailState, platform: number,
   const hasColorTheme = HasColorThemes.hasColorThemes(extension)
   const isBuiltin = extension?.builtin
   const badge = GetBadge.getBadge(isBuiltin, builtinExtensionsBadgeEnabled)
+  const downloadCount = ExtensionDisplay.getDownloadCount(extension)
+  const rating = ExtensionDisplay.getRating(extension)
   return {
     badge,
     description,
+    downloadCount,
     extension,
     extensionId,
     extensionUri,
@@ -25,5 +28,6 @@ export const loadHeaderContent = (state: ExtensionDetailState, platform: number,
     hasColorTheme,
     iconSrc,
     name,
+    rating,
   }
 }
