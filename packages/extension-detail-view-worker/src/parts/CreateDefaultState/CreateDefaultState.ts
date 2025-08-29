@@ -59,5 +59,6 @@ export const createDefaultState = (): ExtensionDetailState => {
     readmeUrl: '',
     paddingLeft: 0,
     paddingRight: 0,
+    showSideBar: true,
   }
 }
