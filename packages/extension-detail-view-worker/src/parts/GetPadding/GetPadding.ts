@@ -3,7 +3,7 @@ export const getPadding = (width: number): number => {
     return 10
   }
   if (width < 800) {
-    return 20
+    return 10
   }
   if (width < 1200) {
     return 30
@@ -16,7 +16,7 @@ export const getSideBarWidth = (width: number): number => {
     return 0
   }
   if (width < 800) {
-    return 320
+    return 175
   }
   return 320
 }
