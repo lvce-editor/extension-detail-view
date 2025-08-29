@@ -31,7 +31,7 @@ export const loadContent = async (
   if (isTest) {
     savedState = undefined
   }
-  const { width, uri, showAdditionalDetailsBreakpoint } = state
+  const { width, uri } = state
   const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
   if (!extension) {
