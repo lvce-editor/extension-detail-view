@@ -11,7 +11,22 @@ export const getTableVirtualDom = (tableInfo: TableInfo): readonly VirtualDomNod
     {
       type: VirtualDomElements.Table,
       className: ClassNames.Table,
+      childCount: 3,
+    },
+    {
+      type: VirtualDomElements.ColGroup,
+      className: 'ColumnGroup',
       childCount: 2,
+    },
+    {
+      type: VirtualDomElements.Col,
+      className: 'Col Column1',
+      childCount: 0,
+    },
+    {
+      type: VirtualDomElements.Col,
+      className: 'Col Column2',
+      childCount: 0,
     },
     {
       type: VirtualDomElements.THead,
