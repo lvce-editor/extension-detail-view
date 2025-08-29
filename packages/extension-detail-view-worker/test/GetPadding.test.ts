@@ -1,4 +1,4 @@
-import { expect, test, jest } from '@jest/globals'
+import { expect, test } from '@jest/globals'
 import * as GetPadding from '../src/parts/GetPadding/GetPadding.ts'
 
 test('padding: below 600', () => {
