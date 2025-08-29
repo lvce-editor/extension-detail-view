@@ -31,7 +31,7 @@ export const loadContent = async (
   if (isTest) {
     savedState = undefined
   }
-  const { width, uri } = state
+  const { width, uri, showAdditionalDetailsBreakpoint } = state
   const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
   if (!extension) {
@@ -68,6 +68,7 @@ export const loadContent = async (
     isBuiltin,
   )
   const padding = getPadding(width)
+  const showSideBar = width > showAdditionalDetailsBreakpoint
   return {
     ...state,
     badge,
@@ -92,6 +93,8 @@ export const loadContent = async (
     installationEntries,
     marketplaceEntries,
     name,
+    paddingLeft: padding,
+    paddingRight: padding,
     rating,
     readmeScrollTop,
     readmeUrl,
@@ -99,10 +102,9 @@ export const loadContent = async (
     scrollSource: InputSource.Script,
     scrollToTopButtonEnabled: true,
     selectedTab,
+    showSideBar,
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,
-    paddingLeft: padding,
-    paddingRight: padding,
   }
 }
