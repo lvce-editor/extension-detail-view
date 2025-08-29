@@ -60,5 +60,6 @@ export const createDefaultState = (): ExtensionDetailState => {
     paddingLeft: 0,
     paddingRight: 0,
     showSideBar: true,
+    sideBarWidth: 0,
   }
 }
