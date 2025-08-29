@@ -24,6 +24,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     description: '',
     detailsVirtualDom: [],
     displaySize: '',
+    downloadCount: 'n/a',
     installationEntries: [],
     extension: {},
     extensionId: '',
@@ -38,6 +39,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     name: '',
     platform,
     programmingLanguages: [],
+    rating: 'n/a',
     readmeScrollTop: 0,
     resources: [],
     scrollSource: 0,
@@ -56,6 +58,8 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     webViews: [],
     width,
     readmeUrl: '',
+    paddingLeft: 0,
+    paddingRight: 0,
   }
   ExtensionDetailStates.set(uid, state, state)
 }

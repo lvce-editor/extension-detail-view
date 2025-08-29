@@ -10,6 +10,7 @@ import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
+import { getPadding } from '../GetPadding/GetPadding.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
@@ -66,6 +67,7 @@ export const loadContent = async (
     extensionUri,
     isBuiltin,
   )
+  const padding = getPadding(width)
   return {
     ...state,
     badge,
@@ -98,5 +100,7 @@ export const loadContent = async (
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,
+    paddingLeft: padding,
+    paddingRight: padding,
   }
 }
