@@ -102,6 +102,7 @@ export const loadContent = async (
     resources,
     scrollSource: InputSource.Script,
     scrollToTopButtonEnabled: true,
+    selectedFeature,
     selectedTab,
     showSideBar,
     sideBarWidth,
