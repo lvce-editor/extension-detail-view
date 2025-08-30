@@ -17,5 +17,6 @@ export const test: Test = async ({ Command, Locator, expect, Extension, Extensio
   await Command.execute('ExtensionDetail.handleClickSetColorTheme')
 
   // assert
-  // TODO verify theme was applied
+  const activityBar = Locator('.ActivityBar')
+  await expect(activityBar).toHaveCSS('background-color', 'rgb(255, 165, 0)')
 }
