@@ -7,6 +7,7 @@ export const renderCss = (oldState: ExtensionDetailState, newState: ExtensionDet
     ExtensionDetailPaddingLeft: paddingLeft,
     ExtensionDetailPaddingRight: paddingRight,
     ExtensionDetailSideBarWidth: sideBarWidth,
+    ExtensionDetailMaxWidth: 1250,
   })
   return ['Viewlet.setCss', uid, css]
 }
