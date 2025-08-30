@@ -7,12 +7,10 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   const extensionUri = import.meta.resolve('../fixtures/extension-settings')
   await Extension.addWebExtension(extensionUri)
   await ExtensionDetail.open('test.settings-test')
-  const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
-  const featureSettings = Locator('.Feature[name="Settings"]')
-  await tabFeatures.click()
+  await ExtensionDetail.selectFeatures()
 
   // act
-  await featureSettings.click()
+  await ExtensionDetail.openFeature('Settings')
 
   // assert
   const heading = Locator('.FeatureContent h1')
