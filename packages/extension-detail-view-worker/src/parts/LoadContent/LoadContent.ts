@@ -21,6 +21,11 @@ import { loadSideBarContent } from '../LoadSideBarContent/LoadSideBarContent.ts'
 import * as Path from '../Path/Path.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
+import { ExtensionDetailButton } from '../GetExtensionDetailButtons/ExtensionDetailButton.ts'
+
+const isEnabled = (button: ExtensionDetailButton): boolean => {
+  return button.enabled
+}
 
 export const loadContent = async (
   state: ExtensionDetailState,
@@ -53,7 +58,7 @@ export const loadContent = async (
   const isBuiltin = extension?.isBuiltin
   const disabled = extension?.disabled
   const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled)
-  const enabledButtons = buttons.filter((button) => button.enabled)
+  const enabledButtons = buttons.filter(isEnabled)
   const size = GetViewletSize.getViewletSize(width)
   const { selectedFeature, selectedTab, readmeScrollTop, changelogScrollTop } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
