@@ -7,12 +7,10 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   const extensionUri = import.meta.resolve('../fixtures/extension-runtime-status')
   await Extension.addWebExtension(extensionUri)
   await ExtensionDetail.open('test.commands-test')
-  const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
-  const featureRuntimeStatus = Locator('.Feature[name="RuntimeStatus"]')
-  await tabFeatures.click() // TODO use page object model
+  await ExtensionDetail.selectFeatures()
 
   // act
-  await featureRuntimeStatus.click()
+  await ExtensionDetail.openFeature('RuntimeStatus')
 
   // assert
   const heading = Locator('.FeatureContent h1')
