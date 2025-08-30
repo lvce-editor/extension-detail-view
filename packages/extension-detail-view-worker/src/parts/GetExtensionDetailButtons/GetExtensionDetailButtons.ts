@@ -31,5 +31,6 @@ export const getExtensionDetailButtons = (hasColorTheme: boolean, isBuiltin: boo
     },
   ]
 
-  return allActions
+  const filteredButtons = allActions.filter((button) => button.enabled)
+  return filteredButtons
 }
