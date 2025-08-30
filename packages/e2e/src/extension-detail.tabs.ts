@@ -17,15 +17,14 @@ export const test: Test = async ({ Locator, expect, ExtensionDetail }) => {
   const markdown = Locator('.Markdown')
   await expect(markdown).toBeVisible()
 
-  // TODO use page object model
   // act
-  await tabFeatures.click()
+  await ExtensionDetail.selectFeatures()
 
   // assert
   await expect(tabFeatures).toHaveAttribute('aria-selected', 'true')
 
   // act
-  await tabChangelog.click()
+  await ExtensionDetail.selectChangelog()
 
   // assert
   await expect(tabChangelog).toHaveAttribute('aria-selected', 'true')
