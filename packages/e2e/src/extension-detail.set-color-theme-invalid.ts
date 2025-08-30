@@ -1,12 +1,12 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'extension-detail.set-color-theme'
+export const name = 'extension-detail.set-color-theme-invalid'
 
 export const skip = 1
 
 export const test: Test = async ({ Command, Locator, expect, Extension, ExtensionDetail }) => {
   // arrange
-  const extensionUri = import.meta.resolve('../fixtures/extension-detail-theme')
+  const extensionUri = import.meta.resolve('../fixtures/extension-detail-theme-invalid')
   await Extension.addWebExtension(extensionUri)
   await ExtensionDetail.open('test.theme-test')
   await ExtensionDetail.selectFeatures()
