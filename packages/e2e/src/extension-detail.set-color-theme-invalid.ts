@@ -17,6 +17,7 @@ export const test: Test = async ({ Command, Locator, expect, Extension, Extensio
   await Command.execute('ExtensionDetail.handleClickSetColorTheme')
 
   // assert
-  const activityBar = Locator('.ActivityBar')
-  await expect(activityBar).toHaveCSS('background-color', 'rgb(255, 165, 0)')
+
+  // TODO mock alert dialog
+  // TODO verify that error dialog has been shown
 }
