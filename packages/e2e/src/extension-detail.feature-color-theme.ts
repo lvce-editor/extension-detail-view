@@ -7,12 +7,10 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   const extensionUri = import.meta.resolve('../fixtures/extension-detail-theme')
   await Extension.addWebExtension(extensionUri)
   await ExtensionDetail.open('test.theme-test')
-  const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
-  await tabFeatures.click()
-  const featureTheme = Locator('.Feature[name="Theme"]')
+  await ExtensionDetail.selectFeatures()
 
   // act
-  await featureTheme.click() // TODO use page object model
+  await ExtensionDetail.openFeature('Theme')
 
   // assert
   const content = Locator('.FeatureContent')
