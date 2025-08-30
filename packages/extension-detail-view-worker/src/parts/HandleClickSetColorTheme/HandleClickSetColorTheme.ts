@@ -10,3 +10,5 @@ export const handleClickSetColorTheme = async (state: ExtensionDetailState): Pro
   }
   return state
 }
+
+export { getColorThemeId }
