@@ -1,3 +1,4 @@
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import { getColorThemeId } from '../GetColorThemeId/GetColorThemeId.ts'
 import * as SetColorTheme from '../SetColorTheme/SetColorTheme.ts'
@@ -6,7 +7,10 @@ export const handleClickSetColorTheme = async (state: ExtensionDetailState): Pro
   const { extension } = state
   const colorThemeId = getColorThemeId(extension)
   if (colorThemeId) {
-    await SetColorTheme.setColorTheme(colorThemeId)
+    const error = await SetColorTheme.setColorTheme(colorThemeId)
+    if (error) {
+      await RendererWorker.confirm(`${error}`)
+    }
   }
   return state
 }
