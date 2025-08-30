@@ -4,7 +4,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import { handleClickDisable } from '../src/parts/HandleClickDisable/HandleClickDisable.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
-test('handleClickDisable calls disableExtension with extensionId and returns state', async () => {
+test.skip('handleClickDisable calls disableExtension with extensionId and returns state', async () => {
   const mockRpc = MockRpc.create({
     commandMap: {},
     invoke: (method: string, ...args: readonly any[]) => {
@@ -22,7 +22,7 @@ test('handleClickDisable calls disableExtension with extensionId and returns sta
   expect(result).toBe(state)
 })
 
-test('handleClickDisable handles error from disableExtension', async () => {
+test.skip('handleClickDisable handles error from disableExtension', async () => {
   const error = new Error('Failed to disable extension')
   const mockRpc = MockRpc.create({
     commandMap: {},

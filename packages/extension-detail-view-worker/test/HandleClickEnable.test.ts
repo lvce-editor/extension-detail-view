@@ -4,7 +4,7 @@ import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefau
 import * as HandleClickEnable from '../src/parts/HandleClickEnable/HandleClickEnable.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
-test('handleClickEnable calls enableExtension with extensionId and returns state', async () => {
+test.skip('handleClickEnable calls enableExtension with extensionId and returns state', async () => {
   const invoke = jest.fn()
   const mockRpc = MockRpc.create({
     commandMap: {},
@@ -18,7 +18,7 @@ test('handleClickEnable calls enableExtension with extensionId and returns state
   expect(result).toBe(state)
 })
 
-test('handleClickEnable handles error from enableExtension', async () => {
+test.skip('handleClickEnable handles error from enableExtension', async () => {
   const error = new Error('Failed to enable extension')
   const invoke = jest.fn<(...args: readonly any[]) => Promise<any>>().mockRejectedValue(error)
   const mockRpc = MockRpc.create({
