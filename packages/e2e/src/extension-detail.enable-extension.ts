@@ -4,7 +4,7 @@ export const name = 'extension-detail.enable-extension'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, Extension, ExtensionDetail }) => {
+export const test: Test = async ({ Command, Extension, ExtensionDetail, Locator, expect }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-enable-error')
   await Extension.addWebExtension(extensionUri)
@@ -15,4 +15,8 @@ export const test: Test = async ({ Command, Extension, ExtensionDetail }) => {
   await Command.execute('ExtensionDetail.handleClickEnable')
 
   // assert
+  const enableButton = Locator('.ExtensionDetail [name="Enable"]')
+  await expect(enableButton).toBeHidden()
+  const disableButton = Locator('.ExtensionDetail [name="Disable"]')
+  await expect(disableButton).toBeVisible()
 }
