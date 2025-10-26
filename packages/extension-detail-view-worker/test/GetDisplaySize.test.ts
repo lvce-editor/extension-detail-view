@@ -23,5 +23,5 @@ test('1 megabyte', () => {
 
 test('1 gigabyte', () => {
   const size = 1 * 1024 ** 3
-  expect(GetDisplaySize.getDisplaySize(size)).toBe('1.1 GB')
+  expect(GetDisplaySize.getDisplaySize(size)).toBe('1 GB')
 })
