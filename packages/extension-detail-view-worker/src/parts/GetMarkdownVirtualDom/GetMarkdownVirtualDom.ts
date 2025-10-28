@@ -11,12 +11,18 @@ interface MarkdownOptions {
 export const getMarkdownVirtualDom = async (html: string, options?: MarkdownOptions): Promise<readonly VirtualDomNode[]> => {
   Assert.string(html)
   const dom = await MarkdownWorker.getVirtualDom(html)
-  const newDom = [...dom]
   if (options?.scrollToTopEnabled) {
-    newDom[0].onScroll = DomEventListenerFunctions.HandleReadmeScroll
-    newDom[0].childCount++
+    const [firstNode, ...rest] = dom
     const extraDom = getScrollToTopVirtualDom(true)
-    newDom.splice(1, 0, ...extraDom)
+    return [
+      {
+        ...firstNode,
+        onScroll: DomEventListenerFunctions.HandleReadmeScroll,
+        childCount: firstNode.childCount + 1,
+      },
+      ...extraDom,
+      ...rest,
+    ]
   }
-  return newDom
+  return dom
 }
