@@ -16,5 +16,5 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await expect(moreInfoEntryKey).toHaveText('Last Updated')
   const moreInfoEntryValue = moreInfoEntry.locator('.MoreInfoEntryValue')
   await expect(moreInfoEntryValue).toHaveText('n/a')
-  await expect(moreInfoEntryValue).toHaveAttribute('title', 'undefined') //todo
+  await expect(moreInfoEntryValue).toHaveAttribute('title', null)
 }
