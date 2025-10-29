@@ -39,7 +39,7 @@ export const getDetailsVirtualDom = (
         {
           type: VirtualDomElements.Div,
           childCount: 1,
-          className: 'Markdown',
+          className: ClassNames.Markdown,
         },
         text(ExtensionDetailStrings.noReadmeFound()),
       ]
