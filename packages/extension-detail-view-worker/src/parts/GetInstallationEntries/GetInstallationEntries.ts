@@ -22,7 +22,7 @@ export const getInstallationEntries = (
     },
     {
       key: ExtensionDetailStrings.lastUpdated(),
-      value: 'n/a',
+      value: 'n/a', // TODO get this from somewhere
       odd: true,
     },
     {

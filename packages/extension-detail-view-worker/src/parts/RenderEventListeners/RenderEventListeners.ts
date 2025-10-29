@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { EventExpression } from '@lvce-editor/constants'
 import type { DomEventListener } from '../DomEventListener/DomEventListener.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as InputSource from '../InputSource/InputSource.ts'
@@ -7,7 +8,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
   return [
     {
       name: DomEventListenerFunctions.HandleClickCategory,
-      params: ['handleClickCategory', 'event.target.name'],
+      params: ['handleClickCategory', EventExpression.TargetName],
     },
     {
       name: DomEventListenerFunctions.HandleIconError,
@@ -15,11 +16,11 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleReadmeContextMenu,
-      params: ['handleReadmeContextMenu', 'event.clientX', 'event.clientY', 'event.target.href', 'event.target.src'],
+      params: ['handleReadmeContextMenu', EventExpression.ClientX, EventExpression.ClientY, 'event.target.href', 'event.target.src'],
     },
     {
       name: DomEventListenerFunctions.HandleImageContextMenu,
-      params: ['handleImageContextMenu', 'event.clientX', 'event.clientY'],
+      params: ['handleImageContextMenu', EventExpression.ClientX, EventExpression.ClientY],
       preventDefault: true,
     },
     {
@@ -29,15 +30,15 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleTabsClick,
-      params: ['handleTabsClick', 'event.target.name'],
+      params: ['handleTabsClick', EventExpression.TargetName],
     },
     {
       name: DomEventListenerFunctions.HandleFeaturesClick,
-      params: ['handleFeaturesClick', 'event.target.name'],
+      params: ['handleFeaturesClick', EventExpression.TargetName],
     },
     {
       name: DomEventListenerFunctions.HandleClickSize,
-      params: ['handleClickSize', 'event.target.name'],
+      params: ['handleClickSize', EventExpression.TargetName],
     },
     {
       name: DomEventListenerFunctions.HandleClickDisable,
