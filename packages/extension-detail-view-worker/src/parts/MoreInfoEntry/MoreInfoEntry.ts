@@ -1,3 +1,4 @@
+// TODO make all properties required so objects have same shape
 export interface MoreInfoEntry {
   readonly key: string
   readonly value: string
