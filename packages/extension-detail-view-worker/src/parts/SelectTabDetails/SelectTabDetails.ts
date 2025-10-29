@@ -9,6 +9,7 @@ export const selectTabDetails = async (state: ExtensionDetailState): Promise<Ext
   const readmeContent = await GetExtensionReadme.loadReadmeContent(readmeUrl)
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
+    linksExternal: true,
   })
   const detailsDom = await GetMarkdownVirtualDom.getMarkdownVirtualDom(readmeHtml)
   const newTabs = tabs.map((tab) => {
