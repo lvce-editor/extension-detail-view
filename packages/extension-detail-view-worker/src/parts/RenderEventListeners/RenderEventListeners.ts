@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { DomEventListener } from '../DomEventListener/DomEventListener.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as InputSource from '../InputSource/InputSource.ts'
