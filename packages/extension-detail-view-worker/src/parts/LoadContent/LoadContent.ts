@@ -46,6 +46,7 @@ export const loadContent = async (
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
+    linksExternal: true,
   })
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
