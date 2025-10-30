@@ -56,11 +56,13 @@ test('get json validation table entry with empty values', () => {
   }
   expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
     {
-      type: TableCellType.Code,
+      type: TableCellType.Text,
       value: [],
     },
     {
       type: TableCellType.Text,
+      className: 'TableCellInvalid',
+      title: 'Missing property',
       value: '',
     },
   ])
