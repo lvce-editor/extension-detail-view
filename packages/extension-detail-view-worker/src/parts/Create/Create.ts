@@ -62,6 +62,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     paddingRight: 0,
     showSideBar: true,
     sideBarWidth: 0,
+    locationProtocol: '',
   }
   ExtensionDetailStates.set(uid, state, state)
 }
