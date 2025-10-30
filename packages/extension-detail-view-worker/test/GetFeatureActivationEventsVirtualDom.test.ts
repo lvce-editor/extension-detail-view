@@ -1,11 +1,28 @@
 import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { ActivationEntry } from '../src/parts/ActivationEntry/ActivationEntry.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetFeatureActivationEventsVirtualDom from '../src/parts/GetFeatureActivationEventsVirtualDom/GetFeatureActivationEventsVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('feature activation events virtual dom with events', () => {
-  const activationEvents: readonly string[] = ['onCommand:workbench.action.openFile', 'onLanguage:typescript', 'onView:explorer']
+  const activationEvents: readonly ActivationEntry[] = [
+    {
+      stringValue: 'onCommand:workbench.action.openFile',
+      isValid: true,
+      errorMessage: '',
+    },
+    {
+      stringValue: 'onLanguage:typescript',
+      isValid: true,
+      errorMessage: '',
+    },
+    {
+      stringValue: 'onView:explorer',
+      errorMessage: '',
+      isValid: true,
+    },
+  ]
   expect(GetFeatureActivationEventsVirtualDom.getFeatureActivationEventsVirtualDom(activationEvents)).toEqual([
     {
       type: VirtualDomElements.Div,
@@ -52,7 +69,7 @@ test('feature activation events virtual dom with events', () => {
 })
 
 test('feature activation events virtual dom with empty events', () => {
-  const activationEvents: readonly string[] = []
+  const activationEvents: readonly ActivationEntry[] = []
   expect(GetFeatureActivationEventsVirtualDom.getFeatureActivationEventsVirtualDom(activationEvents)).toEqual([
     {
       type: VirtualDomElements.Div,
