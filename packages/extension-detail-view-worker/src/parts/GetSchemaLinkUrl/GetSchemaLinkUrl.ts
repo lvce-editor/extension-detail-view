@@ -6,6 +6,9 @@ export const getSchemaLinkUrl = (schema: string, extensionUri: string): string =
   if (!schema) {
     return ''
   }
+  if (typeof schema !== 'string') {
+    return ''
+  }
   if (isExternalLink(schema)) {
     return schema
   }
