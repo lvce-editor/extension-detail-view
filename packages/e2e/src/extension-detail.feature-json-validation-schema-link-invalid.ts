@@ -20,8 +20,7 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await expect(commandsTable).toBeVisible()
   const cell2 = commandsTable.locator('tbody td').nth(1)
   await expect(cell2).toHaveText('...')
+  await expect(cell2).toHaveAttribute('title', 'Invalid link')
   const link = cell2.locator('a')
-  await expect(link).toBeVisible()
-  const href = new URL('...', extensionUri).toString() // TODO should not display as link
-  await expect(link).toHaveAttribute('href', href)
+  await expect(link).toBeHidden()
 }

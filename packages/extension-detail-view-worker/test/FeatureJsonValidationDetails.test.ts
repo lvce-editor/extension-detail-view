@@ -4,8 +4,8 @@ import * as FeatureJsonValidationDetails from '../src/parts/FeatureJsonValidatio
 test('getJsonValidationDetails should return json validation details', async () => {
   const extension = {
     jsonValidation: [
-      { fileMatch: '*.json', url: 'https://example.com/schema.json' },
-      { fileMatch: '*.tsconfig.json', url: 'https://example.com/tsconfig-schema.json' },
+      { fileMatch: '*.json', url: 'schemas/schema.json' },
+      { fileMatch: '*.tsconfig.json', url: 'schemas/tsconfig-schema.json' },
     ],
   }
 
