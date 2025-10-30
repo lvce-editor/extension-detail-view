@@ -1,0 +1,11 @@
+{
+  "id": "test.json-validation-schema-link-javascript",
+  "name": "Test Json Validation",
+  "description": "Test Json Validation",
+  "jsonValidation": [
+    {
+      "fileMatch": "*.test.json",
+      "schema": ""
+    }
+  ]
+}
