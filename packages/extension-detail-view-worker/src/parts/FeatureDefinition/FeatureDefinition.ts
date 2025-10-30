@@ -5,6 +5,6 @@ export interface FeatureDefinition {
   readonly id: string
   readonly getLabel: () => string
   readonly isEnabled: (extension: any) => boolean
-  readonly getDetails: (extension: any, baseUrl: string) => Promise<Partial<ExtensionDetailState>>
+  readonly getDetails: (extension: any, baseUrl: string, locationProtocol: string) => Promise<Partial<ExtensionDetailState>>
   readonly getVirtualDom: (state: ExtensionDetailState) => readonly VirtualDomNode[]
 }
