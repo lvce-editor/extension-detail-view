@@ -20,7 +20,7 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await expect(commandsTable).toBeVisible()
   const cell2 = commandsTable.locator('tbody td').nth(1)
   await expect(cell2).toHaveClass('TableCellInvalid')
-  await expect(cell2).toHaveAttribute('title', 'property must be a string')
+  await expect(cell2).toHaveAttribute('title', 'Property must be a string')
   await expect(cell2).toHaveText('[]')
   const link = cell2.locator('a')
   await expect(link).toBeHidden()
