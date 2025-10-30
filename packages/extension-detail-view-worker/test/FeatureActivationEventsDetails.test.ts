@@ -11,7 +11,18 @@ test('getActivationEventsDetails should return activation events', async () => {
 
   expect(result).toEqual({
     activationEvents: ['onCommand:extension.command', 'onLanguage:javascript'],
-    activationEntries: [],
+    activationEntries: [
+      {
+        errorMessage: '',
+        isValid: true,
+        stringValue: 'onCommand:extension.command',
+      },
+      {
+        errorMessage: '',
+        isValid: true,
+        stringValue: 'onLanguage:javascript',
+      },
+    ],
   })
 })
 
