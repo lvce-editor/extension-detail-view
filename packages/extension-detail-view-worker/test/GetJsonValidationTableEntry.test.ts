@@ -70,7 +70,7 @@ test('returns invalid cells for array validation', () => {
   const validation: unknown = []
   const row = GetJsonValidationTableEntry.getJsonValidationTableEntry(validation as any)
   expect(row).toEqual([
-    { type: TableCellType.Text, value: '[]', className: ClassNames.TableCellInvalid, title: 'property must be a string' },
-    { type: TableCellType.Text, value: '[]', className: ClassNames.TableCellInvalid, title: 'property must be a string' },
+    { type: TableCellType.Text, value: '[]', className: ClassNames.TableCellInvalid },
+    { type: TableCellType.Text, value: '[]', className: ClassNames.TableCellInvalid },
   ])
 })

@@ -23,11 +23,11 @@ test('get json validation table entries with validations', () => {
     rows: [
       [
         {
-          type: TableCellType.Code,
+          type: TableCellType.Text,
           value: ['package.json'],
         },
         {
-          type: TableCellType.Link,
+          type: TableCellType.Text,
           className: 'TableCellInvalid',
         },
       ],
