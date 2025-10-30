@@ -12,6 +12,7 @@ export const getCellLinkVirtualDom = (value: string, { href }: { readonly href: 
     },
     {
       type: VirtualDomElements.A,
+      className: ClassNames.Link,
       href,
       childCount: 1,
     },
