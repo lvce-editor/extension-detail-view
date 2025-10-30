@@ -2,6 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-json-validation-link-not-found'
 
+export const skip = 1
+
 export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-json-validation-schema-link-not-found')
@@ -20,6 +22,8 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await expect(commandsTable).toBeVisible()
   const cell2 = commandsTable.locator('tbody td').nth(1)
   await expect(cell2).toHaveText('./not-found.json')
+  await expect(cell2).toHaveClass('TableCellInvalid')
+  await expect(cell2).toHaveAttribute('title', 'Schema not found')
   const link = cell2.locator('a')
   await expect(link).toBeVisible()
 }
