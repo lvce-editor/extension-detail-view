@@ -33,13 +33,12 @@ test('get json validation table entries with validations', () => {
       ],
       [
         {
-          type: TableCellType.Code,
+          type: TableCellType.Text,
           value: ['composer.json'],
         },
         {
-          type: TableCellType.Link,
-          value: 'composer-schema.json',
-          href: 'https://example.com/composer-schema.json',
+          type: TableCellType.Text,
+          className: 'TableCellInvalid',
         },
       ],
     ],
