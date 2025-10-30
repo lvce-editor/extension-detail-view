@@ -7,14 +7,15 @@ test('get json validation table entry with fileMatch and schema', () => {
     fileMatch: ['package.json'],
     schema: 'https://example.com/schema.json',
   }
-  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
+  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation, 'https://example.com')).toEqual([
     {
       type: TableCellType.Code,
       value: ['package.json'],
     },
     {
-      type: TableCellType.Code,
+      type: TableCellType.Link,
       value: 'https://example.com/schema.json',
+      href: 'https://example.com/schema.json',
     },
   ])
 })
@@ -24,14 +25,15 @@ test('get json validation table entry with multiple fileMatches', () => {
     fileMatch: ['package.json', 'composer.json'],
     schema: 'https://example.com/schema.json',
   }
-  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
+  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation, 'https://example.com')).toEqual([
     {
       type: TableCellType.Code,
       value: ['package.json', 'composer.json'],
     },
     {
-      type: TableCellType.Code,
+      type: TableCellType.Link,
       value: 'https://example.com/schema.json',
+      href: 'https://example.com/schema.json',
     },
   ])
 })
@@ -41,14 +43,15 @@ test('get json validation table entry with empty values', () => {
     fileMatch: [],
     schema: '',
   }
-  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation)).toEqual([
+  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(jsonValidation, 'https://example.com')).toEqual([
     {
       type: TableCellType.Code,
       value: [],
     },
     {
-      type: TableCellType.Code,
+      type: TableCellType.Link,
       value: '',
+      href: 'https://example.com/',
     },
   ])
 })
