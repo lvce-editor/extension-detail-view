@@ -14,6 +14,6 @@ test('getExtensionDetailIconVirtualDom returns correct virtual DOM node', () => 
     draggable: false,
     childCount: 0,
     src: iconSrc,
-    onContextMenu: 'handleImageContextMenu',
+    onContextMenu: 11,
   })
 })
