@@ -3,12 +3,13 @@ import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtu
 import * as GetThemeMarkdown from '../GetThemeMarkdown/GetThemeMarkdown.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
-export const getFeatureDetailsTheme = async (extension: any, baseUrl: string): Promise<Partial<ExtensionDetailState>> => {
+export const getFeatureDetailsTheme = async (extension: any, baseUrl: string, locationProtocol: string): Promise<Partial<ExtensionDetailState>> => {
   // Only generate theme markdown when the selected feature is actually "Theme"
   const { colorThemes, iconThemes, productIconThemes } = extension
   const markdown = GetThemeMarkdown.getThemeMarkdown(colorThemes || [], iconThemes || [], productIconThemes || [])
   const rendered = await RenderMarkdown.renderMarkdown(markdown, {
     baseUrl,
+    locationProtocol,
   })
   const themesMarkdownDom = await getMarkdownVirtualDom(rendered)
   return {

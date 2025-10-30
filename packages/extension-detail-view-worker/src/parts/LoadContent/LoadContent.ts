@@ -44,9 +44,12 @@ export const loadContent = async (
   const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUrl), existsFile(changelogUrl)])
   const readmeContent = hasReadme ? await GetExtensionReadme.loadReadmeContent(readmeUrl) : ExtensionDetailStrings.noReadmeFound()
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
+  const locationProtocol = location.protocol
+
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
     linksExternal: true,
+    locationProtocol,
   })
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
@@ -108,5 +111,6 @@ export const loadContent = async (
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,
+    locationProtocol,
   }
 }

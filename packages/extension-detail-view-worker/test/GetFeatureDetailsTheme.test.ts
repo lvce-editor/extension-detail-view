@@ -24,8 +24,9 @@ test('getFeatureDetailsTheme - extension with themes', async () => {
     productIconThemes: [{ name: 'Product Icons', id: 'product' }],
   }
   const baseUrl: string = 'https://example.com'
+  const protocol = 'test:'
 
-  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)
+  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol)
   expect(result).toEqual({
     themesMarkdownDom: [{ tag: 'div', children: ['Theme content'] }],
   })
@@ -48,8 +49,9 @@ test('getFeatureDetailsTheme - extension without themes', async () => {
 
   const extension: any = {}
   const baseUrl: string = 'https://example.com'
+  const protocol = 'test:'
 
-  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)
+  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol)
   expect(result).toEqual({
     themesMarkdownDom: [],
   })
@@ -76,8 +78,9 @@ test('getFeatureDetailsTheme - extension with null themes', async () => {
     productIconThemes: null,
   }
   const baseUrl: string = 'https://example.com'
+  const protocol = 'test:'
 
-  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)
+  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol)
   expect(result).toEqual({
     themesMarkdownDom: [],
   })
@@ -99,6 +102,7 @@ test('getFeatureDetailsTheme - error propagation', async () => {
     colorThemes: [{ name: 'Dark Theme', id: 'dark' }],
   }
   const baseUrl: string = 'https://example.com'
+  const protocol = 'test:'
 
-  await expect(GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl)).rejects.toThrow('render error')
+  await expect(GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol)).rejects.toThrow('render error')
 })
