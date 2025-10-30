@@ -1,0 +1,6 @@
+{
+  "id": "test.activation-events",
+  "name": "Test Acitivation Events",
+  "description": "Test Activation Events",
+  "activation": ["onWebview:builtin.chat-view"]
+}
