@@ -7,6 +7,11 @@ import * as InputSource from '../InputSource/InputSource.ts'
 export const renderEventListeners = (): readonly DomEventListener[] => {
   return [
     {
+      name: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
+      params: ['handleAdditionalDetailsContextMenu'],
+      preventDefault: true,
+    },
+    {
       name: DomEventListenerFunctions.HandleClickCategory,
       params: ['handleClickCategory', EventExpression.TargetName],
     },
