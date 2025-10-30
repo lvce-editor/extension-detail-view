@@ -1,4 +1,3 @@
-import type { VirtualDomNode } from '@lvce-editor/virtual-dom-worker'
 import type { Cell } from '../Cell/Cell.ts'
 import type { Row } from '../Row/Row.ts'
 import { getSchemaLinkUrl } from '../GetSchemaLinkUrl/GetSchemaLinkUrl.ts'
