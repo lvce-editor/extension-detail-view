@@ -9,6 +9,13 @@ const getActivationEntry = (value: any): ActivationEntry => {
       errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
     }
   }
+  if (!value) {
+    return {
+      isValid: false,
+      stringValue: '',
+      errorMessage: ExtensionDetailStrings.stringMustNotBeEmpty(),
+    }
+  }
   return {
     isValid: true,
     stringValue: value,

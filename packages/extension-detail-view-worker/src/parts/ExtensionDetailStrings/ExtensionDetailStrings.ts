@@ -217,6 +217,10 @@ export const propertyMustBeOfTypeString = (): string => {
   return I18nString.i18nString(UiStrings.PropertyMustBeOfTypeString)
 }
 
+export const stringMustNotBeEmpty = (): string => {
+  return I18nString.i18nString(UiStrings.StringMustNotBeEmpty)
+}
+
 export const schemaNotFound = (): string => {
   return I18nString.i18nString(UiStrings.SchemaNotFound)
 }
