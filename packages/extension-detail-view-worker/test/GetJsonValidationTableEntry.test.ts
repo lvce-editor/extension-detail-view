@@ -71,8 +71,5 @@ test('get json validation table entry with empty values', () => {
 test('returns invalid cells for array validation', () => {
   const validation: unknown = []
   const row = GetJsonValidationTableEntry.getJsonValidationTableEntry(validation as any)
-  expect(row).toEqual([
-    { type: TableCellType.Text, className: ClassNames.TableCellInvalid },
-    { type: TableCellType.Text, className: ClassNames.TableCellInvalid },
-  ])
+  expect(row).toEqual([{ type: TableCellType.Text }, { type: TableCellType.Text, className: ClassNames.TableCellInvalid }])
 })
