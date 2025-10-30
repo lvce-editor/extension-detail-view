@@ -1,4 +1,5 @@
 import { expect, test } from '@jest/globals'
+import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetJsonValidationTableEntry from '../src/parts/GetJsonValidationTableEntry/GetJsonValidationTableEntry.ts'
 import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 
@@ -52,5 +53,14 @@ test('get json validation table entry with empty values', () => {
       type: TableCellType.Text,
       value: '',
     },
+  ])
+})
+
+test('returns invalid cells for array validation', () => {
+  const validation: unknown = []
+  const row = GetJsonValidationTableEntry.getJsonValidationTableEntry(validation as any, '')
+  expect(row).toEqual([
+    { type: TableCellType.Text, value: '[]', className: ClassNames.TableCellInvalid, title: 'property must be a string' },
+    { type: TableCellType.Text, value: '[]', className: ClassNames.TableCellInvalid, title: 'property must be a string' },
   ])
 })
