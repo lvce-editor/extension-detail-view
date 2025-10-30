@@ -28,8 +28,7 @@ test('get json validation table entries with validations', () => {
         },
         {
           type: TableCellType.Link,
-          value: 'https://example.com/schema.json',
-          href: 'https://example.com/schema.json',
+          className: 'TableCellInvalid',
         },
       ],
       [
