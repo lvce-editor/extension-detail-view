@@ -4,6 +4,7 @@ import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetAdditionalDetailsEntryVirtualDom from '../GetAdditionalDetailsEntryVirtualDom/GetAdditionalDetailsEntryVirtualDom.ts'
 import * as GetCategoriesDom from '../GetCategoriesDom/GetCategoriesDom.ts'
 import * as GetMoreInfoVirtualDom from '../GetMoreInfoVirtualDom/GetMoreInfoVirtualDom.ts'
@@ -34,6 +35,7 @@ export const getAdditionalDetailsVirtualDom = (
       className: ClassNames.AdditionalDetails,
       tabIndex: 0,
       childCount: 4,
+      onClick: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
     },
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(firstHeading, entries, GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(
