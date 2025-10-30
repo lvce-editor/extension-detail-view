@@ -40,7 +40,7 @@ test('get json validation table entry with multiple fileMatches', () => {
     },
     {
       type: TableCellType.Link,
-      value: 'https://example.com/schema.json',
+      value: 'schema.json',
       href: 'https://example.com/schema.json',
     },
   ])
