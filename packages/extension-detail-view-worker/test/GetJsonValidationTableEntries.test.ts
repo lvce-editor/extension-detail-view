@@ -23,24 +23,22 @@ test('get json validation table entries with validations', () => {
     rows: [
       [
         {
-          type: TableCellType.Code,
+          type: TableCellType.Text,
           value: ['package.json'],
         },
         {
-          type: TableCellType.Link,
-          value: 'https://example.com/schema.json',
-          href: 'https://example.com/schema.json',
+          type: TableCellType.Text,
+          className: 'TableCellInvalid',
         },
       ],
       [
         {
-          type: TableCellType.Code,
+          type: TableCellType.Text,
           value: ['composer.json'],
         },
         {
-          type: TableCellType.Link,
-          value: 'https://example.com/composer-schema.json',
-          href: 'https://example.com/composer-schema.json',
+          type: TableCellType.Text,
+          className: 'TableCellInvalid',
         },
       ],
     ],

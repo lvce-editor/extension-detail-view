@@ -3,17 +3,22 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-export const getCellLinkVirtualDom = (value: string, { href }: { readonly href: string }): readonly VirtualDomNode[] => {
+export const getCellLinkVirtualDom = (
+  value: string,
+  props?: { readonly className?: string; readonly title?: string; readonly href: string },
+): readonly VirtualDomNode[] => {
+  const tdClassName = props?.className ? `${ClassNames.TableCell} ${props.className}` : ClassNames.TableCell
   return [
     {
       type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
+      className: tdClassName,
       childCount: 1,
+      ...(props?.title ? { title: props.title } : {}),
     },
     {
       type: VirtualDomElements.A,
       className: ClassNames.Link,
-      href,
+      href: props?.href,
       childCount: 1,
     },
     text(value),
