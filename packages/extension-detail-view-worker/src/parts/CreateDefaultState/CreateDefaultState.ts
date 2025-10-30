@@ -62,5 +62,6 @@ export const createDefaultState = (): ExtensionDetailState => {
     showSideBar: true,
     sideBarWidth: 0,
     locationProtocol: '',
+    activationEntries: [],
   }
 }
