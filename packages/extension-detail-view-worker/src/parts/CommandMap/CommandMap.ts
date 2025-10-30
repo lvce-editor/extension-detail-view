@@ -8,6 +8,7 @@ import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import * as GetMenus from '../GetMenus/GetMenus.ts'
+import { handleAdditionalDetailContextMenu } from '../HandleAdditionalDetailContextMenu/HandleAdditionalDetailContextMenu.ts'
 import * as HandleClickCategory from '../HandleClickCategory/HandleClickCategory.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
 import { handleClickEnable } from '../HandleClickEnable/HandleClickEnable.ts'
@@ -41,6 +42,7 @@ export const commandMap = {
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.getMenus': GetMenus.getMenus,
   'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
+  'ExtensionDetail.handleAdditionalDetailsContextMenu': WrapCommand.wrapCommand(handleAdditionalDetailContextMenu),
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
   'ExtensionDetail.handleClickEnable': WrapCommand.wrapCommand(handleClickEnable),
   'ExtensionDetail.handleClickScrollToTop': WrapCommand.wrapCommand(HandleClickScrollToTop.handleClickScrollToTop),
