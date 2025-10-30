@@ -3,7 +3,8 @@ import * as GetJsonValidationTableEntry from '../GetJsonValidationTableEntry/Get
 
 export const getJsonValidationDetails = async (extension: any): Promise<Partial<ExtensionDetailState>> => {
   const validations = extension.jsonValidation || []
-  const rows = validations.map(GetJsonValidationTableEntry.getJsonValidationTableEntry)
+  const extensionUri = extension.uri || ''
+  const rows = validations.map((validation: any) => GetJsonValidationTableEntry.getJsonValidationTableEntry(validation, extensionUri))
   return {
     jsonValidation: rows,
   }

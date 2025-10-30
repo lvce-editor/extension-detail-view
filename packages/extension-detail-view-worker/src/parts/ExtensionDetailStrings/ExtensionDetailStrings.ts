@@ -212,3 +212,11 @@ export const downloadCount = (): string => {
 export const rating = (): string => {
   return I18nString.i18nString(UiStrings.Rating)
 }
+
+export const propertyMustBeOfTypeString = (): string => {
+  return I18nString.i18nString(UiStrings.PropertyMustBeOfTypeString)
+}
+
+export const schemaNotFound = (): string => {
+  return I18nString.i18nString(UiStrings.SchemaNotFound)
+}

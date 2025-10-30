@@ -10,6 +10,7 @@ import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
+import { getPadding, getSideBarWidth } from '../GetPadding/GetPadding.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
@@ -37,14 +38,18 @@ export const loadContent = async (
     throw new ExtensionNotFoundError(id)
   }
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
-  const { badge, description, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name } = headerData
+  const { badge, description, downloadCount, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name, rating } = headerData
   const readmeUrl = Path.join(extensionUri, 'README.md')
   const changelogUrl = Path.join(extensionUri, 'CHANGELOG.md')
   const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUrl), existsFile(changelogUrl)])
   const readmeContent = hasReadme ? await GetExtensionReadme.loadReadmeContent(readmeUrl) : ExtensionDetailStrings.noReadmeFound()
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
+  const locationProtocol = location.protocol
+
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
+    linksExternal: true,
+    locationProtocol,
   })
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
@@ -52,7 +57,6 @@ export const loadContent = async (
   const isBuiltin = extension?.isBuiltin
   const disabled = extension?.disabled
   const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled)
-  const enabledButtons = buttons.filter((button) => button.enabled)
   const size = GetViewletSize.getViewletSize(width)
   const { selectedFeature, selectedTab, readmeScrollTop, changelogScrollTop } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
@@ -66,17 +70,21 @@ export const loadContent = async (
     extensionUri,
     isBuiltin,
   )
+  const padding = getPadding(width)
+  const sideBarWidth = getSideBarWidth(width)
+  const showSideBar = sideBarWidth > 0
   return {
     ...state,
     badge,
     baseUrl,
-    buttons: enabledButtons,
+    buttons,
     categories,
     changelogScrollTop,
     description,
     detailsVirtualDom,
     disabled,
     displaySize,
+    downloadCount,
     extension,
     extensionId,
     extensionUri,
@@ -89,14 +97,20 @@ export const loadContent = async (
     installationEntries,
     marketplaceEntries,
     name,
+    paddingLeft: padding,
+    paddingRight: padding,
+    rating,
     readmeScrollTop,
     readmeUrl,
     resources,
     scrollSource: InputSource.Script,
     scrollToTopButtonEnabled: true,
     selectedTab,
+    showSideBar,
+    sideBarWidth,
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,
+    locationProtocol,
   }
 }
