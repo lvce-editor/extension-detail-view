@@ -19,7 +19,7 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   const commandsTable = Locator('.FeatureContent .Table')
   await expect(commandsTable).toBeVisible()
   const cell2 = commandsTable.locator('tbody td').nth(1)
-  await expect(cell2).toHaveText('')
+  await expect(cell2).toHaveText('[]')
   const link = cell2.locator('a')
   await expect(link).toBeHidden()
 }
