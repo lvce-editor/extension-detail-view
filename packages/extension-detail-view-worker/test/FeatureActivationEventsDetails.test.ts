@@ -1,4 +1,5 @@
 import { test, expect } from '@jest/globals'
+import { activationEvents } from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as FeatureActivationEventsDetails from '../src/parts/FeatureActivationEventsDetails/FeatureActivationEventsDetails.ts'
 
 test('getActivationEventsDetails should return activation events', async () => {
@@ -10,6 +11,7 @@ test('getActivationEventsDetails should return activation events', async () => {
 
   expect(result).toEqual({
     activationEvents: ['onCommand:extension.command', 'onLanguage:javascript'],
+    activationEntries: [],
   })
 })
 
@@ -20,6 +22,7 @@ test('getActivationEventsDetails should handle empty activation events', async (
 
   expect(result).toEqual({
     activationEvents: [],
+    activationEntries: [],
   })
 })
 
@@ -32,5 +35,6 @@ test('getActivationEventsDetails should handle null activation events', async ()
 
   expect(result).toEqual({
     activationEvents: [],
+    activationEntries: [],
   })
 })
