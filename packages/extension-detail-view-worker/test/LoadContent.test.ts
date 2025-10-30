@@ -1,4 +1,4 @@
-import { expect, test } from '@jest/globals'
+import { beforeAll, expect, test } from '@jest/globals'
 import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
@@ -6,6 +6,13 @@ import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorke
 import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+
+beforeAll(() => {
+  // @ts-ignore
+  globalThis.location = {
+    protocol: 'https:',
+  }
+})
 
 test('loadContent - successful load', async () => {
   const mockExtension: any = {

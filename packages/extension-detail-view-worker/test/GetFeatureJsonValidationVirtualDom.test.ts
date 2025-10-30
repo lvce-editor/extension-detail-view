@@ -136,3 +136,21 @@ test('feature json validation virtual dom with empty validation entries', () => 
     },
   ])
 })
+
+test('feature json validation virtual dom with invalid entry shows squiggly and title', () => {
+  const jsonValidation: readonly Row[] = [
+    [
+      { type: TableCellType.Text, value: '[]', className: ClassNames.TableCellInvalid, title: 'property must be a string' },
+      { type: TableCellType.Text, value: '[]', className: ClassNames.TableCellInvalid, title: 'property must be a string' },
+    ],
+  ]
+  const result = GetFeatureJsonValidationVirtualDom.getFeatureJsonValidationVirtualDom(jsonValidation)
+  // last tbody row cells
+  const td1 = result.find(
+    (node) =>
+      node.type === VirtualDomElements.Td &&
+      node.className === `${ClassNames.TableCell} ${ClassNames.TableCellInvalid}` &&
+      (node as any).title === 'property must be a string',
+  )
+  expect(td1).toBeTruthy()
+})

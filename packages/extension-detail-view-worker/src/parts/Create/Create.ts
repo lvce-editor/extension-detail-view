@@ -49,7 +49,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     selectedTab: '',
     settings: [],
     settingsButtonEnabled: false,
-    showAdditionalDetailsBreakpoint: 600,
+    showAdditionalDetailsBreakpoint: 700,
     sizeOnDisk: 0,
     sizeValue: 0,
     tabs: [],
@@ -60,6 +60,9 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     readmeUrl: '',
     paddingLeft: 0,
     paddingRight: 0,
+    showSideBar: true,
+    sideBarWidth: 0,
+    locationProtocol: '',
   }
   ExtensionDetailStates.set(uid, state, state)
 }

@@ -9,12 +9,10 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   const extensionUri = import.meta.resolve('../fixtures/extension-json-validation-invalid')
   await Extension.addWebExtension(extensionUri)
   await ExtensionDetail.open('test.json-validation-test')
-  const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
-  const featureJsonValidation = Locator('.Feature[name="JsonValidation"]')
-  await tabFeatures.click()
+  await ExtensionDetail.selectFeatures()
 
   // act
-  await featureJsonValidation.click()
+  await ExtensionDetail.openFeature('JsonValidation')
 
   // assert
   const heading = Locator('.FeatureContent h1')

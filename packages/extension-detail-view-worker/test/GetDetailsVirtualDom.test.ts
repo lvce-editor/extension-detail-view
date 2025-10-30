@@ -34,6 +34,7 @@ test('getDetailsVirtualDom should return virtual dom with readme content', () =>
     installationEntries,
     marketplaceEntries,
     hasReadme,
+    true,
   )
 
   expect(result[0]).toEqual({
@@ -66,12 +67,13 @@ test('getDetailsVirtualDom should return virtual dom with no readme message', ()
     installationEntries,
     marketplaceEntries,
     hasReadme,
+    true,
   )
 
   expect(result[0]).toEqual({
     type: VirtualDomElements.Div,
     className: ClassNames.ExtensionDetailPanel,
-    childCount: 1,
+    childCount: 2,
     role: AriaRoles.Panel,
   })
   expect(result[1]).toEqual({

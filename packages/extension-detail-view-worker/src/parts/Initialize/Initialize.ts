@@ -3,5 +3,6 @@ import { initializeFileSystemWorker } from '../InitializeFileSystemWorker/Initia
 import { initializeMarkdownWorker } from '../InitializeMarkdownWorker/InitializeMarkdownWorker.ts'
 
 export const initialize = async (): Promise<void> => {
+  // TODO load markdown worker only when needed
   await Promise.all([initializeMarkdownWorker(), initializeFileSystemWorker(), initializeExtensionHostWorker()])
 }

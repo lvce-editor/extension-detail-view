@@ -1,6 +1,7 @@
 export interface HeaderData {
   readonly badge: string
   readonly description: string
+  readonly downloadCount: string
   readonly extension: any
   readonly extensionId: string
   readonly extensionUri: string
@@ -8,4 +9,5 @@ export interface HeaderData {
   readonly hasColorTheme: boolean
   readonly iconSrc: string
   readonly name: string
+  readonly rating: string
 }
