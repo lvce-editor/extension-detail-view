@@ -1,5 +1,4 @@
-import { test, expect } from '@jest/globals'
-import { activationEvents } from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import { expect, test } from '@jest/globals'
 import * as FeatureActivationEventsDetails from '../src/parts/FeatureActivationEventsDetails/FeatureActivationEventsDetails.ts'
 
 test('getActivationEventsDetails should return activation events', async () => {
