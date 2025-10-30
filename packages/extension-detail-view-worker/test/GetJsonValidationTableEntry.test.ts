@@ -49,9 +49,8 @@ test('get json validation table entry with empty values', () => {
       value: [],
     },
     {
-      type: TableCellType.Link,
+      type: TableCellType.Text,
       value: '',
-      href: 'https://example.com/',
     },
   ])
 })

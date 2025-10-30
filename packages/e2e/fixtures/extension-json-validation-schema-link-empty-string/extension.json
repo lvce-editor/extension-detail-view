@@ -1,5 +1,5 @@
 {
-  "id": "test.json-validation-schema-link-javascript",
+  "id": "test.json-validation-schema-link-empty-string",
   "name": "Test Json Validation",
   "description": "Test Json Validation",
   "jsonValidation": [

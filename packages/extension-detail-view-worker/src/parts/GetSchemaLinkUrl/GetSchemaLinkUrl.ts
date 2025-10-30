@@ -3,6 +3,9 @@ const isExternalLink = (schema: string): boolean => {
 }
 
 export const getSchemaLinkUrl = (schema: string, extensionUri: string): string => {
+  if (!schema) {
+    return ''
+  }
   if (isExternalLink(schema)) {
     return schema
   }
