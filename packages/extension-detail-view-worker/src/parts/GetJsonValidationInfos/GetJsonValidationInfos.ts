@@ -9,6 +9,17 @@ export interface JsonValidationInfo {
   readonly fileMatch: string
 }
 
+const existsJson = async (schemaUrl: string): Promise<boolean> => {
+  try {
+    // TODO verify that response header is json
+    const response = await fetch(schemaUrl, {
+      method: 'HEAD',
+    })
+    return response.ok
+  } catch {
+    return false
+  }
+}
 export const getJsonValidationInfos = async (extensionUri: string, validations: readonly any[]): Promise<readonly JsonValidationInfo[]> => {
   const validationInfos: JsonValidationInfo[] = []
   for (const validation of validations) {
@@ -24,13 +35,23 @@ export const getJsonValidationInfos = async (extensionUri: string, validations: 
         fileMatch,
       })
     } else if (schemaLinkUrl) {
-      validationInfos.push({
-        isValid: true,
-        stringValue: schema,
-        schemaUrl: schemaLinkUrl,
-        errorMessage: '',
-        fileMatch,
-      })
+      if (await existsJson(schemaLinkUrl)) {
+        validationInfos.push({
+          isValid: true,
+          stringValue: schema,
+          schemaUrl: schemaLinkUrl,
+          errorMessage: '',
+          fileMatch,
+        })
+      } else {
+        validationInfos.push({
+          isValid: false,
+          stringValue: schema,
+          schemaUrl: schemaLinkUrl,
+          errorMessage: ExtensionDetailStrings.schemaNotFound(),
+          fileMatch,
+        })
+      }
     } else {
       validationInfos.push({
         isValid: true,

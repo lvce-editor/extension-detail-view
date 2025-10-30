@@ -1,46 +1,48 @@
+import type { JsonValidationInfo } from '../GetJsonValidationInfos/GetJsonValidationInfos.ts'
 import type { Row } from '../Row/Row.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
-import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
-import { getLinkOrTextEntry } from '../GetLinkOrTextEntry/GetLinkOrTextEntry.ts'
-import { getSchemaLinkUrl } from '../GetSchemaLinkUrl/GetSchemaLinkUrl.ts'
 import * as TableCellType from '../TableCellType/TableCellType.ts'
 
-const stringify = (value: unknown): string => {
-  try {
-    return JSON.stringify(value)
-  } catch {
-    return String(value)
-  }
-}
-
-export const getJsonValidationTableEntry = (validation: any, extensionUri: string): Row => {
-  const invalidProps = { className: ClassNames.TableCellInvalid, title: ExtensionDetailStrings.propertyMustBeOfTypeString() }
-
-  if (!validation || typeof validation !== 'object' || Array.isArray(validation)) {
-    const shown = stringify(validation)
+export const getJsonValidationTableEntry = (validationInfo: JsonValidationInfo): Row => {
+  const { isValid, errorMessage, schemaUrl, stringValue, fileMatch } = validationInfo
+  if (!isValid && schemaUrl) {
     return [
+      { type: TableCellType.Code, value: fileMatch },
       {
-        type: TableCellType.Text,
-        value: shown,
-        ...invalidProps,
-      },
-      {
-        type: TableCellType.Text,
-        value: shown,
-        ...invalidProps,
+        type: TableCellType.Link,
+        value: stringValue,
+        href: schemaUrl,
+        className: ClassNames.TableCellInvalid,
+        title: errorMessage,
       },
     ]
   }
+  if (!isValid) {
+    return [
+      {
+        type: TableCellType.Text,
+        value: fileMatch,
+      },
+      {
+        type: TableCellType.Text,
+        value: stringValue,
+        className: ClassNames.TableCellInvalid,
+        title: errorMessage,
+      },
+    ]
+  }
+  if (schemaUrl) {
+    return [
+      { type: TableCellType.Code, value: fileMatch },
+      { type: TableCellType.Link, value: stringValue, href: schemaUrl },
+    ]
+  }
 
-  const { fileMatch } = validation
-  const schema = validation.schema ?? validation.url
-  const schemaLinkUrl = getSchemaLinkUrl(schema, extensionUri)
-  const leftCell =
-    typeof fileMatch === 'string' || Array.isArray(fileMatch)
-      ? { type: TableCellType.Code, value: fileMatch }
-      : { type: TableCellType.Text, value: stringify(fileMatch), ...invalidProps }
-  const rightEntry =
-    typeof schema === 'string' ? getLinkOrTextEntry(schema, schemaLinkUrl) : { type: TableCellType.Text, value: stringify(schema), ...invalidProps }
-
-  return [leftCell as any, rightEntry as any]
+  return [
+    { type: TableCellType.Code, value: fileMatch },
+    {
+      type: TableCellType.Text,
+      value: stringValue,
+    },
+  ]
 }
