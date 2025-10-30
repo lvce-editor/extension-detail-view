@@ -34,6 +34,14 @@ export const getJsonValidationInfos = async (extensionUri: string, validations: 
         errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
         fileMatch,
       })
+    } else if (schema && !schemaLinkUrl) {
+      validationInfos.push({
+        isValid: false,
+        stringValue: schema,
+        schemaUrl: schemaLinkUrl,
+        errorMessage: ExtensionDetailStrings.invalidLink(),
+        fileMatch,
+      })
     } else if (schemaLinkUrl) {
       if (await existsJson(schemaLinkUrl)) {
         validationInfos.push({

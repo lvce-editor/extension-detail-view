@@ -220,3 +220,7 @@ export const propertyMustBeOfTypeString = (): string => {
 export const schemaNotFound = (): string => {
   return I18nString.i18nString(UiStrings.SchemaNotFound)
 }
+
+export const invalidLink = (): string => {
+  return I18nString.i18nString(UiStrings.InvalidLink)
+}
