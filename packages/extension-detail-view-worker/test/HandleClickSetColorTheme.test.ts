@@ -54,7 +54,10 @@ test('handleClickSetColorTheme - extension with color theme', async () => {
     commandMap: {},
     invoke: (method: string) => {
       if (method === 'ColorTheme.setColorTheme') {
-        return 'theme1'
+        return ''
+      }
+      if (method === 'ConfirmPrompt.prompt') {
+        return ''
       }
       throw new Error(`unexpected method ${method}`)
     },

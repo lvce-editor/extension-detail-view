@@ -25,12 +25,13 @@ export const getDetailsVirtualDom = (
   installationEntries: readonly MoreInfoEntry[],
   marketplaceEntries: readonly MoreInfoEntry[],
   hasReadme: boolean,
+  showSideBar: boolean,
 ): readonly VirtualDomNode[] => {
   const firstHeading = ExtensionDetailStrings.installation()
   const secondHeading = ExtensionDetailStrings.marketplace()
   const thirdHeading = ExtensionDetailStrings.categories()
   const fourthHeading = ExtensionDetailStrings.resources()
-  const showAdditionalDetails = width > showAdditionalDetailsBreakpoint
+  const showAdditionalDetails = showSideBar
   const childCount = getChildCount(showAdditionalDetails, scrollToTopButtonEnabled)
   const contentDom = hasReadme
     ? sanitizedReadmeHtml
@@ -38,7 +39,7 @@ export const getDetailsVirtualDom = (
         {
           type: VirtualDomElements.Div,
           childCount: 1,
-          className: 'Markdown',
+          className: ClassNames.Markdown,
         },
         text(ExtensionDetailStrings.noReadmeFound()),
       ]

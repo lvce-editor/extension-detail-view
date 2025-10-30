@@ -67,4 +67,6 @@ export interface ExtensionDetailState {
   readonly webViews: readonly WebView[]
   readonly width: number
   readonly showSideBar: boolean
+  readonly sideBarWidth: number
+  readonly locationProtocol: string
 }

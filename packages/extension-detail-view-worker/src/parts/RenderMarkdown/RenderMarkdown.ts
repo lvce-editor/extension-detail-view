@@ -1,6 +1,7 @@
-import * as MarkdownWorker from '../MarkdownWorker/MarkdownWorker.ts'
+import type { MarkdownOptions } from '../MarkdownOptions/MarkdownOptions.ts'
+import { renderMarkdownCached } from '../RenderMarkdownCached/RenderMarkdownCached.ts'
 
-export const renderMarkdown = async (markdown: string, options: { readonly baseUrl?: string } = {}): Promise<string> => {
-  const html = await MarkdownWorker.render(markdown, options)
+export const renderMarkdown = async (markdown: string, options: MarkdownOptions): Promise<string> => {
+  const html = await renderMarkdownCached(markdown, options)
   return html
 }

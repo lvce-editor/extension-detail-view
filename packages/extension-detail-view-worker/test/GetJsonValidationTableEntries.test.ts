@@ -27,8 +27,9 @@ test('get json validation table entries with validations', () => {
           value: ['package.json'],
         },
         {
-          type: TableCellType.Code,
+          type: TableCellType.Link,
           value: 'https://example.com/schema.json',
+          href: 'https://example.com/schema.json',
         },
       ],
       [
@@ -37,8 +38,9 @@ test('get json validation table entries with validations', () => {
           value: ['composer.json'],
         },
         {
-          type: TableCellType.Code,
+          type: TableCellType.Link,
           value: 'https://example.com/composer-schema.json',
+          href: 'https://example.com/composer-schema.json',
         },
       ],
     ],

@@ -9,7 +9,7 @@ test('returns settings button virtual dom when enabled', () => {
     {
       type: VirtualDomElements.Button,
       className: ClassNames.SettingsButton,
-      onClick: 'handleClickSettings',
+      onClick: 6,
       childCount: 1,
       title: 'Settings',
       name: InputName.Settings,

@@ -2,11 +2,12 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.tabs'
 
-export const skip = 1
-
-export const test: Test = async ({ Locator, expect, ExtensionDetail }) => {
+export const test: Test = async ({ Extension, Locator, expect, ExtensionDetail }) => {
   // arrange
-  await ExtensionDetail.open('builtin.theme-ayu')
+  const extensionUri = import.meta.resolve('../fixtures/extension-basics')
+  await Extension.addWebExtension(extensionUri)
+  await ExtensionDetail.open('test.extension-basics')
+
   const tabDetails = Locator('.ExtensionDetailTab[name="Details"]')
   await expect(tabDetails).toBeVisible()
   await expect(tabDetails).toHaveAttribute('aria-selected', 'true')
@@ -17,15 +18,14 @@ export const test: Test = async ({ Locator, expect, ExtensionDetail }) => {
   const markdown = Locator('.Markdown')
   await expect(markdown).toBeVisible()
 
-  // TODO use page object model
   // act
-  await tabFeatures.click()
+  await ExtensionDetail.selectFeatures()
 
   // assert
   await expect(tabFeatures).toHaveAttribute('aria-selected', 'true')
 
   // act
-  await tabChangelog.click()
+  await ExtensionDetail.selectChangelog()
 
   // assert
   await expect(tabChangelog).toHaveAttribute('aria-selected', 'true')

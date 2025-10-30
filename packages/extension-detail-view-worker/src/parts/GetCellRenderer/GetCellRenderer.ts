@@ -1,5 +1,6 @@
 import type { CellRenderer } from '../CellRenderer/CellRenderer.ts'
 import * as GetCellCodeVirtualDom from '../GetCellCodeVirtualDom/GetCellCodeVirtualDom.ts'
+import { getCellLinkVirtualDom } from '../GetCellLinkVirtualDom/GetCellLinkVirtualDom.ts'
 import * as GetCellTextVirtualDom from '../GetCellTextVirtualDom/GetCellTextVirtualDom.ts'
 import * as TableCellType from '../TableCellType/TableCellType.ts'
 
@@ -9,6 +10,8 @@ export const getCellRenderer = (type: number): CellRenderer => {
       return GetCellCodeVirtualDom.getCellCodeVirtualDom
     case TableCellType.Text:
       return GetCellTextVirtualDom.getCellTextVirtualDom
+    case TableCellType.Link:
+      return getCellLinkVirtualDom
     default:
       throw new Error(`unexpected cell type ${type}`)
   }

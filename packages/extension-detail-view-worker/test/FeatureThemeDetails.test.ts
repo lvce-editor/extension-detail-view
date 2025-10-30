@@ -25,7 +25,9 @@ test('getThemeDetails should return theme details with themes', async () => {
   })
   MarkdownWorker.set(mockRpc)
 
-  const result = await FeatureThemeDetails.getThemeDetails(extension, baseUrl)
+  const protocol = 'test:'
+
+  const result = await FeatureThemeDetails.getThemeDetails(extension, baseUrl, protocol)
 
   expect(result).toHaveProperty('themesMarkdownDom')
   expect(Array.isArray(result.themesMarkdownDom)).toBe(true)
@@ -49,7 +51,8 @@ test('getThemeDetails should handle empty themes', async () => {
   })
   MarkdownWorker.set(mockRpc)
 
-  const result = await FeatureThemeDetails.getThemeDetails(extension, baseUrl)
+  const protocol = 'test:'
+  const result = await FeatureThemeDetails.getThemeDetails(extension, baseUrl, protocol)
 
   expect(result).toHaveProperty('themesMarkdownDom')
   expect(Array.isArray(result.themesMarkdownDom)).toBe(true)

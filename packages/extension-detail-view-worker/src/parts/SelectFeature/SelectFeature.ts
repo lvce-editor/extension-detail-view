@@ -5,7 +5,7 @@ export const selectFeature = async (state: ExtensionDetailState, name: string): 
   if (!name) {
     return state
   }
-  const { features, extension, baseUrl } = state
+  const { features, extension, baseUrl, locationProtocol } = state
   const newFeatures = features.map((feature) => {
     if (feature.id === name) {
       return {
@@ -19,7 +19,7 @@ export const selectFeature = async (state: ExtensionDetailState, name: string): 
     }
   })
   const fn = FeatureRegistry.getFeatureDetailsHandler(name)
-  const partialNewState = await fn(extension, baseUrl)
+  const partialNewState = await fn(extension, baseUrl, locationProtocol)
   return {
     ...state,
     ...partialNewState,

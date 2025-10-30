@@ -11,7 +11,9 @@ test.skip('renderMarkdown - basic markdown', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const result = await RenderMarkdown.renderMarkdown('# Hello World')
+  const result = await RenderMarkdown.renderMarkdown('# Hello World', {
+    locationProtocol: 'test:',
+  })
   expect(result).toBe('<p>Hello World</p>')
   expect(invoke).toHaveBeenCalledWith('Markdown.renderMarkdown', '# Hello World', {})
 })
@@ -24,7 +26,7 @@ test.skip('renderMarkdown - with baseUrl option', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const result = await RenderMarkdown.renderMarkdown('# Test', { baseUrl: 'https://example.com' })
+  const result = await RenderMarkdown.renderMarkdown('# Test', { baseUrl: 'https://example.com', locationProtocol: 'test:' })
   expect(result).toBe('<p>Test with baseUrl</p>')
   expect(invoke).toHaveBeenCalledWith('Markdown.renderMarkdown', '# Test', { baseUrl: 'https://example.com' })
 })
@@ -37,7 +39,9 @@ test.skip('renderMarkdown - empty markdown', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const result = await RenderMarkdown.renderMarkdown('')
+  const result = await RenderMarkdown.renderMarkdown('', {
+    locationProtocol: 'test:',
+  })
   expect(result).toBe('')
   expect(invoke).toHaveBeenCalledWith('Markdown.renderMarkdown', '', {})
 })
@@ -52,7 +56,9 @@ test.skip('renderMarkdown - complex markdown', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const result = await RenderMarkdown.renderMarkdown('# Title\n\n**Bold text** and *italic text*')
+  const result = await RenderMarkdown.renderMarkdown('# Title\n\n**Bold text** and *italic text*', {
+    locationProtocol: 'test:',
+  })
   expect(result).toBe('<h1>Title</h1><p><strong>Bold text</strong> and <em>italic text</em></p>')
   expect(invoke).toHaveBeenCalledWith('Markdown.renderMarkdown', '# Title\n\n**Bold text** and *italic text*', {})
 })
@@ -65,7 +71,9 @@ test.skip('renderMarkdown - without options', async () => {
   })
   RendererWorker.set(mockRpc)
 
-  const result = await RenderMarkdown.renderMarkdown('Simple text')
+  const result = await RenderMarkdown.renderMarkdown('Simple text', {
+    locationProtocol: 'test:',
+  })
   expect(result).toBe('<p>Simple text</p>')
   expect(invoke).toHaveBeenCalledWith('Markdown.renderMarkdown', 'Simple text', {})
 })
