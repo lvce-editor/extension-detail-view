@@ -1,3 +1,4 @@
+import type { ActivationEntry } from '../ActivationEntry/ActivationEntry.ts'
 import type { Category } from '../Category/Category.ts'
 import type { Feature } from '../Feature/Feature.ts'
 import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/ExtensionDetailButton.ts'
@@ -39,6 +40,7 @@ export interface ExtensionDetailState {
   readonly importTime: number
   readonly installationEntries: readonly MoreInfoEntry[]
   readonly jsonValidation: readonly Row[]
+  readonly activationEntries: readonly ActivationEntry[]
   readonly marketplaceEntries: readonly MoreInfoEntry[]
   readonly name: string
   readonly paddingLeft: number
