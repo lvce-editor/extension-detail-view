@@ -4,22 +4,32 @@ import * as GetMoreInfoEntryValueClassName from '../GetMoreInfoEntryValueClassNa
 import * as GetMoreInfoEntryValueTag from '../GetMoreInfoEntryValueTag/GetMoreInfoEntryValueTag.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-interface ExtraProps {
-  readonly title?: string
+interface MutableExtraProps {
+  title?: string
+  tabIndex?: number
 }
 
-const getExtraProps = (title: string | undefined): ExtraProps => {
+interface ExtraProps {
+  readonly title?: string
+  readonly tabIndex?: number
+}
+
+const getExtraProps = (title: string | undefined, onClick: string | number | undefined): ExtraProps => {
+  const props: MutableExtraProps = Object.create(null)
   if (title) {
-    return { title }
+    props.title = title
   }
-  return {}
+  if (onClick) {
+    props.tabIndex = 0
+  }
+  return props
 }
 
 export const getMoreInfoEntryValueVirtualDom = (item: MoreInfoEntry): readonly VirtualDomNode[] => {
   const { value, onClick, code, title } = item
   const type = GetMoreInfoEntryValueTag.getMoreInfoEntryValueTag(onClick, code)
   const className = GetMoreInfoEntryValueClassName.getMoreInfoEntryValueClassName(onClick, code)
-  const extraProps = getExtraProps(title)
+  const extraProps = getExtraProps(title, onClick)
   return [
     {
       type,
