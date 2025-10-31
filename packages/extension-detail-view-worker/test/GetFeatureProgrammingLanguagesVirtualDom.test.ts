@@ -28,7 +28,7 @@ test('feature programming languages virtual dom', () => {
       type: 14,
     },
     {
-      childCount: 2,
+      childCount: 5,
       type: 15,
     },
     {
@@ -41,6 +41,7 @@ test('feature programming languages virtual dom', () => {
       text: 'ID',
       type: 12,
     },
+
     {
       childCount: 1,
       className: 'TableHeading',
@@ -48,9 +49,40 @@ test('feature programming languages virtual dom', () => {
     },
     {
       childCount: 0,
-      text: 'Label',
+      text: 'Name',
       type: 12,
     },
+    {
+      childCount: 1,
+      className: 'TableHeading',
+      type: 13,
+    },
+    {
+      childCount: 0,
+      text: 'File Extensions',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'TableHeading',
+      type: 13,
+    },
+    {
+      childCount: 0,
+      text: 'Grammar',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'TableHeading',
+      type: 13,
+    },
+    {
+      childCount: 0,
+      text: 'Snippets',
+      type: 12,
+    },
+
     {
       childCount: 0,
       type: 10,
