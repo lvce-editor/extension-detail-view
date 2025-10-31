@@ -1,5 +1,7 @@
+import { hasProperty } from '../HasProperty/HasProperty.ts'
+
 export const featureProgrammingLanguagesEnabled = (extension: unknown): boolean => {
-  if (!extension || typeof extension !== 'object' || !('programmingLanguages' in extension)) {
+  if (!hasProperty(extension, 'programmingLanguages')) {
     return false
   }
   const { programmingLanguages } = extension
