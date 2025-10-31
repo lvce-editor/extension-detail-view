@@ -1,5 +1,7 @@
+import { hasProperty } from '../HasProperty/HasProperty.ts'
+
 export const featureIconThemeEnabled = (extension: unknown): boolean => {
-  if (!extension || typeof extension !== 'object' || !('iconThemes' in extension)) {
+  if (!hasProperty(extension, 'iconThemes')) {
     return false
   }
   return Array.isArray(extension.iconThemes)

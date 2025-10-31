@@ -1,5 +1,7 @@
+import { hasProperty } from '../HasProperty/HasProperty.ts'
+
 export const featureJsonValidationEnabled = (extension: unknown): boolean => {
-  if (!extension || typeof extension !== 'object' || !('jsonValidation' in extension)) {
+  if (!hasProperty(extension, 'jsonValidation')) {
     return false
   }
   return Array.isArray(extension.jsonValidation)
