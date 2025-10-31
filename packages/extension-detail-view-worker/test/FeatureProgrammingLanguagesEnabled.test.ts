@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import * as FeatureProgrammingLanguagesEnabled from '../src/parts/FeatureProgrammingLanguagesEnabled/FeatureProgrammingLanguagesEnabled.ts'
 
 test('featureProgrammingLanguagesEnabled returns true when extension has programmingLanguages', () => {
-  const extension: unknown = { programmingLanguages: ['javascript', 'typescript'] }
+  const extension: unknown = { languages: ['javascript', 'typescript'] }
   expect(FeatureProgrammingLanguagesEnabled.featureProgrammingLanguagesEnabled(extension)).toBe(true)
 })
 
@@ -22,6 +22,6 @@ test('featureProgrammingLanguagesEnabled returns false when extension is undefin
 })
 
 test('featureProgrammingLanguagesEnabled returns true when programmingLanguages is empty array', () => {
-  const extension: unknown = { programmingLanguages: [] }
+  const extension: unknown = { languages: [] }
   expect(FeatureProgrammingLanguagesEnabled.featureProgrammingLanguagesEnabled(extension)).toBe(true)
 })
