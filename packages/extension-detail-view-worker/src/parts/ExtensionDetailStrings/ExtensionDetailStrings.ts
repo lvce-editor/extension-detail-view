@@ -121,6 +121,22 @@ export const id = (): string => {
   return I18nString.i18nString(UiStrings.Id)
 }
 
+export const name = (): string => {
+  return I18nString.i18nString(UiStrings.Id)
+}
+
+export const fileExtensions = (): string => {
+  return I18nString.i18nString(UiStrings.FileExtensions)
+}
+
+export const grammar = (): string => {
+  return I18nString.i18nString(UiStrings.Grammar)
+}
+
+export const snippets = (): string => {
+  return I18nString.i18nString(UiStrings.Snippets)
+}
+
 export const selector = (): string => {
   return I18nString.i18nString(UiStrings.Selector)
 }
