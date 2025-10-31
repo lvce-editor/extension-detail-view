@@ -38,7 +38,7 @@ test('feature programming languages virtual dom', () => {
     },
     {
       childCount: 0,
-      text: 'File Extensions',
+      text: 'ID',
       type: 12,
     },
 
@@ -49,7 +49,7 @@ test('feature programming languages virtual dom', () => {
     },
     {
       childCount: 0,
-      text: 'ID',
+      text: 'Name',
       type: 12,
     },
     {
