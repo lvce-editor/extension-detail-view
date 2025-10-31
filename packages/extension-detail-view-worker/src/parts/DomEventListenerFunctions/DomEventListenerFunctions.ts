@@ -13,3 +13,4 @@ export const HandleReadmeContextMenu = 12
 export const HandleReadmeScroll = 13
 export const HandleTabsClick = 14
 export const HandleAdditionalDetailContextMenu = 15
+export const HandleReadmeClick = 16
