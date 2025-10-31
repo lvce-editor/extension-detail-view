@@ -1,4 +1,4 @@
-import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Category } from '../Category/Category.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
@@ -6,6 +6,7 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetAdditionalDetailsVirtualDom from '../GetAdditionalDetailsVirtualDom/GetAdditionalDetailsVirtualDom.ts'
+import { getNoReadmeVirtualDom } from '../GetNoReadmeVirtualDom/GetNoReadmeVirtualDom.ts'
 
 const getChildCount = (additionalDetails: boolean, scrollToTopEnabled: boolean): number => {
   let count = 1
@@ -33,16 +34,7 @@ export const getDetailsVirtualDom = (
   const fourthHeading = ExtensionDetailStrings.resources()
   const showAdditionalDetails = showSideBar
   const childCount = getChildCount(showAdditionalDetails, scrollToTopButtonEnabled)
-  const contentDom = hasReadme
-    ? sanitizedReadmeHtml
-    : [
-        {
-          type: VirtualDomElements.Div,
-          childCount: 1,
-          className: ClassNames.Markdown,
-        },
-        text(ExtensionDetailStrings.noReadmeFound()),
-      ]
+  const contentDom = hasReadme ? sanitizedReadmeHtml : getNoReadmeVirtualDom()
   const dom = [
     {
       type: VirtualDomElements.Div,
