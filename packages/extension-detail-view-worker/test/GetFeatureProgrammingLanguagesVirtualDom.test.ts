@@ -11,7 +11,7 @@ test('feature programming languages virtual dom', () => {
     {
       type: VirtualDomElements.Div,
       className: ClassNames.FeatureContent,
-      childCount: 5,
+      childCount: 2,
     },
     {
       type: VirtualDomElements.H1,
@@ -19,7 +19,7 @@ test('feature programming languages virtual dom', () => {
     },
     text('Programming Languages'),
     {
-      childCount: 2,
+      childCount: 5,
       className: 'Table',
       type: 9,
     },
