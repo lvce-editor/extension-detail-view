@@ -11,12 +11,49 @@ test('feature programming languages virtual dom', () => {
     {
       type: VirtualDomElements.Div,
       className: ClassNames.FeatureContent,
-      childCount: 1,
+      childCount: 2,
     },
     {
       type: VirtualDomElements.H1,
       childCount: 1,
     },
     text('Programming Languages'),
+    {
+      childCount: 2,
+      className: 'Table',
+      type: 9,
+    },
+    {
+      childCount: 1,
+      type: 14,
+    },
+    {
+      childCount: 2,
+      type: 15,
+    },
+    {
+      childCount: 1,
+      className: 'TableHeading',
+      type: 13,
+    },
+    {
+      childCount: 0,
+      text: 'ID',
+      type: 12,
+    },
+    {
+      childCount: 1,
+      className: 'TableHeading',
+      type: 13,
+    },
+    {
+      childCount: 0,
+      text: 'Label',
+      type: 12,
+    },
+    {
+      childCount: 0,
+      type: 10,
+    },
   ])
 })
