@@ -19,7 +19,7 @@ test('feature programming languages virtual dom', () => {
     },
     text('Programming Languages'),
     {
-      childCount: 5,
+      childCount: 2,
       className: 'Table',
       type: 9,
     },
@@ -28,7 +28,7 @@ test('feature programming languages virtual dom', () => {
       type: 14,
     },
     {
-      childCount: 2,
+      childCount: 5,
       type: 15,
     },
     {
