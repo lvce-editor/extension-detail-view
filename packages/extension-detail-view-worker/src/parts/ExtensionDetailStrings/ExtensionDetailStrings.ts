@@ -122,7 +122,7 @@ export const id = (): string => {
 }
 
 export const name = (): string => {
-  return I18nString.i18nString(UiStrings.Id)
+  return I18nString.i18nString(UiStrings.Name)
 }
 
 export const fileExtensions = (): string => {
