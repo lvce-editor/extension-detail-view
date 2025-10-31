@@ -1,0 +1,6 @@
+{
+  "id": "test.activation-events-invalid-item-number",
+  "name": "Test Activation Events",
+  "description": "Test Activation Events",
+  "activation": [123]
+}
