@@ -20,6 +20,6 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await expect(list).toBeVisible()
   const item1 = list.locator('li').nth(0)
   await expect(item1).toHaveClass('ListItemInvalid')
-  await expect(item1).toHaveText('{}')
+  await expect(item1).toHaveText('123')
   await expect(item1).toHaveAttribute('title', 'Property must be a string')
 }
