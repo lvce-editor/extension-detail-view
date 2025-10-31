@@ -1,5 +1,7 @@
+import { hasProperty } from '../HasProperty/HasProperty.ts'
+
 export const featureSettingsEnabled = (extension: unknown): boolean => {
-  if (!extension || typeof extension !== 'object' || !('settings' in extension)) {
+  if (!hasProperty(extension, 'settings')) {
     return false
   }
   return Array.isArray(extension.settings)
