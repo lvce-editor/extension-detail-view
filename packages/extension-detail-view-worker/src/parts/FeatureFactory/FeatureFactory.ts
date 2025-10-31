@@ -59,7 +59,7 @@ export const registerAllFeatures = (): void => {
     id: InputName.ProgrammingLanguages,
     getLabel: ExtensionDetailStrings.programmingLanguages,
     isEnabled: FeatureProgrammingLanguagesEnabled.featureProgrammingLanguagesEnabled,
-    getDetails: FeatureProgrammingLanguagesDetails.getProgrammingLanguagesDetails,
+    getDetails: FeatureProgrammingLanguagesDetails.getFeatureDetailsProgrammingLanguages,
     getVirtualDom: FeatureProgrammingLanguagesVirtualDom.getProgrammingLanguagesVirtualDom,
   })
   register({

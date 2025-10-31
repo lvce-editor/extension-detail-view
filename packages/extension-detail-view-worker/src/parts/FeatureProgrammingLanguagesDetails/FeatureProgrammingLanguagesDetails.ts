@@ -1,6 +1,11 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import { getProgrammingLanguageTableEntry } from '../GetProgrammingLanguageTableEntry/GetProgrammingLanguageTableEntry.ts'
 
-export const getProgrammingLanguagesDetails = async (extension: any): Promise<Partial<ExtensionDetailState>> => {
-  // Programming languages feature doesn't need to store additional state
-  return {}
+export const getFeatureDetailsProgrammingLanguages = async (extension: any): Promise<Partial<ExtensionDetailState>> => {
+  // TODO validate them also, to create better types
+  const programmingLanguages = extension.languages || []
+  const rows = programmingLanguages.map(getProgrammingLanguageTableEntry)
+  return {
+    programmingLanguages: rows,
+  }
 }
