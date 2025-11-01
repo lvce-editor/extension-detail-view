@@ -1,3 +1,4 @@
+import { existsJson } from '../ExistsJson/ExistsJson.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import { getSchemaLinkUrl } from '../GetSchemaLinkUrl/GetSchemaLinkUrl.ts'
 
@@ -9,17 +10,6 @@ export interface JsonValidationInfo {
   readonly fileMatch: string
 }
 
-const existsJson = async (schemaUrl: string): Promise<boolean> => {
-  try {
-    // TODO verify that response header is json
-    const response = await fetch(schemaUrl, {
-      method: 'HEAD',
-    })
-    return response.ok
-  } catch {
-    return false
-  }
-}
 export const getJsonValidationInfos = async (extensionUri: string, validations: readonly any[]): Promise<readonly JsonValidationInfo[]> => {
   const validationInfos: JsonValidationInfo[] = []
   for (const validation of validations) {
@@ -43,6 +33,7 @@ export const getJsonValidationInfos = async (extensionUri: string, validations: 
         fileMatch,
       })
     } else if (schemaLinkUrl) {
+      // TODO maybe better use filesystem.exists
       if (await existsJson(schemaLinkUrl)) {
         validationInfos.push({
           isValid: true,
