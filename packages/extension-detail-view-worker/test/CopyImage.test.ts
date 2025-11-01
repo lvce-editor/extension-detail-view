@@ -18,9 +18,7 @@ test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state u
   const mockBlob = { type: 'image/png', size: 4 }
 
   const mockRendererRpc = RendererWorker.registerMockRpc({
-    'ClipBoard.writeImage': () => {
-      /**/
-    },
+    'ClipBoard.writeImage': () => {},
   })
 
   const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
@@ -37,9 +35,7 @@ test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state u
 
   const result = await CopyImage.copyImage(state)
 
-  expect(mockFileSystemRpc.invocations).toEqual([
-    ['FileSystem.readFileAsBlob', 'https://example.com/test/icon.png'],
-  ])
+  expect(mockFileSystemRpc.invocations).toEqual([['FileSystem.readFileAsBlob', 'https://example.com/test/icon.png']])
   expect(mockRendererRpc.invocations).toEqual([['ClipBoard.writeImage', mockBlob]])
   expect(result).toBe(state)
 })
