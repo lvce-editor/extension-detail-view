@@ -75,7 +75,6 @@ test('getSideBarWidth: 800 and above', () => {
 
 test('getSideBarWidth: returns Math.max of formula and width/4', () => {
   const width500: number = GetPadding.getSideBarWidth(500)
-  const width600: number = GetPadding.getSideBarWidth(600)
   const width1000: number = GetPadding.getSideBarWidth(1000)
 
   const formula500: number = 175 + Math.round(20 * (500 / 100))
