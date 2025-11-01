@@ -1,7 +1,7 @@
 import type { ActivationEntry } from '../ActivationEntry/ActivationEntry.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 
-const getActivationEntry = (value: any): ActivationEntry => {
+const getActivationEntry = (value: unknown): ActivationEntry => {
   if (typeof value !== 'string') {
     return {
       isValid: false,
@@ -23,6 +23,6 @@ const getActivationEntry = (value: any): ActivationEntry => {
   }
 }
 
-export const getActivationEntries = (activation: readonly any[]): readonly ActivationEntry[] => {
+export const getActivationEntries = (activation: readonly unknown[]): readonly ActivationEntry[] => {
   return activation.map(getActivationEntry)
 }
