@@ -73,4 +73,3 @@ test('getCellCheckMarkVirtualDom structure is correct for unchecked state', () =
   })
   expect(result[1]).toEqual(text('no'))
 })
-

@@ -81,4 +81,3 @@ test('renderCss handles zero values correctly', () => {
   expect(css).toContain('--ExtensionDetailPaddingRight: 0px')
   expect(css).toContain('--ExtensionDetailSideBarWidth: 0px')
 })
-
