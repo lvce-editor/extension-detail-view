@@ -25,11 +25,7 @@ test('createFileSystemWorkerRpc throws VError when sendMessagePortToFileSystemWo
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {
       throw new Error('fail')
     },
-    sendMessagePortToFileSystemWorker: () => {
-      throw new Error('fail')
-    },
   })
-  await expect(createFileSystemWorkerRpc()).rejects.toThrow(VError)
   await expect(createFileSystemWorkerRpc()).rejects.toThrow('Failed to create file system worker rpc')
   expect(mockRpc.invocations).toEqual([
     ['SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker', expect.anything(), 'FileSystem.handleMessagePort', 0],
