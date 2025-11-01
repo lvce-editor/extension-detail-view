@@ -22,6 +22,7 @@ import * as HandleExtensionsStatusUpdate from '../HandleExtensionsStatusUpdate/H
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageContextMenu.ts'
 import * as HandleReadmeClick from '../HandleReadmeClick/HandleReadmeClick.ts'
+import { handleReadmeContextMenu } from '../HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
 import * as HandleScroll from '../HandleScroll/HandleScroll.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
@@ -43,6 +44,7 @@ export const commandMap = {
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.getMenus': GetMenus.getMenus,
   'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
+  'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
   'ExtensionDetail.handleAdditionalDetailsContextMenu': WrapCommand.wrapCommand(handleAdditionalDetailContextMenu),
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
   'ExtensionDetail.handleClickEnable': WrapCommand.wrapCommand(handleClickEnable),
