@@ -12,7 +12,7 @@ test('createFileSystemWorkerRpc creates RPC successfully', async () => {
   const rpc = await createFileSystemWorkerRpc()
   expect(rpc).toBeDefined()
   await rpc.dispose()
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRpc.invocations).toEqual([['sendMessagePortToFileSystemWorker', expect.any(Object), 0]])
 })
 
 test('createFileSystemWorkerRpc throws VError when sendMessagePortToFileSystemWorker fails', async () => {
@@ -23,5 +23,5 @@ test('createFileSystemWorkerRpc throws VError when sendMessagePortToFileSystemWo
   })
   await expect(createFileSystemWorkerRpc()).rejects.toThrow(VError)
   await expect(createFileSystemWorkerRpc()).rejects.toThrow('Failed to create file system worker rpc')
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRpc.invocations).toEqual([['sendMessagePortToFileSystemWorker', expect.any(Object), 0]])
 })

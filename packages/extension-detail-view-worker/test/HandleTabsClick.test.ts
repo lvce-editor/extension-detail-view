@@ -39,7 +39,7 @@ test.skip('handles tabs click - details tab', async () => {
 
   expect(result.selectedTab).toBe('Details')
   expect(result).not.toBe(state) // Should return a new state object
-  expect(mockRendererRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRendererRpc.invocations).toEqual([['FileSystem.readFile', expect.any(String)]])
 })
 
 test.skip('handles tabs click - features tab', async () => {
@@ -120,7 +120,7 @@ test.skip('handles tabs click - changelog tab', async () => {
 
   expect(result.selectedTab).toBe('Changelog')
   expect(result).not.toBe(state) // Should return a new state object
-  expect(mockRendererRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRendererRpc.invocations).toEqual([['FileSystem.readFile', expect.any(String)]])
 })
 
 test.skip('handles tabs click - unknown tab', async () => {

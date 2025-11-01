@@ -14,7 +14,7 @@ test.skip('handleClickEnable calls enableExtension with extensionId and returns 
   const result = await HandleClickEnable.handleClickEnable(state)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRpc.invocations).toEqual([['ExtensionManagement.enable', state.extension.id]])
 })
 
 test.skip('handleClickEnable handles error from enableExtension', async () => {

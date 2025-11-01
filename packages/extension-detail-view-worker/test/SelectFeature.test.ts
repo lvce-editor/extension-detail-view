@@ -63,7 +63,7 @@ test.skip('should select feature and update state', async () => {
     { id: 'Settings', label: 'Settings', selected: false },
     { id: 'Theme', label: 'Theme', selected: false },
   ])
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRpc.invocations).toEqual([['FileSystem.readDirWithFileTypes', expect.any(String)]])
 })
 
 test.skip('should call feature details handler and merge results', async () => {
@@ -91,7 +91,7 @@ test.skip('should call feature details handler and merge results', async () => {
     { id: 'Settings', label: 'Settings', selected: false },
   ])
   expect(result.commands).toBeDefined()
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRpc.invocations).toEqual([['FileSystem.readDirWithFileTypes', expect.any(String)]])
 })
 
 test('should handle unknown feature gracefully', async () => {

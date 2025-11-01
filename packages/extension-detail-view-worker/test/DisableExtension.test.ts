@@ -20,5 +20,5 @@ test('handles error during disable', async () => {
     },
   })
   await expect(DisableExtension.disableExtension('test-id')).rejects.toThrow('Failed to disable extension')
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRpc.invocations).toEqual([['ExtensionManagement.disable', 'test-id']])
 })

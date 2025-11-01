@@ -38,5 +38,5 @@ test('handle click uninstall - returns state unchanged', async () => {
   const result = await HandleClickUninstall.handleClickUninstall(state)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRpc.invocations).toEqual([['ExtensionManagement.uninstall', 'test-id']])
 })

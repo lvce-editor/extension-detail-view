@@ -19,7 +19,7 @@ test('handleClickCategory should call openExtensionSearch with category search',
   const result = await HandleClickCategory.handleClickCategory(state, categoryId)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRpc.invocations).toEqual([['SideBar.openViewlet', 'Extensions'], ['Extensions.handleInput', `@category:"${categoryId}"`]])
 })
 
 test('handleClickCategory should return state unchanged when categoryId is empty', async () => {

@@ -23,5 +23,5 @@ test('handles error during set color theme', async () => {
   })
 
   await expect(SetColorTheme.setColorTheme('test-id')).rejects.toThrow('Failed to set color theme')
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockRpc.invocations).toEqual([['ColorTheme.setColorTheme', 'test-id']])
 })
