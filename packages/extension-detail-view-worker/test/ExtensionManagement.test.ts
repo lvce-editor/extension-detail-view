@@ -12,7 +12,7 @@ test('getExtension - successful getExtension', async () => {
   })
   const result: any = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
   expect(result).toEqual(mockExtension)
-  expect(mockRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-id', PlatformType.Electron]])
+  expect(mockRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-id']])
 })
 
 test('getExtension - fallback to getAllExtensions when getExtension fails', async () => {
@@ -31,7 +31,7 @@ test('getExtension - fallback to getAllExtensions when getExtension fails', asyn
   const result: any = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
   expect(result).toEqual({ id: 'test-id', name: 'Test Extension' })
   expect(mockRpc.invocations).toEqual([
-    ['ExtensionManagement.getExtension', 'test-id', PlatformType.Electron],
+    ['ExtensionManagement.getExtension', 'test-id'],
     ['ExtensionManagement.getAllExtensions'],
   ])
 })
@@ -44,7 +44,7 @@ test('getExtension - web platform returns undefined', async () => {
   })
   const result: any = await ExtensionManagement.getExtension('test-id', PlatformType.Web)
   expect(result).toBeUndefined()
-  expect(mockRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-id', PlatformType.Web]])
+  expect(mockRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-id']])
 })
 
 test('getExtension - not found in fallback', async () => {
@@ -59,7 +59,7 @@ test('getExtension - not found in fallback', async () => {
   const result: any = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
   expect(result).toBeUndefined()
   expect(mockRpc.invocations).toEqual([
-    ['ExtensionManagement.getExtension', 'test-id', PlatformType.Electron],
+    ['ExtensionManagement.getExtension', 'test-id'],
     ['ExtensionManagement.getAllExtensions'],
   ])
 })
@@ -75,7 +75,7 @@ test('getExtension - both getExtension and getAllExtensions fail', async () => {
   })
   await expect(ExtensionManagement.getExtension('test-id', PlatformType.Electron)).rejects.toThrow('getAllExtensions failed')
   expect(mockRpc.invocations).toEqual([
-    ['ExtensionManagement.getExtension', 'test-id', PlatformType.Electron],
+    ['ExtensionManagement.getExtension', 'test-id'],
     ['ExtensionManagement.getAllExtensions'],
   ])
 })
@@ -96,7 +96,7 @@ test('getExtension - remote platform with fallback', async () => {
   const result: any = await ExtensionManagement.getExtension('other-id', PlatformType.Remote)
   expect(result).toEqual({ id: 'other-id', name: 'Other Extension' })
   expect(mockRpc.invocations).toEqual([
-    ['ExtensionManagement.getExtension', 'other-id', PlatformType.Remote],
+    ['ExtensionManagement.getExtension', 'other-id'],
     ['ExtensionManagement.getAllExtensions'],
   ])
 })
