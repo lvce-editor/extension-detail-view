@@ -33,7 +33,7 @@ export const getWebViewVirtualDom = (webView: WebView): readonly VirtualDomNode[
     {
       type: VirtualDomElements.Div,
       className: ClassNames.FeatureWebView,
-      childCount: 5,
+      childCount: 4,
     },
     item,
     heading,
