@@ -138,3 +138,4 @@ test('getCellCodeListVirtualDom handles special characters in list items', () =>
   expect(result[4]).toEqual(text('item_2'))
   expect(result[6]).toEqual(text('item.3'))
 })
+

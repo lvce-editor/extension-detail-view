@@ -92,7 +92,7 @@ test('loadContent - successful load', async () => {
   expect(result.displaySize).toBeDefined()
   expect(result.sizeValue).toBeDefined()
   expect(result.hasColorTheme).toBeDefined()
-  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension', 1]])
+  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension']])
 })
 
 test('loadContent - extension not found', async () => {
@@ -108,7 +108,7 @@ test('loadContent - extension not found', async () => {
   }
 
   await expect(LoadContent.loadContent(state, 1, {})).rejects.toThrow('extension not found: non-existent-extension')
-  expect(mockRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'non-existent-extension', 1]])
+  expect(mockRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'non-existent-extension']])
 })
 
 test('loadContent - with builtin extension', async () => {
@@ -170,7 +170,7 @@ test('loadContent - with builtin extension', async () => {
 
   // expect(result.isBuiltin).toBe(true)
   expect(result.extension).toEqual(mockExtension)
-  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'builtin-extension', 1]])
+  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'builtin-extension']])
 })
 
 test('loadContent - with saved state', async () => {
@@ -237,7 +237,7 @@ test('loadContent - with saved state', async () => {
 
   expect(result.selectedFeature).toBe('')
   expect(result.selectedTab).toBe('details')
-  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension', 1]])
+  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension']])
 })
 
 test('loadContent - with different platform', async () => {
@@ -299,5 +299,5 @@ test('loadContent - with different platform', async () => {
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
   expect(result.extension).toEqual(mockExtension)
-  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension', 1]])
+  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension']])
 })

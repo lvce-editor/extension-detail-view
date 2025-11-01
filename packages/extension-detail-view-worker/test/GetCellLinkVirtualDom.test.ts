@@ -126,3 +126,4 @@ test('getCellLinkVirtualDom does not include title when not provided', () => {
 
   expect(result[0].title).toBeUndefined()
 })
+
