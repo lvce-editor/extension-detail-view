@@ -1,5 +1,4 @@
 import { expect, test } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
@@ -16,16 +15,11 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
     },
   })
 
-  const mockFileSystemRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'FileSystem.readFile') {
-        return 'README CONTENT'
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.readFile': () => {
+      return 'README CONTENT'
     },
   })
-  FileSystemWorker.set(mockFileSystemRpc)
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.render': () => {
@@ -53,6 +47,7 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
   expect(result.selectedTab).toBe(InputName.Details)
   expect(result.detailsVirtualDom).toEqual(expectedDom)
   expect(mockRendererRpc.invocations).toEqual([])
+  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations).toEqual([
     ['Markdown.render', expect.any(String), expect.any(Object)],
     ['Markdown.getVirtualDom', expect.any(String)],
