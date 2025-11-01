@@ -11,7 +11,7 @@ test('should initialize both workers successfully', async () => {
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {
       /**/
     },
-    sendMessagePortToExtensionHostWorker: () => {
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': () => {
       /**/
     },
   })
@@ -19,7 +19,7 @@ test('should initialize both workers successfully', async () => {
   expect(mockRpc.invocations).toEqual([
     ['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.any(Object), 0],
     ['SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker', expect.any(Object), 0],
-    ['sendMessagePortToExtensionHostWorker', expect.any(Object), 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker', expect.any(Object), 0],
   ])
   const fileSystemWorkerRpc = get(RpcId.FileSystemWorker)
   expect(fileSystemWorkerRpc).toBeDefined()
