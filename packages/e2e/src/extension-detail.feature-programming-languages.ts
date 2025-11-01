@@ -39,5 +39,5 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   const cell4 = tableCells.nth(3)
   await expect(cell4).toHaveText('yes')
   const cell5 = tableCells.nth(4)
-  await expect(cell5).toHaveText('')
+  await expect(cell5).toHaveText('no')
 }

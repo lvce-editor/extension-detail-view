@@ -4,6 +4,7 @@ import * as TableCellType from '../TableCellType/TableCellType.ts'
 export const getProgrammingLanguageTableEntry = (programmingLanguage: any): Row => {
   const { id, configuration, extensions } = programmingLanguage
   const name = '' // TODO
+  const snippets = '' // TODO
   return [
     {
       type: TableCellType.Text,
@@ -22,6 +23,11 @@ export const getProgrammingLanguageTableEntry = (programmingLanguage: any): Row 
       type: TableCellType.CheckMark,
       value: '',
       checked: Boolean(configuration),
+    },
+    {
+      type: TableCellType.CheckMark,
+      value: '',
+      checked: Boolean(snippets),
     },
   ]
 }
