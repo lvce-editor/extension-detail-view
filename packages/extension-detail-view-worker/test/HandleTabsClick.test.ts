@@ -9,16 +9,11 @@ import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test.skip('handles tabs click - details tab', async () => {
-  const mockRendererRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'FileSystem.readFile') {
-        return '<h1>Test Details</h1>'
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRendererRpc = RendererWorker.registerMockRpc({
+    'FileSystem.readFile': () => {
+      return '<h1>Test Details</h1>'
     },
   })
-  RendererWorker.set(mockRendererRpc)
 
   const mockMarkdownRpc = MockRpc.create({
     commandMap: {},
@@ -44,19 +39,14 @@ test.skip('handles tabs click - details tab', async () => {
 
   expect(result.selectedTab).toBe('Details')
   expect(result).not.toBe(state) // Should return a new state object
+  expect(mockRendererRpc.invocations).toEqual([['FileSystem.readFile', expect.any(String)]])
 })
 
 test.skip('handles tabs click - features tab', async () => {
   // Register features first
   registerAllFeatures()
 
-  const mockRendererRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
-  RendererWorker.set(mockRendererRpc)
+  const mockRendererRpc = RendererWorker.registerMockRpc({})
 
   const mockMarkdownRpc = MockRpc.create({
     commandMap: {},
@@ -89,22 +79,18 @@ test.skip('handles tabs click - features tab', async () => {
 
   expect(result.selectedTab).toBe('Features')
   expect(result).not.toBe(state) // Should return a new state object
+  expect(mockRendererRpc.invocations).toEqual([])
 
   // Clean up
   clearRegistry()
 })
 
 test.skip('handles tabs click - changelog tab', async () => {
-  const mockRendererRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'FileSystem.readFile') {
-        return '# Changelog\n\nVersion 1.0.0'
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRendererRpc = RendererWorker.registerMockRpc({
+    'FileSystem.readFile': () => {
+      return '# Changelog\n\nVersion 1.0.0'
     },
   })
-  RendererWorker.set(mockRendererRpc)
 
   const mockMarkdownRpc = MockRpc.create({
     commandMap: {},
@@ -134,16 +120,11 @@ test.skip('handles tabs click - changelog tab', async () => {
 
   expect(result.selectedTab).toBe('Changelog')
   expect(result).not.toBe(state) // Should return a new state object
+  expect(mockRendererRpc.invocations).toEqual([['FileSystem.readFile', expect.any(String)]])
 })
 
 test.skip('handles tabs click - unknown tab', async () => {
-  const mockRendererRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
-  RendererWorker.set(mockRendererRpc)
+  const mockRendererRpc = RendererWorker.registerMockRpc({})
 
   const mockMarkdownRpc = MockRpc.create({
     commandMap: {},
@@ -164,4 +145,5 @@ test.skip('handles tabs click - unknown tab', async () => {
   // The default handler returns the state unchanged
   expect(result.selectedTab).toBe('Details')
   expect(result).toBe(state) // Should return the same state object
+  expect(mockRendererRpc.invocations).toEqual([])
 })
