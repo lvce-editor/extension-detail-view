@@ -20,4 +20,5 @@ test('handles error during uninstall', async () => {
     },
   })
   await expect(UninstallExtension.uninstallExtension('test-id')).rejects.toThrow('Failed to uninstall extension')
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })

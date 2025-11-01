@@ -18,6 +18,7 @@ test('should return same state when name is empty', async () => {
   const result = await selectFeature(initialState, '')
 
   expect(result).toBe(initialState)
+  expect(mockRpc.invocations).toEqual([])
 })
 
 test('should return same state when name is null', async () => {
@@ -34,6 +35,7 @@ test('should return same state when name is null', async () => {
   const result = await selectFeature(initialState, null as any)
 
   expect(result).toBe(initialState)
+  expect(mockRpc.invocations).toEqual([])
 })
 
 test.skip('should select feature and update state', async () => {
@@ -61,6 +63,7 @@ test.skip('should select feature and update state', async () => {
     { id: 'Settings', label: 'Settings', selected: false },
     { id: 'Theme', label: 'Theme', selected: false },
   ])
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test.skip('should call feature details handler and merge results', async () => {
@@ -88,6 +91,7 @@ test.skip('should call feature details handler and merge results', async () => {
     { id: 'Settings', label: 'Settings', selected: false },
   ])
   expect(result.commands).toBeDefined()
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('should handle unknown feature gracefully', async () => {
@@ -102,4 +106,5 @@ test('should handle unknown feature gracefully', async () => {
   }
 
   await expect(selectFeature(initialState, 'UnknownFeature')).rejects.toThrow('unknown feature: UnknownFeature')
+  expect(mockRpc.invocations).toEqual([])
 })

@@ -14,11 +14,12 @@ test.skip('handleClickDisable calls disableExtension with extensionId and return
   const result = await handleClickDisable(state)
 
   expect(result).toBe(state)
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test.skip('handleClickDisable handles error from disableExtension', async () => {
   const error = new Error('Failed to disable extension')
-  const mockRpc = RendererWorker.registerMockRpc({
+  RendererWorker.registerMockRpc({
     'ExtensionManagement.disable': () => {
       throw error
     },

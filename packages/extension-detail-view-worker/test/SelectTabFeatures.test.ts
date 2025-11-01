@@ -64,6 +64,7 @@ test('should select features tab and first feature when selectedFeature is null'
 
   expect(result.selectedTab).toBe(InputName.Features)
   expect(result.selectedFeature).toBe('MockFeature')
+  expect(mockRpc.invocations).toEqual([])
 })
 
 test('should use existing selectedFeature when provided', async () => {
@@ -122,6 +123,7 @@ test('should use existing selectedFeature when provided', async () => {
 
   expect(result.selectedTab).toBe(InputName.Features)
   expect(result.selectedFeature).toBe('MockFeature')
+  expect(mockRpc.invocations).toEqual([])
 })
 
 test('should merge feature details handler results', async () => {
@@ -178,6 +180,7 @@ test('should merge feature details handler results', async () => {
   expect(result.detailsVirtualDom).toEqual([])
   expect(result.commands).toEqual([])
   expect(result.description).toBe('')
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('should handle empty features array', async () => {
@@ -222,4 +225,5 @@ test('should handle empty features array', async () => {
 
   expect(result.selectedTab).toBe(InputName.Features)
   expect(result.selectedFeature).toBe('MockFeature')
+  expect(mockRpc.invocations).toEqual([])
 })

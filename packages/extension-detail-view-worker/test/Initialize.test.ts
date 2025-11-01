@@ -16,6 +16,7 @@ test('should initialize both workers successfully', async () => {
     },
   })
   await initialize()
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
   const fileSystemWorkerRpc = get(RpcId.FileSystemWorker)
   expect(fileSystemWorkerRpc).toBeDefined()
   await fileSystemWorkerRpc.dispose()
@@ -38,4 +39,5 @@ test('should handle initialization errors', async () => {
   })
 
   await expect(initialize()).rejects.toThrow('Failed to create markdown worker rpc')
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })

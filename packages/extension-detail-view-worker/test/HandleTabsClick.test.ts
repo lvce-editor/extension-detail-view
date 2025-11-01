@@ -79,6 +79,7 @@ test.skip('handles tabs click - features tab', async () => {
 
   expect(result.selectedTab).toBe('Features')
   expect(result).not.toBe(state) // Should return a new state object
+  expect(mockRendererRpc.invocations).toEqual([])
 
   // Clean up
   clearRegistry()
@@ -144,4 +145,5 @@ test.skip('handles tabs click - unknown tab', async () => {
   // The default handler returns the state unchanged
   expect(result.selectedTab).toBe('Details')
   expect(result).toBe(state) // Should return the same state object
+  expect(mockRendererRpc.invocations).toEqual([])
 })

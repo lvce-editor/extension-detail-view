@@ -57,4 +57,5 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
 
   expect(result.selectedTab).toBe(InputName.Details)
   expect(result.detailsVirtualDom).toEqual(expectedDom)
+  expect(mockRendererRpc.invocations).toEqual([])
 })

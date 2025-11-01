@@ -23,6 +23,7 @@ test.skip('readFile propagates errors', async () => {
   })
 
   await expect(FileSystem.readFile('/test/file.txt')).rejects.toThrow('read error')
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test.skip('readFile handles empty file', async () => {
@@ -34,4 +35,5 @@ test.skip('readFile handles empty file', async () => {
 
   const content = await FileSystem.readFile('/test/empty.txt')
   expect(content).toBe('')
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })

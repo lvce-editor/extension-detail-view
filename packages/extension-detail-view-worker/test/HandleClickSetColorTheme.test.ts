@@ -67,6 +67,7 @@ test('handleClickSetColorTheme - extension with color theme', async () => {
 
   const result = await HandleClickSetColorTheme.handleClickSetColorTheme(state)
   expect(result).toBe(state)
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('handleClickSetColorTheme - extension without color theme', async () => {
@@ -79,6 +80,7 @@ test('handleClickSetColorTheme - extension without color theme', async () => {
 
   const result = await HandleClickSetColorTheme.handleClickSetColorTheme(state)
   expect(result).toBe(state)
+  expect(mockRpc.invocations).toEqual([])
 })
 
 test('handleClickSetColorTheme - extension with empty color themes', async () => {
@@ -93,4 +95,5 @@ test('handleClickSetColorTheme - extension with empty color themes', async () =>
 
   const result = await HandleClickSetColorTheme.handleClickSetColorTheme(state)
   expect(result).toBe(state)
+  expect(mockRpc.invocations).toEqual([])
 })

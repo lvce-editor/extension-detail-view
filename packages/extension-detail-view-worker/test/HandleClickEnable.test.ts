@@ -14,11 +14,12 @@ test.skip('handleClickEnable calls enableExtension with extensionId and returns 
   const result = await HandleClickEnable.handleClickEnable(state)
 
   expect(result).toBe(state)
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test.skip('handleClickEnable handles error from enableExtension', async () => {
   const error = new Error('Failed to enable extension')
-  const mockRpc = RendererWorker.registerMockRpc({
+  RendererWorker.registerMockRpc({
     'ExtensionManagement.enable': () => {
       throw error
     },
