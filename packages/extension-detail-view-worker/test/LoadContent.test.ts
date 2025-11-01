@@ -88,6 +88,7 @@ test('loadContent - successful load', async () => {
   expect(result.sizeValue).toBeDefined()
   expect(result.hasColorTheme).toBeDefined()
   expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension']])
+  expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('loadContent - extension not found', async () => {
@@ -139,7 +140,7 @@ test('loadContent - with builtin extension', async () => {
   })
   FileSystemWorker.set(mockFileSystemRpc)
 
-  MarkdownWorker.registerMockRpc({
+  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.render': () => {
       return '<h1>Builtin README Content</h1>'
     },
@@ -161,6 +162,7 @@ test('loadContent - with builtin extension', async () => {
   // expect(result.isBuiltin).toBe(true)
   expect(result.extension).toEqual(mockExtension)
   expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'builtin-extension']])
+  expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('loadContent - with saved state', async () => {
