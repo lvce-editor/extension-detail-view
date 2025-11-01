@@ -48,22 +48,17 @@ test('loadContent - successful load', async () => {
   })
   FileSystemWorker.set(mockFileSystemRpc)
 
-  const mockMarkdownRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.render') {
-        return '<h1>Test README Content</h1>'
-      }
-      if (method === 'Markdown.getMarkdownDom') {
-        return [{ type: 'h1', children: ['Test README Content'] }]
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return [{ type: 'h1', children: ['Test README Content'] }]
-      }
-      throw new Error(`unexpected method ${method}`)
+  MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return '<h1>Test README Content</h1>'
+    },
+    'Markdown.getMarkdownDom': () => {
+      return [{ type: 'h1', children: ['Test README Content'] }]
+    },
+    'Markdown.getVirtualDom': () => {
+      return [{ type: 'h1', children: ['Test README Content'] }]
     },
   })
-  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -144,22 +139,17 @@ test('loadContent - with builtin extension', async () => {
   })
   FileSystemWorker.set(mockFileSystemRpc)
 
-  const mockMarkdownRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.render') {
-        return '<h1>Builtin README Content</h1>'
-      }
-      if (method === 'Markdown.getMarkdownDom') {
-        return [{ type: 'h1', children: ['Builtin README Content'] }]
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return [{ type: 'h1', children: ['Builtin README Content'] }]
-      }
-      throw new Error(`unexpected method ${method}`)
+  MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return '<h1>Builtin README Content</h1>'
+    },
+    'Markdown.getMarkdownDom': () => {
+      return [{ type: 'h1', children: ['Builtin README Content'] }]
+    },
+    'Markdown.getVirtualDom': () => {
+      return [{ type: 'h1', children: ['Builtin README Content'] }]
     },
   })
-  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -206,22 +196,17 @@ test('loadContent - with saved state', async () => {
   })
   FileSystemWorker.set(mockFileSystemRpc)
 
-  const mockMarkdownRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.render') {
-        return '<h1>Test README Content</h1>'
-      }
-      if (method === 'Markdown.getMarkdownDom') {
-        return [{ type: 'h1', children: ['Test README Content'] }]
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return [{ type: 'h1', children: ['Test README Content'] }]
-      }
-      throw new Error(`unexpected method ${method}`)
+  MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return '<h1>Test README Content</h1>'
+    },
+    'Markdown.getMarkdownDom': () => {
+      return [{ type: 'h1', children: ['Test README Content'] }]
+    },
+    'Markdown.getVirtualDom': () => {
+      return [{ type: 'h1', children: ['Test README Content'] }]
     },
   })
-  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -274,22 +259,17 @@ test('loadContent - with different platform', async () => {
   })
   FileSystemWorker.set(mockFileSystemRpc)
 
-  const mockMarkdownRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.render') {
-        return '<h1>Test README Content</h1>'
-      }
-      if (method === 'Markdown.getMarkdownDom') {
-        return [{ type: 'h1', children: ['Test README Content'] }]
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return [{ type: 'h1', children: ['Test README Content'] }]
-      }
-      throw new Error(`unexpected method ${method}`)
+  MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return '<h1>Test README Content</h1>'
+    },
+    'Markdown.getMarkdownDom': () => {
+      return [{ type: 'h1', children: ['Test README Content'] }]
+    },
+    'Markdown.getVirtualDom': () => {
+      return [{ type: 'h1', children: ['Test README Content'] }]
     },
   })
-  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),

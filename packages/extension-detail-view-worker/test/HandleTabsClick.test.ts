@@ -1,5 +1,4 @@
 import { expect, test } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { registerAllFeatures } from '../src/parts/FeatureFactory/FeatureFactory.ts'
@@ -15,19 +14,14 @@ test.skip('handles tabs click - details tab', async () => {
     },
   })
 
-  const mockMarkdownRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'Markdown.render') {
-        return '<h1>Test Details</h1>'
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return [{ type: 'element', tag: 'h1', children: [] }]
-      }
-      throw new Error(`unexpected method ${method}`)
+  MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return '<h1>Test Details</h1>'
+    },
+    'Markdown.getVirtualDom': () => {
+      return [{ type: 'element', tag: 'h1', children: [] }]
     },
   })
-  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -48,19 +42,14 @@ test.skip('handles tabs click - features tab', async () => {
 
   const mockRendererRpc = RendererWorker.registerMockRpc({})
 
-  const mockMarkdownRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'Markdown.render') {
-        return '<h1>Theme Details</h1>'
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return [{ type: 'element', tag: 'h1', children: [] }]
-      }
-      throw new Error(`unexpected method ${method}`)
+  MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return '<h1>Theme Details</h1>'
+    },
+    'Markdown.getVirtualDom': () => {
+      return [{ type: 'element', tag: 'h1', children: [] }]
     },
   })
-  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -92,19 +81,14 @@ test.skip('handles tabs click - changelog tab', async () => {
     },
   })
 
-  const mockMarkdownRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'Markdown.render') {
-        return '<h1>Changelog</h1><p>Version 1.0.0</p>'
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return [{ type: 'element', tag: 'h1', children: [] }]
-      }
-      throw new Error(`unexpected method ${method}`)
+  MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return '<h1>Changelog</h1><p>Version 1.0.0</p>'
+    },
+    'Markdown.getVirtualDom': () => {
+      return [{ type: 'element', tag: 'h1', children: [] }]
     },
   })
-  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -126,13 +110,7 @@ test.skip('handles tabs click - changelog tab', async () => {
 test.skip('handles tabs click - unknown tab', async () => {
   const mockRendererRpc = RendererWorker.registerMockRpc({})
 
-  const mockMarkdownRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
-  MarkdownWorker.set(mockMarkdownRpc)
+  MarkdownWorker.registerMockRpc({})
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
