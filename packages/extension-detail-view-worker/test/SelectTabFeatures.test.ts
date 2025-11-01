@@ -180,7 +180,7 @@ test('should merge feature details handler results', async () => {
   expect(result.detailsVirtualDom).toEqual([])
   expect(result.commands).toEqual([])
   expect(result.description).toBe('')
-  expect(mockRpc.invocations).toEqual([['FileSystem.readDirWithFileTypes', expect.any(String)]])
+  expect(mockRpc.invocations).toEqual([])
 })
 
 test('should handle empty features array', async () => {
