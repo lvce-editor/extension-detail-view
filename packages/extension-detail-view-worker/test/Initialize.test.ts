@@ -10,7 +10,6 @@ test('should initialize both workers successfully', async () => {
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': () => {},
   })
   await initialize()
-  console.log(mockRpc.invocations)
   expect(mockRpc.invocations).toEqual([
     ['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.any(Object), 'Markdown.handleMessagePort', 0],
     ['SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker', expect.any(Object), 'FileSystem.handleMessagePort', 0],
@@ -32,17 +31,13 @@ test('should handle initialization errors', async () => {
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {
       throw new Error('markdown worker failed')
     },
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {
-      /**/
-    },
-    sendMessagePortToMarkdownWorker: () => {
-      throw new Error('markdown worker failed')
-    },
-    sendMessagePortToFileSystemWorker: () => {
-      /**/
-    },
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {},
   })
 
   await expect(initialize()).rejects.toThrow('Failed to create markdown worker rpc')
-  expect(mockRpc.invocations).toEqual([['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.any(Object), 0]])
+  expect(mockRpc.invocations).toEqual([
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.any(Object), 'Markdown.handleMessagePort', 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker', expect.any(Object), 'FileSystem.handleMessagePort', 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker', expect.any(Object), 'HandleMessagePort.handleMessagePort2', 0],
+  ])
 })
