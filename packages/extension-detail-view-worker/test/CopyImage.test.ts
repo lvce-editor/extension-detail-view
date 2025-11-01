@@ -18,18 +18,11 @@ Object.defineProperty(globalThis, 'location', {
 test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state unchanged', async () => {
   const mockBlob = { type: 'image/png', size: 4 }
 
-  const mockRendererInvoke = jest.fn((method: string, ...args: readonly any[]) => {
-    if (method === 'ClipBoard.writeImage') {
-      return undefined
-    }
-    throw new Error(`unexpected method ${method}`)
+  const mockRendererRpc = RendererWorker.registerMockRpc({
+    'ClipBoard.writeImage': () => {
+      /**/
+    },
   })
-
-  const mockRendererRpc = MockRpc.create({
-    commandMap: {},
-    invoke: mockRendererInvoke,
-  })
-  RendererWorker.set(mockRendererRpc)
 
   const mockFileSystemInvoke = jest.fn((method: string, ...args: readonly any[]) => {
     if (method === 'FileSystem.readFileAsBlob') {
@@ -53,6 +46,6 @@ test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state u
   const result = await CopyImage.copyImage(state)
 
   expect(mockFileSystemInvoke).toHaveBeenCalledWith('FileSystem.readFileAsBlob', 'https://example.com/test/icon.png')
-  expect(mockRendererInvoke).toHaveBeenCalledWith('ClipBoard.writeImage', mockBlob)
+  expect(mockRendererRpc.invocations).toEqual([['ClipBoard.writeImage', mockBlob]])
   expect(result).toBe(state)
 })
