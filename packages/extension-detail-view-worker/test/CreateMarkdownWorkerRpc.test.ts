@@ -8,9 +8,6 @@ test('createMarkdownWorkerRpc creates RPC successfully', async () => {
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {
       /**/
     },
-    sendMessagePortToMarkdownWorker: () => {
-      /**/
-    },
   })
   const rpc = await createMarkdownWorkerRpc()
   expect(rpc).toBeDefined()
@@ -21,9 +18,6 @@ test('createMarkdownWorkerRpc creates RPC successfully', async () => {
 test('createMarkdownWorkerRpc throws VError when sendMessagePortToMarkdownWorker fails', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {
-      throw new Error('fail')
-    },
-    sendMessagePortToMarkdownWorker: () => {
       throw new Error('fail')
     },
   })
