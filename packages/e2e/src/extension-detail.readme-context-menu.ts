@@ -13,8 +13,9 @@ export const test: Test = async ({ Command, Locator, expect, Extension, Extensio
   await expect(markDown).toBeVisible()
 
   // act
-  await Command.execute('ExtensionDetail.handleContextMenu', 0, 0, 'a', 'https://example.com')
+  await Command.execute('ExtensionDetail.handleReadmeContextMenu', 0, 0, 'a', 'https://example.com')
 
   // assert
   // TODO verify that context menu is open
+  // TODO should have copy link item
 }
