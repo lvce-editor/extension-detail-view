@@ -4,27 +4,17 @@ import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorke
 import * as LoadReadmeContent from '../src/parts/LoadReadmeContent/LoadReadmeContent.ts'
 
 test('loads readme content', async () => {
-  const invoke: any = jest.fn()
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke,
+  const mockRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.readFile': () => {
+      return '# Test Content'
+    },
   })
-  FileSystemWorker.set(mockRpc)
-
-  invoke.mockResolvedValue('# Test Content')
   const content = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
   expect(content).toBe('# Test Content')
-  expect(invoke).toHaveBeenCalledWith('FileSystem.readFile', '/test/path/README.md')
+  expect(mockRpc.invocations).toEqual([['FileSystem.readFile', '/test/path/README.md']])
 })
 
 test('handles missing readme file', async () => {
-  const invoke: any = jest.fn()
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke,
-  })
-  FileSystemWorker.set(mockRpc)
-
   const error = new Error('file not found')
   ;(error as any).code = 'ENOENT'
   invoke.mockRejectedValue(error)
