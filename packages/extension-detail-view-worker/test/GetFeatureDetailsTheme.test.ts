@@ -1,22 +1,16 @@
 import { expect, test } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import * as GetFeatureDetailsTheme from '../src/parts/GetFeatureDetailsTheme/GetFeatureDetailsTheme.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
 test('getFeatureDetailsTheme - extension with themes', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.render') {
-        return '<h1>Color Themes</h1><p>Theme content</p>'
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return [{ tag: 'div', children: ['Theme content'] }]
-      }
-      throw new Error('unexpected method')
+  const mockRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return '<h1>Color Themes</h1><p>Theme content</p>'
+    },
+    'Markdown.getVirtualDom': () => {
+      return [{ tag: 'div', children: ['Theme content'] }]
     },
   })
-  MarkdownWorker.set(mockRpc)
 
   const extension: any = {
     colorThemes: [{ name: 'Dark Theme', id: 'dark' }],
@@ -30,22 +24,21 @@ test('getFeatureDetailsTheme - extension with themes', async () => {
   expect(result).toEqual({
     themesMarkdownDom: [{ tag: 'div', children: ['Theme content'] }],
   })
+  expect(mockRpc.invocations).toEqual([
+    ['Markdown.render', expect.any(String), expect.any(Object)],
+    ['Markdown.getVirtualDom', expect.any(String)],
+  ])
 })
 
 test('getFeatureDetailsTheme - extension without themes', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.render') {
-        return ''
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return []
-      }
-      throw new Error('unexpected method')
+  const mockRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return ''
+    },
+    'Markdown.getVirtualDom': () => {
+      return []
     },
   })
-  MarkdownWorker.set(mockRpc)
 
   const extension: any = {}
   const baseUrl: string = 'https://example.com'
@@ -55,22 +48,21 @@ test('getFeatureDetailsTheme - extension without themes', async () => {
   expect(result).toEqual({
     themesMarkdownDom: [],
   })
+  expect(mockRpc.invocations).toEqual([
+    ['Markdown.render', expect.any(String), expect.any(Object)],
+    ['Markdown.getVirtualDom', expect.any(String)],
+  ])
 })
 
 test('getFeatureDetailsTheme - extension with null themes', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.render') {
-        return ''
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return []
-      }
-      throw new Error('unexpected method')
+  const mockRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return ''
+    },
+    'Markdown.getVirtualDom': () => {
+      return []
     },
   })
-  MarkdownWorker.set(mockRpc)
 
   const extension: any = {
     colorThemes: null,
@@ -84,19 +76,18 @@ test('getFeatureDetailsTheme - extension with null themes', async () => {
   expect(result).toEqual({
     themesMarkdownDom: [],
   })
+  expect(mockRpc.invocations).toEqual([
+    ['Markdown.render', expect.any(String), expect.any(Object)],
+    ['Markdown.getVirtualDom', expect.any(String)],
+  ])
 })
 
 test('getFeatureDetailsTheme - error propagation', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'Markdown.render') {
-        throw new Error('render error')
-      }
-      throw new Error('unexpected method')
+  const mockRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      throw new Error('render error')
     },
   })
-  MarkdownWorker.set(mockRpc)
 
   const extension: any = {
     colorThemes: [{ name: 'Dark Theme', id: 'dark' }],
@@ -105,4 +96,5 @@ test('getFeatureDetailsTheme - error propagation', async () => {
   const protocol = 'test:'
 
   await expect(GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol)).rejects.toThrow('render error')
+  expect(mockRpc.invocations).toEqual([['Markdown.render', expect.any(String), expect.any(Object)]])
 })

@@ -12,19 +12,14 @@ test('selectTabChangelog should update state with changelog content', async () =
   const renderedHtml = '<h1>Changelog</h1><h2>Version 1.0.0</h2><ul><li>Initial release</li></ul>'
   const mockDom = [{ type: 1, childCount: 1 }]
 
-  const mockMarkdownRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'Markdown.getVirtualDom') {
-        return mockDom
-      }
-      if (method === 'Markdown.render') {
-        return renderedHtml
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => {
+      return mockDom
+    },
+    'Markdown.render': () => {
+      return renderedHtml
     },
   })
-  MarkdownWorker.set(mockMarkdownRpc)
 
   const mockFileSystemRpc = MockRpc.create({
     commandMap: {},
@@ -42,4 +37,8 @@ test('selectTabChangelog should update state with changelog content', async () =
   expect(result.selectedTab).toBe(InputName.Changelog)
   expect(result.changelogVirtualDom).toStrictEqual(mockDom)
   expect(result.tabs.every((tab) => tab.selected === (tab.name === InputName.Changelog))).toBe(true)
+  expect(mockMarkdownRpc.invocations).toEqual([
+    ['Markdown.render', expect.any(String), expect.any(Object)],
+    ['Markdown.getVirtualDom', expect.any(String)],
+  ])
 })

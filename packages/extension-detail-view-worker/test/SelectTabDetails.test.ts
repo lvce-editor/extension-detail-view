@@ -27,19 +27,14 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
   })
   FileSystemWorker.set(mockFileSystemRpc)
 
-  const mockMarkdownRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'Markdown.render') {
-        return '<h1>README CONTENT</h1>'
-      }
-      if (method === 'Markdown.getVirtualDom') {
-        return expectedDom
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.render': () => {
+      return '<h1>README CONTENT</h1>'
+    },
+    'Markdown.getVirtualDom': () => {
+      return expectedDom
     },
   })
-  MarkdownWorker.set(mockMarkdownRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -58,4 +53,8 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
   expect(result.selectedTab).toBe(InputName.Details)
   expect(result.detailsVirtualDom).toEqual(expectedDom)
   expect(mockRendererRpc.invocations).toEqual([])
+  expect(mockMarkdownRpc.invocations).toEqual([
+    ['Markdown.render', expect.any(String), expect.any(Object)],
+    ['Markdown.getVirtualDom', expect.any(String)],
+  ])
 })
