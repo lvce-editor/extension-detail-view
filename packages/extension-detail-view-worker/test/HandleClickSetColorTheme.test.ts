@@ -53,7 +53,7 @@ test('handleClickSetColorTheme - extension with color theme', async () => {
     'ColorTheme.setColorTheme': () => {
       return ''
     },
-    'ConfirmPrompt.prompt': () => {
+    confirm: () => {
       return ''
     },
   })
@@ -69,7 +69,6 @@ test('handleClickSetColorTheme - extension with color theme', async () => {
   expect(result).toBe(state)
   expect(mockRpc.invocations).toEqual([
     ['ColorTheme.setColorTheme', 'theme1'],
-    ['ConfirmPrompt.prompt', expect.any(String)],
   ])
 })
 
