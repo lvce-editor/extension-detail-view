@@ -198,7 +198,7 @@ test('loadContent - with saved state', async () => {
   })
   FileSystemWorker.set(mockFileSystemRpc)
 
-  MarkdownWorker.registerMockRpc({
+  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.render': () => {
       return '<h1>Test README Content</h1>'
     },
@@ -225,6 +225,7 @@ test('loadContent - with saved state', async () => {
   expect(result.selectedFeature).toBe('')
   expect(result.selectedTab).toBe('details')
   expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension']])
+  expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('loadContent - with different platform', async () => {
