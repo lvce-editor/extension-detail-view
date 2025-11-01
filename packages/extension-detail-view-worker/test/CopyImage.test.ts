@@ -1,4 +1,5 @@
-import { expect, test } from '@jest/globals'
+import { expect, test, jest } from '@jest/globals'
+import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import * as CopyImage from '../src/parts/CopyImage/CopyImage.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
@@ -23,11 +24,18 @@ test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state u
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.readFileAsBlob': () => {
+  const mockFileSystemInvoke = jest.fn((method: string, ...args: readonly any[]) => {
+    if (method === 'FileSystem.readFileAsBlob') {
       return mockBlob
-    },
+    }
+    throw new Error(`unexpected method ${method}`)
   })
+
+  const mockFileSystemRpc = MockRpc.create({
+    commandMap: {},
+    invoke: mockFileSystemInvoke,
+  })
+  FileSystemWorker.set(mockFileSystemRpc)
 
   const iconSrc = '/test/icon.png'
   const state: ExtensionDetailState = {
@@ -37,7 +45,7 @@ test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state u
 
   const result = await CopyImage.copyImage(state)
 
-  expect(mockFileSystemRpc.invocations).toEqual([['FileSystem.readFileAsBlob', 'https://example.com/test/icon.png']])
+  expect(mockFileSystemInvoke).toHaveBeenCalledWith('FileSystem.readFileAsBlob', 'https://example.com/test/icon.png')
   expect(mockRendererRpc.invocations).toEqual([['ClipBoard.writeImage', mockBlob]])
   expect(result).toBe(state)
 })

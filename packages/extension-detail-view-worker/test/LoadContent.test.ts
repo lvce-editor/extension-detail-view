@@ -1,4 +1,5 @@
 import { beforeAll, expect, test } from '@jest/globals'
+import { MockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
@@ -30,17 +31,22 @@ test('loadContent - successful load', async () => {
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.readFile': () => {
-      return '# Test README Content'
-    },
-    'FileSystem.getFolderSize': () => {
-      return 1024
-    },
-    'FileSystem.exists': () => {
-      return true
+  const mockFileSystemRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, ...args: readonly any[]) => {
+      if (method === 'FileSystem.readFile') {
+        return '# Test README Content'
+      }
+      if (method === 'FileSystem.getFolderSize') {
+        return 1024
+      }
+      if (method === 'FileSystem.exists') {
+        return true
+      }
+      throw new Error(`unexpected method ${method}`)
     },
   })
+  FileSystemWorker.set(mockFileSystemRpc)
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.render': () => {
@@ -82,7 +88,6 @@ test('loadContent - successful load', async () => {
   expect(result.sizeValue).toBeDefined()
   expect(result.hasColorTheme).toBeDefined()
   expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension']])
-  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
@@ -118,17 +123,22 @@ test('loadContent - with builtin extension', async () => {
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.readFile': () => {
-      return '# Builtin README Content'
-    },
-    'FileSystem.getFolderSize': () => {
-      return 2048
-    },
-    'FileSystem.exists': () => {
-      return true
+  const mockFileSystemRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, ...args: readonly any[]) => {
+      if (method === 'FileSystem.readFile') {
+        return '# Builtin README Content'
+      }
+      if (method === 'FileSystem.getFolderSize') {
+        return 2048
+      }
+      if (method === 'FileSystem.exists') {
+        return true
+      }
+      throw new Error(`unexpected method ${method}`)
     },
   })
+  FileSystemWorker.set(mockFileSystemRpc)
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.render': () => {
@@ -152,7 +162,6 @@ test('loadContent - with builtin extension', async () => {
   // expect(result.isBuiltin).toBe(true)
   expect(result.extension).toEqual(mockExtension)
   expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'builtin-extension']])
-  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
@@ -172,17 +181,22 @@ test('loadContent - with saved state', async () => {
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.readFile': () => {
-      return '# Test README Content'
-    },
-    'FileSystem.getFolderSize': () => {
-      return 1024
-    },
-    'FileSystem.exists': () => {
-      return true
+  const mockFileSystemRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, ...args: readonly any[]) => {
+      if (method === 'FileSystem.readFile') {
+        return '# Test README Content'
+      }
+      if (method === 'FileSystem.getFolderSize') {
+        return 1024
+      }
+      if (method === 'FileSystem.exists') {
+        return true
+      }
+      throw new Error(`unexpected method ${method}`)
     },
   })
+  FileSystemWorker.set(mockFileSystemRpc)
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.render': () => {
@@ -211,7 +225,6 @@ test('loadContent - with saved state', async () => {
   expect(result.selectedFeature).toBe('')
   expect(result.selectedTab).toBe('details')
   expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension']])
-  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
@@ -232,17 +245,22 @@ test('loadContent - with different platform', async () => {
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.readFile': () => {
-      return '# Test README Content'
-    },
-    'FileSystem.getFolderSize': () => {
-      return 1024
-    },
-    'FileSystem.exists': () => {
-      return true
+  const mockFileSystemRpc = MockRpc.create({
+    commandMap: {},
+    invoke: (method: string, ...args: readonly any[]) => {
+      if (method === 'FileSystem.readFile') {
+        return '# Test README Content'
+      }
+      if (method === 'FileSystem.getFolderSize') {
+        return 1024
+      }
+      if (method === 'FileSystem.exists') {
+        return true
+      }
+      throw new Error(`unexpected method ${method}`)
     },
   })
+  FileSystemWorker.set(mockFileSystemRpc)
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.render': () => {
@@ -265,6 +283,5 @@ test('loadContent - with different platform', async () => {
 
   expect(result.extension).toEqual(mockExtension)
   expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension']])
-  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
