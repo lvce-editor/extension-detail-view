@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/prefer-export-from */
-import type { MockRpc } from '@lvce-editor/rpc-registry'
+import type { MockRpc } from '@lvce-editor/rpc'
 import { FileSystemWorker } from '@lvce-editor/rpc-registry'
 
 export const { set, exists, readDirWithFileTypes, readFile, invoke, registerMockRpc } = FileSystemWorker
