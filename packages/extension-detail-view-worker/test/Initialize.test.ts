@@ -1,29 +1,20 @@
 import { test, expect } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import { get, RpcId } from '@lvce-editor/rpc-registry'
 import { initialize } from '../src/parts/Initialize/Initialize.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('should initialize both workers successfully', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {
-      sendMessagePortToMarkdownWorker: () => {},
-      sendMessagePortToFileSystemWorker: () => {},
-      sendMessagePortToExtensionHostWorker: () => {},
+  const mockRpc = RendererWorker.registerMockRpc({
+    sendMessagePortToMarkdownWorker: () => {
+      /**/
     },
-    invoke: (method: string) => {
-      if (
-        method === 'sendMessagePortToMarkdownWorker' ||
-        method === 'sendMessagePortToFileSystemWorker' ||
-        method === 'sendMessagePortToExtensionHostWorker'
-      ) {
-        return undefined
-      }
-      throw new Error(`unexpected method: ${method}`)
+    sendMessagePortToFileSystemWorker: () => {
+      /**/
     },
-    invokeAndTransfer: () => {},
+    sendMessagePortToExtensionHostWorker: () => {
+      /**/
+    },
   })
-  RendererWorker.set(mockRpc)
   await initialize()
   const fileSystemWorkerRpc = get(RpcId.FileSystemWorker)
   expect(fileSystemWorkerRpc).toBeDefined()
@@ -37,27 +28,14 @@ test('should initialize both workers successfully', async () => {
 })
 
 test('should handle initialization errors', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {
-      sendMessagePortToMarkdownWorker: () => {
-        throw new Error('markdown worker failed')
-      },
-      sendMessagePortToFileSystemWorker: () => {},
-    },
-    invoke: (method: string) => {
-      if (method === 'sendMessagePortToMarkdownWorker') {
-        throw new Error('markdown worker failed')
-      }
-      if (method === 'sendMessagePortToFileSystemWorker') {
-        return undefined
-      }
-      throw new Error(`unexpected method: ${method}`)
-    },
-    invokeAndTransfer: () => {
+  const mockRpc = RendererWorker.registerMockRpc({
+    sendMessagePortToMarkdownWorker: () => {
       throw new Error('markdown worker failed')
     },
+    sendMessagePortToFileSystemWorker: () => {
+      /**/
+    },
   })
-  RendererWorker.set(mockRpc)
 
   await expect(initialize()).rejects.toThrow('Failed to create markdown worker rpc')
 })

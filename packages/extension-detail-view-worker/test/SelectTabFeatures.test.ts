@@ -1,5 +1,4 @@
 import { test, expect } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import type { FeatureDefinition } from '../src/parts/FeatureDefinition/FeatureDefinition.ts'
@@ -10,16 +9,11 @@ import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { selectTabFeatures } from '../src/parts/SelectTabFeatures/SelectTabFeatures.ts'
 
 test('should select features tab and first feature when selectedFeature is null', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'FileSystem.readDirWithFileTypes') {
-        return []
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = RendererWorker.registerMockRpc({
+    'FileSystem.readDirWithFileTypes': () => {
+      return []
     },
   })
-  RendererWorker.set(mockRpc)
 
   // Register mock features
   const mockFeature: FeatureDefinition = {
@@ -70,19 +64,15 @@ test('should select features tab and first feature when selectedFeature is null'
 
   expect(result.selectedTab).toBe(InputName.Features)
   expect(result.selectedFeature).toBe('MockFeature')
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('should use existing selectedFeature when provided', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'FileSystem.readDirWithFileTypes') {
-        return []
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = RendererWorker.registerMockRpc({
+    'FileSystem.readDirWithFileTypes': () => {
+      return []
     },
   })
-  RendererWorker.set(mockRpc)
 
   // Register mock features
   const mockFeature = {
@@ -133,19 +123,15 @@ test('should use existing selectedFeature when provided', async () => {
 
   expect(result.selectedTab).toBe(InputName.Features)
   expect(result.selectedFeature).toBe('MockFeature')
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('should merge feature details handler results', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'FileSystem.readDirWithFileTypes') {
-        return []
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = RendererWorker.registerMockRpc({
+    'FileSystem.readDirWithFileTypes': () => {
+      return []
     },
   })
-  RendererWorker.set(mockRpc)
 
   // Register a mock feature that returns specific details
   const mockFeature = {
@@ -197,16 +183,11 @@ test('should merge feature details handler results', async () => {
 })
 
 test('should handle empty features array', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'FileSystem.readDirWithFileTypes') {
-        return []
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = RendererWorker.registerMockRpc({
+    'FileSystem.readDirWithFileTypes': () => {
+      return []
     },
   })
-  RendererWorker.set(mockRpc)
 
   // Register a mock feature
   const mockFeature = {
@@ -243,4 +224,5 @@ test('should handle empty features array', async () => {
 
   expect(result.selectedTab).toBe(InputName.Features)
   expect(result.selectedFeature).toBe('MockFeature')
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
