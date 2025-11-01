@@ -6,9 +6,7 @@ test('sends message port to markdown worker', async () => {
   const mockPort = { id: 'test-port' }
 
   const mockRpc = RendererWorker.registerMockRpc({
-    sendMessagePortToMarkdownWorker: () => {
-      /**/
-    },
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {},
   })
 
   await SendMessagePortToMarkdownWorker.sendMessagePortToMarkdownWorker(mockPort)
