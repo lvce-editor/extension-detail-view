@@ -67,9 +67,7 @@ test('handleClickSetColorTheme - extension with color theme', async () => {
 
   const result = await HandleClickSetColorTheme.handleClickSetColorTheme(state)
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([
-    ['ColorTheme.setColorTheme', 'theme1'],
-  ])
+  expect(mockRpc.invocations).toEqual([['ColorTheme.setColorTheme', 'theme1']])
 })
 
 test('handleClickSetColorTheme - extension without color theme', async () => {
