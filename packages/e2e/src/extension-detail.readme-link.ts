@@ -1,7 +1,5 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const skip = 1
-
 export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-readme-link')
@@ -22,5 +20,5 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
 
   // TODO
   await expect(link).toHaveAttribute('target', '_blank')
-  await expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+  await expect(link).toHaveAttribute('rel', 'noreferrer noopener nofollow')
 }
