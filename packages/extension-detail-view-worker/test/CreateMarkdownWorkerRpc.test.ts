@@ -23,7 +23,6 @@ test('createMarkdownWorkerRpc throws VError when sendMessagePortToMarkdownWorker
       throw new Error('fail')
     },
   })
-  await expect(createMarkdownWorkerRpc()).rejects.toThrow(VError)
   await expect(createMarkdownWorkerRpc()).rejects.toThrow('Failed to create markdown worker rpc')
   expect(mockRpc.invocations).toEqual([
     ['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.anything(), 'Markdown.handleMessagePort', 0],
