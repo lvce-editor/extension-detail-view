@@ -36,4 +36,24 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   const item3Value = item3.locator('.DefinitionListItemValue')
   await expect(item3Value).toBeVisible()
   await expect(item3Value).toHaveText(`["default-src 'none'","script-src 'self'"]`)
+  const item4 = items.nth(3)
+  const item4Heading = item4.locator('.DefinitionListItemHeading')
+  await expect(item4Heading).toBeVisible()
+  await expect(item4Heading).toHaveText('Elements')
+  const item4Value = item4.locator('.DefinitionListItemValue')
+  await expect(item4Value).toBeVisible()
+  await expect(item4Value).toHaveText(`[
+  {
+    "type": "title",
+    "value": "Video Preview"
+  },
+  {
+    "type": "script",
+    "path": "media/index.js"
+  },
+  {
+    "type": "css",
+    "path": "media/index.css"
+  }
+]`)
 }
