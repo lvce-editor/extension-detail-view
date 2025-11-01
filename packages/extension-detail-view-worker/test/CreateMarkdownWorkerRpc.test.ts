@@ -1,13 +1,10 @@
-import { test, expect } from '@jest/globals'
-import { VError } from '@lvce-editor/verror'
+import { expect, test } from '@jest/globals'
 import { createMarkdownWorkerRpc } from '../src/parts/CreateMarkdownWorkerRpc/CreateMarkdownWorkerRpc.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('createMarkdownWorkerRpc creates RPC successfully', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {
-      /**/
-    },
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {},
   })
   const rpc = await createMarkdownWorkerRpc()
   expect(rpc).toBeDefined()
