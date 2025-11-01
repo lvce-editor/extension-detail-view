@@ -152,6 +152,7 @@ test('loadContent - with builtin extension', async () => {
   // expect(result.isBuiltin).toBe(true)
   expect(result.extension).toEqual(mockExtension)
   expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'builtin-extension']])
+  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
