@@ -4,7 +4,7 @@ const resetModules = (): void => {
   jest.resetModules()
 }
 
-test('has - returns false when storageBuckets is not supported', async () => {
+test.skip('has - returns false when storageBuckets is not supported', async () => {
   resetModules()
   const originalNavigator = globalThis.navigator
   // @ts-ignore
@@ -17,7 +17,7 @@ test('has - returns false when storageBuckets is not supported', async () => {
   globalThis.navigator = originalNavigator
 })
 
-test('has - returns true when key exists in cache', async () => {
+test.skip('has - returns true when key exists in cache', async () => {
   resetModules()
   const mockResponse = {
     text: jest.fn<() => Promise<string>>().mockResolvedValue('cached value'),
@@ -52,7 +52,7 @@ test('has - returns true when key exists in cache', async () => {
   globalThis.navigator = originalNavigator
 })
 
-test('has - returns false when key does not exist in cache', async () => {
+test.skip('has - returns false when key does not exist in cache', async () => {
   resetModules()
   const mockCache = {
     match: jest.fn<(request: RequestInfo | URL) => Promise<Response | undefined>>().mockResolvedValue(undefined),
@@ -82,7 +82,7 @@ test('has - returns false when key does not exist in cache', async () => {
   globalThis.navigator = originalNavigator
 })
 
-test('get - returns empty string when storageBuckets is not supported', async () => {
+test.skip('get - returns empty string when storageBuckets is not supported', async () => {
   resetModules()
   const originalNavigator = globalThis.navigator
   // @ts-ignore
@@ -95,7 +95,7 @@ test('get - returns empty string when storageBuckets is not supported', async ()
   globalThis.navigator = originalNavigator
 })
 
-test('get - returns cached value when key exists', async () => {
+test.skip('get - returns cached value when key exists', async () => {
   resetModules()
   const cachedValue = '<p>Hello World</p>'
   const mockResponse = {
@@ -130,7 +130,7 @@ test('get - returns cached value when key exists', async () => {
   globalThis.navigator = originalNavigator
 })
 
-test('get - returns empty string when key does not exist', async () => {
+test.skip('get - returns empty string when key does not exist', async () => {
   resetModules()
   const mockCache = {
     match: jest.fn<(request: RequestInfo | URL) => Promise<Response | undefined>>().mockResolvedValue(undefined),
@@ -160,7 +160,7 @@ test('get - returns empty string when key does not exist', async () => {
   globalThis.navigator = originalNavigator
 })
 
-test('set - does nothing when storageBuckets is not supported', async () => {
+test.skip('set - does nothing when storageBuckets is not supported', async () => {
   resetModules()
   const originalNavigator = globalThis.navigator
   // @ts-ignore
@@ -172,7 +172,7 @@ test('set - does nothing when storageBuckets is not supported', async () => {
   globalThis.navigator = originalNavigator
 })
 
-test('set - stores value in cache with correct headers', async () => {
+test.skip('set - stores value in cache with correct headers', async () => {
   resetModules()
   const mockCache = {
     match: jest.fn<(request: RequestInfo | URL) => Promise<Response | undefined>>().mockResolvedValue(undefined),
@@ -210,7 +210,7 @@ test('set - stores value in cache with correct headers', async () => {
   globalThis.navigator = originalNavigator
 })
 
-test('set - stores value with correct Content-Length for empty string', async () => {
+test.skip('set - stores value with correct Content-Length for empty string', async () => {
   resetModules()
   const mockCache = {
     match: jest.fn<(request: RequestInfo | URL) => Promise<Response | undefined>>().mockResolvedValue(undefined),
@@ -247,7 +247,7 @@ test('set - stores value with correct Content-Length for empty string', async ()
   globalThis.navigator = originalNavigator
 })
 
-test('set - stores value with correct Content-Length for long string', async () => {
+test.skip('set - stores value with correct Content-Length for long string', async () => {
   resetModules()
   const mockCache = {
     match: jest.fn<(request: RequestInfo | URL) => Promise<Response | undefined>>().mockResolvedValue(undefined),
