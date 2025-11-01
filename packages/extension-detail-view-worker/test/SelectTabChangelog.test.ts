@@ -1,5 +1,4 @@
 import { test, expect } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import * as createDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
@@ -21,21 +20,18 @@ test('selectTabChangelog should update state with changelog content', async () =
     },
   })
 
-  const mockFileSystemRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'FileSystem.readFile') {
-        return changelogContent
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.readFile': () => {
+      return changelogContent
     },
   })
-  FileSystemWorker.set(mockFileSystemRpc)
 
   const result = await SelectTabChangelog.selectTabChangelog(state)
 
   expect(result.selectedTab).toBe(InputName.Changelog)
   expect(result.changelogVirtualDom).toStrictEqual(mockDom)
+  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
   expect(result.tabs.every((tab) => tab.selected === (tab.name === InputName.Changelog))).toBe(true)
   expect(mockMarkdownRpc.invocations).toEqual([
     ['Markdown.render', expect.any(String), expect.any(Object)],

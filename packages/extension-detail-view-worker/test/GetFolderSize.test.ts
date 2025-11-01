@@ -1,31 +1,25 @@
 import { expect, test } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as GetFolderSize from '../src/parts/GetFolderSize/GetFolderSize.ts'
 
 test('get folder size', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'FileSystem.getFolderSize') {
-        return '1.2 MB'
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.getFolderSize': () => {
+      return '1.2 MB'
     },
   })
-  FileSystemWorker.set(mockRpc)
   expect(await GetFolderSize.getFolderSize('/test/path')).toBe('1.2 MB')
+  expect(mockRpc.invocations).toEqual([['FileSystem.getFolderSize', '/test/path']])
 })
 
 test('get folder size - error case', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
+  const mockRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.getFolderSize': () => {
       throw new Error('access denied')
     },
   })
-  FileSystemWorker.set(mockRpc)
   expect(await GetFolderSize.getFolderSize('/test/path')).toBe(0)
+  expect(mockRpc.invocations).toEqual([['FileSystem.getFolderSize', '/test/path']])
 })
 
 test('get folder size - missing uri', async () => {
