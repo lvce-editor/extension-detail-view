@@ -14,6 +14,7 @@ export const isEqual = (oldState: ExtensionDetailState, newState: ExtensionDetai
     oldState.displaySize === newState.displaySize &&
     oldState.extensionId === newState.extensionId &&
     oldState.extensionVersion === newState.extensionVersion &&
+    oldState.features === newState.features &&
     oldState.jsonValidation === newState.jsonValidation &&
     oldState.selectedFeature === newState.selectedFeature &&
     oldState.selectedTab === newState.selectedTab &&
