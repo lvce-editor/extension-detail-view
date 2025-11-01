@@ -25,16 +25,11 @@ test('loadContent - successful load', async () => {
     builtin: false,
   }
 
-  const mockRendererRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ExtensionManagement.getExtension') {
-        return mockExtension
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRendererRpc = RendererWorker.registerMockRpc({
+    'ExtensionManagement.getExtension': () => {
+      return mockExtension
     },
   })
-  RendererWorker.set(mockRendererRpc)
 
   const mockFileSystemRpc = MockRpc.create({
     commandMap: {},
@@ -97,19 +92,15 @@ test('loadContent - successful load', async () => {
   expect(result.displaySize).toBeDefined()
   expect(result.sizeValue).toBeDefined()
   expect(result.hasColorTheme).toBeDefined()
+  expect(mockRendererRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('loadContent - extension not found', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'ExtensionManagement.getExtension') {
-        return undefined
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = RendererWorker.registerMockRpc({
+    'ExtensionManagement.getExtension': () => {
+      return undefined
     },
   })
-  RendererWorker.set(mockRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -117,6 +108,7 @@ test('loadContent - extension not found', async () => {
   }
 
   await expect(LoadContent.loadContent(state, 1, {})).rejects.toThrow('extension not found: non-existent-extension')
+  expect(mockRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('loadContent - with builtin extension', async () => {
@@ -129,16 +121,11 @@ test('loadContent - with builtin extension', async () => {
     builtin: true,
   }
 
-  const mockRendererRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ExtensionManagement.getExtension') {
-        return mockExtension
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRendererRpc = RendererWorker.registerMockRpc({
+    'ExtensionManagement.getExtension': () => {
+      return mockExtension
     },
   })
-  RendererWorker.set(mockRendererRpc)
 
   const mockFileSystemRpc = MockRpc.create({
     commandMap: {},
@@ -183,6 +170,7 @@ test('loadContent - with builtin extension', async () => {
 
   // expect(result.isBuiltin).toBe(true)
   expect(result.extension).toEqual(mockExtension)
+  expect(mockRendererRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('loadContent - with saved state', async () => {
@@ -195,16 +183,11 @@ test('loadContent - with saved state', async () => {
     builtin: false,
   }
 
-  const mockRendererRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ExtensionManagement.getExtension') {
-        return mockExtension
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRendererRpc = RendererWorker.registerMockRpc({
+    'ExtensionManagement.getExtension': () => {
+      return mockExtension
     },
   })
-  RendererWorker.set(mockRendererRpc)
 
   const mockFileSystemRpc = MockRpc.create({
     commandMap: {},
@@ -254,6 +237,7 @@ test('loadContent - with saved state', async () => {
 
   expect(result.selectedFeature).toBe('')
   expect(result.selectedTab).toBe('details')
+  expect(mockRendererRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('loadContent - with different platform', async () => {
@@ -267,16 +251,11 @@ test('loadContent - with different platform', async () => {
     builtin: false,
   }
 
-  const mockRendererRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'ExtensionManagement.getExtension') {
-        return mockExtension
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRendererRpc = RendererWorker.registerMockRpc({
+    'ExtensionManagement.getExtension': () => {
+      return mockExtension
     },
   })
-  RendererWorker.set(mockRendererRpc)
 
   const mockFileSystemRpc = MockRpc.create({
     commandMap: {},
@@ -320,4 +299,5 @@ test('loadContent - with different platform', async () => {
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
   expect(result.extension).toEqual(mockExtension)
+  expect(mockRendererRpc.invocations.length).toBeGreaterThan(0)
 })

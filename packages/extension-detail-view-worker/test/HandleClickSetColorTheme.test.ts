@@ -1,5 +1,4 @@
 import { expect, test } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleClickSetColorTheme from '../src/parts/HandleClickSetColorTheme/HandleClickSetColorTheme.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
@@ -50,19 +49,14 @@ test('getColorThemeId - undefined extension', () => {
 })
 
 test('handleClickSetColorTheme - extension with color theme', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      if (method === 'ColorTheme.setColorTheme') {
-        return ''
-      }
-      if (method === 'ConfirmPrompt.prompt') {
-        return ''
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = RendererWorker.registerMockRpc({
+    'ColorTheme.setColorTheme': () => {
+      return ''
+    },
+    'ConfirmPrompt.prompt': () => {
+      return ''
     },
   })
-  RendererWorker.set(mockRpc)
 
   const state = {
     ...CreateDefaultState.createDefaultState(),
@@ -76,13 +70,7 @@ test('handleClickSetColorTheme - extension with color theme', async () => {
 })
 
 test('handleClickSetColorTheme - extension without color theme', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
-  RendererWorker.set(mockRpc)
+  const mockRpc = RendererWorker.registerMockRpc({})
 
   const state = {
     ...CreateDefaultState.createDefaultState(),
@@ -94,13 +82,7 @@ test('handleClickSetColorTheme - extension without color theme', async () => {
 })
 
 test('handleClickSetColorTheme - extension with empty color themes', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string) => {
-      throw new Error(`unexpected method ${method}`)
-    },
-  })
-  RendererWorker.set(mockRpc)
+  const mockRpc = RendererWorker.registerMockRpc({})
 
   const state = {
     ...CreateDefaultState.createDefaultState(),

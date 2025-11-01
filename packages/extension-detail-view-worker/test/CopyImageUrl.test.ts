@@ -1,5 +1,4 @@
-import { expect, test, jest } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
+import { expect, test } from '@jest/globals'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import * as CopyImageUrl from '../src/parts/CopyImageUrl/CopyImageUrl.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
@@ -15,18 +14,11 @@ Object.defineProperty(globalThis, 'location', {
 })
 
 test('copyImageUrl calls writeText with absolute URL and returns state unchanged', async () => {
-  const mockInvoke = jest.fn((method: string, ...args: readonly any[]) => {
-    if (method === 'ClipBoard.writeText') {
-      return undefined
-    }
-    throw new Error(`unexpected method ${method}`)
+  const mockRpc = RendererWorker.registerMockRpc({
+    'ClipBoard.writeText': () => {
+      /**/
+    },
   })
-
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: mockInvoke,
-  })
-  RendererWorker.set(mockRpc)
 
   const iconSrc = '/test/icon.png'
   const state: ExtensionDetailState = {
@@ -36,6 +28,6 @@ test('copyImageUrl calls writeText with absolute URL and returns state unchanged
 
   const result = await CopyImageUrl.copyImageUrl(state)
 
-  expect(mockInvoke).toHaveBeenCalledWith('ClipBoard.writeText', 'https://example.com/test/icon.png')
+  expect(mockRpc.invocations).toEqual([['ClipBoard.writeText', 'https://example.com/test/icon.png']])
   expect(result).toBe(state)
 })

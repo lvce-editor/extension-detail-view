@@ -10,16 +10,11 @@ import * as SelectTabDetails from '../src/parts/SelectTabDetails/SelectTabDetail
 
 test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
   const expectedDom = [{ type: 'element', tag: 'h1', children: [] }]
-  const mockRendererRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, ...args: readonly any[]) => {
-      if (method === 'FileSystem.readFile') {
-        return 'README CONTENT'
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRendererRpc = RendererWorker.registerMockRpc({
+    'FileSystem.readFile': () => {
+      return 'README CONTENT'
     },
   })
-  RendererWorker.set(mockRendererRpc)
 
   const mockFileSystemRpc = MockRpc.create({
     commandMap: {},
