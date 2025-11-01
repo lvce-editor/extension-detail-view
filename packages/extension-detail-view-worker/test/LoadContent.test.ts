@@ -48,7 +48,7 @@ test('loadContent - successful load', async () => {
   })
   FileSystemWorker.set(mockFileSystemRpc)
 
-  MarkdownWorker.registerMockRpc({
+  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.render': () => {
       return '<h1>Test README Content</h1>'
     },
