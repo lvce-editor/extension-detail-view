@@ -21,7 +21,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleReadmeContextMenu,
-      params: ['handleReadmeContextMenu', EventExpression.ClientX, EventExpression.ClientY, EventExpression.TargetHref, EventExpression.TargetSrc],
+      params: ['handleReadmeContextMenu', EventExpression.ClientX, EventExpression.ClientY, 'event.target.nodeName', EventExpression.TargetHref],
     },
     {
       name: DomEventListenerFunctions.HandleImageContextMenu,
