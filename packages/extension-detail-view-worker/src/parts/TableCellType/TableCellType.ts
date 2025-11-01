@@ -5,3 +5,5 @@ export const KeyBinding = 4
 export const Color = 5
 export const Markdown = 6
 export const Link = 7
+export const CodeList = 8
+export const CheckMark = 9
