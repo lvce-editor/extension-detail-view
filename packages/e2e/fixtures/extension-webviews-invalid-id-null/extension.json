@@ -1,0 +1,26 @@
+{
+  "id": "test.webviews-invalid-id-null",
+  "name": "Test WebViews",
+  "description": "Test WebViews",
+  "webViews": [
+    {
+      "id": null,
+      "selector": [".test-webviews"],
+      "contentSecurityPolicy": ["default-src 'none'", "script-src 'self'"],
+      "elements": [
+        {
+          "type": "title",
+          "value": "Video Preview"
+        },
+        {
+          "type": "script",
+          "path": "media/index.js"
+        },
+        {
+          "type": "css",
+          "path": "media/index.css"
+        }
+      ]
+    }
+  ]
+}
