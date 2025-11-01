@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-webviews-multiple'
 
-export const skip = 1
-
 export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-webviews-multiple')
@@ -15,6 +13,8 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await ExtensionDetail.openFeature('WebViews')
 
   // assert
+  const features = Locator('.FeatureWebView')
+  await expect(features).toHaveCount(3)
   const items = Locator('.DefinitionListItem')
   const item1 = items.nth(0)
   await expect(item1).toBeVisible()
