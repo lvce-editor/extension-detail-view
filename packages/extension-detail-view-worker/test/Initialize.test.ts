@@ -5,30 +5,15 @@ import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('should initialize both workers successfully', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {
-      /**/
-    },
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {
-      /**/
-    },
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': () => {
-      /**/
-    },
-    sendMessagePortToMarkdownWorker: () => {
-      /**/
-    },
-    sendMessagePortToFileSystemWorker: () => {
-      /**/
-    },
-    sendMessagePortToExtensionHostWorker: () => {
-      /**/
-    },
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {},
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {},
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': () => {},
   })
   await initialize()
   expect(mockRpc.invocations).toEqual([
-    ['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.any(Object), 0],
-    ['SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker', expect.any(Object), 0],
-    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker', expect.any(Object), 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.any(Object), 'Markdown.handleMessagePort', 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker', expect.any(Object), 'FileSystem.handleMessagePort', 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker', expect.any(Object), 'Extensions.handleMessagePort', 0],
   ])
   const fileSystemWorkerRpc = get(RpcId.FileSystemWorker)
   expect(fileSystemWorkerRpc).toBeDefined()
