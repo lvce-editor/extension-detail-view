@@ -8,6 +8,9 @@ test('createFileSystemWorkerRpc creates RPC successfully', async () => {
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {
       /**/
     },
+    sendMessagePortToFileSystemWorker: () => {
+      /**/
+    },
   })
   const rpc = await createFileSystemWorkerRpc()
   expect(rpc).toBeDefined()
@@ -18,6 +21,9 @@ test('createFileSystemWorkerRpc creates RPC successfully', async () => {
 test('createFileSystemWorkerRpc throws VError when sendMessagePortToFileSystemWorker fails', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {
+      throw new Error('fail')
+    },
+    sendMessagePortToFileSystemWorker: () => {
       throw new Error('fail')
     },
   })

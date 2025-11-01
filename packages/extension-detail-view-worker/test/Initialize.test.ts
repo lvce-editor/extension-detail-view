@@ -14,6 +14,15 @@ test('should initialize both workers successfully', async () => {
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': () => {
       /**/
     },
+    sendMessagePortToMarkdownWorker: () => {
+      /**/
+    },
+    sendMessagePortToFileSystemWorker: () => {
+      /**/
+    },
+    sendMessagePortToExtensionHostWorker: () => {
+      /**/
+    },
   })
   await initialize()
   expect(mockRpc.invocations).toEqual([
@@ -38,6 +47,12 @@ test('should handle initialization errors', async () => {
       throw new Error('markdown worker failed')
     },
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {
+      /**/
+    },
+    sendMessagePortToMarkdownWorker: () => {
+      throw new Error('markdown worker failed')
+    },
+    sendMessagePortToFileSystemWorker: () => {
       /**/
     },
   })
