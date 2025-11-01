@@ -5,10 +5,10 @@ import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('should initialize both workers successfully', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    sendMessagePortToMarkdownWorker: () => {
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {
       /**/
     },
-    sendMessagePortToFileSystemWorker: () => {
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {
       /**/
     },
     sendMessagePortToExtensionHostWorker: () => {
@@ -17,8 +17,8 @@ test('should initialize both workers successfully', async () => {
   })
   await initialize()
   expect(mockRpc.invocations).toEqual([
-    ['sendMessagePortToMarkdownWorker', expect.any(Object), 0],
-    ['sendMessagePortToFileSystemWorker', expect.any(Object), 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.any(Object), 0],
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker', expect.any(Object), 0],
     ['sendMessagePortToExtensionHostWorker', expect.any(Object), 0],
   ])
   const fileSystemWorkerRpc = get(RpcId.FileSystemWorker)
@@ -34,14 +34,14 @@ test('should initialize both workers successfully', async () => {
 
 test('should handle initialization errors', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    sendMessagePortToMarkdownWorker: () => {
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {
       throw new Error('markdown worker failed')
     },
-    sendMessagePortToFileSystemWorker: () => {
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {
       /**/
     },
   })
 
   await expect(initialize()).rejects.toThrow('Failed to create markdown worker rpc')
-  expect(mockRpc.invocations).toEqual([['sendMessagePortToMarkdownWorker', expect.any(Object), 0]])
+  expect(mockRpc.invocations).toEqual([['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.any(Object), 0]])
 })
