@@ -11,5 +11,7 @@ test('sends message port to markdown worker', async () => {
 
   await SendMessagePortToMarkdownWorker.sendMessagePortToMarkdownWorker(mockPort)
 
-  expect(mockRpc.invocations).toEqual([['sendMessagePortToMarkdownWorker', mockPort, 0]])
+  expect(mockRpc.invocations).toEqual([
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', mockPort, 'Markdown.handleMessagePort', 0],
+  ])
 })
