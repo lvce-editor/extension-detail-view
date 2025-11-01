@@ -22,7 +22,7 @@ test('webview virtual dom', () => {
     {
       type: VirtualDomElements.Div,
       className: ClassNames.FeatureWebView,
-      childCount: 5,
+      childCount: 4,
     },
     {
       type: VirtualDomElements.Div,
