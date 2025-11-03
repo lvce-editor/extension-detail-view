@@ -9,8 +9,8 @@ const getMenuEntriesReadmeLink = (props: ContextMenuProps): readonly MenuEntry[]
       id: 'copyLink',
       label: ExtensionDetailStrings.copyLink(),
       flags: MenuItemFlags.None,
-      command: 'ExtensionDetail.copyLink',
-      args: [],
+      command: 'ExtensionDetail.copyReadmeLink',
+      args: [props.href],
     },
   ]
 }
