@@ -3,7 +3,22 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 
-export const getMenuEntries2 = (state: ExtensionDetailState, menuId: number): readonly MenuEntry[] => {
+const getMenuEntriesReadmeLink = (props: ContextMenuProps): readonly MenuEntry[] => {
+  return [
+    {
+      id: 'copyLink',
+      label: ExtensionDetailStrings.copyLink(),
+      flags: MenuItemFlags.None,
+      command: 'ExtensionDetail.copyLink',
+      args: [],
+    },
+  ]
+}
+
+const getMenuEntriesReadme = (props: ContextMenuProps): readonly MenuEntry[] => {
+  if (props.href) {
+    return getMenuEntriesReadmeLink(props)
+  }
   return [
     {
       id: 'copy',
@@ -13,4 +28,17 @@ export const getMenuEntries2 = (state: ExtensionDetailState, menuId: number): re
       args: [],
     },
   ]
+}
+
+// TODO maybe add props object as second property with properties like imagesrc, linksrc, nodeName
+
+interface ContextMenuProps {
+  readonly menuId: number
+  readonly nodeName: string
+  readonly href: string
+}
+
+export const getMenuEntries2 = (state: ExtensionDetailState, props: ContextMenuProps): readonly MenuEntry[] => {
+  console.log({ state, props })
+  return getMenuEntriesReadme(props)
 }
