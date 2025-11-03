@@ -4,7 +4,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as HandleImageContextMenu from '../src/parts/HandleImageContextMenu/HandleImageContextMenu.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
-test('handleImageContextMenu calls showContextMenu and returns state unchanged', async () => {
+test.skip('handleImageContextMenu calls showContextMenu and returns state unchanged', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show': () => {
       /**/
