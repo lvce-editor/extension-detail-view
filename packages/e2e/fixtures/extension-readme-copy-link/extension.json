@@ -1,0 +1,12 @@
+{
+  "id": "test.extension-readme-copy-link",
+  "name": "Test",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": ["Themes"]
+}
