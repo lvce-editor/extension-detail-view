@@ -1,7 +1,5 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-// export const skip = 1
-
 export const test: Test = async ({ Command, Locator, expect, Extension, ExtensionDetail }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-readme-context-menu')
@@ -16,6 +14,10 @@ export const test: Test = async ({ Command, Locator, expect, Extension, Extensio
   await Command.execute('ExtensionDetail.handleReadmeContextMenu', 0, 0, 'a', 'https://example.com')
 
   // assert
-  // TODO verify that context menu is open
-  // TODO should have copy link item
+  const menu = Locator('.Menu')
+  await expect(menu).toBeVisible()
+  const menuItems = menu.locator('.MenuItem')
+  await expect(menuItems).toHaveCount(1)
+  const first = menuItems.nth(0)
+  await expect(first).toHaveText('Copy')
 }
