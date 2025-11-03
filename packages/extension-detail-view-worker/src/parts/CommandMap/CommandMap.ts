@@ -7,6 +7,7 @@ import * as Dispose from '../Dispose/Dispose.ts'
 import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
+import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
 import * as GetMenus from '../GetMenus/GetMenus.ts'
 import { handleAdditionalDetailContextMenu } from '../HandleAdditionalDetailContextMenu/HandleAdditionalDetailContextMenu.ts'
 import * as HandleClickCategory from '../HandleClickCategory/HandleClickCategory.ts'
@@ -43,6 +44,7 @@ export const commandMap = {
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.getMenus': GetMenus.getMenus,
+  'ExtensionDetail.getMenuIds': getMenuIds,
   'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
   'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
   'ExtensionDetail.handleAdditionalDetailsContextMenu': WrapCommand.wrapCommand(handleAdditionalDetailContextMenu),
