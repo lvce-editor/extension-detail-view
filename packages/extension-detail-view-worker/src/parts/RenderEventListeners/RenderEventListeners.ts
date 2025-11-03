@@ -71,5 +71,9 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       name: DomEventListenerFunctions.HandleClickSetColorTheme,
       params: ['handleClickSetColorTheme'],
     },
+    {
+      name: DomEventListenerFunctions.HandleSelectionChange,
+      params: ['handleSelectionChange'],
+    },
   ]
 }
