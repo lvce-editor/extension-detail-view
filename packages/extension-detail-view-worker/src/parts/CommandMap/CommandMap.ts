@@ -44,7 +44,7 @@ export const commandMap = {
   'ExtensionDetail.dispose': Dispose.dispose,
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
-  'ExtensionDetail.getMenuEntries2': getMenuEntries2,
+  'ExtensionDetail.getMenuEntries2': WrapCommand.wrapGetter(getMenuEntries2),
   'ExtensionDetail.getMenus': GetMenus.getMenus,
   'ExtensionDetail.getMenuIds': getMenuIds,
   'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
