@@ -1,12 +1,19 @@
+import { MenuEntryId } from '@lvce-editor/constants'
 import type { Menu } from '../Menu/Menu.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
-import * as MenuEntryId from '../MenuEntryId/MenuEntryId.ts'
+import { getMenuEntriesReadme } from '../GetMenuEntriesReadme/GetMenuEntriesReadme.ts'
 import * as MenuItemFlags from '../MenuItemFlags/MenuItemFlags.ts'
+
+const ExtensionDetailIconContextMenu = 4091
 
 export const getMenus = (): readonly Menu[] => {
   return [
     {
-      id: MenuEntryId.ExtensionDetailIconContextMenu,
+      id: MenuEntryId.ExtensionDetailReadme,
+      entries: getMenuEntriesReadme(),
+    },
+    {
+      id: ExtensionDetailIconContextMenu,
       entries: [
         {
           id: 'openImageInNewTab',
