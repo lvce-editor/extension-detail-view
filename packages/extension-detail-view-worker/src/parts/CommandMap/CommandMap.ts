@@ -27,6 +27,7 @@ import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageCon
 import * as HandleReadmeClick from '../HandleReadmeClick/HandleReadmeClick.ts'
 import { handleReadmeContextMenu } from '../HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
 import * as HandleScroll from '../HandleScroll/HandleScroll.ts'
+import { handleSelectionChange } from '../HandleSelectionChange/HandleSelectionChange.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent2 from '../LoadContent2/LoadContent2.ts'
@@ -39,6 +40,7 @@ import * as SelectTab from '../SelectTab/SelectTab.ts'
 
 export const commandMap = {
   'ExtensionDetail.copyImage': WrapCommand.wrapCommand(CopyImage.copyImage),
+  'ExtensionDetail.handleSelectionChange': WrapCommand.wrapCommand(handleSelectionChange),
   'ExtensionDetail.copyImageUrl': WrapCommand.wrapCommand(copyImageUrl),
   'ExtensionDetail.copyReadmeLink': WrapCommand.wrapCommand(copyReadmeLink),
   'ExtensionDetail.create': Create.create,
