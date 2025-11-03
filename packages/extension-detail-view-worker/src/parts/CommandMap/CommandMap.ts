@@ -6,6 +6,7 @@ import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
 import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
+import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
 import * as GetMenus from '../GetMenus/GetMenus.ts'
@@ -43,6 +44,7 @@ export const commandMap = {
   'ExtensionDetail.dispose': Dispose.dispose,
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
+  'ExtensionDetail.getMenuEntries2': getMenuEntries2,
   'ExtensionDetail.getMenus': GetMenus.getMenus,
   'ExtensionDetail.getMenuIds': getMenuIds,
   'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
