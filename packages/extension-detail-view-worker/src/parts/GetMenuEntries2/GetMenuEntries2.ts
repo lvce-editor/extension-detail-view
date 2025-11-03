@@ -39,6 +39,5 @@ interface ContextMenuProps {
 }
 
 export const getMenuEntries2 = (state: ExtensionDetailState, props: ContextMenuProps): readonly MenuEntry[] => {
-  console.log({ state, props })
   return getMenuEntriesReadme(props)
 }
