@@ -13,6 +13,10 @@ export const categories = (): string => {
   return I18nString.i18nString(UiStrings.Categories)
 }
 
+export const copyLink = (): string => {
+  return I18nString.i18nString(UiStrings.CopyLink)
+}
+
 export const resources = (): string => {
   return I18nString.i18nString(UiStrings.Resources)
 }
