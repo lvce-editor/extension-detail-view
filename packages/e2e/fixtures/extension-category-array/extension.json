@@ -1,0 +1,12 @@
+{
+  "id": "test.extension-category-array",
+  "name": "Test",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": ["Formatters"]
+}
