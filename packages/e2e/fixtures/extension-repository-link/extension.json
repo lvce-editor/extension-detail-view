@@ -1,0 +1,13 @@
+{
+  "id": "test.extension-repository-invalid-null",
+  "name": "Test",
+  "repository": "https://example.com",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": ["Formatters"]
+}
