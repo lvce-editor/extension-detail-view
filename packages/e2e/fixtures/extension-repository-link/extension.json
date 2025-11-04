@@ -1,5 +1,5 @@
 {
-  "id": "test.extension-repository-invalid-null",
+  "id": "test.extension-repository-link",
   "name": "Test",
   "repository": "https://example.com",
   "description": "Test Description",
