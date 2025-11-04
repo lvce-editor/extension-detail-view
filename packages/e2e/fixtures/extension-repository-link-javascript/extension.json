@@ -1,0 +1,13 @@
+{
+  "id": "test.extension-repository-link-javascript",
+  "name": "Test",
+  "repository": "javascript:alert(1)",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": ["Formatters"]
+}
