@@ -1,0 +1,12 @@
+{
+  "id": "test.extension-category-array-invalid-item-null",
+  "name": "Test",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": [null]
+}
