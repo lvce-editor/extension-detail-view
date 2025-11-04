@@ -34,7 +34,7 @@ export const loadSideBarContent = async (
   )
   const marketplaceEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries(isBuiltin)
   const categories: readonly Category[] = GetCategories.getCategories(extension)
-  const resources: readonly Resource[] = GetResources.getResources(isBuiltin)
+  const resources: readonly Resource[] = GetResources.getResources(isBuiltin, extension)
   return {
     installationEntries,
     marketplaceEntries,
