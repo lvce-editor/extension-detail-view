@@ -1,14 +1,12 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const skip = 1
-
 export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }) => {
   // arrange
-  const extensionUri = import.meta.resolve('../fixtures/extension-basics')
+  const extensionUri = import.meta.resolve('../fixtures/extension-category-array')
   await Extension.addWebExtension(extensionUri)
 
   // act
-  await ExtensionDetail.open('test.extension-basics')
+  await ExtensionDetail.open('test.extension-category-array')
 
   // assert
   const detailView = Locator('.ExtensionDetail')
