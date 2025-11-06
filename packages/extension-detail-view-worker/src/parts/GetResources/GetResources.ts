@@ -12,18 +12,22 @@ export const getResources = (isBuiltin: boolean, extension: unknown): readonly R
     {
       label: ExtensionDetailStrings.marketplace(),
       url: '#',
+      icon: '',
     },
     {
       label: ExtensionDetailStrings.issues(),
       url: '#',
+      icon: '',
     },
     {
       label: ExtensionDetailStrings.repository(),
       url: repositoryLink,
+      icon: '',
     },
     {
       label: ExtensionDetailStrings.license(),
       url: '#',
+      icon: '',
     },
   ]
 }
