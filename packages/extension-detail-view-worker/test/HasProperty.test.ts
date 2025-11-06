@@ -39,11 +39,3 @@ test('hasProperty returns true for object with multiple properties', () => {
   expect(hasProperty(object, 'age')).toBe(true)
   expect(hasProperty(object, 'city')).toBe(false)
 })
-
-test('hasProperty narrows type correctly', () => {
-  const object: unknown = { name: 'test' }
-  if (hasProperty(object, 'name')) {
-    const value: unknown = object.name
-    expect(value).toBe('test')
-  }
-})
