@@ -11,7 +11,12 @@ const getIconDom = (icon: string): readonly VirtualDomNode[] => {
   return [
     {
       type: VirtualDomElements.Div,
-      className: mergeClassNames(ClassNames.ResourceIcon, ClassNames.MaskIcon, `MaskIcon${icon}`),
+      className: ClassNames.ResourceIcon,
+      childCount: 1,
+    },
+    {
+      type: VirtualDomElements.Div,
+      className: mergeClassNames(ClassNames.MaskIcon, `MaskIcon${icon}`),
       childCount: 0,
     },
   ]
