@@ -14,5 +14,7 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await expect(resourcesSection).toBeVisible()
   const resourceItem3 = resourcesSection.locator('.Resource').nth(2)
   await expect(resourceItem3).toHaveText('Repository')
-  await expect(resourceItem3).toHaveAttribute('href', null)
+  await expect(resourceItem3).toHaveAttribute('href', 'https://example.com')
+  await expect(resourceItem3).toHaveAttribute('target', '_blank')
+  await expect(resourceItem3).toHaveAttribute('rel', 'noopener noreferrer')
 }
