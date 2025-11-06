@@ -60,3 +60,24 @@ test('activation event virtual dom with empty event', () => {
     text(''),
   ])
 })
+
+test('activation event virtual dom with invalid event', () => {
+  const event: ActivationEntry = {
+    stringValue: 'invalid:event',
+    isValid: false,
+    errorMessage: 'Invalid activation event format',
+  }
+  expect(GetActivationEventVirtualDom.getActivationEventVirtualDom(event)).toEqual([
+    {
+      type: VirtualDomElements.Li,
+      childCount: 1,
+      title: 'Invalid activation event format',
+      className: 'ListItem ListItemInvalid',
+    },
+    {
+      type: VirtualDomElements.Code,
+      childCount: 1,
+    },
+    text('invalid:event'),
+  ])
+})
