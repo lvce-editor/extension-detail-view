@@ -1,5 +1,6 @@
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import { getStatusMessage } from '../GetStatusMessage/GetStatusMessage.ts'
 
 const key: VirtualDomNode = {
@@ -15,11 +16,7 @@ const value: VirtualDomNode = {
 }
 
 export const getStatusVirtualDom = (status: number): readonly VirtualDomNode[] => {
-  const statusString = getStatusMessage(status)
-  return [
-    key,
-    text(`Status: `), // i18n
-    value,
-    text(`${statusString}`),
-  ]
+  const statusKey = ExtensionDetailStrings.status()
+  const statusValue = getStatusMessage(status)
+  return [key, text(`${statusKey}: `), value, text(`${statusValue}`)]
 }
