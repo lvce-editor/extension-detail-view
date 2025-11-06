@@ -1,5 +1,6 @@
 import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import { getLicenseLink } from '../GetLicenseLink/GetLicenseLink.ts'
 import { getRepositoryLink } from '../GetRepositoryLink/GetRepositoryLink.ts'
 
 export const getResources = (isBuiltin: boolean, extension: unknown): readonly Resource[] => {
@@ -7,17 +8,18 @@ export const getResources = (isBuiltin: boolean, extension: unknown): readonly R
     return []
   }
   const repositoryLink = getRepositoryLink(extension)
+  const licenseLink = getLicenseLink(extension)
   // TODO
   return [
     {
       label: ExtensionDetailStrings.marketplace(),
       url: '#',
-      icon: '',
+      icon: 'LinkExternal',
     },
     {
       label: ExtensionDetailStrings.issues(),
       url: '#',
-      icon: '',
+      icon: 'LinkExternal',
     },
     {
       label: ExtensionDetailStrings.repository(),
@@ -26,8 +28,8 @@ export const getResources = (isBuiltin: boolean, extension: unknown): readonly R
     },
     {
       label: ExtensionDetailStrings.license(),
-      url: '#',
-      icon: '',
+      url: licenseLink,
+      icon: 'LinkExternal',
     },
   ]
 }
