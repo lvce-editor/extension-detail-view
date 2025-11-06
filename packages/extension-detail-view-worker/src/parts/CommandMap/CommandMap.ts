@@ -1,12 +1,16 @@
 import { terminate } from '@lvce-editor/viewlet-registry'
 import * as CopyImage from '../CopyImage/CopyImage.ts'
 import { copyImageUrl } from '../CopyImageUrl/CopyImageUrl.ts'
+import { copyReadmeLink } from '../CopyReadmeLink/CopyReadmeLink.ts'
 import * as Create from '../Create/Create.ts'
 import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
+import * as ExecuteCopy from '../ExecuteCopy/ExecuteCopy.ts'
 import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
+import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
+import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
 import * as GetMenus from '../GetMenus/GetMenus.ts'
 import { handleAdditionalDetailContextMenu } from '../HandleAdditionalDetailContextMenu/HandleAdditionalDetailContextMenu.ts'
 import * as HandleClickCategory from '../HandleClickCategory/HandleClickCategory.ts'
@@ -24,6 +28,7 @@ import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageCon
 import * as HandleReadmeClick from '../HandleReadmeClick/HandleReadmeClick.ts'
 import { handleReadmeContextMenu } from '../HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
 import * as HandleScroll from '../HandleScroll/HandleScroll.ts'
+import { handleSelectionChange } from '../HandleSelectionChange/HandleSelectionChange.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent2 from '../LoadContent2/LoadContent2.ts'
@@ -37,15 +42,18 @@ import * as SelectTab from '../SelectTab/SelectTab.ts'
 export const commandMap = {
   'ExtensionDetail.copyImage': WrapCommand.wrapCommand(CopyImage.copyImage),
   'ExtensionDetail.copyImageUrl': WrapCommand.wrapCommand(copyImageUrl),
+  'ExtensionDetail.copyReadmeLink': WrapCommand.wrapCommand(copyReadmeLink),
   'ExtensionDetail.create': Create.create,
   'ExtensionDetail.diff2': Diff2.diff2,
   'ExtensionDetail.dispose': Dispose.dispose,
+  'ExtensionDetail.executeCopy': WrapCommand.wrapCommand(ExecuteCopy.executeCopy),
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
+  'ExtensionDetail.getMenuEntries2': WrapCommand.wrapGetter(getMenuEntries2),
+  'ExtensionDetail.getMenuIds': getMenuIds,
   'ExtensionDetail.getMenus': GetMenus.getMenus,
-  'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
-  'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
   'ExtensionDetail.handleAdditionalDetailsContextMenu': WrapCommand.wrapCommand(handleAdditionalDetailContextMenu),
+  'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
   'ExtensionDetail.handleClickEnable': WrapCommand.wrapCommand(handleClickEnable),
   'ExtensionDetail.handleClickScrollToTop': WrapCommand.wrapCommand(HandleClickScrollToTop.handleClickScrollToTop),
@@ -57,9 +65,11 @@ export const commandMap = {
   'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
   'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
-  'ExtensionDetail.handleScroll': WrapCommand.wrapCommand(HandleScroll.handleScroll),
-  'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.handleReadmeClick': WrapCommand.wrapCommand(HandleReadmeClick.handleReadmeClick),
+  'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
+  'ExtensionDetail.handleScroll': WrapCommand.wrapCommand(HandleScroll.handleScroll),
+  'ExtensionDetail.handleSelectionChange': WrapCommand.wrapCommand(handleSelectionChange),
+  'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.handleWheel': WrapCommand.wrapCommand(HandleScroll.handleScroll), // deprecated
   'ExtensionDetail.initialize': Initialize.initialize,
   'ExtensionDetail.loadContent2': WrapCommand.wrapCommand(LoadContent2.loadContent2),

@@ -3,6 +3,17 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
+interface TitleProps {
+  readonly title?: string
+}
+
+const getTitleProps = (title: string | undefined): TitleProps => {
+  if (title) {
+    return { title }
+  }
+  return {}
+}
+
 export const getCellLinkVirtualDom = (
   value: string,
   props?: { readonly className?: string; readonly title?: string; readonly href: string },
@@ -13,7 +24,7 @@ export const getCellLinkVirtualDom = (
       type: VirtualDomElements.Td,
       className: tdClassName,
       childCount: 1,
-      ...(props?.title ? { title: props.title } : {}),
+      ...getTitleProps(props?.title),
     },
     {
       type: VirtualDomElements.A,

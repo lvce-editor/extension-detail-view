@@ -69,6 +69,7 @@ export const loadContent = async (
     extensionVersion,
     extensionUri,
     isBuiltin,
+    extension,
   )
   const padding = getPadding(width)
   const sideBarWidth = getSideBarWidth(width)

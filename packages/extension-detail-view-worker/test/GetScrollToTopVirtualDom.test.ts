@@ -25,7 +25,7 @@ test('getScrollToTopVirtualDom - returns button when enabled', () => {
       childCount: 0,
       className: 'MaskIcon MaskIconChevronUp',
       role: 'none',
-      type: 4,
+      type: VirtualDomElements.Div,
     },
   ])
 })

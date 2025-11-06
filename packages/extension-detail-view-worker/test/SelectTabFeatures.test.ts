@@ -7,6 +7,7 @@ import { register } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 import { selectTabFeatures } from '../src/parts/SelectTabFeatures/SelectTabFeatures.ts'
+import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 
 test('should select features tab and first feature when selectedFeature is null', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
@@ -142,8 +143,8 @@ test('should merge feature details handler results', async () => {
       detailsVirtualDom: [{ type: VirtualDomElements.Div, children: [] }],
       commands: [
         [
-          { type: 2, value: 'test.command' },
-          { type: 1, value: 'Test Command' },
+          { type: TableCellType.Code, value: 'test.command' },
+          { type: TableCellType.Text, value: 'Test Command' },
         ],
       ],
       description: 'Mock feature description',

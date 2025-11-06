@@ -1,27 +1,35 @@
 import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import { getLicenseLink } from '../GetLicenseLink/GetLicenseLink.ts'
+import { getRepositoryLink } from '../GetRepositoryLink/GetRepositoryLink.ts'
 
-export const getResources = (isBuiltin: boolean): readonly Resource[] => {
+export const getResources = (isBuiltin: boolean, extension: unknown): readonly Resource[] => {
   if (isBuiltin) {
     return []
   }
+  const repositoryLink = getRepositoryLink(extension)
+  const licenseLink = getLicenseLink(extension)
   // TODO
   return [
     {
       label: ExtensionDetailStrings.marketplace(),
       url: '#',
+      icon: 'LinkExternal',
     },
     {
       label: ExtensionDetailStrings.issues(),
       url: '#',
+      icon: 'LinkExternal',
     },
     {
       label: ExtensionDetailStrings.repository(),
-      url: '#',
+      url: repositoryLink,
+      icon: 'Repo',
     },
     {
       label: ExtensionDetailStrings.license(),
-      url: '#',
+      url: licenseLink,
+      icon: 'LinkExternal',
     },
   ]
 }

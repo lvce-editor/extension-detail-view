@@ -1,5 +1,4 @@
 import { test, expect } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import type { RuntimeStatus } from '../src/parts/RuntimeStatus/RuntimeStatus.ts'
 import * as ExtensionHostWorker from '../src/parts/ExtensionHostWorker/ExtensionHostWorker.ts'
 import { getRuntimeStatusDetails } from '../src/parts/FeatureRuntimeStatusDetails/FeatureRuntimeStatusDetails.ts'
@@ -14,17 +13,11 @@ test('getRuntimeStatusDetails should return runtime status details for extension
     importTime: 0,
   }
 
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, extensionId: string) => {
-      if (method === 'ExtensionHost.getRuntimeStatus' && extensionId === 'test-extension') {
-        return mockRuntimeStatus
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = ExtensionHostWorker.registerMockRpc({
+    'ExtensionHost.getRuntimeStatus': () => {
+      return mockRuntimeStatus
     },
   })
-
-  ExtensionHostWorker.set(mockRpc)
 
   const extension = {
     id: 'test-extension',
@@ -39,6 +32,7 @@ test('getRuntimeStatusDetails should return runtime status details for extension
     status: RuntimeStatusType.Activated,
     importTime: 0,
   })
+  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'test-extension']])
 })
 
 test('getRuntimeStatusDetails should handle different activation events', async () => {
@@ -50,17 +44,11 @@ test('getRuntimeStatusDetails should handle different activation events', async 
     importTime: 0,
   }
 
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, extensionId: string) => {
-      if (method === 'ExtensionHost.getRuntimeStatus' && extensionId === 'another-extension') {
-        return mockRuntimeStatus
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = ExtensionHostWorker.registerMockRpc({
+    'ExtensionHost.getRuntimeStatus': () => {
+      return mockRuntimeStatus
     },
   })
-
-  ExtensionHostWorker.set(mockRpc)
 
   const extension = {
     id: 'another-extension',
@@ -75,6 +63,7 @@ test('getRuntimeStatusDetails should handle different activation events', async 
     status: RuntimeStatusType.Activating,
     importTime: 0,
   })
+  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'another-extension']])
 })
 
 test('getRuntimeStatusDetails should handle error status', async () => {
@@ -86,17 +75,11 @@ test('getRuntimeStatusDetails should handle error status', async () => {
     importTime: 0,
   }
 
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, extensionId: string) => {
-      if (method === 'ExtensionHost.getRuntimeStatus' && extensionId === 'error-extension') {
-        return mockRuntimeStatus
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = ExtensionHostWorker.registerMockRpc({
+    'ExtensionHost.getRuntimeStatus': () => {
+      return mockRuntimeStatus
     },
   })
-
-  ExtensionHostWorker.set(mockRpc)
 
   const extension = {
     id: 'error-extension',
@@ -111,17 +94,15 @@ test('getRuntimeStatusDetails should handle error status', async () => {
     status: RuntimeStatusType.Error,
     importTime: 0,
   })
+  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'error-extension']])
 })
 
 test('getRuntimeStatusDetails should propagate errors from getRuntimeStatus', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, extensionId: string) => {
+  const mockRpc = ExtensionHostWorker.registerMockRpc({
+    'ExtensionHost.getRuntimeStatus': () => {
       throw new Error('Runtime status error')
     },
   })
-
-  ExtensionHostWorker.set(mockRpc)
 
   const extension = {
     id: 'failing-extension',
@@ -129,4 +110,5 @@ test('getRuntimeStatusDetails should propagate errors from getRuntimeStatus', as
   }
 
   await expect(getRuntimeStatusDetails(extension)).rejects.toThrow('Runtime status error')
+  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'failing-extension']])
 })

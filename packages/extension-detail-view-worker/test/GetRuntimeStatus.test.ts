@@ -1,5 +1,4 @@
 import { test, expect } from '@jest/globals'
-import { MockRpc } from '@lvce-editor/rpc'
 import type { RuntimeStatus } from '../src/parts/RuntimeStatus/RuntimeStatus.ts'
 import * as ExtensionHostWorker from '../src/parts/ExtensionHostWorker/ExtensionHostWorker.ts'
 import { getRuntimeStatus } from '../src/parts/GetRuntimeStatus/GetRuntimeStatus.ts'
@@ -14,17 +13,11 @@ test('getRuntimeStatus should return runtime status from ExtensionHostWorker', a
     importTime: 0,
   }
 
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, extensionId: string) => {
-      if (method === 'ExtensionHost.getRuntimeStatus' && extensionId === 'test-extension') {
-        return mockRuntimeStatus
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = ExtensionHostWorker.registerMockRpc({
+    'ExtensionHost.getRuntimeStatus': () => {
+      return mockRuntimeStatus
     },
   })
-
-  ExtensionHostWorker.set(mockRpc)
 
   const result = await getRuntimeStatus('test-extension')
 
@@ -33,6 +26,7 @@ test('getRuntimeStatus should return runtime status from ExtensionHostWorker', a
   expect(result.activationEvent).toBe('onStartupFinished')
   expect(result.status).toBe(RuntimeStatusType.Activated)
   expect(result.activationTime).toBe(1_234_567_890)
+  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'test-extension']])
 })
 
 test('getRuntimeStatus should handle different extension IDs', async () => {
@@ -44,17 +38,11 @@ test('getRuntimeStatus should handle different extension IDs', async () => {
     importTime: 0,
   }
 
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, extensionId: string) => {
-      if (method === 'ExtensionHost.getRuntimeStatus' && extensionId === 'another-extension') {
-        return mockRuntimeStatus
-      }
-      throw new Error(`unexpected method ${method}`)
+  const mockRpc = ExtensionHostWorker.registerMockRpc({
+    'ExtensionHost.getRuntimeStatus': () => {
+      return mockRuntimeStatus
     },
   })
-
-  ExtensionHostWorker.set(mockRpc)
 
   const result = await getRuntimeStatus('another-extension')
 
@@ -63,17 +51,16 @@ test('getRuntimeStatus should handle different extension IDs', async () => {
   expect(result.activationEvent).toBe('onCommand')
   expect(result.status).toBe(RuntimeStatusType.Error)
   expect(result.activationTime).toBe(9_876_543_210)
+  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'another-extension']])
 })
 
 test('getRuntimeStatus should propagate errors from ExtensionHostWorker', async () => {
-  const mockRpc = MockRpc.create({
-    commandMap: {},
-    invoke: (method: string, extensionId: string) => {
+  const mockRpc = ExtensionHostWorker.registerMockRpc({
+    'ExtensionHost.getRuntimeStatus': () => {
       throw new Error('Extension host error')
     },
   })
 
-  ExtensionHostWorker.set(mockRpc)
-
   await expect(getRuntimeStatus('test-extension')).rejects.toThrow('Extension host error')
+  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'test-extension']])
 })
