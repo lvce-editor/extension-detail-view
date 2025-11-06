@@ -22,7 +22,7 @@ export const getResources = (isBuiltin: boolean, extension: unknown): readonly R
     {
       label: ExtensionDetailStrings.repository(),
       url: repositoryLink,
-      icon: '',
+      icon: 'Repo',
     },
     {
       label: ExtensionDetailStrings.license(),
