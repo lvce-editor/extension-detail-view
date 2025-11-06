@@ -108,31 +108,31 @@ test.skip('handles missing extension details', () => {
     {
       childCount: 4,
       className: 'ExtensionDetailHeaderActions',
-      type: 4,
+      type: VirtualDomElements.Div,
     },
     {
       childCount: 1,
       className: 'Button ButtonPrimary',
       onClick: 'handleClickDisable',
       name: InputName.Disable,
-      type: 1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
       text: ExtensionDetailStrings.disable(),
-      type: 12,
+      type: VirtualDomElements.Text,
     },
     {
       childCount: 1,
       className: 'Button ButtonPrimary',
       onClick: 'handleClickUninstall',
       name: InputName.Uninstall,
-      type: 1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
       text: ExtensionDetailStrings.uninstall(),
-      type: 12,
+      type: VirtualDomElements.Text,
     },
     {
       childCount: 1,
@@ -140,13 +140,13 @@ test.skip('handles missing extension details', () => {
       onClick: 'handleClickSettings',
       title: ExtensionDetailStrings.settings(),
       name: InputName.Settings,
-      type: 1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
       className: 'SettingsIcon',
       text: '⚙️',
-      type: 8,
+      type: VirtualDomElements.Span,
     },
   ])
 })
@@ -208,19 +208,19 @@ test.skip('handles builtin extension - shows only disable button', () => {
     {
       childCount: 3,
       className: 'ExtensionDetailHeaderActions',
-      type: 4,
+      type: VirtualDomElements.Div,
     },
     {
       childCount: 1,
       className: 'Button ButtonPrimary',
       onClick: 'handleClickDisable',
       name: InputName.Disable,
-      type: 1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
       text: ExtensionDetailStrings.disable(),
-      type: 12,
+      type: VirtualDomElements.Text,
     },
     {
       childCount: 1,
@@ -228,13 +228,13 @@ test.skip('handles builtin extension - shows only disable button', () => {
       onClick: 'handleClickSettings',
       title: ExtensionDetailStrings.settings(),
       name: InputName.Settings,
-      type: 1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
       className: 'SettingsIcon',
       text: '⚙️',
-      type: 8,
+      type: VirtualDomElements.Span,
     },
   ])
 })

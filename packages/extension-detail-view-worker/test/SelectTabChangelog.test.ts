@@ -1,4 +1,5 @@
 import { test, expect } from '@jest/globals'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as createDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
@@ -9,7 +10,7 @@ test('selectTabChangelog should update state with changelog content', async () =
   const state = createDefaultState.createDefaultState()
   const changelogContent = '# Changelog\n\n## Version 1.0.0\n- Initial release'
   const renderedHtml = '<h1>Changelog</h1><h2>Version 1.0.0</h2><ul><li>Initial release</li></ul>'
-  const mockDom = [{ type: 1, childCount: 1 }]
+  const mockDom = [{ type: VirtualDomElements.Div, childCount: 1 }]
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {

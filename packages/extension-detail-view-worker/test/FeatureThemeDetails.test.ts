@@ -1,4 +1,5 @@
 import { test, expect } from '@jest/globals'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as FeatureThemeDetails from '../src/parts/FeatureThemeDetails/FeatureThemeDetails.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
@@ -15,7 +16,7 @@ test('getThemeDetails should return theme details with themes', async () => {
       return '<h1>Theme Markdown</h1>'
     },
     'Markdown.getVirtualDom': () => {
-      return [{ type: 1, childCount: 1 }]
+      return [{ type: VirtualDomElements.Div, childCount: 1 }]
     },
   })
 
@@ -40,7 +41,7 @@ test('getThemeDetails should handle empty themes', async () => {
       return '<h1>Theme Markdown</h1>'
     },
     'Markdown.getVirtualDom': () => {
-      return [{ type: 1, childCount: 1 }]
+      return [{ type: VirtualDomElements.Div, childCount: 1 }]
     },
   })
 
