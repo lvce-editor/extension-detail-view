@@ -11,18 +11,20 @@ const resourceNode: VirtualDomNode = {
   childCount: 1,
 }
 
-const resourceNodeLink: VirtualDomNode = {
-  type: VirtualDomElements.A,
-  className: ClassNames.Resource,
-  childCount: 1,
-  target: '_blank',
-  rel: 'noopener noreferrer',
-}
-
 export const getResourceVirtualDom = (resource: Resource): readonly VirtualDomNode[] => {
   const { label, url } = resource
   if (url && url !== '#') {
-    return [resourceNodeLink, text(label)]
+    return [
+      {
+        type: VirtualDomElements.A,
+        className: ClassNames.Resource,
+        childCount: 1,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        href: url,
+      },
+      text(label),
+    ]
   }
   return [resourceNode, text(label)]
 }

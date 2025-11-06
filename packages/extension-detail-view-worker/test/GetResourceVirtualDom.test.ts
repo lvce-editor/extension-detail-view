@@ -16,6 +16,7 @@ test('resource virtual dom', () => {
       childCount: 1,
       rel: 'noopener noreferrer',
       target: '_blank',
+      href: 'https://example.com',
     },
     text('Test Resource'),
   ])
