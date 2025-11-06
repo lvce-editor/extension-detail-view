@@ -1,13 +1,6 @@
 import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
-import { hasProperty } from '../HasProperty/HasProperty.ts'
-
-const getRepositoryLink = (extension: unknown): string => {
-  if (extension && hasProperty(extension, 'repository') && typeof extension.repository === 'string') {
-    return extension.repository // TODO watch out for javascript: or other invalid links or path traversal
-  }
-  return ''
-}
+import { getRepositoryLink } from '../GetRepositoryLink/GetRepositoryLink.ts'
 
 export const getResources = (isBuiltin: boolean, extension: unknown): readonly Resource[] => {
   if (isBuiltin) {
