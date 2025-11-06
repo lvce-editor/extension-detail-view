@@ -8,6 +8,7 @@ test('resource virtual dom', () => {
   const resource: Resource = {
     label: 'Test Resource',
     url: 'https://example.com',
+    icon: '',
   }
   expect(GetResourceVirtualDom.getResourceVirtualDom(resource)).toEqual([
     {
