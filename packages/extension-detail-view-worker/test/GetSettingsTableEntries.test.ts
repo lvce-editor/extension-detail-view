@@ -1,6 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { getFeatureDetailsSettings } from '../src/parts/GetFeatureDetailsSettings/GetFeatureDetailsSettings.ts'
 import * as GetSettingsTableEntries from '../src/parts/GetSettingsTableEntries/GetSettingsTableEntries.ts'
+import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 
 test('get settings table entries with settings', () => {
   const extension = {
@@ -24,12 +25,12 @@ test('get settings table entries with settings', () => {
     headings: ['ID', 'Label'],
     rows: [
       [
-        { type: 1, value: 'editor.fontSize' },
-        { type: 1, value: undefined },
+        { type: TableCellType.Text, value: 'editor.fontSize' },
+        { type: TableCellType.Text, value: undefined },
       ],
       [
-        { type: 1, value: 'editor.fontFamily' },
-        { type: 1, value: undefined },
+        { type: TableCellType.Text, value: 'editor.fontFamily' },
+        { type: TableCellType.Text, value: undefined },
       ],
     ],
   })
