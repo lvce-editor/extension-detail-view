@@ -12,6 +12,19 @@ const resourceNode: VirtualDomNode = {
 }
 
 export const getResourceVirtualDom = (resource: Resource): readonly VirtualDomNode[] => {
-  const { label } = resource
+  const { label, url } = resource
+  if (url && url !== '#') {
+    return [
+      {
+        type: VirtualDomElements.A,
+        className: ClassNames.Resource,
+        childCount: 1,
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        href: url,
+      },
+      text(label),
+    ]
+  }
   return [resourceNode, text(label)]
 }
