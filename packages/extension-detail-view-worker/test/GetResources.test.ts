@@ -22,3 +22,16 @@ test.skip('getResources returns all resources', () => {
     },
   ])
 })
+
+test('getResources returns empty array when isBuiltin is true', () => {
+  const resources = GetResources.getResources(true, {})
+  expect(resources).toEqual([])
+})
+
+test('getResources returns repository link when extension.repository is a string', () => {
+  const extension = {
+    repository: 'https://github.com/example/repo',
+  }
+  const resources = GetResources.getResources(false, extension)
+  expect(resources[1].url).toBe('https://github.com/example/repo')
+})
