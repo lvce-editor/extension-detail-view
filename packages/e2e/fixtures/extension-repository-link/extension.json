@@ -1,0 +1,13 @@
+{
+  "id": "test.extension-repository-link",
+  "name": "Test",
+  "repository": "https://example.com",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": ["Formatters"]
+}
