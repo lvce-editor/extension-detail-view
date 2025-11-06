@@ -1,0 +1,13 @@
+{
+  "id": "test.extension-repository-link-mail",
+  "name": "Test",
+  "repository": "mailto:test@example.com",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": ["Formatters"]
+}
