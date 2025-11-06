@@ -15,11 +15,11 @@ export const getResources = (isBuiltin: boolean, extension: unknown): readonly R
     },
     {
       label: ExtensionDetailStrings.issues(),
-      url: repositoryLink,
+      url: '#',
     },
     {
       label: ExtensionDetailStrings.repository(),
-      url: '#',
+      url: repositoryLink,
     },
     {
       label: ExtensionDetailStrings.license(),
