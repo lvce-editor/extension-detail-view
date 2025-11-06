@@ -3,6 +3,7 @@ import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/Ext
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FeatureCommandsVirtualDom from '../src/parts/FeatureCommandsVirtualDom/FeatureCommandsVirtualDom.ts'
 import * as GetFeatureCommandsVirtualDom from '../src/parts/GetFeatureCommandsVirtualDom/GetFeatureCommandsVirtualDom.ts'
+import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 
 test('returns virtual dom for empty commands', () => {
   const state: ExtensionDetailState = {
@@ -19,9 +20,9 @@ test('returns virtual dom for empty commands', () => {
 test('returns virtual dom for commands with entries', () => {
   const commands = [
     [
-      { type: 1, value: 'command1' },
-      { type: 2, value: 'Command 1' },
-      { type: 2, value: 'Description 1' },
+      { type: TableCellType.Code, value: 'command1' },
+      { type: TableCellType.Text, value: 'Command 1' },
+      { type: TableCellType.Text, value: 'Description 1' },
     ],
   ]
   const state: ExtensionDetailState = {
@@ -38,14 +39,14 @@ test('returns virtual dom for commands with entries', () => {
 test('returns virtual dom for multiple commands', () => {
   const commands = [
     [
-      { type: 1, value: 'command1' },
-      { type: 2, value: 'Command 1' },
-      { type: 2, value: 'Description 1' },
+      { type: TableCellType.Code, value: 'command1' },
+      { type: TableCellType.Text, value: 'Command 1' },
+      { type: TableCellType.Text, value: 'Description 1' },
     ],
     [
-      { type: 1, value: 'command2' },
-      { type: 2, value: 'Command 2' },
-      { type: 2, value: 'Description 2' },
+      { type: TableCellType.Code, value: 'command2' },
+      { type: TableCellType.Text, value: 'Command 2' },
+      { type: TableCellType.Text, value: 'Description 2' },
     ],
   ]
   const state: ExtensionDetailState = {
