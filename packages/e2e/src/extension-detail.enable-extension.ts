@@ -2,21 +2,21 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.enable-extension'
 
-export const skip = 1
-
 export const test: Test = async ({ Command, Extension, ExtensionDetail, Locator, expect }) => {
   // arrange
-  const extensionUri = import.meta.resolve('../fixtures/extension-enable-error')
+  const extensionUri = import.meta.resolve('../fixtures/extension-enable')
   await Extension.addWebExtension(extensionUri)
-  await ExtensionDetail.open('test.extension-enable-error')
+  await ExtensionDetail.open('test.extension-enable')
   await Command.execute('ExtensionDetail.handleClickDisable')
+  const enableButton = Locator('.ExtensionDetail [name="Enable"]')
+  await expect(enableButton).toBeVisible()
+  const disableButton = Locator('.ExtensionDetail [name="Disable"]')
+  await expect(disableButton).toBeHidden()
 
   // act
   await Command.execute('ExtensionDetail.handleClickEnable')
 
   // assert
-  const enableButton = Locator('.ExtensionDetail [name="Enable"]')
   await expect(enableButton).toBeHidden()
-  const disableButton = Locator('.ExtensionDetail [name="Disable"]')
   await expect(disableButton).toBeVisible()
 }
