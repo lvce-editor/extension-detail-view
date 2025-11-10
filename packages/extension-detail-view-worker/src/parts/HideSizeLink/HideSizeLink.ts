@@ -11,7 +11,6 @@ export const hideSizeLink = (state: ExtensionDetailState): ExtensionDetailState 
     extensionUri,
     showSizeLink,
   )
-
   return {
     ...state,
     installationEntries,
