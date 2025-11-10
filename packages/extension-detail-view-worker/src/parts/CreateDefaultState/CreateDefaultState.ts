@@ -63,5 +63,6 @@ export const createDefaultState = (): ExtensionDetailState => {
     wasActivatedByEvent: '',
     webViews: [],
     width: 500,
+    showSizeLink: false,
   }
 }
