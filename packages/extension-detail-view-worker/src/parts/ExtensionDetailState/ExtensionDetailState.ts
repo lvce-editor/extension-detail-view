@@ -10,6 +10,7 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
 
 export interface ExtensionDetailState {
+  readonly activationEntries: readonly ActivationEntry[]
   readonly activationEvents: readonly string[]
   readonly activationTime: number
   readonly assetDir: string
@@ -40,7 +41,7 @@ export interface ExtensionDetailState {
   readonly importTime: number
   readonly installationEntries: readonly MoreInfoEntry[]
   readonly jsonValidation: readonly Row[]
-  readonly activationEntries: readonly ActivationEntry[]
+  readonly locationProtocol: string
   readonly marketplaceEntries: readonly MoreInfoEntry[]
   readonly name: string
   readonly paddingLeft: number
@@ -58,6 +59,9 @@ export interface ExtensionDetailState {
   readonly settings: readonly Row[]
   readonly settingsButtonEnabled: boolean
   readonly showAdditionalDetailsBreakpoint: number
+  readonly showSideBar: boolean
+  readonly showSizeLink: boolean
+  readonly sideBarWidth: number
   readonly sizeOnDisk: number
   readonly sizeValue: number
   readonly status: number
@@ -68,7 +72,4 @@ export interface ExtensionDetailState {
   readonly wasActivatedByEvent: string
   readonly webViews: readonly WebView[]
   readonly width: number
-  readonly showSideBar: boolean
-  readonly sideBarWidth: number
-  readonly locationProtocol: string
 }
