@@ -3,7 +3,9 @@ import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctio
 import * as GetInstallationEntries from '../src/parts/GetInstallationEntries/GetInstallationEntries.ts'
 
 test('get installation entries with all fields', () => {
-  expect(GetInstallationEntries.getInstallationEntries('2.5MB', 'test-extension', '1.0.0', '/test/path')).toEqual([
+  const showSizeLink = true
+
+  expect(GetInstallationEntries.getInstallationEntries('2.5MB', 'test-extension', '1.0.0', '/test/path', showSizeLink)).toEqual([
     {
       key: 'Identifier',
       value: 'test-extension',
@@ -30,7 +32,9 @@ test('get installation entries with all fields', () => {
 })
 
 test('get installation entries with builtin true', () => {
-  expect(GetInstallationEntries.getInstallationEntries('500KB', 'test-extension', '1.0.0', '/test/path')).toEqual([
+  const showSizeLink = true
+
+  expect(GetInstallationEntries.getInstallationEntries('500KB', 'test-extension', '1.0.0', '/test/path', showSizeLink)).toEqual([
     {
       key: 'Identifier',
       value: 'test-extension',
@@ -57,7 +61,8 @@ test('get installation entries with builtin true', () => {
 })
 
 test('get installation entries with disabled true', () => {
-  expect(GetInstallationEntries.getInstallationEntries('1.2MB', 'test-extension', '1.0.0', '/test/path')).toEqual([
+  const showSizeLink = true
+  expect(GetInstallationEntries.getInstallationEntries('1.2MB', 'test-extension', '1.0.0', '/test/path', showSizeLink)).toEqual([
     {
       key: 'Identifier',
       value: 'test-extension',
@@ -84,7 +89,9 @@ test('get installation entries with disabled true', () => {
 })
 
 test('get installation entries with missing fields', () => {
-  expect(GetInstallationEntries.getInstallationEntries('0KB', 'test-extension', '', '/test/path')).toEqual([
+  const showSizeLink = true
+
+  expect(GetInstallationEntries.getInstallationEntries('0KB', 'test-extension', '', '/test/path', showSizeLink)).toEqual([
     {
       key: 'Identifier',
       value: 'test-extension',
