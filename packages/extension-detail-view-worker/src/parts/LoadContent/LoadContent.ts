@@ -1,3 +1,4 @@
+import { PlatformType } from '@lvce-editor/constants'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { HeaderData } from '../HeaderData/HeaderData.ts'
 import type { Tab } from '../Tab/Tab.ts'
@@ -64,12 +65,14 @@ export const loadContent = async (
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog)
   const enabledTabs = tabs.filter((tab) => tab.enabled)
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
+  const showSizeLink = platform !== PlatformType.Web
   const { installationEntries, marketplaceEntries, displaySize, categories, resources, folderSize } = await loadSideBarContent(
     extensionId,
     extensionVersion,
     extensionUri,
     isBuiltin,
     extension,
+    showSizeLink,
   )
   const padding = getPadding(width)
   const sideBarWidth = getSideBarWidth(width)
@@ -96,6 +99,7 @@ export const loadContent = async (
     hasReadme,
     iconSrc,
     installationEntries,
+    locationProtocol,
     marketplaceEntries,
     name,
     paddingLeft: padding,
@@ -108,10 +112,10 @@ export const loadContent = async (
     scrollToTopButtonEnabled: true,
     selectedTab,
     showSideBar,
+    showSizeLink,
     sideBarWidth,
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,
-    locationProtocol,
   }
 }
