@@ -64,6 +64,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     wasActivatedByEvent: '',
     webViews: [],
     width,
+    showSizeLink: false,
   }
   ExtensionDetailStates.set(uid, state, state)
 }
