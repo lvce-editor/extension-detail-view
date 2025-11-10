@@ -36,11 +36,11 @@ export const loadSideBarContent = async (
   const categories: readonly Category[] = GetCategories.getCategories(extension)
   const resources: readonly Resource[] = GetResources.getResources(isBuiltin, extension)
   return {
+    categories,
+    displaySize,
+    folderSize,
     installationEntries,
     marketplaceEntries,
-    displaySize,
-    categories,
     resources,
-    folderSize,
   }
 }
