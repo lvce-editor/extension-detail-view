@@ -22,6 +22,6 @@ export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }
   await expect(cell2).toHaveText('./schema.json')
   const link = cell2.locator('a')
   await expect(link).toBeVisible()
-  const href = new URL('./schema.json', extensionUri).toString()
+  const href = new URL('schema.json', extensionUri).toString()
   await expect(link).toHaveAttribute('href', href)
 }
