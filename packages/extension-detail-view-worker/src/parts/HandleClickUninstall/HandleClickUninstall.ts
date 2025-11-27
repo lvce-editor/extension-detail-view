@@ -1,5 +1,5 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
-import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 export const handleClickUninstall = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
   const { id } = state.extension

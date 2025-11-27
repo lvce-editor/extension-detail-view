@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
 import * as OpenExternal from '../src/parts/OpenExternal/OpenExternal.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test('openUrl calls RendererWorker.openUrl with the correct uri', async () => {
   const mockRpc = RendererWorker.registerMockRpc({

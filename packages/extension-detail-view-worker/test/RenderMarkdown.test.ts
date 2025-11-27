@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as RenderMarkdown from '../src/parts/RenderMarkdown/RenderMarkdown.ts'
 
 test.skip('renderMarkdown - basic markdown', async () => {

@@ -5,7 +5,7 @@ import { registerAllFeatures } from '../src/parts/FeatureFactory/FeatureFactory.
 import { clearRegistry } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 import * as HandleTabsClick from '../src/parts/HandleTabsClick/HandleTabsClick.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test.skip('handles tabs click - details tab', async () => {
   const mockRendererRpc = RendererWorker.registerMockRpc({

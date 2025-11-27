@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
 import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleClickSetColorTheme from '../src/parts/HandleClickSetColorTheme/HandleClickSetColorTheme.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test('getColorThemeId - extension with color themes', () => {
   const extension = {

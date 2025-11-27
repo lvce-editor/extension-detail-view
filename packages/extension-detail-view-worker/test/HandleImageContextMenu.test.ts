@@ -3,7 +3,7 @@ import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/Ext
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleImageContextMenu from '../src/parts/HandleImageContextMenu/HandleImageContextMenu.ts'
 import * as MenuEntryId from '../src/parts/MenuEntryId/MenuEntryId.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test('handleImageContextMenu calls ContextMenu.show2 with correct parameters and returns state unchanged', async () => {
   const mockRpc = RendererWorker.registerMockRpc({

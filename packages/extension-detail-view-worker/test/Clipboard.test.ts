@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
 import * as Clipboard from '../src/parts/Clipboard/Clipboard.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test('writeClipboardImage calls writeClipBoardImage with correct blob', async () => {
   const mockRpc = RendererWorker.registerMockRpc({

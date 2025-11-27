@@ -4,7 +4,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as SelectTabDetails from '../src/parts/SelectTabDetails/SelectTabDetails.ts'
 
 test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {

@@ -5,7 +5,7 @@ import type { FeatureDefinition } from '../src/parts/FeatureDefinition/FeatureDe
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { register } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import { selectTabFeatures } from '../src/parts/SelectTabFeatures/SelectTabFeatures.ts'
 import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 

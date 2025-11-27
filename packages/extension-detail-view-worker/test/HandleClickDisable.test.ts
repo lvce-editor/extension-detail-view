@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleClickDisable } from '../src/parts/HandleClickDisable/HandleClickDisable.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test.skip('handleClickDisable calls disableExtension with extensionId and returns state', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
