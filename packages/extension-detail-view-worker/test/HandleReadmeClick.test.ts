@@ -1,8 +1,8 @@
 import { expect, test } from '@jest/globals'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleReadmeClick from '../src/parts/HandleReadmeClick/HandleReadmeClick.ts'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test('handleReadmeClick returns state without calling openUrl when href is empty', async () => {
   const mockRpc = RendererWorker.registerMockRpc({})

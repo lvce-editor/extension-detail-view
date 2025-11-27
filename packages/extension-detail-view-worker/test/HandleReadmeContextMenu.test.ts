@@ -1,9 +1,9 @@
 import { expect, test } from '@jest/globals'
 import { MenuEntryId } from '@lvce-editor/constants'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleReadmeContextMenu from '../src/parts/HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test('handleReadmeContextMenu calls ContextMenu.show2 and returns state unchanged', async () => {
   const mockRpc = RendererWorker.registerMockRpc({

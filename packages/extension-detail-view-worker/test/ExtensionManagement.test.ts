@@ -1,7 +1,7 @@
 import { expect, test } from '@jest/globals'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as ExtensionManagement from '../src/parts/ExtensionManagement/ExtensionManagement.ts'
 import * as PlatformType from '../src/parts/PlatformType/PlatformType.ts'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test('getExtension - successful getExtension', async () => {
   const mockExtension: any = { id: 'test-id', name: 'Test Extension' }

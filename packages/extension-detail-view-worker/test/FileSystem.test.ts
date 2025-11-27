@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as FileSystem from '../src/parts/FileSystem/FileSystem.ts'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
+import * as FileSystem from '../src/parts/FileSystem/FileSystem.ts'
 
 test.skip('readFile invokes RendererWorker with correct arguments', async () => {
   const mockRpc = RendererWorker.registerMockRpc({

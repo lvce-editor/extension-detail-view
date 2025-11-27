@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as EnableExtension from '../src/parts/EnableExtension/EnableExtension.ts'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
+import * as EnableExtension from '../src/parts/EnableExtension/EnableExtension.ts'
 
 test('enable extension', async () => {
   const mockRpc = RendererWorker.registerMockRpc({

@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as createDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleClickCategory from '../src/parts/HandleClickCategory/HandleClickCategory.ts'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test('handleClickCategory should call openExtensionSearch with category search', async () => {
   const state = createDefaultState.createDefaultState()

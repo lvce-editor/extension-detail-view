@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals'
-import * as OpenExtensionSearch from '../src/parts/OpenExtensionSearch/OpenExtensionSearch.ts'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
+import * as OpenExtensionSearch from '../src/parts/OpenExtensionSearch/OpenExtensionSearch.ts'
 
 test.skip('openExtensionSearch calls RendererWorker.openExtensionSearch and setExtensionsSearchValue', async () => {
   const mockRpc = RendererWorker.registerMockRpc({

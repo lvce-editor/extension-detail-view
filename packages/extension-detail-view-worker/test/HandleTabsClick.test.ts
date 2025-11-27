@@ -1,11 +1,11 @@
 import { expect, test } from '@jest/globals'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { registerAllFeatures } from '../src/parts/FeatureFactory/FeatureFactory.ts'
 import { clearRegistry } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 import * as HandleTabsClick from '../src/parts/HandleTabsClick/HandleTabsClick.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 test.skip('handles tabs click - details tab', async () => {
   const mockRendererRpc = RendererWorker.registerMockRpc({

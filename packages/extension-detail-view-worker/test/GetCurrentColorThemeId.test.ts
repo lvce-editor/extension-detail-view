@@ -1,6 +1,6 @@
 import { test, expect } from '@jest/globals'
-import { getCurrentColorTheme } from '../src/parts/GetCurrentColorThemeId/GetCurrentColorThemeId.ts'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { getCurrentColorTheme } from '../src/parts/GetCurrentColorThemeId/GetCurrentColorThemeId.ts'
 
 test('getCurrentColorTheme returns preference value', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
