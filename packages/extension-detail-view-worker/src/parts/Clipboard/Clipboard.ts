@@ -1,4 +1,4 @@
-import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 
 export const writeClipboardImage = async (blob: unknown): Promise<void> => {
   await RendererWorker.writeClipBoardImage(blob)

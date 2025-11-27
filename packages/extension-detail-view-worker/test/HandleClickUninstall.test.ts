@@ -1,8 +1,8 @@
 import { expect, test } from '@jest/globals'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleClickUninstall from '../src/parts/HandleClickUninstall/HandleClickUninstall.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 test('handle click uninstall - calls uninstall extension', async () => {
   const mockRpc = RendererWorker.registerMockRpc({

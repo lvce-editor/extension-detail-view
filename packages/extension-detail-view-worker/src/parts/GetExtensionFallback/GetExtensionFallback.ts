@@ -1,5 +1,5 @@
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as PlatformType from '../PlatformType/PlatformType.ts'
-import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 const getAllExtensions = async (platform: number): Promise<readonly any[]> => {
   if (platform === PlatformType.Web) {

@@ -1,9 +1,9 @@
 import { expect, test } from '@jest/globals'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import * as CopyImage from '../src/parts/CopyImage/CopyImage.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
-import * as RendererWorker from '../src/parts/RendererWorker/RendererWorker.ts'
 
 // Mock location for getImageCopyUrl
 Object.defineProperty(globalThis, 'location', {

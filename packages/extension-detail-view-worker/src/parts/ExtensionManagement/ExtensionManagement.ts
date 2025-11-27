@@ -1,5 +1,5 @@
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as GetExtensionFallback from '../GetExtensionFallback/GetExtensionFallback.ts'
-import * as RendererWorker from '../RendererWorker/RendererWorker.ts'
 
 const getExtensionNew = async (id: string): Promise<any> => {
   return RendererWorker.getExtension(id)
