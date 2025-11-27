@@ -21,7 +21,7 @@ test('handleClickCategory should call openExtensionSearch with category search',
   expect(result).toBe(state)
   expect(mockRpc.invocations).toEqual([
     ['SideBar.openViewlet', 'Extensions'],
-    ['Extensions.handleInput', `@category:"${categoryId}"`],
+    ['Extensions.handleInput', `@category:"${categoryId}"`, 2],
   ])
 })
 
