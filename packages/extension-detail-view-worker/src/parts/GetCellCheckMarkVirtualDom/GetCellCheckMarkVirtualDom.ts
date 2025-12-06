@@ -15,9 +15,9 @@ export const getCellCheckMarkVirtualDom = (value: string, props: { readonly chec
   const checkedText = getCheckedText(checked)
   return [
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     text(checkedText),
   ]

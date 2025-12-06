@@ -16,9 +16,9 @@ export const getExtensionDetailHeaderActionsVirtualDom = (
   const settingsButton: readonly VirtualDomNode[] = GetSettingsButtonVirtualDom.getSettingsButtonVirtualDom(settingsButtonEnabled)
   const dom: readonly VirtualDomNode[] = [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailHeaderActions,
       childCount: enabledButtons.length + settingsButton.length,
+      className: ClassNames.ExtensionDetailHeaderActions,
+      type: VirtualDomElements.Div,
     },
     ...buttons,
     ...settingsButton,

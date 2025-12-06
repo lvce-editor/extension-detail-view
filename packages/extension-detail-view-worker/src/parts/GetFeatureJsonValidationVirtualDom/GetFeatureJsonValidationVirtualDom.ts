@@ -8,9 +8,9 @@ import * as GetJsonValidationTableEntries from '../GetJsonValidationTableEntries
 import * as GetTableVirtualDom from '../GetTableVirtualDom/GetTableVirtualDom.ts'
 
 const parentNode: VirtualDomNode = {
-  type: VirtualDomElements.Div,
-  className: ClassNames.FeatureContent,
   childCount: 2,
+  className: ClassNames.FeatureContent,
+  type: VirtualDomElements.Div,
 }
 
 export const getFeatureJsonValidationVirtualDom = (jsonValidation: readonly Row[]): readonly VirtualDomNode[] => {

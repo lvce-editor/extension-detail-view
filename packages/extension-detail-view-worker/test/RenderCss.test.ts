@@ -6,40 +6,40 @@ import { renderCss } from '../src/parts/RenderCss/RenderCss.ts'
 test('renderCss returns correct array with Viewlet.setCss command', () => {
   const oldState: ExtensionDetailState = {
     ...createDefaultState(),
-    uid: 1,
     paddingLeft: 10,
     paddingRight: 20,
     sideBarWidth: 300,
+    uid: 1,
   }
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
-    uid: 2,
     paddingLeft: 15,
     paddingRight: 25,
     sideBarWidth: 350,
+    uid: 2,
   }
   const result = renderCss(oldState, newState)
   expect(result).toEqual([
     'Viewlet.setCss',
     2,
-    ':root {\n  --ExtensionDetailPaddingLeft: 15px;\n  --ExtensionDetailPaddingRight: 25px;\n  --ExtensionDetailSideBarWidth: 350px;\n  --ExtensionDetailMaxWidth: 1250px;\n}',
+    ':root {\n  --ExtensionDetailMaxWidth: 1250px;\n  --ExtensionDetailPaddingLeft: 15px;\n  --ExtensionDetailPaddingRight: 25px;\n  --ExtensionDetailSideBarWidth: 350px;\n}',
   ])
 })
 
 test('renderCss uses values from newState not oldState', () => {
   const oldState: ExtensionDetailState = {
     ...createDefaultState(),
-    uid: 100,
     paddingLeft: 5,
     paddingRight: 5,
     sideBarWidth: 200,
+    uid: 100,
   }
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
-    uid: 200,
     paddingLeft: 20,
     paddingRight: 30,
     sideBarWidth: 400,
+    uid: 200,
   }
   const result = renderCss(oldState, newState)
   expect(result[0]).toBe('Viewlet.setCss')
@@ -68,10 +68,10 @@ test('renderCss handles zero values correctly', () => {
   const oldState: ExtensionDetailState = createDefaultState()
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
-    uid: 0,
     paddingLeft: 0,
     paddingRight: 0,
     sideBarWidth: 0,
+    uid: 0,
   }
   const result = renderCss(oldState, newState)
   expect(result[0]).toBe('Viewlet.setCss')

@@ -5,19 +5,19 @@ import * as LoadHeaderContent from '../src/parts/LoadHeaderContent/LoadHeaderCon
 
 test('loadHeaderContent - successful load', async () => {
   const mockExtension: any = {
+    builtin: false,
+    description: 'A test extension',
     id: 'test-extension',
     name: 'Test Extension',
-    description: 'A test extension',
-    version: '1.0.0',
     path: '/test/path',
     uri: '/test/uri',
-    builtin: false,
+    version: '1.0.0',
   }
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    uri: 'extension-detail://test-extension',
     assetDir: '/test/assets',
+    uri: 'extension-detail://test-extension',
   }
 
   const result = LoadHeaderContent.loadHeaderContent(state, 1, mockExtension)
@@ -33,12 +33,12 @@ test('loadHeaderContent - successful load', async () => {
 
 test('loadHeaderContent - with builtin extension', async () => {
   const mockExtension: any = {
+    builtin: true,
+    description: 'A builtin extension',
     id: 'builtin-extension',
     name: 'Builtin Extension',
-    description: 'A builtin extension',
-    version: '1.0.0',
     path: '/test/path',
-    builtin: true,
+    version: '1.0.0',
   }
 
   const state: ExtensionDetailState = {

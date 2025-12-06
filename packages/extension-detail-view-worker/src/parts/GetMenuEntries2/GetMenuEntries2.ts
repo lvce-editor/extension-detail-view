@@ -11,11 +11,11 @@ export const getMenuEntries2 = (state: ExtensionDetailState, props: ContextMenuP
   }
   return [
     {
+      args: [],
+      command: 'ExtensionDetail.executeCopy',
+      flags: MenuItemFlags.None,
       id: 'copy',
       label: ExtensionDetailStrings.copy(),
-      flags: MenuItemFlags.None,
-      command: 'ExtensionDetail.executeCopy',
-      args: [],
     },
   ]
 }

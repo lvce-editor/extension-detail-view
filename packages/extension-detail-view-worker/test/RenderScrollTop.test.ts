@@ -8,9 +8,9 @@ test('should return readme scroll top when selected tab is Details', () => {
   const oldState: ExtensionDetailState = createDefaultState()
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
-    selectedTab: InputName.Details,
-    readmeScrollTop: 100,
     changelogScrollTop: 200,
+    readmeScrollTop: 100,
+    selectedTab: InputName.Details,
     uid: 123,
   }
 
@@ -23,9 +23,9 @@ test('should return changelog scroll top when selected tab is Changelog', () => 
   const oldState: ExtensionDetailState = createDefaultState()
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
-    selectedTab: InputName.Changelog,
-    readmeScrollTop: 100,
     changelogScrollTop: 200,
+    readmeScrollTop: 100,
+    selectedTab: InputName.Changelog,
     uid: 456,
   }
 
@@ -38,9 +38,9 @@ test('should return empty array when selected tab is not Details or Changelog', 
   const oldState: ExtensionDetailState = createDefaultState()
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
-    selectedTab: InputName.Features,
-    readmeScrollTop: 100,
     changelogScrollTop: 200,
+    readmeScrollTop: 100,
+    selectedTab: InputName.Features,
     uid: 789,
   }
 
@@ -53,9 +53,9 @@ test('should return empty array when selected tab is empty string', () => {
   const oldState: ExtensionDetailState = createDefaultState()
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
-    selectedTab: '',
-    readmeScrollTop: 100,
     changelogScrollTop: 200,
+    readmeScrollTop: 100,
+    selectedTab: '',
     uid: 999,
   }
 
@@ -68,9 +68,9 @@ test('should handle zero scroll top values', () => {
   const oldState: ExtensionDetailState = createDefaultState()
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
-    selectedTab: InputName.Details,
-    readmeScrollTop: 0,
     changelogScrollTop: 0,
+    readmeScrollTop: 0,
+    selectedTab: InputName.Details,
     uid: 111,
   }
 

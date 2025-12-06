@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const skip = 1
 
-export const test: Test = async ({ ClipBoard, Command, Locator, expect, Extension, ExtensionDetail }) => {
+export const test: Test = async ({ ClipBoard, Command, expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-readme-copy-link')
   await Extension.addWebExtension(extensionUri)

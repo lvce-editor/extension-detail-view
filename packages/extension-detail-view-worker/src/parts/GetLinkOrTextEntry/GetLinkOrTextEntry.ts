@@ -14,9 +14,9 @@ export const getLinkOrTextEntry = (schema: string, schemaLinkUrl: string): Cell 
   }
   if (schemaLinkUrl) {
     return {
+      href: schemaLinkUrl,
       type: TableCellType.Link,
       value: schema,
-      href: schemaLinkUrl,
     }
   }
   return {

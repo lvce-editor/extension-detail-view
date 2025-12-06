@@ -10,14 +10,14 @@ export const getAdditionalDetailsEntryVirtualDom = <T>(
 ): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.AdditionalDetailsEntry,
       childCount: 2,
+      className: ClassNames.AdditionalDetailsEntry,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.AdditionalDetailsTitle,
       childCount: 1,
+      className: ClassNames.AdditionalDetailsTitle,
+      type: VirtualDomElements.Div,
     },
     text(heading),
     ...renderer(items),

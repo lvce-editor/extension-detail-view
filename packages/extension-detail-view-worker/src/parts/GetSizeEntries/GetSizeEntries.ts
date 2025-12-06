@@ -9,9 +9,9 @@ export const getSizeEntries = (showSizeLink: boolean, displaySize: string, exten
   return [
     {
       key: ExtensionDetailStrings.size(),
-      value: displaySize,
       onClick: DomEventListenerFunctions.HandleClickSize,
       title: extensionUri,
+      value: displaySize,
     },
   ]
 }

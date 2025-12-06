@@ -13,11 +13,11 @@ test('selected category', () => {
   }
   expect(GetCategoryVirtualDom.getCategoryVirtualDom(category)).toEqual([
     {
-      type: VirtualDomElements.Button,
-      className: `${ClassNames.Category}`,
       childCount: 1,
-      onClick: DomEventListenerFunctions.HandleClickCategory,
+      className: `${ClassNames.Category}`,
       name: 'programming-languages',
+      onClick: DomEventListenerFunctions.HandleClickCategory,
+      type: VirtualDomElements.Button,
     },
     text('Programming Languages'),
   ])

@@ -7,12 +7,12 @@ import * as SelectTabFeatures from '../SelectTabFeatures/SelectTabFeatures.ts'
 
 export const getSelectTabHandler = (name: string): SelectTabHandler => {
   switch (name) {
+    case InputName.Changelog:
+      return SelectTabChangelog.selectTabChangelog
     case InputName.Details:
       return SelectTabDetails.selectTabDetails
     case InputName.Features:
       return SelectTabFeatures.selectTabFeatures
-    case InputName.Changelog:
-      return SelectTabChangelog.selectTabChangelog
     default:
       return SelectTabDefault.selectTabDefault
   }

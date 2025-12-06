@@ -7,12 +7,12 @@ test('featureThemeEnabled returns true when extension has colorThemes', () => {
 })
 
 test('featureThemeEnabled returns true when extension has iconThemes', () => {
-  const extension: unknown = { iconThemes: [{ label: 'Test Icon Theme', id: 'test-icon-theme' }] }
+  const extension: unknown = { iconThemes: [{ id: 'test-icon-theme', label: 'Test Icon Theme' }] }
   expect(FeatureThemeEnabled.featureThemeEnabled(extension)).toBe(true)
 })
 
 test('featureThemeEnabled returns true when extension has productIconThemes', () => {
-  const extension: unknown = { productIconThemes: [{ label: 'Test Product Icon Theme', id: 'test-product-icon-theme' }] }
+  const extension: unknown = { productIconThemes: [{ id: 'test-product-icon-theme', label: 'Test Product Icon Theme' }] }
   expect(FeatureThemeEnabled.featureThemeEnabled(extension)).toBe(true)
 })
 

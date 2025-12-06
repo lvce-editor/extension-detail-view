@@ -18,19 +18,19 @@ test('returns valid entries for string activation events', () => {
 
   expect(result).toHaveLength(3)
   expect(result[0]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onCommand:workbench.action.openFile',
-    errorMessage: '',
   })
   expect(result[1]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onLanguage:typescript',
-    errorMessage: '',
   })
   expect(result[2]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onView:explorer',
-    errorMessage: '',
   })
 })
 
@@ -41,19 +41,19 @@ test('handles non-string activation event', () => {
 
   expect(result).toHaveLength(3)
   expect(result[0]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onCommand:workbench.action.openFile',
-    errorMessage: '',
   })
   expect(result[1]).toEqual({
+    errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
     isValid: false,
     stringValue: JSON.stringify({ invalid: 'object' }),
-    errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
   })
   expect(result[2]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onLanguage:typescript',
-    errorMessage: '',
   })
 })
 
@@ -64,19 +64,19 @@ test('handles empty string activation event', () => {
 
   expect(result).toHaveLength(3)
   expect(result[0]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onCommand:workbench.action.openFile',
-    errorMessage: '',
   })
   expect(result[1]).toEqual({
+    errorMessage: ExtensionDetailStrings.stringMustNotBeEmpty(),
     isValid: false,
     stringValue: '',
-    errorMessage: ExtensionDetailStrings.stringMustNotBeEmpty(),
   })
   expect(result[2]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onLanguage:typescript',
-    errorMessage: '',
   })
 })
 
@@ -87,14 +87,14 @@ test('handles number activation event', () => {
 
   expect(result).toHaveLength(2)
   expect(result[0]).toEqual({
+    errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
     isValid: false,
     stringValue: '123',
-    errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
   })
   expect(result[1]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onCommand:workbench.action.openFile',
-    errorMessage: '',
   })
 })
 
@@ -105,14 +105,14 @@ test('handles boolean activation event', () => {
 
   expect(result).toHaveLength(2)
   expect(result[0]).toEqual({
+    errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
     isValid: false,
     stringValue: 'true',
-    errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
   })
   expect(result[1]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onCommand:workbench.action.openFile',
-    errorMessage: '',
   })
 })
 
@@ -123,14 +123,14 @@ test('handles null activation event', () => {
 
   expect(result).toHaveLength(2)
   expect(result[0]).toEqual({
+    errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
     isValid: false,
     stringValue: 'null',
-    errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
   })
   expect(result[1]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onCommand:workbench.action.openFile',
-    errorMessage: '',
   })
 })
 
@@ -141,13 +141,13 @@ test('handles array activation event', () => {
 
   expect(result).toHaveLength(2)
   expect(result[0]).toEqual({
+    errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
     isValid: false,
     stringValue: '["invalid","array"]',
-    errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
   })
   expect(result[1]).toEqual({
+    errorMessage: '',
     isValid: true,
     stringValue: 'onCommand:workbench.action.openFile',
-    errorMessage: '',
   })
 })

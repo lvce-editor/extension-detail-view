@@ -4,25 +4,25 @@ import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
 test('getFeatureDetailsTheme - extension with themes', async () => {
   const mockRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => {
+      return [{ children: ['Theme content'], tag: 'div' }]
+    },
     'Markdown.render': () => {
       return '<h1>Color Themes</h1><p>Theme content</p>'
-    },
-    'Markdown.getVirtualDom': () => {
-      return [{ tag: 'div', children: ['Theme content'] }]
     },
   })
 
   const extension: any = {
-    colorThemes: [{ name: 'Dark Theme', id: 'dark' }],
-    iconThemes: [{ name: 'Material Icons', id: 'material' }],
-    productIconThemes: [{ name: 'Product Icons', id: 'product' }],
+    colorThemes: [{ id: 'dark', name: 'Dark Theme' }],
+    iconThemes: [{ id: 'material', name: 'Material Icons' }],
+    productIconThemes: [{ id: 'product', name: 'Product Icons' }],
   }
   const baseUrl: string = 'https://example.com'
   const protocol = 'test:'
 
   const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol)
   expect(result).toEqual({
-    themesMarkdownDom: [{ tag: 'div', children: ['Theme content'] }],
+    themesMarkdownDom: [{ children: ['Theme content'], tag: 'div' }],
   })
   expect(mockRpc.invocations).toEqual([
     ['Markdown.render', expect.any(String), expect.any(Object)],
@@ -32,11 +32,11 @@ test('getFeatureDetailsTheme - extension with themes', async () => {
 
 test('getFeatureDetailsTheme - extension without themes', async () => {
   const mockRpc = MarkdownWorker.registerMockRpc({
-    'Markdown.render': () => {
-      return ''
-    },
     'Markdown.getVirtualDom': () => {
       return []
+    },
+    'Markdown.render': () => {
+      return ''
     },
   })
 
@@ -56,11 +56,11 @@ test('getFeatureDetailsTheme - extension without themes', async () => {
 
 test('getFeatureDetailsTheme - extension with null themes', async () => {
   const mockRpc = MarkdownWorker.registerMockRpc({
-    'Markdown.render': () => {
-      return ''
-    },
     'Markdown.getVirtualDom': () => {
       return []
+    },
+    'Markdown.render': () => {
+      return ''
     },
   })
 
@@ -90,7 +90,7 @@ test('getFeatureDetailsTheme - error propagation', async () => {
   })
 
   const extension: any = {
-    colorThemes: [{ name: 'Dark Theme', id: 'dark' }],
+    colorThemes: [{ id: 'dark', name: 'Dark Theme' }],
   }
   const baseUrl: string = 'https://example.com'
   const protocol = 'test:'

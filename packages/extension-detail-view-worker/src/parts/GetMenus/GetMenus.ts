@@ -9,34 +9,34 @@ const ExtensionDetailIconContextMenu = 4091
 export const getMenus = (): readonly Menu[] => {
   return [
     {
-      id: MenuEntryId.ExtensionDetailReadme,
       entries: getMenuEntriesReadme(),
+      id: MenuEntryId.ExtensionDetailReadme,
     },
     {
-      id: ExtensionDetailIconContextMenu,
       entries: [
         {
+          args: [],
+          command: 'ExtensionDetail.openImageInNewTab',
+          flags: MenuItemFlags.None,
           id: 'openImageInNewTab',
           label: ExtensionDetailStrings.openImageInNewTab(),
-          flags: MenuItemFlags.None,
-          command: 'ExtensionDetail.openImageInNewTab',
-          args: [],
         },
         {
+          args: [],
+          command: 'ExtensionDetail.copyImage',
+          flags: MenuItemFlags.None,
           id: 'copyImage',
           label: ExtensionDetailStrings.copyImage(),
-          flags: MenuItemFlags.None,
-          command: 'ExtensionDetail.copyImage',
-          args: [],
         },
         {
+          args: [],
+          command: 'ExtensionDetail.copyImageUrl',
+          flags: MenuItemFlags.None,
           id: 'copyImageUrl',
           label: ExtensionDetailStrings.copyImageUrl(),
-          flags: MenuItemFlags.None,
-          command: 'ExtensionDetail.copyImageUrl',
-          args: [],
         },
       ],
+      id: ExtensionDetailIconContextMenu,
     },
   ]
 }

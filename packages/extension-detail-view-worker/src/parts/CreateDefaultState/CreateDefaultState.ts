@@ -52,6 +52,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     settingsButtonEnabled: false,
     showAdditionalDetailsBreakpoint: 600,
     showSideBar: true,
+    showSizeLink: false,
     sideBarWidth: 0,
     sizeOnDisk: 0,
     sizeValue: 0,
@@ -63,6 +64,5 @@ export const createDefaultState = (): ExtensionDetailState => {
     wasActivatedByEvent: '',
     webViews: [],
     width: 500,
-    showSizeLink: false,
   }
 }

@@ -10,214 +10,214 @@ import * as RuntimeStatusType from '../src/parts/RuntimeStatusType/RuntimeStatus
 test('getRuntimeStatusVirtualDom should return correct virtual DOM structure with activated status and activation time', () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    status: RuntimeStatusType.Activated,
     activationTime: 150.75,
+    status: RuntimeStatusType.Activated,
   }
 
   const result = getRuntimeStatusVirtualDom(state)
 
   expect(result).toHaveLength(16) // div + h1 + h1 text + dl + dt + dt text + dd + dd text + dt + dt text + dd + dd text + dt + dt text + dd + dd text
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.FeatureContent,
     childCount: 2,
+    className: ClassNames.FeatureContent,
+    type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.H1,
     childCount: 1,
+    type: VirtualDomElements.H1,
   })
   expect(result[2]).toEqual({
-    type: VirtualDomElements.Text,
-    text: ExtensionDetailStrings.runtimeStatus(),
     childCount: 0,
+    text: ExtensionDetailStrings.runtimeStatus(),
+    type: VirtualDomElements.Text,
   })
   expect(result[3]).toEqual({
-    type: VirtualDomElements.Dl,
     childCount: 6,
     className: 'RuntimeStatusDefinitionList',
+    type: VirtualDomElements.Dl,
   })
   expect(result[4]).toEqual({
-    type: VirtualDomElements.Dt,
     childCount: 1,
     className: 'RuntimeStatusDefinitionListKey',
+    type: VirtualDomElements.Dt,
   })
   expect(result[5]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'Status: ',
     childCount: 0,
+    text: 'Status: ',
+    type: VirtualDomElements.Text,
   })
   expect(result[6]).toEqual({
-    type: VirtualDomElements.Dd,
     childCount: 1,
     className: 'RuntimeStatusDefinitionListValue',
+    type: VirtualDomElements.Dd,
   })
   expect(result[7]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'activated',
     childCount: 0,
+    text: 'activated',
+    type: VirtualDomElements.Text,
   })
   expect(result[8]).toEqual({
-    type: VirtualDomElements.Dt,
     childCount: 1,
+    type: VirtualDomElements.Dt,
   })
   expect(result[9]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'Import Time: ',
     childCount: 0,
+    text: 'Import Time: ',
+    type: VirtualDomElements.Text,
   })
   expect(result[10]).toEqual({
-    type: VirtualDomElements.Dd,
     childCount: 1,
+    type: VirtualDomElements.Dd,
   })
   expect(result[11]).toEqual({
-    type: VirtualDomElements.Text,
-    text: '150.75ms',
     childCount: 0,
+    text: '150.75ms',
+    type: VirtualDomElements.Text,
   })
   expect(result[12]).toEqual({
-    type: VirtualDomElements.Dt,
     childCount: 1,
+    type: VirtualDomElements.Dt,
   })
   expect(result[13]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'Activation Time: ',
     childCount: 0,
+    text: 'Activation Time: ',
+    type: VirtualDomElements.Text,
   })
   expect(result[14]).toEqual({
-    type: VirtualDomElements.Dd,
     childCount: 1,
+    type: VirtualDomElements.Dd,
   })
   expect(result[15]).toEqual({
-    type: VirtualDomElements.Text,
-    text: '0.00ms',
     childCount: 0,
+    text: '0.00ms',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getRuntimeStatusVirtualDom should return correct virtual DOM structure with error status and no activation time', () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    status: RuntimeStatusType.Error,
     activationTime: 0,
+    status: RuntimeStatusType.Error,
   }
 
   const result = getRuntimeStatusVirtualDom(state)
 
   expect(result).toHaveLength(8) // div + h1 + h1 text + dl + dt + dt text + dd + dd text
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.FeatureContent,
     childCount: 2, // heading + dl
+    className: ClassNames.FeatureContent,
+    type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.H1,
     childCount: 1,
+    type: VirtualDomElements.H1,
   })
   expect(result[2]).toEqual({
-    type: VirtualDomElements.Text,
-    text: ExtensionDetailStrings.runtimeStatus(),
     childCount: 0,
+    text: ExtensionDetailStrings.runtimeStatus(),
+    type: VirtualDomElements.Text,
   })
   expect(result[3]).toEqual({
-    type: VirtualDomElements.Dl,
     childCount: 2,
     className: 'RuntimeStatusDefinitionList',
+    type: VirtualDomElements.Dl,
   })
   expect(result[4]).toEqual({
-    type: VirtualDomElements.Dt,
     childCount: 1,
     className: 'RuntimeStatusDefinitionListKey',
+    type: VirtualDomElements.Dt,
   })
   expect(result[5]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'Status: ',
     childCount: 0,
+    text: 'Status: ',
+    type: VirtualDomElements.Text,
   })
   expect(result[6]).toEqual({
-    type: VirtualDomElements.Dd,
     childCount: 1,
     className: 'RuntimeStatusDefinitionListValue',
+    type: VirtualDomElements.Dd,
   })
   expect(result[7]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'error',
     childCount: 0,
+    text: 'error',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getRuntimeStatusVirtualDom should handle different status types', () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    status: RuntimeStatusType.Activating,
     activationTime: 0,
+    status: RuntimeStatusType.Activating,
   }
 
   const result = getRuntimeStatusVirtualDom(state)
 
   expect(result).toHaveLength(8)
   expect(result[7]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'Activating',
     childCount: 0,
+    text: 'Activating',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getRuntimeStatusVirtualDom should handle importing status', () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    status: RuntimeStatusType.Importing,
     activationTime: 0,
+    status: RuntimeStatusType.Importing,
   }
 
   const result = getRuntimeStatusVirtualDom(state)
 
   expect(result).toHaveLength(8)
   expect(result[7]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'importing',
     childCount: 0,
+    text: 'importing',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getRuntimeStatusVirtualDom should handle none status', () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    status: RuntimeStatusType.None,
     activationTime: 0,
+    status: RuntimeStatusType.None,
   }
 
   const result = getRuntimeStatusVirtualDom(state)
 
   expect(result).toHaveLength(8)
   expect(result[7]).toEqual({
-    type: VirtualDomElements.Text,
-    text: 'none',
     childCount: 0,
+    text: 'none',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getRuntimeStatusVirtualDom should format activation time correctly', () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    status: RuntimeStatusType.Activated,
     activationTime: 123.456,
+    status: RuntimeStatusType.Activated,
   }
 
   const result = getRuntimeStatusVirtualDom(state)
 
   expect(result).toHaveLength(16)
   expect(result[15]).toEqual({
-    type: VirtualDomElements.Text,
-    text: '0.00ms',
     childCount: 0,
+    text: '0.00ms',
+    type: VirtualDomElements.Text,
   })
 })
 
 test('getRuntimeStatusVirtualDom should handle zero activation time', () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    status: RuntimeStatusType.Activated,
     activationTime: 0,
+    status: RuntimeStatusType.Activated,
   }
 
   const result = getRuntimeStatusVirtualDom(state)

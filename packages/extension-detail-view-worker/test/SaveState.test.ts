@@ -8,9 +8,9 @@ test('saves state with selected tab and feature', () => {
   const { newState } = get(1)
   const savedState = SaveState.saveState(newState)
   expect(savedState).toEqual({
-    selectedTab: '',
-    selectedFeature: '',
-    readmeScrollTop: 0,
     changelogScrollTop: 0,
+    readmeScrollTop: 0,
+    selectedFeature: '',
+    selectedTab: '',
   })
 })

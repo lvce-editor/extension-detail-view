@@ -10,9 +10,9 @@ export const restoreState = (savedState: unknown): RestoredState => {
   const readmeScrollTop = GetSavedReadmeScrollTop.getSavedReadmeScrollTop(savedState)
   const changelogScrollTop = GetSavedChangelogScrollTop.getSavedChangelogScrollTop(savedState)
   return {
+    changelogScrollTop,
+    readmeScrollTop,
     selectedFeature,
     selectedTab,
-    readmeScrollTop,
-    changelogScrollTop,
   }
 }

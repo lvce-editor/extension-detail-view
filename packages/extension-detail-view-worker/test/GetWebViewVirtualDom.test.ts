@@ -7,8 +7,6 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('webview virtual dom', () => {
   const webView: WebView = {
-    id: 'test-webview',
-    selectorString: JSON.stringify({ viewType: 'test.view' }),
     contentSecurityPolicyString: JSON.stringify({ 'default-src': "'none'" }),
     elementsString: JSON.stringify(
       {
@@ -17,79 +15,81 @@ test('webview virtual dom', () => {
       null,
       2,
     ),
+    id: 'test-webview',
+    selectorString: JSON.stringify({ viewType: 'test.view' }),
   }
   expect(GetWebViewVirtualDom.getWebViewVirtualDom(webView)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureWebView,
       childCount: 4,
-    },
-    {
+      className: ClassNames.FeatureWebView,
       type: VirtualDomElements.Div,
-      className: ClassNames.DefinitionListItem,
-      childCount: 2,
     },
     {
-      type: VirtualDomElements.H2,
-      className: ClassNames.DefinitionListItemHeading,
+      childCount: 2,
+      className: ClassNames.DefinitionListItem,
+      type: VirtualDomElements.Div,
+    },
+    {
       childCount: 1,
+      className: ClassNames.DefinitionListItemHeading,
+      type: VirtualDomElements.H2,
     },
     text('ID'),
     {
-      type: VirtualDomElements.Pre,
-      className: ClassNames.DefinitionListItemValue,
       childCount: 1,
+      className: ClassNames.DefinitionListItemValue,
+      type: VirtualDomElements.Pre,
     },
     text('test-webview'),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.DefinitionListItem,
       childCount: 2,
+      className: ClassNames.DefinitionListItem,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H2,
-      className: ClassNames.DefinitionListItemHeading,
       childCount: 1,
+      className: ClassNames.DefinitionListItemHeading,
+      type: VirtualDomElements.H2,
     },
     text('Selector'),
     {
-      type: VirtualDomElements.Pre,
-      className: ClassNames.DefinitionListItemValue,
       childCount: 1,
+      className: ClassNames.DefinitionListItemValue,
+      type: VirtualDomElements.Pre,
     },
     text('{"viewType":"test.view"}'),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.DefinitionListItem,
       childCount: 2,
+      className: ClassNames.DefinitionListItem,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H2,
-      className: ClassNames.DefinitionListItemHeading,
       childCount: 1,
+      className: ClassNames.DefinitionListItemHeading,
+      type: VirtualDomElements.H2,
     },
     text('ContentSecurityPolicy'),
     {
-      type: VirtualDomElements.Pre,
-      className: ClassNames.DefinitionListItemValue,
       childCount: 1,
+      className: ClassNames.DefinitionListItemValue,
+      type: VirtualDomElements.Pre,
     },
     text('{"default-src":"\'none\'"}'),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.DefinitionListItem,
       childCount: 2,
+      className: ClassNames.DefinitionListItem,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H2,
-      className: ClassNames.DefinitionListItemHeading,
       childCount: 1,
+      className: ClassNames.DefinitionListItemHeading,
+      type: VirtualDomElements.H2,
     },
     text('Elements'),
     {
-      type: VirtualDomElements.Pre,
-      className: ClassNames.DefinitionListItemValue,
       childCount: 1,
+      className: ClassNames.DefinitionListItemValue,
+      type: VirtualDomElements.Pre,
     },
     text('{\n  "button": {\n    "tag": "button",\n    "text": "Click me"\n  }\n}'),
   ])

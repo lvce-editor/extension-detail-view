@@ -8,61 +8,61 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 test('feature activation events virtual dom with events', () => {
   const activationEvents: readonly ActivationEntry[] = [
     {
+      errorMessage: '',
+      isValid: true,
       stringValue: 'onCommand:workbench.action.openFile',
-      isValid: true,
-      errorMessage: '',
     },
     {
+      errorMessage: '',
+      isValid: true,
       stringValue: 'onLanguage:typescript',
-      isValid: true,
-      errorMessage: '',
     },
     {
-      stringValue: 'onView:explorer',
       errorMessage: '',
       isValid: true,
+      stringValue: 'onView:explorer',
     },
   ]
   expect(GetFeatureActivationEventsVirtualDom.getFeatureActivationEventsVirtualDom(activationEvents)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text('Activation Events'),
     {
-      type: VirtualDomElements.Ul,
       childCount: 3,
+      type: VirtualDomElements.Ul,
     },
     {
+      childCount: 1,
       type: VirtualDomElements.Li,
-      childCount: 1,
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text('onCommand:workbench.action.openFile'),
     {
-      type: VirtualDomElements.Li,
       childCount: 1,
+      type: VirtualDomElements.Li,
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text('onLanguage:typescript'),
     {
-      type: VirtualDomElements.Li,
       childCount: 1,
+      type: VirtualDomElements.Li,
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text('onView:explorer'),
   ])
@@ -72,18 +72,18 @@ test('feature activation events virtual dom with empty events', () => {
   const activationEvents: readonly ActivationEntry[] = []
   expect(GetFeatureActivationEventsVirtualDom.getFeatureActivationEventsVirtualDom(activationEvents)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text('Activation Events'),
     {
-      type: VirtualDomElements.Ul,
       childCount: 0,
+      type: VirtualDomElements.Ul,
     },
   ])
 })

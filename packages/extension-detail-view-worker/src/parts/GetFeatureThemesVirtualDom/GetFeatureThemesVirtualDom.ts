@@ -10,15 +10,15 @@ export const getFeatureThemesVirtualDom = (themesDom: readonly VirtualDomNode[])
   const heading = ExtensionDetailStrings.theme()
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.DefaultMarkdown,
       childCount,
+      className: ClassNames.DefaultMarkdown,
+      type: VirtualDomElements.Div,
     },
     ...themesDom,
   ]

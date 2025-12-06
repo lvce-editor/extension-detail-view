@@ -7,18 +7,18 @@ import * as InputName from '../src/parts/InputName/InputName.ts'
 test('returns settings button virtual dom when enabled', () => {
   expect(GetSettingsButtonVirtualDom.getSettingsButtonVirtualDom(true)).toEqual([
     {
-      type: VirtualDomElements.Button,
-      className: ClassNames.SettingsButton,
-      onClick: 6,
       childCount: 1,
-      title: 'Settings',
+      className: ClassNames.SettingsButton,
       name: InputName.Settings,
+      onClick: 6,
+      title: 'Settings',
+      type: VirtualDomElements.Button,
     },
     {
-      type: VirtualDomElements.Span,
-      className: ClassNames.SettingsIcon,
       childCount: 0,
+      className: ClassNames.SettingsIcon,
       text: '⚙️',
+      type: VirtualDomElements.Span,
     },
   ])
 })

@@ -12,11 +12,11 @@ beforeEach(clearRegistry)
 
 test('register adds feature to registry', () => {
   const mockFeature = {
-    id: 'test-feature',
-    getLabel: (): string => 'Test Feature',
-    isEnabled: jest.fn((): boolean => true),
     getDetails: jest.fn(async (): Promise<object> => ({})),
+    getLabel: (): string => 'Test Feature',
     getVirtualDom: jest.fn((): any[] => []),
+    id: 'test-feature',
+    isEnabled: jest.fn((): boolean => true),
   }
 
   register(mockFeature)
@@ -30,19 +30,19 @@ test('register adds feature to registry', () => {
 
 test('getFeatures returns only enabled features', () => {
   const enabledFeature = {
-    id: 'enabled-feature',
-    getLabel: (): string => 'Enabled Feature',
-    isEnabled: jest.fn((): boolean => true),
     getDetails: jest.fn(async (): Promise<object> => ({})),
+    getLabel: (): string => 'Enabled Feature',
     getVirtualDom: jest.fn((): any[] => []),
+    id: 'enabled-feature',
+    isEnabled: jest.fn((): boolean => true),
   }
 
   const disabledFeature = {
-    id: 'disabled-feature',
-    getLabel: (): string => 'Disabled Feature',
-    isEnabled: jest.fn((): boolean => false),
     getDetails: jest.fn(async (): Promise<object> => ({})),
+    getLabel: (): string => 'Disabled Feature',
     getVirtualDom: jest.fn((): any[] => []),
+    id: 'disabled-feature',
+    isEnabled: jest.fn((): boolean => false),
   }
 
   register(enabledFeature)
@@ -56,19 +56,19 @@ test('getFeatures returns only enabled features', () => {
 
 test('getFeatures marks selected feature correctly', () => {
   const feature1 = {
-    id: 'feature-1',
-    getLabel: (): string => 'Feature 1',
-    isEnabled: jest.fn((): boolean => true),
     getDetails: jest.fn(async (): Promise<object> => ({})),
+    getLabel: (): string => 'Feature 1',
     getVirtualDom: jest.fn((): any[] => []),
+    id: 'feature-1',
+    isEnabled: jest.fn((): boolean => true),
   }
 
   const feature2 = {
-    id: 'feature-2',
-    getLabel: (): string => 'Feature 2',
-    isEnabled: jest.fn((): boolean => true),
     getDetails: jest.fn(async (): Promise<object> => ({})),
+    getLabel: (): string => 'Feature 2',
     getVirtualDom: jest.fn((): any[] => []),
+    id: 'feature-2',
+    isEnabled: jest.fn((): boolean => true),
   }
 
   register(feature1)
@@ -85,11 +85,11 @@ test('getFeatures marks selected feature correctly', () => {
 test('getFeatureDetailsHandler returns handler for existing feature', () => {
   const mockHandler = jest.fn(async (): Promise<object> => ({}))
   const mockFeature = {
-    id: 'test-feature',
-    getLabel: (): string => 'Test Feature',
-    isEnabled: jest.fn((): boolean => true),
     getDetails: mockHandler,
+    getLabel: (): string => 'Test Feature',
     getVirtualDom: jest.fn((): any[] => []),
+    id: 'test-feature',
+    isEnabled: jest.fn((): boolean => true),
   }
 
   register(mockFeature)
@@ -107,11 +107,11 @@ test('getFeatureDetailsHandler throws error for non-existent feature', () => {
 test.skip('getFeatureVirtualDomHandler returns handler for existing feature', () => {
   const mockHandler = jest.fn((): any[] => [])
   const mockFeature = {
-    id: 'test-feature',
-    getLabel: (): string => 'Test Feature',
-    isEnabled: jest.fn((): boolean => true),
     getDetails: jest.fn(async (): Promise<object> => ({})),
+    getLabel: (): string => 'Test Feature',
     getVirtualDom: mockHandler,
+    id: 'test-feature',
+    isEnabled: jest.fn((): boolean => true),
   }
 
   register(mockFeature)

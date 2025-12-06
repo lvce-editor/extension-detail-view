@@ -9,11 +9,11 @@ export const getCategoryVirtualDom = (category: Category): readonly VirtualDomNo
   const { id, label } = category
   return [
     {
-      type: VirtualDomElements.Button,
-      className: ClassNames.Category,
       childCount: 1,
-      onClick: DomEventListenerFunctions.HandleClickCategory,
+      className: ClassNames.Category,
       name: id,
+      onClick: DomEventListenerFunctions.HandleClickCategory,
+      type: VirtualDomElements.Button,
     },
     text(label),
   ]

@@ -6,13 +6,13 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 test('feature not implemented virtual dom', () => {
   expect(GetFeatureNotImplementedVirtualDom.getFeatureNotImplementedVirtualDom()).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: 'FeatureContent',
       childCount: 1,
+      className: 'FeatureContent',
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text('Not Implemented'),
   ])

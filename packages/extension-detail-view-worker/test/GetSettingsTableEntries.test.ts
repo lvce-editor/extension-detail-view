@@ -7,16 +7,16 @@ test('get settings table entries with settings', () => {
   const extension = {
     settings: [
       {
-        id: 'editor.fontSize',
-        type: 'number',
         default: 14,
         description: 'Controls the font size in pixels',
+        id: 'editor.fontSize',
+        type: 'number',
       },
       {
-        id: 'editor.fontFamily',
-        type: 'string',
         default: 'monospace',
         description: 'Controls the font family',
+        id: 'editor.fontFamily',
+        type: 'string',
       },
     ],
   }

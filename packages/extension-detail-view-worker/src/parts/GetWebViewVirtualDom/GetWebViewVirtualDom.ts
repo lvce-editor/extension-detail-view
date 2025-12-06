@@ -6,34 +6,34 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const heading: VirtualDomNode = {
-  type: VirtualDomElements.H2,
-  className: ClassNames.DefinitionListItemHeading,
   childCount: 1,
+  className: ClassNames.DefinitionListItemHeading,
+  type: VirtualDomElements.H2,
 }
 
 const pre: VirtualDomNode = {
-  type: VirtualDomElements.Pre,
-  className: ClassNames.DefinitionListItemValue,
   childCount: 1,
+  className: ClassNames.DefinitionListItemValue,
+  type: VirtualDomElements.Pre,
 }
 
 const item: VirtualDomNode = {
-  type: VirtualDomElements.Div,
-  className: ClassNames.DefinitionListItem,
   childCount: 2,
+  className: ClassNames.DefinitionListItem,
+  type: VirtualDomElements.Div,
 }
 
 export const getWebViewVirtualDom = (webView: WebView): readonly VirtualDomNode[] => {
-  const { id, selectorString, contentSecurityPolicyString, elementsString } = webView
+  const { contentSecurityPolicyString, elementsString, id, selectorString } = webView
   const textId = ExtensionDetailStrings.id()
   const textSelector = ExtensionDetailStrings.selector()
   const textContentSecurityPolicy = ExtensionDetailStrings.contentSecurityPolicy()
   const textElements = ExtensionDetailStrings.elements()
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureWebView,
       childCount: 4,
+      className: ClassNames.FeatureWebView,
+      type: VirtualDomElements.Div,
     },
     item,
     heading,

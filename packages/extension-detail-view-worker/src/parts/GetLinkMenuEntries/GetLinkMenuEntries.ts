@@ -9,11 +9,11 @@ export const getLinkMenuEntries = (props: MenuProps): readonly MenuEntry[] => {
   }
   return [
     {
+      args: [props.url || ''],
+      command: 'Open.openUrl',
+      flags: MenuItemFlags.None,
       id: 'openInNewTab',
       label: ViewletExtensionDetailStrings.openInNewTab(),
-      flags: MenuItemFlags.None,
-      command: 'Open.openUrl',
-      args: [props.url || ''],
     },
   ]
 }

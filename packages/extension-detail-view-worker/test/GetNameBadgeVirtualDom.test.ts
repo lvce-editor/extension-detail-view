@@ -11,9 +11,9 @@ test('getNameBadgeVirtualDom - empty string', () => {
 test('getNameBadgeVirtualDom - builtin', () => {
   expect(getNameBadgeVirtualDom('builtin')).toEqual([
     {
-      type: VirtualDomElements.Span,
-      className: ClassNames.ExtensionDetailNameBadge,
       childCount: 1,
+      className: ClassNames.ExtensionDetailNameBadge,
+      type: VirtualDomElements.Span,
     },
     text('builtin'),
   ])

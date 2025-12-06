@@ -7,9 +7,9 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 test('getExtensionDetailNameVirtualDom - without badge', () => {
   expect(getExtensionDetailNameVirtualDom('Test Extension', '')).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailName,
       childCount: 1,
+      className: ClassNames.ExtensionDetailName,
+      type: VirtualDomElements.Div,
     },
     text('Test Extension'),
   ])
@@ -18,15 +18,15 @@ test('getExtensionDetailNameVirtualDom - without badge', () => {
 test('getExtensionDetailNameVirtualDom - with badge', () => {
   expect(getExtensionDetailNameVirtualDom('Builtin Extension', 'builtin')).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailName,
       childCount: 2,
+      className: ClassNames.ExtensionDetailName,
+      type: VirtualDomElements.Div,
     },
     text('Builtin Extension'),
     {
-      type: VirtualDomElements.Span,
-      className: ClassNames.ExtensionDetailNameBadge,
       childCount: 1,
+      className: ClassNames.ExtensionDetailNameBadge,
+      type: VirtualDomElements.Span,
     },
     text('builtin'),
   ])

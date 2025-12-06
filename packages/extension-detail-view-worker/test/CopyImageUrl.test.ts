@@ -7,8 +7,8 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 // Mock location for getImageCopyUrl
 Object.defineProperty(globalThis, 'location', {
   value: {
-    protocol: 'https:',
     host: 'example.com',
+    protocol: 'https:',
   },
   writable: true,
 })

@@ -6,18 +6,18 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('activation event virtual dom', () => {
   const event: ActivationEntry = {
-    stringValue: 'onCommand:workbench.action.openFile',
-    isValid: true,
     errorMessage: '',
+    isValid: true,
+    stringValue: 'onCommand:workbench.action.openFile',
   }
   expect(GetActivationEventVirtualDom.getActivationEventVirtualDom(event)).toEqual([
     {
-      type: VirtualDomElements.Li,
       childCount: 1,
+      type: VirtualDomElements.Li,
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text('onCommand:workbench.action.openFile'),
   ])
@@ -25,18 +25,18 @@ test('activation event virtual dom', () => {
 
 test('activation event virtual dom with different event', () => {
   const event: ActivationEntry = {
-    stringValue: 'onLanguage:typescript',
     errorMessage: '',
     isValid: true,
+    stringValue: 'onLanguage:typescript',
   }
   expect(GetActivationEventVirtualDom.getActivationEventVirtualDom(event)).toEqual([
     {
-      type: VirtualDomElements.Li,
       childCount: 1,
+      type: VirtualDomElements.Li,
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text('onLanguage:typescript'),
   ])
@@ -50,12 +50,12 @@ test('activation event virtual dom with empty event', () => {
   }
   expect(GetActivationEventVirtualDom.getActivationEventVirtualDom(event)).toEqual([
     {
-      type: VirtualDomElements.Li,
       childCount: 1,
+      type: VirtualDomElements.Li,
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text(''),
   ])
@@ -63,20 +63,20 @@ test('activation event virtual dom with empty event', () => {
 
 test('activation event virtual dom with invalid event', () => {
   const event: ActivationEntry = {
-    stringValue: 'invalid:event',
-    isValid: false,
     errorMessage: 'Invalid activation event format',
+    isValid: false,
+    stringValue: 'invalid:event',
   }
   expect(GetActivationEventVirtualDom.getActivationEventVirtualDom(event)).toEqual([
     {
-      type: VirtualDomElements.Li,
       childCount: 1,
-      title: 'Invalid activation event format',
       className: 'ListItem ListItemInvalid',
+      title: 'Invalid activation event format',
+      type: VirtualDomElements.Li,
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text('invalid:event'),
   ])

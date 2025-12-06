@@ -35,9 +35,9 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
   const sizeClass = ViewletSizeMap.getClassNames(sizeValue)
   const dom = [
     {
-      type: VirtualDomElements.Div,
-      className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.ExtensionDetail, sizeClass),
       childCount: 3,
+      className: MergeClassNames.mergeClassNames(ClassNames.Viewlet, ClassNames.ExtensionDetail, sizeClass),
+      type: VirtualDomElements.Div,
     },
     ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(name, iconSrc, description, badge, buttons, settingsButtonEnabled),
     ...GetTabsVirtualDom.getTabsVirtualDom(tabs),

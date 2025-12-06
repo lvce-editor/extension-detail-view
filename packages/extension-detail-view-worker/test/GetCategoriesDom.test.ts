@@ -19,24 +19,24 @@ test('categories dom with categories', () => {
   ]
   expect(GetCategoriesDom.getCategoriesDom(categories)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Categories,
       childCount: categories.length,
+      className: ClassNames.Categories,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Button,
-      className: ClassNames.Category,
       childCount: 1,
-      onClick: DomEventListenerFunctions.HandleClickCategory,
+      className: ClassNames.Category,
       name: 'programming-languages',
+      onClick: DomEventListenerFunctions.HandleClickCategory,
+      type: VirtualDomElements.Button,
     },
     text('Programming Languages'),
     {
-      type: VirtualDomElements.Button,
-      className: ClassNames.Category,
       childCount: 1,
-      onClick: DomEventListenerFunctions.HandleClickCategory,
+      className: ClassNames.Category,
       name: 'snippets',
+      onClick: DomEventListenerFunctions.HandleClickCategory,
+      type: VirtualDomElements.Button,
     },
     text('Snippets'),
   ])
@@ -46,9 +46,9 @@ test('categories dom with empty categories', () => {
   const categories: readonly Category[] = []
   expect(GetCategoriesDom.getCategoriesDom(categories)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Categories,
       childCount: 0,
+      className: ClassNames.Categories,
+      type: VirtualDomElements.Div,
     },
   ])
 })

@@ -28,59 +28,59 @@ import * as InputName from '../InputName/InputName.ts'
 
 export const registerAllFeatures = (): void => {
   register({
-    id: InputName.Theme,
-    getLabel: ExtensionDetailStrings.theme,
-    isEnabled: FeatureThemeEnabled.featureThemeEnabled,
     getDetails: FeatureThemeDetails.getThemeDetails,
+    getLabel: ExtensionDetailStrings.theme,
     getVirtualDom: FeatureThemeVirtualDom.getThemeVirtualDom,
+    id: InputName.Theme,
+    isEnabled: FeatureThemeEnabled.featureThemeEnabled,
   })
   register({
-    id: InputName.Commands,
-    getLabel: ExtensionDetailStrings.commands,
-    isEnabled: FeatureCommandsEnabled.featureCommandsEnabled,
     getDetails: FeatureCommandsDetails.getCommandsDetails,
+    getLabel: ExtensionDetailStrings.commands,
     getVirtualDom: FeatureCommandsVirtualDom.getCommandsVirtualDom,
+    id: InputName.Commands,
+    isEnabled: FeatureCommandsEnabled.featureCommandsEnabled,
   })
   register({
-    id: InputName.Settings,
-    getLabel: ExtensionDetailStrings.settings,
-    isEnabled: FeatureSettingsEnabled.featureSettingsEnabled,
     getDetails: FeatureSettingsDetails.getSettingsDetails,
+    getLabel: ExtensionDetailStrings.settings,
     getVirtualDom: FeatureSettingsVirtualDom.getSettingsVirtualDom,
+    id: InputName.Settings,
+    isEnabled: FeatureSettingsEnabled.featureSettingsEnabled,
   })
   register({
-    id: InputName.JsonValidation,
-    getLabel: ExtensionDetailStrings.jsonValidation,
-    isEnabled: FeatureJsonValidationEnabled.featureJsonValidationEnabled,
     getDetails: FeatureJsonValidationDetails.getJsonValidationDetails,
+    getLabel: ExtensionDetailStrings.jsonValidation,
     getVirtualDom: FeatureJsonValidationVirtualDom.getJsonValidationVirtualDom,
+    id: InputName.JsonValidation,
+    isEnabled: FeatureJsonValidationEnabled.featureJsonValidationEnabled,
   })
   register({
-    id: InputName.ProgrammingLanguages,
-    getLabel: ExtensionDetailStrings.programmingLanguages,
-    isEnabled: FeatureProgrammingLanguagesEnabled.featureProgrammingLanguagesEnabled,
     getDetails: FeatureProgrammingLanguagesDetails.getFeatureDetailsProgrammingLanguages,
+    getLabel: ExtensionDetailStrings.programmingLanguages,
     getVirtualDom: FeatureProgrammingLanguagesVirtualDom.getProgrammingLanguagesVirtualDom,
+    id: InputName.ProgrammingLanguages,
+    isEnabled: FeatureProgrammingLanguagesEnabled.featureProgrammingLanguagesEnabled,
   })
   register({
-    id: InputName.WebViews,
-    getLabel: ExtensionDetailStrings.webViews,
-    isEnabled: FeatureWebViewsEnabled.featureWebViewsEnabled,
     getDetails: FeatureWebViewsDetails.getWebViewsDetails,
+    getLabel: ExtensionDetailStrings.webViews,
     getVirtualDom: FeatureWebViewsVirtualDom.getWebViewsVirtualDom,
+    id: InputName.WebViews,
+    isEnabled: FeatureWebViewsEnabled.featureWebViewsEnabled,
   })
   register({
-    id: InputName.ActivationEvents,
-    getLabel: ExtensionDetailStrings.activationEvents,
-    isEnabled: FeatureActivationEventsEnabled.featureActivationEventsEnabled,
     getDetails: FeatureActivationEventsDetails.getActivationEventsDetails,
+    getLabel: ExtensionDetailStrings.activationEvents,
     getVirtualDom: FeatureActivationEventsVirtualDom.getActivationEventsVirtualDom,
+    id: InputName.ActivationEvents,
+    isEnabled: FeatureActivationEventsEnabled.featureActivationEventsEnabled,
   })
   register({
-    id: InputName.RuntimeStatus,
-    getLabel: ExtensionDetailStrings.runtimeStatus,
-    isEnabled: FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled,
     getDetails: FeatureRuntimeStatusDetails.getRuntimeStatusDetails,
+    getLabel: ExtensionDetailStrings.runtimeStatus,
     getVirtualDom: FeatureRuntimeStatusVirtualDom.getRuntimeStatusVirtualDom,
+    id: InputName.RuntimeStatus,
+    isEnabled: FeatureRuntimeStatusEnabled.featureRuntimeStatusEnabled,
   })
 }

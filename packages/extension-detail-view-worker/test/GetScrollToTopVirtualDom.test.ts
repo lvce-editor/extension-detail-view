@@ -14,12 +14,12 @@ test('getScrollToTopVirtualDom - returns button when enabled', () => {
   const result = GetScrollToTopVirtualDom.getScrollToTopVirtualDom(true)
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Button,
-      className: ClassNames.ScrollToTopButton,
-      childCount: 1,
-      onClick: DomEventListenerFunctions.HandleClickScrollToTop,
       ariaLabel: ExtensionDetailStrings.scrollToTop(),
+      childCount: 1,
+      className: ClassNames.ScrollToTopButton,
       name: 'scrolltotop',
+      onClick: DomEventListenerFunctions.HandleClickScrollToTop,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,

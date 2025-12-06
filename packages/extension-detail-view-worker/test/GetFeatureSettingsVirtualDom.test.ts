@@ -11,22 +11,22 @@ test('getFeatureSettingsVirtualDom - returns correct structure with empty rows',
   const virtualDom = GetFeatureSettingsVirtualDom.getFeatureSettingsVirtualDom(rows)
 
   expect(virtualDom[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.FeatureContent,
     childCount: 2,
+    className: ClassNames.FeatureContent,
+    type: VirtualDomElements.Div,
   })
 
   expect(virtualDom[1]).toEqual({
-    type: VirtualDomElements.H1,
     childCount: 1,
+    type: VirtualDomElements.H1,
   })
 
   expect(virtualDom[2]).toEqual(text(ExtensionDetailStrings.settings()))
 
   expect(virtualDom[3]).toEqual({
-    type: VirtualDomElements.Table,
-    className: ClassNames.Table,
     childCount: 2,
+    className: ClassNames.Table,
+    type: VirtualDomElements.Table,
   })
 })
 
@@ -46,53 +46,53 @@ test('getFeatureSettingsVirtualDom - returns correct structure with rows', () =>
   const virtualDom = GetFeatureSettingsVirtualDom.getFeatureSettingsVirtualDom(rows)
 
   expect(virtualDom[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.FeatureContent,
     childCount: 2,
+    className: ClassNames.FeatureContent,
+    type: VirtualDomElements.Div,
   })
 
   expect(virtualDom[1]).toEqual({
-    type: VirtualDomElements.H1,
     childCount: 1,
+    type: VirtualDomElements.H1,
   })
 
   expect(virtualDom[2]).toEqual(text(ExtensionDetailStrings.settings()))
 
   expect(virtualDom[3]).toEqual({
-    type: VirtualDomElements.Table,
-    className: ClassNames.Table,
     childCount: 2,
+    className: ClassNames.Table,
+    type: VirtualDomElements.Table,
   })
 
   expect(virtualDom[4]).toEqual({
-    type: VirtualDomElements.THead,
     childCount: 1,
+    type: VirtualDomElements.THead,
   })
 
   expect(virtualDom[5]).toEqual({
-    type: VirtualDomElements.Tr,
     childCount: 2,
+    type: VirtualDomElements.Tr,
   })
 
   expect(virtualDom[6]).toEqual({
-    type: VirtualDomElements.Th,
-    className: ClassNames.TableHeading,
     childCount: 1,
+    className: ClassNames.TableHeading,
+    type: VirtualDomElements.Th,
   })
 
   expect(virtualDom[7]).toEqual(text(ExtensionDetailStrings.id()))
 
   expect(virtualDom[8]).toEqual({
-    type: VirtualDomElements.Th,
-    className: ClassNames.TableHeading,
     childCount: 1,
+    className: ClassNames.TableHeading,
+    type: VirtualDomElements.Th,
   })
 
   expect(virtualDom[9]).toEqual(text(ExtensionDetailStrings.label()))
 
   expect(virtualDom[10]).toEqual({
-    type: VirtualDomElements.TBody,
     childCount: 1,
+    type: VirtualDomElements.TBody,
   })
 
   expect(virtualDom.length).toBeGreaterThan(10)

@@ -11,20 +11,20 @@ export const getInstallationEntries = (
 ): readonly MoreInfoEntry[] => {
   const entries: readonly MoreInfoEntry[] = [
     {
-      key: ExtensionDetailStrings.identifier(),
-      value: extensionId,
-      odd: true,
       code: true,
+      key: ExtensionDetailStrings.identifier(),
+      odd: true,
+      value: extensionId,
     },
     {
+      code: true,
       key: ExtensionDetailStrings.version(),
       value: extensionVersion,
-      code: true,
     },
     {
       key: ExtensionDetailStrings.lastUpdated(),
-      value: 'n/a', // TODO get this from somewhere
       odd: true,
+      value: 'n/a', // TODO get this from somewhere
     },
     ...getSizeEntries(showSizeLink, displaySize, extensionUri),
   ]

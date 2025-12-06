@@ -9,18 +9,18 @@ test('getFeatureCommandsEmptyVirtualDom returns expected structure', () => {
   const com = getFeatureCommandsEmptyVirtualDom()
   const expected = [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.commands()),
     {
-      type: VirtualDomElements.P,
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text(ExtensionDetailStrings.emptyCommandsArray()),
   ]

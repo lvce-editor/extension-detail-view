@@ -4,8 +4,8 @@ import * as FeatureSettingsDetails from '../src/parts/FeatureSettingsDetails/Fea
 test('getSettingsDetails should return settings details', async () => {
   const extension = {
     settings: [
-      { name: 'setting1', type: 'string', default: 'default value' },
-      { name: 'setting2', type: 'boolean', default: true },
+      { default: 'default value', name: 'setting1', type: 'string' },
+      { default: true, name: 'setting2', type: 'boolean' },
     ],
   }
 

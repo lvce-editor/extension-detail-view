@@ -9,7 +9,7 @@ test('writeClipboardImage calls writeClipBoardImage with correct blob', async ()
     },
   })
 
-  const mockBlob = { type: 'image/png', size: 4 }
+  const mockBlob = { size: 4, type: 'image/png' }
 
   await Clipboard.writeClipboardImage(mockBlob)
 

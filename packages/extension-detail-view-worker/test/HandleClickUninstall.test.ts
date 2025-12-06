@@ -13,8 +13,8 @@ test('handle click uninstall - calls uninstall extension', async () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     extension: {
-      uri: 'test://sample-folder',
       id: 'test-id',
+      uri: 'test://sample-folder',
     },
   }
   await HandleClickUninstall.handleClickUninstall(state)
@@ -31,8 +31,8 @@ test('handle click uninstall - returns state unchanged', async () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     extension: {
-      uri: 'test://sample-folder',
       id: 'test-id',
+      uri: 'test://sample-folder',
     },
   }
   const result = await HandleClickUninstall.handleClickUninstall(state)

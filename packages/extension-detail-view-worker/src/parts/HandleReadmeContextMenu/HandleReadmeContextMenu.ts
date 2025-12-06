@@ -12,9 +12,9 @@ export const handleReadmeContextMenu = async (
   const { uid } = state
   // TODO maybe also pass other args
   await ContextMenu.show2(uid, MenuEntryId.ExtensionDetailReadme, x, y, {
+    href,
     menuId: MenuEntryId.ExtensionDetailReadme,
     nodeName,
-    href,
   })
   // TODO
   return state

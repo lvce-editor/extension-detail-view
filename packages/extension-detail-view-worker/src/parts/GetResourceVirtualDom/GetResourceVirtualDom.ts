@@ -6,10 +6,10 @@ import { getResourceLinkVirtualDom } from '../GetResourceLinkVirtualDom/GetResou
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const resourceNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.Resource,
   // TODO use link with url
   type: VirtualDomElements.Div,
-  className: ClassNames.Resource,
-  childCount: 1,
 }
 
 export const getResourceVirtualDom = (resource: Resource): readonly VirtualDomNode[] => {

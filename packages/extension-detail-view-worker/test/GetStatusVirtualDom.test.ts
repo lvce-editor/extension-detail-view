@@ -8,24 +8,24 @@ test('getStatusVirtualDom should return correct virtual DOM structure for activa
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Dt,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListKey',
+      type: VirtualDomElements.Dt,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'Status: ',
       childCount: 0,
+      text: 'Status: ',
+      type: VirtualDomElements.Text,
     },
     {
-      type: VirtualDomElements.Dd,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListValue',
+      type: VirtualDomElements.Dd,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'activated',
       childCount: 0,
+      text: 'activated',
+      type: VirtualDomElements.Text,
     },
   ]
 
@@ -37,24 +37,24 @@ test('getStatusVirtualDom should return correct virtual DOM structure for none s
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Dt,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListKey',
+      type: VirtualDomElements.Dt,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'Status: ',
       childCount: 0,
+      text: 'Status: ',
+      type: VirtualDomElements.Text,
     },
     {
-      type: VirtualDomElements.Dd,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListValue',
+      type: VirtualDomElements.Dd,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'none',
       childCount: 0,
+      text: 'none',
+      type: VirtualDomElements.Text,
     },
   ]
 
@@ -66,24 +66,24 @@ test('getStatusVirtualDom should return correct virtual DOM structure for activa
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Dt,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListKey',
+      type: VirtualDomElements.Dt,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'Status: ',
       childCount: 0,
+      text: 'Status: ',
+      type: VirtualDomElements.Text,
     },
     {
-      type: VirtualDomElements.Dd,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListValue',
+      type: VirtualDomElements.Dd,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'Activating',
       childCount: 0,
+      text: 'Activating',
+      type: VirtualDomElements.Text,
     },
   ]
 
@@ -95,24 +95,24 @@ test('getStatusVirtualDom should return correct virtual DOM structure for error 
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Dt,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListKey',
+      type: VirtualDomElements.Dt,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'Status: ',
       childCount: 0,
+      text: 'Status: ',
+      type: VirtualDomElements.Text,
     },
     {
-      type: VirtualDomElements.Dd,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListValue',
+      type: VirtualDomElements.Dd,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'error',
       childCount: 0,
+      text: 'error',
+      type: VirtualDomElements.Text,
     },
   ]
 
@@ -124,24 +124,24 @@ test('getStatusVirtualDom should return correct virtual DOM structure for import
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Dt,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListKey',
+      type: VirtualDomElements.Dt,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'Status: ',
       childCount: 0,
+      text: 'Status: ',
+      type: VirtualDomElements.Text,
     },
     {
-      type: VirtualDomElements.Dd,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListValue',
+      type: VirtualDomElements.Dd,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'importing',
       childCount: 0,
+      text: 'importing',
+      type: VirtualDomElements.Text,
     },
   ]
 
@@ -153,24 +153,24 @@ test('getStatusVirtualDom should return correct virtual DOM structure for unknow
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Dt,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListKey',
+      type: VirtualDomElements.Dt,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'Status: ',
       childCount: 0,
+      text: 'Status: ',
+      type: VirtualDomElements.Text,
     },
     {
-      type: VirtualDomElements.Dd,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListValue',
+      type: VirtualDomElements.Dd,
     },
     {
-      type: VirtualDomElements.Text,
-      text: 'unknown',
       childCount: 0,
+      text: 'unknown',
+      type: VirtualDomElements.Text,
     },
   ]
 
@@ -192,19 +192,19 @@ test('getStatusVirtualDom should always return consistent structure regardless o
 
     expect(result).toHaveLength(4)
     expect(result[0]).toEqual({
-      type: VirtualDomElements.Dt,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListKey',
+      type: VirtualDomElements.Dt,
     })
     expect(result[1]).toEqual({
-      type: VirtualDomElements.Text,
-      text: 'Status: ',
       childCount: 0,
+      text: 'Status: ',
+      type: VirtualDomElements.Text,
     })
     expect(result[2]).toEqual({
-      type: VirtualDomElements.Dd,
       childCount: 1,
       className: 'RuntimeStatusDefinitionListValue',
+      type: VirtualDomElements.Dd,
     })
     expect(result[3].type).toBe(VirtualDomElements.Text)
     expect(result[3].childCount).toBe(0)

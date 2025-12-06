@@ -37,10 +37,10 @@ export const getDetailsVirtualDom = (
   const contentDom = hasReadme ? sanitizedReadmeHtml : getNoReadmeVirtualDom()
   const dom = [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailPanel,
       childCount: childCount,
+      className: ClassNames.ExtensionDetailPanel,
       role: AriaRoles.Panel,
+      type: VirtualDomElements.Div,
     },
     ...contentDom,
     ...GetAdditionalDetailsVirtualDom.getAdditionalDetailsVirtualDom(

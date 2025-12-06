@@ -17,9 +17,9 @@ export const getMarkdownVirtualDom = async (html: string, options?: MarkdownOpti
     return [
       {
         ...firstNode,
-        onScroll: DomEventListenerFunctions.HandleReadmeScroll,
         childCount: firstNode.childCount + 1,
         onClick: DomEventListenerFunctions.HandleReadmeClick,
+        onScroll: DomEventListenerFunctions.HandleReadmeScroll,
         onSelectionChange: DomEventListenerFunctions.HandleSelectionChange,
       },
       ...extraDom,

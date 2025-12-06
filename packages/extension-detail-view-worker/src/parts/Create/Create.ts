@@ -53,6 +53,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     settingsButtonEnabled: false,
     showAdditionalDetailsBreakpoint: 700,
     showSideBar: true,
+    showSizeLink: false,
     sideBarWidth: 0,
     sizeOnDisk: 0,
     sizeValue: 0,
@@ -64,7 +65,6 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     wasActivatedByEvent: '',
     webViews: [],
     width,
-    showSizeLink: false,
   }
   ExtensionDetailStates.set(uid, state, state)
 }

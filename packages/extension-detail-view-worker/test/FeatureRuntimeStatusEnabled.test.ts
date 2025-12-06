@@ -25,8 +25,8 @@ test('featureRuntimeStatusEnabled should return true for extension with browser 
 
 test('featureRuntimeStatusEnabled should return true for extension with both main and browser properties', () => {
   const extension = {
-    main: 'extension.js',
     browser: 'extension.js',
+    main: 'extension.js',
     name: 'test-extension',
   }
 

@@ -6,9 +6,9 @@ import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 export const getExtensionDetailNameVirtualDom = (name: string, badge: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailName,
       childCount: badge ? 2 : 1,
+      className: ClassNames.ExtensionDetailName,
+      type: VirtualDomElements.Div,
     },
     text(name),
     ...getNameBadgeVirtualDom(badge),

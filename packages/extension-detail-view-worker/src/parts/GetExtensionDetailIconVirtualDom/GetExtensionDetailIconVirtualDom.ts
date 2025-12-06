@@ -5,12 +5,12 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 
 export const getExtensionDetailIconVirtualDom = (iconSrc: string): VirtualDomNode => {
   return {
-    type: VirtualDomElements.Img,
-    className: ClassNames.ExtensionDetailIcon,
     alt: '',
     childCount: 0,
+    className: ClassNames.ExtensionDetailIcon,
     draggable: false,
     onContextMenu: DomEventListenerFunctions.HandleImageContextMenu,
     src: iconSrc,
+    type: VirtualDomElements.Img,
   }
 }

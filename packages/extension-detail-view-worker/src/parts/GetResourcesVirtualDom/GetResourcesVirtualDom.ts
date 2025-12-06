@@ -7,9 +7,9 @@ import * as GetResourceVirtualDom from '../GetResourceVirtualDom/GetResourceVirt
 export const getResourcesVirtualDom = (resources: readonly Resource[]): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Resources,
       childCount: resources.length,
+      className: ClassNames.Resources,
+      type: VirtualDomElements.Div,
     },
     ...resources.flatMap(GetResourceVirtualDom.getResourceVirtualDom),
   ]

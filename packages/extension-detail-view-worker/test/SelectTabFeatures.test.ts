@@ -18,34 +18,34 @@ test('should select features tab and first feature when selectedFeature is null'
 
   // Register mock features
   const mockFeature: FeatureDefinition = {
-    id: 'MockFeature',
-    getLabel: (): string => 'Mock Feature',
-    isEnabled: (): boolean => true,
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
-      detailsVirtualDom: [],
       commands: [],
+      detailsVirtualDom: [],
     }),
+    getLabel: (): string => 'Mock Feature',
     getVirtualDom: (): any[] => [],
+    id: 'MockFeature',
+    isEnabled: (): boolean => true,
   }
   const settingsFeature: FeatureDefinition = {
-    id: 'Settings',
-    getLabel: (): string => 'Settings',
-    isEnabled: (): boolean => true,
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
-      detailsVirtualDom: [],
       commands: [],
+      detailsVirtualDom: [],
     }),
+    getLabel: (): string => 'Settings',
     getVirtualDom: (): any[] => [],
+    id: 'Settings',
+    isEnabled: (): boolean => true,
   }
   const themeFeature = {
-    id: 'Theme',
-    getLabel: (): string => 'Theme',
-    isEnabled: (): boolean => true,
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
-      detailsVirtualDom: [],
       commands: [],
+      detailsVirtualDom: [],
     }),
+    getLabel: (): string => 'Theme',
     getVirtualDom: (): any[] => [],
+    id: 'Theme',
+    isEnabled: (): boolean => true,
   }
   register(mockFeature)
   register(settingsFeature)
@@ -77,34 +77,34 @@ test('should use existing selectedFeature when provided', async () => {
 
   // Register mock features
   const mockFeature = {
-    id: 'MockFeature',
-    getLabel: (): string => 'Mock Feature',
-    isEnabled: (): boolean => true,
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
-      detailsVirtualDom: [],
       commands: [],
+      detailsVirtualDom: [],
     }),
+    getLabel: (): string => 'Mock Feature',
     getVirtualDom: (): any[] => [],
+    id: 'MockFeature',
+    isEnabled: (): boolean => true,
   }
   const settingsFeature = {
-    id: 'Settings',
-    getLabel: (): string => 'Settings',
-    isEnabled: (): boolean => true,
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
-      detailsVirtualDom: [],
       commands: [],
+      detailsVirtualDom: [],
     }),
+    getLabel: (): string => 'Settings',
     getVirtualDom: (): any[] => [],
+    id: 'Settings',
+    isEnabled: (): boolean => true,
   }
   const themeFeature = {
-    id: 'Theme',
-    getLabel: (): string => 'Theme',
-    isEnabled: (): boolean => true,
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
-      detailsVirtualDom: [],
       commands: [],
+      detailsVirtualDom: [],
     }),
+    getLabel: (): string => 'Theme',
     getVirtualDom: (): any[] => [],
+    id: 'Theme',
+    isEnabled: (): boolean => true,
   }
   register(mockFeature)
   register(settingsFeature)
@@ -136,11 +136,7 @@ test('should merge feature details handler results', async () => {
 
   // Register a mock feature that returns specific details
   const mockFeature = {
-    id: 'MockFeature',
-    getLabel: (): string => 'Mock Feature',
-    isEnabled: (): boolean => true,
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[]; description: string }> => ({
-      detailsVirtualDom: [{ type: VirtualDomElements.Div, children: [] }],
       commands: [
         [
           { type: TableCellType.Code, value: 'test.command' },
@@ -148,30 +144,34 @@ test('should merge feature details handler results', async () => {
         ],
       ],
       description: 'Mock feature description',
+      detailsVirtualDom: [{ children: [], type: VirtualDomElements.Div }],
     }),
+    getLabel: (): string => 'Mock Feature',
     getVirtualDom: (): any[] => [],
+    id: 'MockFeature',
+    isEnabled: (): boolean => true,
   }
   const themeFeature = {
-    id: 'Theme',
-    getLabel: (): string => 'Theme',
-    isEnabled: (): boolean => true,
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
-      detailsVirtualDom: [],
       commands: [],
+      detailsVirtualDom: [],
     }),
+    getLabel: (): string => 'Theme',
     getVirtualDom: (): any[] => [],
+    id: 'Theme',
+    isEnabled: (): boolean => true,
   }
   register(mockFeature)
   register(themeFeature)
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState(),
+    commands: [],
+    description: '',
+    detailsVirtualDom: [],
     features: [{ id: 'MockFeature', label: 'Mock Feature', selected: false }],
     selectedFeature: '',
     selectedTab: '',
-    detailsVirtualDom: [],
-    commands: [],
-    description: '',
   }
 
   const result = await selectTabFeatures(initialState)
@@ -193,24 +193,24 @@ test('should handle empty features array', async () => {
 
   // Register a mock feature
   const mockFeature = {
-    id: 'MockFeature',
-    getLabel: (): string => 'Mock Feature',
-    isEnabled: (): boolean => true,
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
-      detailsVirtualDom: [],
       commands: [],
+      detailsVirtualDom: [],
     }),
+    getLabel: (): string => 'Mock Feature',
     getVirtualDom: (): any[] => [],
+    id: 'MockFeature',
+    isEnabled: (): boolean => true,
   }
   const themeFeature = {
-    id: 'Theme',
-    getLabel: (): string => 'Theme',
-    isEnabled: (): boolean => true,
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
-      detailsVirtualDom: [],
       commands: [],
+      detailsVirtualDom: [],
     }),
+    getLabel: (): string => 'Theme',
     getVirtualDom: (): any[] => [],
+    id: 'Theme',
+    isEnabled: (): boolean => true,
   }
   register(mockFeature)
   register(themeFeature)

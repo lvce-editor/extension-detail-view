@@ -6,28 +6,28 @@ import * as InputName from '../InputName/InputName.ts'
 export const getExtensionDetailButtons = (hasColorTheme: boolean, isBuiltin: boolean, isDisabled: boolean): readonly ExtensionDetailButton[] => {
   const allActions: ExtensionDetailButton[] = [
     {
-      label: ExtensionDetailStrings.setColorTheme(),
-      onClick: DomEventListenerFunctions.HandleClickSetColorTheme,
       enabled: hasColorTheme,
+      label: ExtensionDetailStrings.setColorTheme(),
       name: InputName.SetColorTheme,
+      onClick: DomEventListenerFunctions.HandleClickSetColorTheme,
     },
     {
-      label: ExtensionDetailStrings.enable(),
-      onClick: DomEventListenerFunctions.HandleClickEnable,
       enabled: isDisabled,
+      label: ExtensionDetailStrings.enable(),
       name: InputName.Enable,
+      onClick: DomEventListenerFunctions.HandleClickEnable,
     },
     {
-      label: ExtensionDetailStrings.disable(),
-      onClick: DomEventListenerFunctions.HandleClickDisable,
       enabled: !isDisabled,
+      label: ExtensionDetailStrings.disable(),
       name: InputName.Disable,
+      onClick: DomEventListenerFunctions.HandleClickDisable,
     },
     {
-      label: ExtensionDetailStrings.uninstall(),
-      onClick: DomEventListenerFunctions.HandleClickUninstall,
       enabled: !isBuiltin,
+      label: ExtensionDetailStrings.uninstall(),
       name: InputName.Uninstall,
+      onClick: DomEventListenerFunctions.HandleClickUninstall,
     },
   ]
 

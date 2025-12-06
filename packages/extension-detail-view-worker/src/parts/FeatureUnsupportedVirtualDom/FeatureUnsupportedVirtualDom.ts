@@ -6,17 +6,17 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 export const getFeatureUnsupportedVirtualDom = (state: ExtensionDetailState): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
       childCount: 2,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.unsupportedFeature()),
     {
-      type: VirtualDomElements.P,
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text(ExtensionDetailStrings.selectedFeatureUnknownOrUnsupported()),
   ]

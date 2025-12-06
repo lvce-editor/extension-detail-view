@@ -6,18 +6,18 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('resource virtual dom', () => {
   const resource: Resource = {
+    icon: '',
     label: 'Test Resource',
     url: 'https://example.com',
-    icon: '',
   }
   expect(GetResourceVirtualDom.getResourceVirtualDom(resource)).toEqual([
     {
-      type: VirtualDomElements.A,
-      className: 'Resource',
       childCount: 1,
+      className: 'Resource',
+      href: 'https://example.com',
       rel: 'noopener noreferrer',
       target: '_blank',
-      href: 'https://example.com',
+      type: VirtualDomElements.A,
     },
     text('Test Resource'),
   ])

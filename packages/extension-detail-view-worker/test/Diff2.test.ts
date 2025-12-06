@@ -52,15 +52,15 @@ test.skip('diff2 should return multiple diff types when multiple modules return 
   const oldState: ExtensionDetailState = {
     ...CreateDefaultState.createDefaultState(),
     name: 'old-extension',
-    selectedFeature: 'feature1',
     readmeScrollTop: 0,
+    selectedFeature: 'feature1',
   }
   const newState: ExtensionDetailState = {
     ...CreateDefaultState.createDefaultState(),
     name: 'new-extension',
-    selectedFeature: 'feature2',
     readmeScrollTop: 100,
     scrollSource: 2, // Script
+    selectedFeature: 'feature2',
   }
   ExtensionDetailStates.set(5, oldState, newState)
 

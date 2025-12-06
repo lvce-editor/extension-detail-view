@@ -2,12 +2,12 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import { createCss } from '../CreateCss/CreateCss.ts'
 
 export const renderCss = (oldState: ExtensionDetailState, newState: ExtensionDetailState): readonly any[] => {
-  const { uid, paddingLeft, paddingRight, sideBarWidth } = newState
+  const { paddingLeft, paddingRight, sideBarWidth, uid } = newState
   const css = createCss({
+    ExtensionDetailMaxWidth: 1250,
     ExtensionDetailPaddingLeft: paddingLeft,
     ExtensionDetailPaddingRight: paddingRight,
     ExtensionDetailSideBarWidth: sideBarWidth,
-    ExtensionDetailMaxWidth: 1250,
   })
   return ['Viewlet.setCss', uid, css]
 }

@@ -5,13 +5,13 @@ import * as GetMoreInfoEntryValueTag from '../GetMoreInfoEntryValueTag/GetMoreIn
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 interface MutableExtraProps {
-  title?: string
   tabIndex?: number
+  title?: string
 }
 
 interface ExtraProps {
-  readonly title?: string
   readonly tabIndex?: number
+  readonly title?: string
 }
 
 const getExtraProps = (title: string | undefined, onClick: string | number | undefined): ExtraProps => {
@@ -26,16 +26,16 @@ const getExtraProps = (title: string | undefined, onClick: string | number | und
 }
 
 export const getMoreInfoEntryValueVirtualDom = (item: MoreInfoEntry): readonly VirtualDomNode[] => {
-  const { value, onClick, code, title } = item
+  const { code, onClick, title, value } = item
   const type = GetMoreInfoEntryValueTag.getMoreInfoEntryValueTag(onClick, code)
   const className = GetMoreInfoEntryValueClassName.getMoreInfoEntryValueClassName(onClick, code)
   const extraProps = getExtraProps(title, onClick)
   return [
     {
-      type,
-      className,
       childCount: 1,
+      className,
       onClick,
+      type,
       ...extraProps,
     },
     text(value),

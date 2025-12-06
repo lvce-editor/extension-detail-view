@@ -4,7 +4,7 @@ export const name = 'extension-detail.set-color-theme'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, Locator, expect, Extension, ExtensionDetail }) => {
+export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-detail-theme')
   await Extension.addWebExtension(extensionUri)

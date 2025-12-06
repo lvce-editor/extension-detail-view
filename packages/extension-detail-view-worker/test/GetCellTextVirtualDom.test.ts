@@ -7,9 +7,9 @@ test('get cell text virtual dom with string value', () => {
   const value = 'Test Value'
   expect(GetCellTextVirtualDom.getCellTextVirtualDom(value)).toEqual([
     {
-      type: VirtualDomElements.Td,
-      className: 'TableCell',
       childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
     },
     text('Test Value'),
   ])

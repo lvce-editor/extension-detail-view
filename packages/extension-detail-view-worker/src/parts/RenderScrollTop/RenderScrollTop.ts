@@ -14,7 +14,7 @@ const getScrollTop = (selectedTab: string, readmeScrollTop: number, changelogScr
 export const renderScrollTop = (oldState: ExtensionDetailState, newState: ExtensionDetailState): readonly any[] => {
   const selector = '.ExtensionDetailPanel .Markdown'
   const property = 'scrollTop'
-  const { uid, readmeScrollTop, changelogScrollTop, selectedTab } = newState
+  const { changelogScrollTop, readmeScrollTop, selectedTab, uid } = newState
   const scrollTop = getScrollTop(selectedTab, readmeScrollTop, changelogScrollTop)
   if (scrollTop === -1) {
     return []

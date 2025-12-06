@@ -34,9 +34,9 @@ test('getIcon returns theme icon for theme extension without path and icon', () 
 
 test('getIcon returns remote path for Electron platform with builtin extension', () => {
   const extension = {
-    id: 'builtin.extension',
-    icon: 'icon.png',
     builtin: true,
+    icon: 'icon.png',
+    id: 'builtin.extension',
     path: '/path/to/extension',
   }
   const result = getIcon(extension, PlatformType.Electron, assetDir)
@@ -45,9 +45,9 @@ test('getIcon returns remote path for Electron platform with builtin extension',
 
 test('getIcon returns remote path for Electron platform with non-builtin extension', () => {
   const extension = {
-    id: 'test.extension',
-    icon: 'icon.png',
     builtin: false,
+    icon: 'icon.png',
+    id: 'test.extension',
     path: '/path/to/extension',
   }
   const result = getIcon(extension, PlatformType.Electron, assetDir)
@@ -56,9 +56,9 @@ test('getIcon returns remote path for Electron platform with non-builtin extensi
 
 test('getIcon returns remote path for Remote platform', () => {
   const extension = {
-    id: 'test.extension',
-    icon: 'icon.png',
     builtin: true,
+    icon: 'icon.png',
+    id: 'test.extension',
     path: '/path/to/extension',
   }
   const result = getIcon(extension, PlatformType.Remote, assetDir)
@@ -67,8 +67,8 @@ test('getIcon returns remote path for Remote platform', () => {
 
 test('getIcon returns empty string for Web platform with path and icon', () => {
   const extension = {
-    id: 'test.extension',
     icon: 'icon.png',
+    id: 'test.extension',
     path: '/path/to/extension',
   }
   const result = getIcon(extension, PlatformType.Web, assetDir)

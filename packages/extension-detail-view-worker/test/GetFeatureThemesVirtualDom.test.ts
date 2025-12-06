@@ -11,19 +11,19 @@ test('getFeatureThemesVirtualDom with empty themesDom', () => {
   const result: readonly VirtualDomNode[] = GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesDom)
   const expected: readonly VirtualDomNode[] = [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.theme()),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.DefaultMarkdown,
       childCount: 0,
+      className: ClassNames.DefaultMarkdown,
+      type: VirtualDomElements.Div,
     },
   ]
   expect(result).toEqual(expected)
@@ -32,31 +32,31 @@ test('getFeatureThemesVirtualDom with empty themesDom', () => {
 test('getFeatureThemesVirtualDom with single node themesDom', () => {
   const themesDom: readonly VirtualDomNode[] = [
     {
-      type: VirtualDomElements.P,
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text('Theme content'),
   ]
   const result: readonly VirtualDomNode[] = GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesDom)
   const expected: readonly VirtualDomNode[] = [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.theme()),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.DefaultMarkdown,
       childCount: 1,
+      className: ClassNames.DefaultMarkdown,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.P,
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text('Theme content'),
   ]
@@ -66,41 +66,41 @@ test('getFeatureThemesVirtualDom with single node themesDom', () => {
 test('getFeatureThemesVirtualDom with multiple nodes themesDom', () => {
   const themesDom: readonly VirtualDomNode[] = [
     {
-      type: VirtualDomElements.P,
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text('First theme'),
     {
-      type: VirtualDomElements.P,
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text('Second theme'),
   ]
   const result: readonly VirtualDomNode[] = GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesDom)
   const expected: readonly VirtualDomNode[] = [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.theme()),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.DefaultMarkdown,
       childCount: 2,
+      className: ClassNames.DefaultMarkdown,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.P,
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text('First theme'),
     {
-      type: VirtualDomElements.P,
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text('Second theme'),
   ]
@@ -110,39 +110,39 @@ test('getFeatureThemesVirtualDom with multiple nodes themesDom', () => {
 test('getFeatureThemesVirtualDom with nested nodes themesDom', () => {
   const themesDom: readonly VirtualDomNode[] = [
     {
-      type: VirtualDomElements.Div,
       childCount: 2,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.P,
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text('Nested content'),
   ]
   const result: readonly VirtualDomNode[] = GetFeatureThemesVirtualDom.getFeatureThemesVirtualDom(themesDom)
   const expected: readonly VirtualDomNode[] = [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.theme()),
     {
-      type: VirtualDomElements.Div,
+      childCount: 1,
       className: ClassNames.DefaultMarkdown,
-      childCount: 1,
-    },
-    {
       type: VirtualDomElements.Div,
-      childCount: 2,
     },
     {
-      type: VirtualDomElements.P,
+      childCount: 2,
+      type: VirtualDomElements.Div,
+    },
+    {
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text('Nested content'),
   ]

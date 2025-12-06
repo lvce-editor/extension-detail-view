@@ -9,9 +9,9 @@ test('getFeaturesEmptyVirtualDom returns expected structure', () => {
   const result = getFeaturesEmptyVirtualDom()
   const expected = [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Features,
       childCount: 1,
+      className: ClassNames.Features,
+      type: VirtualDomElements.Div,
     },
     text(ExtensionDetailStrings.none()),
   ]

@@ -7,11 +7,11 @@ import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 export const getButtonVirtualDom = (message: string, onClick: string | number, name: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Button,
-      className: MergeClassNames.mergeClassNames(ClassNames.Button, ClassNames.ButtonPrimary),
-      onClick,
-      name,
       childCount: 1,
+      className: MergeClassNames.mergeClassNames(ClassNames.Button, ClassNames.ButtonPrimary),
+      name,
+      onClick,
+      type: VirtualDomElements.Button,
     },
     text(message),
   ]

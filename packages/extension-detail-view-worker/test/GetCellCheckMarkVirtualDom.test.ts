@@ -11,9 +11,9 @@ test('getCellCheckMarkVirtualDom returns yes when checked is true', () => {
 
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     text('yes'),
   ])
@@ -26,9 +26,9 @@ test('getCellCheckMarkVirtualDom returns no when checked is false', () => {
 
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     text('no'),
   ])
@@ -53,9 +53,9 @@ test('getCellCheckMarkVirtualDom structure is correct for checked state', () => 
 
   expect(result.length).toBe(2)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Td,
-    className: ClassNames.TableCell,
     childCount: 1,
+    className: ClassNames.TableCell,
+    type: VirtualDomElements.Td,
   })
   expect(result[1]).toEqual(text('yes'))
 })
@@ -67,9 +67,9 @@ test('getCellCheckMarkVirtualDom structure is correct for unchecked state', () =
 
   expect(result.length).toBe(2)
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Td,
-    className: ClassNames.TableCell,
     childCount: 1,
+    className: ClassNames.TableCell,
+    type: VirtualDomElements.Td,
   })
   expect(result[1]).toEqual(text('no'))
 })

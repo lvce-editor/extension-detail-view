@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-activation-events-invalid-item-null'
 
-export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-activation-events-invalid-item-null')
   await Extension.addWebExtension(extensionUri)

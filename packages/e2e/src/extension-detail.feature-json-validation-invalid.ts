@@ -4,7 +4,7 @@ export const name = 'extension-detail.feature-json-validation-invalid'
 
 export const skip = 1
 
-export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-json-validation-invalid')
   await Extension.addWebExtension(extensionUri)

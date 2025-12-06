@@ -2,11 +2,11 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { SavedState } from '../SavedState/SavedState.ts'
 
 export const saveState = (state: ExtensionDetailState): SavedState => {
-  const { selectedTab, selectedFeature, readmeScrollTop, changelogScrollTop } = state
+  const { changelogScrollTop, readmeScrollTop, selectedFeature, selectedTab } = state
   return {
-    selectedTab,
-    selectedFeature,
-    readmeScrollTop,
     changelogScrollTop,
+    readmeScrollTop,
+    selectedFeature,
+    selectedTab,
   }
 }

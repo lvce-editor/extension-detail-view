@@ -13,10 +13,10 @@ test('unselected feature', () => {
   }
   expect(GetFeatureListItemVirtualDom.getFeatureListItemVirtualDom(feature)).toEqual([
     {
-      type: VirtualDomElements.Button,
-      name: 'test-feature',
-      className: ClassNames.Feature,
       childCount: 1,
+      className: ClassNames.Feature,
+      name: 'test-feature',
+      type: VirtualDomElements.Button,
     },
     text('Test Feature'),
   ])
@@ -30,10 +30,10 @@ test('selected feature', () => {
   }
   expect(GetFeatureListItemVirtualDom.getFeatureListItemVirtualDom(feature)).toEqual([
     {
-      type: VirtualDomElements.Button,
-      name: 'selected-feature',
-      className: 'Feature FeatureSelected',
       childCount: 1,
+      className: 'Feature FeatureSelected',
+      name: 'selected-feature',
+      type: VirtualDomElements.Button,
     },
     text('Selected Feature'),
   ])

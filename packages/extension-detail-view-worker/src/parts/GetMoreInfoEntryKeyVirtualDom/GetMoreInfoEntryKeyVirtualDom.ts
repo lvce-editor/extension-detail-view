@@ -5,9 +5,9 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const parentNode: VirtualDomNode = {
-  type: VirtualDomElements.Dt,
-  className: ClassNames.MoreInfoEntryKey,
   childCount: 1,
+  className: ClassNames.MoreInfoEntryKey,
+  type: VirtualDomElements.Dt,
 }
 
 export const getMoreInfoEntryKeyVirtualDom = (item: MoreInfoEntry): readonly VirtualDomNode[] => {

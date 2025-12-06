@@ -3,8 +3,8 @@ import * as ViewletExtensionDetailStrings from '../ExtensionDetailStrings/Extens
 import * as MenuItemFlags from '../MenuItemFlags/MenuItemFlags.ts'
 
 export const getCopyMenuEntry = (): MenuEntry => ({
+  command: 'ClipBoard.execCopy',
+  flags: MenuItemFlags.None,
   id: 'copy',
   label: ViewletExtensionDetailStrings.copy(),
-  flags: MenuItemFlags.None,
-  command: 'ClipBoard.execCopy',
 })

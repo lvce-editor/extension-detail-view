@@ -8,9 +8,9 @@ export const getFeaturesEmptyVirtualDom = (): readonly VirtualDomNode[] => {
   const none = ExtensionDetailStrings.none()
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Features,
       childCount: 1,
+      className: ClassNames.Features,
+      type: VirtualDomElements.Div,
     },
     text(none),
   ]

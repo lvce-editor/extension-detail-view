@@ -5,9 +5,9 @@ import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 export const getExtensionDetailDescriptionVirtualDom = (description: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailDescription,
       childCount: 1,
+      className: ClassNames.ExtensionDetailDescription,
+      type: VirtualDomElements.Div,
     },
     text(description),
   ]

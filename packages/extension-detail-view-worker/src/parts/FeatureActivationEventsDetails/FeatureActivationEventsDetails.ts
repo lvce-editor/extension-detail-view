@@ -5,7 +5,7 @@ export const getActivationEventsDetails = async (extension: any): Promise<Partia
   const activationEvents = extension.activation || []
   const activationEntries = getActivationEntries(activationEvents)
   return {
-    activationEvents,
     activationEntries,
+    activationEvents,
   }
 }

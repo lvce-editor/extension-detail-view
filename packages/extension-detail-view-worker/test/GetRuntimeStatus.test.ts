@@ -6,11 +6,11 @@ import * as RuntimeStatusType from '../src/parts/RuntimeStatusType/RuntimeStatus
 
 test('getRuntimeStatus should return runtime status from ExtensionHostWorker', async () => {
   const mockRuntimeStatus: RuntimeStatus = {
-    id: 'test-extension',
     activationEvent: 'onStartupFinished',
-    status: RuntimeStatusType.Activated,
     activationTime: 1_234_567_890,
+    id: 'test-extension',
     importTime: 0,
+    status: RuntimeStatusType.Activated,
   }
 
   const mockRpc = ExtensionHostWorker.registerMockRpc({
@@ -31,11 +31,11 @@ test('getRuntimeStatus should return runtime status from ExtensionHostWorker', a
 
 test('getRuntimeStatus should handle different extension IDs', async () => {
   const mockRuntimeStatus: RuntimeStatus = {
-    id: 'another-extension',
     activationEvent: 'onCommand',
-    status: RuntimeStatusType.Error,
     activationTime: 9_876_543_210,
+    id: 'another-extension',
     importTime: 0,
+    status: RuntimeStatusType.Error,
   }
 
   const mockRpc = ExtensionHostWorker.registerMockRpc({

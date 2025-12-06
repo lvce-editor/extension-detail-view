@@ -7,14 +7,14 @@ export const getCellCodeVirtualDom = (value: string, props?: { readonly classNam
   const tdClassName = props?.className ? `${ClassNames.TableCell} ${props.className}` : ClassNames.TableCell
   return [
     {
-      type: VirtualDomElements.Td,
-      className: tdClassName,
       childCount: 1,
+      className: tdClassName,
+      type: VirtualDomElements.Td,
       ...(props?.title ? { title: props.title } : {}),
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text(value),
   ]

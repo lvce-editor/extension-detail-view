@@ -15,13 +15,13 @@ test('renderFocus - returns focus command', () => {
 test('renderFocus - with different states', () => {
   const oldState: ExtensionDetailState = {
     ...CreateDefaultState.createDefaultState(),
-    selectedTab: 'Features',
     selectedFeature: 'Commands',
+    selectedTab: 'Features',
   }
   const newState: ExtensionDetailState = {
     ...CreateDefaultState.createDefaultState(),
-    selectedTab: 'Settings',
     selectedFeature: 'General',
+    selectedTab: 'Settings',
   }
 
   const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
@@ -43,15 +43,15 @@ test('renderFocus - with complex states', () => {
     ...CreateDefaultState.createDefaultState(),
     extensionId: 'test-extension',
     name: 'Test Extension',
-    selectedTab: 'Details',
     selectedFeature: 'Features',
+    selectedTab: 'Details',
   }
   const newState: ExtensionDetailState = {
     ...CreateDefaultState.createDefaultState(),
     extensionId: 'test-extension',
     name: 'Test Extension',
-    selectedTab: 'Features',
     selectedFeature: 'Commands',
+    selectedTab: 'Features',
   }
 
   const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)

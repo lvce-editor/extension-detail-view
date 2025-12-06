@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import * as GetMarkdownVirtualDom from '../src/parts/GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
-const mockDom = [{ tag: 'div', children: ['Hello'] }]
+const mockDom = [{ children: ['Hello'], tag: 'div' }]
 
 test('getMarkdownVirtualDom - valid markdown', async () => {
   const mockRpc = MarkdownWorker.registerMockRpc({

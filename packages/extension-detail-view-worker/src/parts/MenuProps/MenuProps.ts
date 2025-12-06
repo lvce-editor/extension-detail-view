@@ -1,5 +1,5 @@
 export interface MenuProps {
-  readonly isLink?: boolean
   readonly isImage?: boolean
+  readonly isLink?: boolean
   readonly url?: string
 }

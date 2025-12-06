@@ -5,8 +5,8 @@ import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 export const getFeatureContentHeadingVirtualDom = (heading: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text(heading),
   ]

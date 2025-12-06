@@ -9,22 +9,22 @@ export const getTableVirtualDom = (tableInfo: TableInfo): readonly VirtualDomNod
   const { headings, rows } = tableInfo
   return [
     {
-      type: VirtualDomElements.Table,
-      className: ClassNames.Table,
       childCount: 2,
+      className: ClassNames.Table,
+      type: VirtualDomElements.Table,
     },
     {
-      type: VirtualDomElements.THead,
       childCount: 1,
+      type: VirtualDomElements.THead,
     },
     {
-      type: VirtualDomElements.Tr,
       childCount: headings.length,
+      type: VirtualDomElements.Tr,
     },
     ...headings.flatMap(GetTableHeadingVirtualDom.getTableHeadingVirtualDom),
     {
-      type: VirtualDomElements.TBody,
       childCount: rows.length,
+      type: VirtualDomElements.TBody,
     },
     ...rows.flatMap(GetTableRowVirtualDom.getTableRowVirtualDom),
   ]

@@ -8,14 +8,14 @@ import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorke
 // Mock location for getImageCopyUrl
 Object.defineProperty(globalThis, 'location', {
   value: {
-    protocol: 'https:',
     host: 'example.com',
+    protocol: 'https:',
   },
   writable: true,
 })
 
 test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state unchanged', async () => {
-  const mockBlob = { type: 'image/png', size: 4 }
+  const mockBlob = { size: 4, type: 'image/png' }
 
   const mockRendererRpc = RendererWorker.registerMockRpc({
     'ClipBoard.writeImage': () => {},

@@ -4,7 +4,7 @@ export const name = 'extension-detail.feature-webviews-invalid-elements'
 
 export const skip = 1
 
-export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-webviews-invalid-elements')
   await Extension.addWebExtension(extensionUri)

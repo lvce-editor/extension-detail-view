@@ -4,10 +4,10 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 
 export const getMenuEntriesReadme = (): readonly MenuEntry[] => [
   {
+    args: [],
+    command: 'ExtensionDetail.copyReadmeText',
+    flags: MenuItemFlags.None,
     id: 'copy',
     label: ExtensionDetailStrings.copy(),
-    flags: MenuItemFlags.None,
-    command: 'ExtensionDetail.copyReadmeText',
-    args: [],
   },
 ]

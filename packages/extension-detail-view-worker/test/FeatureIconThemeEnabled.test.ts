@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import * as FeatureIconThemeEnabled from '../src/parts/FeatureIconThemeEnabled/FeatureIconThemeEnabled.ts'
 
 test('featureIconThemeEnabled returns true when extension has iconThemes', () => {
-  const extension: unknown = { iconThemes: [{ label: 'Test Icon Theme', id: 'test-icon-theme' }] }
+  const extension: unknown = { iconThemes: [{ id: 'test-icon-theme', label: 'Test Icon Theme' }] }
   expect(FeatureIconThemeEnabled.featureIconThemeEnabled(extension)).toBe(true)
 })
 

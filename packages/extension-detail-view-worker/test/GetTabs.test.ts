@@ -7,22 +7,22 @@ test('returns all tabs with details selected', () => {
   const tabs = GetTabs.getTabs(InputName.Details, true, true, true)
   expect(tabs).toEqual([
     {
+      enabled: true,
       label: ExtensionDetailStrings.details(),
       name: InputName.Details,
       selected: true,
-      enabled: true,
     },
     {
+      enabled: true,
       label: ExtensionDetailStrings.features(),
       name: InputName.Features,
       selected: false,
-      enabled: true,
     },
     {
+      enabled: true,
       label: ExtensionDetailStrings.changelog(),
       name: InputName.Changelog,
       selected: false,
-      enabled: true,
     },
   ])
 })

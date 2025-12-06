@@ -10,62 +10,62 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 test.skip('extension detail virtual dom with content', () => {
   const extensionDetail: ExtensionDetailState = {
     ...createDefaultState(),
-    name: 'Test Extension',
-    iconSrc: './test-icon.png',
     description: 'Test Description',
+    iconSrc: './test-icon.png',
+    name: 'Test Extension',
   }
   const selectedTab = 'Details'
   expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, selectedTab)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
       childCount: 3,
+      className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
+      childCount: 2,
       className: ClassNames.ExtensionDetailHeader,
-      childCount: 2,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Img,
-      className: ClassNames.ExtensionDetailIcon,
       alt: '',
-      draggable: false,
       childCount: 0,
+      className: ClassNames.ExtensionDetailIcon,
+      draggable: false,
       src: './test-icon.png',
+      type: VirtualDomElements.Img,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailHeaderDetails,
       childCount: 2,
+      className: ClassNames.ExtensionDetailHeaderDetails,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailName,
       childCount: 1,
+      className: ClassNames.ExtensionDetailName,
+      type: VirtualDomElements.Div,
     },
     text('Test Extension'),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailDescription,
       childCount: 1,
+      className: ClassNames.ExtensionDetailDescription,
+      type: VirtualDomElements.Div,
     },
     text('Test Description'),
     {
       childCount: 3,
       className: 'ExtensionDetailTabs',
-      role: 'tablist',
       onClick: 'handleTabsClick',
-      type: VirtualDomElements.Div,
+      role: 'tablist',
       tabIndex: 0,
+      type: VirtualDomElements.Div,
     },
     {
       childCount: 1,
       className: 'ExtensionDetailTab ExtensionDetailTabSelected',
-      role: 'tab',
       name: 'Details',
-      type: VirtualDomElements.Button,
+      role: 'tab',
       tabIndex: -1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
@@ -75,10 +75,10 @@ test.skip('extension detail virtual dom with content', () => {
     {
       childCount: 1,
       className: 'ExtensionDetailTab',
-      role: 'tab',
-      type: VirtualDomElements.Button,
-      tabIndex: -1,
       name: 'Features',
+      role: 'tab',
+      tabIndex: -1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
@@ -88,10 +88,10 @@ test.skip('extension detail virtual dom with content', () => {
     {
       childCount: 1,
       className: 'ExtensionDetailTab',
-      role: 'tab',
       name: 'Changelog',
-      type: VirtualDomElements.Button,
+      role: 'tab',
       tabIndex: -1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
@@ -105,15 +105,15 @@ test.skip('extension detail virtual dom with content', () => {
       type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Markdown,
-      role: AriaRoles.Document,
-      onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
       childCount: 1,
+      className: ClassNames.Markdown,
+      onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
+      role: AriaRoles.Document,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text('Test Header'),
   ])
@@ -122,45 +122,45 @@ test.skip('extension detail virtual dom with content', () => {
 test.skip('extension detail virtual dom with empty content', () => {
   const extensionDetail: ExtensionDetailState = {
     ...createDefaultState(),
-    name: '',
-    iconSrc: '',
     description: '',
+    iconSrc: '',
+    name: '',
   }
   const selectedTab = 'Details'
   expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, selectedTab)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
       childCount: 3,
+      className: `${ClassNames.Viewlet} ${ClassNames.ExtensionDetail}`,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
+      childCount: 2,
       className: ClassNames.ExtensionDetailHeader,
-      childCount: 2,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Img,
-      className: ClassNames.ExtensionDetailIcon,
       alt: '',
-      draggable: false,
       childCount: 0,
+      className: ClassNames.ExtensionDetailIcon,
+      draggable: false,
       src: '',
+      type: VirtualDomElements.Img,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailHeaderDetails,
       childCount: 2,
+      className: ClassNames.ExtensionDetailHeaderDetails,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailName,
       childCount: 1,
+      className: ClassNames.ExtensionDetailName,
+      type: VirtualDomElements.Div,
     },
     text(''),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailDescription,
       childCount: 1,
+      className: ClassNames.ExtensionDetailDescription,
+      type: VirtualDomElements.Div,
     },
     text(''),
     {
@@ -168,16 +168,16 @@ test.skip('extension detail virtual dom with empty content', () => {
       className: 'ExtensionDetailTabs',
       onClick: 'handleTabsClick',
       role: 'tablist',
-      type: VirtualDomElements.Div,
       tabIndex: 0,
+      type: VirtualDomElements.Div,
     },
     {
       childCount: 1,
       className: 'ExtensionDetailTab ExtensionDetailTabSelected',
-      role: 'tab',
       name: 'Details',
-      type: VirtualDomElements.Button,
+      role: 'tab',
       tabIndex: -1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
@@ -189,8 +189,8 @@ test.skip('extension detail virtual dom with empty content', () => {
       className: 'ExtensionDetailTab',
       name: 'Features',
       role: 'tab',
-      type: VirtualDomElements.Button,
       tabIndex: -1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
@@ -202,8 +202,8 @@ test.skip('extension detail virtual dom with empty content', () => {
       className: 'ExtensionDetailTab',
       name: 'Changelog',
       role: 'tab',
-      type: VirtualDomElements.Button,
       tabIndex: -1,
+      type: VirtualDomElements.Button,
     },
     {
       childCount: 0,
@@ -217,11 +217,11 @@ test.skip('extension detail virtual dom with empty content', () => {
       type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Markdown,
-      role: AriaRoles.Document,
-      onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
       childCount: 0,
+      className: ClassNames.Markdown,
+      onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
+      role: AriaRoles.Document,
+      type: VirtualDomElements.Div,
     },
   ])
 })
@@ -229,12 +229,12 @@ test.skip('extension detail virtual dom with empty content', () => {
 test('getExtensionDetailVirtualDom - builtin extension shows badge', () => {
   const extensionDetail = {
     ...createDefaultState(),
-    name: 'Builtin Extension',
-    iconSrc: './builtin-icon.png',
     description: 'Builtin extension description',
     extension: {
       builtin: true,
     },
+    iconSrc: './builtin-icon.png',
+    name: 'Builtin Extension',
   }
 
   const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '')
@@ -247,12 +247,12 @@ test('getExtensionDetailVirtualDom - builtin extension shows badge', () => {
 test('getExtensionDetailVirtualDom - non-builtin extension shows no badge', () => {
   const extensionDetail = {
     ...createDefaultState(),
-    name: 'Regular Extension',
-    iconSrc: './regular-icon.png',
     description: 'Regular extension description',
     extension: {
       builtin: false,
     },
+    iconSrc: './regular-icon.png',
+    name: 'Regular Extension',
   }
 
   const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '')

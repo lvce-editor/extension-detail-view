@@ -4,8 +4,8 @@ import * as FeatureProgrammingLanguagesDetails from '../src/parts/FeatureProgram
 test('getFeatureDetailsProgrammingLanguages should return programming language details', async () => {
   const extension = {
     languages: [
-      { id: 'typescript', configuration: true, extensions: ['.ts', '.tsx'] },
-      { id: 'javascript', configuration: false, extensions: ['.js', '.jsx'] },
+      { configuration: true, extensions: ['.ts', '.tsx'], id: 'typescript' },
+      { configuration: false, extensions: ['.js', '.jsx'], id: 'javascript' },
     ],
   }
 

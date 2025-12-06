@@ -2,7 +2,7 @@ import type { Row } from '../Row/Row.ts'
 import * as TableCellType from '../TableCellType/TableCellType.ts'
 
 export const getProgrammingLanguageTableEntry = (programmingLanguage: any): Row => {
-  const { id, configuration, extensions } = programmingLanguage
+  const { configuration, extensions, id } = programmingLanguage
   const name = '' // TODO
   const snippets = '' // TODO
   return [
@@ -15,19 +15,19 @@ export const getProgrammingLanguageTableEntry = (programmingLanguage: any): Row 
       value: name,
     },
     {
+      listItems: extensions,
       type: TableCellType.CodeList,
       value: '',
-      listItems: extensions,
     },
     {
-      type: TableCellType.CheckMark,
-      value: '',
       checked: Boolean(configuration),
-    },
-    {
       type: TableCellType.CheckMark,
       value: '',
+    },
+    {
       checked: Boolean(snippets),
+      type: TableCellType.CheckMark,
+      value: '',
     },
   ]
 }

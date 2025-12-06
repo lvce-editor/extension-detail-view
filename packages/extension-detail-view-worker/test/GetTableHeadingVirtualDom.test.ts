@@ -6,9 +6,9 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 test('creates table heading virtual dom', () => {
   expect(GetTableHeadingVirtualDom.getTableHeadingVirtualDom('Name')).toEqual([
     {
-      type: VirtualDomElements.Th,
-      className: 'TableHeading',
       childCount: 1,
+      className: 'TableHeading',
+      type: VirtualDomElements.Th,
     },
     text('Name'),
   ])

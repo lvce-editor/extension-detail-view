@@ -27,8 +27,8 @@ test('get json validation table entries with validations', () => {
           value: ['package.json'],
         },
         {
-          type: TableCellType.Text,
           className: 'TableCellInvalid',
+          type: TableCellType.Text,
         },
       ],
       [
@@ -37,8 +37,8 @@ test('get json validation table entries with validations', () => {
           value: ['composer.json'],
         },
         {
-          type: TableCellType.Text,
           className: 'TableCellInvalid',
+          type: TableCellType.Text,
         },
       ],
     ],

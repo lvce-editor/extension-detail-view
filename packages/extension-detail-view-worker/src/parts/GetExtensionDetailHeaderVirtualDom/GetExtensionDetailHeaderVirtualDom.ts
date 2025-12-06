@@ -17,15 +17,15 @@ export const getExtensionDetailHeaderVirtualDom = (
 ): readonly VirtualDomNode[] => {
   const dom = [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailHeader,
       childCount: 2,
+      className: ClassNames.ExtensionDetailHeader,
+      type: VirtualDomElements.Div,
     },
     getExtensionDetailIconVirtualDom(iconSrc),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailHeaderDetails,
       childCount: 3,
+      className: ClassNames.ExtensionDetailHeaderDetails,
+      type: VirtualDomElements.Div,
     },
     ...getExtensionDetailNameVirtualDom(name, badge),
     ...getExtensionDetailDescriptionVirtualDom(description),

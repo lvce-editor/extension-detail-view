@@ -23,8 +23,8 @@ test('handles validation with non-string schema', async () => {
   const extensionUri: string = 'https://example.com/extension'
   const validations: readonly any[] = [
     {
-      schema: { invalid: 'object' },
       fileMatch: '*.json',
+      schema: { invalid: 'object' },
     },
   ]
 
@@ -32,11 +32,11 @@ test('handles validation with non-string schema', async () => {
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    isValid: false,
-    stringValue: JSON.stringify({ invalid: 'object' }),
-    schemaUrl: '',
     errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
     fileMatch: '*.json',
+    isValid: false,
+    schemaUrl: '',
+    stringValue: JSON.stringify({ invalid: 'object' }),
   })
 })
 
@@ -44,8 +44,8 @@ test('handles validation with invalid link', async () => {
   const extensionUri: string = 'https://example.com/extension'
   const validations: readonly any[] = [
     {
-      schema: 'invalid link with spaces',
       fileMatch: '*.json',
+      schema: 'invalid link with spaces',
     },
   ]
 
@@ -53,11 +53,11 @@ test('handles validation with invalid link', async () => {
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    isValid: false,
-    stringValue: 'invalid link with spaces',
-    schemaUrl: '',
     errorMessage: ExtensionDetailStrings.invalidLink(),
     fileMatch: '*.json',
+    isValid: false,
+    schemaUrl: '',
+    stringValue: 'invalid link with spaces',
   })
 })
 
@@ -66,8 +66,8 @@ test('handles validation with valid external schema that exists', async () => {
   const schemaUrl: string = 'https://json.schemastore.org/package.json'
   const validations: readonly any[] = [
     {
-      schema: schemaUrl,
       fileMatch: '*.json',
+      schema: schemaUrl,
     },
   ]
 
@@ -79,11 +79,11 @@ test('handles validation with valid external schema that exists', async () => {
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    isValid: true,
-    stringValue: schemaUrl,
-    schemaUrl: schemaUrl,
     errorMessage: '',
     fileMatch: '*.json',
+    isValid: true,
+    schemaUrl: schemaUrl,
+    stringValue: schemaUrl,
   })
   expect(mockFetch).toHaveBeenCalledWith(schemaUrl, { method: 'HEAD' })
 })
@@ -93,8 +93,8 @@ test('handles validation with valid external schema that does not exist', async 
   const schemaUrl: string = 'https://example.com/nonexistent.json'
   const validations: readonly any[] = [
     {
-      schema: schemaUrl,
       fileMatch: '*.json',
+      schema: schemaUrl,
     },
   ]
 
@@ -106,11 +106,11 @@ test('handles validation with valid external schema that does not exist', async 
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    isValid: false,
-    stringValue: schemaUrl,
-    schemaUrl: schemaUrl,
     errorMessage: ExtensionDetailStrings.schemaNotFound(),
     fileMatch: '*.json',
+    isValid: false,
+    schemaUrl: schemaUrl,
+    stringValue: schemaUrl,
   })
 })
 
@@ -119,8 +119,8 @@ test('handles validation with valid external schema when fetch throws', async ()
   const schemaUrl: string = 'https://example.com/schema.json'
   const validations: readonly any[] = [
     {
-      schema: schemaUrl,
       fileMatch: '*.json',
+      schema: schemaUrl,
     },
   ]
 
@@ -130,11 +130,11 @@ test('handles validation with valid external schema when fetch throws', async ()
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    isValid: false,
-    stringValue: schemaUrl,
-    schemaUrl: schemaUrl,
     errorMessage: ExtensionDetailStrings.schemaNotFound(),
     fileMatch: '*.json',
+    isValid: false,
+    schemaUrl: schemaUrl,
+    stringValue: schemaUrl,
   })
 })
 
@@ -143,8 +143,8 @@ test('handles validation with relative path schema', async () => {
   const schemaUrl: string = 'https://example.com/schemas/schema.json'
   const validations: readonly any[] = [
     {
-      schema: './schemas/schema.json',
       fileMatch: '*.json',
+      schema: './schemas/schema.json',
     },
   ]
 
@@ -166,8 +166,8 @@ test('handles validation with url property instead of schema', async () => {
   const schemaUrl: string = 'https://json.schemastore.org/package.json'
   const validations: readonly any[] = [
     {
-      url: schemaUrl,
       fileMatch: '*.json',
+      url: schemaUrl,
     },
   ]
 
@@ -186,8 +186,8 @@ test('handles validation with empty string schema', async () => {
   const extensionUri: string = 'https://example.com/extension'
   const validations: readonly any[] = [
     {
-      schema: '',
       fileMatch: '*.json',
+      schema: '',
     },
   ]
 
@@ -195,11 +195,11 @@ test('handles validation with empty string schema', async () => {
 
   expect(result).toHaveLength(1)
   expect(result[0]).toEqual({
-    isValid: true,
-    stringValue: '',
-    schemaUrl: '',
     errorMessage: '',
     fileMatch: '*.json',
+    isValid: true,
+    schemaUrl: '',
+    stringValue: '',
   })
 })
 
@@ -207,12 +207,12 @@ test('handles multiple validations', async () => {
   const extensionUri: string = 'https://example.com/extension'
   const validations: readonly any[] = [
     {
-      schema: 'https://example.com/schema1.json',
       fileMatch: '*.json',
+      schema: 'https://example.com/schema1.json',
     },
     {
-      schema: 'https://example.com/schema2.json',
       fileMatch: '*.tsconfig.json',
+      schema: 'https://example.com/schema2.json',
     },
   ]
 

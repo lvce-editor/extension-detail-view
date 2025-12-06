@@ -6,8 +6,8 @@ import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 const getListItemDom = (item: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text(item),
   ]
@@ -17,9 +17,9 @@ export const getCellCodeListVirtualDom = (value: string, props: { readonly listI
   const { listItems } = props
   return [
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: listItems.length,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     ...listItems.flatMap(getListItemDom),
   ]

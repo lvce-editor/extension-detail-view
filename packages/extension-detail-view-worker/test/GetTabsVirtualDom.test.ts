@@ -8,28 +8,28 @@ import * as GetTabsVirtualDom from '../src/parts/GetTabsVirtualDom/GetTabsVirtua
 test('getTabsVirtualDom - returns correct virtual dom structure', () => {
   const tabs: readonly Tab[] = [
     {
+      enabled: true,
       label: 'Tab 1',
       name: 'tab1',
       selected: true,
-      enabled: true,
     },
     {
+      enabled: true,
       label: 'Tab 2',
       name: 'tab2',
       selected: false,
-      enabled: true,
     },
   ]
 
   const virtualDom = GetTabsVirtualDom.getTabsVirtualDom(tabs)
 
   expect(virtualDom[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.ExtensionDetailTabs,
     childCount: tabs.length,
-    role: AriaRoles.TabList,
+    className: ClassNames.ExtensionDetailTabs,
     onClick: DomEventListenerFunctions.HandleTabsClick,
+    role: AriaRoles.TabList,
     tabIndex: 0,
+    type: VirtualDomElements.Div,
   })
 
   // Since the actual tab rendering is delegated to GetTabVirtualDom,
@@ -43,12 +43,12 @@ test('getTabsVirtualDom - handles empty tabs array', () => {
   const virtualDom = GetTabsVirtualDom.getTabsVirtualDom(tabs)
 
   expect(virtualDom[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.ExtensionDetailTabs,
     childCount: 0,
-    role: AriaRoles.TabList,
+    className: ClassNames.ExtensionDetailTabs,
     onClick: DomEventListenerFunctions.HandleTabsClick,
+    role: AriaRoles.TabList,
     tabIndex: 0,
+    type: VirtualDomElements.Div,
   })
 
   expect(virtualDom.length).toBe(1)
