@@ -23,15 +23,15 @@ test('getFeatureDetailsWebView - extension with webViews', () => {
     webViews: [
       {
         contentSecurityPolicyString: '{"default-src":"\'self\'"}',
-        elementsString: '[\n  {\n    "type": "button",\n    "text": "Click me"\n  }\n]',
+        elementsString: '[\n  {\n    "text": "Click me",\n    "type": "button"\n  }\n]',
         id: 'webview1',
-        selectorString: '{"type":"div","className":"webview"}',
+        selectorString: '{"className":"webview","type":"div"}',
       },
       {
         contentSecurityPolicyString: '{"script-src":"\'unsafe-inline\'"}',
-        elementsString: '[\n  {\n    "type": "input",\n    "placeholder": "Enter text"\n  }\n]',
+        elementsString: '[\n  {\n    "placeholder": "Enter text",\n    "type": "input"\n  }\n]',
         id: 'webview2',
-        selectorString: '{"type":"iframe","src":"about:blank"}',
+        selectorString: '{"src":"about:blank","type":"iframe"}',
       },
     ],
   })
