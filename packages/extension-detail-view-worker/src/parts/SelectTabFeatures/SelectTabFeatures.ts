@@ -16,11 +16,24 @@ export const selectTabFeatures = async (state: ExtensionDetailState): Promise<Ex
       selected: tab.name === InputName.Features,
     }
   })
+  const newFeatures = features.map((feature) => {
+    if (feature.id === actualSelectedFeature) {
+      return {
+        ...feature,
+        selected: true,
+      }
+    }
+    return {
+      ...feature,
+      selected: false,
+    }
+  })
   return {
     ...state,
+    ...partialNewState,
+    features: newFeatures,
     selectedFeature: features[0].id || '',
     selectedTab: InputName.Features,
     tabs: newTabs,
-    ...partialNewState,
   }
 }
