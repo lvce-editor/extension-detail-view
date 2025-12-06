@@ -1,15 +1,17 @@
 import { expect, test } from '@jest/globals'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
-import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
-import * as ExtensionManagement from '../src/parts/ExtensionManagement/ExtensionManagement.ts'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as PlatformType from '../src/parts/PlatformType/PlatformType.ts'
 import * as UpdateExtensionStatus from '../src/parts/UpdateExtensionStatus/UpdateExtensionStatus.ts'
 
 test('updateExtensionStatus - successful update with enabled extension', async () => {
-  const state = CreateDefaultState.createDefaultState()
-  state.extensionId = 'test-extension-id'
-  state.hasColorTheme = false
-  state.platform = PlatformType.Electron
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    extensionId: 'test-extension-id',
+    hasColorTheme: false,
+    platform: PlatformType.Electron,
+  }
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const mockRpc = RendererWorker.registerMockRpc({
@@ -18,6 +20,7 @@ test('updateExtensionStatus - successful update with enabled extension', async (
     },
   })
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   const updateFunction: UpdateExtensionStatus.UpdateFunction = async () => {
     return null
   }
@@ -33,10 +36,12 @@ test('updateExtensionStatus - successful update with enabled extension', async (
 })
 
 test('updateExtensionStatus - successful update with disabled extension', async () => {
-  const state = CreateDefaultState.createDefaultState()
-  state.extensionId = 'test-extension-id'
-  state.hasColorTheme = false
-  state.platform = PlatformType.Electron
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    extensionId: 'test-extension-id',
+    hasColorTheme: false,
+    platform: PlatformType.Electron,
+  }
 
   const mockExtension: any = { disabled: true, id: 'test-extension-id' }
   const mockRpc = RendererWorker.registerMockRpc({
@@ -45,6 +50,7 @@ test('updateExtensionStatus - successful update with disabled extension', async 
     },
   })
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   const updateFunction: UpdateExtensionStatus.UpdateFunction = async () => {
     return null
   }
@@ -60,10 +66,12 @@ test('updateExtensionStatus - successful update with disabled extension', async 
 })
 
 test('updateExtensionStatus - handles error from updateFunction', async () => {
-  const state = CreateDefaultState.createDefaultState()
-  state.extensionId = 'test-extension-id'
-  state.hasColorTheme = false
-  state.platform = PlatformType.Electron
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    extensionId: 'test-extension-id',
+    hasColorTheme: false,
+    platform: PlatformType.Electron,
+  }
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const errorMessage = 'Failed to update extension'
@@ -89,10 +97,12 @@ test('updateExtensionStatus - handles error from updateFunction', async () => {
 })
 
 test('updateExtensionStatus - extension not found (undefined)', async () => {
-  const state = CreateDefaultState.createDefaultState()
-  state.extensionId = 'test-extension-id'
-  state.hasColorTheme = false
-  state.platform = PlatformType.Electron
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    extensionId: 'test-extension-id',
+    hasColorTheme: false,
+    platform: PlatformType.Electron,
+  }
 
   const mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
@@ -100,6 +110,7 @@ test('updateExtensionStatus - extension not found (undefined)', async () => {
     },
   })
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   const updateFunction: UpdateExtensionStatus.UpdateFunction = async () => {
     return null
   }
@@ -115,20 +126,23 @@ test('updateExtensionStatus - extension not found (undefined)', async () => {
 })
 
 test('updateExtensionStatus - preserves state properties', async () => {
-  const state = CreateDefaultState.createDefaultState()
-  state.extensionId = 'test-extension-id'
-  state.hasColorTheme = true
-  state.platform = PlatformType.Electron
-  state.name = 'Test Extension'
-  state.description = 'Test Description'
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    description: 'Test Description',
+    extensionId: 'test-extension-id',
+    hasColorTheme: true,
+    name: 'Test Extension',
+    platform: PlatformType.Electron,
+  }
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
-  const mockRpc = RendererWorker.registerMockRpc({
+  RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
   })
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   const updateFunction: UpdateExtensionStatus.UpdateFunction = async () => {
     return null
   }
@@ -142,10 +156,12 @@ test('updateExtensionStatus - preserves state properties', async () => {
 })
 
 test('updateExtensionStatus - with hasColorTheme true and disabled false', async () => {
-  const state = CreateDefaultState.createDefaultState()
-  state.extensionId = 'test-extension-id'
-  state.hasColorTheme = true
-  state.platform = PlatformType.Electron
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    extensionId: 'test-extension-id',
+    hasColorTheme: true,
+    platform: PlatformType.Electron,
+  }
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const mockRpc = RendererWorker.registerMockRpc({
@@ -154,6 +170,7 @@ test('updateExtensionStatus - with hasColorTheme true and disabled false', async
     },
   })
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   const updateFunction: UpdateExtensionStatus.UpdateFunction = async () => {
     return null
   }
@@ -169,10 +186,12 @@ test('updateExtensionStatus - with hasColorTheme true and disabled false', async
 })
 
 test('updateExtensionStatus - error with Error object', async () => {
-  const state = CreateDefaultState.createDefaultState()
-  state.extensionId = 'test-extension-id'
-  state.hasColorTheme = false
-  state.platform = PlatformType.Electron
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    extensionId: 'test-extension-id',
+    hasColorTheme: false,
+    platform: PlatformType.Electron,
+  }
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const error = new Error('Update failed')
