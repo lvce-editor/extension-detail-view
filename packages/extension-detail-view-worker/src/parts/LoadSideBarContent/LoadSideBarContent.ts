@@ -9,12 +9,12 @@ import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceE
 import * as GetResources from '../GetResources/GetResources.ts'
 
 export interface SideBarContent {
+  readonly categories: readonly Category[]
   readonly displaySize: string
+  readonly folderSize: number
   readonly installationEntries: readonly MoreInfoEntry[]
   readonly marketplaceEntries: readonly MoreInfoEntry[]
-  readonly categories: readonly Category[]
   readonly resources: readonly Resource[]
-  readonly folderSize: number
 }
 
 export const loadSideBarContent = async (

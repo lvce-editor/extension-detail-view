@@ -8,9 +8,9 @@ test('tokenToVirtualDom - string token', () => {
   const result = TokenToVirtualDom.tokenToVirtualDom(token)
 
   expect(result).toEqual({
-    type: VirtualDomElements.Span,
-    className: ClassNames.TokenJsonString,
     childCount: 1,
+    className: ClassNames.TokenJsonString,
+    type: VirtualDomElements.Span,
   })
 })
 
@@ -19,9 +19,9 @@ test('tokenToVirtualDom - number token', () => {
   const result = TokenToVirtualDom.tokenToVirtualDom(token)
 
   expect(result).toEqual({
-    type: VirtualDomElements.Span,
-    className: ClassNames.TokenJsonNumber,
     childCount: 1,
+    className: ClassNames.TokenJsonNumber,
+    type: VirtualDomElements.Span,
   })
 })
 
@@ -30,9 +30,9 @@ test('tokenToVirtualDom - boolean token', () => {
   const result = TokenToVirtualDom.tokenToVirtualDom(token)
 
   expect(result).toEqual({
-    type: VirtualDomElements.Span,
-    className: ClassNames.TokenJsonBoolean,
     childCount: 1,
+    className: ClassNames.TokenJsonBoolean,
+    type: VirtualDomElements.Span,
   })
 })
 
@@ -41,9 +41,9 @@ test('tokenToVirtualDom - null token', () => {
   const result = TokenToVirtualDom.tokenToVirtualDom(token)
 
   expect(result).toEqual({
-    type: VirtualDomElements.Span,
-    className: ClassNames.TokenJsonNull,
     childCount: 1,
+    className: ClassNames.TokenJsonNull,
+    type: VirtualDomElements.Span,
   })
 })
 
@@ -52,9 +52,9 @@ test('tokenToVirtualDom - punctuation token', () => {
   const result = TokenToVirtualDom.tokenToVirtualDom(token)
 
   expect(result).toEqual({
-    type: VirtualDomElements.Span,
-    className: ClassNames.TokenJsonPunctuation,
     childCount: 1,
+    className: ClassNames.TokenJsonPunctuation,
+    type: VirtualDomElements.Span,
   })
 })
 
@@ -63,9 +63,9 @@ test('tokenToVirtualDom - propertyName token (fallback)', () => {
   const result = TokenToVirtualDom.tokenToVirtualDom(token)
 
   expect(result).toEqual({
-    type: VirtualDomElements.Span,
-    className: ClassNames.Token,
     childCount: 1,
+    className: ClassNames.Token,
+    type: VirtualDomElements.Span,
   })
 })
 
@@ -74,8 +74,8 @@ test('tokenToVirtualDom - propertyValue token (fallback)', () => {
   const result = TokenToVirtualDom.tokenToVirtualDom(token)
 
   expect(result).toEqual({
-    type: VirtualDomElements.Span,
-    className: ClassNames.Token,
     childCount: 1,
+    className: ClassNames.Token,
+    type: VirtualDomElements.Span,
   })
 })

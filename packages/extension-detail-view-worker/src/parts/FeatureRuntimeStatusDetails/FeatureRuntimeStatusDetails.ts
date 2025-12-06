@@ -2,11 +2,11 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import { getRuntimeStatus } from '../GetRuntimeStatus/GetRuntimeStatus.ts'
 
 export const getRuntimeStatusDetails = async (extension: any): Promise<Partial<ExtensionDetailState>> => {
-  const { activationEvent, status, activationTime, importTime } = await getRuntimeStatus(extension.id)
+  const { activationEvent, activationTime, importTime, status } = await getRuntimeStatus(extension.id)
   return {
-    wasActivatedByEvent: activationEvent,
     activationTime,
-    status,
     importTime,
+    status,
+    wasActivatedByEvent: activationEvent,
   }
 }

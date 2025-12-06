@@ -75,12 +75,12 @@ test.skip('should call feature details handler and merge results', async () => {
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState(),
+    commands: [],
     features: [
       { id: 'Commands', label: 'Commands', selected: false },
       { id: 'Settings', label: 'Settings', selected: true },
     ],
     selectedFeature: 'Settings',
-    commands: [],
   }
 
   const result = await selectFeature(initialState, 'Commands')

@@ -10,29 +10,29 @@ const getIconDom = (icon: string): readonly VirtualDomNode[] => {
   }
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ResourceIcon,
       childCount: 1,
+      className: ClassNames.ResourceIcon,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: mergeClassNames(ClassNames.MaskIcon, `MaskIcon${icon}`),
       childCount: 0,
+      className: mergeClassNames(ClassNames.MaskIcon, `MaskIcon${icon}`),
+      type: VirtualDomElements.Div,
     },
   ]
 }
 export const getResourceLinkVirtualDom = (resource: Resource): readonly VirtualDomNode[] => {
-  const { label, url, icon } = resource
+  const { icon, label, url } = resource
   const iconDom = getIconDom(icon)
   const iconDomCount = iconDom.length > 0 ? 1 : 0
   return [
     {
-      type: VirtualDomElements.A,
-      className: ClassNames.Resource,
       childCount: 1 + iconDomCount,
-      target: '_blank',
-      rel: 'noopener noreferrer',
+      className: ClassNames.Resource,
       href: url,
+      rel: 'noopener noreferrer',
+      target: '_blank',
+      type: VirtualDomElements.A,
     },
     ...iconDom,
     text(label),

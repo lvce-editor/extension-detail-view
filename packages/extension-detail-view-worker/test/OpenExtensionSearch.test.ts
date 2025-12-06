@@ -4,10 +4,10 @@ import * as OpenExtensionSearch from '../src/parts/OpenExtensionSearch/OpenExten
 
 test.skip('openExtensionSearch calls RendererWorker.openExtensionSearch and setExtensionsSearchValue', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.openViewlet': () => {
+    'Extensions.handleInput': () => {
       /**/
     },
-    'Extensions.handleInput': () => {
+    'SideBar.openViewlet': () => {
       /**/
     },
   })

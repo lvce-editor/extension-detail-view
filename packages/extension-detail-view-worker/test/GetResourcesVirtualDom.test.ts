@@ -8,9 +8,9 @@ test('resources virtual dom with empty resources', () => {
   const resources: readonly Resource[] = []
   expect(GetResourcesVirtualDom.getResourcesVirtualDom(resources)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Resources,
       childCount: 0,
+      className: ClassNames.Resources,
+      type: VirtualDomElements.Div,
     },
   ])
 })

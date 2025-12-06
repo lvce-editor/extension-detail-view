@@ -6,17 +6,17 @@ import * as MenuItemFlags from '../src/parts/MenuItemFlags/MenuItemFlags.ts'
 test('handles isLink', () => {
   expect(GetMenuEntries.getMenuEntries({ isLink: true })).toEqual([
     {
+      args: [''],
+      command: 'Open.openUrl',
+      flags: MenuItemFlags.None,
       id: 'openInNewTab',
       label: ExtensionDetailStrings.openInNewTab(),
-      flags: MenuItemFlags.None,
-      command: 'Open.openUrl',
-      args: [''],
     },
     {
+      command: 'ClipBoard.execCopy',
+      flags: MenuItemFlags.None,
       id: 'copy',
       label: ExtensionDetailStrings.copy(),
-      flags: MenuItemFlags.None,
-      command: 'ClipBoard.execCopy',
     },
   ])
 })
@@ -24,24 +24,24 @@ test('handles isLink', () => {
 test('handles isImage', () => {
   expect(GetMenuEntries.getMenuEntries({ isImage: true })).toEqual([
     {
+      args: [''],
+      command: 'Open.openUrl',
+      flags: MenuItemFlags.None,
       id: 'openImageInNewTab',
       label: ExtensionDetailStrings.openImageInNewTab(),
-      flags: MenuItemFlags.None,
-      command: 'Open.openUrl',
-      args: [''],
     },
     {
+      args: ['image.png', ''],
+      command: 'SaveFileAs.saveFileAs',
+      flags: MenuItemFlags.None,
       id: 'saveImageAs',
       label: ExtensionDetailStrings.saveImageAs(),
-      flags: MenuItemFlags.None,
-      command: 'SaveFileAs.saveFileAs',
-      args: ['image.png', ''],
     },
     {
+      command: 'ClipBoard.execCopy',
+      flags: MenuItemFlags.None,
       id: 'copy',
       label: ExtensionDetailStrings.copy(),
-      flags: MenuItemFlags.None,
-      command: 'ClipBoard.execCopy',
     },
   ])
 })
@@ -49,10 +49,10 @@ test('handles isImage', () => {
 test('handles neither isLink nor isImage', () => {
   expect(GetMenuEntries.getMenuEntries({})).toEqual([
     {
+      command: 'ClipBoard.execCopy',
+      flags: MenuItemFlags.None,
       id: 'copy',
       label: ExtensionDetailStrings.copy(),
-      flags: MenuItemFlags.None,
-      command: 'ClipBoard.execCopy',
     },
   ])
 })

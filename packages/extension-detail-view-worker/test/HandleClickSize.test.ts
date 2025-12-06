@@ -13,8 +13,8 @@ test('handle click size - opens folder', async () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     extension: {
-      uri: 'test://sample-folder',
       id: 'test-id',
+      uri: 'test://sample-folder',
     },
   }
   await HandleClickSize.handleClickSize(state)

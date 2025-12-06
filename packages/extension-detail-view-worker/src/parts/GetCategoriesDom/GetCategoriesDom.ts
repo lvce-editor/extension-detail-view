@@ -7,9 +7,9 @@ import * as GetCategoryVirtualDom from '../GetCategoryVirtualDom/GetCategoryVirt
 export const getCategoriesDom = (categories: readonly Category[]): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Categories,
       childCount: categories.length,
+      className: ClassNames.Categories,
+      type: VirtualDomElements.Div,
     },
     ...categories.flatMap(GetCategoryVirtualDom.getCategoryVirtualDom),
   ]

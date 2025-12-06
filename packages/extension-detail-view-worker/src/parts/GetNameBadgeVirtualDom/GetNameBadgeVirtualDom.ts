@@ -8,9 +8,9 @@ export const getNameBadgeVirtualDom = (badge: string): readonly VirtualDomNode[]
   }
   return [
     {
-      type: VirtualDomElements.Span,
-      className: ClassNames.ExtensionDetailNameBadge,
       childCount: 1,
+      className: ClassNames.ExtensionDetailNameBadge,
+      type: VirtualDomElements.Span,
     },
     text(badge),
   ]

@@ -12,11 +12,11 @@ test('getThemeDetails should return theme details with themes', async () => {
   const baseUrl = 'https://example.com'
 
   const mockRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => {
+      return [{ childCount: 1, type: VirtualDomElements.Div }]
+    },
     'Markdown.render': () => {
       return '<h1>Theme Markdown</h1>'
-    },
-    'Markdown.getVirtualDom': () => {
-      return [{ type: VirtualDomElements.Div, childCount: 1 }]
     },
   })
 
@@ -37,11 +37,11 @@ test('getThemeDetails should handle empty themes', async () => {
   const baseUrl = 'https://example.com'
 
   const mockRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => {
+      return [{ childCount: 1, type: VirtualDomElements.Div }]
+    },
     'Markdown.render': () => {
       return '<h1>Theme Markdown</h1>'
-    },
-    'Markdown.getVirtualDom': () => {
-      return [{ type: VirtualDomElements.Div, childCount: 1 }]
     },
   })
 

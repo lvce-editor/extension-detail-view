@@ -8,12 +8,12 @@ test('getExtensionDetailIconVirtualDom returns correct virtual DOM node', () => 
   const result = getExtensionDetailIconVirtualDom(iconSrc)
 
   expect(result).toEqual({
-    type: VirtualDomElements.Img,
-    className: ClassNames.ExtensionDetailIcon,
     alt: '',
-    draggable: false,
     childCount: 0,
-    src: iconSrc,
+    className: ClassNames.ExtensionDetailIcon,
+    draggable: false,
     onContextMenu: 11,
+    src: iconSrc,
+    type: VirtualDomElements.Img,
   })
 })

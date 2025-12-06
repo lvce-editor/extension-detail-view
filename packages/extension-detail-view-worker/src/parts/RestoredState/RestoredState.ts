@@ -1,6 +1,6 @@
 export interface RestoredState {
-  readonly selectedTab: string
-  readonly selectedFeature: string
-  readonly readmeScrollTop: number
   readonly changelogScrollTop: number
+  readonly readmeScrollTop: number
+  readonly selectedFeature: string
+  readonly selectedTab: string
 }

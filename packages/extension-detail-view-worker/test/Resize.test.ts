@@ -6,15 +6,15 @@ import { resize } from '../src/parts/Resize/Resize.ts'
 
 test('resize merges dimensions into state', () => {
   const state: ExtensionDetailState = createDefaultState()
-  const dimensions: Dimensions = { x: 10, y: 20, width: 800, height: 600 }
+  const dimensions: Dimensions = { height: 600, width: 800, x: 10, y: 20 }
   const result: ExtensionDetailState = resize(state, dimensions)
 
   expect(result.width).toBe(800)
 })
 
 test('resize preserves other state properties', () => {
-  const state: ExtensionDetailState = { ...createDefaultState(), name: 'test-extension', extensionId: 'test-id' }
-  const dimensions = { x: 0, y: 0, width: 1000, height: 800 }
+  const state: ExtensionDetailState = { ...createDefaultState(), extensionId: 'test-id', name: 'test-extension' }
+  const dimensions = { height: 800, width: 1000, x: 0, y: 0 }
   const result: ExtensionDetailState = resize(state, dimensions)
 
   expect(result.name).toBe('test-extension')
@@ -24,7 +24,7 @@ test('resize preserves other state properties', () => {
 
 test('resize calculates padding correctly for width below 600', () => {
   const state: ExtensionDetailState = createDefaultState()
-  const dimensions = { x: 0, y: 0, width: 500, height: 400 }
+  const dimensions = { height: 400, width: 500, x: 0, y: 0 }
   const result: ExtensionDetailState = resize(state, dimensions)
 
   expect(result.paddingLeft).toBe(10)
@@ -33,8 +33,8 @@ test('resize calculates padding correctly for width below 600', () => {
 
 test('resize calculates padding correctly for width 600-799', () => {
   const state: ExtensionDetailState = createDefaultState()
-  const dimensions600 = { x: 0, y: 0, width: 600, height: 400 }
-  const dimensions799 = { x: 0, y: 0, width: 799, height: 400 }
+  const dimensions600 = { height: 400, width: 600, x: 0, y: 0 }
+  const dimensions799 = { height: 400, width: 799, x: 0, y: 0 }
   const result600: ExtensionDetailState = resize(state, dimensions600)
   const result799: ExtensionDetailState = resize(state, dimensions799)
 
@@ -46,9 +46,9 @@ test('resize calculates padding correctly for width 600-799', () => {
 
 test('resize calculates padding correctly for width 800-1199', () => {
   const state: ExtensionDetailState = createDefaultState()
-  const dimensions800 = { x: 0, y: 0, width: 800, height: 400 }
-  const dimensions1000 = { x: 0, y: 0, width: 1000, height: 400 }
-  const dimensions1199 = { x: 0, y: 0, width: 1199, height: 400 }
+  const dimensions800 = { height: 400, width: 800, x: 0, y: 0 }
+  const dimensions1000 = { height: 400, width: 1000, x: 0, y: 0 }
+  const dimensions1199 = { height: 400, width: 1199, x: 0, y: 0 }
   const result800: ExtensionDetailState = resize(state, dimensions800)
   const result1000: ExtensionDetailState = resize(state, dimensions1000)
   const result1199: ExtensionDetailState = resize(state, dimensions1199)
@@ -63,8 +63,8 @@ test('resize calculates padding correctly for width 800-1199', () => {
 
 test('resize calculates padding correctly for width 1200 and above', () => {
   const state: ExtensionDetailState = createDefaultState()
-  const dimensions1200 = { x: 0, y: 0, width: 1200, height: 400 }
-  const dimensions1600 = { x: 0, y: 0, width: 1600, height: 400 }
+  const dimensions1200 = { height: 400, width: 1200, x: 0, y: 0 }
+  const dimensions1600 = { height: 400, width: 1600, x: 0, y: 0 }
   const result1200: ExtensionDetailState = resize(state, dimensions1200)
   const result1600: ExtensionDetailState = resize(state, dimensions1600)
 
@@ -76,7 +76,7 @@ test('resize calculates padding correctly for width 1200 and above', () => {
 
 test('resize sets showSideBar to false when width is below 490', () => {
   const state: ExtensionDetailState = createDefaultState()
-  const dimensions = { x: 0, y: 0, width: 489, height: 400 }
+  const dimensions = { height: 400, width: 489, x: 0, y: 0 }
   const result: ExtensionDetailState = resize(state, dimensions)
 
   expect(result.showSideBar).toBe(false)
@@ -85,9 +85,9 @@ test('resize sets showSideBar to false when width is below 490', () => {
 
 test('resize sets showSideBar to true when width is 490 or above', () => {
   const state: ExtensionDetailState = createDefaultState()
-  const dimensions490 = { x: 0, y: 0, width: 490, height: 400 }
-  const dimensions500 = { x: 0, y: 0, width: 500, height: 400 }
-  const dimensions800 = { x: 0, y: 0, width: 800, height: 400 }
+  const dimensions490 = { height: 400, width: 490, x: 0, y: 0 }
+  const dimensions500 = { height: 400, width: 500, x: 0, y: 0 }
+  const dimensions800 = { height: 400, width: 800, x: 0, y: 0 }
   const result490: ExtensionDetailState = resize(state, dimensions490)
   const result500: ExtensionDetailState = resize(state, dimensions500)
   const result800: ExtensionDetailState = resize(state, dimensions800)
@@ -102,8 +102,8 @@ test('resize sets showSideBar to true when width is 490 or above', () => {
 
 test('resize calculates sideBarWidth correctly', () => {
   const state: ExtensionDetailState = createDefaultState()
-  const dimensions500 = { x: 0, y: 0, width: 500, height: 400 }
-  const dimensions1000 = { x: 0, y: 0, width: 1000, height: 400 }
+  const dimensions500 = { height: 400, width: 500, x: 0, y: 0 }
+  const dimensions1000 = { height: 400, width: 1000, x: 0, y: 0 }
   const result500: ExtensionDetailState = resize(state, dimensions500)
   const result1000: ExtensionDetailState = resize(state, dimensions1000)
 
@@ -117,7 +117,7 @@ test('resize calculates sideBarWidth correctly', () => {
 
 test('resize sets paddingLeft and paddingRight to the same value', () => {
   const state: ExtensionDetailState = createDefaultState()
-  const dimensions = { x: 0, y: 0, width: 1000, height: 400 }
+  const dimensions = { height: 400, width: 1000, x: 0, y: 0 }
   const result: ExtensionDetailState = resize(state, dimensions)
 
   expect(result.paddingLeft).toBe(result.paddingRight)

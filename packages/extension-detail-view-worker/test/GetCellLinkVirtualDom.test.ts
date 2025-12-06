@@ -11,15 +11,15 @@ test('getCellLinkVirtualDom returns correct structure with href only', () => {
 
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     {
-      type: VirtualDomElements.A,
+      childCount: 1,
       className: ClassNames.Link,
       href: 'https://example.com',
-      childCount: 1,
+      type: VirtualDomElements.A,
     },
     text('Click here'),
   ])
@@ -34,25 +34,25 @@ test('getCellLinkVirtualDom includes className when provided', () => {
   const result = getCellLinkVirtualDom(value, props)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Td,
-    className: `${ClassNames.TableCell} CustomClass`,
     childCount: 1,
+    className: `${ClassNames.TableCell} CustomClass`,
+    type: VirtualDomElements.Td,
   })
 })
 
 test('getCellLinkVirtualDom includes title when provided', () => {
   const value: string = 'Link text'
   const props: { readonly title: string; readonly href: string } = {
-    title: 'Tooltip text',
     href: 'https://example.com',
+    title: 'Tooltip text',
   }
   const result = getCellLinkVirtualDom(value, props)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Td,
-    className: ClassNames.TableCell,
     childCount: 1,
+    className: ClassNames.TableCell,
     title: 'Tooltip text',
+    type: VirtualDomElements.Td,
   })
 })
 
@@ -64,16 +64,16 @@ test('getCellLinkVirtualDom includes both className and title when provided', ()
     readonly href: string
   } = {
     className: 'CustomClass',
-    title: 'Tooltip text',
     href: 'https://example.com',
+    title: 'Tooltip text',
   }
   const result = getCellLinkVirtualDom(value, props)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Td,
-    className: `${ClassNames.TableCell} CustomClass`,
     childCount: 1,
+    className: `${ClassNames.TableCell} CustomClass`,
     title: 'Tooltip text',
+    type: VirtualDomElements.Td,
   })
 })
 
@@ -82,15 +82,15 @@ test('getCellLinkVirtualDom works without props', () => {
   const result = getCellLinkVirtualDom(value)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Td,
-    className: ClassNames.TableCell,
     childCount: 1,
+    className: ClassNames.TableCell,
+    type: VirtualDomElements.Td,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.A,
+    childCount: 1,
     className: ClassNames.Link,
     href: undefined,
-    childCount: 1,
+    type: VirtualDomElements.A,
   })
   expect(result[2]).toEqual(text('Link text'))
 })
@@ -101,10 +101,10 @@ test('getCellLinkVirtualDom uses correct href value', () => {
   const result = getCellLinkVirtualDom(value, props)
 
   expect(result[1]).toEqual({
-    type: VirtualDomElements.A,
+    childCount: 1,
     className: ClassNames.Link,
     href: 'https://github.com',
-    childCount: 1,
+    type: VirtualDomElements.A,
   })
 })
 

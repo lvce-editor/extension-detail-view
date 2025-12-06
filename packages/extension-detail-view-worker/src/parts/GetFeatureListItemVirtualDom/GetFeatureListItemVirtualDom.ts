@@ -5,15 +5,15 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 export const getFeatureListItemVirtualDom = (feature: Feature): readonly VirtualDomNode[] => {
-  const { label, selected, id } = feature
+  const { id, label, selected } = feature
   const className = selected ? 'Feature FeatureSelected' : ClassNames.Feature
   return [
     {
+      childCount: 1,
+      className,
+      name: id,
       // TODO use role list item or tab
       type: VirtualDomElements.Button,
-      name: id,
-      className,
-      childCount: 1,
     },
     text(label),
   ]

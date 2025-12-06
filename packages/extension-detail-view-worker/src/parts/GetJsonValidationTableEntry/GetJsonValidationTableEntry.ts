@@ -4,16 +4,16 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as TableCellType from '../TableCellType/TableCellType.ts'
 
 export const getJsonValidationTableEntry = (validationInfo: JsonValidationInfo): Row => {
-  const { isValid, errorMessage, schemaUrl, stringValue, fileMatch } = validationInfo
+  const { errorMessage, fileMatch, isValid, schemaUrl, stringValue } = validationInfo
   if (!isValid && schemaUrl) {
     return [
       { type: TableCellType.Code, value: fileMatch },
       {
+        className: ClassNames.TableCellInvalid,
+        href: schemaUrl,
+        title: errorMessage,
         type: TableCellType.Link,
         value: stringValue,
-        href: schemaUrl,
-        className: ClassNames.TableCellInvalid,
-        title: errorMessage,
       },
     ]
   }
@@ -24,17 +24,17 @@ export const getJsonValidationTableEntry = (validationInfo: JsonValidationInfo):
         value: fileMatch,
       },
       {
-        type: TableCellType.Text,
-        value: stringValue,
         className: ClassNames.TableCellInvalid,
         title: errorMessage,
+        type: TableCellType.Text,
+        value: stringValue,
       },
     ]
   }
   if (schemaUrl) {
     return [
       { type: TableCellType.Code, value: fileMatch },
-      { type: TableCellType.Link, value: stringValue, href: schemaUrl },
+      { href: schemaUrl, type: TableCellType.Link, value: stringValue },
     ]
   }
 

@@ -11,29 +11,29 @@ test('additional details entry virtual dom with items', () => {
   const renderer = (items: readonly string[]): readonly VirtualDomNode[] => {
     return [
       {
-        type: VirtualDomElements.Div,
-        className: 'AdditionalDetailsEntryValue',
         childCount: 1,
+        className: 'AdditionalDetailsEntryValue',
+        type: VirtualDomElements.Div,
       },
       text(items.join(', ')),
     ]
   }
   expect(GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(heading, items, renderer)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.AdditionalDetailsEntry,
       childCount: 2,
+      className: ClassNames.AdditionalDetailsEntry,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.AdditionalDetailsTitle,
       childCount: 1,
+      className: ClassNames.AdditionalDetailsTitle,
+      type: VirtualDomElements.Div,
     },
     text('Categories'),
     {
-      type: VirtualDomElements.Div,
-      className: 'AdditionalDetailsEntryValue',
       childCount: 1,
+      className: 'AdditionalDetailsEntryValue',
+      type: VirtualDomElements.Div,
     },
     text('Programming Languages, Snippets'),
   ])

@@ -10,14 +10,14 @@ export const getFeatureActivationEventsVirtualDom = (activationEvents: readonly 
   const heading = ExtensionDetailStrings.activationEvents()
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
-      type: VirtualDomElements.Ul,
       childCount: activationEvents.length,
+      type: VirtualDomElements.Ul,
     },
     ...activationEvents.flatMap(GetActivationEventVirtualDom.getActivationEventVirtualDom),
   ]

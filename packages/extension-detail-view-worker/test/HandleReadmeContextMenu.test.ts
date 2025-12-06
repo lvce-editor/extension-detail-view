@@ -31,9 +31,9 @@ test('handleReadmeContextMenu calls ContextMenu.show2 and returns state unchange
       x,
       y,
       {
+        href,
         menuId: MenuEntryId.ExtensionDetailReadme,
         nodeName,
-        href,
       },
     ],
   ])
@@ -66,9 +66,9 @@ test('handleReadmeContextMenu passes correct coordinates to ContextMenu.show2', 
       x,
       y,
       {
+        href,
         menuId: MenuEntryId.ExtensionDetailReadme,
         nodeName,
-        href,
       },
     ],
   ])
@@ -83,8 +83,8 @@ test('handleReadmeContextMenu returns state regardless of nodeName and href', as
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    uid: 789,
     name: 'Test Extension',
+    uid: 789,
   }
 
   const result1 = await HandleReadmeContextMenu.handleReadmeContextMenu(state, 100, 200, 'A', 'https://example.com')
@@ -100,9 +100,9 @@ test('handleReadmeContextMenu returns state regardless of nodeName and href', as
       100,
       200,
       {
+        href: 'https://example.com',
         menuId: MenuEntryId.ExtensionDetailReadme,
         nodeName: 'A',
-        href: 'https://example.com',
       },
     ],
     [
@@ -112,9 +112,9 @@ test('handleReadmeContextMenu returns state regardless of nodeName and href', as
       100,
       200,
       {
+        href: '/image.png',
         menuId: MenuEntryId.ExtensionDetailReadme,
         nodeName: 'IMG',
-        href: '/image.png',
       },
     ],
   ])

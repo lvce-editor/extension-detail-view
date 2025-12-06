@@ -8,8 +8,8 @@ export const getMarketplaceEntries = (isBuiltin: boolean): readonly MoreInfoEntr
   return [
     {
       key: ExtensionDetailStrings.published(),
-      value: 'n/a',
       odd: true,
+      value: 'n/a',
     },
     {
       key: ExtensionDetailStrings.lastReleased(),

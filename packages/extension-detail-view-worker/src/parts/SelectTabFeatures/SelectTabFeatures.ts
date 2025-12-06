@@ -3,7 +3,7 @@ import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
 import * as InputName from '../InputName/InputName.ts'
 
 export const selectTabFeatures = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const { extension, baseUrl, selectedFeature, features, tabs, locationProtocol } = state
+  const { baseUrl, extension, features, locationProtocol, selectedFeature, tabs } = state
   if (features.length === 0) {
     return state
   }
@@ -18,8 +18,8 @@ export const selectTabFeatures = async (state: ExtensionDetailState): Promise<Ex
   })
   return {
     ...state,
-    selectedTab: InputName.Features,
     selectedFeature: features[0].id || '',
+    selectedTab: InputName.Features,
     tabs: newTabs,
     ...partialNewState,
   }

@@ -9,8 +9,8 @@ test('empty array', () => {
 test('single element without children', () => {
   const dom = [
     {
-      type: VirtualDomElements.Div,
       childCount: 0,
+      type: VirtualDomElements.Div,
     },
   ]
   expect(GetVirtualDomChildCount.getVirtualDomChildCount(dom)).toBe(1)
@@ -19,12 +19,12 @@ test('single element without children', () => {
 test('element with one child', () => {
   const dom = [
     {
-      type: VirtualDomElements.Div,
       childCount: 1,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Span,
       childCount: 0,
+      type: VirtualDomElements.Span,
     },
   ]
   expect(GetVirtualDomChildCount.getVirtualDomChildCount(dom)).toBe(1)
@@ -33,16 +33,16 @@ test('element with one child', () => {
 test('element with two children', () => {
   const dom = [
     {
-      type: VirtualDomElements.Div,
       childCount: 2,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Span,
       childCount: 0,
+      type: VirtualDomElements.Span,
     },
     {
-      type: VirtualDomElements.Span,
       childCount: 0,
+      type: VirtualDomElements.Span,
     },
   ]
   expect(GetVirtualDomChildCount.getVirtualDomChildCount(dom)).toBe(1)
@@ -51,20 +51,20 @@ test('element with two children', () => {
 test('nested elements', () => {
   const dom = [
     {
-      type: VirtualDomElements.Div,
       childCount: 2,
-    },
-    {
       type: VirtualDomElements.Div,
+    },
+    {
       childCount: 1,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Span,
       childCount: 0,
+      type: VirtualDomElements.Span,
     },
     {
-      type: VirtualDomElements.Span,
       childCount: 0,
+      type: VirtualDomElements.Span,
     },
   ]
   expect(GetVirtualDomChildCount.getVirtualDomChildCount(dom)).toBe(1)

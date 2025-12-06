@@ -12,20 +12,20 @@ test('more info entry virtual dom', () => {
   }
   expect(GetMoreInfoEntryVirtualDom.getMoreInfoEntryVirtualDom(entry)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.MoreInfoEntry,
       childCount: 2,
+      className: ClassNames.MoreInfoEntry,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Dt,
-      className: ClassNames.MoreInfoEntryKey,
       childCount: 1,
+      className: ClassNames.MoreInfoEntryKey,
+      type: VirtualDomElements.Dt,
     },
     text('License'),
     {
-      type: VirtualDomElements.Dd,
-      className: ClassNames.MoreInfoEntryValue,
       childCount: 1,
+      className: ClassNames.MoreInfoEntryValue,
+      type: VirtualDomElements.Dd,
     },
     text('MIT'),
   ])

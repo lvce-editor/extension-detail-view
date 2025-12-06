@@ -11,18 +11,18 @@ export const getScrollToTopVirtualDom = (scrollToTopButtonEnabled: boolean): rea
   }
   return [
     {
-      type: VirtualDomElements.Button,
-      className: ClassNames.ScrollToTopButton,
-      childCount: 1,
-      onClick: DomEventListenerFunctions.HandleClickScrollToTop,
       ariaLabel: ExtensionDetailStrings.scrollToTop(),
+      childCount: 1,
+      className: ClassNames.ScrollToTopButton,
       name: InputName.ScrollToTop,
+      onClick: DomEventListenerFunctions.HandleClickScrollToTop,
+      type: VirtualDomElements.Button,
     },
     {
-      type: VirtualDomElements.Div,
-      className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconChevronUp),
       childCount: 0,
+      className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconChevronUp),
       role: AriaRoles.None,
+      type: VirtualDomElements.Div,
     },
   ]
 }

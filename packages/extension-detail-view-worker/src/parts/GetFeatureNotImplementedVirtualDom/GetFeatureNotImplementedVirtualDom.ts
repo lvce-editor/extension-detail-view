@@ -8,13 +8,13 @@ export const getFeatureNotImplementedVirtualDom = (): readonly VirtualDomNode[] 
   const heading = ExtensionDetailStrings.notImplemented()
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 1,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text(heading),
   ]

@@ -3,11 +3,11 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 import { getSchemaLinkUrl } from '../GetSchemaLinkUrl/GetSchemaLinkUrl.ts'
 
 export interface JsonValidationInfo {
-  readonly isValid: boolean
-  readonly stringValue: string
-  readonly schemaUrl: string
   readonly errorMessage: string
   readonly fileMatch: string
+  readonly isValid: boolean
+  readonly schemaUrl: string
+  readonly stringValue: string
 }
 
 export const getJsonValidationInfos = async (extensionUri: string, validations: readonly any[]): Promise<readonly JsonValidationInfo[]> => {
@@ -18,46 +18,46 @@ export const getJsonValidationInfos = async (extensionUri: string, validations: 
     const { fileMatch } = validation
     if (typeof schema !== 'string') {
       validationInfos.push({
-        isValid: false,
-        stringValue: JSON.stringify(schema),
-        schemaUrl: '',
         errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
         fileMatch,
+        isValid: false,
+        schemaUrl: '',
+        stringValue: JSON.stringify(schema),
       })
     } else if (schema && !schemaLinkUrl) {
       validationInfos.push({
-        isValid: false,
-        stringValue: schema,
-        schemaUrl: schemaLinkUrl,
         errorMessage: ExtensionDetailStrings.invalidLink(),
         fileMatch,
+        isValid: false,
+        schemaUrl: schemaLinkUrl,
+        stringValue: schema,
       })
     } else if (schemaLinkUrl) {
       // TODO maybe better use filesystem.exists
       if (await existsJson(schemaLinkUrl)) {
         validationInfos.push({
-          isValid: true,
-          stringValue: schema,
-          schemaUrl: schemaLinkUrl,
           errorMessage: '',
           fileMatch,
+          isValid: true,
+          schemaUrl: schemaLinkUrl,
+          stringValue: schema,
         })
       } else {
         validationInfos.push({
-          isValid: false,
-          stringValue: schema,
-          schemaUrl: schemaLinkUrl,
           errorMessage: ExtensionDetailStrings.schemaNotFound(),
           fileMatch,
+          isValid: false,
+          schemaUrl: schemaLinkUrl,
+          stringValue: schema,
         })
       }
     } else {
       validationInfos.push({
-        isValid: true,
-        stringValue: schema,
-        schemaUrl: schemaLinkUrl,
         errorMessage: '',
         fileMatch,
+        isValid: true,
+        schemaUrl: schemaLinkUrl,
+        stringValue: schema,
       })
     }
   }

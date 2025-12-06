@@ -8,20 +8,20 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('selected tab', () => {
   const tab: Tab = {
+    enabled: true,
     label: ExtensionDetailStrings.details(),
     name: 'Details',
     selected: true,
-    enabled: true,
   }
   expect(GetTabVirtualDom.getTabVirtualDom(tab)).toEqual([
     {
-      type: VirtualDomElements.Button,
-      role: AriaRoles.Tab,
-      name: 'Details',
-      className: `${ClassNames.ExtensionDetailTab} ${ClassNames.ExtensionDetailTabSelected}`,
-      childCount: 1,
-      tabIndex: -1,
       ariaSelected: true,
+      childCount: 1,
+      className: `${ClassNames.ExtensionDetailTab} ${ClassNames.ExtensionDetailTabSelected}`,
+      name: 'Details',
+      role: AriaRoles.Tab,
+      tabIndex: -1,
+      type: VirtualDomElements.Button,
     },
     text(ExtensionDetailStrings.details()),
   ])
@@ -29,20 +29,20 @@ test('selected tab', () => {
 
 test('unselected tab', () => {
   const tab: Tab = {
+    enabled: true,
     label: ExtensionDetailStrings.features(),
     name: 'Features',
     selected: false,
-    enabled: true,
   }
   expect(GetTabVirtualDom.getTabVirtualDom(tab)).toEqual([
     {
-      type: VirtualDomElements.Button,
-      role: AriaRoles.Tab,
-      name: 'Features',
-      className: ClassNames.ExtensionDetailTab,
-      childCount: 1,
-      tabIndex: -1,
       ariaSelected: false,
+      childCount: 1,
+      className: ClassNames.ExtensionDetailTab,
+      name: 'Features',
+      role: AriaRoles.Tab,
+      tabIndex: -1,
+      type: VirtualDomElements.Button,
     },
     text(ExtensionDetailStrings.features()),
   ])
@@ -50,20 +50,20 @@ test('unselected tab', () => {
 
 test('tab with different label and name', () => {
   const tab: Tab = {
+    enabled: true,
     label: 'Display Label',
     name: 'internal-name',
     selected: false,
-    enabled: true,
   }
   expect(GetTabVirtualDom.getTabVirtualDom(tab)).toEqual([
     {
-      type: VirtualDomElements.Button,
-      role: AriaRoles.Tab,
-      name: 'internal-name',
-      className: ClassNames.ExtensionDetailTab,
-      childCount: 1,
-      tabIndex: -1,
       ariaSelected: false,
+      childCount: 1,
+      className: ClassNames.ExtensionDetailTab,
+      name: 'internal-name',
+      role: AriaRoles.Tab,
+      tabIndex: -1,
+      type: VirtualDomElements.Button,
     },
     text('Display Label'),
   ])

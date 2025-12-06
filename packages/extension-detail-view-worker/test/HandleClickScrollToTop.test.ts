@@ -14,8 +14,8 @@ test('handleClickScrollToTop - sets readmeScrollTop to 0', () => {
 test('handleClickScrollToTop - does not modify other state', () => {
   const state = {
     ...createDefaultState(),
-    readmeScrollTop: 50,
     name: 'Test',
+    readmeScrollTop: 50,
   }
   const result = handleClickScrollToTop(state)
   expect(result.readmeScrollTop).toBe(0)

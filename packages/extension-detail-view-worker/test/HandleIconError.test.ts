@@ -25,9 +25,9 @@ test('replaces icon with default icon when error occurs', () => {
 test('preserves other state properties when replacing icon', () => {
   const state = {
     ...CreateDefaultState.createDefaultState(),
+    description: 'test description',
     iconSrc: '/some/invalid/path.png',
     name: 'test',
-    description: 'test description',
   }
   expect(HandleIconError.handleIconError(state)).toEqual({
     ...state,

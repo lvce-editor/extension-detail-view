@@ -32,7 +32,7 @@ export const loadContent = async (
   if (isTest) {
     savedState = undefined
   }
-  const { width, uri } = state
+  const { uri, width } = state
   const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
   if (!extension) {
@@ -59,14 +59,14 @@ export const loadContent = async (
   const disabled = extension?.disabled
   const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled)
   const size = GetViewletSize.getViewletSize(width)
-  const { selectedFeature, selectedTab, readmeScrollTop, changelogScrollTop } = RestoreState.restoreState(savedState)
+  const { changelogScrollTop, readmeScrollTop, selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
   const hasFeatures = features.length > 0
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog)
   const enabledTabs = tabs.filter((tab) => tab.enabled)
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
   const showSizeLink = platform !== PlatformType.Web
-  const { installationEntries, marketplaceEntries, displaySize, categories, resources, folderSize } = await loadSideBarContent(
+  const { categories, displaySize, folderSize, installationEntries, marketplaceEntries, resources } = await loadSideBarContent(
     extensionId,
     extensionVersion,
     extensionUri,

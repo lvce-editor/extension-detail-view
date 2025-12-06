@@ -9,7 +9,6 @@ test('getActivationEventsDetails should return activation events', async () => {
   const result = await FeatureActivationEventsDetails.getActivationEventsDetails(extension)
 
   expect(result).toEqual({
-    activationEvents: ['onCommand:extension.command', 'onLanguage:javascript'],
     activationEntries: [
       {
         errorMessage: '',
@@ -22,6 +21,7 @@ test('getActivationEventsDetails should return activation events', async () => {
         stringValue: 'onLanguage:javascript',
       },
     ],
+    activationEvents: ['onCommand:extension.command', 'onLanguage:javascript'],
   })
 })
 
@@ -31,8 +31,8 @@ test('getActivationEventsDetails should handle empty activation events', async (
   const result = await FeatureActivationEventsDetails.getActivationEventsDetails(extension)
 
   expect(result).toEqual({
-    activationEvents: [],
     activationEntries: [],
+    activationEvents: [],
   })
 })
 
@@ -44,7 +44,7 @@ test('getActivationEventsDetails should handle null activation events', async ()
   const result = await FeatureActivationEventsDetails.getActivationEventsDetails(extension)
 
   expect(result).toEqual({
-    activationEvents: [],
     activationEntries: [],
+    activationEvents: [],
   })
 })

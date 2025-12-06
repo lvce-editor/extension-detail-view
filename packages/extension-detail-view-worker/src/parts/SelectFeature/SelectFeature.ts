@@ -5,7 +5,7 @@ export const selectFeature = async (state: ExtensionDetailState, name: string): 
   if (!name) {
     return state
   }
-  const { features, extension, baseUrl, locationProtocol } = state
+  const { baseUrl, extension, features, locationProtocol } = state
   const newFeatures = features.map((feature) => {
     if (feature.id === name) {
       return {
@@ -23,7 +23,7 @@ export const selectFeature = async (state: ExtensionDetailState, name: string): 
   return {
     ...state,
     ...partialNewState,
-    selectedFeature: name,
     features: newFeatures,
+    selectedFeature: name,
   }
 }

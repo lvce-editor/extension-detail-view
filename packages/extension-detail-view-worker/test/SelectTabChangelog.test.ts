@@ -10,7 +10,7 @@ test('selectTabChangelog should update state with changelog content', async () =
   const state = createDefaultState.createDefaultState()
   const changelogContent = '# Changelog\n\n## Version 1.0.0\n- Initial release'
   const renderedHtml = '<h1>Changelog</h1><h2>Version 1.0.0</h2><ul><li>Initial release</li></ul>'
-  const mockDom = [{ type: VirtualDomElements.Div, childCount: 1 }]
+  const mockDom = [{ childCount: 1, type: VirtualDomElements.Div }]
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {

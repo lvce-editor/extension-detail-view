@@ -10,14 +10,14 @@ export const getFeatureWebViewsVirtualDom = (webViews: readonly WebView[]): read
   const heading = ExtensionDetailStrings.webViews()
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
-      type: VirtualDomElements.Div,
       childCount: webViews.length,
+      type: VirtualDomElements.Div,
     },
     ...webViews.flatMap(GetWebViewVirtualDom.getWebViewVirtualDom),
   ]

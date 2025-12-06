@@ -22,8 +22,8 @@ export const set = async (key: string, value: string): Promise<void> => {
     key,
     new Response(value, {
       headers: {
-        'Content-Type': 'application/markdown',
         'Content-Length': `${value.length}`,
+        'Content-Type': 'application/markdown',
       },
     }),
   )

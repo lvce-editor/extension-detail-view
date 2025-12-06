@@ -19,74 +19,74 @@ test('feature json validation virtual dom with validation entries', () => {
   ]
   expect(GetFeatureJsonValidationVirtualDom.getFeatureJsonValidationVirtualDom(jsonValidation)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text('Json Validation'),
     {
-      type: VirtualDomElements.Table,
+      childCount: 2,
       className: ClassNames.Table,
-      childCount: 2,
+      type: VirtualDomElements.Table,
     },
     {
+      childCount: 1,
       type: VirtualDomElements.THead,
-      childCount: 1,
     },
     {
-      type: VirtualDomElements.Tr,
       childCount: 2,
+      type: VirtualDomElements.Tr,
     },
     {
-      type: VirtualDomElements.Th,
-      className: ClassNames.TableHeading,
       childCount: 1,
+      className: ClassNames.TableHeading,
+      type: VirtualDomElements.Th,
     },
     text('File Match'),
     {
-      type: VirtualDomElements.Th,
-      className: ClassNames.TableHeading,
       childCount: 1,
+      className: ClassNames.TableHeading,
+      type: VirtualDomElements.Th,
     },
     text('Schema'),
     {
+      childCount: 2,
       type: VirtualDomElements.TBody,
-      childCount: 2,
     },
     {
+      childCount: 2,
       type: VirtualDomElements.Tr,
-      childCount: 2,
     },
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     text('*.json'),
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     text('https://json.schemastore.org/package.json'),
     {
-      type: VirtualDomElements.Tr,
       childCount: 2,
+      type: VirtualDomElements.Tr,
     },
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     text('*.tsconfig.json'),
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     text('https://json.schemastore.org/tsconfig.json'),
   ])
@@ -96,43 +96,43 @@ test('feature json validation virtual dom with empty validation entries', () => 
   const jsonValidation: readonly Row[] = []
   expect(GetFeatureJsonValidationVirtualDom.getFeatureJsonValidationVirtualDom(jsonValidation)).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text('Json Validation'),
     {
-      type: VirtualDomElements.Table,
+      childCount: 2,
       className: ClassNames.Table,
-      childCount: 2,
+      type: VirtualDomElements.Table,
     },
     {
+      childCount: 1,
       type: VirtualDomElements.THead,
-      childCount: 1,
     },
     {
-      type: VirtualDomElements.Tr,
       childCount: 2,
+      type: VirtualDomElements.Tr,
     },
     {
-      type: VirtualDomElements.Th,
-      className: ClassNames.TableHeading,
       childCount: 1,
+      className: ClassNames.TableHeading,
+      type: VirtualDomElements.Th,
     },
     text('File Match'),
     {
-      type: VirtualDomElements.Th,
-      className: ClassNames.TableHeading,
       childCount: 1,
+      className: ClassNames.TableHeading,
+      type: VirtualDomElements.Th,
     },
     text('Schema'),
     {
-      type: VirtualDomElements.TBody,
       childCount: 0,
+      type: VirtualDomElements.TBody,
     },
   ])
 })
@@ -140,8 +140,8 @@ test('feature json validation virtual dom with empty validation entries', () => 
 test('feature json validation virtual dom with invalid entry shows squiggly and title', () => {
   const jsonValidation: readonly Row[] = [
     [
-      { type: TableCellType.Text, value: '[]', className: ClassNames.TableCellInvalid, title: 'Property must be a string' },
-      { type: TableCellType.Text, value: '[]', className: ClassNames.TableCellInvalid, title: 'Property must be a string' },
+      { className: ClassNames.TableCellInvalid, title: 'Property must be a string', type: TableCellType.Text, value: '[]' },
+      { className: ClassNames.TableCellInvalid, title: 'Property must be a string', type: TableCellType.Text, value: '[]' },
     ],
   ]
   const result = GetFeatureJsonValidationVirtualDom.getFeatureJsonValidationVirtualDom(jsonValidation)

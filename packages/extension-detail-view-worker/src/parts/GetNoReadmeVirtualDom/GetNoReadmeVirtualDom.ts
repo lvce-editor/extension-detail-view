@@ -6,9 +6,9 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 export const getNoReadmeVirtualDom = (): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
       childCount: 1,
       className: ClassNames.Markdown,
+      type: VirtualDomElements.Div,
     },
     text(ExtensionDetailStrings.noReadmeFound()),
   ]

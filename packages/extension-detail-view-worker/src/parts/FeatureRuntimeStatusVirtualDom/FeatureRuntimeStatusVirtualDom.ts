@@ -17,20 +17,20 @@ const getChildCount = (status: number, activationTime: number, importTime: numbe
 }
 
 export const getRuntimeStatusVirtualDom = (state: ExtensionDetailState): readonly VirtualDomNode[] => {
-  const { status, activationTime, importTime } = state
+  const { activationTime, importTime, status } = state
   const heading = ExtensionDetailStrings.runtimeStatus()
   const childCount = getChildCount(status, activationTime, importTime)
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
-      type: VirtualDomElements.Dl,
-      className: 'RuntimeStatusDefinitionList',
       childCount,
+      className: 'RuntimeStatusDefinitionList',
+      type: VirtualDomElements.Dl,
     },
     ...GetStatusVirtualDom.getStatusVirtualDom(status),
     ...GetActivationTimeVirtualDom.getActivationTimeVirtualDom(activationTime, importTime),

@@ -8,10 +8,10 @@ test('handleClickCategory should call openExtensionSearch with category search',
   const categoryId = 'programming-languages'
 
   const mockRpc = RendererWorker.registerMockRpc({
-    'SideBar.openViewlet': () => {
+    'Extensions.handleInput': () => {
       /**/
     },
-    'Extensions.handleInput': () => {
+    'SideBar.openViewlet': () => {
       /**/
     },
   })

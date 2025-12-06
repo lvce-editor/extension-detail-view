@@ -17,9 +17,9 @@ export const getFeatureCommandsVirtualDom = (commands: readonly Row[]): readonly
   const tableInfo = GetCommandTableEntries.getCommandTableEntries(commands)
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     ...GetTableVirtualDom.getTableVirtualDom(tableInfo),

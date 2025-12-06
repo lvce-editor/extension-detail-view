@@ -6,9 +6,9 @@ import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 export const getTableHeadingVirtualDom = (heading: string): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Th,
-      className: ClassNames.TableHeading,
       childCount: 1,
+      className: ClassNames.TableHeading,
+      type: VirtualDomElements.Th,
     },
     text(heading),
   ]

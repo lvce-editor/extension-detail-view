@@ -9,14 +9,14 @@ export const getFeatureCommandsEmptyVirtualDom = (): readonly VirtualDomNode[] =
   const emptyCommandsArray = ExtensionDetailStrings.emptyCommandsArray()
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
-      type: VirtualDomElements.P,
       childCount: 1,
+      type: VirtualDomElements.P,
     },
     text(emptyCommandsArray),
   ]

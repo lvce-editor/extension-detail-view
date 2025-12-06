@@ -36,16 +36,16 @@ test('getAdditionalDetailsVirtualDom - showAdditionalDetails true with empty dat
   )
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Aside,
-      className: ClassNames.Aside,
       childCount: 1,
+      className: ClassNames.Aside,
+      type: VirtualDomElements.Aside,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.AdditionalDetails,
-      tabIndex: 0,
       childCount: 4,
+      className: ClassNames.AdditionalDetails,
       onClick: 15,
+      tabIndex: 0,
+      type: VirtualDomElements.Div,
     },
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('First Heading', [], GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Second Heading', [], GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
@@ -72,16 +72,16 @@ test('getAdditionalDetailsVirtualDom - with sample data', () => {
   )
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Aside,
-      className: ClassNames.Aside,
       childCount: 1,
+      className: ClassNames.Aside,
+      type: VirtualDomElements.Aside,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.AdditionalDetails,
-      tabIndex: 0,
       childCount: 4,
+      className: ClassNames.AdditionalDetails,
       onClick: 15,
+      tabIndex: 0,
+      type: VirtualDomElements.Div,
     },
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Info', mockEntries, GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('More Info', mockEntries, GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
@@ -108,16 +108,16 @@ test('getAdditionalDetailsVirtualDom - different headings', () => {
   )
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Aside,
-      className: ClassNames.Aside,
       childCount: 1,
+      className: ClassNames.Aside,
+      type: VirtualDomElements.Aside,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.AdditionalDetails,
-      tabIndex: 0,
       childCount: 4,
+      className: ClassNames.AdditionalDetails,
       onClick: 15,
+      tabIndex: 0,
+      type: VirtualDomElements.Div,
     },
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Custom Info', [], GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Custom More Info', [], GetMoreInfoVirtualDom.getMoreInfoVirtualDom),

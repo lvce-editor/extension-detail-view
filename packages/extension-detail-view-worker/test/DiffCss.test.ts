@@ -97,19 +97,19 @@ test('isEqual - different paddingLeft, paddingRight, sideBarWidth', () => {
 test('isEqual - ignores other state properties', () => {
   const oldState: ExtensionDetailState = {
     ...createDefaultState(),
+    extensionId: 'old-id',
+    name: 'old-extension',
     paddingLeft: 10,
     paddingRight: 20,
     sideBarWidth: 200,
-    name: 'old-extension',
-    extensionId: 'old-id',
   }
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
+    extensionId: 'new-id',
+    name: 'new-extension',
     paddingLeft: 10,
     paddingRight: 20,
     sideBarWidth: 200,
-    name: 'new-extension',
-    extensionId: 'new-id',
   }
   const result = isEqual(oldState, newState)
   expect(result).toBe(true)

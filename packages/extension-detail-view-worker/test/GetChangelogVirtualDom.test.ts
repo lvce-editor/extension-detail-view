@@ -6,9 +6,9 @@ import * as GetChangelogVirtualDom from '../src/parts/GetChangelogVirtualDom/Get
 test('changelog virtual dom', () => {
   expect(GetChangelogVirtualDom.getChangelogVirtualDom([])).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Changelog,
       childCount: 1,
+      className: ClassNames.Changelog,
+      type: VirtualDomElements.Div,
     },
   ])
 })

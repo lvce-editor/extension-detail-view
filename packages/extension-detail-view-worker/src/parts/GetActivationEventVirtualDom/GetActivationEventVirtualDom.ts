@@ -3,24 +3,24 @@ import type { ActivationEntry } from '../ActivationEntry/ActivationEntry.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
 const li: VirtualDomNode = {
-  type: VirtualDomElements.Li,
   childCount: 1,
+  type: VirtualDomElements.Li,
 }
 
 const code = {
-  type: VirtualDomElements.Code,
   childCount: 1,
+  type: VirtualDomElements.Code,
 }
 
 export const getActivationEventVirtualDom = (event: ActivationEntry): readonly VirtualDomNode[] => {
-  const { stringValue, errorMessage, isValid } = event
+  const { errorMessage, isValid, stringValue } = event
   if (!isValid) {
     return [
       {
-        type: VirtualDomElements.Li,
         childCount: 1,
-        title: errorMessage,
         className: 'ListItem ListItemInvalid',
+        title: errorMessage,
+        type: VirtualDomElements.Li,
       },
       code,
       text(stringValue),

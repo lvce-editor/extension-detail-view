@@ -4,8 +4,8 @@ import { getImageCopyUrl } from '../src/parts/GetImageCopyUrl/GetImageCopyUrl.ts
 // Mock location for getImageCopyUrl
 Object.defineProperty(globalThis, 'location', {
   value: {
-    protocol: 'https:',
     host: 'example.com',
+    protocol: 'https:',
   },
   writable: true,
 })

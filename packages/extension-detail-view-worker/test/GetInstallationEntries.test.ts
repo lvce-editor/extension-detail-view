@@ -7,26 +7,26 @@ test('get installation entries with all fields', () => {
 
   expect(GetInstallationEntries.getInstallationEntries('2.5MB', 'test-extension', '1.0.0', '/test/path', showSizeLink)).toEqual([
     {
-      key: 'Identifier',
-      value: 'test-extension',
-      odd: true,
       code: true,
+      key: 'Identifier',
+      odd: true,
+      value: 'test-extension',
     },
     {
+      code: true,
       key: 'Version',
       value: '1.0.0',
-      code: true,
     },
     {
       key: 'Last Updated',
-      value: 'n/a',
       odd: true,
+      value: 'n/a',
     },
     {
       key: 'Size',
-      value: '2.5MB',
       onClick: DomEventListenerFunctions.HandleClickSize,
       title: '/test/path',
+      value: '2.5MB',
     },
   ])
 })
@@ -36,26 +36,26 @@ test('get installation entries with builtin true', () => {
 
   expect(GetInstallationEntries.getInstallationEntries('500KB', 'test-extension', '1.0.0', '/test/path', showSizeLink)).toEqual([
     {
-      key: 'Identifier',
-      value: 'test-extension',
-      odd: true,
       code: true,
+      key: 'Identifier',
+      odd: true,
+      value: 'test-extension',
     },
     {
+      code: true,
       key: 'Version',
       value: '1.0.0',
-      code: true,
     },
     {
       key: 'Last Updated',
-      value: 'n/a',
       odd: true,
+      value: 'n/a',
     },
     {
       key: 'Size',
-      value: '500KB',
       onClick: DomEventListenerFunctions.HandleClickSize,
       title: '/test/path',
+      value: '500KB',
     },
   ])
 })
@@ -64,26 +64,26 @@ test('get installation entries with disabled true', () => {
   const showSizeLink = true
   expect(GetInstallationEntries.getInstallationEntries('1.2MB', 'test-extension', '1.0.0', '/test/path', showSizeLink)).toEqual([
     {
-      key: 'Identifier',
-      value: 'test-extension',
-      odd: true,
       code: true,
+      key: 'Identifier',
+      odd: true,
+      value: 'test-extension',
     },
     {
+      code: true,
       key: 'Version',
       value: '1.0.0',
-      code: true,
     },
     {
       key: 'Last Updated',
-      value: 'n/a',
       odd: true,
+      value: 'n/a',
     },
     {
       key: 'Size',
-      value: '1.2MB',
       onClick: DomEventListenerFunctions.HandleClickSize,
       title: '/test/path',
+      value: '1.2MB',
     },
   ])
 })
@@ -93,26 +93,26 @@ test('get installation entries with missing fields', () => {
 
   expect(GetInstallationEntries.getInstallationEntries('0KB', 'test-extension', '', '/test/path', showSizeLink)).toEqual([
     {
-      key: 'Identifier',
-      value: 'test-extension',
-      odd: true,
       code: true,
+      key: 'Identifier',
+      odd: true,
+      value: 'test-extension',
     },
     {
+      code: true,
       key: 'Version',
       value: '',
-      code: true,
     },
     {
       key: 'Last Updated',
-      value: 'n/a',
       odd: true,
+      value: 'n/a',
     },
     {
       key: 'Size',
-      value: '0KB',
       onClick: DomEventListenerFunctions.HandleClickSize,
       title: '/test/path',
+      value: '0KB',
     },
   ])
 })

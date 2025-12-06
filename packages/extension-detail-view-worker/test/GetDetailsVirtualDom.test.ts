@@ -11,8 +11,8 @@ import * as GetDetailsVirtualDom from '../src/parts/GetDetailsVirtualDom/GetDeta
 test('getDetailsVirtualDom should return virtual dom with readme content', () => {
   const sanitizedReadmeHtml: readonly VirtualDomNode[] = [
     {
-      type: VirtualDomElements.Div,
       childCount: 1,
+      type: VirtualDomElements.Div,
     },
   ]
   const width = 800
@@ -38,10 +38,10 @@ test('getDetailsVirtualDom should return virtual dom with readme content', () =>
   )
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.ExtensionDetailPanel,
     childCount: 2,
+    className: ClassNames.ExtensionDetailPanel,
     role: AriaRoles.Panel,
+    type: VirtualDomElements.Div,
   })
   expect(result[1]).toBe(sanitizedReadmeHtml[0])
 })
@@ -71,15 +71,15 @@ test('getDetailsVirtualDom should return virtual dom with no readme message', ()
   )
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Div,
-    className: ClassNames.ExtensionDetailPanel,
     childCount: 2,
+    className: ClassNames.ExtensionDetailPanel,
     role: AriaRoles.Panel,
+    type: VirtualDomElements.Div,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Div,
     childCount: 1,
     className: 'Markdown',
+    type: VirtualDomElements.Div,
   })
   expect(result[2]).toHaveProperty('text', ExtensionDetailStrings.noReadmeFound())
 })

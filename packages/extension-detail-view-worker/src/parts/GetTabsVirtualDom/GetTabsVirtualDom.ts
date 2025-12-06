@@ -8,12 +8,12 @@ import * as GetTabVirtualDom from '../GetTabVirtualDom/GetTabVirtualDom.ts'
 export const getTabsVirtualDom = (tabs: readonly Tab[]): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailTabs,
       childCount: tabs.length,
-      role: AriaRoles.TabList,
+      className: ClassNames.ExtensionDetailTabs,
       onClick: DomEventListenerFunctions.HandleTabsClick,
+      role: AriaRoles.TabList,
       tabIndex: 0,
+      type: VirtualDomElements.Div,
     },
     ...tabs.flatMap(GetTabVirtualDom.getTabVirtualDom),
   ]

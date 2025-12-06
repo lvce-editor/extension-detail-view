@@ -5,8 +5,8 @@ import * as GetTokenClassName from '../GetTokenClassName/GetTokenClassName.ts'
 
 export const tokenToVirtualDom = (token: JsonToken): VirtualDomNode => {
   return {
-    type: VirtualDomElements.Span,
-    className: GetTokenClassName.getTokenClassName(token),
     childCount: 1,
+    className: GetTokenClassName.getTokenClassName(token),
+    type: VirtualDomElements.Span,
   }
 }

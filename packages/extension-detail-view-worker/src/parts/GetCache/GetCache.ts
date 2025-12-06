@@ -2,8 +2,8 @@
 const bucketName = 'markdown-cache'
 
 export interface ICache {
-  readonly put: (request: RequestInfo | URL, response: Response) => Promise<void>
   readonly match: (request: RequestInfo | URL, options?: CacheQueryOptions) => Promise<Response | undefined>
+  readonly put: (request: RequestInfo | URL, response: Response) => Promise<void>
 }
 
 const cachedCaches: Record<string, Promise<ICache>> = Object.create(null)
@@ -27,8 +27,8 @@ const getCacheInternal = async (cacheName: string): Promise<ICache> => {
   const twoWeeks = 14 * 24 * 60 * 60 * 1000
   // @ts-ignore
   const bucket = await navigator.storageBuckets.open(bucketName, {
-    quota: 20 * 1024 * 1024, // 20MB
     expires: Date.now() + twoWeeks,
+    quota: 20 * 1024 * 1024, // 20MB
   })
   const cache = await bucket.caches.open(cacheName)
   return cache

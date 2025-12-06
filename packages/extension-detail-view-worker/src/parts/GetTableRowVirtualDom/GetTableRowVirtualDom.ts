@@ -6,8 +6,8 @@ import * as GetCellVirtualDom from '../GetCellVirtualDom/GetCellVirtualDom.ts'
 export const getTableRowVirtualDom = (entries: Row): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Tr,
       childCount: entries.length,
+      type: VirtualDomElements.Tr,
     },
     ...entries.flatMap(GetCellVirtualDom.getCellVirtualDom),
   ]

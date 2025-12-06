@@ -32,27 +32,27 @@ test('getIcon returns theme icon', () => {
 
 test('getIcon returns remote path for non-builtin extension', () => {
   const extension = {
-    path: 'test/path',
-    icon: 'icon.png',
     builtin: false,
+    icon: 'icon.png',
+    path: 'test/path',
   }
   expect(ExtensionDisplay.getIcon(extension, PlatformType.Remote, '')).toBe('/remote/test/path/icon.png')
 })
 
 test('getIcon returns asset path for builtin extension', () => {
   const extension = {
+    builtin: true,
+    icon: 'icon.png',
     id: 'test-ext',
     path: 'test/path',
-    icon: 'icon.png',
-    builtin: true,
   }
   expect(ExtensionDisplay.getIcon(extension, PlatformType.Remote, '')).toBe('/extensions/test-ext/icon.png')
 })
 
 test('getIcon returns empty string for web platform', () => {
   const extension = {
-    path: 'test/path',
     icon: 'icon.png',
+    path: 'test/path',
   }
   expect(ExtensionDisplay.getIcon(extension, PlatformType.Web, '')).toBe('')
 })

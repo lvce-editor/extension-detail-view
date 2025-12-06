@@ -7,9 +7,9 @@ import * as GetMoreInfoEntryVirtualDom from '../GetMoreInfoEntryVirtualDom/GetMo
 export const getMoreInfoVirtualDom = (items: readonly MoreInfoEntry[]): readonly VirtualDomNode[] => {
   return [
     {
-      type: VirtualDomElements.Dl,
-      className: ClassNames.MoreInfo,
       childCount: items.length,
+      className: ClassNames.MoreInfo,
+      type: VirtualDomElements.Dl,
     },
     ...items.flatMap(GetMoreInfoEntryVirtualDom.getMoreInfoEntryVirtualDom),
   ]

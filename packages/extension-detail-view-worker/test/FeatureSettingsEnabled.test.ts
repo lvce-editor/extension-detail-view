@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import * as FeatureSettingsEnabled from '../src/parts/FeatureSettingsEnabled/FeatureSettingsEnabled.ts'
 
 test('featureSettingsEnabled returns true when extension has settings', () => {
-  const extension: unknown = { settings: [{ title: 'Test Settings', properties: {} }] }
+  const extension: unknown = { settings: [{ properties: {}, title: 'Test Settings' }] }
   expect(FeatureSettingsEnabled.featureSettingsEnabled(extension)).toBe(true)
 })
 

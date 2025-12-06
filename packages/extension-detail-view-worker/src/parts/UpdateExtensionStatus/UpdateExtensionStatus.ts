@@ -8,7 +8,7 @@ export interface UpdateFunction {
 }
 
 export const updateExtensionStatus = async (state: ExtensionDetailState, updateFunction: UpdateFunction): Promise<ExtensionDetailState> => {
-  const { extensionId, platform, hasColorTheme } = state
+  const { extensionId, hasColorTheme, platform } = state
   const error = await updateFunction(extensionId)
   if (error) {
     await RendererWorker.confirm(`${error}`)
@@ -18,7 +18,7 @@ export const updateExtensionStatus = async (state: ExtensionDetailState, updateF
   const buttons = getExtensionDetailButtons(hasColorTheme, false, disabled)
   return {
     ...state,
-    disabled: extension?.disabled,
     buttons,
+    disabled: extension?.disabled,
   }
 }

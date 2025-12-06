@@ -21,11 +21,11 @@ test('getExtension - fallback to getAllExtensions when getExtension fails', asyn
     { id: 'other-id', name: 'Other Extension' },
   ]
   const mockRpc = RendererWorker.registerMockRpc({
-    'ExtensionManagement.getExtension': () => {
-      throw new Error('getExtension failed')
-    },
     'ExtensionManagement.getAllExtensions': () => {
       return mockExtensions
+    },
+    'ExtensionManagement.getExtension': () => {
+      throw new Error('getExtension failed')
     },
   })
   const result: any = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
@@ -46,11 +46,11 @@ test('getExtension - web platform returns undefined', async () => {
 
 test('getExtension - not found in fallback', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ExtensionManagement.getExtension': () => {
-      throw new Error('getExtension failed')
-    },
     'ExtensionManagement.getAllExtensions': () => {
       return []
+    },
+    'ExtensionManagement.getExtension': () => {
+      throw new Error('getExtension failed')
     },
   })
   const result: any = await ExtensionManagement.getExtension('test-id', PlatformType.Electron)
@@ -60,11 +60,11 @@ test('getExtension - not found in fallback', async () => {
 
 test('getExtension - both getExtension and getAllExtensions fail', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'ExtensionManagement.getExtension': () => {
-      throw new Error('getExtension failed')
-    },
     'ExtensionManagement.getAllExtensions': () => {
       throw new Error('getAllExtensions failed')
+    },
+    'ExtensionManagement.getExtension': () => {
+      throw new Error('getExtension failed')
     },
   })
   await expect(ExtensionManagement.getExtension('test-id', PlatformType.Electron)).rejects.toThrow('getAllExtensions failed')
@@ -77,11 +77,11 @@ test('getExtension - remote platform with fallback', async () => {
     { id: 'other-id', name: 'Other Extension' },
   ]
   const mockRpc = RendererWorker.registerMockRpc({
-    'ExtensionManagement.getExtension': () => {
-      throw new Error('getExtension failed')
-    },
     'ExtensionManagement.getAllExtensions': () => {
       return mockExtensions
+    },
+    'ExtensionManagement.getExtension': () => {
+      throw new Error('getExtension failed')
     },
   })
   const result: any = await ExtensionManagement.getExtension('other-id', PlatformType.Remote)

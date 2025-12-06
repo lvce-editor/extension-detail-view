@@ -9,9 +9,9 @@ import { getFeaturesEmptyVirtualDom } from '../GetFeaturesEmptyVirtualDom/GetFea
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 
 const sash: VirtualDomNode = {
-  type: VirtualDomElements.Div,
-  className: MergeClassNames.mergeClassNames(ClassNames.Sash, ClassNames.SashVertical),
   childCount: 0,
+  className: MergeClassNames.mergeClassNames(ClassNames.Sash, ClassNames.SashVertical),
+  type: VirtualDomElements.Div,
 }
 
 export const getFeaturesVirtualDom = (
@@ -28,9 +28,9 @@ export const getFeaturesVirtualDom = (
 
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Features,
       childCount: 3,
+      className: ClassNames.Features,
+      type: VirtualDomElements.Div,
     },
     ...GetFeatureListVirtualDom.getFeatureListVirtualDom(features),
     sash,

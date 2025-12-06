@@ -13,6 +13,7 @@ export const {
   openNativeFolder,
   openUrl,
   readFile,
+  registerMockRpc,
   sendMessagePortToExtensionHostWorker,
   sendMessagePortToFileSystemWorker,
   sendMessagePortToMarkdownWorker,
@@ -23,7 +24,6 @@ export const {
   uninstallExtension,
   writeClipBoardImage,
   writeClipBoardText,
-  registerMockRpc,
 } = RendererWorker
 
 export type { MockRpc }

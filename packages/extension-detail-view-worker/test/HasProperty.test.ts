@@ -34,7 +34,7 @@ test('hasProperty returns false for primitive number', () => {
 })
 
 test('hasProperty returns true for object with multiple properties', () => {
-  const object = { name: 'test', age: 30 }
+  const object = { age: 30, name: 'test' }
   expect(hasProperty(object, 'name')).toBe(true)
   expect(hasProperty(object, 'age')).toBe(true)
   expect(hasProperty(object, 'city')).toBe(false)

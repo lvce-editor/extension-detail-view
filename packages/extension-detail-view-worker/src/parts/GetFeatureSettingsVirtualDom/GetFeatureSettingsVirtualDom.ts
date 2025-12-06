@@ -12,9 +12,9 @@ export const getFeatureSettingsVirtualDom = (rows: readonly Row[]): readonly Vir
   const tableInfo = GetSettingsTableEntries.getSettingsTableEntries(rows)
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     ...GetTableVirtualDom.getTableVirtualDom(tableInfo),

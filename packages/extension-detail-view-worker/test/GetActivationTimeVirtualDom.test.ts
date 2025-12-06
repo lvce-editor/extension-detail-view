@@ -15,40 +15,40 @@ test('getActivationTimeVirtualDom should return correct virtual DOM structure wh
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Dt,
       childCount: 1,
+      type: VirtualDomElements.Dt,
     },
     {
-      type: VirtualDomElements.Text,
+      childCount: 0,
       text: 'Import Time: ',
-      childCount: 0,
-    },
-    {
-      type: VirtualDomElements.Dd,
-      childCount: 1,
-    },
-    {
       type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      type: VirtualDomElements.Dd,
+    },
+    {
+      childCount: 0,
       text: '150.75ms',
-      childCount: 0,
+      type: VirtualDomElements.Text,
     },
     {
+      childCount: 1,
       type: VirtualDomElements.Dt,
-      childCount: 1,
     },
     {
-      type: VirtualDomElements.Text,
+      childCount: 0,
       text: 'Activation Time: ',
-      childCount: 0,
-    },
-    {
-      type: VirtualDomElements.Dd,
-      childCount: 1,
-    },
-    {
       type: VirtualDomElements.Text,
-      text: '0.00ms',
+    },
+    {
+      childCount: 1,
+      type: VirtualDomElements.Dd,
+    },
+    {
       childCount: 0,
+      text: '0.00ms',
+      type: VirtualDomElements.Text,
     },
   ]
 
@@ -62,40 +62,40 @@ test('getActivationTimeVirtualDom should return correct virtual DOM structure wh
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Dt,
       childCount: 1,
+      type: VirtualDomElements.Dt,
     },
     {
-      type: VirtualDomElements.Text,
+      childCount: 0,
       text: 'Import Time: ',
-      childCount: 0,
-    },
-    {
-      type: VirtualDomElements.Dd,
-      childCount: 1,
-    },
-    {
       type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      type: VirtualDomElements.Dd,
+    },
+    {
+      childCount: 0,
       text: '0.00ms',
-      childCount: 0,
+      type: VirtualDomElements.Text,
     },
     {
+      childCount: 1,
       type: VirtualDomElements.Dt,
-      childCount: 1,
     },
     {
-      type: VirtualDomElements.Text,
+      childCount: 0,
       text: 'Activation Time: ',
-      childCount: 0,
-    },
-    {
-      type: VirtualDomElements.Dd,
-      childCount: 1,
-    },
-    {
       type: VirtualDomElements.Text,
-      text: '200.50ms',
+    },
+    {
+      childCount: 1,
+      type: VirtualDomElements.Dd,
+    },
+    {
       childCount: 0,
+      text: '200.50ms',
+      type: VirtualDomElements.Text,
     },
   ]
 
@@ -109,40 +109,40 @@ test('getActivationTimeVirtualDom should return correct virtual DOM structure wh
 
   const expectedDom = [
     {
-      type: VirtualDomElements.Dt,
       childCount: 1,
+      type: VirtualDomElements.Dt,
     },
     {
-      type: VirtualDomElements.Text,
+      childCount: 0,
       text: 'Import Time: ',
-      childCount: 0,
-    },
-    {
-      type: VirtualDomElements.Dd,
-      childCount: 1,
-    },
-    {
       type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      type: VirtualDomElements.Dd,
+    },
+    {
+      childCount: 0,
       text: '100.25ms',
-      childCount: 0,
+      type: VirtualDomElements.Text,
     },
     {
+      childCount: 1,
       type: VirtualDomElements.Dt,
-      childCount: 1,
     },
     {
-      type: VirtualDomElements.Text,
+      childCount: 0,
       text: 'Activation Time: ',
-      childCount: 0,
-    },
-    {
-      type: VirtualDomElements.Dd,
-      childCount: 1,
-    },
-    {
       type: VirtualDomElements.Text,
-      text: '300.75ms',
+    },
+    {
+      childCount: 1,
+      type: VirtualDomElements.Dd,
+    },
+    {
       childCount: 0,
+      text: '300.75ms',
+      type: VirtualDomElements.Text,
     },
   ]
 

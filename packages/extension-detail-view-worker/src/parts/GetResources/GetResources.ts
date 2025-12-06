@@ -12,24 +12,24 @@ export const getResources = (isBuiltin: boolean, extension: unknown): readonly R
   // TODO
   return [
     {
+      icon: 'LinkExternal',
       label: ExtensionDetailStrings.marketplace(),
       url: '#',
-      icon: 'LinkExternal',
     },
     {
+      icon: 'LinkExternal',
       label: ExtensionDetailStrings.issues(),
       url: '#',
-      icon: 'LinkExternal',
     },
     {
+      icon: 'Repo',
       label: ExtensionDetailStrings.repository(),
       url: repositoryLink,
-      icon: 'Repo',
     },
     {
+      icon: 'LinkExternal',
       label: ExtensionDetailStrings.license(),
       url: licenseLink,
-      icon: 'LinkExternal',
     },
   ]
 }

@@ -9,9 +9,9 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test.skip('extension detail header virtual dom', () => {
   const extensionDetail = {
-    name: 'Test Extension',
-    iconSrc: './test-icon.png',
     description: 'Test Description',
+    iconSrc: './test-icon.png',
+    name: 'Test Extension',
   }
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, false, false)
   expect(
@@ -25,33 +25,33 @@ test.skip('extension detail header virtual dom', () => {
     ),
   ).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailHeader,
       childCount: 2,
+      className: ClassNames.ExtensionDetailHeader,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Img,
-      className: ClassNames.ExtensionDetailIcon,
       alt: '',
-      draggable: false,
       childCount: 0,
+      className: ClassNames.ExtensionDetailIcon,
+      draggable: false,
       src: './test-icon.png',
+      type: VirtualDomElements.Img,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailHeaderDetails,
       childCount: 3,
+      className: ClassNames.ExtensionDetailHeaderDetails,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailName,
       childCount: 1,
+      className: ClassNames.ExtensionDetailName,
+      type: VirtualDomElements.Div,
     },
     text('Test Extension'),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailDescription,
       childCount: 1,
+      className: ClassNames.ExtensionDetailDescription,
+      type: VirtualDomElements.Div,
     },
     text('Test Description'),
   ])
@@ -59,9 +59,9 @@ test.skip('extension detail header virtual dom', () => {
 
 test.skip('handles missing extension details', () => {
   const extensionDetail = {
-    name: '',
-    iconSrc: '',
     description: '',
+    iconSrc: '',
+    name: '',
   }
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, false, false)
   expect(
@@ -75,34 +75,34 @@ test.skip('handles missing extension details', () => {
     ),
   ).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailHeader,
       childCount: 2,
+      className: ClassNames.ExtensionDetailHeader,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Img,
-      className: ClassNames.ExtensionDetailIcon,
       alt: '',
-      draggable: false,
       childCount: 0,
-      src: '',
+      className: ClassNames.ExtensionDetailIcon,
+      draggable: false,
       onContextMenu: 'handleImageContextMenu',
+      src: '',
+      type: VirtualDomElements.Img,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailHeaderDetails,
       childCount: 3,
+      className: ClassNames.ExtensionDetailHeaderDetails,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailName,
       childCount: 1,
+      className: ClassNames.ExtensionDetailName,
+      type: VirtualDomElements.Div,
     },
     text(''),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailDescription,
       childCount: 1,
+      className: ClassNames.ExtensionDetailDescription,
+      type: VirtualDomElements.Div,
     },
     text(''),
     {
@@ -113,8 +113,8 @@ test.skip('handles missing extension details', () => {
     {
       childCount: 1,
       className: 'Button ButtonPrimary',
-      onClick: 'handleClickDisable',
       name: InputName.Disable,
+      onClick: 'handleClickDisable',
       type: VirtualDomElements.Button,
     },
     {
@@ -125,8 +125,8 @@ test.skip('handles missing extension details', () => {
     {
       childCount: 1,
       className: 'Button ButtonPrimary',
-      onClick: 'handleClickUninstall',
       name: InputName.Uninstall,
+      onClick: 'handleClickUninstall',
       type: VirtualDomElements.Button,
     },
     {
@@ -137,9 +137,9 @@ test.skip('handles missing extension details', () => {
     {
       childCount: 1,
       className: 'SettingsButton',
+      name: InputName.Settings,
       onClick: 'handleClickSettings',
       title: ExtensionDetailStrings.settings(),
-      name: InputName.Settings,
       type: VirtualDomElements.Button,
     },
     {
@@ -153,9 +153,9 @@ test.skip('handles missing extension details', () => {
 
 test.skip('handles builtin extension - shows only disable button', () => {
   const extensionDetail = {
-    name: 'Builtin Extension',
-    iconSrc: './builtin-icon.png',
     description: 'Builtin extension description',
+    iconSrc: './builtin-icon.png',
+    name: 'Builtin Extension',
   }
   const buttonDefs = GetExtensionDetailButtons.getExtensionDetailButtons(false, true, false)
   expect(
@@ -169,40 +169,40 @@ test.skip('handles builtin extension - shows only disable button', () => {
     ),
   ).toEqual([
     {
-      type: VirtualDomElements.Div,
+      childCount: 2,
       className: ClassNames.ExtensionDetailHeader,
-      childCount: 2,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Img,
-      className: ClassNames.ExtensionDetailIcon,
       alt: '',
-      draggable: false,
       childCount: 0,
-      src: './builtin-icon.png',
+      className: ClassNames.ExtensionDetailIcon,
+      draggable: false,
       onContextMenu: 'handleImageContextMenu',
+      src: './builtin-icon.png',
+      type: VirtualDomElements.Img,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailHeaderDetails,
       childCount: 3,
+      className: ClassNames.ExtensionDetailHeaderDetails,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailName,
       childCount: 2,
+      className: ClassNames.ExtensionDetailName,
+      type: VirtualDomElements.Div,
     },
     text('Builtin Extension'),
     {
-      type: VirtualDomElements.Span,
-      className: ClassNames.ExtensionDetailNameBadge,
       childCount: 1,
+      className: ClassNames.ExtensionDetailNameBadge,
+      type: VirtualDomElements.Span,
     },
     text('builtin'),
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailDescription,
       childCount: 1,
+      className: ClassNames.ExtensionDetailDescription,
+      type: VirtualDomElements.Div,
     },
     text('Builtin extension description'),
     {
@@ -213,8 +213,8 @@ test.skip('handles builtin extension - shows only disable button', () => {
     {
       childCount: 1,
       className: 'Button ButtonPrimary',
-      onClick: 'handleClickDisable',
       name: InputName.Disable,
+      onClick: 'handleClickDisable',
       type: VirtualDomElements.Button,
     },
     {
@@ -225,9 +225,9 @@ test.skip('handles builtin extension - shows only disable button', () => {
     {
       childCount: 1,
       className: 'SettingsButton',
+      name: InputName.Settings,
       onClick: 'handleClickSettings',
       title: ExtensionDetailStrings.settings(),
-      name: InputName.Settings,
       type: VirtualDomElements.Button,
     },
     {

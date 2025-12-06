@@ -8,7 +8,7 @@ import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 import * as SelectTabDetails from '../src/parts/SelectTabDetails/SelectTabDetails.ts'
 
 test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
-  const expectedDom = [{ type: 'element', tag: 'h1', children: [] }]
+  const expectedDom = [{ children: [], tag: 'h1', type: 'element' }]
   const mockRendererRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'README CONTENT'
@@ -22,23 +22,23 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
   })
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
-    'Markdown.render': () => {
-      return '<h1>README CONTENT</h1>'
-    },
     'Markdown.getVirtualDom': () => {
       return expectedDom
+    },
+    'Markdown.render': () => {
+      return '<h1>README CONTENT</h1>'
     },
   })
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
+    baseUrl: '/test/baseUrl',
     extension: {
       id: 'test-extension',
       name: 'Test Extension',
-      version: '1.0.0',
       path: '/test/path',
+      version: '1.0.0',
     },
-    baseUrl: '/test/baseUrl',
     platform: 0,
   }
 

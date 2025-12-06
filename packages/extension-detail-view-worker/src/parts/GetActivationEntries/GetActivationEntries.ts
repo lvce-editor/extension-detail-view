@@ -4,22 +4,22 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 const getActivationEntry = (value: unknown): ActivationEntry => {
   if (typeof value !== 'string') {
     return {
+      errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
       isValid: false,
       stringValue: JSON.stringify(value),
-      errorMessage: ExtensionDetailStrings.propertyMustBeOfTypeString(),
     }
   }
   if (!value) {
     return {
+      errorMessage: ExtensionDetailStrings.stringMustNotBeEmpty(),
       isValid: false,
       stringValue: '',
-      errorMessage: ExtensionDetailStrings.stringMustNotBeEmpty(),
     }
   }
   return {
+    errorMessage: '',
     isValid: true,
     stringValue: value,
-    errorMessage: '',
   }
 }
 

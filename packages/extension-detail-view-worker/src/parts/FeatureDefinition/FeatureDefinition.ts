@@ -2,9 +2,9 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
 export interface FeatureDefinition {
-  readonly id: string
-  readonly getLabel: () => string
-  readonly isEnabled: (extension: any) => boolean
   readonly getDetails: (extension: any, baseUrl: string, locationProtocol: string) => Promise<Partial<ExtensionDetailState>>
+  readonly getLabel: () => string
   readonly getVirtualDom: (state: ExtensionDetailState) => readonly VirtualDomNode[]
+  readonly id: string
+  readonly isEnabled: (extension: any) => boolean
 }

@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-json-validation-link-not-found'
 
-export const test: Test = async ({ Locator, expect, Extension, ExtensionDetail }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-json-validation-schema-link-not-found')
   await Extension.addWebExtension(extensionUri)

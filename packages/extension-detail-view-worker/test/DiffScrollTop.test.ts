@@ -14,8 +14,8 @@ test('isEqual returns true when scrollSource is User', () => {
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
     readmeScrollTop: 100,
-    selectedTab: InputName.Changelog,
     scrollSource: InputSource.User,
+    selectedTab: InputName.Changelog,
   }
   const result: boolean = isEqual(oldState, newState)
   expect(result).toBe(true)
@@ -30,8 +30,8 @@ test('isEqual returns true when scrollSource is Script and readmeScrollTop and s
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
     readmeScrollTop: 50,
-    selectedTab: InputName.Details,
     scrollSource: InputSource.Script,
+    selectedTab: InputName.Details,
   }
   const result: boolean = isEqual(oldState, newState)
   expect(result).toBe(true)
@@ -46,8 +46,8 @@ test('isEqual returns false when scrollSource is Script and readmeScrollTop is d
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
     readmeScrollTop: 100,
-    selectedTab: InputName.Details,
     scrollSource: InputSource.Script,
+    selectedTab: InputName.Details,
   }
   const result: boolean = isEqual(oldState, newState)
   expect(result).toBe(false)
@@ -62,8 +62,8 @@ test('isEqual returns false when scrollSource is Script and selectedTab is diffe
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
     readmeScrollTop: 50,
-    selectedTab: InputName.Changelog,
     scrollSource: InputSource.Script,
+    selectedTab: InputName.Changelog,
   }
   const result: boolean = isEqual(oldState, newState)
   expect(result).toBe(false)
@@ -78,8 +78,8 @@ test('isEqual returns false when scrollSource is Script and both readmeScrollTop
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
     readmeScrollTop: 200,
-    selectedTab: InputName.Changelog,
     scrollSource: InputSource.Script,
+    selectedTab: InputName.Changelog,
   }
   const result: boolean = isEqual(oldState, newState)
   expect(result).toBe(false)
@@ -94,8 +94,8 @@ test('isEqual returns true when scrollSource is User even with different readmeS
   const newState: ExtensionDetailState = {
     ...createDefaultState(),
     readmeScrollTop: 300,
-    selectedTab: InputName.Features,
     scrollSource: InputSource.User,
+    selectedTab: InputName.Features,
   }
   const result: boolean = isEqual(oldState, newState)
   expect(result).toBe(true)

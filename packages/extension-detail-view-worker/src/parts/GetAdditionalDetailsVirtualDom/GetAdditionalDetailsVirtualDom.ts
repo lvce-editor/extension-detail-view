@@ -26,16 +26,16 @@ export const getAdditionalDetailsVirtualDom = (
   }
   return [
     {
-      type: VirtualDomElements.Aside,
-      className: ClassNames.Aside,
       childCount: 1,
+      className: ClassNames.Aside,
+      type: VirtualDomElements.Aside,
     },
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.AdditionalDetails,
-      tabIndex: 0,
       childCount: 4,
+      className: ClassNames.AdditionalDetails,
       onClick: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
+      tabIndex: 0,
+      type: VirtualDomElements.Div,
     },
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(firstHeading, entries, GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(

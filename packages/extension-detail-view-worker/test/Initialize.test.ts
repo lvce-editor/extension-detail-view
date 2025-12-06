@@ -5,9 +5,9 @@ import { initialize } from '../src/parts/Initialize/Initialize.ts'
 
 test('should initialize both workers successfully', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {},
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {},
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': () => {},
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {},
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {},
   })
   await initialize()
   expect(mockRpc.invocations).toEqual([
@@ -29,12 +29,12 @@ test('should initialize both workers successfully', async () => {
 test('should handle initialization errors', async () => {
   const ports: MessagePort[] = []
   const mockRpc = RendererWorker.registerMockRpc({
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': (port: MessagePort) => {
+      ports.push(port)
+    },
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': (port: MessagePort) => {
       ports.push(port)
       throw new Error('markdown worker failed')
-    },
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': (port: MessagePort) => {
-      ports.push(port)
     },
   })
 

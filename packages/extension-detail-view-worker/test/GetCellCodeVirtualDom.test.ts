@@ -8,13 +8,13 @@ test('get cell code virtual dom with string value', () => {
   const value = 'npm install'
   expect(GetCellCodeVirtualDom.getCellCodeVirtualDom(value)).toEqual([
     {
-      type: 11,
-      className: 'TableCell',
       childCount: 1,
+      className: 'TableCell',
+      type: 11,
     },
     {
-      type: 65,
       childCount: 1,
+      type: 65,
     },
     text('npm install'),
   ])
@@ -28,9 +28,9 @@ test('getCellCodeVirtualDom includes className when provided', () => {
   const result = GetCellCodeVirtualDom.getCellCodeVirtualDom(value, props)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Td,
-    className: `${ClassNames.TableCell} CustomClass`,
     childCount: 1,
+    className: `${ClassNames.TableCell} CustomClass`,
+    type: VirtualDomElements.Td,
   })
 })
 
@@ -42,10 +42,10 @@ test('getCellCodeVirtualDom includes title when provided', () => {
   const result = GetCellCodeVirtualDom.getCellCodeVirtualDom(value, props)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Td,
-    className: ClassNames.TableCell,
     childCount: 1,
+    className: ClassNames.TableCell,
     title: 'Tooltip text',
+    type: VirtualDomElements.Td,
   })
 })
 
@@ -58,10 +58,10 @@ test('getCellCodeVirtualDom includes both className and title when provided', ()
   const result = GetCellCodeVirtualDom.getCellCodeVirtualDom(value, props)
 
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Td,
-    className: `${ClassNames.TableCell} CustomClass`,
     childCount: 1,
+    className: `${ClassNames.TableCell} CustomClass`,
     title: 'Tooltip text',
+    type: VirtualDomElements.Td,
   })
 })
 

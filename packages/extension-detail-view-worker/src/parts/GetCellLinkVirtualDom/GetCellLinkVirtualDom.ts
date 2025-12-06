@@ -21,16 +21,16 @@ export const getCellLinkVirtualDom = (
   const tdClassName = props?.className ? `${ClassNames.TableCell} ${props.className}` : ClassNames.TableCell
   return [
     {
-      type: VirtualDomElements.Td,
-      className: tdClassName,
       childCount: 1,
+      className: tdClassName,
+      type: VirtualDomElements.Td,
       ...getTitleProps(props?.title),
     },
     {
-      type: VirtualDomElements.A,
+      childCount: 1,
       className: ClassNames.Link,
       href: props?.href,
-      childCount: 1,
+      type: VirtualDomElements.A,
     },
     text(value),
   ]

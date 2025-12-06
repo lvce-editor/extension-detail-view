@@ -7,9 +7,9 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 test('getExtensionDetailDescriptionVirtualDom - with description', () => {
   expect(getExtensionDetailDescriptionVirtualDom('Test Description')).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailDescription,
       childCount: 1,
+      className: ClassNames.ExtensionDetailDescription,
+      type: VirtualDomElements.Div,
     },
     text('Test Description'),
   ])
@@ -18,9 +18,9 @@ test('getExtensionDetailDescriptionVirtualDom - with description', () => {
 test('getExtensionDetailDescriptionVirtualDom - empty description', () => {
   expect(getExtensionDetailDescriptionVirtualDom('')).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.ExtensionDetailDescription,
       childCount: 1,
+      className: ClassNames.ExtensionDetailDescription,
+      type: VirtualDomElements.Div,
     },
     text(''),
   ])

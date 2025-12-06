@@ -7,18 +7,18 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 export const getMenuEntriesImage = (state: ExtensionDetailState, props: ContextMenuProps): readonly MenuEntry[] => {
   return [
     {
+      args: [],
+      command: 'ExtensionDetail.copyImage',
+      flags: MenuItemFlags.None,
       id: 'copyImage',
       label: ExtensionDetailStrings.copyImage(),
-      flags: MenuItemFlags.None,
-      command: 'ExtensionDetail.copyImage',
-      args: [],
     },
     {
+      args: [],
+      command: 'ExtensionDetail.copyImageUrl',
+      flags: MenuItemFlags.None,
       id: 'copyImage',
       label: ExtensionDetailStrings.copyImageUrl(),
-      flags: MenuItemFlags.None,
-      command: 'ExtensionDetail.copyImageUrl',
-      args: [],
     },
   ]
 }

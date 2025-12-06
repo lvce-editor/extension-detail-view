@@ -9,94 +9,94 @@ test('feature commands virtual dom with commands', () => {
   const extension = {
     commands: [
       {
-        label: 'Open File',
         id: 'workbench.action.openFile',
+        label: 'Open File',
       },
       {
-        label: 'Save File',
         id: 'workbench.action.saveFile',
+        label: 'Save File',
       },
     ],
   }
   const { commands } = getFeatureDetailsCommand(extension)
   expect(GetFeatureCommandsVirtualDom.getFeatureCommandsVirtualDom(commands || [])).toEqual([
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     {
-      type: VirtualDomElements.H1,
       childCount: 1,
+      type: VirtualDomElements.H1,
     },
     text('Commands'),
     {
-      type: VirtualDomElements.Table,
+      childCount: 2,
       className: ClassNames.Table,
-      childCount: 2,
+      type: VirtualDomElements.Table,
     },
     {
+      childCount: 1,
       type: VirtualDomElements.THead,
-      childCount: 1,
     },
     {
-      type: VirtualDomElements.Tr,
       childCount: 2,
+      type: VirtualDomElements.Tr,
     },
     {
-      type: VirtualDomElements.Th,
-      className: ClassNames.TableHeading,
       childCount: 1,
+      className: ClassNames.TableHeading,
+      type: VirtualDomElements.Th,
     },
     text('ID'),
     {
-      type: VirtualDomElements.Th,
-      className: ClassNames.TableHeading,
       childCount: 1,
+      className: ClassNames.TableHeading,
+      type: VirtualDomElements.Th,
     },
     text('Label'),
     {
+      childCount: 2,
       type: VirtualDomElements.TBody,
-      childCount: 2,
     },
     {
+      childCount: 2,
       type: VirtualDomElements.Tr,
-      childCount: 2,
     },
     {
-      type: VirtualDomElements.Td,
+      childCount: 1,
       className: ClassNames.TableCell,
-      childCount: 1,
+      type: VirtualDomElements.Td,
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text('workbench.action.openFile'),
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     text('Open File'),
     {
-      type: VirtualDomElements.Tr,
       childCount: 2,
+      type: VirtualDomElements.Tr,
     },
     {
-      type: VirtualDomElements.Td,
+      childCount: 1,
       className: ClassNames.TableCell,
-      childCount: 1,
+      type: VirtualDomElements.Td,
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text('workbench.action.saveFile'),
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     text('Save File'),
   ])

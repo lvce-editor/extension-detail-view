@@ -4,15 +4,15 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 import { getStatusMessage } from '../GetStatusMessage/GetStatusMessage.ts'
 
 const key: VirtualDomNode = {
-  type: VirtualDomElements.Dt,
   childCount: 1,
   className: 'RuntimeStatusDefinitionListKey',
+  type: VirtualDomElements.Dt,
 }
 
 const value: VirtualDomNode = {
-  type: VirtualDomElements.Dd,
-  className: 'RuntimeStatusDefinitionListValue',
   childCount: 1,
+  className: 'RuntimeStatusDefinitionListValue',
+  type: VirtualDomElements.Dd,
 }
 
 export const getStatusVirtualDom = (status: number): readonly VirtualDomNode[] => {

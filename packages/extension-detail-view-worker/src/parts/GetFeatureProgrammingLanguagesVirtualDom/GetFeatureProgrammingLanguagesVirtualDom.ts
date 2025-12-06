@@ -12,9 +12,9 @@ export const getFeatureProgrammingLanguagesVirtualDom = (programmingLanguages: r
   const tableInfo = GetProgrammingLanguagesTableEntries.getProgrammingLanguagesTableEntries(programmingLanguages)
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.FeatureContent,
       childCount: 2,
+      className: ClassNames.FeatureContent,
+      type: VirtualDomElements.Div,
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     ...GetTableVirtualDom.getTableVirtualDom(tableInfo),

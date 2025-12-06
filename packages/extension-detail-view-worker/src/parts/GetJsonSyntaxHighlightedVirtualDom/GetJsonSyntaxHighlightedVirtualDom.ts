@@ -97,16 +97,16 @@ const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
 
 const getTokenClassName = (token: JsonToken): string => {
   switch (token.type) {
-    case 'string':
-      return ClassNames.TokenJsonString
-    case 'number':
-      return ClassNames.TokenJsonNumber
     case 'boolean':
       return ClassNames.TokenJsonBoolean
     case 'null':
       return ClassNames.TokenJsonNull
+    case 'number':
+      return ClassNames.TokenJsonNumber
     case 'punctuation':
       return ClassNames.TokenJsonPunctuation
+    case 'string':
+      return ClassNames.TokenJsonString
     default:
       return ClassNames.Token
   }
@@ -114,9 +114,9 @@ const getTokenClassName = (token: JsonToken): string => {
 
 const tokenToVirtualDom = (token: JsonToken): VirtualDomNode => {
   return {
-    type: VirtualDomElements.Span,
-    className: getTokenClassName(token),
     childCount: 1,
+    className: getTokenClassName(token),
+    type: VirtualDomElements.Span,
   }
 }
 

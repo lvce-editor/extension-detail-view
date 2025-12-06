@@ -9,9 +9,9 @@ export const resize = (state: ExtensionDetailState, dimensions: Dimensions): Ext
   return {
     ...state,
     ...dimensions,
-    showSideBar,
     paddingLeft: padding,
     paddingRight: padding,
+    showSideBar,
     sideBarWidth,
   }
 }

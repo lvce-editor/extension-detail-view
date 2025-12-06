@@ -75,8 +75,8 @@ test('handleImageContextMenu returns state regardless of coordinates', async () 
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    uid: 789,
     name: 'Test Extension',
+    uid: 789,
   }
 
   const result1 = await HandleImageContextMenu.handleImageContextMenu(state, 50, 75)

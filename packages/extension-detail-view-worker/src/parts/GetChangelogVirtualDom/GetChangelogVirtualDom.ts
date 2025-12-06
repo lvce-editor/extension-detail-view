@@ -7,9 +7,9 @@ export const getChangelogVirtualDom = (changelogDom: readonly VirtualDomNode[]):
   // TODO set tabpanel role
   return [
     {
-      type: VirtualDomElements.Div,
-      className: ClassNames.Changelog,
       childCount: 1,
+      className: ClassNames.Changelog,
+      type: VirtualDomElements.Div,
     },
     ...changelogDom,
   ]

@@ -4,9 +4,9 @@ import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 
 test('getProgrammingLanguageTableEntry returns correct structure with all properties', () => {
   const programmingLanguage = {
-    id: 'javascript',
-    extensions: ['.js', '.jsx'],
     configuration: {},
+    extensions: ['.js', '.jsx'],
+    id: 'javascript',
     snippets: {},
   }
   const result = getProgrammingLanguageTableEntry(programmingLanguage)
@@ -21,60 +21,60 @@ test('getProgrammingLanguageTableEntry returns correct structure with all proper
       value: '',
     },
     {
+      listItems: ['.js', '.jsx'],
       type: TableCellType.CodeList,
       value: '',
-      listItems: ['.js', '.jsx'],
     },
     {
-      type: TableCellType.CheckMark,
-      value: '',
       checked: true,
-    },
-    {
       type: TableCellType.CheckMark,
       value: '',
+    },
+    {
       checked: false,
+      type: TableCellType.CheckMark,
+      value: '',
     },
   ])
 })
 
 test('getProgrammingLanguageTableEntry with configuration false', () => {
   const programmingLanguage = {
-    id: 'typescript',
-    extensions: ['.ts', '.tsx'],
     configuration: null,
+    extensions: ['.ts', '.tsx'],
+    id: 'typescript',
     snippets: {},
   }
   const result = getProgrammingLanguageTableEntry(programmingLanguage)
 
   expect(result[3]).toEqual({
+    checked: false,
     type: TableCellType.CheckMark,
     value: '',
-    checked: false,
   })
 })
 
 test('getProgrammingLanguageTableEntry with snippets false', () => {
   const programmingLanguage = {
-    id: 'python',
-    extensions: ['.py'],
     configuration: {},
+    extensions: ['.py'],
+    id: 'python',
     snippets: null,
   }
   const result = getProgrammingLanguageTableEntry(programmingLanguage)
 
   expect(result[4]).toEqual({
+    checked: false,
     type: TableCellType.CheckMark,
     value: '',
-    checked: false,
   })
 })
 
 test('getProgrammingLanguageTableEntry with both configuration and snippets false', () => {
   const programmingLanguage = {
-    id: 'html',
-    extensions: ['.html'],
     configuration: null,
+    extensions: ['.html'],
+    id: 'html',
     snippets: null,
   }
   const result = getProgrammingLanguageTableEntry(programmingLanguage)
@@ -85,25 +85,25 @@ test('getProgrammingLanguageTableEntry with both configuration and snippets fals
 
 test('getProgrammingLanguageTableEntry with empty extensions array', () => {
   const programmingLanguage = {
-    id: 'css',
-    extensions: [],
     configuration: {},
+    extensions: [],
+    id: 'css',
     snippets: {},
   }
   const result = getProgrammingLanguageTableEntry(programmingLanguage)
 
   expect(result[2]).toEqual({
+    listItems: [],
     type: TableCellType.CodeList,
     value: '',
-    listItems: [],
   })
 })
 
 test('getProgrammingLanguageTableEntry with single extension', () => {
   const programmingLanguage = {
-    id: 'json',
-    extensions: ['.json'],
     configuration: {},
+    extensions: ['.json'],
+    id: 'json',
     snippets: {},
   }
   const result = getProgrammingLanguageTableEntry(programmingLanguage)
@@ -113,9 +113,9 @@ test('getProgrammingLanguageTableEntry with single extension', () => {
 
 test('getProgrammingLanguageTableEntry with multiple extensions', () => {
   const programmingLanguage = {
-    id: 'markdown',
-    extensions: ['.md', '.markdown', '.mdown'],
     configuration: {},
+    extensions: ['.md', '.markdown', '.mdown'],
+    id: 'markdown',
     snippets: {},
   }
   const result = getProgrammingLanguageTableEntry(programmingLanguage)
@@ -125,15 +125,15 @@ test('getProgrammingLanguageTableEntry with multiple extensions', () => {
 
 test('getProgrammingLanguageTableEntry name is always empty string', () => {
   const programmingLanguage1 = {
-    id: 'lang1',
-    extensions: [],
     configuration: {},
+    extensions: [],
+    id: 'lang1',
     snippets: {},
   }
   const programmingLanguage2 = {
-    id: 'lang2',
-    extensions: [],
     configuration: {},
+    extensions: [],
+    id: 'lang2',
     snippets: {},
   }
   const result1 = getProgrammingLanguageTableEntry(programmingLanguage1)
@@ -145,21 +145,21 @@ test('getProgrammingLanguageTableEntry name is always empty string', () => {
 
 test('getProgrammingLanguageTableEntry with falsy configuration values', () => {
   const programmingLanguage1 = {
-    id: 'lang1',
-    extensions: [],
     configuration: false,
+    extensions: [],
+    id: 'lang1',
     snippets: {},
   }
   const programmingLanguage2 = {
-    id: 'lang2',
-    extensions: [],
     configuration: 0,
+    extensions: [],
+    id: 'lang2',
     snippets: {},
   }
   const programmingLanguage3 = {
-    id: 'lang3',
-    extensions: [],
     configuration: '',
+    extensions: [],
+    id: 'lang3',
     snippets: {},
   }
 
@@ -170,21 +170,21 @@ test('getProgrammingLanguageTableEntry with falsy configuration values', () => {
 
 test('getProgrammingLanguageTableEntry with truthy configuration values', () => {
   const programmingLanguage1 = {
-    id: 'lang1',
-    extensions: [],
     configuration: {},
+    extensions: [],
+    id: 'lang1',
     snippets: {},
   }
   const programmingLanguage2 = {
-    id: 'lang2',
-    extensions: [],
     configuration: [],
+    extensions: [],
+    id: 'lang2',
     snippets: {},
   }
   const programmingLanguage3 = {
-    id: 'lang3',
-    extensions: [],
     configuration: 1,
+    extensions: [],
+    id: 'lang3',
     snippets: {},
   }
 

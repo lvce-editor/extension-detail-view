@@ -8,11 +8,11 @@ import * as GetFeatureListItemVirtualDom from '../GetFeatureListItemVirtualDom/G
 export const getFeatureListVirtualDom = (features: readonly Feature[]): readonly VirtualDomNode[] => {
   return [
     {
+      childCount: features.length,
+      className: ClassNames.FeaturesList,
+      onClick: DomEventListenerFunctions.HandleFeaturesClick,
       // TODO use either list or tabs role
       type: VirtualDomElements.Div,
-      className: ClassNames.FeaturesList,
-      childCount: features.length,
-      onClick: DomEventListenerFunctions.HandleFeaturesClick,
     },
     ...features.flatMap(GetFeatureListItemVirtualDom.getFeatureListItemVirtualDom),
   ]

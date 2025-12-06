@@ -13,13 +13,13 @@ test('getCellCodeListVirtualDom returns correct structure with single item', () 
 
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
     {
-      type: VirtualDomElements.Code,
       childCount: 1,
+      type: VirtualDomElements.Code,
     },
     text('item1'),
   ])
@@ -34,23 +34,23 @@ test('getCellCodeListVirtualDom returns correct structure with multiple items', 
 
   expect(result.length).toBe(7) // 1 Td + 3 items * 2 (Code + text) each
   expect(result[0]).toEqual({
-    type: VirtualDomElements.Td,
-    className: ClassNames.TableCell,
     childCount: 3,
+    className: ClassNames.TableCell,
+    type: VirtualDomElements.Td,
   })
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Code,
     childCount: 1,
+    type: VirtualDomElements.Code,
   })
   expect(result[2]).toEqual(text('item1'))
   expect(result[3]).toEqual({
-    type: VirtualDomElements.Code,
     childCount: 1,
+    type: VirtualDomElements.Code,
   })
   expect(result[4]).toEqual(text('item2'))
   expect(result[5]).toEqual({
-    type: VirtualDomElements.Code,
     childCount: 1,
+    type: VirtualDomElements.Code,
   })
   expect(result[6]).toEqual(text('item3'))
 })
@@ -64,9 +64,9 @@ test('getCellCodeListVirtualDom returns correct structure with empty list', () =
 
   expect(result).toEqual([
     {
-      type: VirtualDomElements.Td,
-      className: ClassNames.TableCell,
       childCount: 0,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
     },
   ])
 })
@@ -114,15 +114,15 @@ test('getCellCodeListVirtualDom creates correct structure for each list item', (
 
   // First item
   expect(result[1]).toEqual({
-    type: VirtualDomElements.Code,
     childCount: 1,
+    type: VirtualDomElements.Code,
   })
   expect(result[2]).toEqual(text('code1'))
 
   // Second item
   expect(result[3]).toEqual({
-    type: VirtualDomElements.Code,
     childCount: 1,
+    type: VirtualDomElements.Code,
   })
   expect(result[4]).toEqual(text('code2'))
 })

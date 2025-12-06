@@ -15,13 +15,13 @@ beforeAll(() => {
 
 test('loadContent - successful load', async () => {
   const mockExtension: any = {
+    builtin: false,
+    description: 'A test extension',
     id: 'test-extension',
     name: 'Test Extension',
-    description: 'A test extension',
-    version: '1.0.0',
     path: '/test/path',
     uri: '/test/uri',
-    builtin: false,
+    version: '1.0.0',
   }
 
   const mockRendererRpc = RendererWorker.registerMockRpc({
@@ -31,34 +31,34 @@ test('loadContent - successful load', async () => {
   })
 
   const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.readFile': () => {
-      return '# Test README Content'
+    'FileSystem.exists': () => {
+      return true
     },
     'FileSystem.getFolderSize': () => {
       return 1024
     },
-    'FileSystem.exists': () => {
-      return true
+    'FileSystem.readFile': () => {
+      return '# Test README Content'
     },
   })
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
-    'Markdown.render': () => {
-      return '<h1>Test README Content</h1>'
-    },
     'Markdown.getMarkdownDom': () => {
-      return [{ type: 'h1', children: ['Test README Content'] }]
+      return [{ children: ['Test README Content'], type: 'h1' }]
     },
     'Markdown.getVirtualDom': () => {
-      return [{ type: 'h1', children: ['Test README Content'] }]
+      return [{ children: ['Test README Content'], type: 'h1' }]
+    },
+    'Markdown.render': () => {
+      return '<h1>Test README Content</h1>'
     },
   })
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
+    assetDir: '/test/assets',
     uri: 'extension-detail://test-extension',
     width: 800,
-    assetDir: '/test/assets',
   }
 
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
@@ -104,12 +104,12 @@ test('loadContent - extension not found', async () => {
 
 test('loadContent - with builtin extension', async () => {
   const mockExtension: any = {
+    builtin: true,
+    description: 'A builtin extension',
     id: 'builtin-extension',
     name: 'Builtin Extension',
-    description: 'A builtin extension',
-    version: '1.0.0',
     path: '/test/path',
-    builtin: true,
+    version: '1.0.0',
   }
 
   const mockRendererRpc = RendererWorker.registerMockRpc({
@@ -119,26 +119,26 @@ test('loadContent - with builtin extension', async () => {
   })
 
   const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.readFile': () => {
-      return '# Builtin README Content'
+    'FileSystem.exists': () => {
+      return true
     },
     'FileSystem.getFolderSize': () => {
       return 2048
     },
-    'FileSystem.exists': () => {
-      return true
+    'FileSystem.readFile': () => {
+      return '# Builtin README Content'
     },
   })
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
-    'Markdown.render': () => {
-      return '<h1>Builtin README Content</h1>'
-    },
     'Markdown.getMarkdownDom': () => {
-      return [{ type: 'h1', children: ['Builtin README Content'] }]
+      return [{ children: ['Builtin README Content'], type: 'h1' }]
     },
     'Markdown.getVirtualDom': () => {
-      return [{ type: 'h1', children: ['Builtin README Content'] }]
+      return [{ children: ['Builtin README Content'], type: 'h1' }]
+    },
+    'Markdown.render': () => {
+      return '<h1>Builtin README Content</h1>'
     },
   })
 
@@ -158,12 +158,12 @@ test('loadContent - with builtin extension', async () => {
 
 test('loadContent - with saved state', async () => {
   const mockExtension: any = {
+    builtin: false,
+    description: 'A test extension',
     id: 'test-extension',
     name: 'Test Extension',
-    description: 'A test extension',
-    version: '1.0.0',
     path: '/test/path',
-    builtin: false,
+    version: '1.0.0',
   }
 
   const mockRendererRpc = RendererWorker.registerMockRpc({
@@ -173,26 +173,26 @@ test('loadContent - with saved state', async () => {
   })
 
   const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.readFile': () => {
-      return '# Test README Content'
+    'FileSystem.exists': () => {
+      return true
     },
     'FileSystem.getFolderSize': () => {
       return 1024
     },
-    'FileSystem.exists': () => {
-      return true
+    'FileSystem.readFile': () => {
+      return '# Test README Content'
     },
   })
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
-    'Markdown.render': () => {
-      return '<h1>Test README Content</h1>'
-    },
     'Markdown.getMarkdownDom': () => {
-      return [{ type: 'h1', children: ['Test README Content'] }]
+      return [{ children: ['Test README Content'], type: 'h1' }]
     },
     'Markdown.getVirtualDom': () => {
-      return [{ type: 'h1', children: ['Test README Content'] }]
+      return [{ children: ['Test README Content'], type: 'h1' }]
+    },
+    'Markdown.render': () => {
+      return '<h1>Test README Content</h1>'
     },
   })
 
@@ -217,13 +217,13 @@ test('loadContent - with saved state', async () => {
 
 test('loadContent - with different platform', async () => {
   const mockExtension: any = {
+    builtin: false,
+    description: 'A test extension',
     id: 'test-extension',
     name: 'Test Extension',
-    description: 'A test extension',
-    version: '1.0.0',
     path: '/test/path',
     uri: '/test/uri',
-    builtin: false,
+    version: '1.0.0',
   }
 
   const mockRendererRpc = RendererWorker.registerMockRpc({
@@ -233,26 +233,26 @@ test('loadContent - with different platform', async () => {
   })
 
   const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.readFile': () => {
-      return '# Test README Content'
+    'FileSystem.exists': () => {
+      return true
     },
     'FileSystem.getFolderSize': () => {
       return 1024
     },
-    'FileSystem.exists': () => {
-      return true
+    'FileSystem.readFile': () => {
+      return '# Test README Content'
     },
   })
 
   const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
-    'Markdown.render': () => {
-      return '<h1>Test README Content</h1>'
-    },
     'Markdown.getMarkdownDom': () => {
-      return [{ type: 'h1', children: ['Test README Content'] }]
+      return [{ children: ['Test README Content'], type: 'h1' }]
     },
     'Markdown.getVirtualDom': () => {
-      return [{ type: 'h1', children: ['Test README Content'] }]
+      return [{ children: ['Test README Content'], type: 'h1' }]
+    },
+    'Markdown.render': () => {
+      return '<h1>Test README Content</h1>'
     },
   })
 

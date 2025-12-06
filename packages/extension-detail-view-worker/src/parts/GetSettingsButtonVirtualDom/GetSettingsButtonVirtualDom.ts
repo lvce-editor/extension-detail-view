@@ -10,18 +10,18 @@ export const getSettingsButtonVirtualDom = (enabled: boolean): readonly VirtualD
   }
   return [
     {
-      type: VirtualDomElements.Button,
-      className: ClassNames.SettingsButton,
-      onClick: DomEventListenerFunctions.HandleClickSettings,
       childCount: 1,
-      title: 'Settings',
+      className: ClassNames.SettingsButton,
       name: InputName.Settings,
+      onClick: DomEventListenerFunctions.HandleClickSettings,
+      title: 'Settings',
+      type: VirtualDomElements.Button,
     },
     {
-      type: VirtualDomElements.Span,
-      className: ClassNames.SettingsIcon,
       childCount: 0,
+      className: ClassNames.SettingsIcon,
       text: '⚙️',
+      type: VirtualDomElements.Span,
     },
   ]
 }

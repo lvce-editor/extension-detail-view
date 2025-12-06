@@ -7,14 +7,14 @@ import * as RenderScrollTop from '../RenderScrollTop/RenderScrollTop.ts'
 
 export const getRenderer = (diffType: number): Renderer => {
   switch (diffType) {
-    case DiffType.RenderItems:
-      return RenderDom.renderDom
-    case DiffType.RenderFocus:
-      return RenderFocus.renderFocus
-    case DiffType.RenderScrollTop:
-      return RenderScrollTop.renderScrollTop
     case DiffType.RenderCss:
       return renderCss
+    case DiffType.RenderFocus:
+      return RenderFocus.renderFocus
+    case DiffType.RenderItems:
+      return RenderDom.renderDom
+    case DiffType.RenderScrollTop:
+      return RenderScrollTop.renderScrollTop
     default:
       throw new Error('unknown renderer')
   }

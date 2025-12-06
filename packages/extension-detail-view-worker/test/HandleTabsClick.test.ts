@@ -15,18 +15,18 @@ test.skip('handles tabs click - details tab', async () => {
   })
 
   MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => {
+      return [{ children: [], tag: 'h1', type: 'element' }]
+    },
     'Markdown.render': () => {
       return '<h1>Test Details</h1>'
-    },
-    'Markdown.getVirtualDom': () => {
-      return [{ type: 'element', tag: 'h1', children: [] }]
     },
   })
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    selectedTab: 'Features',
     name: 'Test Extension',
+    selectedTab: 'Features',
   }
 
   const result = await HandleTabsClick.handleTabsClick(state, 'Details')
@@ -43,18 +43,16 @@ test.skip('handles tabs click - features tab', async () => {
   const mockRendererRpc = RendererWorker.registerMockRpc({})
 
   MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => {
+      return [{ children: [], tag: 'h1', type: 'element' }]
+    },
     'Markdown.render': () => {
       return '<h1>Theme Details</h1>'
-    },
-    'Markdown.getVirtualDom': () => {
-      return [{ type: 'element', tag: 'h1', children: [] }]
     },
   })
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    selectedTab: 'Details',
-    name: 'Test Extension',
     features: [
       {
         id: 'Theme',
@@ -62,6 +60,8 @@ test.skip('handles tabs click - features tab', async () => {
         selected: true,
       },
     ],
+    name: 'Test Extension',
+    selectedTab: 'Details',
   }
 
   const result = await HandleTabsClick.handleTabsClick(state, 'Features')
@@ -82,22 +82,22 @@ test.skip('handles tabs click - changelog tab', async () => {
   })
 
   MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => {
+      return [{ children: [], tag: 'h1', type: 'element' }]
+    },
     'Markdown.render': () => {
       return '<h1>Changelog</h1><p>Version 1.0.0</p>'
-    },
-    'Markdown.getVirtualDom': () => {
-      return [{ type: 'element', tag: 'h1', children: [] }]
     },
   })
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    selectedTab: 'Details',
-    name: 'Test Extension',
+    baseUrl: 'http://test.com',
     extension: {
       path: '/test/path',
     },
-    baseUrl: 'http://test.com',
+    name: 'Test Extension',
+    selectedTab: 'Details',
   }
 
   const result = await HandleTabsClick.handleTabsClick(state, 'Changelog')
@@ -114,8 +114,8 @@ test.skip('handles tabs click - unknown tab', async () => {
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    selectedTab: 'Details',
     name: 'Test Extension',
+    selectedTab: 'Details',
   }
 
   const result = await HandleTabsClick.handleTabsClick(state, 'UnknownTab')
