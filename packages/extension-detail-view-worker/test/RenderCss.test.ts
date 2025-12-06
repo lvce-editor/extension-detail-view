@@ -22,7 +22,7 @@ test('renderCss returns correct array with Viewlet.setCss command', () => {
   expect(result).toEqual([
     'Viewlet.setCss',
     2,
-    ':root {\n  --ExtensionDetailPaddingLeft: 15px;\n  --ExtensionDetailPaddingRight: 25px;\n  --ExtensionDetailSideBarWidth: 350px;\n  --ExtensionDetailMaxWidth: 1250px;\n}',
+    ':root {\n  --ExtensionDetailMaxWidth: 1250px;\n  --ExtensionDetailPaddingLeft: 15px;\n  --ExtensionDetailPaddingRight: 25px;\n  --ExtensionDetailSideBarWidth: 350px;\n}',
   ])
 })
 

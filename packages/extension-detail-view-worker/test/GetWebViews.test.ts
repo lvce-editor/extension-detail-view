@@ -25,7 +25,7 @@ test('getWebViews - extension with webViews', () => {
     contentSecurityPolicyString: '{"default-src":"\'self\'"}',
     elementsString: '[\n  {\n    "type": "button",\n    "text": "Click me"\n  }\n]',
     id: 'webview1',
-    selectorString: '{"type":"div","className":"webview"}',
+    selectorString: '{"className":"webview","type":"div"}',
   })
   expect(result[1]).toEqual({
     contentSecurityPolicyString: '{"script-src":"\'unsafe-inline\'"}',
