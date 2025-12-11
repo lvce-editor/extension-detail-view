@@ -1,4 +1,5 @@
 import { PlatformType } from '@lvce-editor/constants'
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { HeaderData } from '../HeaderData/HeaderData.ts'
 import type { Tab } from '../Tab/Tab.ts'
@@ -8,6 +9,7 @@ import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement
 import { ExtensionNotFoundError } from '../ExtensionNotFoundError/ExtensionNotFoundError.ts'
 import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
+import { getCommit } from '../GetCommit/GetCommit.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
@@ -38,6 +40,7 @@ export const loadContent = async (
   if (!extension) {
     throw new ExtensionNotFoundError(id)
   }
+  const commit = await getCommit()
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
   const { badge, description, downloadCount, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name, rating } = headerData
   const readmeUrl = Path.join(extensionUri, 'README.md')
@@ -84,6 +87,7 @@ export const loadContent = async (
     buttons,
     categories,
     changelogScrollTop,
+    commit,
     description,
     detailsVirtualDom,
     disabled,
