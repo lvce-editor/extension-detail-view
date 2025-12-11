@@ -4,7 +4,7 @@ import { supportsNormalCacheKey } from '../SupportsNormalCacheKey/SupportsNormal
 
 const getMarkdownCacheHash = async (markdown: string, options: MarkdownOptions): Promise<string> => {
   const stringifiedOptions = JSON.stringify(options)
-  const contents = `${markdown}:${stringifiedOptions}`
+  const contents = `${markdown}:${stringifiedOptions}:${options.commit}`
   return hash(contents)
 }
 
