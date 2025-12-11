@@ -26,3 +26,23 @@ test('get folder size - missing uri', async () => {
   const uri = ''
   await expect(GetFolderSize.getFolderSize(uri)).rejects.toThrow(new Error('uri is required'))
 })
+
+test('get folder size - http uri', async () => {
+  const mockRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.getFolderSize': () => {
+      throw new Error('should not be called')
+    },
+  })
+  expect(await GetFolderSize.getFolderSize('http://example.com')).toBe(0)
+  expect(mockRpc.invocations).toEqual([])
+})
+
+test('get folder size - https uri', async () => {
+  const mockRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.getFolderSize': () => {
+      throw new Error('should not be called')
+    },
+  })
+  expect(await GetFolderSize.getFolderSize('https://example.com')).toBe(0)
+  expect(mockRpc.invocations).toEqual([])
+})
