@@ -84,10 +84,7 @@ test('loadContent - successful load', async () => {
   expect(result.displaySize).toBeDefined()
   expect(result.sizeValue).toBeDefined()
   expect(result.hasColorTheme).toBeDefined()
-  expect(mockRendererRpc.invocations).toEqual([
-    ['ExtensionManagement.getExtension', 'test-extension'],
-    ['Layout.getCommit'],
-  ])
+  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension'], ['Layout.getCommit']])
   expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
@@ -160,10 +157,7 @@ test('loadContent - with builtin extension', async () => {
 
   // expect(result.isBuiltin).toBe(true)
   expect(result.extension).toEqual(mockExtension)
-  expect(mockRendererRpc.invocations).toEqual([
-    ['ExtensionManagement.getExtension', 'builtin-extension'],
-    ['Layout.getCommit'],
-  ])
+  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'builtin-extension'], ['Layout.getCommit']])
   expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
@@ -225,10 +219,7 @@ test('loadContent - with saved state', async () => {
 
   expect(result.selectedFeature).toBe('')
   expect(result.selectedTab).toBe('details')
-  expect(mockRendererRpc.invocations).toEqual([
-    ['ExtensionManagement.getExtension', 'test-extension'],
-    ['Layout.getCommit'],
-  ])
+  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension'], ['Layout.getCommit']])
   expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
@@ -285,10 +276,7 @@ test('loadContent - with different platform', async () => {
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
   expect(result.extension).toEqual(mockExtension)
-  expect(mockRendererRpc.invocations).toEqual([
-    ['ExtensionManagement.getExtension', 'test-extension'],
-    ['Layout.getCommit'],
-  ])
+  expect(mockRendererRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'test-extension'], ['Layout.getCommit']])
   expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
