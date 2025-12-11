@@ -11,7 +11,7 @@ test.skip('has - returns false when storageBuckets is not supported', async () =
   globalThis.navigator = {}
   const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
 
-  const result = await MarkDownCache.has('test-key')
+  const result = await MarkDownCache.has('test-key', 'markdown-cache')
 
   expect(result).toBe(false)
   globalThis.navigator = originalNavigator
@@ -43,7 +43,7 @@ test.skip('has - returns true when key exists in cache', async () => {
   } as typeof globalThis.navigator
   const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
 
-  const result = await MarkDownCache.has('test-key')
+  const result = await MarkDownCache.has('test-key', 'markdown-cache')
 
   expect(result).toBe(true)
   expect(mockStorageBuckets.open).toHaveBeenCalledWith('markdown-cache', expect.any(Object))
@@ -75,7 +75,7 @@ test.skip('has - returns false when key does not exist in cache', async () => {
   } as typeof globalThis.navigator
   const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
 
-  const result = await MarkDownCache.has('non-existent-key')
+  const result = await MarkDownCache.has('non-existent-key', 'markdown-cache')
 
   expect(result).toBe(false)
   expect(mockCache.match).toHaveBeenCalledWith('non-existent-key')
@@ -89,7 +89,7 @@ test.skip('get - returns empty string when storageBuckets is not supported', asy
   globalThis.navigator = {}
   const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
 
-  const result = await MarkDownCache.get('test-key')
+  const result = await MarkDownCache.get('test-key', 'markdown-cache')
 
   expect(result).toBe('')
   globalThis.navigator = originalNavigator
@@ -122,7 +122,7 @@ test.skip('get - returns cached value when key exists', async () => {
   } as typeof globalThis.navigator
   const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
 
-  const result = await MarkDownCache.get('test-key')
+  const result = await MarkDownCache.get('test-key', 'markdown-cache')
 
   expect(result).toBe(cachedValue)
   expect(mockCache.match).toHaveBeenCalledWith('test-key')
@@ -153,7 +153,7 @@ test.skip('get - returns empty string when key does not exist', async () => {
   } as typeof globalThis.navigator
   const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
 
-  const result = await MarkDownCache.get('non-existent-key')
+  const result = await MarkDownCache.get('non-existent-key', 'markdown-cache')
 
   expect(result).toBe('')
   expect(mockCache.match).toHaveBeenCalledWith('non-existent-key')
@@ -167,7 +167,7 @@ test.skip('set - does nothing when storageBuckets is not supported', async () =>
   globalThis.navigator = {}
   const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
 
-  await MarkDownCache.set('test-key', '<p>Hello</p>')
+  await MarkDownCache.set('test-key', 'markdown-cache', '<p>Hello</p>')
 
   globalThis.navigator = originalNavigator
 })
@@ -198,7 +198,7 @@ test.skip('set - stores value in cache with correct headers', async () => {
   const key = 'test-key'
   const value = '<p>Hello World</p>'
 
-  await MarkDownCache.set(key, value)
+  await MarkDownCache.set(key, 'markdown-cache', value)
 
   expect(mockCache.put).toHaveBeenCalledTimes(1)
   const putCall = mockCache.put.mock.calls[0]
@@ -236,7 +236,7 @@ test.skip('set - stores value with correct Content-Length for empty string', asy
   const key = 'empty-key'
   const value = ''
 
-  await MarkDownCache.set(key, value)
+  await MarkDownCache.set(key, 'markdown-cache', value)
 
   expect(mockCache.put).toHaveBeenCalledTimes(1)
   const putCall = mockCache.put.mock.calls[0]
@@ -273,7 +273,7 @@ test.skip('set - stores value with correct Content-Length for long string', asyn
   const key = 'long-key'
   const value = 'x'.repeat(1000)
 
-  await MarkDownCache.set(key, value)
+  await MarkDownCache.set(key, 'markdown-cache', value)
 
   expect(mockCache.put).toHaveBeenCalledTimes(1)
   const putCall = mockCache.put.mock.calls[0]
