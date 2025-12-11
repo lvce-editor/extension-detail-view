@@ -22,6 +22,7 @@ export interface ExtensionDetailState {
   readonly changelogScrollTop: number
   readonly changelogVirtualDom: readonly VirtualDomNode[]
   readonly commands: readonly Row[]
+  readonly commit: string
   readonly description: string
   readonly detailsVirtualDom: readonly VirtualDomNode[]
   readonly disabled: boolean // TODO change to management status number or multiple properties: disabled, builtin, linked, fromMarketPlace, deprecated, malicious
