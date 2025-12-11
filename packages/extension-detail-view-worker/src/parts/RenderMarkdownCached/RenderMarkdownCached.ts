@@ -5,12 +5,14 @@ import * as MarkdownWorker from '../MarkdownWorker/MarkdownWorker.ts'
 
 export const renderMarkdownCached = async (markdown: string, options: MarkdownOptions): Promise<string> => {
   const cacheKey = await GetMarkdownCacheKey.getMarkdownCacheKey(markdown, options)
-  const hasItem = await MarkDownCache.has(cacheKey)
+  const bucketName = `markdown-cache`
+
+  const hasItem = await MarkDownCache.has(cacheKey, bucketName)
   if (hasItem) {
-    const value = await MarkDownCache.get(cacheKey)
+    const value = await MarkDownCache.get(cacheKey, bucketName)
     return value // TODO validate if it's valid
   }
   const html = await MarkdownWorker.render(markdown, options)
-  await MarkDownCache.set(cacheKey, html)
+  await MarkDownCache.set(cacheKey, bucketName, html)
   return html
 }

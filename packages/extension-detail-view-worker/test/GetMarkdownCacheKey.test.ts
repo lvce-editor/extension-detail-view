@@ -7,7 +7,7 @@ test('getMarkdownCacheKey - empty string - electron', async () => {
   const options: MarkdownOptions = {
     locationProtocol: 'app:',
   }
-  expect(await getMarkdownCacheKey(markdown, options)).toBe('https://-/markdown/f57fb45324850588b6ac4581bc98707a5fcebf2691ddb15945576d6a6389ea71')
+  expect(await getMarkdownCacheKey(markdown, options)).toBe('https://-/markdown/f808f62bb5c14f5ae18bffb9e8fe2cc1bc09680d48a5d1d67f9bc79b60b4fb23')
 })
 
 test('getMarkdownCacheKey - empty string - web', async () => {
@@ -15,5 +15,5 @@ test('getMarkdownCacheKey - empty string - web', async () => {
   const options: MarkdownOptions = {
     locationProtocol: 'http:',
   }
-  expect(await getMarkdownCacheKey(markdown, options)).toBe('/markdown/9bb0961250acbf880ed5ae890741a8708aa3ad34774bec95b1495e61e79c9394')
+  expect(await getMarkdownCacheKey(markdown, options)).toBe('/markdown/c7d440e51113d46651e42d995560119b55de3f101b8db91d367ff0d9d749758d')
 })
