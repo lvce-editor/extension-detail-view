@@ -14,6 +14,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     changelogScrollTop: 0,
     changelogVirtualDom: [],
     commands: [],
+    commit: '',
     description: '',
     detailsVirtualDom: [],
     disabled: false,
