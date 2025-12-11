@@ -52,6 +52,7 @@ export const loadContent = async (
 
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
+    commit,
     linksExternal: true,
     locationProtocol,
   })

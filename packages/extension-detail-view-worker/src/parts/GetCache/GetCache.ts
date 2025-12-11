@@ -1,5 +1,4 @@
 // TODO pass application name from renderer worker to not hardcode it
-const bucketName = 'markdown-cache'
 
 export interface ICache {
   readonly match: (request: RequestInfo | URL, options?: CacheQueryOptions) => Promise<Response | undefined>
@@ -20,7 +19,7 @@ const supportsStorageBuckets = (): boolean => {
   return Boolean(navigator.storageBuckets)
 }
 
-const getCacheInternal = async (cacheName: string): Promise<ICache> => {
+const getCacheInternal = async (cacheName: string, bucketName: string): Promise<ICache> => {
   if (!supportsStorageBuckets()) {
     return noopCache
   }
@@ -34,9 +33,9 @@ const getCacheInternal = async (cacheName: string): Promise<ICache> => {
   return cache
 }
 
-export const getCache = (cacheName: string): Promise<ICache> => {
+export const getCache = (cacheName: string, bucketName: string): Promise<ICache> => {
   if (!(cacheName in cachedCaches)) {
-    cachedCaches[cacheName] = getCacheInternal(cacheName)
+    cachedCaches[cacheName] = getCacheInternal(cacheName, bucketName)
   }
   return cachedCaches[cacheName]
 }
