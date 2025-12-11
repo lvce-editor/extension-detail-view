@@ -153,6 +153,7 @@ test('should call feature details handler and merge results', async () => {
       expect(baseUrl).toBeDefined()
       expect(locationProtocol).toBeDefined()
       return {
+        // @ts-ignore
         commands: [{ id: 'test.command', title: 'Test Command' }],
         description: 'Test description',
       }
