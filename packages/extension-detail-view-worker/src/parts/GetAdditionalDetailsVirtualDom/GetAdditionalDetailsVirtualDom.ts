@@ -33,7 +33,7 @@ export const getAdditionalDetailsVirtualDom = (
     {
       childCount: 4,
       className: ClassNames.AdditionalDetails,
-      onClick: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
+      onContextMenu: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },

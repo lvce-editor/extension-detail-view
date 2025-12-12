@@ -43,7 +43,7 @@ test('getAdditionalDetailsVirtualDom - showAdditionalDetails true with empty dat
     {
       childCount: 4,
       className: ClassNames.AdditionalDetails,
-      onClick: 15,
+      onContextMenu: 15,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },
@@ -79,7 +79,7 @@ test('getAdditionalDetailsVirtualDom - with sample data', () => {
     {
       childCount: 4,
       className: ClassNames.AdditionalDetails,
-      onClick: 15,
+      onContextMenu: 15,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },
@@ -115,7 +115,7 @@ test('getAdditionalDetailsVirtualDom - different headings', () => {
     {
       childCount: 4,
       className: ClassNames.AdditionalDetails,
-      onClick: 15,
+      onContextMenu: 15,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },
