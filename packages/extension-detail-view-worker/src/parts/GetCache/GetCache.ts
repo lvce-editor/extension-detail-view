@@ -27,7 +27,7 @@ const getCacheInternal = async (cacheName: string, bucketName: string): Promise<
   // @ts-ignore
   const bucket = await navigator.storageBuckets.open(bucketName, {
     expires: Date.now() + twoWeeks,
-    quota: 20 * 1024 * 1024, // 20MB
+    quota: 100 * 1024 * 1024, // 100MB
   })
   const cache = await bucket.caches.open(cacheName)
   return cache
