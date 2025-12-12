@@ -1,4 +1,4 @@
-import { expect, test } from '@jest/globals'
+import { expect, test, jest } from '@jest/globals'
 import * as ErrorCodes from '../src/parts/ErrorCodes/ErrorCodes.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as LoadChangelogContent from '../src/parts/LoadChangelogContent/LoadChangelogContent.ts'
@@ -38,9 +38,16 @@ test('loadChangelogContent returns error message for other errors', async () => 
     },
   })
 
-  const result = await LoadChangelogContent.loadChangelogContent('/test/extension')
-  expect(result).toBe('Error: Permission denied')
-  expect(mockRpc.invocations).toEqual([['FileSystem.readFile', '/test/extension/CHANGELOG.md']])
+  // @ts-ignore TODO
+  const spy = jest.spyOn(console, 'error').mockImplementation(() => {})
+  try {
+    const result = await LoadChangelogContent.loadChangelogContent('/test/extension')
+    expect(result).toBe('Error: Permission denied')
+    expect(mockRpc.invocations).toEqual([['FileSystem.readFile', '/test/extension/CHANGELOG.md']])
+    expect(spy).toHaveBeenCalledTimes(1)
+  } finally {
+    spy.mockRestore()
+  }
 })
 
 test('loadChangelogContent handles different path formats', async () => {

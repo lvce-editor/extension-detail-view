@@ -36,10 +36,14 @@ test('returns error message for other errors', async () => {
 
   // @ts-ignore TODO
   const spy = jest.spyOn(console, 'error').mockImplementation(() => {})
-  const content = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
-  expect(content).toBe('Error: permission denied')
-  expect(mockRpc.invocations).toEqual([['FileSystem.readFile', '/test/path/README.md']])
-  expect(spy).toHaveBeenCalledTimes(1)
+  try {
+    const content = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
+    expect(content).toBe('Error: permission denied')
+    expect(mockRpc.invocations).toEqual([['FileSystem.readFile', '/test/path/README.md']])
+    expect(spy).toHaveBeenCalledTimes(1)
+  } finally {
+    spy.mockRestore()
+  }
 })
 
 test('handles empty readme file', async () => {
