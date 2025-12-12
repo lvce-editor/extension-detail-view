@@ -1,13 +1,14 @@
 import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import { getLicenseLink } from '../GetLicenseLink/GetLicenseLink.ts'
-import { getRepositoryLink } from '../GetRepositoryLink/GetRepositoryLink.ts'
+import { getIssuesLink, getRepositoryLink } from '../GetRepositoryLink/GetRepositoryLink.ts'
 
 export const getResources = (isBuiltin: boolean, extension: unknown): readonly Resource[] => {
   if (isBuiltin) {
     return []
   }
   const repositoryLink = getRepositoryLink(extension)
+  const issueLink = getIssuesLink(extension)
   const licenseLink = getLicenseLink(extension)
   // TODO
   return [
@@ -19,7 +20,7 @@ export const getResources = (isBuiltin: boolean, extension: unknown): readonly R
     {
       icon: 'LinkExternal',
       label: ExtensionDetailStrings.issues(),
-      url: '#',
+      url: issueLink,
     },
     {
       icon: 'Repo',
