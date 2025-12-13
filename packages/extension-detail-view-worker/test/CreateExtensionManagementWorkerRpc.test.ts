@@ -8,9 +8,11 @@ test('createExtensionManagementWorkerRpc creates RPC successfully', async () => 
   })
   const rpc = await createExtensionManagementWorkerRpc()
   expect(rpc).toBeDefined()
+  const {invocations} = mockRpc
   await rpc.dispose()
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
-  expect(mockRpc.invocations[0][0]).toBe('SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker')
+  expect(invocations).toEqual([
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker', expect.anything(), 0],
+  ])
 })
 
 test('createExtensionManagementWorkerRpc throws VError when sendMessagePortToExtensionManagementWorker fails', async () => {
@@ -20,7 +22,9 @@ test('createExtensionManagementWorkerRpc throws VError when sendMessagePortToExt
     },
   })
   await expect(createExtensionManagementWorkerRpc()).rejects.toThrow('Failed to create extension management rpc')
-  expect(mockRpc.invocations.length).toBeGreaterThan(0)
-  expect(mockRpc.invocations[0][0]).toBe('SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker')
+  const {invocations} = mockRpc
+  expect(invocations).toEqual([
+    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker', expect.anything(), 0],
+  ])
 })
 
