@@ -1,24 +1,24 @@
 import { expect, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { ExtensionManagementWorker } from '@lvce-editor/rpc-registry'
 import * as DisableExtension from '../src/parts/DisableExtension/DisableExtension.ts'
 
 test('disable extension', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
-    'ExtensionManagement.disable': () => {
+  const mockRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.disable': () => {
       /**/
     },
   })
   await DisableExtension.disableExtension('test-id')
-  expect(mockRpc.invocations).toEqual([['ExtensionManagement.disable', 'test-id']])
+  expect(mockRpc.invocations).toEqual([['Extensions.disable', 'test-id']])
 })
 
 test('handles error during disable', async () => {
   const error = new Error('Failed to disable extension')
-  const mockRpc = RendererWorker.registerMockRpc({
-    'ExtensionManagement.disable': () => {
+  const mockRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.disable': () => {
       throw error
     },
   })
   await expect(DisableExtension.disableExtension('test-id')).rejects.toThrow('Failed to disable extension')
-  expect(mockRpc.invocations).toEqual([['ExtensionManagement.disable', 'test-id']])
+  expect(mockRpc.invocations).toEqual([['Extensions.disable', 'test-id']])
 })
