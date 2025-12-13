@@ -84,7 +84,7 @@ test('handleClickEnable updates state when extension becomes enabled', async () 
       /**/
     },
   })
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -144,7 +144,7 @@ test('handleClickEnable with hasColorTheme true adds SetColorTheme button', asyn
       /**/
     },
   })
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
