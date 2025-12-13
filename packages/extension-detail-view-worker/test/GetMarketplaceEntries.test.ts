@@ -14,3 +14,7 @@ test('returns marketplace entries', () => {
     },
   ])
 })
+
+test('returns empty array for builtin extensions', () => {
+  expect(GetMarketplaceEntries.getMarketplaceEntries(true)).toEqual([])
+})

@@ -97,3 +97,29 @@ test('handleClickSetColorTheme - extension with empty color themes', async () =>
   expect(result).toBe(state)
   expect(mockRpc.invocations).toEqual([])
 })
+
+test.skip('handleClickSetColorTheme - extension with color theme error', async () => {
+  const errorMessage = 'Failed to set color theme'
+  const mockRpc = RendererWorker.registerMockRpc({
+    'ColorTheme.setColorTheme': () => {
+      return errorMessage
+    },
+    confirm: () => {
+      return ''
+    },
+  })
+
+  const state = {
+    ...CreateDefaultState.createDefaultState(),
+    extension: {
+      colorThemes: [{ id: 'theme1', label: 'Theme 1' }],
+    },
+  }
+
+  const result = await HandleClickSetColorTheme.handleClickSetColorTheme(state)
+  expect(result).toBe(state)
+  expect(mockRpc.invocations).toEqual([
+    ['ColorTheme.setColorTheme', 'theme1'],
+    ['confirm', errorMessage],
+  ])
+})
