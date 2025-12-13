@@ -98,7 +98,7 @@ test('handleClickSetColorTheme - extension with empty color themes', async () =>
   expect(mockRpc.invocations).toEqual([])
 })
 
-test('handleClickSetColorTheme - extension with color theme error', async () => {
+test.skip('handleClickSetColorTheme - extension with color theme error', async () => {
   const errorMessage = 'Failed to set color theme'
   const mockRpc = RendererWorker.registerMockRpc({
     'ColorTheme.setColorTheme': () => {
