@@ -1,21 +1,10 @@
-import type { Category } from '../Category/Category.ts'
-import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
-import type { Resource } from '../Resource/Resource.ts'
+import type { SideBarContent } from '../SideBarContent/SideBarContent.ts'
 import * as GetCategories from '../GetCategories/GetCategories.ts'
 import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
 import * as GetFolderSize from '../GetFolderSize/GetFolderSize.ts'
 import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
 import * as GetMarketplaceEntries from '../GetMarketplaceEntries/GetMarketplaceEntries.ts'
 import * as GetResources from '../GetResources/GetResources.ts'
-
-export interface SideBarContent {
-  readonly categories: readonly Category[]
-  readonly displaySize: string
-  readonly folderSize: number
-  readonly installationEntries: readonly MoreInfoEntry[]
-  readonly marketplaceEntries: readonly MoreInfoEntry[]
-  readonly resources: readonly Resource[]
-}
 
 export const loadSideBarContent = async (
   extensionId: string,
