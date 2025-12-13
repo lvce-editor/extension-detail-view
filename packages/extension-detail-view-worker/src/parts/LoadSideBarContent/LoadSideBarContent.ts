@@ -1,3 +1,6 @@
+import type { Category } from '../Category/Category.ts'
+import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
+import type { Resource } from '../Resource/Resource.ts'
 import type { SideBarContent } from '../SideBarContent/SideBarContent.ts'
 import * as GetCategories from '../GetCategories/GetCategories.ts'
 import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
