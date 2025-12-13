@@ -4,8 +4,8 @@ import * as FileSystemWorker from '../FileSystemWorker/FileSystemWorker.ts'
 import * as GetImageCopyUrl from '../GetImageCopyUrl/GetImageCopyUrl.ts'
 
 export const copyImage = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const { iconSrc } = state
-  const absoluteIconSrc = GetImageCopyUrl.getImageCopyUrl(iconSrc)
+  const { iconSrc, locationHost, locationProtocol } = state
+  const absoluteIconSrc = GetImageCopyUrl.getImageCopyUrl(iconSrc, locationProtocol, locationHost)
   const blob = await FileSystemWorker.readFileAsBlob(absoluteIconSrc)
   await ClipBoard.writeClipboardImage(blob)
   return state
