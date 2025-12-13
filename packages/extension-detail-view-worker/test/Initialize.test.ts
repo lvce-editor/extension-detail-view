@@ -12,9 +12,24 @@ test('should initialize both workers successfully', async () => {
   })
   await initialize()
   expect(mockRpc.invocations.length).toBeGreaterThanOrEqual(3)
-  expect(mockRpc.invocations).toContainEqual(['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.any(Object), 'Markdown.handleMessagePort', 0])
-  expect(mockRpc.invocations).toContainEqual(['SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker', expect.any(Object), 'FileSystem.handleMessagePort', 0])
-  expect(mockRpc.invocations).toContainEqual(['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker', expect.any(Object), 'HandleMessagePort.handleMessagePort2', 0])
+  expect(mockRpc.invocations).toContainEqual([
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker',
+    expect.any(Object),
+    'Markdown.handleMessagePort',
+    0,
+  ])
+  expect(mockRpc.invocations).toContainEqual([
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker',
+    expect.any(Object),
+    'FileSystem.handleMessagePort',
+    0,
+  ])
+  expect(mockRpc.invocations).toContainEqual([
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker',
+    expect.any(Object),
+    'HandleMessagePort.handleMessagePort2',
+    0,
+  ])
   const fileSystemWorkerRpc = get(RpcId.FileSystemWorker)
   expect(fileSystemWorkerRpc).toBeDefined()
   await fileSystemWorkerRpc.dispose()
@@ -46,7 +61,12 @@ test('should handle initialization errors', async () => {
 
   await expect(initialize()).rejects.toThrow('Failed to create markdown worker rpc')
   expect(mockRpc.invocations.length).toBeGreaterThanOrEqual(1)
-  expect(mockRpc.invocations).toContainEqual(['SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker', expect.any(Object), 'Markdown.handleMessagePort', 0])
+  expect(mockRpc.invocations).toContainEqual([
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker',
+    expect.any(Object),
+    'Markdown.handleMessagePort',
+    0,
+  ])
   for (const port of ports) {
     port.close()
   }
