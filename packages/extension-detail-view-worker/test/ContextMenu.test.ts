@@ -13,7 +13,7 @@ test('show2 calls invoke with correct parameters', async () => {
   const menuId = 4091
   const x = 100
   const y = 200
-  const args = { test: 'value' }
+  const args = { test: 'value' } as any
 
   await ContextMenu.show2(uid, menuId, x, y, args)
 
