@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-readme-context-menu')
   await Extension.addWebExtension(extensionUri)
@@ -13,7 +13,7 @@ export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, 
   await expect(markDown).toBeVisible()
 
   // act
-  await Command.execute('ExtensionDetail.handleReadmeContextMenu', 0, 0, 'a', 'https://example.com')
+  await ExtensionDetail.handleReadmeContextMenu(0, 0, 'a', 'https://example.com')
 
   // assert
   // TODO verify that context menu is open

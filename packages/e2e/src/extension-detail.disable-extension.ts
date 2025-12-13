@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.disable-extension'
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-disable')
   await Extension.addWebExtension(extensionUri)
@@ -13,7 +13,7 @@ export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, 
   await expect(enableButton).toBeHidden()
 
   // act
-  await Command.execute('ExtensionDetail.handleClickDisable')
+  await ExtensionDetail.handleClickDisable()
 
   // assert
   await expect(disableButton).toBeHidden()
