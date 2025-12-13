@@ -228,3 +228,98 @@ test('should handle empty features array', async () => {
   expect(result.selectedFeature).toBe('MockFeature')
   expect(mockRpc.invocations).toEqual([])
 })
+
+test('should return state unchanged when features array is empty', async () => {
+  const mockRpc = RendererWorker.registerMockRpc({
+    'FileSystem.readDirWithFileTypes': () => {
+      return []
+    },
+  })
+
+  const initialState: ExtensionDetailState = {
+    ...createDefaultState(),
+    features: [],
+    selectedFeature: 'SomeFeature',
+    selectedTab: InputName.Details,
+    tabs: [
+      { enabled: true, label: 'Details', name: InputName.Details, selected: true },
+      { enabled: true, label: 'Features', name: InputName.Features, selected: false },
+      { enabled: true, label: 'Changelog', name: InputName.Changelog, selected: false },
+    ],
+  }
+
+  const result = await selectTabFeatures(initialState)
+
+  expect(result).toBe(initialState)
+  expect(result.features).toEqual([])
+  expect(result.selectedFeature).toBe('SomeFeature')
+  expect(result.selectedTab).toBe(InputName.Details)
+  expect(mockRpc.invocations).toEqual([])
+})
+
+test('should correctly update tabs selection to Features tab', async () => {
+  const mockRpc = RendererWorker.registerMockRpc({
+    'FileSystem.readDirWithFileTypes': () => {
+      return []
+    },
+  })
+
+  // Register mock features
+  const mockFeature = {
+    getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
+      commands: [],
+      detailsVirtualDom: [],
+    }),
+    getLabel: (): string => 'Mock Feature',
+    getVirtualDom: (): any[] => [],
+    id: 'MockFeature',
+    isEnabled: (): boolean => true,
+  }
+  const themeFeature = {
+    getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
+      commands: [],
+      detailsVirtualDom: [],
+    }),
+    getLabel: (): string => 'Theme',
+    getVirtualDom: (): any[] => [],
+    id: 'Theme',
+    isEnabled: (): boolean => true,
+  }
+  register(mockFeature)
+  register(themeFeature)
+
+  const initialState: ExtensionDetailState = {
+    ...createDefaultState(),
+    features: [{ id: 'MockFeature', label: 'Mock Feature', selected: false }],
+    selectedFeature: '',
+    selectedTab: InputName.Details,
+    tabs: [
+      { enabled: true, label: 'Details', name: InputName.Details, selected: true },
+      { enabled: true, label: 'Features', name: InputName.Features, selected: false },
+      { enabled: true, label: 'Changelog', name: InputName.Changelog, selected: false },
+    ],
+  }
+
+  const result = await selectTabFeatures(initialState)
+
+  expect(result.tabs).toHaveLength(3)
+  expect(result.tabs[0]).toEqual({
+    enabled: true,
+    label: 'Details',
+    name: InputName.Details,
+    selected: false,
+  })
+  expect(result.tabs[1]).toEqual({
+    enabled: true,
+    label: 'Features',
+    name: InputName.Features,
+    selected: true,
+  })
+  expect(result.tabs[2]).toEqual({
+    enabled: true,
+    label: 'Changelog',
+    name: InputName.Changelog,
+    selected: false,
+  })
+  expect(mockRpc.invocations).toEqual([])
+})
