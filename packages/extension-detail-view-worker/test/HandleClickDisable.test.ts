@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { ExtensionManagementWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleClickDisable } from '../src/parts/HandleClickDisable/HandleClickDisable.ts'
@@ -14,10 +14,12 @@ test('handleClickDisable - successful disable with extension becoming disabled',
   }
 
   const mockExtension: any = { disabled: true, id: 'test-extension-id' }
-  const mockRpc = RendererWorker.registerMockRpc({
-    'ExtensionManagement.disable': () => {
+  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.disable': () => {
       return null
     },
+  })
+  const mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -30,8 +32,8 @@ test('handleClickDisable - successful disable with extension becoming disabled',
   expect(result.buttons.length).toBe(2)
   expect(result.buttons.some((button) => button.name === 'Enable')).toBe(true)
   expect(result.buttons.some((button) => button.name === 'Uninstall')).toBe(true)
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.disable', 'test-extension-id'])
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
+  expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.disable', 'test-extension-id'])
+  expect(mockRendererRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
 })
 
 test('handleClickDisable - successful disable with extension already disabled', async () => {
@@ -44,10 +46,12 @@ test('handleClickDisable - successful disable with extension already disabled', 
   }
 
   const mockExtension: any = { disabled: true, id: 'test-extension-id' }
-  const mockRpc = RendererWorker.registerMockRpc({
-    'ExtensionManagement.disable': () => {
+  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.disable': () => {
       return null
     },
+  })
+  const mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -60,8 +64,8 @@ test('handleClickDisable - successful disable with extension already disabled', 
   expect(result.buttons.length).toBe(2)
   expect(result.buttons.some((button) => button.name === 'Enable')).toBe(true)
   expect(result.buttons.some((button) => button.name === 'Uninstall')).toBe(true)
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.disable', 'test-extension-id'])
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
+  expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.disable', 'test-extension-id'])
+  expect(mockRendererRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
 })
 
 test('handleClickDisable - handles error from disableExtension', async () => {
@@ -74,12 +78,14 @@ test('handleClickDisable - handles error from disableExtension', async () => {
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const errorMessage = 'Failed to disable extension'
-  const mockRpc = RendererWorker.registerMockRpc({
+  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.disable': () => {
+      return errorMessage
+    },
+  })
+  const mockRendererRpc = RendererWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => {
       /**/
-    },
-    'ExtensionManagement.disable': () => {
-      return errorMessage
     },
     'ExtensionManagement.getExtension': () => {
       return mockExtension
@@ -90,9 +96,9 @@ test('handleClickDisable - handles error from disableExtension', async () => {
 
   expect(result.extensionId).toBe('test-extension-id')
   expect(result.disabled).toBe(false)
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.disable', 'test-extension-id'])
-  expect(mockRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', errorMessage])
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
+  expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.disable', 'test-extension-id'])
+  expect(mockRendererRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', errorMessage])
+  expect(mockRendererRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
 })
 
 test('handleClickDisable - preserves state properties', async () => {
@@ -106,10 +112,12 @@ test('handleClickDisable - preserves state properties', async () => {
   }
 
   const mockExtension: any = { disabled: true, id: 'test-extension-id' }
-  RendererWorker.registerMockRpc({
-    'ExtensionManagement.disable': () => {
+  ExtensionManagementWorker.registerMockRpc({
+    'Extensions.disable': () => {
       return null
     },
+  })
+  RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -133,10 +141,12 @@ test('handleClickDisable - with hasColorTheme true and disabled true', async () 
   }
 
   const mockExtension: any = { disabled: true, id: 'test-extension-id' }
-  const mockRpc = RendererWorker.registerMockRpc({
-    'ExtensionManagement.disable': () => {
+  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.disable': () => {
       return null
     },
+  })
+  const mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -149,8 +159,8 @@ test('handleClickDisable - with hasColorTheme true and disabled true', async () 
   expect(result.buttons.some((button) => button.name === 'SetColorTheme')).toBe(true)
   expect(result.buttons.some((button) => button.name === 'Enable')).toBe(true)
   expect(result.buttons.some((button) => button.name === 'Uninstall')).toBe(true)
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.disable', 'test-extension-id'])
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
+  expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.disable', 'test-extension-id'])
+  expect(mockRendererRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
 })
 
 test('handleClickDisable - extension not found (undefined)', async () => {
@@ -161,10 +171,12 @@ test('handleClickDisable - extension not found (undefined)', async () => {
     platform: PlatformType.Electron,
   }
 
-  const mockRpc = RendererWorker.registerMockRpc({
-    'ExtensionManagement.disable': () => {
+  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.disable': () => {
       return null
     },
+  })
+  const mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return undefined
     },
@@ -177,8 +189,8 @@ test('handleClickDisable - extension not found (undefined)', async () => {
   expect(result.buttons.length).toBe(2)
   expect(result.buttons.some((button) => button.name === 'Disable')).toBe(true)
   expect(result.buttons.some((button) => button.name === 'Uninstall')).toBe(true)
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.disable', 'test-extension-id'])
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
+  expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.disable', 'test-extension-id'])
+  expect(mockRendererRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
 })
 
 test('handleClickDisable - error with Error object', async () => {
@@ -191,12 +203,14 @@ test('handleClickDisable - error with Error object', async () => {
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const error = new Error('Disable failed')
-  const mockRpc = RendererWorker.registerMockRpc({
+  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.disable': () => {
+      return error
+    },
+  })
+  const mockRendererRpc = RendererWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => {
       /**/
-    },
-    'ExtensionManagement.disable': () => {
-      return error
     },
     'ExtensionManagement.getExtension': () => {
       return mockExtension
@@ -206,7 +220,7 @@ test('handleClickDisable - error with Error object', async () => {
   const result = await handleClickDisable(state)
 
   expect(result.extensionId).toBe('test-extension-id')
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.disable', 'test-extension-id'])
-  expect(mockRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', 'Error: Disable failed'])
-  expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
+  expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.disable', 'test-extension-id'])
+  expect(mockRendererRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', 'Error: Disable failed'])
+  expect(mockRendererRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
 })
