@@ -7,7 +7,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
   return [
     {
       name: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
-      params: ['handleAdditionalDetailsContextMenu'],
+      params: ['handleAdditionalDetailsContextMenu', EventExpression.ClientX, EventExpression.ClientY, 'event.target.nodeName', 'event.target.href'],
       preventDefault: true,
     },
     {
