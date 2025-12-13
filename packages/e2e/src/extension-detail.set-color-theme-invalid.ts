@@ -4,7 +4,7 @@ export const name = 'extension-detail.set-color-theme-invalid'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-detail-theme-invalid')
   await Extension.addWebExtension(extensionUri)
@@ -14,7 +14,7 @@ export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, 
   await expect(setColorThemeButton).toBeVisible()
 
   // act
-  await Command.execute('ExtensionDetail.handleClickSetColorTheme')
+  await ExtensionDetail.handleClickSetColorTheme()
 
   // assert
 

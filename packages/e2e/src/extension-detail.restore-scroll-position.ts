@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-restore-scroll-position')
   await Extension.addWebExtension(extensionUri)
@@ -11,7 +11,7 @@ export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, 
   await expect(detailView).toBeVisible()
   const markdown = Locator('.Markdown')
   await expect(markdown).toBeVisible()
-  await Command.execute('ExtensionDetail.handleScroll', 10)
+  await ExtensionDetail.handleScroll(10)
   await ExtensionDetail.selectTab('Features')
 
   // act
