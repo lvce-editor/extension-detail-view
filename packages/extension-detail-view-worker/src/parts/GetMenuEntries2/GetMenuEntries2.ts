@@ -12,8 +12,8 @@ export const getMenuEntries2 = (state: ExtensionDetailState, props: ContextMenuP
   if (props.menuId === MenuEntryId.ExtensionDetailReadme && props.href) {
     return [
       {
-        args: [],
-        command: 'ExtensionDetail.copyLink',
+        args: [props.href],
+        command: 'ExtensionDetail.copyReadmeLink',
         flags: MenuItemFlags.None,
         id: 'copyLink',
         label: ExtensionDetailStrings.copyLink(),
