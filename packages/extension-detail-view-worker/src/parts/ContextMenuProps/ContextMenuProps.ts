@@ -18,4 +18,4 @@ export interface ContextMenuPropsReadme extends ContextMenuPropsBase {
   readonly nodeName: string
 }
 
-export type ContextMenuProps = ContextMenuPropsExplorer | ContextMenuPropsReadme
+export type ContextMenuProps = ContextMenuPropsExplorer | ContextMenuPropsReadme | ContextMenuPropsIcon
