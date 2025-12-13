@@ -4,15 +4,6 @@ import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/Ext
 import * as CopyImageUrl from '../src/parts/CopyImageUrl/CopyImageUrl.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 
-// Mock location for getImageCopyUrl
-Object.defineProperty(globalThis, 'location', {
-  value: {
-    host: 'example.com',
-    protocol: 'https:',
-  },
-  writable: true,
-})
-
 test('copyImageUrl calls writeText with absolute URL and returns state unchanged', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'ClipBoard.writeText': () => {
@@ -24,6 +15,8 @@ test('copyImageUrl calls writeText with absolute URL and returns state unchanged
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     iconSrc,
+    locationHost: 'example.com',
+    locationProtocol: 'https:',
   }
 
   const result = await CopyImageUrl.copyImageUrl(state)

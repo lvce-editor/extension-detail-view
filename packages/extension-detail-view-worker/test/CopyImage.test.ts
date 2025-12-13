@@ -5,15 +5,6 @@ import * as CopyImage from '../src/parts/CopyImage/CopyImage.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 
-// Mock location for getImageCopyUrl
-Object.defineProperty(globalThis, 'location', {
-  value: {
-    host: 'example.com',
-    protocol: 'https:',
-  },
-  writable: true,
-})
-
 test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state unchanged', async () => {
   const mockBlob = { size: 4, type: 'image/png' }
 
@@ -31,6 +22,8 @@ test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state u
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     iconSrc,
+    locationHost: 'example.com',
+    locationProtocol: 'https:',
   }
 
   const result = await CopyImage.copyImage(state)

@@ -158,3 +158,4 @@ test('handleExtensionsStatusUpdate should propagate errors from getRuntimeStatus
   await expect(handleExtensionsStatusUpdate(state)).rejects.toThrow('Runtime status error')
   expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'failing-extension']])
 })
+
