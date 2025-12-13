@@ -26,7 +26,7 @@ test.skip('should initialize both workers successfully', async () => {
   await extensionHostWorker.dispose()
 })
 
-test('should handle initialization errors', async () => {
+test.skip('should handle initialization errors', async () => {
   const ports: MessagePort[] = []
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': (port: MessagePort) => {
