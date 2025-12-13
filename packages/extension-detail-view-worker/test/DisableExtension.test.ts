@@ -15,7 +15,7 @@ test('disable extension', async () => {
 test('handles error during disable', async () => {
   const error = new Error('Failed to disable extension')
   const mockRpc = ExtensionManagementWorker.registerMockRpc({
-    'Extensions.disable': () => {
+    'Extensions.disable': async () => {
       throw error
     },
   })
