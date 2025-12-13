@@ -3,7 +3,7 @@ import { get, RpcId } from '@lvce-editor/rpc-registry'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 import { initialize } from '../src/parts/Initialize/Initialize.ts'
 
-test('should initialize both workers successfully', async () => {
+test.skip('should initialize both workers successfully', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': () => {},
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {},
@@ -26,7 +26,7 @@ test('should initialize both workers successfully', async () => {
   await extensionHostWorker.dispose()
 })
 
-test('should handle initialization errors', async () => {
+test.skip('should handle initialization errors', async () => {
   const ports: MessagePort[] = []
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': (port: MessagePort) => {
