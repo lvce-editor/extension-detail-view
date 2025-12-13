@@ -48,6 +48,7 @@ export const loadContent = async (
   const readmeContent = hasReadme ? await GetExtensionReadme.loadReadmeContent(readmeUrl) : ExtensionDetailStrings.noReadmeFound()
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   const locationProtocol = location.protocol
+  const locationHost = location.host
 
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
@@ -103,6 +104,7 @@ export const loadContent = async (
     hasReadme,
     iconSrc,
     installationEntries,
+    locationHost,
     locationProtocol,
     marketplaceEntries,
     name,

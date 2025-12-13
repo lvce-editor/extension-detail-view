@@ -4,15 +4,6 @@ import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/Ext
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as OpenImageInNewTab from '../src/parts/OpenImageInNewTab/OpenImageInNewTab.ts'
 
-// Mock location for getImageCopyUrl
-Object.defineProperty(globalThis, 'location', {
-  value: {
-    host: 'example.com',
-    protocol: 'https:',
-  },
-  writable: true,
-})
-
 test('openImageInNewTab calls openUrl with absolute icon url and returns state', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'Open.openUrl': () => {
@@ -24,6 +15,8 @@ test('openImageInNewTab calls openUrl with absolute icon url and returns state',
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     iconSrc,
+    locationHost: 'example.com',
+    locationProtocol: 'https:',
   }
 
   const result = await OpenImageInNewTab.openImageInNewTab(state)
