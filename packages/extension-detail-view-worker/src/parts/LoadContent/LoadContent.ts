@@ -24,6 +24,10 @@ import * as Path from '../Path/Path.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
 
+const isEnabled = (tab: Tab): boolean => {
+  return tab.enabled
+}
+
 export const loadContent = async (
   state: ExtensionDetailState,
   platform: number,
@@ -67,7 +71,7 @@ export const loadContent = async (
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
   const hasFeatures = features.length > 0
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog)
-  const enabledTabs = tabs.filter((tab) => tab.enabled)
+  const enabledTabs = tabs.filter(isEnabled)
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
   const showSizeLink = platform !== PlatformType.Web
   const { categories, displaySize, folderSize, installationEntries, marketplaceEntries, resources } = await loadSideBarContent(
