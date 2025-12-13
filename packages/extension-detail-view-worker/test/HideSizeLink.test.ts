@@ -129,4 +129,3 @@ test('hideSizeLink works with empty extensionId and extensionVersion', () => {
     },
   ])
 })
-

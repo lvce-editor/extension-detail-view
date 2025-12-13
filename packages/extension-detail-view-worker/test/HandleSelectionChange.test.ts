@@ -21,4 +21,3 @@ test('handleSelectionChange - returns state unchanged regardless of selection', 
   expect(result.name).toBe('Test Extension')
   expect(result.readmeScrollTop).toBe(100)
 })
-
