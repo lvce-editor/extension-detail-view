@@ -47,7 +47,9 @@ test('should initialize both workers successfully', async () => {
 test('should handle initialization errors', async () => {
   const ports: MessagePort[] = []
   const mockRpc = RendererWorker.registerMockRpc({
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': () => {},
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': (port: MessagePort) => {
+      ports.push(port)
+    },
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker': (port: MessagePort) => {
       ports.push(port)
     },
