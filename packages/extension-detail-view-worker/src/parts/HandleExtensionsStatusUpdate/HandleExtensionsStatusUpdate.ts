@@ -2,7 +2,8 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import * as FeatureRuntimeStatusDetails from '../FeatureRuntimeStatusDetails/FeatureRuntimeStatusDetails.ts'
 
 export const handleExtensionsStatusUpdate = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const details = await FeatureRuntimeStatusDetails.getRuntimeStatusDetails(state.extension)
+  const { extension } = state
+  const details = await FeatureRuntimeStatusDetails.getRuntimeStatusDetails(extension)
   return {
     ...state,
     ...details,
