@@ -1,5 +1,5 @@
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { ExtensionManagementWorker } from '@lvce-editor/rpc-registry'
 
 export const disableExtension = (id: string): Promise<any> => {
-  return RendererWorker.disableExtension(id)
+  return ExtensionManagementWorker.disable(id)
 }
