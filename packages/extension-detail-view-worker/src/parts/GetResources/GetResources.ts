@@ -4,13 +4,10 @@ import { getLicenseLink } from '../GetLicenseLink/GetLicenseLink.ts'
 import { getIssuesLink, getRepositoryLink } from '../GetRepositoryLink/GetRepositoryLink.ts'
 
 export const getResources = (isBuiltin: boolean, extension: unknown): readonly Resource[] => {
-  if (isBuiltin) {
-    return []
-  }
   const repositoryLink = getRepositoryLink(extension)
   const issueLink = getIssuesLink(extension)
   const licenseLink = getLicenseLink(extension)
-  // TODO
+  // TODO hide marketplace link for builtin extensions
   return [
     {
       icon: 'LinkExternal',
