@@ -24,6 +24,23 @@ export const getAdditionalDetailsVirtualDom = (
   if (!showAdditionalDetails) {
     return []
   }
+  const sections: readonly VirtualDomNode[] = [
+    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(firstHeading, entries, GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
+    ...(secondEntries.length > 0
+      ? GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(
+          secondHeading,
+          secondEntries,
+          GetMoreInfoVirtualDom.getMoreInfoVirtualDom,
+        )
+      : []),
+    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(thirdHeading, categories, GetCategoriesDom.getCategoriesDom),
+    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(
+      fourthHeading,
+      resources,
+      GetResourcesVirtualDom.getResourcesVirtualDom,
+    ),
+  ]
+  const childCount = secondEntries.length > 0 ? 4 : 3
   return [
     {
       childCount: 1,
@@ -31,23 +48,12 @@ export const getAdditionalDetailsVirtualDom = (
       type: VirtualDomElements.Aside,
     },
     {
-      childCount: 4,
+      childCount: childCount,
       className: ClassNames.AdditionalDetails,
       onContextMenu: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },
-    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(firstHeading, entries, GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
-    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(
-      secondHeading,
-      secondEntries,
-      GetMoreInfoVirtualDom.getMoreInfoVirtualDom,
-    ),
-    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(thirdHeading, categories, GetCategoriesDom.getCategoriesDom),
-    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(
-      fourthHeading,
-      resources,
-      GetResourcesVirtualDom.getResourcesVirtualDom,
-    ),
+    ...sections,
   ]
 }
