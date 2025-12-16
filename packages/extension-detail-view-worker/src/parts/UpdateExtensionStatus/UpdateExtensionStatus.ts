@@ -4,12 +4,12 @@ import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 
 export interface UpdateFunction {
-  (extensionId: string): Promise<any>
+  (extensionId: string, platform: number): Promise<any>
 }
 
 export const updateExtensionStatus = async (state: ExtensionDetailState, updateFunction: UpdateFunction): Promise<ExtensionDetailState> => {
   const { extensionId, hasColorTheme, platform } = state
-  const error = await updateFunction(extensionId)
+  const error = await updateFunction(extensionId, platform)
   if (error) {
     await RendererWorker.confirm(`${error}`)
   }
