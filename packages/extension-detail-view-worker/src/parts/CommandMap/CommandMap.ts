@@ -33,6 +33,7 @@ import * as HandleReadmeClick from '../HandleReadmeClick/HandleReadmeClick.ts'
 import { handleReadmeContextMenu } from '../HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
 import * as HandleScroll from '../HandleScroll/HandleScroll.ts'
 import { handleSelectionChange } from '../HandleSelectionChange/HandleSelectionChange.ts'
+import { handleTabFocus } from '../HandleTabFocus/HandleTabFocus.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import { hideSizeLink } from '../HideSizeLink/HideSizeLink.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
@@ -78,6 +79,7 @@ export const commandMap = {
   'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
   'ExtensionDetail.handleScroll': WrapCommand.wrapCommand(HandleScroll.handleScroll),
   'ExtensionDetail.handleSelectionChange': WrapCommand.wrapCommand(handleSelectionChange),
+  'ExtensionDetail.handleTabFocus': WrapCommand.wrapGetter(handleTabFocus),
   'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.handleWheel': WrapCommand.wrapCommand(HandleScroll.handleScroll), // deprecated
   'ExtensionDetail.hideSizeLink': WrapCommand.wrapCommand(hideSizeLink),

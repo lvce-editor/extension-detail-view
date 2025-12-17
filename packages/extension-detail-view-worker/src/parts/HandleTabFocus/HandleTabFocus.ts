@@ -2,7 +2,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 
 export const handleTabFocus = (state: ExtensionDetailState, name: string): ExtensionDetailState => {
   const tabIndex = state.tabs.findIndex((tab) => tab.name === name)
-  const newFocusedTabIndex = tabIndex >= 0 ? tabIndex : state.focusedTabIndex
+  const newFocusedTabIndex = tabIndex === -1 ? state.focusedTabIndex : tabIndex
   return {
     ...state,
     focusedTabIndex: newFocusedTabIndex,

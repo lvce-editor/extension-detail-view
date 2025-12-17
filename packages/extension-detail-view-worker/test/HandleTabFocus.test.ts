@@ -27,8 +27,8 @@ test('handleTabFocus updates focusedTabIndex to match tab with given name', () =
   ]
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    tabs,
     focusedTabIndex: 0,
+    tabs,
   }
   const result = HandleTabFocus.handleTabFocus(state, 'Features')
   expect(result.focusedTabIndex).toBe(1)
@@ -51,8 +51,8 @@ test('handleTabFocus updates focusedTabIndex to first tab when name matches firs
   ]
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    tabs,
     focusedTabIndex: 1,
+    tabs,
   }
   const result = HandleTabFocus.handleTabFocus(state, 'Details')
   expect(result.focusedTabIndex).toBe(0)
@@ -69,8 +69,8 @@ test('handleTabFocus keeps focusedTabIndex when tab name not found', () => {
   ]
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    tabs,
     focusedTabIndex: 0,
+    tabs,
   }
   const result = HandleTabFocus.handleTabFocus(state, 'NonExistent')
   expect(result.focusedTabIndex).toBe(0)
@@ -93,9 +93,9 @@ test('handleTabFocus does not modify other state properties', () => {
   ]
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    tabs,
     focusedTabIndex: 0,
     name: 'Test Extension',
+    tabs,
   }
   const result = HandleTabFocus.handleTabFocus(state, 'Features')
   expect(result.name).toBe('Test Extension')
