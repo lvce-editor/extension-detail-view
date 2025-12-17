@@ -10,6 +10,7 @@ import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import * as FocusNextTab from '../FocusNextTab/FocusNextTab.ts'
 import * as FocusPreviousTab from '../FocusPreviousTab/FocusPreviousTab.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
+import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
@@ -54,6 +55,7 @@ export const commandMap = {
   'ExtensionDetail.focusNextTab': WrapCommand.wrapCommand(FocusNextTab.focusNextTab),
   'ExtensionDetail.focusPreviousTab': WrapCommand.wrapCommand(FocusPreviousTab.focusPreviousTab),
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
+  'ExtensionDetail.getKeyBindings': getKeyBindings,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.getMenuEntries2': WrapCommand.wrapGetter(getMenuEntries2),
   'ExtensionDetail.getMenuIds': getMenuIds,
