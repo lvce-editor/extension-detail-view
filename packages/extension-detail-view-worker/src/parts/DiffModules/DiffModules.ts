@@ -4,6 +4,6 @@ import * as DiffItems from '../DiffItems/DiffItems.ts'
 import * as DiffScrollTop from '../DiffScrollTop/DiffScrollTop.ts'
 import * as DiffType from '../DiffType/DiffType.ts'
 
-export const modules = [DiffItems.isEqual, DiffFocus.isEqual, DiffScrollTop.isEqual, DiffCss.isEqual]
+export const modules = [DiffItems.isEqual, DiffFocus.isEqual, DiffScrollTop.isEqual, DiffCss.isEqual, DiffFocus.isEqual]
 
-export const numbers = [DiffType.RenderItems, DiffType.RenderFocus, DiffType.RenderScrollTop, DiffType.RenderCss]
+export const numbers = [DiffType.RenderItems, DiffType.RenderFocus, DiffType.RenderScrollTop, DiffType.RenderCss, DiffType.RenderFocusContext]
