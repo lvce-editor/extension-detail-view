@@ -8,6 +8,7 @@ import * as Dispose from '../Dispose/Dispose.ts'
 import * as ExecuteCopy from '../ExecuteCopy/ExecuteCopy.ts'
 import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
+import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
@@ -50,6 +51,7 @@ export const commandMap = {
   'ExtensionDetail.dispose': Dispose.dispose,
   'ExtensionDetail.executeCopy': WrapCommand.wrapCommand(ExecuteCopy.executeCopy),
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
+  'ExtensionDetail.getKeyBindings': getKeyBindings,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.getMenuEntries2': WrapCommand.wrapGetter(getMenuEntries2),
   'ExtensionDetail.getMenuIds': getMenuIds,
