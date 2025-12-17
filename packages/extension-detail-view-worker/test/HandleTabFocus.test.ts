@@ -101,3 +101,118 @@ test('handleTabFocus does not modify other state properties', () => {
   expect(result.name).toBe('Test Extension')
   expect(result.focusedTabIndex).toBe(1)
 })
+
+test('handleTabFocus updates focusedTabIndex to last tab', () => {
+  const tabs: readonly Tab[] = [
+    {
+      enabled: true,
+      label: 'Details',
+      name: 'Details',
+      selected: true,
+    },
+    {
+      enabled: true,
+      label: 'Features',
+      name: 'Features',
+      selected: false,
+    },
+    {
+      enabled: true,
+      label: 'Changelog',
+      name: 'Changelog',
+      selected: false,
+    },
+  ]
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    focusedTabIndex: 0,
+    tabs,
+  }
+  const result = HandleTabFocus.handleTabFocus(state, 'Changelog')
+  expect(result.focusedTabIndex).toBe(2)
+})
+
+test('handleTabFocus keeps focusedTabIndex when tabs array is empty', () => {
+  const tabs: readonly Tab[] = []
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    focusedTabIndex: 1,
+    tabs,
+  }
+  const result = HandleTabFocus.handleTabFocus(state, 'AnyName')
+  expect(result.focusedTabIndex).toBe(1)
+})
+
+test('handleTabFocus updates focusedTabIndex when already focused on different tab', () => {
+  const tabs: readonly Tab[] = [
+    {
+      enabled: true,
+      label: 'Details',
+      name: 'Details',
+      selected: true,
+    },
+    {
+      enabled: true,
+      label: 'Features',
+      name: 'Features',
+      selected: false,
+    },
+    {
+      enabled: true,
+      label: 'Changelog',
+      name: 'Changelog',
+      selected: false,
+    },
+  ]
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    focusedTabIndex: 2,
+    tabs,
+  }
+  const result = HandleTabFocus.handleTabFocus(state, 'Details')
+  expect(result.focusedTabIndex).toBe(0)
+})
+
+test('handleTabFocus keeps focusedTabIndex when focusedTabIndex is out of bounds and tab name not found', () => {
+  const tabs: readonly Tab[] = [
+    {
+      enabled: true,
+      label: 'Details',
+      name: 'Details',
+      selected: true,
+    },
+  ]
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    focusedTabIndex: 5,
+    tabs,
+  }
+  const result = HandleTabFocus.handleTabFocus(state, 'NonExistent')
+  expect(result.focusedTabIndex).toBe(5)
+})
+
+test('handleTabFocus returns new state object', () => {
+  const tabs: readonly Tab[] = [
+    {
+      enabled: true,
+      label: 'Details',
+      name: 'Details',
+      selected: true,
+    },
+    {
+      enabled: true,
+      label: 'Features',
+      name: 'Features',
+      selected: false,
+    },
+  ]
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    focusedTabIndex: 0,
+    tabs,
+  }
+  const result = HandleTabFocus.handleTabFocus(state, 'Features')
+  expect(result).not.toBe(state)
+  expect(result.focusedTabIndex).toBe(1)
+  expect(state.focusedTabIndex).toBe(0)
+})

@@ -80,7 +80,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleTabFocus,
-      params: ['handleTabFocus'],
+      params: ['handleTabFocus', EventExpression.TargetName],
     },
   ]
 }
