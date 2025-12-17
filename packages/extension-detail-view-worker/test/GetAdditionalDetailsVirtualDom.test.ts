@@ -1,6 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetAdditionalDetailsEntryVirtualDom from '../src/parts/GetAdditionalDetailsEntryVirtualDom/GetAdditionalDetailsEntryVirtualDom.ts'
 import * as GetAdditionalDetailsVirtualDom from '../src/parts/GetAdditionalDetailsVirtualDom/GetAdditionalDetailsVirtualDom.ts'
 import * as GetCategoriesDom from '../src/parts/GetCategoriesDom/GetCategoriesDom.ts'
@@ -43,7 +44,7 @@ test('getAdditionalDetailsVirtualDom - showAdditionalDetails true with empty dat
     {
       childCount: 3,
       className: ClassNames.AdditionalDetails,
-      onContextMenu: 15,
+      onContextMenu: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },
@@ -78,7 +79,7 @@ test('getAdditionalDetailsVirtualDom - with sample data', () => {
     {
       childCount: 4,
       className: ClassNames.AdditionalDetails,
-      onContextMenu: 15,
+      onContextMenu: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },
@@ -114,7 +115,7 @@ test('getAdditionalDetailsVirtualDom - different headings', () => {
     {
       childCount: 3,
       className: ClassNames.AdditionalDetails,
-      onContextMenu: 15,
+      onContextMenu: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },

@@ -78,5 +78,9 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       name: DomEventListenerFunctions.HandleSelectionChange,
       params: ['handleSelectionChange'],
     },
+    {
+      name: DomEventListenerFunctions.HandleTabFocus,
+      params: ['handleTabFocus', EventExpression.TargetName],
+    },
   ]
 }

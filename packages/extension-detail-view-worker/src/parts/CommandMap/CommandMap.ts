@@ -7,6 +7,8 @@ import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
 import * as ExecuteCopy from '../ExecuteCopy/ExecuteCopy.ts'
 import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
+import * as FocusNextTab from '../FocusNextTab/FocusNextTab.ts'
+import * as FocusPreviousTab from '../FocusPreviousTab/FocusPreviousTab.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
@@ -31,6 +33,7 @@ import * as HandleReadmeClick from '../HandleReadmeClick/HandleReadmeClick.ts'
 import { handleReadmeContextMenu } from '../HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
 import * as HandleScroll from '../HandleScroll/HandleScroll.ts'
 import { handleSelectionChange } from '../HandleSelectionChange/HandleSelectionChange.ts'
+import { handleTabFocus } from '../HandleTabFocus/HandleTabFocus.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import { hideSizeLink } from '../HideSizeLink/HideSizeLink.ts'
 import * as Initialize from '../Initialize/Initialize.ts'
@@ -50,6 +53,8 @@ export const commandMap = {
   'ExtensionDetail.diff2': Diff2.diff2,
   'ExtensionDetail.dispose': Dispose.dispose,
   'ExtensionDetail.executeCopy': WrapCommand.wrapCommand(ExecuteCopy.executeCopy),
+  'ExtensionDetail.focusNextTab': WrapCommand.wrapCommand(FocusNextTab.focusNextTab),
+  'ExtensionDetail.focusPreviousTab': WrapCommand.wrapCommand(FocusPreviousTab.focusPreviousTab),
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
   'ExtensionDetail.getKeyBindings': getKeyBindings,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
@@ -74,6 +79,7 @@ export const commandMap = {
   'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
   'ExtensionDetail.handleScroll': WrapCommand.wrapCommand(HandleScroll.handleScroll),
   'ExtensionDetail.handleSelectionChange': WrapCommand.wrapCommand(handleSelectionChange),
+  'ExtensionDetail.handleTabFocus': WrapCommand.wrapGetter(handleTabFocus),
   'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.handleWheel': WrapCommand.wrapCommand(HandleScroll.handleScroll), // deprecated
   'ExtensionDetail.hideSizeLink': WrapCommand.wrapCommand(hideSizeLink),

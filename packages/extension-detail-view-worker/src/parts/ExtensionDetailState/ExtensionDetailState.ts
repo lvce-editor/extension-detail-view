@@ -35,6 +35,7 @@ export interface ExtensionDetailState {
   readonly features: readonly Feature[]
   readonly featuresVirtualDom: readonly VirtualDomNode[]
   readonly focus: number
+  readonly focusedTabIndex: number
   readonly folderSize: number
   readonly hasColorTheme: boolean
   readonly hasReadme: boolean

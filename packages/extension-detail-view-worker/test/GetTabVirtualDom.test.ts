@@ -2,6 +2,7 @@ import { expect, test } from '@jest/globals'
 import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Tab } from '../src/parts/Tab/Tab.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetTabVirtualDom from '../src/parts/GetTabVirtualDom/GetTabVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
@@ -13,14 +14,15 @@ test('selected tab', () => {
     name: 'Details',
     selected: true,
   }
-  expect(GetTabVirtualDom.getTabVirtualDom(tab)).toEqual([
+  expect(GetTabVirtualDom.getTabVirtualDom(tab, 0, 0)).toEqual([
     {
       ariaSelected: true,
       childCount: 1,
       className: `${ClassNames.ExtensionDetailTab} ${ClassNames.ExtensionDetailTabSelected}`,
       name: 'Details',
+      onFocus: DomEventListenerFunctions.HandleTabFocus,
       role: AriaRoles.Tab,
-      tabIndex: -1,
+      tabIndex: 0,
       type: VirtualDomElements.Button,
     },
     text(ExtensionDetailStrings.details()),
@@ -34,12 +36,13 @@ test('unselected tab', () => {
     name: 'Features',
     selected: false,
   }
-  expect(GetTabVirtualDom.getTabVirtualDom(tab)).toEqual([
+  expect(GetTabVirtualDom.getTabVirtualDom(tab, 1, 0)).toEqual([
     {
       ariaSelected: false,
       childCount: 1,
       className: ClassNames.ExtensionDetailTab,
       name: 'Features',
+      onFocus: DomEventListenerFunctions.HandleTabFocus,
       role: AriaRoles.Tab,
       tabIndex: -1,
       type: VirtualDomElements.Button,
@@ -55,12 +58,13 @@ test('tab with different label and name', () => {
     name: 'internal-name',
     selected: false,
   }
-  expect(GetTabVirtualDom.getTabVirtualDom(tab)).toEqual([
+  expect(GetTabVirtualDom.getTabVirtualDom(tab, 0, 1)).toEqual([
     {
       ariaSelected: false,
       childCount: 1,
       className: ClassNames.ExtensionDetailTab,
       name: 'internal-name',
+      onFocus: DomEventListenerFunctions.HandleTabFocus,
       role: AriaRoles.Tab,
       tabIndex: -1,
       type: VirtualDomElements.Button,

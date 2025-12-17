@@ -90,7 +90,8 @@ test('diff2 should return multiple diff types when multiple modules return false
   expect(result).toContain(DiffType.RenderFocus)
   expect(result).toContain(DiffType.RenderScrollTop)
   expect(result).toContain(DiffType.RenderCss)
-  expect(result).toHaveLength(4)
+  expect(result).toContain(DiffType.RenderFocusContext)
+  expect(result).toHaveLength(5)
 })
 
 test('diff2 should throw error for non-existent uid', () => {

@@ -15,3 +15,4 @@ export const HandleTabsClick = 14
 export const HandleAdditionalDetailContextMenu = 15
 export const HandleReadmeClick = 16
 export const HandleSelectionChange = 17
+export const HandleTabFocus = 18

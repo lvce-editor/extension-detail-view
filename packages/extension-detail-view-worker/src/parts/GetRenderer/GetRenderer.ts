@@ -3,6 +3,7 @@ import * as DiffType from '../DiffType/DiffType.ts'
 import { renderCss } from '../RenderCss/RenderCss.ts'
 import * as RenderDom from '../RenderDom/RenderDom.ts'
 import * as RenderFocus from '../RenderFocus/RenderFocus.ts'
+import { renderFocusContext } from '../RenderFocusContext/RenderFocusContext.ts'
 import * as RenderScrollTop from '../RenderScrollTop/RenderScrollTop.ts'
 
 export const getRenderer = (diffType: number): Renderer => {
@@ -11,6 +12,8 @@ export const getRenderer = (diffType: number): Renderer => {
       return renderCss
     case DiffType.RenderFocus:
       return RenderFocus.renderFocus
+    case DiffType.RenderFocusContext:
+      return renderFocusContext
     case DiffType.RenderItems:
       return RenderDom.renderDom
     case DiffType.RenderScrollTop:
