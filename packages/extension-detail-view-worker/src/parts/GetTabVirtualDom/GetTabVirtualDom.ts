@@ -1,6 +1,7 @@
 import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getTabClassName } from '../GetTabClassName/GetTabClassName.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
@@ -16,6 +17,7 @@ export const getTabVirtualDom = (tab: Tab, tabIndex: number, focusedTabIndex: nu
       childCount: 1,
       className,
       name,
+      onFocus: DomEventListenerFunctions.HandleTabFocus,
       role: AriaRoles.Tab,
       tabIndex: tabIndexValue,
       type: VirtualDomElements.Button,
