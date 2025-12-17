@@ -21,6 +21,7 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
     changelogVirtualDom,
     description,
     detailsVirtualDom,
+    focusedTabIndex,
     iconSrc,
     name,
     resources,
@@ -40,7 +41,7 @@ export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, sel
       type: VirtualDomElements.Div,
     },
     ...GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(name, iconSrc, description, badge, buttons, settingsButtonEnabled),
-    ...GetTabsVirtualDom.getTabsVirtualDom(tabs),
+    ...GetTabsVirtualDom.getTabsVirtualDom(tabs, focusedTabIndex),
     ...GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom(
       detailsVirtualDom,
       selectedTab,

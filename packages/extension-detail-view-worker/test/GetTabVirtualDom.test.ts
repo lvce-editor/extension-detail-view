@@ -13,14 +13,14 @@ test('selected tab', () => {
     name: 'Details',
     selected: true,
   }
-  expect(GetTabVirtualDom.getTabVirtualDom(tab)).toEqual([
+  expect(GetTabVirtualDom.getTabVirtualDom(tab, 0, 0)).toEqual([
     {
       ariaSelected: true,
       childCount: 1,
       className: `${ClassNames.ExtensionDetailTab} ${ClassNames.ExtensionDetailTabSelected}`,
       name: 'Details',
       role: AriaRoles.Tab,
-      tabIndex: -1,
+      tabIndex: 0,
       type: VirtualDomElements.Button,
     },
     text(ExtensionDetailStrings.details()),
@@ -34,7 +34,7 @@ test('unselected tab', () => {
     name: 'Features',
     selected: false,
   }
-  expect(GetTabVirtualDom.getTabVirtualDom(tab)).toEqual([
+  expect(GetTabVirtualDom.getTabVirtualDom(tab, 1, 0)).toEqual([
     {
       ariaSelected: false,
       childCount: 1,
@@ -55,7 +55,7 @@ test('tab with different label and name', () => {
     name: 'internal-name',
     selected: false,
   }
-  expect(GetTabVirtualDom.getTabVirtualDom(tab)).toEqual([
+  expect(GetTabVirtualDom.getTabVirtualDom(tab, 0, 1)).toEqual([
     {
       ariaSelected: false,
       childCount: 1,

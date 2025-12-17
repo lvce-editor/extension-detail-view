@@ -28,6 +28,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     features: [],
     featuresVirtualDom: [],
     focus: 0,
+    focusedTabIndex: 0,
     folderSize: 0,
     hasColorTheme: false,
     hasReadme: false,

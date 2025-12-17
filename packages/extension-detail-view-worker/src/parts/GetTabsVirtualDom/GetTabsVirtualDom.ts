@@ -4,17 +4,19 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetTabVirtualDom from '../GetTabVirtualDom/GetTabVirtualDom.ts'
+import * as InputName from '../InputName/InputName.ts'
 
-export const getTabsVirtualDom = (tabs: readonly Tab[]): readonly VirtualDomNode[] => {
+export const getTabsVirtualDom = (tabs: readonly Tab[], focusedTabIndex: number): readonly VirtualDomNode[] => {
+  const detailsAndFeaturesTabs = tabs.filter((tab) => tab.name === InputName.Details || tab.name === InputName.Features)
   return [
     {
-      childCount: tabs.length,
+      childCount: detailsAndFeaturesTabs.length,
       className: ClassNames.ExtensionDetailTabs,
       onClick: DomEventListenerFunctions.HandleTabsClick,
       role: AriaRoles.TabList,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },
-    ...tabs.flatMap(GetTabVirtualDom.getTabVirtualDom),
+    ...detailsAndFeaturesTabs.flatMap((tab, index) => GetTabVirtualDom.getTabVirtualDom(tab, index, focusedTabIndex)),
   ]
 }

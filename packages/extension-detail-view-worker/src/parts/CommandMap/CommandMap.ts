@@ -39,6 +39,8 @@ import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as Resize from '../Resize/Resize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
+import * as FocusNextTab from '../FocusNextTab/FocusNextTab.ts'
+import * as FocusPreviousTab from '../FocusPreviousTab/FocusPreviousTab.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
 
 export const commandMap = {
@@ -83,5 +85,7 @@ export const commandMap = {
   'ExtensionDetail.resize': WrapCommand.wrapCommand(Resize.resize),
   'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
+  'ExtensionDetail.focusNextTab': WrapCommand.wrapCommand(FocusNextTab.focusNextTab),
+  'ExtensionDetail.focusPreviousTab': WrapCommand.wrapCommand(FocusPreviousTab.focusPreviousTab),
   'ExtensionDetail.terminate': terminate,
 }

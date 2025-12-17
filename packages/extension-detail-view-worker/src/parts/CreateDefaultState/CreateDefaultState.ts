@@ -27,6 +27,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     features: [],
     featuresVirtualDom: [],
     focus: 0,
+    focusedTabIndex: 0,
     folderSize: 0,
     hasColorTheme: false,
     hasReadme: false,
