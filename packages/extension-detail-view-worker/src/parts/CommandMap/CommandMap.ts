@@ -7,6 +7,8 @@ import * as Diff2 from '../Diff2/Diff2.ts'
 import * as Dispose from '../Dispose/Dispose.ts'
 import * as ExecuteCopy from '../ExecuteCopy/ExecuteCopy.ts'
 import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
+import * as FocusNextTab from '../FocusNextTab/FocusNextTab.ts'
+import * as FocusPreviousTab from '../FocusPreviousTab/FocusPreviousTab.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
 import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
@@ -39,8 +41,6 @@ import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
 import * as Resize from '../Resize/Resize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
-import * as FocusNextTab from '../FocusNextTab/FocusNextTab.ts'
-import * as FocusPreviousTab from '../FocusPreviousTab/FocusPreviousTab.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
 
 export const commandMap = {
@@ -51,6 +51,8 @@ export const commandMap = {
   'ExtensionDetail.diff2': Diff2.diff2,
   'ExtensionDetail.dispose': Dispose.dispose,
   'ExtensionDetail.executeCopy': WrapCommand.wrapCommand(ExecuteCopy.executeCopy),
+  'ExtensionDetail.focusNextTab': WrapCommand.wrapCommand(FocusNextTab.focusNextTab),
+  'ExtensionDetail.focusPreviousTab': WrapCommand.wrapCommand(FocusPreviousTab.focusPreviousTab),
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
   'ExtensionDetail.getMenuEntries2': WrapCommand.wrapGetter(getMenuEntries2),
@@ -85,7 +87,5 @@ export const commandMap = {
   'ExtensionDetail.resize': WrapCommand.wrapCommand(Resize.resize),
   'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
-  'ExtensionDetail.focusNextTab': WrapCommand.wrapCommand(FocusNextTab.focusNextTab),
-  'ExtensionDetail.focusPreviousTab': WrapCommand.wrapCommand(FocusPreviousTab.focusPreviousTab),
   'ExtensionDetail.terminate': terminate,
 }
