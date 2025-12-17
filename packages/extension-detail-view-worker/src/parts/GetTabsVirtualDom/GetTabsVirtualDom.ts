@@ -14,7 +14,6 @@ export const getTabsVirtualDom = (tabs: readonly Tab[], focusedTabIndex: number)
       className: ClassNames.ExtensionDetailTabs,
       onClick: DomEventListenerFunctions.HandleTabsClick,
       role: AriaRoles.TabList,
-      tabIndex: 0,
       type: VirtualDomElements.Div,
     },
     ...detailsAndFeaturesTabs.flatMap((tab, index) => GetTabVirtualDom.getTabVirtualDom(tab, index, focusedTabIndex)),

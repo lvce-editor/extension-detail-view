@@ -30,7 +30,6 @@ test('getTabsVirtualDom - returns correct virtual dom structure', () => {
     className: ClassNames.ExtensionDetailTabs,
     onClick: DomEventListenerFunctions.HandleTabsClick,
     role: AriaRoles.TabList,
-    tabIndex: 0,
     type: VirtualDomElements.Div,
   })
 
@@ -49,7 +48,6 @@ test('getTabsVirtualDom - handles empty tabs array', () => {
     className: ClassNames.ExtensionDetailTabs,
     onClick: DomEventListenerFunctions.HandleTabsClick,
     role: AriaRoles.TabList,
-    tabIndex: 0,
     type: VirtualDomElements.Div,
   })
 

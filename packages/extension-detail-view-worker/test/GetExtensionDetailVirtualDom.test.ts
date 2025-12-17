@@ -56,7 +56,6 @@ test.skip('extension detail virtual dom with content', () => {
       className: 'ExtensionDetailTabs',
       onClick: 'handleTabsClick',
       role: 'tablist',
-      tabIndex: 0,
       type: VirtualDomElements.Div,
     },
     {
@@ -168,7 +167,6 @@ test.skip('extension detail virtual dom with empty content', () => {
       className: 'ExtensionDetailTabs',
       onClick: 'handleTabsClick',
       role: 'tablist',
-      tabIndex: 0,
       type: VirtualDomElements.Div,
     },
     {
