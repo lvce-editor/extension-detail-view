@@ -79,7 +79,7 @@ export const commandMap = {
   'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
   'ExtensionDetail.handleScroll': WrapCommand.wrapCommand(HandleScroll.handleScroll),
   'ExtensionDetail.handleSelectionChange': WrapCommand.wrapCommand(handleSelectionChange),
-  'ExtensionDetail.handleTabFocus': WrapCommand.wrapGetter(handleTabFocus),
+  'ExtensionDetail.handleTabFocus': WrapCommand.wrapCommand(handleTabFocus),
   'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.handleWheel': WrapCommand.wrapCommand(HandleScroll.handleScroll), // deprecated
   'ExtensionDetail.hideSizeLink': WrapCommand.wrapCommand(hideSizeLink),
