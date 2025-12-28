@@ -111,7 +111,7 @@ test('handleClickEnable preserves state properties', async () => {
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   ExtensionManagementWorker.registerMockRpc({
-    'Extensions.enable': () => {
+    'Extensions.enable2': () => {
       /**/
     },
   })
@@ -169,7 +169,7 @@ test('handleClickEnable handles extension not found', async () => {
   }
 
   const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
-    'Extensions.enable': () => {
+    'Extensions.enable2': () => {
       /**/
     },
   })
