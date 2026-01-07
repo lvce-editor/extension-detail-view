@@ -4,4 +4,3 @@ export const supportsFileSize = (uri: string): boolean => {
   }
   return true
 }
-
