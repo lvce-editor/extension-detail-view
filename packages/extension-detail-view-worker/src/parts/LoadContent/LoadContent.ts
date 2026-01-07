@@ -11,6 +11,7 @@ import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import { getCommit } from '../GetCommit/GetCommit.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
+import { getLinkProtectionEnabled } from '../GetLinkProtectionEnabled/GetLinkProtectionEnabled.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import { getPadding, getSideBarWidth } from '../GetPadding/GetPadding.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
@@ -85,6 +86,7 @@ export const loadContent = async (
   const padding = getPadding(width)
   const sideBarWidth = getSideBarWidth(width)
   const showSideBar = sideBarWidth > 0
+  const linkProtectionEnabled = await getLinkProtectionEnabled()
   return {
     ...state,
     badge,
@@ -108,6 +110,7 @@ export const loadContent = async (
     hasReadme,
     iconSrc,
     installationEntries,
+    linkProtectionEnabled,
     locationHost,
     locationProtocol,
     marketplaceEntries,
