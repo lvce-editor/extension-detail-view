@@ -4,6 +4,7 @@ import * as GetRenderer from '../src/parts/GetRenderer/GetRenderer.ts'
 import * as RenderCss from '../src/parts/RenderCss/RenderCss.ts'
 import * as RenderDom from '../src/parts/RenderDom/RenderDom.ts'
 import * as RenderFocus from '../src/parts/RenderFocus/RenderFocus.ts'
+import { renderFocusContext } from '../src/parts/RenderFocusContext/RenderFocusContext.ts'
 import * as RenderScrollTop from '../src/parts/RenderScrollTop/RenderScrollTop.ts'
 
 test('getRenderer - RenderItems', () => {
@@ -24,6 +25,11 @@ test('getRenderer - RenderScrollTop', () => {
 test('getRenderer - RenderCss', () => {
   const renderer = GetRenderer.getRenderer(DiffType.RenderCss)
   expect(renderer).toBe(RenderCss.renderCss)
+})
+
+test('getRenderer - RenderFocusContext', () => {
+  const renderer = GetRenderer.getRenderer(DiffType.RenderFocusContext)
+  expect(renderer).toBe(renderFocusContext)
 })
 
 test('getRenderer - unknown type throws', () => {
