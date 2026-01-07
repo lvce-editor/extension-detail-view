@@ -73,6 +73,11 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       preventDefault: true,
     },
     {
+      name: DomEventListenerFunctions.HandleResourceLinkClick,
+      params: ['handleResourceLinkClick', EventExpression.TargetHref],
+      preventDefault: true,
+    },
+    {
       name: DomEventListenerFunctions.HandleClickUninstall,
       params: ['handleClickUninstall'],
     },
