@@ -3,10 +3,14 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as InputName from '../InputName/InputName.ts'
 
+const isEnabled = (button: ExtensionDetailButton): boolean => {
+  return button.enabled
+}
+
 export const getExtensionDetailButtons = (hasColorTheme: boolean, isBuiltin: boolean, isDisabled: boolean): readonly ExtensionDetailButton[] => {
   const allActions: ExtensionDetailButton[] = [
     {
-      enabled: hasColorTheme,
+      enabled: hasColorTheme && !isDisabled,
       label: ExtensionDetailStrings.setColorTheme(),
       name: InputName.SetColorTheme,
       onClick: DomEventListenerFunctions.HandleClickSetColorTheme,
@@ -31,6 +35,6 @@ export const getExtensionDetailButtons = (hasColorTheme: boolean, isBuiltin: boo
     },
   ]
 
-  const filteredButtons = allActions.filter((button) => button.enabled)
+  const filteredButtons = allActions.filter(isEnabled)
   return filteredButtons
 }
