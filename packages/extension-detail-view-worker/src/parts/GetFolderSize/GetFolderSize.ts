@@ -1,12 +1,6 @@
 import { VError } from '@lvce-editor/verror'
 import * as FileSystemWorker from '../FileSystemWorker/FileSystemWorker.ts'
-
-const supportsFileSize = (uri: string): boolean => {
-  if (uri.startsWith('http:') || uri.startsWith('https://')) {
-    return false
-  }
-  return true
-}
+import { supportsFileSize } from '../SupportsFileSize/SupportsFileSize.ts'
 
 export const getFolderSize = async (uri: string): Promise<number> => {
   if (!uri) {

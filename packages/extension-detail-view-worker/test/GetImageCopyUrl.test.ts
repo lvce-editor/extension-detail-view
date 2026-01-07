@@ -12,3 +12,9 @@ test('getImageCopyUrl handles different icon paths', () => {
   const result = getImageCopyUrl(iconSrc, 'https:', 'example.com')
   expect(result).toBe('https://example.com/assets/icons/extension.svg')
 })
+
+test('getImageCopyUrl returns empty string when iconSrc is empty', () => {
+  const iconSrc = ''
+  const result = getImageCopyUrl(iconSrc, 'https:', 'example.com')
+  expect(result).toBe('')
+})

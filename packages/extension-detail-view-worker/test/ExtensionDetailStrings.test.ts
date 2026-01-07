@@ -28,6 +28,11 @@ test('copy', () => {
   expect(result).toBe(I18nString.i18nString(UiStrings.Copy))
 })
 
+test('copyLink', () => {
+  const result = ExtensionDetailStrings.copyLink()
+  expect(result).toBe(I18nString.i18nString(UiStrings.CopyLink))
+})
+
 test('copyImage', () => {
   const result = ExtensionDetailStrings.copyImage()
   expect(result).toBe(I18nString.i18nString(UiStrings.CopyImage))
@@ -238,4 +243,12 @@ test('repository returns correct i18n string', () => {
 
 test('license returns correct i18n string', () => {
   expect(ExtensionDetailStrings.license()).toBe('License')
+})
+
+test('downloadCount returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.downloadCount()).toBe('Downloads')
+})
+
+test('rating returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.rating()).toBe('Rating')
 })
