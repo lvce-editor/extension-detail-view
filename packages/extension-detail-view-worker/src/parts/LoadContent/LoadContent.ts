@@ -114,6 +114,7 @@ export const loadContent = async (
     name,
     paddingLeft: padding,
     paddingRight: padding,
+    platform,
     rating,
     readmeScrollTop,
     readmeUrl,
