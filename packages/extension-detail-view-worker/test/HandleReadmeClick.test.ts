@@ -114,3 +114,69 @@ test('handleReadmeClick handles http:// and https:// prefixes correctly', async 
     ['Open.openUrl', 'https://example.com/page?query=1'],
   ])
 })
+
+test('handleReadmeClick opens link when linkProtectionEnabled is false', async () => {
+  const mockRpc = RendererWorker.registerMockRpc({
+    'Open.openUrl': () => {
+      /**/
+    },
+  })
+
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    linkProtectionEnabled: false,
+  }
+  const href = 'https://example.com'
+
+  const result = await HandleReadmeClick.handleReadmeClick(state, 'A', href)
+
+  expect(mockRpc.invocations).toEqual([['Open.openUrl', href]])
+  expect(result).toBe(state)
+})
+
+test('handleReadmeClick calls confirm and opens link when linkProtectionEnabled is true and confirmed', async () => {
+  const mockRpc = RendererWorker.registerMockRpc({
+    'ConfirmPrompt.prompt': () => {
+      return true
+    },
+    'Open.openUrl': () => {
+      /**/
+    },
+  })
+
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    linkProtectionEnabled: true,
+  }
+  const href = 'https://example.com'
+
+  const result = await HandleReadmeClick.handleReadmeClick(state, 'A', href)
+
+  expect(mockRpc.invocations).toEqual([
+    ['ConfirmPrompt.prompt', `Do you want to open this external link?\n\n${href}`],
+    ['Open.openUrl', href],
+  ])
+  expect(result).toBe(state)
+})
+
+test('handleReadmeClick calls confirm and does not open link when linkProtectionEnabled is true and not confirmed', async () => {
+  const mockRpc = RendererWorker.registerMockRpc({
+    'ConfirmPrompt.prompt': () => {
+      return false
+    },
+    'Open.openUrl': () => {
+      /**/
+    },
+  })
+
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    linkProtectionEnabled: true,
+  }
+  const href = 'https://example.com'
+
+  const result = await HandleReadmeClick.handleReadmeClick(state, 'A', href)
+
+  expect(mockRpc.invocations).toEqual([['ConfirmPrompt.prompt', `Do you want to open this external link?\n\n${href}`]])
+  expect(result).toBe(state)
+})
