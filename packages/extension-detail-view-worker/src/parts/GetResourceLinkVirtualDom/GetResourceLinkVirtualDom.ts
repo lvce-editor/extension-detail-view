@@ -2,6 +2,7 @@ import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-wo
 import type { Resource } from '../Resource/Resource.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const getIconDom = (icon: string): readonly VirtualDomNode[] => {
@@ -30,6 +31,7 @@ export const getResourceLinkVirtualDom = (resource: Resource): readonly VirtualD
       childCount: 1 + iconDomCount,
       className: ClassNames.Resource,
       href: url,
+      onClick: DomEventListenerFunctions.HandleResourceLinkClick,
       rel: 'noopener noreferrer',
       target: '_blank',
       type: VirtualDomElements.A,
