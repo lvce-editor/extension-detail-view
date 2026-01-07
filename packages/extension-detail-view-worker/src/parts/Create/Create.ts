@@ -36,6 +36,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     importTime: 0,
     installationEntries: [],
     jsonValidation: [],
+    linkProtectionEnabled: false,
     locationHost: '',
     locationProtocol: '',
     marketplaceEntries: [],

@@ -35,6 +35,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     importTime: 0,
     installationEntries: [],
     jsonValidation: [],
+    linkProtectionEnabled: false,
     locationHost: '',
     locationProtocol: '',
     marketplaceEntries: [],
