@@ -58,3 +58,119 @@ test('renderFocus - with complex states', () => {
 
   expect(result).toEqual(['Viewlet.focusElementByName', ''])
 })
+
+test('renderFocus - when focus is 451 returns focus command with uid and tab name', () => {
+  const oldState: ExtensionDetailState = CreateDefaultState.createDefaultState()
+  const newState: ExtensionDetailState = {
+    ...CreateDefaultState.createDefaultState(),
+    focus: 451,
+    focusedTabIndex: 0,
+    tabs: [
+      {
+        enabled: true,
+        label: 'Details',
+        name: 'details-tab',
+        selected: true,
+      },
+    ],
+    uid: 123,
+  }
+
+  const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.focusElementByName', 123, 'details-tab'])
+})
+
+test('renderFocus - when focus is 451 with different tab index', () => {
+  const oldState: ExtensionDetailState = CreateDefaultState.createDefaultState()
+  const newState: ExtensionDetailState = {
+    ...CreateDefaultState.createDefaultState(),
+    focus: 451,
+    focusedTabIndex: 1,
+    tabs: [
+      {
+        enabled: true,
+        label: 'Details',
+        name: 'details-tab',
+        selected: false,
+      },
+      {
+        enabled: true,
+        label: 'Features',
+        name: 'features-tab',
+        selected: true,
+      },
+    ],
+    uid: 456,
+  }
+
+  const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.focusElementByName', 456, 'features-tab'])
+})
+
+test('renderFocus - when focus is 451 with different uid', () => {
+  const oldState: ExtensionDetailState = CreateDefaultState.createDefaultState()
+  const newState: ExtensionDetailState = {
+    ...CreateDefaultState.createDefaultState(),
+    focus: 451,
+    focusedTabIndex: 0,
+    tabs: [
+      {
+        enabled: true,
+        label: 'Settings',
+        name: 'settings-tab',
+        selected: true,
+      },
+    ],
+    uid: 789,
+  }
+
+  const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.focusElementByName', 789, 'settings-tab'])
+})
+
+test('renderFocus - when focus is not 451 returns empty name', () => {
+  const oldState: ExtensionDetailState = CreateDefaultState.createDefaultState()
+  const newState: ExtensionDetailState = {
+    ...CreateDefaultState.createDefaultState(),
+    focus: 450,
+    focusedTabIndex: 0,
+    tabs: [
+      {
+        enabled: true,
+        label: 'Details',
+        name: 'details-tab',
+        selected: true,
+      },
+    ],
+    uid: 123,
+  }
+
+  const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+})
+
+test('renderFocus - when focus is not 451 even with tabs and uid', () => {
+  const oldState: ExtensionDetailState = CreateDefaultState.createDefaultState()
+  const newState: ExtensionDetailState = {
+    ...CreateDefaultState.createDefaultState(),
+    focus: 452,
+    focusedTabIndex: 0,
+    tabs: [
+      {
+        enabled: true,
+        label: 'Details',
+        name: 'details-tab',
+        selected: true,
+      },
+    ],
+    uid: 999,
+  }
+
+  const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
+
+  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+})
