@@ -7,7 +7,13 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
   return [
     {
       name: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
-      params: ['handleAdditionalDetailsContextMenu', EventExpression.ClientX, EventExpression.ClientY, 'event.target.nodeName', 'event.target.href'],
+      params: [
+        'handleAdditionalDetailsContextMenu',
+        EventExpression.ClientX,
+        EventExpression.ClientY,
+        'event.target.nodeName',
+        EventExpression.TargetHref,
+      ],
       preventDefault: true,
     },
     {
@@ -63,7 +69,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleReadmeClick,
-      params: ['handleReadmeClick', 'event.target.nodeName', 'event.target.href'],
+      params: ['handleReadmeClick', 'event.target.nodeName', EventExpression.TargetHref],
       preventDefault: true,
     },
     {
