@@ -10,7 +10,7 @@ test('openUrl calls RendererWorker.openUrl with the correct uri', async () => {
   })
 
   const testUri = 'https://example.com'
-  await OpenExternal.openUrl(testUri)
+  await OpenExternal.openExternal(testUri, 0)
 
   expect(mockRpc.invocations).toEqual([['Open.openUrl', testUri]])
 })
