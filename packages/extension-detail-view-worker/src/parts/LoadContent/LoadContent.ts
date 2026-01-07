@@ -52,6 +52,7 @@ export const loadContent = async (
   const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUrl), existsFile(changelogUrl)])
   const readmeContent = hasReadme ? await GetExtensionReadme.loadReadmeContent(readmeUrl) : ExtensionDetailStrings.noReadmeFound()
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
+  // TODO maybe pass these as arguments also
   const locationProtocol = location.protocol
   const locationHost = location.host
 
