@@ -48,3 +48,9 @@ test.skip('returns all buttons when extension is builtin', () => {
     { enabled: false, label: ExtensionDetailStrings.uninstall(), name: InputName.Uninstall, onClick: 'handleClickUninstall' },
   ])
 })
+
+test('set color theme button is not shown when extension is disabled', () => {
+  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(true, false, true)
+  const setColorThemeButton = result.find((button) => button.name === InputName.SetColorTheme)
+  expect(setColorThemeButton).toBeUndefined()
+})
