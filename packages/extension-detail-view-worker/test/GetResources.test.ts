@@ -23,9 +23,22 @@ test.skip('getResources returns all resources', () => {
   ])
 })
 
-test.skip('getResources returns empty array when isBuiltin is true', () => {
+test.skip('getResources returns resources without marketplace link when isBuiltin is true', () => {
   const resources = GetResources.getResources(true, {})
-  expect(resources).toEqual([])
+  expect(resources).toEqual([
+    {
+      label: 'Issues',
+      url: '#',
+    },
+    {
+      label: 'Repository',
+      url: '#',
+    },
+    {
+      label: 'License',
+      url: '#',
+    },
+  ])
 })
 
 test.skip('getResources returns repository link when extension.repository is a string', () => {
