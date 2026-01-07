@@ -25,4 +25,3 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // assert - set color theme button should be visible again
   await expect(setColorThemeButton).toBeVisible()
 }
-
