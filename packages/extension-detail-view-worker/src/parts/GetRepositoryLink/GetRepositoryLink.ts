@@ -13,14 +13,3 @@ export const getRepositoryLink = (extension: unknown): string => {
   const validLink = ensureValidLink(raw)
   return validLink
 }
-
-export const getIssuesLink = (extension: unknown): string => {
-  const repositoryLink = getRepositoryLink(extension)
-  if (!repositoryLink) {
-    return ''
-  }
-  if (repositoryLink && repositoryLink.startsWith('https://github.com')) {
-    return `${repositoryLink}/issues`
-  }
-  return ''
-}

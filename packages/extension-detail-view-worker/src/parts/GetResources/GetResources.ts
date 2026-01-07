@@ -1,7 +1,8 @@
 import type { Resource } from '../Resource/Resource.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import { getIssuesLink } from '../GetIssuesLink/GetIssuesLink.ts'
 import { getLicenseLink } from '../GetLicenseLink/GetLicenseLink.ts'
-import { getIssuesLink, getRepositoryLink } from '../GetRepositoryLink/GetRepositoryLink.ts'
+import { getRepositoryLink } from '../GetRepositoryLink/GetRepositoryLink.ts'
 
 export const getResources = (isBuiltin: boolean, extension: unknown): readonly Resource[] => {
   const repositoryLink = getRepositoryLink(extension)
