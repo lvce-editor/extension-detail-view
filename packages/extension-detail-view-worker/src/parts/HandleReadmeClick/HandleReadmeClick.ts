@@ -6,12 +6,12 @@ const isExternalLink = (href: string): boolean => {
 }
 
 export const handleReadmeClick = async (state: ExtensionDetailState, nodeName: string, href: string): Promise<ExtensionDetailState> => {
-  const { linkProtectionEnabled } = state
+  const { linkProtectionEnabled, platform } = state
   if (!href || !isExternalLink(href)) {
     return state
   }
   // TODO what to do about relative links? open them in editor?
   // TODO what to do about mail links?
-  await handleReadmeLinkClick(linkProtectionEnabled, href)
+  await handleReadmeLinkClick(linkProtectionEnabled, platform, href)
   return state
 }

@@ -1,6 +1,7 @@
 import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { openExternal } from '../OpenExternal/OpenExternal.ts'
 
-export const handleReadmeLinkClick = async (linkProtectionEnabled: boolean, href: string): Promise<void> => {
+export const handleReadmeLinkClick = async (linkProtectionEnabled: boolean, platform: number, href: string): Promise<void> => {
   // TODO what to do about relative links? open them in editor?
   // TODO what to do about mail links?
   if (linkProtectionEnabled) {
@@ -10,7 +11,6 @@ export const handleReadmeLinkClick = async (linkProtectionEnabled: boolean, href
       return
     }
   }
-  await RendererWorker.openUrl(href)
-  // TODO check node name and href
+  await openExternal(href, platform)
   return
 }
