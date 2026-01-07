@@ -31,6 +31,7 @@ import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageContextMenu.ts'
 import * as HandleReadmeClick from '../HandleReadmeClick/HandleReadmeClick.ts'
 import { handleReadmeContextMenu } from '../HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
+import { handleResourceLinkClick } from '../HandleResourceLinkClick/HandleResourceLinkClick.ts'
 import * as HandleScroll from '../HandleScroll/HandleScroll.ts'
 import { handleSelectionChange } from '../HandleSelectionChange/HandleSelectionChange.ts'
 import { handleTabFocus } from '../HandleTabFocus/HandleTabFocus.ts'
@@ -77,6 +78,7 @@ export const commandMap = {
   'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
   'ExtensionDetail.handleReadmeClick': WrapCommand.wrapCommand(HandleReadmeClick.handleReadmeClick),
   'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
+  'ExtensionDetail.handleResourceLinkClick': WrapCommand.wrapCommand(handleResourceLinkClick),
   'ExtensionDetail.handleScroll': WrapCommand.wrapCommand(HandleScroll.handleScroll),
   'ExtensionDetail.handleSelectionChange': WrapCommand.wrapCommand(handleSelectionChange),
   'ExtensionDetail.handleTabFocus': WrapCommand.wrapCommand(handleTabFocus),
