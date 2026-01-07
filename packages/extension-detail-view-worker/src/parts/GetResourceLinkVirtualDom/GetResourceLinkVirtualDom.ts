@@ -31,7 +31,7 @@ export const getResourceLinkVirtualDom = (resource: Resource): readonly VirtualD
       childCount: 1 + iconDomCount,
       className: ClassNames.Resource,
       href: url,
-      onClick: DomEventListenerFunctions.hanresou,
+      onClick: DomEventListenerFunctions.HandleResourceLinkClick,
       rel: 'noopener noreferrer',
       target: '_blank',
       type: VirtualDomElements.A,
