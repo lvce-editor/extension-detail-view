@@ -110,10 +110,63 @@ test('feature programming languages virtual dom', () => {
       text: 'Snippets',
       type: VirtualDomElements.Text,
     },
-
+    {
+      childCount: 1,
+      type: VirtualDomElements.TBody,
+    },
+    {
+      childCount: 5,
+      type: VirtualDomElements.Tr,
+    },
+    {
+      childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
+    },
     {
       childCount: 0,
-      type: VirtualDomElements.TBody,
+      text: 'test',
+      type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
+    },
+    {
+      childCount: 0,
+      text: 'test',
+      type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
+    },
+    {
+      childCount: 0,
+      text: 'test',
+      type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
+    },
+    {
+      childCount: 0,
+      text: 'test',
+      type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
+    },
+    {
+      childCount: 0,
+      text: 'test',
+      type: VirtualDomElements.Text,
     },
   ])
 })
