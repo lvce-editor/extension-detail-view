@@ -3,10 +3,38 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Row } from '../src/parts/Row/Row.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetFeatureProgrammingLanguagesVirtualDom from '../src/parts/GetFeatureProgrammingLanguagesVirtualDom/GetFeatureProgrammingLanguagesVirtualDom.ts'
+import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('feature programming languages virtual dom', () => {
-  const programmingLanguages: readonly Row[] = []
+  const programmingLanguages: readonly Row[] = [
+    [
+      {
+        type: TableCellType.Text,
+        value: 'test',
+      },
+      {
+        type: TableCellType.Text,
+
+        value: 'test',
+      },
+      {
+        type: TableCellType.Text,
+
+        value: 'test',
+      },
+      {
+        type: TableCellType.Text,
+
+        value: 'test',
+      },
+      {
+        type: TableCellType.Text,
+
+        value: 'test',
+      },
+    ],
+  ]
   expect(GetFeatureProgrammingLanguagesVirtualDom.getFeatureProgrammingLanguagesVirtualDom(programmingLanguages)).toEqual([
     {
       childCount: 2,
@@ -82,10 +110,63 @@ test('feature programming languages virtual dom', () => {
       text: 'Snippets',
       type: VirtualDomElements.Text,
     },
-
+    {
+      childCount: 1,
+      type: VirtualDomElements.TBody,
+    },
+    {
+      childCount: 5,
+      type: VirtualDomElements.Tr,
+    },
+    {
+      childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
+    },
     {
       childCount: 0,
-      type: VirtualDomElements.TBody,
+      text: 'test',
+      type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
+    },
+    {
+      childCount: 0,
+      text: 'test',
+      type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
+    },
+    {
+      childCount: 0,
+      text: 'test',
+      type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
+    },
+    {
+      childCount: 0,
+      text: 'test',
+      type: VirtualDomElements.Text,
+    },
+    {
+      childCount: 1,
+      className: 'TableCell',
+      type: VirtualDomElements.Td,
+    },
+    {
+      childCount: 0,
+      text: 'test',
+      type: VirtualDomElements.Text,
     },
   ])
 })
