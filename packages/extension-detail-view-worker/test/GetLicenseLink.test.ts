@@ -6,7 +6,7 @@ test('getLicenseLink - extension with valid GitHub HTTPS repository link', () =>
     repository: 'https://github.com/user/repo',
   }
   const result = GetLicenseLink.getLicenseLink(extension)
-  expect(result).toBe('https://github.com/user/repo/blob/main/license.md')
+  expect(result).toBe('https://github.com/user/repo/blob/main/LICENSE')
 })
 
 test('getLicenseLink - extension with GitHub repository link with trailing slash', () => {
@@ -14,7 +14,7 @@ test('getLicenseLink - extension with GitHub repository link with trailing slash
     repository: 'https://github.com/user/repo/',
   }
   const result = GetLicenseLink.getLicenseLink(extension)
-  expect(result).toBe('https://github.com/user/repo/blob/main/license.md')
+  expect(result).toBe('https://github.com/user/repo/blob/main/LICENSE')
 })
 
 test('getLicenseLink - extension with GitHub repository link with path', () => {
@@ -22,7 +22,7 @@ test('getLicenseLink - extension with GitHub repository link with path', () => {
     repository: 'https://github.com/user/repo/tree/main',
   }
   const result = GetLicenseLink.getLicenseLink(extension)
-  expect(result).toBe('https://github.com/user/repo/tree/main/blob/main/license.md')
+  expect(result).toBe('https://github.com/user/repo/tree/main/blob/main/LICENSE')
 })
 
 test('getLicenseLink - extension with non-GitHub HTTPS repository link', () => {
@@ -108,7 +108,7 @@ test('getLicenseLink - extension with GitHub URL with query parameters', () => {
     repository: 'https://github.com/user/repo?branch=dev',
   }
   const result = GetLicenseLink.getLicenseLink(extension)
-  expect(result).toBe('https://github.com/user/repo?branch=dev/blob/main/license.md')
+  expect(result).toBe('https://github.com/user/repo?branch=dev/blob/main/LICENSE')
 })
 
 test('getLicenseLink - null extension', () => {
