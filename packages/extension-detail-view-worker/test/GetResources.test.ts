@@ -61,4 +61,8 @@ test('getResources returns repository link when extension.repository is a string
   }
   const resources = GetResources.getResources(false, extension)
   expect(resources[2].url).toBe('https://github.com/example/repo')
+<<<<<<< HEAD
+=======
+  expect(resources[1].url).toBe('https://github.com/example/repo/issues')
+>>>>>>> origin/main
 })

@@ -1,4 +1,4 @@
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Row } from '../Row/Row.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
@@ -9,14 +9,19 @@ import * as GetTableVirtualDom from '../GetTableVirtualDom/GetTableVirtualDom.ts
 
 export const getFeatureProgrammingLanguagesVirtualDom = (programmingLanguages: readonly Row[]): readonly VirtualDomNode[] => {
   const heading = ExtensionDetailStrings.programmingLanguages()
-  const tableInfo = GetProgrammingLanguagesTableEntries.getProgrammingLanguagesTableEntries(programmingLanguages)
-  return [
+  const top: readonly VirtualDomNode[] = [
     {
       childCount: 2,
       className: ClassNames.FeatureContent,
       type: VirtualDomElements.Div,
     },
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
-    ...GetTableVirtualDom.getTableVirtualDom(tableInfo),
   ]
+
+  if (programmingLanguages.length === 0) {
+    return [...top, { childCount: 1, type: VirtualDomElements.P }, text('Empty Array.')]
+  }
+
+  const tableInfo = GetProgrammingLanguagesTableEntries.getProgrammingLanguagesTableEntries(programmingLanguages)
+  return [...top, ...GetTableVirtualDom.getTableVirtualDom(tableInfo)]
 }

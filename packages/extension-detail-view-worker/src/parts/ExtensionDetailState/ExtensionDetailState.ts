@@ -43,6 +43,7 @@ export interface ExtensionDetailState {
   readonly importTime: number
   readonly installationEntries: readonly MoreInfoEntry[]
   readonly jsonValidation: readonly Row[]
+  readonly lastUpdated: number | null
   readonly linkProtectionEnabled: boolean
   readonly locationHost: string
   readonly locationProtocol: string

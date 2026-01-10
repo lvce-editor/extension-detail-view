@@ -11,7 +11,7 @@ export const getLicenseLink = (extension: unknown): string => {
   }
   if (isGitHubRepository(repositoryLink)) {
     const normalizedLink = repositoryLink.replace(/\/+$/, '')
-    return `${normalizedLink}/blob/main/license.md`
+    return `${normalizedLink}/blob/main/LICENSE`
   }
   return '#'
 }

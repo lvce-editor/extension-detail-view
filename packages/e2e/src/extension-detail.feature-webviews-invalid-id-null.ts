@@ -32,7 +32,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const item3 = items.nth(2)
   const item3Heading = item3.locator('.DefinitionListItemHeading')
   await expect(item3Heading).toBeVisible()
-  await expect(item3Heading).toHaveText('ContentSecurityPolicy')
+  await expect(item3Heading).toHaveText('Content Security Policy')
   const item3Value = item3.locator('.DefinitionListItemValue')
   await expect(item3Value).toBeVisible()
   await expect(item3Value).toHaveText(`["default-src 'none'","script-src 'self'"]`)
