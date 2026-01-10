@@ -16,6 +16,7 @@ export const loadSideBarContent = async (
   isBuiltin: boolean,
   extension: unknown,
   showSizeLink: boolean,
+  lastUpdated: number | null,
 ): Promise<SideBarContent> => {
   const folderSize = await GetFolderSize.getFolderSize(extensionUri)
   const displaySize = GetDisplaySize.getDisplaySize(folderSize)
@@ -25,6 +26,7 @@ export const loadSideBarContent = async (
     extensionVersion,
     extensionUri,
     showSizeLink,
+    lastUpdated,
   )
   const marketplaceEntries: readonly MoreInfoEntry[] = GetMarketplaceEntries.getMarketplaceEntries(isBuiltin)
   const categories: readonly Category[] = GetCategories.getCategories(extension)
