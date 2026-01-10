@@ -4,14 +4,13 @@ const isGitHubRepository = (url: string): boolean => {
   return url.startsWith('https://github.com/')
 }
 
-export const getLicenseLink = (extension: unknown): string => {
+export const getIssuesLink = (extension: unknown): string => {
   const repositoryLink = getRepositoryLink(extension)
   if (!repositoryLink) {
-    return '#'
+    return ''
   }
   if (isGitHubRepository(repositoryLink)) {
-    const normalizedLink = repositoryLink.replace(/\/+$/, '')
-    return `${normalizedLink}/blob/main/LICENSE`
+    return `${repositoryLink}/issues`
   }
-  return '#'
+  return ''
 }

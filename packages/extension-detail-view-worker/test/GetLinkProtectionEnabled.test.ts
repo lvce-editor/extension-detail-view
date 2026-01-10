@@ -8,7 +8,7 @@ test('getLinkProtectionEnabled returns true when preference is true', async () =
   })
   const result = await getLinkProtectionEnabled()
   expect(result).toBe(true)
-  expect(mockRpc.invocations).toEqual([['Preferences.get', 'extensionDetail.linkProtectionEnabled']])
+  expect(mockRpc.invocations).toEqual([['Preferences.get', 'application.linkProtectionEnabled']])
 })
 
 test('getLinkProtectionEnabled returns true when preference is string "true"', async () => {
@@ -17,7 +17,7 @@ test('getLinkProtectionEnabled returns true when preference is string "true"', a
   })
   const result = await getLinkProtectionEnabled()
   expect(result).toBe(true)
-  expect(mockRpc.invocations).toEqual([['Preferences.get', 'extensionDetail.linkProtectionEnabled']])
+  expect(mockRpc.invocations).toEqual([['Preferences.get', 'application.linkProtectionEnabled']])
 })
 
 test('getLinkProtectionEnabled returns false when preference is false', async () => {
@@ -26,7 +26,7 @@ test('getLinkProtectionEnabled returns false when preference is false', async ()
   })
   const result = await getLinkProtectionEnabled()
   expect(result).toBe(false)
-  expect(mockRpc.invocations).toEqual([['Preferences.get', 'extensionDetail.linkProtectionEnabled']])
+  expect(mockRpc.invocations).toEqual([['Preferences.get', 'application.linkProtectionEnabled']])
 })
 
 test('getLinkProtectionEnabled returns false when preference is string "false"', async () => {
@@ -35,7 +35,7 @@ test('getLinkProtectionEnabled returns false when preference is string "false"',
   })
   const result = await getLinkProtectionEnabled()
   expect(result).toBe(false)
-  expect(mockRpc.invocations).toEqual([['Preferences.get', 'extensionDetail.linkProtectionEnabled']])
+  expect(mockRpc.invocations).toEqual([['Preferences.get', 'application.linkProtectionEnabled']])
 })
 
 test('getLinkProtectionEnabled returns false when preference is null', async () => {
@@ -44,7 +44,7 @@ test('getLinkProtectionEnabled returns false when preference is null', async () 
   })
   const result = await getLinkProtectionEnabled()
   expect(result).toBe(false)
-  expect(mockRpc.invocations).toEqual([['Preferences.get', 'extensionDetail.linkProtectionEnabled']])
+  expect(mockRpc.invocations).toEqual([['Preferences.get', 'application.linkProtectionEnabled']])
 })
 
 test('getLinkProtectionEnabled returns false when preference is undefined', async () => {
@@ -53,7 +53,7 @@ test('getLinkProtectionEnabled returns false when preference is undefined', asyn
   })
   const result = await getLinkProtectionEnabled()
   expect(result).toBe(false)
-  expect(mockRpc.invocations).toEqual([['Preferences.get', 'extensionDetail.linkProtectionEnabled']])
+  expect(mockRpc.invocations).toEqual([['Preferences.get', 'application.linkProtectionEnabled']])
 })
 
 test('getLinkProtectionEnabled returns false when preference is other value', async () => {
@@ -62,5 +62,5 @@ test('getLinkProtectionEnabled returns false when preference is other value', as
   })
   const result = await getLinkProtectionEnabled()
   expect(result).toBe(false)
-  expect(mockRpc.invocations).toEqual([['Preferences.get', 'extensionDetail.linkProtectionEnabled']])
+  expect(mockRpc.invocations).toEqual([['Preferences.get', 'application.linkProtectionEnabled']])
 })

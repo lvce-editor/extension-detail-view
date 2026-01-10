@@ -15,6 +15,7 @@ test('resource virtual dom', () => {
       childCount: 1,
       className: 'Resource',
       href: 'https://example.com',
+      onClick: 19,
       rel: 'noopener noreferrer',
       target: '_blank',
       type: VirtualDomElements.A,
