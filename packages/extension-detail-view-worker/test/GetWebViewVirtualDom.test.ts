@@ -68,7 +68,7 @@ test('webview virtual dom', () => {
       className: ClassNames.DefinitionListItemHeading,
       type: VirtualDomElements.H2,
     },
-    text('ContentSecurityPolicy'),
+    text('Content Security Policy'),
     {
       childCount: 1,
       className: ClassNames.DefinitionListItemValue,
