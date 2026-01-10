@@ -3,7 +3,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 
 export const renderFocusContext = (oldState: ExtensionDetailState, newState: ExtensionDetailState): readonly any[] => {
   const { focus, uid } = newState
-  if (focus === WhenExpression.FocusExtensioNDetailTabs) {
+  if (focus === WhenExpression.FocusExtensionDetailTabs) {
     return [ViewletCommand.SetFocusContext, uid, focus]
   }
   // TODO set focus context

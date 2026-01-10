@@ -7,7 +7,7 @@ export const handleTabFocus = (state: ExtensionDetailState, name: string): Exten
   const newFocusedTabIndex = tabIndex === -1 ? focusedTabIndex : tabIndex
   return {
     ...state,
-    focus: WhenExpression.FocusExtensioNDetailTabs,
+    focus: WhenExpression.FocusExtensionDetailTabs,
     focusedTabIndex: newFocusedTabIndex,
   }
 }
