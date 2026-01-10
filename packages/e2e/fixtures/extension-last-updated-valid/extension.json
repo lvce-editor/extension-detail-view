@@ -1,0 +1,13 @@
+{
+  "id": "test.extension-last-updated-valid",
+  "name": "Test",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": ["Themes"],
+  "lastUpdated": 1705276800000
+}

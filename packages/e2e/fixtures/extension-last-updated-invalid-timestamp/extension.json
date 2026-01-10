@@ -1,0 +1,13 @@
+{
+  "id": "test.extension-last-updated-invalid-timestamp",
+  "name": "Test",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": ["Themes"],
+  "lastUpdated": -1
+}
