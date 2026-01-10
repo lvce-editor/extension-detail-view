@@ -1,50 +1,64 @@
 import { expect, test } from '@jest/globals'
 import * as GetResources from '../src/parts/GetResources/GetResources.ts'
 
-test.skip('getResources returns all resources', () => {
+test('getResources returns all resources', () => {
   const resources = GetResources.getResources(false, {})
   expect(resources).toEqual([
     {
+      enabled: true,
+      icon: 'LinkExternal',
       label: 'Marketplace',
       url: '#',
     },
     {
+      enabled: true,
+      icon: 'LinkExternal',
       label: 'Issues',
-      url: '#',
+      url: '',
     },
     {
+      enabled: true,
+      icon: 'Repo',
       label: 'Repository',
-      url: '#',
+      url: '',
     },
     {
+      enabled: true,
+      icon: 'LinkExternal',
       label: 'License',
       url: '#',
     },
   ])
 })
 
-test.skip('getResources returns resources without marketplace link when isBuiltin is true', () => {
+test('getResources returns resources without marketplace link when isBuiltin is true', () => {
   const resources = GetResources.getResources(true, {})
   expect(resources).toEqual([
     {
+      enabled: true,
+      icon: 'LinkExternal',
       label: 'Issues',
-      url: '#',
+      url: '',
     },
     {
+      enabled: true,
+      icon: 'Repo',
       label: 'Repository',
-      url: '#',
+      url: '',
     },
     {
+      enabled: true,
+      icon: 'LinkExternal',
       label: 'License',
       url: '#',
     },
   ])
 })
 
-test.skip('getResources returns repository link when extension.repository is a string', () => {
+test('getResources returns repository link when extension.repository is a string', () => {
   const extension = {
     repository: 'https://github.com/example/repo',
   }
   const resources = GetResources.getResources(false, extension)
-  expect(resources[1].url).toBe('https://github.com/example/repo')
+  expect(resources[2].url).toBe('https://github.com/example/repo')
 })
