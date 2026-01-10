@@ -22,6 +22,10 @@ test('getExtensionDetailNameVirtualDom - with badge', () => {
       className: ClassNames.ExtensionDetailName,
       type: VirtualDomElements.Div,
     },
+    {
+      childCount: 1,
+      type: VirtualDomElements.Span,
+    },
     text('Builtin Extension'),
     {
       childCount: 1,
