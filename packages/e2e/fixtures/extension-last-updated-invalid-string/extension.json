@@ -1,0 +1,13 @@
+{
+  "id": "test.extension-last-updated-invalid-string",
+  "name": "Test",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": ["Themes"],
+  "lastUpdated": "invalid-date"
+}
