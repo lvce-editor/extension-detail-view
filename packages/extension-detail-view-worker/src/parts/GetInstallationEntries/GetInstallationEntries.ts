@@ -1,5 +1,6 @@
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import * as FormatLastUpdated from '../FormatLastUpdated/FormatLastUpdated.ts'
 import { getSizeEntries } from '../GetSizeEntries/GetSizeEntries.ts'
 
 export const getInstallationEntries = (
@@ -8,6 +9,7 @@ export const getInstallationEntries = (
   extensionVersion: string,
   extensionUri: string,
   showSizeLink: boolean,
+  lastUpdated: number | null,
 ): readonly MoreInfoEntry[] => {
   const entries: readonly MoreInfoEntry[] = [
     {
@@ -24,7 +26,7 @@ export const getInstallationEntries = (
     {
       key: ExtensionDetailStrings.lastUpdated(),
       odd: true,
-      value: 'n/a', // TODO get this from somewhere
+      value: FormatLastUpdated.formatLastUpdated(lastUpdated),
     },
     ...getSizeEntries(showSizeLink, displaySize, extensionUri),
   ]

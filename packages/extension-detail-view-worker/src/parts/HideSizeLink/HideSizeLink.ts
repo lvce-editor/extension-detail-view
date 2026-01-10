@@ -3,7 +3,7 @@ import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import * as GetInstallationEntries from '../GetInstallationEntries/GetInstallationEntries.ts'
 
 export const hideSizeLink = (state: ExtensionDetailState): ExtensionDetailState => {
-  const { displaySize, extensionId, extensionUri, extensionVersion } = state
+  const { displaySize, extensionId, extensionUri, extensionVersion, lastUpdated } = state
   const newShowSizeLink = false
   const installationEntries: readonly MoreInfoEntry[] = GetInstallationEntries.getInstallationEntries(
     displaySize,
@@ -11,6 +11,7 @@ export const hideSizeLink = (state: ExtensionDetailState): ExtensionDetailState 
     extensionVersion,
     extensionUri,
     newShowSizeLink,
+    lastUpdated,
   )
   return {
     ...state,
