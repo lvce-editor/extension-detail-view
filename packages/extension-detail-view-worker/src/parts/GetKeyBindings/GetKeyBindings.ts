@@ -7,12 +7,12 @@ export const getKeyBindings = (): readonly KeyBinding[] => {
     {
       command: 'ExtensionDetail.focusNextTab',
       key: KeyCode.RightArrow,
-      when: WhenExpression.FocusExtensioNDetailTabs,
+      when: WhenExpression.FocusExtensionDetailTabs,
     },
     {
       command: 'ExtensionDetail.focusPreviousTab',
       key: KeyCode.LeftArrow,
-      when: WhenExpression.FocusExtensioNDetailTabs,
+      when: WhenExpression.FocusExtensionDetailTabs,
     },
   ]
 }
