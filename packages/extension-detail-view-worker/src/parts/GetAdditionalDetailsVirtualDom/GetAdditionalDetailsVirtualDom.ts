@@ -33,14 +33,16 @@ export const getAdditionalDetailsVirtualDom = (
           GetMoreInfoVirtualDom.getMoreInfoVirtualDom,
         )
       : []),
-    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(thirdHeading, categories, GetCategoriesDom.getCategoriesDom),
+    ...(categories.length > 0
+      ? GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(thirdHeading, categories, GetCategoriesDom.getCategoriesDom)
+      : []),
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom(
       fourthHeading,
       resources,
       GetResourcesVirtualDom.getResourcesVirtualDom,
     ),
   ]
-  const childCount = secondEntries.length > 0 ? 4 : 3
+  const childCount = 1 + (secondEntries.length > 0 ? 1 : 0) + (categories.length > 0 ? 1 : 0) + 1
   return [
     {
       childCount: 1,
