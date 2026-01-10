@@ -42,14 +42,13 @@ test('getAdditionalDetailsVirtualDom - showAdditionalDetails true with empty dat
       type: VirtualDomElements.Aside,
     },
     {
-      childCount: 3,
+      childCount: 2,
       className: ClassNames.AdditionalDetails,
       onContextMenu: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('First Heading', [], GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
-    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Third Heading', [], GetCategoriesDom.getCategoriesDom),
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Fourth Heading', [], GetResourcesVirtualDom.getResourcesVirtualDom),
   ])
 })
@@ -113,14 +112,13 @@ test('getAdditionalDetailsVirtualDom - different headings', () => {
       type: VirtualDomElements.Aside,
     },
     {
-      childCount: 3,
+      childCount: 2,
       className: ClassNames.AdditionalDetails,
       onContextMenu: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
       tabIndex: 0,
       type: VirtualDomElements.Div,
     },
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Custom Info', [], GetMoreInfoVirtualDom.getMoreInfoVirtualDom),
-    ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Custom Categories', [], GetCategoriesDom.getCategoriesDom),
     ...GetAdditionalDetailsEntryVirtualDom.getAdditionalDetailsEntryVirtualDom('Custom Resources', [], GetResourcesVirtualDom.getResourcesVirtualDom),
   ])
 })
