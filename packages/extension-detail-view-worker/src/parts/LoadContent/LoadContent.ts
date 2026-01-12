@@ -63,6 +63,10 @@ export const loadContent = async (
     linksExternal: true,
     locationProtocol,
   })
+
+  // TODO maybe cache the virtual dom in cache storage so that
+  // markdown worker doesn't need to be launched again to convert
+  // the html to virtual dom
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
   })
