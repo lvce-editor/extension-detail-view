@@ -3,7 +3,7 @@ export const formatLastUpdated = (lastUpdated: number | null): string => {
     return 'n/a'
   }
   try {
-    const date = new Date(lastUpdated)
+    const date = new Date(lastUpdated * 1000)
     if (Number.isNaN(date.getTime())) {
       return 'n/a'
     }

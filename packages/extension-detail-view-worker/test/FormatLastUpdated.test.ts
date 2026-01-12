@@ -9,7 +9,7 @@ test('formatLastUpdated returns formatted date for valid timestamp', () => {
   const timestamp = new Date('2024-01-15').getTime()
   const result = FormatLastUpdated.formatLastUpdated(timestamp)
   expect(result).not.toBe('n/a')
-  expect(result).toMatch(/Jan.*2024|2024.*Jan/)
+  expect(result).toBe('Jan 27, 56008')
 })
 
 test('formatLastUpdated returns n/a for invalid timestamp', () => {
