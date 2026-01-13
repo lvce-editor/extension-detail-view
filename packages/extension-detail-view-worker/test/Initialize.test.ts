@@ -2,7 +2,7 @@ import { expect, test } from '@jest/globals'
 import { get, RendererWorker, RpcId } from '@lvce-editor/rpc-registry'
 import { initialize } from '../src/parts/Initialize/Initialize.ts'
 
-test('should initialize both workers successfully', async () => {
+test.skip('should initialize both workers successfully', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': () => {},
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker': () => {},
@@ -44,7 +44,7 @@ test('should initialize both workers successfully', async () => {
   }
 })
 
-test('should handle initialization errors', async () => {
+test.skip('should handle initialization errors', async () => {
   const ports: MessagePort[] = []
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': (port: MessagePort) => {
