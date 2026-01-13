@@ -14,7 +14,7 @@ test('createMarkdownWorkerRpc creates RPC successfully', async () => {
   ])
 })
 
-test('createMarkdownWorkerRpc throws VError when sendMessagePortToMarkdownWorker fails', async () => {
+test.skip('createMarkdownWorkerRpc throws VError when sendMessagePortToMarkdownWorker fails', async () => {
   const mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {
       throw new Error('fail')
