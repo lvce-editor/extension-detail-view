@@ -41,6 +41,7 @@ export interface ExtensionDetailState {
   readonly hasReadme: boolean
   readonly iconSrc: string
   readonly importTime: number
+  readonly initial: boolean
   readonly installationEntries: readonly MoreInfoEntry[]
   readonly jsonValidation: readonly Row[]
   readonly lastUpdated: number | null

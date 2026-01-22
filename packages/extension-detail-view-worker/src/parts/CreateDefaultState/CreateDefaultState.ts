@@ -33,6 +33,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     hasReadme: false,
     iconSrc: '',
     importTime: 0,
+    initial: false,
     installationEntries: [],
     jsonValidation: [],
     lastUpdated: null,
