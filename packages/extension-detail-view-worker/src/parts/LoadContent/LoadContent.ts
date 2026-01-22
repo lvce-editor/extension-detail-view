@@ -113,6 +113,7 @@ export const loadContent = async (
     hasColorTheme,
     hasReadme,
     iconSrc,
+    initial: false,
     installationEntries,
     lastUpdated,
     linkProtectionEnabled,
