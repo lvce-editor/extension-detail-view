@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import { getCommit } from '../src/parts/GetCommit/GetCommit.ts'
 
 test('getCommit returns commit when Layout.getCommit succeeds', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.getCommit': () => 'abc123',
   })
   const result = await getCommit()
@@ -12,7 +12,7 @@ test('getCommit returns commit when Layout.getCommit succeeds', async () => {
 })
 
 test('getCommit returns empty string when Layout.getCommit throws error', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Layout.getCommit': () => {
       throw new Error('Failed to get commit')
     },

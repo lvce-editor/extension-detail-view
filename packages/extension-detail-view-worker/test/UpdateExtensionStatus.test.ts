@@ -14,7 +14,7 @@ test('updateExtensionStatus - successful update with enabled extension', async (
   }
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -44,7 +44,7 @@ test('updateExtensionStatus - successful update with disabled extension', async 
   }
 
   const mockExtension: any = { disabled: true, id: 'test-extension-id' }
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -75,7 +75,7 @@ test('updateExtensionStatus - handles error from updateFunction', async () => {
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const errorMessage = 'Failed to update extension'
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => {
       /**/
     },
@@ -104,7 +104,7 @@ test('updateExtensionStatus - extension not found (undefined)', async () => {
     platform: PlatformType.Electron,
   }
 
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return undefined
     },
@@ -164,7 +164,7 @@ test('updateExtensionStatus - with hasColorTheme true and disabled false', async
   }
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -195,7 +195,7 @@ test('updateExtensionStatus - error with Error object', async () => {
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const error = new Error('Update failed')
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => {
       /**/
     },

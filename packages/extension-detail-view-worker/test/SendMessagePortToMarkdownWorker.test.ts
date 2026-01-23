@@ -5,7 +5,7 @@ import * as SendMessagePortToMarkdownWorker from '../src/parts/SendMessagePortTo
 test('sends message port to markdown worker', async () => {
   const mockPort = { id: 'test-port' }
 
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {},
   })
 

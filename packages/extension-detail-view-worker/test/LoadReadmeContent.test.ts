@@ -3,7 +3,7 @@ import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorke
 import * as LoadReadmeContent from '../src/parts/LoadReadmeContent/LoadReadmeContent.ts'
 
 test('loads readme content', async () => {
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return '# Test Content'
     },
@@ -16,7 +16,7 @@ test('loads readme content', async () => {
 test('handles missing readme file', async () => {
   const error = new Error('file not found')
   ;(error as any).code = 'ENOENT'
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       throw error
     },
@@ -28,7 +28,7 @@ test('handles missing readme file', async () => {
 
 test('returns error message for other errors', async () => {
   const error = new Error('permission denied')
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       throw error
     },
@@ -47,7 +47,7 @@ test('returns error message for other errors', async () => {
 })
 
 test('handles empty readme file', async () => {
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return ''
     },

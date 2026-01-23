@@ -5,7 +5,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as HandleClickUninstall from '../src/parts/HandleClickUninstall/HandleClickUninstall.ts'
 
 test('handle click uninstall - calls uninstall extension', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.uninstall': () => {
       /**/
     },
@@ -23,7 +23,7 @@ test('handle click uninstall - calls uninstall extension', async () => {
 })
 
 test('handle click uninstall - returns state unchanged', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.uninstall': () => {
       /**/
     },

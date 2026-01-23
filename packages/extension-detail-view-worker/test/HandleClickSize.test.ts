@@ -5,7 +5,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as HandleClickSize from '../src/parts/HandleClickSize/HandleClickSize.ts'
 
 test('handle click size - opens folder', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'OpenNativeFolder.openNativeFolder': () => {
       /**/
     },

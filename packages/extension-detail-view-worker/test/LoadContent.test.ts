@@ -24,7 +24,7 @@ test('loadContent - successful load', async () => {
     version: '1.0.0',
   }
 
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -36,7 +36,7 @@ test('loadContent - successful load', async () => {
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.exists': () => {
       return true
     },
@@ -48,7 +48,7 @@ test('loadContent - successful load', async () => {
     },
   })
 
-  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getMarkdownDom': () => {
       return [{ children: ['Test README Content'], type: 'h1' }]
     },
@@ -97,7 +97,7 @@ test('loadContent - successful load', async () => {
 })
 
 test('loadContent - extension not found', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return undefined
     },
@@ -122,7 +122,7 @@ test('loadContent - with builtin extension', async () => {
     version: '1.0.0',
   }
 
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -134,7 +134,7 @@ test('loadContent - with builtin extension', async () => {
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.exists': () => {
       return true
     },
@@ -146,7 +146,7 @@ test('loadContent - with builtin extension', async () => {
     },
   })
 
-  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getMarkdownDom': () => {
       return [{ children: ['Builtin README Content'], type: 'h1' }]
     },
@@ -186,7 +186,7 @@ test('loadContent - with saved state', async () => {
     version: '1.0.0',
   }
 
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -198,7 +198,7 @@ test('loadContent - with saved state', async () => {
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.exists': () => {
       return true
     },
@@ -210,7 +210,7 @@ test('loadContent - with saved state', async () => {
     },
   })
 
-  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getMarkdownDom': () => {
       return [{ children: ['Test README Content'], type: 'h1' }]
     },
@@ -256,7 +256,7 @@ test('loadContent - with different platform', async () => {
     version: '1.0.0',
   }
 
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -268,7 +268,7 @@ test('loadContent - with different platform', async () => {
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.exists': () => {
       return true
     },
@@ -280,7 +280,7 @@ test('loadContent - with different platform', async () => {
     },
   })
 
-  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getMarkdownDom': () => {
       return [{ children: ['Test README Content'], type: 'h1' }]
     },

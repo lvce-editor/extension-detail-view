@@ -5,7 +5,7 @@ import * as LoadChangelogContent from '../src/parts/LoadChangelogContent/LoadCha
 
 test('loadChangelogContent successfully loads changelog', async () => {
   const changelogContent = '# Changelog\n\n## Version 1.0.0\n- Initial release'
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return changelogContent
     },
@@ -19,7 +19,7 @@ test('loadChangelogContent successfully loads changelog', async () => {
 test('loadChangelogContent returns empty string when file not found', async () => {
   const enoentError = new Error('File not found')
   ;(enoentError as any).code = ErrorCodes.ENOENT
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       throw enoentError
     },
@@ -32,7 +32,7 @@ test('loadChangelogContent returns empty string when file not found', async () =
 
 test('loadChangelogContent returns error message for other errors', async () => {
   const error = new Error('Permission denied')
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       throw error
     },
@@ -51,7 +51,7 @@ test('loadChangelogContent returns error message for other errors', async () => 
 })
 
 test('loadChangelogContent handles different path formats', async () => {
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'changelog content'
     },

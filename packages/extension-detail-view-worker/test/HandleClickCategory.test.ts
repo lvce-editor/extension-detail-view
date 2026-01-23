@@ -7,7 +7,7 @@ test('handleClickCategory should call openExtensionSearch with category search',
   const state = createDefaultState.createDefaultState()
   const categoryId = 'programming-languages'
 
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Extensions.handleInput': () => {
       /**/
     },

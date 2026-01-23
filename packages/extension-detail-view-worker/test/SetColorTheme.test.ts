@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as SetColorTheme from '../src/parts/SetColorTheme/SetColorTheme.ts'
 
 test('set color theme', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ColorTheme.setColorTheme': () => {
       return 'theme-id'
     },
@@ -16,7 +16,7 @@ test('set color theme', async () => {
 
 test('handles error during set color theme', async () => {
   const error = new Error('Failed to set color theme')
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ColorTheme.setColorTheme': () => {
       throw error
     },

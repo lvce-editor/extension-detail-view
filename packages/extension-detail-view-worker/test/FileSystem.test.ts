@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as FileSystem from '../src/parts/FileSystem/FileSystem.ts'
 
 test.skip('readFile invokes RendererWorker with correct arguments', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'file content'
     },
@@ -16,7 +16,7 @@ test.skip('readFile invokes RendererWorker with correct arguments', async () => 
 
 test.skip('readFile propagates errors', async () => {
   const error = new Error('read error')
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       throw error
     },
@@ -27,7 +27,7 @@ test.skip('readFile propagates errors', async () => {
 })
 
 test.skip('readFile handles empty file', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return ''
     },

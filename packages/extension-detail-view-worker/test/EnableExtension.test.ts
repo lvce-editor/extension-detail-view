@@ -4,7 +4,7 @@ import * as EnableExtension from '../src/parts/EnableExtension/EnableExtension.t
 import * as PlatformType from '../src/parts/PlatformType/PlatformType.ts'
 
 test('enable extension', async () => {
-  const mockRpc = ExtensionManagementWorker.registerMockRpc({
+  using mockRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.enable2': () => {
       /**/
     },
@@ -15,7 +15,7 @@ test('enable extension', async () => {
 
 test('handles error during enable', async () => {
   const error = new Error('Failed to enable extension')
-  const mockRpc = ExtensionManagementWorker.registerMockRpc({
+  using mockRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.enable2': async () => {
       throw error
     },

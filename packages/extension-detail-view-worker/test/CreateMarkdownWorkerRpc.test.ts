@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import { createMarkdownWorkerRpc } from '../src/parts/CreateMarkdownWorkerRpc/CreateMarkdownWorkerRpc.ts'
 
 test('createMarkdownWorkerRpc creates RPC successfully', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {},
   })
   const rpc = await createMarkdownWorkerRpc()
@@ -15,7 +15,7 @@ test('createMarkdownWorkerRpc creates RPC successfully', async () => {
 })
 
 test.skip('createMarkdownWorkerRpc throws VError when sendMessagePortToMarkdownWorker fails', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {
       throw new Error('fail')
     },

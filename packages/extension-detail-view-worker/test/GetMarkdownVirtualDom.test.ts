@@ -5,7 +5,7 @@ import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 const mockDom = [{ children: ['Hello'], tag: 'div' }]
 
 test('getMarkdownVirtualDom - valid markdown', async () => {
-  const mockRpc = MarkdownWorker.registerMockRpc({
+  using mockRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return mockDom
     },
@@ -16,7 +16,7 @@ test('getMarkdownVirtualDom - valid markdown', async () => {
 })
 
 test('getMarkdownVirtualDom - empty string', async () => {
-  const mockRpc = MarkdownWorker.registerMockRpc({
+  using mockRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return []
     },
@@ -27,7 +27,7 @@ test('getMarkdownVirtualDom - empty string', async () => {
 })
 
 test('getMarkdownVirtualDom - error propagation', async () => {
-  const mockRpc = MarkdownWorker.registerMockRpc({
+  using mockRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       throw new Error('fail')
     },

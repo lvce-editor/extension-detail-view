@@ -5,7 +5,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as HandleReadmeClick from '../src/parts/HandleReadmeClick/HandleReadmeClick.ts'
 
 test('handleReadmeClick returns state without calling openUrl when href is empty', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({})
+  using mockRpc = RendererWorker.registerMockRpc({})
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -18,7 +18,7 @@ test('handleReadmeClick returns state without calling openUrl when href is empty
 })
 
 test('handleReadmeClick returns state without calling openUrl when href is not external', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({})
+  using mockRpc = RendererWorker.registerMockRpc({})
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -37,7 +37,7 @@ test('handleReadmeClick returns state without calling openUrl when href is not e
 })
 
 test('handleReadmeClick calls openUrl with http:// links and returns state', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Open.openUrl': () => {
       /**/
     },
@@ -55,7 +55,7 @@ test('handleReadmeClick calls openUrl with http:// links and returns state', asy
 })
 
 test('handleReadmeClick calls openUrl with https:// links and returns state', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Open.openUrl': () => {
       /**/
     },
@@ -73,7 +73,7 @@ test('handleReadmeClick calls openUrl with https:// links and returns state', as
 })
 
 test('handleReadmeClick works with different nodeName values', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Open.openUrl': () => {
       /**/
     },
@@ -96,7 +96,7 @@ test('handleReadmeClick works with different nodeName values', async () => {
 })
 
 test('handleReadmeClick handles http:// and https:// prefixes correctly', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Open.openUrl': () => {
       /**/
     },
@@ -116,7 +116,7 @@ test('handleReadmeClick handles http:// and https:// prefixes correctly', async 
 })
 
 test('handleReadmeClick opens link when linkProtectionEnabled is false', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Open.openUrl': () => {
       /**/
     },
@@ -135,7 +135,7 @@ test('handleReadmeClick opens link when linkProtectionEnabled is false', async (
 })
 
 test('handleReadmeClick calls confirm and opens link when linkProtectionEnabled is true and confirmed', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => {
       return true
     },
@@ -160,7 +160,7 @@ test('handleReadmeClick calls confirm and opens link when linkProtectionEnabled 
 })
 
 test('handleReadmeClick calls confirm and does not open link when linkProtectionEnabled is true and not confirmed', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => {
       return false
     },

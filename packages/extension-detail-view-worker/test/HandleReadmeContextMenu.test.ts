@@ -6,7 +6,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as HandleReadmeContextMenu from '../src/parts/HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
 
 test('handleReadmeContextMenu calls ContextMenu.show2 and returns state unchanged', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2': () => {
       /**/
     },
@@ -41,7 +41,7 @@ test('handleReadmeContextMenu calls ContextMenu.show2 and returns state unchange
 })
 
 test('handleReadmeContextMenu passes correct coordinates to ContextMenu.show2', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2': () => {
       /**/
     },
@@ -75,7 +75,7 @@ test('handleReadmeContextMenu passes correct coordinates to ContextMenu.show2', 
 })
 
 test('handleReadmeContextMenu returns state regardless of nodeName and href', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2': () => {
       /**/
     },
