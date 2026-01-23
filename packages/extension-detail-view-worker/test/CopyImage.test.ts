@@ -8,11 +8,11 @@ import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorke
 test('copyImage calls readFileAsBlob and writeClipBoardImage and returns state unchanged', async () => {
   const mockBlob = { size: 4, type: 'image/png' }
 
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ClipBoard.writeImage': () => {},
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFileAsBlob': () => {
       return mockBlob
     },

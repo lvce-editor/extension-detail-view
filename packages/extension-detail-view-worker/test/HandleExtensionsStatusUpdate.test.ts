@@ -15,7 +15,7 @@ test('handleExtensionsStatusUpdate should update state with runtime status detai
     status: RuntimeStatusType.Activated,
   }
 
-  const mockRpc = ExtensionHostWorker.registerMockRpc({
+  using mockRpc = ExtensionHostWorker.registerMockRpc({
     'ExtensionHost.getRuntimeStatus': () => {
       return mockRuntimeStatus
     },
@@ -48,7 +48,7 @@ test('handleExtensionsStatusUpdate should handle different activation events', a
     status: RuntimeStatusType.Activating,
   }
 
-  const mockRpc = ExtensionHostWorker.registerMockRpc({
+  using mockRpc = ExtensionHostWorker.registerMockRpc({
     'ExtensionHost.getRuntimeStatus': () => {
       return mockRuntimeStatus
     },
@@ -80,7 +80,7 @@ test('handleExtensionsStatusUpdate should handle error status', async () => {
     status: RuntimeStatusType.Error,
   }
 
-  const mockRpc = ExtensionHostWorker.registerMockRpc({
+  using mockRpc = ExtensionHostWorker.registerMockRpc({
     'ExtensionHost.getRuntimeStatus': () => {
       return mockRuntimeStatus
     },
@@ -112,7 +112,7 @@ test('handleExtensionsStatusUpdate should preserve other state properties', asyn
     status: RuntimeStatusType.Activated,
   }
 
-  const mockRpc = ExtensionHostWorker.registerMockRpc({
+  using mockRpc = ExtensionHostWorker.registerMockRpc({
     'ExtensionHost.getRuntimeStatus': () => {
       return mockRuntimeStatus
     },
@@ -141,7 +141,7 @@ test('handleExtensionsStatusUpdate should preserve other state properties', asyn
 })
 
 test('handleExtensionsStatusUpdate should propagate errors from getRuntimeStatus', async () => {
-  const mockRpc = ExtensionHostWorker.registerMockRpc({
+  using mockRpc = ExtensionHostWorker.registerMockRpc({
     'ExtensionHost.getRuntimeStatus': () => {
       throw new Error('Runtime status error')
     },

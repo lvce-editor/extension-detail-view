@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as OpenExternal from '../src/parts/OpenExternal/OpenExternal.ts'
 
 test('openUrl calls RendererWorker.openUrl with the correct uri', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Open.openUrl': () => {
       /**/
     },

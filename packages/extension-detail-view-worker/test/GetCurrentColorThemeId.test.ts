@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import { getCurrentColorTheme } from '../src/parts/GetCurrentColorThemeId/GetCurrentColorThemeId.ts'
 
 test('getCurrentColorTheme returns preference value', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Preferences.get': () => 'dark-theme',
   })
   const result = await getCurrentColorTheme()
@@ -12,7 +12,7 @@ test('getCurrentColorTheme returns preference value', async () => {
 })
 
 test('getCurrentColorTheme returns empty string when preference is null', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Preferences.get': () => null,
   })
   const result = await getCurrentColorTheme()
@@ -21,7 +21,7 @@ test('getCurrentColorTheme returns empty string when preference is null', async 
 })
 
 test('getCurrentColorTheme returns empty string when preference is undefined', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Preferences.get': () => undefined,
   })
   const result = await getCurrentColorTheme()

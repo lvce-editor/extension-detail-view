@@ -11,7 +11,7 @@ test('getThemeDetails should return theme details with themes', async () => {
   }
   const baseUrl = 'https://example.com'
 
-  const mockRpc = MarkdownWorker.registerMockRpc({
+  using mockRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return [{ childCount: 1, type: VirtualDomElements.Div }]
     },
@@ -36,7 +36,7 @@ test('getThemeDetails should handle empty themes', async () => {
   const extension = {}
   const baseUrl = 'https://example.com'
 
-  const mockRpc = MarkdownWorker.registerMockRpc({
+  using mockRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return [{ childCount: 1, type: VirtualDomElements.Div }]
     },

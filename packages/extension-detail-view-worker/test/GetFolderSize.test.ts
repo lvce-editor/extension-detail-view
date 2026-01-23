@@ -3,7 +3,7 @@ import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorke
 import * as GetFolderSize from '../src/parts/GetFolderSize/GetFolderSize.ts'
 
 test('get folder size', async () => {
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.getFolderSize': () => {
       return '1.2 MB'
     },
@@ -13,7 +13,7 @@ test('get folder size', async () => {
 })
 
 test('get folder size - error case', async () => {
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.getFolderSize': () => {
       throw new Error('access denied')
     },
@@ -28,7 +28,7 @@ test('get folder size - missing uri', async () => {
 })
 
 test('get folder size - http uri', async () => {
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.getFolderSize': () => {
       throw new Error('should not be called')
     },
@@ -38,7 +38,7 @@ test('get folder size - http uri', async () => {
 })
 
 test('get folder size - https uri', async () => {
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.getFolderSize': () => {
       throw new Error('should not be called')
     },

@@ -14,12 +14,12 @@ test('handleClickDisable - successful disable with extension becoming disabled',
   }
 
   const mockExtension: any = { disabled: true, id: 'test-extension-id' }
-  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+  using mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.disable2': () => {
       return null
     },
   })
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -46,12 +46,12 @@ test('handleClickDisable - successful disable with extension already disabled', 
   }
 
   const mockExtension: any = { disabled: true, id: 'test-extension-id' }
-  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+  using mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.disable2': () => {
       return null
     },
   })
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -78,12 +78,12 @@ test('handleClickDisable - handles error from disableExtension', async () => {
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const errorMessage = 'Failed to disable extension'
-  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+  using mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.disable2': () => {
       return errorMessage
     },
   })
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => {
       /**/
     },
@@ -141,12 +141,12 @@ test('handleClickDisable - with hasColorTheme true and disabled true', async () 
   }
 
   const mockExtension: any = { disabled: true, id: 'test-extension-id' }
-  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+  using mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.disable2': () => {
       return null
     },
   })
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -171,12 +171,12 @@ test('handleClickDisable - extension not found (undefined)', async () => {
     platform: PlatformType.Electron,
   }
 
-  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+  using mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.disable2': () => {
       return null
     },
   })
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return undefined
     },
@@ -203,12 +203,12 @@ test('handleClickDisable - error with Error object', async () => {
 
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const error = new Error('Disable failed')
-  const mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+  using mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.disable2': () => {
       return error
     },
   })
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => {
       /**/
     },

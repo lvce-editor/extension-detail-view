@@ -3,7 +3,7 @@ import { existsFile } from '../src/parts/ExistsFile/ExistsFile.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 
 test('existsFile returns true when file exists', async () => {
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.exists': () => {
       return true
     },
@@ -14,7 +14,7 @@ test('existsFile returns true when file exists', async () => {
 })
 
 test('existsFile returns false when file does not exist', async () => {
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.exists': () => {
       return false
     },
@@ -26,7 +26,7 @@ test('existsFile returns false when file does not exist', async () => {
 
 test('existsFile returns false when FileSystem.exists throws an error', async () => {
   const error = new Error('file system error')
-  const mockRpc = FileSystemWorker.registerMockRpc({
+  using mockRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.exists': () => {
       throw error
     },

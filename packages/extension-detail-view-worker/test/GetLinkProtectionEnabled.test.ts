@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import { getLinkProtectionEnabled } from '../src/parts/GetLinkProtectionEnabled/GetLinkProtectionEnabled.ts'
 
 test('getLinkProtectionEnabled returns true when preference is true', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Preferences.get': () => true,
   })
   const result = await getLinkProtectionEnabled()
@@ -12,7 +12,7 @@ test('getLinkProtectionEnabled returns true when preference is true', async () =
 })
 
 test('getLinkProtectionEnabled returns true when preference is string "true"', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Preferences.get': () => 'true',
   })
   const result = await getLinkProtectionEnabled()
@@ -21,7 +21,7 @@ test('getLinkProtectionEnabled returns true when preference is string "true"', a
 })
 
 test('getLinkProtectionEnabled returns false when preference is false', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Preferences.get': () => false,
   })
   const result = await getLinkProtectionEnabled()
@@ -30,7 +30,7 @@ test('getLinkProtectionEnabled returns false when preference is false', async ()
 })
 
 test('getLinkProtectionEnabled returns false when preference is string "false"', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Preferences.get': () => 'false',
   })
   const result = await getLinkProtectionEnabled()
@@ -39,7 +39,7 @@ test('getLinkProtectionEnabled returns false when preference is string "false"',
 })
 
 test('getLinkProtectionEnabled returns false when preference is null', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Preferences.get': () => null,
   })
   const result = await getLinkProtectionEnabled()
@@ -48,7 +48,7 @@ test('getLinkProtectionEnabled returns false when preference is null', async () 
 })
 
 test('getLinkProtectionEnabled returns false when preference is undefined', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Preferences.get': () => undefined,
   })
   const result = await getLinkProtectionEnabled()
@@ -57,7 +57,7 @@ test('getLinkProtectionEnabled returns false when preference is undefined', asyn
 })
 
 test('getLinkProtectionEnabled returns false when preference is other value', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Preferences.get': () => 'other',
   })
   const result = await getLinkProtectionEnabled()

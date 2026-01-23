@@ -5,7 +5,7 @@ import * as CopyReadmeLink from '../src/parts/CopyReadmeLink/CopyReadmeLink.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 
 test('copyReadmeLink calls writeText with href and returns state unchanged', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ClipBoard.writeText': () => {
       /**/
     },

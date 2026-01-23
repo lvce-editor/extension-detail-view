@@ -4,7 +4,7 @@ import * as DisableExtension from '../src/parts/DisableExtension/DisableExtensio
 import * as PlatformType from '../src/parts/PlatformType/PlatformType.ts'
 
 test('disable extension', async () => {
-  const mockRpc = ExtensionManagementWorker.registerMockRpc({
+  using mockRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.disable2': () => {
       /**/
     },
@@ -15,7 +15,7 @@ test('disable extension', async () => {
 
 test('handles error during disable', async () => {
   const error = new Error('Failed to disable extension')
-  const mockRpc = ExtensionManagementWorker.registerMockRpc({
+  using mockRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.disable2': async () => {
       throw error
     },

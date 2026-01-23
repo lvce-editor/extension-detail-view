@@ -11,19 +11,19 @@ import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
 test('handles tabs click - details tab', async () => {
   const expectedDom = [{ children: [], tag: 'h1', type: 'element' }]
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'README CONTENT'
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'README CONTENT'
     },
   })
 
-  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return expectedDom
     },
@@ -59,7 +59,7 @@ test('handles tabs click - details tab', async () => {
 })
 
 test('handles tabs click - features tab', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readDirWithFileTypes': () => {
       return []
     },
@@ -98,7 +98,7 @@ test('handles tabs click - changelog tab', async () => {
   const renderedHtml = '<h1>Changelog</h1><h2>Version 1.0.0</h2><ul><li>Initial release</li></ul>'
   const mockDom = [{ childCount: 1, type: VirtualDomElements.Div }]
 
-  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return mockDom
     },
@@ -107,7 +107,7 @@ test('handles tabs click - changelog tab', async () => {
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return changelogContent
     },

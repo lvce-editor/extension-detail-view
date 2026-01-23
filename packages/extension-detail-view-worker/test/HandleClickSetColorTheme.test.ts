@@ -49,7 +49,7 @@ test('getColorThemeId - undefined extension', () => {
 })
 
 test('handleClickSetColorTheme - extension with color theme', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ColorTheme.setColorTheme': () => {
       return ''
     },
@@ -71,7 +71,7 @@ test('handleClickSetColorTheme - extension with color theme', async () => {
 })
 
 test('handleClickSetColorTheme - extension without color theme', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({})
+  using mockRpc = RendererWorker.registerMockRpc({})
 
   const state = {
     ...CreateDefaultState.createDefaultState(),
@@ -84,7 +84,7 @@ test('handleClickSetColorTheme - extension without color theme', async () => {
 })
 
 test('handleClickSetColorTheme - extension with empty color themes', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({})
+  using mockRpc = RendererWorker.registerMockRpc({})
 
   const state = {
     ...CreateDefaultState.createDefaultState(),
@@ -100,7 +100,7 @@ test('handleClickSetColorTheme - extension with empty color themes', async () =>
 
 test.skip('handleClickSetColorTheme - extension with color theme error', async () => {
   const errorMessage = 'Failed to set color theme'
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ColorTheme.setColorTheme': () => {
       return errorMessage
     },

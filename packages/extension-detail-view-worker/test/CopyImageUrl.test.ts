@@ -5,7 +5,7 @@ import * as CopyImageUrl from '../src/parts/CopyImageUrl/CopyImageUrl.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 
 test('copyImageUrl calls writeText with absolute URL and returns state unchanged', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ClipBoard.writeText': () => {
       /**/
     },

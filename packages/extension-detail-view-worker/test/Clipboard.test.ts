@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as Clipboard from '../src/parts/Clipboard/Clipboard.ts'
 
 test('writeClipboardImage calls writeClipBoardImage with correct blob', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ClipBoard.writeImage': () => {
       /**/
     },
@@ -17,7 +17,7 @@ test('writeClipboardImage calls writeClipBoardImage with correct blob', async ()
 })
 
 test('writeText calls writeClipBoardText with correct text', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ClipBoard.writeText': () => {
       /**/
     },
