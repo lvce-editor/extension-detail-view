@@ -9,19 +9,19 @@ import * as SelectTabDetails from '../src/parts/SelectTabDetails/SelectTabDetail
 
 test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
   const expectedDom = [{ children: [], tag: 'h1', type: 'element' }]
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'README CONTENT'
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'README CONTENT'
     },
   })
 
-  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return expectedDom
     },

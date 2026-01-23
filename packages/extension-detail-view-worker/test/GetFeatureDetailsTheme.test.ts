@@ -3,7 +3,7 @@ import * as GetFeatureDetailsTheme from '../src/parts/GetFeatureDetailsTheme/Get
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
 test('getFeatureDetailsTheme - extension with themes', async () => {
-  const mockRpc = MarkdownWorker.registerMockRpc({
+  using mockRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return [{ children: ['Theme content'], tag: 'div' }]
     },
@@ -31,7 +31,7 @@ test('getFeatureDetailsTheme - extension with themes', async () => {
 })
 
 test('getFeatureDetailsTheme - extension without themes', async () => {
-  const mockRpc = MarkdownWorker.registerMockRpc({
+  using mockRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return []
     },
@@ -55,7 +55,7 @@ test('getFeatureDetailsTheme - extension without themes', async () => {
 })
 
 test('getFeatureDetailsTheme - extension with null themes', async () => {
-  const mockRpc = MarkdownWorker.registerMockRpc({
+  using mockRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return []
     },
@@ -83,7 +83,7 @@ test('getFeatureDetailsTheme - extension with null themes', async () => {
 })
 
 test('getFeatureDetailsTheme - error propagation', async () => {
-  const mockRpc = MarkdownWorker.registerMockRpc({
+  using mockRpc = MarkdownWorker.registerMockRpc({
     'Markdown.render': () => {
       throw new Error('render error')
     },

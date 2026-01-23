@@ -16,7 +16,7 @@ test('selectTab with Changelog name calls selectTabChangelog handler', async () 
   const renderedHtml = '<h1>Changelog</h1><h2>Version 1.0.0</h2><ul><li>Initial release</li></ul>'
   const mockDom = [{ childCount: 1, type: VirtualDomElements.Div }]
 
-  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return mockDom
     },
@@ -25,7 +25,7 @@ test('selectTab with Changelog name calls selectTabChangelog handler', async () 
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return changelogContent
     },
@@ -42,19 +42,19 @@ test('selectTab with Changelog name calls selectTabChangelog handler', async () 
 
 test('selectTab with Details name calls selectTabDetails handler', async () => {
   const expectedDom = [{ children: [], tag: 'h1', type: 'element' }]
-  const mockRendererRpc = RendererWorker.registerMockRpc({
+  using mockRendererRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'README CONTENT'
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'README CONTENT'
     },
   })
 
-  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return expectedDom
     },
@@ -89,7 +89,7 @@ test('selectTab with Details name calls selectTabDetails handler', async () => {
 
 test('selectTab with Features name calls selectTabFeatures handler', async () => {
   clearRegistry()
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readDirWithFileTypes': () => {
       return []
     },

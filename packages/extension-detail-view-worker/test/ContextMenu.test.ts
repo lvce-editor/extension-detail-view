@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as ContextMenu from '../src/parts/ContextMenu/ContextMenu.ts'
 
 test('show2 calls invoke with correct parameters', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2': () => {
       /**/
     },

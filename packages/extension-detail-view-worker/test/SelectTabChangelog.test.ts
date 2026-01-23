@@ -12,7 +12,7 @@ test('selectTabChangelog should update state with changelog content', async () =
   const renderedHtml = '<h1>Changelog</h1><h2>Version 1.0.0</h2><ul><li>Initial release</li></ul>'
   const mockDom = [{ childCount: 1, type: VirtualDomElements.Div }]
 
-  const mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
       return mockDom
     },
@@ -21,7 +21,7 @@ test('selectTabChangelog should update state with changelog content', async () =
     },
   })
 
-  const mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return changelogContent
     },

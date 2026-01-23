@@ -5,7 +5,7 @@ import * as PlatformType from '../src/parts/PlatformType/PlatformType.ts'
 
 test('getExtension - successful getExtension', async () => {
   const mockExtension: any = { id: 'test-id', name: 'Test Extension' }
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
@@ -20,7 +20,7 @@ test('getExtension - fallback to getAllExtensions when getExtension fails', asyn
     { id: 'test-id', name: 'Test Extension' },
     { id: 'other-id', name: 'Other Extension' },
   ]
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getAllExtensions': () => {
       return mockExtensions
     },
@@ -34,7 +34,7 @@ test('getExtension - fallback to getAllExtensions when getExtension fails', asyn
 })
 
 test('getExtension - web platform returns undefined', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       throw new Error('getExtension failed')
     },
@@ -45,7 +45,7 @@ test('getExtension - web platform returns undefined', async () => {
 })
 
 test('getExtension - not found in fallback', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getAllExtensions': () => {
       return []
     },
@@ -59,7 +59,7 @@ test('getExtension - not found in fallback', async () => {
 })
 
 test('getExtension - both getExtension and getAllExtensions fail', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getAllExtensions': () => {
       throw new Error('getAllExtensions failed')
     },
@@ -76,7 +76,7 @@ test('getExtension - remote platform with fallback', async () => {
     { id: 'test-id', name: 'Test Extension' },
     { id: 'other-id', name: 'Other Extension' },
   ]
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getAllExtensions': () => {
       return mockExtensions
     },

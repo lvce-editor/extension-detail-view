@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import { createFileSystemWorkerRpc } from '../src/parts/CreateFileSystemWorkerRpc/CreateFileSystemWorkerRpc.ts'
 
 test('createFileSystemWorkerRpc creates RPC successfully', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {},
   })
   const rpc = await createFileSystemWorkerRpc()
@@ -15,7 +15,7 @@ test('createFileSystemWorkerRpc creates RPC successfully', async () => {
 })
 
 test('createFileSystemWorkerRpc throws VError when sendMessagePortToFileSystemWorker fails', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {
       throw new Error('fail')
     },

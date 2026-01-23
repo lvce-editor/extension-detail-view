@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as RenderMarkdown from '../src/parts/RenderMarkdown/RenderMarkdown.ts'
 
 test.skip('renderMarkdown - basic markdown', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Markdown.renderMarkdown': () => {
       return '<p>Hello World</p>'
     },
@@ -17,7 +17,7 @@ test.skip('renderMarkdown - basic markdown', async () => {
 })
 
 test.skip('renderMarkdown - with baseUrl option', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Markdown.renderMarkdown': () => {
       return '<p>Test with baseUrl</p>'
     },
@@ -29,7 +29,7 @@ test.skip('renderMarkdown - with baseUrl option', async () => {
 })
 
 test.skip('renderMarkdown - empty markdown', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Markdown.renderMarkdown': () => {
       return ''
     },
@@ -43,7 +43,7 @@ test.skip('renderMarkdown - empty markdown', async () => {
 })
 
 test.skip('renderMarkdown - complex markdown', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Markdown.renderMarkdown': () => {
       return '<h1>Title</h1><p><strong>Bold text</strong> and <em>italic text</em></p>'
     },
@@ -57,7 +57,7 @@ test.skip('renderMarkdown - complex markdown', async () => {
 })
 
 test.skip('renderMarkdown - without options', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Markdown.renderMarkdown': () => {
       return '<p>Simple text</p>'
     },

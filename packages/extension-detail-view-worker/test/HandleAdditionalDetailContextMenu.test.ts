@@ -6,7 +6,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as HandleAdditionalDetailContextMenu from '../src/parts/HandleAdditionalDetailContextMenu/HandleAdditionalDetailContextMenu.ts'
 
 test('handleAdditionalDetailContextMenu calls ContextMenu.show2 and returns state unchanged', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2': () => {
       /**/
     },
@@ -41,7 +41,7 @@ test('handleAdditionalDetailContextMenu calls ContextMenu.show2 and returns stat
 })
 
 test('handleAdditionalDetailContextMenu passes correct coordinates to ContextMenu.show2', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2': () => {
       /**/
     },
@@ -75,7 +75,7 @@ test('handleAdditionalDetailContextMenu passes correct coordinates to ContextMen
 })
 
 test('handleAdditionalDetailContextMenu returns state regardless of nodeName and href', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2': () => {
       /**/
     },

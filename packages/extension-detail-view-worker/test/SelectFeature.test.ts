@@ -9,7 +9,7 @@ import { selectFeature } from '../src/parts/SelectFeature/SelectFeature.ts'
 beforeEach(clearRegistry)
 
 test('should return same state when name is empty', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({})
+  using mockRpc = RendererWorker.registerMockRpc({})
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState(),
@@ -26,7 +26,7 @@ test('should return same state when name is empty', async () => {
 })
 
 test('should return same state when name is null', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({})
+  using mockRpc = RendererWorker.registerMockRpc({})
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState(),
@@ -43,7 +43,7 @@ test('should return same state when name is null', async () => {
 })
 
 test.skip('should select feature and update state', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readDirWithFileTypes': () => {
       return []
     },
@@ -71,7 +71,7 @@ test.skip('should select feature and update state', async () => {
 })
 
 test.skip('should call feature details handler and merge results - skipped', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readDirWithFileTypes': () => {
       return []
     },
@@ -99,7 +99,7 @@ test.skip('should call feature details handler and merge results - skipped', asy
 })
 
 test('should handle unknown feature gracefully', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({})
+  using mockRpc = RendererWorker.registerMockRpc({})
 
   const initialState: ExtensionDetailState = {
     ...createDefaultState(),
@@ -114,7 +114,7 @@ test('should handle unknown feature gracefully', async () => {
 })
 
 test('should set selected to true for matching feature', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({})
+  using mockRpc = RendererWorker.registerMockRpc({})
 
   const mockFeature: FeatureDefinition = {
     getDetails: async (): Promise<Partial<ExtensionDetailState>> => ({
@@ -143,7 +143,7 @@ test('should set selected to true for matching feature', async () => {
 })
 
 test('should call feature details handler and merge results', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({})
+  using mockRpc = RendererWorker.registerMockRpc({})
 
   let handlerCalled = false
   const mockFeature: FeatureDefinition = {

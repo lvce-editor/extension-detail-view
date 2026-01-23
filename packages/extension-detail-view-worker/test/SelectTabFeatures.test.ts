@@ -10,7 +10,7 @@ import { selectTabFeatures } from '../src/parts/SelectTabFeatures/SelectTabFeatu
 import * as TableCellType from '../src/parts/TableCellType/TableCellType.ts'
 
 test('should select features tab and first feature when selectedFeature is null', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readDirWithFileTypes': () => {
       return []
     },
@@ -69,7 +69,7 @@ test('should select features tab and first feature when selectedFeature is null'
 })
 
 test('should use existing selectedFeature when provided', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readDirWithFileTypes': () => {
       return []
     },
@@ -128,7 +128,7 @@ test('should use existing selectedFeature when provided', async () => {
 })
 
 test('should merge feature details handler results', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readDirWithFileTypes': () => {
       return []
     },
@@ -185,7 +185,7 @@ test('should merge feature details handler results', async () => {
 })
 
 test('should handle empty features array', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readDirWithFileTypes': () => {
       return []
     },
@@ -230,7 +230,7 @@ test('should handle empty features array', async () => {
 })
 
 test('should return state unchanged when features array is empty', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readDirWithFileTypes': () => {
       return []
     },
@@ -258,7 +258,7 @@ test('should return state unchanged when features array is empty', async () => {
 })
 
 test('should correctly update tabs selection to Features tab', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'FileSystem.readDirWithFileTypes': () => {
       return []
     },

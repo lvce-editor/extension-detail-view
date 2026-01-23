@@ -6,7 +6,7 @@ import * as HandleImageContextMenu from '../src/parts/HandleImageContextMenu/Han
 import * as MenuEntryId from '../src/parts/MenuEntryId/MenuEntryId.ts'
 
 test('handleImageContextMenu calls ContextMenu.show2 with correct parameters and returns state unchanged', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2': () => {
       /**/
     },
@@ -37,7 +37,7 @@ test('handleImageContextMenu calls ContextMenu.show2 with correct parameters and
 })
 
 test('handleImageContextMenu passes correct coordinates to ContextMenu.show2', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2': () => {
       /**/
     },
@@ -67,7 +67,7 @@ test('handleImageContextMenu passes correct coordinates to ContextMenu.show2', a
 })
 
 test('handleImageContextMenu returns state regardless of coordinates', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ContextMenu.show2': () => {
       /**/
     },

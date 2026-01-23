@@ -3,7 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as UninstallExtension from '../src/parts/UninstallExtension/UninstallExtension.ts'
 
 test('uninstall extension', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.uninstall': () => {
       /**/
     },
@@ -14,7 +14,7 @@ test('uninstall extension', async () => {
 
 test('handles error during uninstall', async () => {
   const error = new Error('Failed to uninstall extension')
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.uninstall': () => {
       throw error
     },

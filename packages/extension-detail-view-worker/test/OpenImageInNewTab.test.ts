@@ -5,7 +5,7 @@ import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaul
 import * as OpenImageInNewTab from '../src/parts/OpenImageInNewTab/OpenImageInNewTab.ts'
 
 test('openImageInNewTab calls openUrl with absolute icon url and returns state', async () => {
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'Open.openUrl': () => {
       /**/
     },
