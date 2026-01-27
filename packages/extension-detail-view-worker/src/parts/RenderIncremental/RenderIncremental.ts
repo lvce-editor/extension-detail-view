@@ -1,6 +1,11 @@
+import { diffTree } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import { renderDom } from '../RenderDom/RenderDom.ts'
 
 export const renderIncremental = (oldState: ExtensionDetailState, newState: ExtensionDetailState): readonly any[] => {
   const { uid } = newState
-  return ['Viewlet.setPatches', uid, []]
+  const oldDom = renderDom(oldState, oldState)[2]
+  const newDom = renderDom(newState, newState)[2]
+  const patches = diffTree(oldDom, newDom)
+  return ['Viewlet.setPatches', uid, patches]
 }
