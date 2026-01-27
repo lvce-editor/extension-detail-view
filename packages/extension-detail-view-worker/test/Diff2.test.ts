@@ -22,7 +22,7 @@ test('diff2 should return DiffItems when DiffItems.isEqual returns false', () =>
 
   const result = Diff2.diff2(2)
 
-  expect(result).toContain(DiffType.RenderItems)
+  expect(result).toContain(DiffType.RenderIncremental)
   expect(result).toHaveLength(1)
 })
 
@@ -86,7 +86,7 @@ test('diff2 should return multiple diff types when multiple modules return false
 
   const result = Diff2.diff2(5)
 
-  expect(result).toContain(DiffType.RenderItems)
+  expect(result).toContain(DiffType.RenderIncremental)
   expect(result).toContain(DiffType.RenderFocus)
   expect(result).toContain(DiffType.RenderScrollTop)
   expect(result).toContain(DiffType.RenderCss)
@@ -132,6 +132,6 @@ test('diff2 should return DiffScrollTop when selectedTab changes and scrollSourc
   const result = Diff2.diff2(8)
 
   expect(result).toContain(DiffType.RenderScrollTop)
-  expect(result).toContain(DiffType.RenderItems)
+  expect(result).toContain(DiffType.RenderIncremental)
   expect(result.length).toBeGreaterThanOrEqual(2)
 })
