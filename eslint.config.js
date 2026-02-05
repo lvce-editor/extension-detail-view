@@ -20,6 +20,7 @@ export default [
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/prefer-readonly-parameter-types': 'off',
+      '@cspell/spellchecker': 'off',
     },
   },
 ]
