@@ -2,6 +2,6 @@
 import type { MockRpc } from '@lvce-editor/rpc'
 import { ExtensionHost } from '@lvce-editor/rpc-registry'
 
-export const { getRuntimeStatus, invoke, registerMockRpc, set } = ExtensionHost
+export const { getRuntimeStatus, invoke, registerMockRpc, set } = ExtensionHost as any
 
 export type { MockRpc }
