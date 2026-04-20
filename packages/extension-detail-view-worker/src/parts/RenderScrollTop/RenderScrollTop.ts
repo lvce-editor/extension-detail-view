@@ -1,21 +1,11 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
-import * as InputName from '../InputName/InputName.ts'
-
-const getScrollTop = (selectedTab: string, readmeScrollTop: number, changelogScrollTop: number): number => {
-  if (selectedTab === InputName.Details) {
-    return readmeScrollTop
-  }
-  if (selectedTab === InputName.Changelog) {
-    return changelogScrollTop
-  }
-  return -1
-}
+import * as GetScrollTop from '../GetScrollTop/GetScrollTop.ts'
 
 export const renderScrollTop = (oldState: ExtensionDetailState, newState: ExtensionDetailState): readonly any[] => {
   const selector = '.ExtensionDetailPanel .Markdown'
   const property = 'scrollTop'
   const { changelogScrollTop, readmeScrollTop, selectedTab, uid } = newState
-  const scrollTop = getScrollTop(selectedTab, readmeScrollTop, changelogScrollTop)
+  const scrollTop = GetScrollTop.getScrollTop(selectedTab, readmeScrollTop, changelogScrollTop)
   if (scrollTop === -1) {
     return []
   }
