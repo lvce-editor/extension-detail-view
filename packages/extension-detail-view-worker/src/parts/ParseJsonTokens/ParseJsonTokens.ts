@@ -1,87 +1,134 @@
 import type { JsonToken } from '../JsonToken/JsonToken.ts'
 
-export const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
-  const tokens: JsonToken[] = []
-  let i = 0
-  let depth = 0
-  let inString = false
-  let currentString = ''
+const isDigit = (char: string): boolean => {
+  return /\d/.test(char)
+}
 
-  while (i < jsonString.length) {
-    const char = jsonString[i]
+const isNumberCharacter = (char: string): boolean => {
+  return /[\d.]/.test(char)
+}
 
-    if (inString) {
-      if (char === '"' && jsonString[i - 1] !== '\\') {
-        // End of string
-        inString = false
-        currentString += char
-        tokens.push({
+const isWhitespace = (char: string): boolean => {
+  return /\s/.test(char)
+}
+
+const isPunctuation = (char: string): boolean => {
+  return char === '{' || char === '}' || char === '[' || char === ']' || char === ':' || char === ','
+}
+
+const getKeywordMatch = (jsonString: string, index: number): { readonly token: JsonToken; readonly nextIndex: number } | undefined => {
+  if (jsonString.startsWith('true', index)) {
+    return {
+      nextIndex: index + 3,
+      token: {
+        type: 'boolean',
+        value: 'true',
+      },
+    }
+  }
+  if (jsonString.startsWith('false', index)) {
+    return {
+      nextIndex: index + 4,
+      token: {
+        type: 'boolean',
+        value: 'false',
+      },
+    }
+  }
+  if (jsonString.startsWith('null', index)) {
+    return {
+      nextIndex: index + 3,
+      token: {
+        type: 'null',
+        value: 'null',
+      },
+    }
+  }
+  return undefined
+}
+
+const getStringToken = (jsonString: string, index: number): { readonly token: JsonToken; readonly nextIndex: number } => {
+  let value = '"'
+  let currentIndex = index + 1
+  while (currentIndex < jsonString.length) {
+    const char = jsonString[currentIndex]
+    value += char
+    if (char === '"' && jsonString[currentIndex - 1] !== '\\') {
+      return {
+        nextIndex: currentIndex,
+        token: {
           type: 'string',
-          value: currentString,
-        })
-        currentString = ''
-      } else {
-        currentString += char
-      }
-    } else {
-      if (char === '"') {
-        // Start of string
-        inString = true
-        currentString = char
-      } else if (char === '{' || char === '}' || char === '[' || char === ']' || char === ':' || char === ',') {
-        // Punctuation
-        tokens.push({
-          type: 'punctuation',
-          value: char,
-        })
-        if (char === '{' || char === '[') {
-          depth++
-        } else if (char === '}' || char === ']') {
-          depth--
-        }
-      } else if (char === 't' && jsonString.slice(i, i + 4) === 'true') {
-        // Boolean true
-        tokens.push({
-          type: 'boolean',
-          value: 'true',
-        })
-        i += 3
-      } else if (char === 'f' && jsonString.slice(i, i + 5) === 'false') {
-        // Boolean false
-        tokens.push({
-          type: 'boolean',
-          value: 'false',
-        })
-        i += 4
-      } else if (char === 'n' && jsonString.slice(i, i + 4) === 'null') {
-        // Null
-        tokens.push({
-          type: 'null',
-          value: 'null',
-        })
-        i += 3
-      } else if (/[0-9]/.test(char)) {
-        // Number
-        let number = char
-        i++
-        while (i < jsonString.length && /[0-9.]/.test(jsonString[i])) {
-          number += jsonString[i]
-          i++
-        }
-        i--
-        tokens.push({
-          type: 'number',
-          value: number,
-        })
-      } else if (!/\s/.test(char)) {
-        // Any other non-whitespace character (fallback)
-        tokens.push({
-          type: 'string',
-          value: char,
-        })
+          value,
+        },
       }
     }
-    i++
+    currentIndex++
+  }
+  return {
+    nextIndex: currentIndex,
+    token: {
+      type: 'string',
+      value,
+    },
+  }
+}
+
+const getNumberToken = (jsonString: string, index: number): { readonly token: JsonToken; readonly nextIndex: number } => {
+  let value = jsonString[index]
+  let currentIndex = index + 1
+  while (currentIndex < jsonString.length && isNumberCharacter(jsonString[currentIndex])) {
+    value += jsonString[currentIndex]
+    currentIndex++
+  }
+  return {
+    nextIndex: currentIndex - 1,
+    token: {
+      type: 'number',
+      value,
+    },
+  }
+}
+
+export const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
+  const tokens: JsonToken[] = []
+  for (let i = 0; i < jsonString.length; i++) {
+    const char = jsonString[i]
+
+    if (char === '"') {
+      const stringToken = getStringToken(jsonString, i)
+      tokens.push(stringToken.token)
+      i = stringToken.nextIndex
+      continue
+    }
+
+    if (isPunctuation(char)) {
+      tokens.push({
+        type: 'punctuation',
+        value: char,
+      })
+      continue
+    }
+
+    const keywordMatch = getKeywordMatch(jsonString, i)
+    if (keywordMatch) {
+      tokens.push(keywordMatch.token)
+      i = keywordMatch.nextIndex
+      continue
+    }
+
+    if (isDigit(char)) {
+      const numberToken = getNumberToken(jsonString, i)
+      tokens.push(numberToken.token)
+      i = numberToken.nextIndex
+      continue
+    }
+
+    if (!isWhitespace(char)) {
+      tokens.push({
+        type: 'string',
+        value: char,
+      })
+    }
   }
 
   return tokens

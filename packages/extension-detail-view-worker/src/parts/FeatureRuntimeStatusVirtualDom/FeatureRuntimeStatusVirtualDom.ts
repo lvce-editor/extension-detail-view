@@ -33,6 +33,6 @@ export const getRuntimeStatusVirtualDom = (state: ExtensionDetailState): readonl
       type: VirtualDomElements.Dl,
     },
     ...GetStatusVirtualDom.getStatusVirtualDom(status),
-    ...GetActivationTimeVirtualDom.getActivationTimeVirtualDom(activationTime, importTime),
+    ...GetActivationTimeVirtualDom.getActivationTimeVirtualDom(importTime, activationTime),
   ]
 }

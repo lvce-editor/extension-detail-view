@@ -12,5 +12,4 @@ export const handleReadmeLinkClick = async (linkProtectionEnabled: boolean, plat
     }
   }
   await openExternal(href, platform)
-  return
 }
