@@ -1,15 +1,14 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const test: Test = async ({ expect, Locator, SideBar }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
-  await SideBar.open('Extensions')
+  const extensionUri = import.meta.resolve('../fixtures/extension-basics')
+  await Extension.addWebExtension(extensionUri)
 
   // act
-  const first = Locator('.ExtensionListItem[aria-posinset="1"]')
-  await expect(first).toBeVisible()
-  // TODO use command api to open detailview
-  await first.click({})
+  await ExtensionDetail.open('test.extension-basics')
 
   // assert
-  // TODO
+  const detailView = Locator('.ExtensionDetail')
+  await expect(detailView).toBeVisible()
 }

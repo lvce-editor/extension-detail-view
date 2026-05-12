@@ -6,7 +6,7 @@ import { getJsonValidationInfos } from '../src/parts/GetJsonValidationInfos/GetJ
 let mockFetch: jest.MockedFunction<typeof fetch>
 
 beforeEach(() => {
-  mockFetch = jest.fn() as jest.MockedFunction<typeof fetch>
+  mockFetch = jest.fn<typeof fetch>()
   globalThis.fetch = mockFetch
 })
 
