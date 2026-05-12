@@ -91,13 +91,15 @@ const getNumberToken = (jsonString: string, index: number): { readonly token: Js
 
 export const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
   const tokens: JsonToken[] = []
-  for (let i = 0; i < jsonString.length; i++) {
+  let i = 0
+  while (i < jsonString.length) {
     const char = jsonString[i]
 
     if (char === '"') {
       const stringToken = getStringToken(jsonString, i)
       tokens.push(stringToken.token)
       i = stringToken.nextIndex
+      i++
       continue
     }
 
@@ -106,6 +108,7 @@ export const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
         type: 'punctuation',
         value: char,
       })
+      i++
       continue
     }
 
@@ -113,6 +116,7 @@ export const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
     if (keywordMatch) {
       tokens.push(keywordMatch.token)
       i = keywordMatch.nextIndex
+      i++
       continue
     }
 
@@ -120,6 +124,7 @@ export const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
       const numberToken = getNumberToken(jsonString, i)
       tokens.push(numberToken.token)
       i = numberToken.nextIndex
+      i++
       continue
     }
 
@@ -129,6 +134,7 @@ export const parseJsonTokens = (jsonString: string): readonly JsonToken[] => {
         value: char,
       })
     }
+    i++
   }
 
   return tokens

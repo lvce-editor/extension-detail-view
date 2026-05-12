@@ -1,9 +1,9 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import * as ParseJsonTokens from '../ParseJsonTokens/ParseJsonTokens.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ParseJsonTokens from '../ParseJsonTokens/ParseJsonTokens.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
-import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 import type { JsonToken } from '../JsonToken/JsonToken.ts'
+import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const getTokenClassName = (token: JsonToken): string => {
   switch (token.type) {
