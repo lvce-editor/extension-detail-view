@@ -1,7 +1,7 @@
-import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import type { FeatureActivationEventsState } from '../FeatureActivationEventsDetails/FeatureActivationEventsDetails.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as GetFeatureActivationEventsVirtualDom from '../GetFeatureActivationEventsVirtualDom/GetFeatureActivationEventsVirtualDom.ts'
 
-export const getActivationEventsVirtualDom = (state: ExtensionDetailState): readonly VirtualDomNode[] => {
+export const getActivationEventsVirtualDom = (state: FeatureActivationEventsState): readonly VirtualDomNode[] => {
   return GetFeatureActivationEventsVirtualDom.getFeatureActivationEventsVirtualDom(state.activationEntries)
 }

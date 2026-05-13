@@ -1,5 +1,5 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
-import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import type { FeatureRuntimeStatusState } from '../FeatureRuntimeStatusDetails/FeatureRuntimeStatusDetails.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
@@ -16,7 +16,7 @@ const getChildCount = (status: number, activationTime: number, importTime: numbe
   return childCount
 }
 
-export const getRuntimeStatusVirtualDom = (state: ExtensionDetailState): readonly VirtualDomNode[] => {
+export const getRuntimeStatusVirtualDom = (state: FeatureRuntimeStatusState): readonly VirtualDomNode[] => {
   const { activationTime: displayedImportTime, importTime: displayedActivationTime, status } = state
   const heading = ExtensionDetailStrings.runtimeStatus()
   const childCount = getChildCount(status, displayedActivationTime, displayedImportTime)

@@ -1,12 +1,21 @@
+import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { Feature } from '../Feature/Feature.ts'
 import type { FeatureDefinition } from '../FeatureDefinition/FeatureDefinition.ts'
 import type { FeatureDetailsHandler, FeatureDomHandler } from '../FeatureDetailsHandler/FeatureDetailsHandler.ts'
 import { FeatureNotFoundError } from '../FeatureNotFoundError/FeatureNotFoundError.ts'
 import { getFeatureUnsupportedVirtualDom } from '../FeatureUnsupportedVirtualDom/FeatureUnsupportedVirtualDom.ts'
 
-const features: Record<string, FeatureDefinition<any>> = Object.create(null)
+interface RegisteredFeature {
+  readonly getDetails: FeatureDetailsHandler
+  readonly getLabel: () => string
+  readonly getVirtualDom: FeatureDomHandler
+  readonly id: string
+  readonly isEnabled: (extension: any) => boolean
+}
 
-export const register = <T>(feature: FeatureDefinition<T>): void => {
+const features: Record<string, RegisteredFeature> = Object.create(null)
+
+export const register = <Key extends keyof ExtensionDetailState>(feature: FeatureDefinition<Key>): void => {
   features[feature.id] = feature
 }
 

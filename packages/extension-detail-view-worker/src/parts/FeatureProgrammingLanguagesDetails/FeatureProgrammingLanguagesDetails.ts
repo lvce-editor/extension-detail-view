@@ -1,13 +1,9 @@
-import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
-import type { Row } from '../Row/Row.ts'
+import type { FeatureState } from '../FeatureState/FeatureState.ts'
 import { getProgrammingLanguageTableEntry } from '../GetProgrammingLanguageTableEntry/GetProgrammingLanguageTableEntry.ts'
 
-export interface FeatureProgrammingLanguagesDetails {
-  readonly programmingLanguages: readonly Row[]
-  readonly x: number
-}
+export type FeatureProgrammingLanguagesState = FeatureState<'programmingLanguages'>
 
-export const getFeatureDetailsProgrammingLanguages = async (extension: any): Promise<FeatureProgrammingLanguagesDetails> => {
+export const getFeatureDetailsProgrammingLanguages = async (extension: any): Promise<FeatureProgrammingLanguagesState> => {
   // TODO validate them also, to create better types
   const programmingLanguages = extension.languages || []
   const rows = programmingLanguages.map(getProgrammingLanguageTableEntry)
