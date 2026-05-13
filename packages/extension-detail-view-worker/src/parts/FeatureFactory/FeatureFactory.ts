@@ -25,6 +25,7 @@ import * as FeatureWebViewsDetails from '../FeatureWebViewsDetails/FeatureWebVie
 import * as FeatureWebViewsEnabled from '../FeatureWebViewsEnabled/FeatureWebViewsEnabled.ts'
 import * as FeatureWebViewsVirtualDom from '../FeatureWebViewsVirtualDom/FeatureWebViewsVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
+import { Row } from '../Row/Row.ts'
 
 export const registerAllFeatures = (): void => {
   register({

@@ -4,9 +4,9 @@ import type { FeatureDetailsHandler, FeatureDomHandler } from '../FeatureDetails
 import { FeatureNotFoundError } from '../FeatureNotFoundError/FeatureNotFoundError.ts'
 import { getFeatureUnsupportedVirtualDom } from '../FeatureUnsupportedVirtualDom/FeatureUnsupportedVirtualDom.ts'
 
-const features: Record<string, FeatureDefinition> = Object.create(null)
+const features: Record<string, FeatureDefinition<any>> = Object.create(null)
 
-export const register = (feature: FeatureDefinition): void => {
+export const register = <T>(feature: FeatureDefinition<T>): void => {
   features[feature.id] = feature
 }
 
