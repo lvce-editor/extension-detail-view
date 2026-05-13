@@ -1,7 +1,9 @@
-import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import type { FeatureState } from '../FeatureState/FeatureState.ts'
 import * as GetSettingsTableEntry from '../GetSettingsTableEntry/GetSettingsTableEntry.ts'
 
-export const getSettingsDetails = async (extension: any): Promise<Partial<ExtensionDetailState>> => {
+export type FeatureSettingsState = FeatureState<'settings'>
+
+export const getSettingsDetails = async (extension: any): Promise<FeatureSettingsState> => {
   const settings = extension.settings || []
   const rows = settings.map(GetSettingsTableEntry.getSettingsTableEntry)
   return {

@@ -1,7 +1,9 @@
-import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import type { FeatureState } from '../FeatureState/FeatureState.ts'
 import { getActivationEntries } from '../GetActivationEntries/GetActivationEntries.ts'
 
-export const getActivationEventsDetails = async (extension: any): Promise<Partial<ExtensionDetailState>> => {
+export type FeatureActivationEventsState = FeatureState<'activationEntries' | 'activationEvents'>
+
+export const getActivationEventsDetails = async (extension: any): Promise<FeatureActivationEventsState> => {
   const activationEvents = extension.activation || []
   const activationEntries = getActivationEntries(activationEvents)
   return {

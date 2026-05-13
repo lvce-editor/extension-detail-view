@@ -116,8 +116,8 @@ test('should handle unknown feature gracefully', async () => {
 test('should set selected to true for matching feature', async () => {
   using mockRpc = RendererWorker.registerMockRpc({})
 
-  const mockFeature: FeatureDefinition = {
-    getDetails: async (): Promise<Partial<ExtensionDetailState>> => ({
+  const mockFeature: FeatureDefinition<'commands'> = {
+    getDetails: async (): Promise<Pick<ExtensionDetailState, 'commands'>> => ({
       commands: [],
     }),
     getLabel: (): string => 'TestFeature',
@@ -146,8 +146,12 @@ test('should call feature details handler and merge results', async () => {
   using mockRpc = RendererWorker.registerMockRpc({})
 
   let handlerCalled = false
-  const mockFeature: FeatureDefinition = {
-    getDetails: async (extension: any, baseUrl: string, locationProtocol: string): Promise<Partial<ExtensionDetailState>> => {
+  const mockFeature: FeatureDefinition<'commands' | 'description'> = {
+    getDetails: async (
+      extension: any,
+      baseUrl: string,
+      locationProtocol: string,
+    ): Promise<Pick<ExtensionDetailState, 'commands' | 'description'>> => {
       handlerCalled = true
       expect(extension).toBeDefined()
       expect(baseUrl).toBeDefined()
