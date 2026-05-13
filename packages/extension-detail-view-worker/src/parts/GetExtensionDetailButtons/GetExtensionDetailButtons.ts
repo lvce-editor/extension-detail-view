@@ -7,10 +7,20 @@ const isEnabled = (button: ExtensionDetailButton): boolean => {
   return button.enabled
 }
 
-export const getExtensionDetailButtons = (hasColorTheme: boolean, isBuiltin: boolean, isDisabled: boolean): readonly ExtensionDetailButton[] => {
+export const getExtensionDetailButtons = (
+  hasColorTheme: boolean,
+  isBuiltin: boolean,
+  isDisabled: boolean,
+  extensionColorThemeId: string,
+  extensionColorThemeLabel: string,
+  currentColorThemeId: string,
+): readonly ExtensionDetailButton[] => {
+  const isCurrentColorTheme =
+    (extensionColorThemeId !== '' && extensionColorThemeId === currentColorThemeId) ||
+    (extensionColorThemeLabel !== '' && extensionColorThemeLabel === currentColorThemeId)
   const allActions: ExtensionDetailButton[] = [
     {
-      enabled: hasColorTheme && !isDisabled,
+      enabled: hasColorTheme && !isDisabled && !isCurrentColorTheme,
       label: ExtensionDetailStrings.setColorTheme(),
       name: InputName.SetColorTheme,
       onClick: DomEventListenerFunctions.HandleClickSetColorTheme,

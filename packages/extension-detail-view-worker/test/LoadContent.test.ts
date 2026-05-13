@@ -89,6 +89,9 @@ test('loadContent - successful load', async () => {
   expect(result.hasColorTheme).toBeDefined()
   expect(mockRendererRpc.invocations).toEqual([
     ['ExtensionManagement.getExtension', 'test-extension'],
+    ['Preferences.get', 'workbench.colorTheme'],
+    ['Preferences.getAll'],
+    ['Preferences.get', 'workbnech.colorTheme'],
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
@@ -169,6 +172,9 @@ test('loadContent - with builtin extension', async () => {
   expect(result.extension).toEqual(mockExtension)
   expect(mockRendererRpc.invocations).toEqual([
     ['ExtensionManagement.getExtension', 'builtin-extension'],
+    ['Preferences.get', 'workbench.colorTheme'],
+    ['Preferences.getAll'],
+    ['Preferences.get', 'workbnech.colorTheme'],
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
@@ -238,6 +244,9 @@ test('loadContent - with saved state', async () => {
   expect(result.selectedTab).toBe('details')
   expect(mockRendererRpc.invocations).toEqual([
     ['ExtensionManagement.getExtension', 'test-extension'],
+    ['Preferences.get', 'workbench.colorTheme'],
+    ['Preferences.getAll'],
+    ['Preferences.get', 'workbnech.colorTheme'],
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
@@ -302,6 +311,9 @@ test('loadContent - with different platform', async () => {
   expect(result.extension).toEqual(mockExtension)
   expect(mockRendererRpc.invocations).toEqual([
     ['ExtensionManagement.getExtension', 'test-extension'],
+    ['Preferences.get', 'workbench.colorTheme'],
+    ['Preferences.getAll'],
+    ['Preferences.get', 'workbnech.colorTheme'],
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])

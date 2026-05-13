@@ -1,0 +1,13 @@
+{
+  "id": "test.slime-theme-test",
+  "name": "Slime Theme",
+  "description": "Slime Theme",
+  "categories": ["Themes"],
+  "colorThemes": [
+    {
+      "id": "slime-theme",
+      "label": "Slime Theme",
+      "path": "color-theme.json"
+    }
+  ]
+}

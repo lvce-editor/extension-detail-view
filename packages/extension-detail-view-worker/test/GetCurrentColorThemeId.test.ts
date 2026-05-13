@@ -8,7 +8,7 @@ test('getCurrentColorTheme returns preference value', async () => {
   })
   const result = await getCurrentColorTheme()
   expect(result).toBe('dark-theme')
-  expect(mockRpc.invocations).toEqual([['Preferences.get', 'workbnech.colorTheme']])
+  expect(mockRpc.invocations).toEqual([['Preferences.get', 'workbench.colorTheme']])
 })
 
 test('getCurrentColorTheme returns empty string when preference is null', async () => {
@@ -17,7 +17,11 @@ test('getCurrentColorTheme returns empty string when preference is null', async 
   })
   const result = await getCurrentColorTheme()
   expect(result).toBe('')
-  expect(mockRpc.invocations).toEqual([['Preferences.get', 'workbnech.colorTheme']])
+  expect(mockRpc.invocations).toEqual([
+    ['Preferences.get', 'workbench.colorTheme'],
+    ['Preferences.getAll'],
+    ['Preferences.get', 'workbnech.colorTheme'],
+  ])
 })
 
 test('getCurrentColorTheme returns empty string when preference is undefined', async () => {
@@ -26,5 +30,9 @@ test('getCurrentColorTheme returns empty string when preference is undefined', a
   })
   const result = await getCurrentColorTheme()
   expect(result).toBe('')
-  expect(mockRpc.invocations).toEqual([['Preferences.get', 'workbnech.colorTheme']])
+  expect(mockRpc.invocations).toEqual([
+    ['Preferences.get', 'workbench.colorTheme'],
+    ['Preferences.getAll'],
+    ['Preferences.get', 'workbnech.colorTheme'],
+  ])
 })

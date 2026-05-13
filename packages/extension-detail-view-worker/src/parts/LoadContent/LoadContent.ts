@@ -8,7 +8,9 @@ import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement
 import { ExtensionNotFoundError } from '../ExtensionNotFoundError/ExtensionNotFoundError.ts'
 import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
+import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
 import { getCommit } from '../GetCommit/GetCommit.ts'
+import { getCurrentColorTheme } from '../GetCurrentColorThemeId/GetCurrentColorThemeId.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import { getLinkProtectionEnabled } from '../GetLinkProtectionEnabled/GetLinkProtectionEnabled.ts'
@@ -45,6 +47,7 @@ export const loadContent = async (
   if (!extension) {
     throw new ExtensionNotFoundError(id)
   }
+  const currentColorThemeId = await getCurrentColorTheme()
   const commit = await getCommit()
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
   const { badge, description, downloadCount, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name, rating } = headerData
@@ -68,7 +71,9 @@ export const loadContent = async (
   })
   const isBuiltin = extension?.isBuiltin
   const disabled = extension?.disabled
-  const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled)
+  const extensionColorThemeId = getColorThemeId(extension) || ''
+  const extensionColorThemeLabel = getColorThemeLabel(extension) || ''
+  const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled, extensionColorThemeId, extensionColorThemeLabel, currentColorThemeId)
   const size = GetViewletSize.getViewletSize(width)
   const { changelogScrollTop, readmeScrollTop, selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
@@ -99,6 +104,7 @@ export const loadContent = async (
     categories,
     changelogScrollTop,
     commit,
+    currentColorThemeId,
     description,
     detailsVirtualDom,
     disabled,
