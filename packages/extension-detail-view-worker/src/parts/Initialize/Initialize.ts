@@ -1,3 +1,4 @@
+import { initializeClipBoardWorker } from '../InitializeClipBoardWorker/InitializeClipBoardWorker.ts'
 import { initializeExtensionHostWorker } from '../InitializeExtensionHostWorker/InitializeExtensionHostWorker.ts'
 import { initializeExtensionManagementWorker } from '../InitializeExtensionManagementWorker/InitializeExtensionManagementWorker.ts'
 import { initializeFileSystemWorker } from '../InitializeFileSystemWorker/InitializeFileSystemWorker.ts'
@@ -10,5 +11,6 @@ export const initialize = async (): Promise<void> => {
     initializeFileSystemWorker(),
     initializeExtensionHostWorker(),
     initializeExtensionManagementWorker(),
+    initializeClipBoardWorker(),
   ])
 }
