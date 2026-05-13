@@ -15,6 +15,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     changelogVirtualDom: [],
     commands: [],
     commit: '',
+    currentColorThemeId: '',
     description: '',
     detailsVirtualDom: [],
     disabled: false,

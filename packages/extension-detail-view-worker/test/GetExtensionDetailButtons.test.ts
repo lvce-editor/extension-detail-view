@@ -5,7 +5,7 @@ import { getExtensionDetailButtons } from '../src/parts/GetExtensionDetailButton
 import * as InputName from '../src/parts/InputName/InputName.ts'
 
 test.skip('returns all buttons when extension has color themes and is not builtin', () => {
-  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(true, false, false)
+  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(true, false, false, 'theme-1', 'Theme 1', '')
   expect(result).toEqual([
     { enabled: true, label: 'Set Color Theme', name: InputName.SetColorTheme, onClick: 'handleClickSetColorTheme' },
     {
@@ -20,7 +20,7 @@ test.skip('returns all buttons when extension has color themes and is not builti
 })
 
 test.skip('returns all buttons when no color themes and not builtin', () => {
-  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(false, false, false)
+  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(false, false, false, '', '', '')
   expect(result).toEqual([
     { enabled: false, label: 'Set Color Theme', name: InputName.SetColorTheme, onClick: 'handleClickSetColorTheme' },
     {
@@ -35,7 +35,7 @@ test.skip('returns all buttons when no color themes and not builtin', () => {
 })
 
 test.skip('returns all buttons when extension is builtin', () => {
-  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(false, true, false)
+  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(false, true, false, '', '', '')
   expect(result).toEqual([
     { enabled: false, label: 'Set Color Theme', name: InputName.SetColorTheme, onClick: 'handleClickSetColorTheme' },
     {
@@ -50,7 +50,25 @@ test.skip('returns all buttons when extension is builtin', () => {
 })
 
 test('set color theme button is not shown when extension is disabled', () => {
-  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(true, false, true)
+  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(true, false, true, 'theme-1', 'Theme 1', '')
+  const setColorThemeButton = result.find((button) => button.name === InputName.SetColorTheme)
+  expect(setColorThemeButton).toBeUndefined()
+})
+
+test('set color theme button is not shown when extension theme is active', () => {
+  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(true, false, false, 'slime-theme', 'Slime Theme', 'slime-theme')
+  const setColorThemeButton = result.find((button) => button.name === InputName.SetColorTheme)
+  expect(setColorThemeButton).toBeUndefined()
+})
+
+test('set color theme button is shown when extension theme differs from active theme', () => {
+  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(true, false, false, 'slime-theme', 'Slime Theme', 'other-theme')
+  const setColorThemeButton = result.find((button) => button.name === InputName.SetColorTheme)
+  expect(setColorThemeButton).toBeDefined()
+})
+
+test('set color theme button is not shown when active theme matches extension label', () => {
+  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(true, false, false, 'slime-theme', 'Slime Theme', 'Slime Theme')
   const setColorThemeButton = result.find((button) => button.name === InputName.SetColorTheme)
   expect(setColorThemeButton).toBeUndefined()
 })
