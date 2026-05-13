@@ -95,7 +95,7 @@ test('selectTab with Features name calls selectTabFeatures handler', async () =>
     },
   })
 
-  const settingsFeature: FeatureDefinition = {
+  const settingsFeature: FeatureDefinition<'commands' | 'detailsVirtualDom'> = {
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
       commands: [],
       detailsVirtualDom: [],
@@ -105,7 +105,7 @@ test('selectTab with Features name calls selectTabFeatures handler', async () =>
     id: 'Settings',
     isEnabled: (): boolean => true,
   }
-  const themeFeature: FeatureDefinition = {
+  const themeFeature: FeatureDefinition<'commands' | 'detailsVirtualDom'> = {
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
       commands: [],
       detailsVirtualDom: [],

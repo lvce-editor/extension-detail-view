@@ -35,7 +35,7 @@ test('getFeaturesVirtualDom - non-empty features with registered feature', () =>
     },
   ]
 
-  const mockFeature: FeatureDefinition = {
+  const mockFeature: FeatureDefinition<'commands' | 'detailsVirtualDom'> = {
     getDetails: async () => ({
       commands: [],
       detailsVirtualDom: [],
@@ -106,7 +106,7 @@ test('getFeaturesVirtualDom - multiple features', () => {
     },
   ]
 
-  const mockFeature1: FeatureDefinition = {
+  const mockFeature1: FeatureDefinition<'commands' | 'detailsVirtualDom'> = {
     getDetails: async () => ({
       commands: [],
       detailsVirtualDom: [],
@@ -117,7 +117,7 @@ test('getFeaturesVirtualDom - multiple features', () => {
     isEnabled: (): boolean => true,
   }
 
-  const mockFeature2: FeatureDefinition = {
+  const mockFeature2: FeatureDefinition<'commands' | 'detailsVirtualDom'> = {
     getDetails: async () => ({
       commands: [],
       detailsVirtualDom: [],

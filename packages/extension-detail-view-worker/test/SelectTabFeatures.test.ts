@@ -17,7 +17,7 @@ test('should select features tab and first feature when selectedFeature is null'
   })
 
   // Register mock features
-  const mockFeature: FeatureDefinition = {
+  const mockFeature: FeatureDefinition<'commands' | 'detailsVirtualDom'> = {
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
       commands: [],
       detailsVirtualDom: [],
@@ -27,7 +27,7 @@ test('should select features tab and first feature when selectedFeature is null'
     id: 'MockFeature',
     isEnabled: (): boolean => true,
   }
-  const settingsFeature: FeatureDefinition = {
+  const settingsFeature: FeatureDefinition<'commands' | 'detailsVirtualDom'> = {
     getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
       commands: [],
       detailsVirtualDom: [],
