@@ -2,7 +2,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { FeatureState } from '../FeatureState/FeatureState.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 
-export interface FeatureDefinition<Key extends keyof ExtensionDetailState = keyof ExtensionDetailState> {
+export interface FeatureDefinition<Key extends keyof ExtensionDetailState = never> {
   readonly getDetails: (extension: any, baseUrl: string, locationProtocol: string) => Promise<FeatureState<Key>>
   readonly getLabel: () => string
   readonly getVirtualDom: (state: FeatureState<Key>) => readonly VirtualDomNode[]
