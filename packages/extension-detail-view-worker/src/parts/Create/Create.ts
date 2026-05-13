@@ -16,6 +16,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     changelogVirtualDom: [],
     commands: [],
     commit: '',
+    currentColorThemeId: '',
     description: '',
     detailsVirtualDom: [],
     disabled: false,
