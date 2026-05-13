@@ -60,10 +60,10 @@ test('handleClickSetColorTheme - extension with color theme', async () => {
 
   const state = {
     ...CreateDefaultState.createDefaultState(),
-    hasColorTheme: true,
     extension: {
       colorThemes: [{ id: 'theme1', label: 'Theme 1' }],
     },
+    hasColorTheme: true,
   }
 
   const result = await HandleClickSetColorTheme.handleClickSetColorTheme(state)
