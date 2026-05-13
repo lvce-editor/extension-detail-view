@@ -1,7 +1,7 @@
-import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import type { FeatureWebViewsState } from '../FeatureWebViewsDetails/FeatureWebViewsDetails.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as GetFeatureWebViewsVirtualDom from '../GetFeatureWebViewsVirtualDom/GetFeatureWebViewsVirtualDom.ts'
 
-export const getWebViewsVirtualDom = (state: ExtensionDetailState): readonly VirtualDomNode[] => {
+export const getWebViewsVirtualDom = (state: FeatureWebViewsState): readonly VirtualDomNode[] => {
   return GetFeatureWebViewsVirtualDom.getFeatureWebViewsVirtualDom(state.webViews)
 }
