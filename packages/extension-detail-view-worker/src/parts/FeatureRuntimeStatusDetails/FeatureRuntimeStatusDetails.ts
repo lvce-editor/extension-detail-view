@@ -1,4 +1,3 @@
-import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { FeatureState } from '../FeatureState/FeatureState.ts'
 import { getRuntimeStatus } from '../GetRuntimeStatus/GetRuntimeStatus.ts'
 
