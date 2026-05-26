@@ -1,9 +1,9 @@
 import { expect, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { ClipBoardWorker } from '@lvce-editor/rpc-registry'
 import * as Clipboard from '../src/parts/Clipboard/Clipboard.ts'
 
 test('writeClipboardImage calls writeClipBoardImage with correct blob', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = ClipBoardWorker.registerMockRpc({
     'ClipBoard.writeImage': () => {
       /**/
     },
@@ -17,7 +17,7 @@ test('writeClipboardImage calls writeClipBoardImage with correct blob', async ()
 })
 
 test('writeText calls writeClipBoardText with correct text', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = ClipBoardWorker.registerMockRpc({
     'ClipBoard.writeText': () => {
       /**/
     },
