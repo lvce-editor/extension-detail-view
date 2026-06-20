@@ -36,10 +36,7 @@ const isValidRelativePath = (value: string): boolean => {
     return false
   }
   // Must contain at least one alphanumeric character
-  if (!/[A-Za-z0-9]/.test(value)) {
-    return false
-  }
-  return true
+  return !!/[A-Za-z0-9]/.test(value)
 }
 
 export const getSchemaLinkUrl = (schema: string, extensionUri: string): string => {
@@ -57,7 +54,7 @@ export const getSchemaLinkUrl = (schema: string, extensionUri: string): string =
     return ''
   }
   try {
-    return new URL(schema, extensionUri).toString()
+    return new URL(schema, extensionUri).href
   } catch {
     return ''
   }
