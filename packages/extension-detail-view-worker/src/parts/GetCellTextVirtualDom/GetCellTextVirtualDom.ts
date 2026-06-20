@@ -10,7 +10,7 @@ export const getCellTextVirtualDom = (value: string, props?: { readonly classNam
       childCount: 1,
       className: tdClassName,
       type: VirtualDomElements.Td,
-      ...(props?.title ? { title: props.title } : {}),
+      ...(props?.title && { title: props.title }),
     },
     text(value),
   ]

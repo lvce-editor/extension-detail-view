@@ -136,7 +136,7 @@ test('single dot returns empty string', () => {
 })
 
 test('empty string after trimming returns empty string', () => {
-  const schema: string = '   '
+  const schema: string = ' '.repeat(3)
   const result: string = GetSchemaLinkUrl.getSchemaLinkUrl(schema, EXTENSION_URI)
   expect(result).toBe('')
 })
