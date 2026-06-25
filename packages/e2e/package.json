@@ -12,6 +12,6 @@
     "patch:playwright-firefox-worker-websocket": "node ./scripts/patch-playwright-firefox-worker-websocket.js"
   },
   "devDependencies": {
-    "@lvce-editor/test-with-playwright": "^20.2.0"
+    "@lvce-editor/test-with-playwright": "^22.1.0"
   }
 }
