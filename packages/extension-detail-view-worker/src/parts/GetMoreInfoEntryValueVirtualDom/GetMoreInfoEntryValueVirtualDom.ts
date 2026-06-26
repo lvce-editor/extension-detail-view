@@ -5,11 +5,13 @@ import * as GetMoreInfoEntryValueTag from '../GetMoreInfoEntryValueTag/GetMoreIn
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 interface MutableExtraProps {
+  style?: string
   tabIndex?: number
   title?: string
 }
 
 interface ExtraProps {
+  readonly style?: string
   readonly tabIndex?: number
   readonly title?: string
 }
@@ -20,6 +22,7 @@ const getExtraProps = (title: string | undefined, onClick: string | number | und
     props.title = title
   }
   if (onClick) {
+    props.style = 'cursor: pointer'
     props.tabIndex = 0
   }
   return props
