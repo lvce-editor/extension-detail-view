@@ -19,10 +19,6 @@ export const register = <Key extends keyof ExtensionDetailState>(feature: Featur
   features[feature.id] = feature
 }
 
-export const has = (id: string): boolean => {
-  return id in features
-}
-
 export const getFeatures = (selectedFeature: string, extension: any): readonly Feature[] => {
   const allFeatures = Object.values(features)
   const enabledFeatures = allFeatures.filter((item) => item.isEnabled(extension))

@@ -3,7 +3,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getNameBadgeVirtualDom } from '../GetNameBadgeVirtualDom/GetNameBadgeVirtualDom.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
-export const getExtensionDetailNameWithBadgeVirtualDom = (name: string, badge: string): readonly VirtualDomNode[] => {
+const getExtensionDetailNameWithBadgeVirtualDom = (name: string, badge: string): readonly VirtualDomNode[] => {
   return [
     {
       childCount: 2,
@@ -19,7 +19,7 @@ export const getExtensionDetailNameWithBadgeVirtualDom = (name: string, badge: s
   ]
 }
 
-export const getExtensionDetailNameDefaultVirtualDom = (name: string): readonly VirtualDomNode[] => {
+const getExtensionDetailNameDefaultVirtualDom = (name: string): readonly VirtualDomNode[] => {
   return [
     {
       childCount: 1,

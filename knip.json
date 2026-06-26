@@ -15,27 +15,7 @@
     },
     "packages/extension-detail-view-worker": {
       "entry": ["test/**/*.test.ts"],
-      "project": ["src/**/*.ts", "test/**/*.ts"],
-      "ignoreFiles": [
-        "src/parts/DiffFocusContext/DiffFocusContext.ts",
-        "src/parts/GetDynamicCss/GetDynamicCss.ts",
-        "src/parts/GetExtensionDetailVirtualDom2/GetExtensionDetailVirtualDom2.ts",
-        "src/parts/GetFeatureDetailsActivationEvents/GetFeatureDetailsActivationEvents.ts",
-        "src/parts/GetJsonSyntaxHighlightedVirtualDom/GetJsonSyntaxHighlightedVirtualDom.ts",
-        "src/parts/GetLinkOrTextEntry/GetLinkOrTextEntry.ts",
-        "src/parts/PerformCached/PerformCached.ts"
-      ],
-      "ignoreIssues": {
-        "src/parts/ClassNames/ClassNames.ts": ["exports"],
-        "src/parts/ContextMenuProps/ContextMenuProps.ts": ["types"],
-        "src/parts/ExtensionHostWorker/ExtensionHostWorker.ts": ["exports", "types"],
-        "src/parts/FeatureRegistry/FeatureRegistry.ts": ["exports"],
-        "src/parts/FileSystemWorker/FileSystemWorker.ts": ["exports", "types"],
-        "src/parts/GetExtensionDetailNameVirtualDom/GetExtensionDetailNameVirtualDom.ts": ["exports"],
-        "src/parts/InputName/InputName.ts": ["exports"],
-        "src/parts/MarkdownWorker/MarkdownWorker.ts": ["types"],
-        "src/parts/TableCellType/TableCellType.ts": ["exports"]
-      }
+      "project": ["src/**/*.ts", "test/**/*.ts"]
     },
     "packages/memory": {
       "entry": ["src/measureMemory.ts"],
