@@ -1,7 +1,5 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const skip = 1
-
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-readme-context-menu')
@@ -19,7 +17,9 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const menu = Locator('.Menu')
   await expect(menu).toBeVisible()
   const menuItems = menu.locator('.MenuItem')
-  await expect(menuItems).toHaveCount(1)
+  await expect(menuItems).toHaveCount(2)
   const first = menuItems.nth(0)
-  await expect(first).toHaveText('Copy')
+  await expect(first).toHaveText('Copy Link')
+  const second = menuItems.nth(1)
+  await expect(second).toHaveText('Copy')
 }

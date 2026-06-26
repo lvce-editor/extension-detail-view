@@ -1,0 +1,12 @@
+{
+  "id": "test.extension-invalid-feature-shapes",
+  "name": "Invalid Feature Shapes",
+  "description": "Invalid flattened feature shapes should not create features",
+  "commands": null,
+  "settings": "invalid",
+  "jsonValidation": {},
+  "languages": "invalid",
+  "webViews": {},
+  "activation": {},
+  "colorThemes": "invalid"
+}

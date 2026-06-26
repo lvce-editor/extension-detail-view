@@ -1,0 +1,11 @@
+{
+  "id": "test.extension-large-readme",
+  "name": "Large Readme Extension",
+  "description": "Extension with a large README fixture",
+  "commands": [
+    {
+      "id": "largeReadme.command",
+      "label": "Large Readme Command"
+    }
+  ]
+}
