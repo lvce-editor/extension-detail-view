@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-invalid-contributes-string",
+  "name": "Invalid Contributes String",
+  "description": "Invalid nested contributes should not create features",
+  "contributes": "not-an-object"
+}
