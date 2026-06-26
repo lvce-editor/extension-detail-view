@@ -1,0 +1,12 @@
+{
+  "id": "test.extension-categories-multiple",
+  "name": "Multiple Categories",
+  "description": "Extension with multiple categories",
+  "commands": [
+    {
+      "id": "categories.multiple.command",
+      "label": "Multiple Categories Command"
+    }
+  ],
+  "categories": ["Themes", "Formatters"]
+}

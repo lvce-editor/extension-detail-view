@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-last-updated-seconds",
+  "name": "Last Updated Seconds",
+  "description": "Extension with a valid unix timestamp in seconds",
+  "lastUpdated": 1705276800
+}

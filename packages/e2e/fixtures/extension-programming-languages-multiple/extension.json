@@ -1,0 +1,16 @@
+{
+  "id": "test.programming-languages-multiple",
+  "name": "Multiple Programming Languages",
+  "description": "Extension with multiple programming language contributions",
+  "languages": [
+    {
+      "id": "alpha",
+      "extensions": [".alpha", ".a"],
+      "configuration": "languageConfiguration.json"
+    },
+    {
+      "id": "beta",
+      "extensions": [".beta"]
+    }
+  ]
+}
