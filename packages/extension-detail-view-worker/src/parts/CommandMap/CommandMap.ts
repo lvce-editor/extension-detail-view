@@ -29,6 +29,7 @@ import { handleExtensionsChanged } from '../HandleExtensionsChanged/HandleExtens
 import * as HandleExtensionsStatusUpdate from '../HandleExtensionsStatusUpdate/HandleExtensionsStatusUpdate.ts'
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageContextMenu.ts'
+import * as HandleMarkdownImageError from '../HandleMarkdownImageError/HandleMarkdownImageError.ts'
 import * as HandleReadmeClick from '../HandleReadmeClick/HandleReadmeClick.ts'
 import { handleReadmeContextMenu } from '../HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
 import { handleResourceLinkClick } from '../HandleResourceLinkClick/HandleResourceLinkClick.ts'
@@ -76,6 +77,7 @@ export const commandMap = {
   'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
   'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
+  'ExtensionDetail.handleMarkdownImageError': WrapCommand.wrapCommand(HandleMarkdownImageError.handleMarkdownImageError),
   'ExtensionDetail.handleReadmeClick': WrapCommand.wrapCommand(HandleReadmeClick.handleReadmeClick),
   'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
   'ExtensionDetail.handleResourceLinkClick': WrapCommand.wrapCommand(handleResourceLinkClick),

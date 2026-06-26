@@ -34,6 +34,10 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       preventDefault: true,
     },
     {
+      name: DomEventListenerFunctions.HandleMarkdownImageError,
+      params: ['handleMarkdownImageError', 'event.currentTarget.src'],
+    },
+    {
       name: DomEventListenerFunctions.HandleReadmeScroll,
       params: ['handleScroll', 'event.target.scrollTop', InputSource.User],
       passive: true,
