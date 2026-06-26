@@ -1,0 +1,12 @@
+{
+  "id": "test.extension-readme-rich",
+  "name": "Rich Readme",
+  "description": "Extension with a readme that exercises common markdown blocks",
+  "commands": [
+    {
+      "id": "rich.readme.command",
+      "label": "Rich Readme Command"
+    }
+  ],
+  "categories": ["Formatters"]
+}

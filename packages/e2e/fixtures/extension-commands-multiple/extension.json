@@ -1,0 +1,15 @@
+{
+  "id": "test.commands-multiple",
+  "name": "Multiple Commands",
+  "description": "Extension with multiple command contributions",
+  "commands": [
+    {
+      "id": "multiple.command.alpha",
+      "label": "Multiple Command Alpha"
+    },
+    {
+      "id": "multiple.command.beta",
+      "label": "Multiple Command Beta"
+    }
+  ]
+}
