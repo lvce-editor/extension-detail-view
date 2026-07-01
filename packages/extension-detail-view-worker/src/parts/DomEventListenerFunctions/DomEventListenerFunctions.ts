@@ -17,3 +17,4 @@ export const HandleReadmeClick = 16
 export const HandleSelectionChange = 17
 export const HandleTabFocus = 18
 export const HandleResourceLinkClick = 19
+export const HandleMarkdownImageError = 20
