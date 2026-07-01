@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-invalid-contributes-array",
+  "name": "Invalid Contributes Array",
+  "description": "Invalid nested contributes should not create features",
+  "contributes": []
+}
