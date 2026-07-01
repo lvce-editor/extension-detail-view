@@ -1,6 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const skip = 1
+export const name = 'extension-detail.categories-empty'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
@@ -13,7 +13,6 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // assert
   const detailView = Locator('.ExtensionDetail')
   await expect(detailView).toBeVisible()
-  // @ts-ignore
-  const categoriesSection = detailView.locator('.AdditionalDetailsEntry').filter({ hasText: 'Categories' })
-  await expect(categoriesSection).toHaveCount(0)
+  const categories = detailView.locator('.Category')
+  await expect(categories).toHaveCount(0)
 }

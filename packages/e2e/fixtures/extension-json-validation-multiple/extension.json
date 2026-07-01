@@ -1,0 +1,15 @@
+{
+  "id": "test.json-validation-multiple",
+  "name": "Multiple Json Validation",
+  "description": "Extension with multiple json validation entries",
+  "jsonValidation": [
+    {
+      "fileMatch": "*.alpha.json",
+      "schema": "./alpha.schema.json"
+    },
+    {
+      "fileMatch": "*.beta.json",
+      "schema": "./beta.schema.json"
+    }
+  ]
+}
