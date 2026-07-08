@@ -68,3 +68,18 @@ test('getButtonVirtualDom - with long message', () => {
     text('This is a very long button message that spans multiple words'),
   ])
 })
+
+test('getButtonVirtualDom - with hover listeners', () => {
+  expect(GetButtonVirtualDom.getButtonVirtualDom('Enable', 3, 'Enable', 20, 21)).toEqual([
+    {
+      childCount: 1,
+      className: MergeClassNames.mergeClassNames(ClassNames.Button, ClassNames.ButtonPrimary),
+      name: 'Enable',
+      onClick: 3,
+      onMouseEnter: 20,
+      onMouseLeave: 21,
+      type: VirtualDomElements.Button,
+    },
+    text('Enable'),
+  ])
+})

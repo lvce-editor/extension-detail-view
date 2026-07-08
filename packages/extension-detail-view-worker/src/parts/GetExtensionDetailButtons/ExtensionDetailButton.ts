@@ -3,4 +3,6 @@ export interface ExtensionDetailButton {
   readonly label: string
   readonly name: string
   readonly onClick: string | number
+  readonly onMouseEnter?: string | number
+  readonly onMouseLeave?: string | number
 }
