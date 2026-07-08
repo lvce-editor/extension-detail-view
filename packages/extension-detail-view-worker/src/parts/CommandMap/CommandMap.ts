@@ -29,6 +29,8 @@ import { handleExtensionsChanged } from '../HandleExtensionsChanged/HandleExtens
 import * as HandleExtensionsStatusUpdate from '../HandleExtensionsStatusUpdate/HandleExtensionsStatusUpdate.ts'
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageContextMenu.ts'
+import * as HandleMouseEnterEnable from '../HandleMouseEnterEnable/HandleMouseEnterEnable.ts'
+import * as HandleMouseLeaveEnable from '../HandleMouseLeaveEnable/HandleMouseLeaveEnable.ts'
 import * as HandleReadmeClick from '../HandleReadmeClick/HandleReadmeClick.ts'
 import { handleReadmeContextMenu } from '../HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
 import { handleResourceLinkClick } from '../HandleResourceLinkClick/HandleResourceLinkClick.ts'
@@ -76,6 +78,8 @@ export const commandMap = {
   'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
   'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
+  'ExtensionDetail.handleMouseEnterEnable': WrapCommand.wrapCommand(HandleMouseEnterEnable.handleMouseEnterEnable),
+  'ExtensionDetail.handleMouseLeaveEnable': WrapCommand.wrapCommand(HandleMouseLeaveEnable.handleMouseLeaveEnable),
   'ExtensionDetail.handleReadmeClick': WrapCommand.wrapCommand(HandleReadmeClick.handleReadmeClick),
   'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
   'ExtensionDetail.handleResourceLinkClick': WrapCommand.wrapCommand(handleResourceLinkClick),
