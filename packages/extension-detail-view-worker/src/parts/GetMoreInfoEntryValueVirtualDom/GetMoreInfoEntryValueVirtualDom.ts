@@ -22,7 +22,7 @@ const getExtraProps = (title: string | undefined, onClick: string | number | und
     props.title = title
   }
   if (onClick) {
-    props.style = 'cursor: pointer'
+    props.style = 'color: var(--vscode-textLink-foreground, #3794ff); cursor: pointer; text-decoration: none'
     props.tabIndex = 0
   }
   return props
