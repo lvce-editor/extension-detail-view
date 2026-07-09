@@ -217,6 +217,10 @@ test('version returns correct i18n string', () => {
   expect(ExtensionDetailStrings.version()).toBe('Version')
 })
 
+test('created returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.created()).toBe('Created')
+})
+
 test('lastUpdated returns correct i18n string', () => {
   expect(ExtensionDetailStrings.lastUpdated()).toBe('Last Updated')
 })

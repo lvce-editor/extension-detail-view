@@ -197,6 +197,10 @@ export const version = (): string => {
   return I18nString.i18nString(UiStrings.Version)
 }
 
+export const created = (): string => {
+  return I18nString.i18nString(UiStrings.Created)
+}
+
 export const lastUpdated = (): string => {
   return I18nString.i18nString(UiStrings.LastUpdated)
 }

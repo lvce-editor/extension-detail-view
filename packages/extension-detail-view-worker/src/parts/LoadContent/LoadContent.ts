@@ -23,6 +23,7 @@ import * as InputSource from '../InputSource/InputSource.ts'
 import * as LoadHeaderContent from '../LoadHeaderContent/LoadHeaderContent.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import { loadSideBarContent } from '../LoadSideBarContent/LoadSideBarContent.ts'
+import * as ParseCreated from '../ParseCreated/ParseCreated.ts'
 import * as ParseLastUpdated from '../ParseLastUpdated/ParseLastUpdated.ts'
 import * as Path from '../Path/Path.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
@@ -82,6 +83,7 @@ export const loadContent = async (
   const enabledTabs = tabs.filter(isEnabled)
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
   const showSizeLink = platform !== PlatformType.Web
+  const created = ParseCreated.parseCreated(extension)
   const lastUpdated = ParseLastUpdated.parseLastUpdated(extension)
   const { categories, displaySize, folderSize, installationEntries, marketplaceEntries, resources } = await loadSideBarContent(
     extensionId,
@@ -90,6 +92,7 @@ export const loadContent = async (
     isBuiltin,
     extension,
     showSizeLink,
+    created,
     lastUpdated,
   )
   const padding = getPadding(width)
@@ -104,6 +107,7 @@ export const loadContent = async (
     categories,
     changelogScrollTop,
     commit,
+    created,
     currentColorThemeId,
     description,
     detailsVirtualDom,
