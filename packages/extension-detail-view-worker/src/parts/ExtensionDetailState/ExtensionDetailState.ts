@@ -23,6 +23,7 @@ export interface ExtensionDetailState {
   readonly changelogVirtualDom: readonly VirtualDomNode[]
   readonly commands: readonly Row[]
   readonly commit: string
+  readonly created: number | null
   readonly currentColorThemeId: string
   readonly description: string
   readonly detailsVirtualDom: readonly VirtualDomNode[]
