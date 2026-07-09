@@ -39,6 +39,7 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
       path: '/test/path',
       version: '1.0.0',
     },
+    languages: [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
     platform: 0,
   }
 
@@ -49,7 +50,16 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
   expect(mockRendererRpc.invocations).toEqual([])
   expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations).toEqual([
-    ['Markdown.render', expect.any(String), expect.any(Object)],
+    [
+      'Markdown.render',
+      'README CONTENT',
+      {
+        baseUrl: '/test/baseUrl',
+        languages: [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
+        linksExternal: true,
+        locationProtocol: '',
+      },
+    ],
     ['Markdown.getVirtualDom', expect.any(String)],
   ])
 })

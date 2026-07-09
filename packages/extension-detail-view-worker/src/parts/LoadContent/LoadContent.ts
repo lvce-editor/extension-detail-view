@@ -16,6 +16,7 @@ import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFr
 import { getLinkProtectionEnabled } from '../GetLinkProtectionEnabled/GetLinkProtectionEnabled.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import { getPadding, getSideBarWidth } from '../GetPadding/GetPadding.ts'
+import { getSyntaxLanguages } from '../GetSyntaxLanguages/GetSyntaxLanguages.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
@@ -50,6 +51,7 @@ export const loadContent = async (
   }
   const currentColorThemeId = await getCurrentColorTheme()
   const commit = await getCommit()
+  const languages = await getSyntaxLanguages(platform, state.assetDir)
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
   const { badge, description, downloadCount, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name, rating } = headerData
   const readmeUrl = Path.join(extensionUri, 'README.md')
@@ -64,6 +66,7 @@ export const loadContent = async (
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
     commit,
+    languages,
     linksExternal: true,
     locationProtocol,
   })
@@ -125,6 +128,7 @@ export const loadContent = async (
     iconSrc,
     initial: false,
     installationEntries,
+    languages,
     lastUpdated,
     linkProtectionEnabled,
     locationHost,
