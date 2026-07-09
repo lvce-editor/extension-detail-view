@@ -51,7 +51,7 @@ test('clickable value has pointer cursor', () => {
       childCount: 1,
       className: MergeClassNames.mergeClassNames(ClassNames.MoreInfoEntryValue, ClassNames.Link),
       onClick: 7,
-      style: 'cursor: pointer',
+      style: 'color: var(--vscode-textLink-foreground, #3794ff); cursor: pointer; text-decoration: none',
       tabIndex: 0,
       title: '/test/path',
       type: VirtualDomElements.A,
