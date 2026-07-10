@@ -23,14 +23,24 @@ test('parseLastUpdated returns null when lastUpdated is null', () => {
   expect(ParseLastUpdated.parseLastUpdated(extension)).toBe(null)
 })
 
-test('parseLastUpdated returns number when lastUpdated is a valid number', () => {
+test('parseLastUpdated returns milliseconds when lastUpdated is a millisecond timestamp', () => {
   const extension = { lastUpdated: 1_705_276_800_000 }
   expect(ParseLastUpdated.parseLastUpdated(extension)).toBe(1_705_276_800_000)
 })
 
-test('parseLastUpdated returns number when lastUpdated is a valid string number', () => {
+test('parseLastUpdated converts a timestamp in seconds to milliseconds', () => {
+  const extension = { lastUpdated: 1_705_276_800 }
+  expect(ParseLastUpdated.parseLastUpdated(extension)).toBe(1_705_276_800_000)
+})
+
+test('parseLastUpdated returns milliseconds when lastUpdated is a numeric string', () => {
   const extension = { lastUpdated: '1705276800000' }
   expect(ParseLastUpdated.parseLastUpdated(extension)).toBe(1_705_276_800_000)
+})
+
+test('parseLastUpdated parses an ISO date string', () => {
+  const extension = { lastUpdated: '2024-01-15T10:30:00+05:30' }
+  expect(ParseLastUpdated.parseLastUpdated(extension)).toBe(1_705_294_800_000)
 })
 
 test('parseLastUpdated returns null when lastUpdated is an invalid string', () => {
