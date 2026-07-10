@@ -9,6 +9,7 @@ import * as SelectTabChangelog from '../src/parts/SelectTabChangelog/SelectTabCh
 test('selectTabChangelog should update state with changelog content', async () => {
   const state = {
     ...createDefaultState.createDefaultState(),
+    extensionUri: 'https://lvce-editor.github.io/extension-detail-view/hash/extensions/test.extension',
     languages: [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
   }
   const changelogContent = '# Changelog\n\n## Version 1.0.0\n- Initial release'
@@ -34,7 +35,9 @@ test('selectTabChangelog should update state with changelog content', async () =
 
   expect(result.selectedTab).toBe(InputName.Changelog)
   expect(result.changelogVirtualDom).toStrictEqual(mockDom)
-  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockFileSystemRpc.invocations).toEqual([
+    ['FileSystem.readFile', 'https://lvce-editor.github.io/extension-detail-view/hash/extensions/test.extension/CHANGELOG.md'],
+  ])
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
   expect(result.tabs.every((tab) => tab.selected === (tab.name === InputName.Changelog))).toBe(true)
   expect(mockMarkdownRpc.invocations).toEqual([

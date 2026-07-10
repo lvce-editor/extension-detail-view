@@ -5,8 +5,8 @@ import * as LoadChangelogContent from '../LoadChangelogContent/LoadChangelogCont
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
 export const selectTabChangelog = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const { baseUrl, extension, languages, locationProtocol, tabs } = state
-  const changelogContent = await LoadChangelogContent.loadChangelogContent(extension.path) // TODO use uri
+  const { baseUrl, extensionUri, languages, locationProtocol, tabs } = state
+  const changelogContent = await LoadChangelogContent.loadChangelogContent(extensionUri)
   const changelogMarkdownHtml = await RenderMarkdown.renderMarkdown(changelogContent, {
     baseUrl,
     languages,

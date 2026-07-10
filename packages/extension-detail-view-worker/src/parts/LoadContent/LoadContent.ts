@@ -13,6 +13,7 @@ import { getCommit } from '../GetCommit/GetCommit.ts'
 import { getCurrentColorTheme } from '../GetCurrentColorThemeId/GetCurrentColorThemeId.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
+import { getExtensionUri } from '../GetExtensionUri/GetExtensionUri.ts'
 import { getLinkProtectionEnabled } from '../GetLinkProtectionEnabled/GetLinkProtectionEnabled.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import { getPadding, getSideBarWidth } from '../GetPadding/GetPadding.ts'
@@ -53,7 +54,19 @@ export const loadContent = async (
   const commit = await getCommit()
   const languages = await getSyntaxLanguages(platform, state.assetDir)
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
-  const { badge, description, downloadCount, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name, rating } = headerData
+  const {
+    badge,
+    description,
+    downloadCount,
+    extensionId,
+    extensionUri: unresolvedExtensionUri,
+    extensionVersion,
+    hasColorTheme,
+    iconSrc,
+    name,
+    rating,
+  } = headerData
+  const extensionUri = getExtensionUri(unresolvedExtensionUri, platform, location.origin)
   const readmeUrl = Path.join(extensionUri, 'README.md')
   const changelogUrl = Path.join(extensionUri, 'CHANGELOG.md')
   const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUrl), existsFile(changelogUrl)])
