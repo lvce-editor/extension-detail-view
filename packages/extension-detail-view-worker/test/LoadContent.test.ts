@@ -168,8 +168,8 @@ test('loadContent - with builtin extension', async () => {
 
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
-  // expect(result.isBuiltin).toBe(true)
   expect(result.extension).toEqual(mockExtension)
+  expect(result.marketplaceEntries).toEqual([])
   expect(mockRendererRpc.invocations).toEqual([
     ['ExtensionManagement.getExtension', 'builtin-extension'],
     ['Preferences.get', 'workbench.colorTheme'],

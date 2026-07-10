@@ -1,0 +1,7 @@
+{
+  "id": "test.extension-builtin",
+  "name": "Test Builtin Extension",
+  "description": "Test Builtin Extension Description",
+  "builtin": true,
+  "categories": ["Themes"]
+}

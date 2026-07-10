@@ -73,7 +73,7 @@ export const loadContent = async (
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
   })
-  const isBuiltin = extension?.isBuiltin
+  const isBuiltin = extension?.isBuiltin || extension?.builtin || false
   const disabled = extension?.disabled
   const extensionColorThemeId = getColorThemeId(extension) || ''
   const extensionColorThemeLabel = getColorThemeLabel(extension) || ''
