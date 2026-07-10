@@ -15,6 +15,5 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const moreInfoEntryKey = moreInfoEntry.locator('.MoreInfoEntryKey')
   await expect(moreInfoEntryKey).toHaveText('Last Updated')
   const moreInfoEntryValue = moreInfoEntry.locator('.MoreInfoEntryValue')
-  await expect(moreInfoEntryValue).not.toHaveText('n/a')
   await expect(moreInfoEntryValue).toHaveText('2 years ago')
 }
