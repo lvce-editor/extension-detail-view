@@ -9,6 +9,8 @@ import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 beforeAll(() => {
   // @ts-ignore
   globalThis.location = {
+    host: 'lvce-editor.github.io',
+    origin: 'https://lvce-editor.github.io',
     protocol: 'https:',
   }
 })
@@ -75,8 +77,9 @@ test('loadContent - successful load', async () => {
   expect(result.extensionId).toBe('test-extension')
   expect(result.extensionVersion).toBe('1.0.0')
   // expect(result.isBuiltin).toBe(false)
-  expect(result.folderSize).toBe(1024)
+  expect(result.folderSize).toBe(0)
   expect(result.baseUrl).toBe('/test/path')
+  expect(result.extensionUri).toBe('https://lvce-editor.github.io/test/uri')
   expect(result.iconSrc).toBeDefined()
   expect(result.detailsVirtualDom).toBeDefined()
   expect(result.features).toBeDefined()
@@ -95,7 +98,11 @@ test('loadContent - successful load', async () => {
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
-  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockFileSystemRpc.invocations).toEqual([
+    ['FileSystem.exists', 'https://lvce-editor.github.io/test/uri/README.md'],
+    ['FileSystem.exists', 'https://lvce-editor.github.io/test/uri/CHANGELOG.md'],
+    ['FileSystem.readFile', 'https://lvce-editor.github.io/test/uri/README.md'],
+  ])
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
