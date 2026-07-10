@@ -13,6 +13,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(detailView).toBeVisible()
   const icon = Locator('.ExtensionDetailIcon')
   await expect(icon).toBeVisible()
+  await expect(icon).toHaveAttribute('src', `${extensionUri}/icon.svg`)
   const name = Locator('.ExtensionDetailName')
   await expect(name).toBeVisible()
   await expect(name).toHaveText('Test')

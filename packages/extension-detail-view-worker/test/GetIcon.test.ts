@@ -65,14 +65,15 @@ test('getIcon returns remote path for Remote platform', () => {
   expect(result).toBe(`${assetDir}/extensions/test.extension/icon.png`)
 })
 
-test('getIcon returns empty string for Web platform with path and icon', () => {
+test('getIcon returns extension icon path for Web platform', () => {
   const extension = {
+    builtin: true,
     icon: 'icon.png',
     id: 'test.extension',
     path: '/path/to/extension',
   }
   const result = getIcon(extension, PlatformType.Web, assetDir)
-  expect(result).toBe('')
+  expect(result).toBe('/path/to/extension/icon.png')
 })
 
 test('getIcon prefers language basics over theme when both conditions match', () => {

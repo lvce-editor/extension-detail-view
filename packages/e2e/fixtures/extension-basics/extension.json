@@ -2,6 +2,7 @@
   "id": "test.extension-basics",
   "name": "Test",
   "description": "Test Description",
+  "icon": "icon.svg",
   "commands": [
     {
       "id": "test",
