@@ -13,4 +13,9 @@ test('renderEventListeners returns expected event listeners', () => {
     name: DomEventListenerFunctions.HandleMouseLeaveEnable,
     params: ['handleMouseLeaveEnable'],
   })
+  expect(result).toContainEqual({
+    name: DomEventListenerFunctions.HandleHeaderContextMenu,
+    params: ['handleHeaderContextMenu'],
+    preventDefault: true,
+  })
 })
