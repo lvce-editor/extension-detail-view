@@ -1,4 +1,4 @@
-interface GithubApiMock {
+export interface GithubApiMock {
   readonly body?: unknown
   readonly headers?: Readonly<Record<string, string>>
   readonly message?: string
