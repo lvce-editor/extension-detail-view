@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-github-releases",
+  "name": "GitHub Releases Test",
+  "description": "Extension with a GitHub repository and no packaged changelog",
+  "repository": "https://github.com/test-owner/test-repository"
+}

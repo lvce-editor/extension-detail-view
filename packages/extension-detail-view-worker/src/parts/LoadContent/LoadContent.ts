@@ -14,6 +14,7 @@ import { getCurrentColorTheme } from '../GetCurrentColorThemeId/GetCurrentColorT
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import { getExtensionUri } from '../GetExtensionUri/GetExtensionUri.ts'
+import { getGithubRepository } from '../GetGithubRepository/GetGithubRepository.ts'
 import { getLinkProtectionEnabled } from '../GetLinkProtectionEnabled/GetLinkProtectionEnabled.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import { getPadding, getSideBarWidth } from '../GetPadding/GetPadding.ts'
@@ -95,7 +96,8 @@ export const loadContent = async (
   const { changelogScrollTop, readmeScrollTop, selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
   const hasFeatures = features.length > 0
-  const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog)
+  const hasGithubReleases = Boolean(getGithubRepository(extension))
+  const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog || hasGithubReleases)
   const enabledTabs = tabs.filter(isEnabled)
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
   const showSizeLink = platform !== PlatformType.Web
