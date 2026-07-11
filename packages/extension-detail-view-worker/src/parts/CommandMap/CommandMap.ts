@@ -15,6 +15,7 @@ import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
 import * as GetMenus from '../GetMenus/GetMenus.ts'
+import * as GithubApiRequest from '../GithubApiRequest/GithubApiRequest.ts'
 import { handleAdditionalDetailContextMenu } from '../HandleAdditionalDetailContextMenu/HandleAdditionalDetailContextMenu.ts'
 import * as HandleClickCategory from '../HandleClickCategory/HandleClickCategory.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
@@ -91,9 +92,11 @@ export const commandMap = {
   'ExtensionDetail.hideSizeLink': WrapCommand.wrapCommand(hideSizeLink),
   'ExtensionDetail.initialize': Initialize.initialize,
   'ExtensionDetail.loadContent2': WrapCommand.wrapCommand(LoadContent2.loadContent2),
+  'ExtensionDetail.mockGithubApi': GithubApiRequest.mockGithubApi,
   'ExtensionDetail.openImageInNewTab': WrapCommand.wrapCommand(OpenImageInNewTab.openImageInNewTab),
   'ExtensionDetail.render2': Render2.render2,
   'ExtensionDetail.renderEventListeners': RenderEventListeners.renderEventListeners,
+  'ExtensionDetail.resetGithubApiMock': GithubApiRequest.resetGithubApiMock,
   'ExtensionDetail.resize': WrapCommand.wrapCommand(Resize.resize),
   'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),

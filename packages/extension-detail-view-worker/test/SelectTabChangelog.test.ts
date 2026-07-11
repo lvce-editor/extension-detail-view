@@ -1,10 +1,15 @@
-import { test, expect } from '@jest/globals'
+import { afterEach, expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as createDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
+import * as GithubApiRequest from '../src/parts/GithubApiRequest/GithubApiRequest.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 import * as SelectTabChangelog from '../src/parts/SelectTabChangelog/SelectTabChangelog.ts'
+
+afterEach(() => {
+  GithubApiRequest.resetGithubApiMock()
+})
 
 test('selectTabChangelog should update state with changelog content', async () => {
   const state = {
@@ -34,7 +39,8 @@ test('selectTabChangelog should update state with changelog content', async () =
   const result = await SelectTabChangelog.selectTabChangelog(state)
 
   expect(result.selectedTab).toBe(InputName.Changelog)
-  expect(result.changelogVirtualDom).toStrictEqual(mockDom)
+  expect(result.changelogVirtualDom).toHaveLength(3)
+  expect(result.changelogVirtualDom[0]).toMatchObject({ childCount: 2, type: VirtualDomElements.Div })
   expect(mockFileSystemRpc.invocations).toEqual([
     ['FileSystem.readFile', 'https://lvce-editor.github.io/extension-detail-view/hash/extensions/test.extension/CHANGELOG.md'],
   ])
@@ -47,9 +53,54 @@ test('selectTabChangelog should update state with changelog content', async () =
       {
         baseUrl: '',
         languages: [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
+        linksExternal: true,
         locationProtocol: '',
       },
     ],
     ['Markdown.getVirtualDom', expect.any(String)],
   ])
+})
+
+test('selectTabChangelog renders GitHub releases without reading a local changelog', async () => {
+  const release = {
+    body: '**Important** fix',
+    html_url: 'https://github.com/test-owner/test-repository/releases/tag/v1',
+    name: 'Version 1',
+    published_at: '2026-01-01T00:00:00Z',
+    tag_name: 'v1',
+  }
+  GithubApiRequest.mockGithubApi({ body: [release], type: 'success' })
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => [{ childCount: 0, type: VirtualDomElements.Div }],
+    'Markdown.render': () => '<h1>Version 1</h1>',
+  })
+  const state = {
+    ...createDefaultState.createDefaultState(),
+    extension: { repository: 'https://github.com/test-owner/test-repository' },
+  }
+
+  const result = await SelectTabChangelog.selectTabChangelog(state)
+
+  expect(result.selectedTab).toBe(InputName.Changelog)
+  expect(mockMarkdownRpc.invocations[0]).toEqual([
+    'Markdown.render',
+    expect.stringContaining('**Important** fix'),
+    expect.objectContaining({ baseUrl: 'https://github.com/test-owner/test-repository/blob/HEAD/' }),
+  ])
+})
+
+test('selectTabChangelog renders a friendly GitHub error', async () => {
+  GithubApiRequest.mockGithubApi({ type: 'network-error' })
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => [{ childCount: 0, type: VirtualDomElements.Div }],
+    'Markdown.render': () => '<h1>Changelog</h1>',
+  })
+  const state = {
+    ...createDefaultState.createDefaultState(),
+    extension: { repository: 'https://github.com/test-owner/test-repository' },
+  }
+
+  await SelectTabChangelog.selectTabChangelog(state)
+
+  expect(mockMarkdownRpc.invocations[0]).toEqual(['Markdown.render', expect.stringContaining('GitHub is not reachable'), expect.any(Object)])
 })

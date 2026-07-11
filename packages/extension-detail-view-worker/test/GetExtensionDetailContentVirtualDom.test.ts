@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Category } from '../src/parts/Category/Category.ts'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import type { Resource } from '../src/parts/Resource/Resource.ts'
@@ -44,7 +44,8 @@ test('getExtensionDetailContentVirtualDom - Changelog tab', () => {
   expect(result).toEqual(expected)
   expect(result[0]).toEqual({
     childCount: 1,
-    className: ClassNames.Changelog,
+    className: `${ClassNames.ExtensionDetailPanel} ${ClassNames.Changelog}`,
+    role: AriaRoles.Panel,
     type: VirtualDomElements.Div,
   })
 })
