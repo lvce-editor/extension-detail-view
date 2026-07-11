@@ -1,3 +1,5 @@
+import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+
 export interface GithubApiMock {
   readonly body?: unknown
   readonly headers?: Readonly<Record<string, string>>
@@ -83,6 +85,16 @@ export const mockGithubApi = (value: GithubApiMock): void => {
   mock = value
 }
 
+export const handleMockGithubApi = (state: ExtensionDetailState, value: GithubApiMock): ExtensionDetailState => {
+  mockGithubApi(value)
+  return state
+}
+
 export const resetGithubApiMock = (): void => {
   mock = undefined
+}
+
+export const handleResetGithubApiMock = (state: ExtensionDetailState): ExtensionDetailState => {
+  resetGithubApiMock()
+  return state
 }

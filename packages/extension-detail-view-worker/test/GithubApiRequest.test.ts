@@ -1,4 +1,5 @@
 import { afterEach, expect, jest, test } from '@jest/globals'
+import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as GithubApiRequest from '../src/parts/GithubApiRequest/GithubApiRequest.ts'
 
 const originalFetch = globalThis.fetch
@@ -24,4 +25,11 @@ test('requests GitHub with the recommended API headers', async () => {
 test('uses a custom mock network error', async () => {
   GithubApiRequest.mockGithubApi({ message: 'custom error', type: 'network-error' })
   await expect(GithubApiRequest.request('https://api.github.com/test')).rejects.toThrow('custom error')
+})
+
+test('stateful mock commands preserve the view state', async () => {
+  const state = createDefaultState()
+  expect(GithubApiRequest.handleMockGithubApi(state, { body: [], type: 'success' })).toBe(state)
+  await expect(GithubApiRequest.request('https://api.github.com/test')).resolves.toBeInstanceOf(Response)
+  expect(GithubApiRequest.handleResetGithubApiMock(state)).toBe(state)
 })
