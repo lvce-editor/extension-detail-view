@@ -31,7 +31,7 @@ export const openGithubChangelog = async (
   fixture: string = 'extension-github-releases',
   extensionId: string = 'test.extension-github-releases',
 ): Promise<void> => {
-  const extensionUri = import.meta.resolve(`../../fixtures/${fixture}`)
+  const extensionUri = import.meta.resolve(`../fixtures/${fixture}`)
   await api.Extension.addWebExtension(extensionUri)
   await api.ExtensionDetail.open(extensionId)
   await mockGithubApi(api.Command, options)
