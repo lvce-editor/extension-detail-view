@@ -5,7 +5,7 @@ import { GithubReleasesError } from '../GithubReleasesError/GithubReleasesError.
 import { hasProperty } from '../HasProperty/HasProperty.ts'
 
 const pageSize = 100
-const maximumReleases = 250
+const maximumReleases = 100
 
 export interface GithubReleasesResult {
   readonly isTruncated: boolean

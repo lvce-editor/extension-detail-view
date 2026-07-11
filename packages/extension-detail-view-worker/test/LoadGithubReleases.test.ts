@@ -31,19 +31,26 @@ test('accepts nullable GitHub fields', async () => {
   })
 })
 
-test('loads all paginated releases', async () => {
+test('detects additional paginated releases', async () => {
   GithubApiRequest.mockGithubApi({ releaseCount: 101, type: 'generated' })
   const result = await loadGithubReleases(repository)
-  expect(result.isTruncated).toBe(false)
-  expect(result.releases).toHaveLength(101)
+  expect(result.isTruncated).toBe(true)
+  expect(result.releases).toHaveLength(100)
 })
 
-test('stops loading after the newest 250 releases', async () => {
+test('does not truncate exactly 100 releases', async () => {
+  GithubApiRequest.mockGithubApi({ releaseCount: 100, type: 'generated' })
+  const result = await loadGithubReleases(repository)
+  expect(result.isTruncated).toBe(false)
+  expect(result.releases).toHaveLength(100)
+})
+
+test('stops loading after the newest 100 releases', async () => {
   GithubApiRequest.mockGithubApi({ releaseCount: 5000, type: 'generated' })
   const result = await loadGithubReleases(repository)
-  expect(result).toMatchObject({ isTruncated: true, releases: { length: 250 } })
+  expect(result).toMatchObject({ isTruncated: true, releases: { length: 100 } })
   expect(result.releases[0].name).toBe('Version 5000')
-  expect(result.releases.at(-1)?.name).toBe('Version 4751')
+  expect(result.releases.at(-1)?.name).toBe('Version 4901')
 })
 
 test('reports a network error', async () => {
