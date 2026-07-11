@@ -105,7 +105,7 @@ test('selectTabChangelog renders a friendly GitHub error', async () => {
   expect(mockMarkdownRpc.invocations[0]).toEqual(['Markdown.render', expect.stringContaining('GitHub is not reachable'), expect.any(Object)])
 })
 
-test('selectTabChangelog renders 5000 GitHub releases in safe batches', async () => {
+test('selectTabChangelog handles 5000 GitHub releases with a responsive display limit', async () => {
   GithubApiRequest.mockGithubApi({ releaseCount: 5000, type: 'generated' })
   using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => [{ childCount: 1, type: VirtualDomElements.Div }],
@@ -119,7 +119,8 @@ test('selectTabChangelog renders 5000 GitHub releases in safe batches', async ()
   await SelectTabChangelog.selectTabChangelog(state)
 
   const renderInvocations = mockMarkdownRpc.invocations.filter(([command]) => command === 'Markdown.render')
-  expect(renderInvocations).toHaveLength(20)
+  expect(renderInvocations).toHaveLength(4)
+  expect(renderInvocations[0][1]).toContain('Showing the newest 1000 of 5000 GitHub releases')
   expect(renderInvocations[0][1]).toContain('Version 5000')
-  expect(renderInvocations.at(-1)?.[1]).toContain('Version 1')
+  expect(renderInvocations.at(-1)?.[1]).toContain('Version 4001')
 })

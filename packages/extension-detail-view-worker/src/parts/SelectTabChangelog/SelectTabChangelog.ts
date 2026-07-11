@@ -10,6 +10,7 @@ import { loadGithubReleases } from '../LoadGithubReleases/LoadGithubReleases.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
 const releaseBatchSize = 250
+const maximumDisplayedReleases = 1000
 
 const mergeMarkdownVirtualDoms = (chunks: readonly (readonly VirtualDomNode[])[]): readonly VirtualDomNode[] => {
   let root: VirtualDomNode | undefined
@@ -32,15 +33,20 @@ const renderGithubReleases = async (
   locationProtocol: string,
 ): Promise<readonly VirtualDomNode[]> => {
   const chunks: VirtualDomNode[][] = []
+  const displayedReleases = releases.slice(0, maximumDisplayedReleases)
   const releaseGroups =
-    releases.length === 0
+    displayedReleases.length === 0
       ? [[]]
-      : Array.from({ length: Math.ceil(releases.length / releaseBatchSize) }, (_, index) => {
-          return releases.slice(index * releaseBatchSize, (index + 1) * releaseBatchSize)
+      : Array.from({ length: Math.ceil(displayedReleases.length / releaseBatchSize) }, (_, index) => {
+          return displayedReleases.slice(index * releaseBatchSize, (index + 1) * releaseBatchSize)
         })
   const baseUrl = `https://github.com/${githubRepository.owner}/${githubRepository.repository}/blob/HEAD/`
-  for (const releaseGroup of releaseGroups) {
-    const markdown = getGithubReleasesMarkdown(releaseGroup, githubRepository)
+  for (const [index, releaseGroup] of releaseGroups.entries()) {
+    const limitMessage =
+      index === 0 && releases.length > displayedReleases.length
+        ? `> Showing the newest ${displayedReleases.length} of ${releases.length} GitHub releases. Older releases are not displayed to keep the editor responsive.\n\n`
+        : ''
+    const markdown = limitMessage + getGithubReleasesMarkdown(releaseGroup, githubRepository)
     const html = await RenderMarkdown.renderMarkdown(markdown, { baseUrl, languages, linksExternal: true, locationProtocol })
     chunks.push([...(await getMarkdownVirtualDom(html))])
   }
