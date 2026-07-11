@@ -9,7 +9,7 @@ import * as LoadChangelogContent from '../LoadChangelogContent/LoadChangelogCont
 import { loadGithubReleases } from '../LoadGithubReleases/LoadGithubReleases.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
-const releaseBatchSize = 250
+const releaseBatchSize = 100
 
 const mergeMarkdownVirtualDoms = (chunks: readonly (readonly VirtualDomNode[])[]): readonly VirtualDomNode[] => {
   let root: VirtualDomNode | undefined
