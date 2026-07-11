@@ -17,19 +17,33 @@ afterEach(() => {
 
 test('loads and normalizes releases', async () => {
   GithubApiRequest.mockGithubApi({ body: [release], type: 'success' })
-  await expect(loadGithubReleases(repository)).resolves.toEqual([
-    { body: 'Release notes', htmlUrl: release.html_url, name: 'Version 1', publishedAt: '2026-01-01T00:00:00Z', tagName: 'v1' },
-  ])
+  await expect(loadGithubReleases(repository)).resolves.toEqual({
+    isTruncated: false,
+    releases: [{ body: 'Release notes', htmlUrl: release.html_url, name: 'Version 1', publishedAt: '2026-01-01T00:00:00Z', tagName: 'v1' }],
+  })
 })
 
 test('accepts nullable GitHub fields', async () => {
   GithubApiRequest.mockGithubApi({ body: [{ ...release, body: null, name: null, published_at: null }], type: 'success' })
-  await expect(loadGithubReleases(repository)).resolves.toEqual([{ body: '', htmlUrl: release.html_url, name: '', publishedAt: '', tagName: 'v1' }])
+  await expect(loadGithubReleases(repository)).resolves.toEqual({
+    isTruncated: false,
+    releases: [{ body: '', htmlUrl: release.html_url, name: '', publishedAt: '', tagName: 'v1' }],
+  })
 })
 
 test('loads all paginated releases', async () => {
   GithubApiRequest.mockGithubApi({ releaseCount: 101, type: 'generated' })
-  await expect(loadGithubReleases(repository)).resolves.toHaveLength(101)
+  const result = await loadGithubReleases(repository)
+  expect(result.isTruncated).toBe(false)
+  expect(result.releases).toHaveLength(101)
+})
+
+test('stops loading after the newest 250 releases', async () => {
+  GithubApiRequest.mockGithubApi({ releaseCount: 5000, type: 'generated' })
+  const result = await loadGithubReleases(repository)
+  expect(result).toMatchObject({ isTruncated: true, releases: { length: 250 } })
+  expect(result.releases[0].name).toBe('Version 5000')
+  expect(result.releases.at(-1)?.name).toBe('Version 4751')
 })
 
 test('reports a network error', async () => {

@@ -10,7 +10,6 @@ import { loadGithubReleases } from '../LoadGithubReleases/LoadGithubReleases.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
 const releaseBatchSize = 250
-const maximumDisplayedReleases = 250
 
 const mergeMarkdownVirtualDoms = (chunks: readonly (readonly VirtualDomNode[])[]): readonly VirtualDomNode[] => {
   let root: VirtualDomNode | undefined
@@ -27,24 +26,24 @@ const mergeMarkdownVirtualDoms = (chunks: readonly (readonly VirtualDomNode[])[]
 }
 
 const renderGithubReleases = async (
-  releases: Awaited<ReturnType<typeof loadGithubReleases>>,
+  result: Awaited<ReturnType<typeof loadGithubReleases>>,
   githubRepository: NonNullable<ReturnType<typeof getGithubRepository>>,
   languages: ExtensionDetailState['languages'],
   locationProtocol: string,
 ): Promise<readonly VirtualDomNode[]> => {
   const chunks: VirtualDomNode[][] = []
-  const displayedReleases = releases.slice(0, maximumDisplayedReleases)
+  const { isTruncated, releases } = result
   const releaseGroups =
-    displayedReleases.length === 0
+    releases.length === 0
       ? [[]]
-      : Array.from({ length: Math.ceil(displayedReleases.length / releaseBatchSize) }, (_, index) => {
-          return displayedReleases.slice(index * releaseBatchSize, (index + 1) * releaseBatchSize)
+      : Array.from({ length: Math.ceil(releases.length / releaseBatchSize) }, (_, index) => {
+          return releases.slice(index * releaseBatchSize, (index + 1) * releaseBatchSize)
         })
   const baseUrl = `https://github.com/${githubRepository.owner}/${githubRepository.repository}/blob/HEAD/`
   for (const [index, releaseGroup] of releaseGroups.entries()) {
     const limitMessage =
-      index === 0 && releases.length > displayedReleases.length
-        ? `> Showing the newest ${displayedReleases.length} of ${releases.length} GitHub releases. Older releases are not displayed to keep the editor responsive.\n\n`
+      index === 0 && isTruncated
+        ? `> Showing the newest ${releases.length} GitHub releases. Older releases are not displayed to keep the editor responsive.\n\n`
         : ''
     const markdown = limitMessage + getGithubReleasesMarkdown(releaseGroup, githubRepository)
     const html = await RenderMarkdown.renderMarkdown(markdown, { baseUrl, languages, linksExternal: true, locationProtocol })
@@ -59,8 +58,8 @@ export const selectTabChangelog = async (state: ExtensionDetailState): Promise<E
   let changelogDom: readonly VirtualDomNode[]
   if (githubRepository) {
     try {
-      const releases = await loadGithubReleases(githubRepository)
-      changelogDom = await renderGithubReleases(releases, githubRepository, languages, locationProtocol)
+      const result = await loadGithubReleases(githubRepository)
+      changelogDom = await renderGithubReleases(result, githubRepository, languages, locationProtocol)
     } catch (error) {
       const message = error instanceof GithubReleasesError ? error.message : 'GitHub releases could not be loaded. Please try again later.'
       const html = await RenderMarkdown.renderMarkdown(`# Changelog\n\n${message}`, { baseUrl, languages, linksExternal: true, locationProtocol })
