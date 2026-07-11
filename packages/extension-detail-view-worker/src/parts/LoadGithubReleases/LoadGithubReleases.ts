@@ -5,7 +5,12 @@ import { GithubReleasesError } from '../GithubReleasesError/GithubReleasesError.
 import { hasProperty } from '../HasProperty/HasProperty.ts'
 
 const pageSize = 100
-const maximumPages = 1000
+const maximumReleases = 250
+
+export interface GithubReleasesResult {
+  readonly isTruncated: boolean
+  readonly releases: readonly GithubRelease[]
+}
 
 const getErrorMessage = async (response: Response): Promise<string> => {
   try {
@@ -102,9 +107,9 @@ const parsePage = async (response: Response): Promise<readonly GithubRelease[]> 
   return releases as readonly GithubRelease[]
 }
 
-export const loadGithubReleases = async ({ owner, repository }: GithubRepository): Promise<readonly GithubRelease[]> => {
+export const loadGithubReleases = async ({ owner, repository }: GithubRepository): Promise<GithubReleasesResult> => {
   const releases: GithubRelease[] = []
-  for (let page = 1; page <= maximumPages; page++) {
+  for (let page = 1; ; page++) {
     const url = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repository)}/releases?per_page=${pageSize}&page=${page}`
     let response: Response
     try {
@@ -116,10 +121,14 @@ export const loadGithubReleases = async ({ owner, repository }: GithubRepository
       throw await getHttpError(response)
     }
     const pageReleases = await parsePage(response)
+    const remaining = maximumReleases - releases.length
+    if (pageReleases.length > remaining) {
+      releases.push(...pageReleases.slice(0, remaining))
+      return { isTruncated: true, releases }
+    }
     releases.push(...pageReleases)
     if (pageReleases.length < pageSize) {
-      return releases
+      return { isTruncated: false, releases }
     }
   }
-  throw new GithubReleasesError('This repository has too many GitHub releases to display safely.')
 }
