@@ -119,8 +119,8 @@ test('selectTabChangelog handles 5000 GitHub releases with a responsive display 
   await SelectTabChangelog.selectTabChangelog(state)
 
   const renderInvocations = mockMarkdownRpc.invocations.filter(([command]) => command === 'Markdown.render')
-  expect(renderInvocations).toHaveLength(4)
-  expect(renderInvocations[0][1]).toContain('Showing the newest 1000 of 5000 GitHub releases')
+  expect(renderInvocations).toHaveLength(1)
+  expect(renderInvocations[0][1]).toContain('Showing the newest 250 of 5000 GitHub releases')
   expect(renderInvocations[0][1]).toContain('Version 5000')
-  expect(renderInvocations.at(-1)?.[1]).toContain('Version 4001')
+  expect(renderInvocations.at(-1)?.[1]).toContain('Version 4751')
 })

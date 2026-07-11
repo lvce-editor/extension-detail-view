@@ -10,7 +10,7 @@ import { loadGithubReleases } from '../LoadGithubReleases/LoadGithubReleases.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
 const releaseBatchSize = 250
-const maximumDisplayedReleases = 1000
+const maximumDisplayedReleases = 250
 
 const mergeMarkdownVirtualDoms = (chunks: readonly (readonly VirtualDomNode[])[]): readonly VirtualDomNode[] => {
   let root: VirtualDomNode | undefined
