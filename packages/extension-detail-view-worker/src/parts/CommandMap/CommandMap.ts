@@ -27,6 +27,7 @@ import * as HandleClickSize from '../HandleClickSize/HandleClickSize.ts'
 import * as HandleClickUninstall from '../HandleClickUninstall/HandleClickUninstall.ts'
 import { handleExtensionsChanged } from '../HandleExtensionsChanged/HandleExtensionsChanged.ts'
 import * as HandleExtensionsStatusUpdate from '../HandleExtensionsStatusUpdate/HandleExtensionsStatusUpdate.ts'
+import { handleHeaderContextMenu } from '../HandleHeaderContextMenu/HandleHeaderContextMenu.ts'
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageContextMenu.ts'
 import * as HandleMouseEnterEnable from '../HandleMouseEnterEnable/HandleMouseEnterEnable.ts'
@@ -76,6 +77,7 @@ export const commandMap = {
   'ExtensionDetail.handleExtensionsChanged': WrapCommand.wrapCommand(handleExtensionsChanged),
   'ExtensionDetail.handleExtensionsStatusUpdate': WrapCommand.wrapCommand(HandleExtensionsStatusUpdate.handleExtensionsStatusUpdate),
   'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),
+  'ExtensionDetail.handleHeaderContextMenu': WrapCommand.wrapCommand(handleHeaderContextMenu),
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
   'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
   'ExtensionDetail.handleMouseEnterEnable': WrapCommand.wrapCommand(HandleMouseEnterEnable.handleMouseEnterEnable),

@@ -19,3 +19,4 @@ export const HandleTabFocus = 18
 export const HandleResourceLinkClick = 19
 export const HandleMouseEnterEnable = 20
 export const HandleMouseLeaveEnable = 21
+export const HandleHeaderContextMenu = 22
