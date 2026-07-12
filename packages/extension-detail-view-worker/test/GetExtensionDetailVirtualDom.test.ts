@@ -7,6 +7,45 @@ import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctio
 import * as GetExtensionDetailVirtualDom from '../src/parts/GetExtensionDetailVirtualDom/GetExtensionDetailVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
+test('extension detail virtual dom with load error', () => {
+  const extensionDetail: ExtensionDetailState = {
+    ...createDefaultState(),
+    errorMessage: 'The extension is not available.',
+    errorTitle: 'Unable to load extension',
+  }
+
+  expect(GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '')).toEqual([
+    {
+      childCount: 1,
+      className: 'Viewlet ExtensionDetail ExtensionDetailError',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 3,
+      className: 'ExtensionDetailErrorCard',
+      role: 'alert',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 0,
+      className: 'MaskIcon MaskIconWarning ExtensionDetailErrorIcon',
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: 'ExtensionDetailErrorTitle',
+      type: VirtualDomElements.H1,
+    },
+    text('Unable to load extension'),
+    {
+      childCount: 1,
+      className: 'ExtensionDetailErrorMessage',
+      type: VirtualDomElements.P,
+    },
+    text('The extension is not available.'),
+  ])
+})
+
 test.skip('extension detail virtual dom with content', () => {
   const extensionDetail: ExtensionDetailState = {
     ...createDefaultState(),

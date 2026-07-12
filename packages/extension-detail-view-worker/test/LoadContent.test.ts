@@ -118,8 +118,48 @@ test('loadContent - extension not found', async () => {
     uri: 'extension-detail://non-existent-extension',
   }
 
-  await expect(LoadContent.loadContent(state, 1, {})).rejects.toThrow('extension not found: non-existent-extension')
+  const result = await LoadContent.loadContent(state, 1, {})
+
+  expect(result).toMatchObject({
+    errorMessage: 'The extension "non-existent-extension" is not available in this version of LVCE Editor.',
+    errorTitle: 'Unable to load extension',
+    extensionId: 'non-existent-extension',
+    initial: false,
+  })
   expect(mockRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'non-existent-extension']])
+})
+
+test('loadContent - unexpected load error', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'ExtensionManagement.getExtension': () => {
+      return {
+        id: 'test-extension',
+        name: 'Test Extension',
+        path: '/test/path',
+      }
+    },
+    'Preferences.get': () => {
+      throw new Error('Network request failed')
+    },
+  })
+
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    uri: 'extension-detail://test-extension',
+  }
+
+  const result = await LoadContent.loadContent(state, 1, {})
+
+  expect(result).toMatchObject({
+    errorMessage: 'The extension details could not be loaded: Network request failed',
+    errorTitle: 'Unable to load extension',
+    extensionId: 'test-extension',
+    initial: false,
+  })
+  expect(mockRpc.invocations).toEqual([
+    ['ExtensionManagement.getExtension', 'test-extension'],
+    ['Preferences.get', 'workbench.colorTheme'],
+  ])
 })
 
 test('loadContent - with builtin extension', async () => {

@@ -23,6 +23,8 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     disabled: false,
     displaySize: '',
     downloadCount: 'n/a',
+    errorMessage: '',
+    errorTitle: '',
     extension: {},
     extensionId: '',
     extensionUri: '',

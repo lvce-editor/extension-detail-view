@@ -11,6 +11,7 @@ import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
 import { getCommit } from '../GetCommit/GetCommit.ts'
 import { getCurrentColorTheme } from '../GetCurrentColorThemeId/GetCurrentColorThemeId.ts'
+import { getErrorMessage } from '../GetErrorMessage/GetErrorMessage.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import { getExtensionUri } from '../GetExtensionUri/GetExtensionUri.ts'
@@ -36,7 +37,7 @@ const isEnabled = (tab: Tab): boolean => {
   return tab.enabled
 }
 
-export const loadContent = async (
+const loadContentInternal = async (
   state: ExtensionDetailState,
   platform: number,
   savedState: unknown,
@@ -132,6 +133,8 @@ export const loadContent = async (
     disabled,
     displaySize,
     downloadCount,
+    errorMessage: '',
+    errorTitle: '',
     extension,
     extensionId,
     extensionUri,
@@ -166,5 +169,29 @@ export const loadContent = async (
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,
+  }
+}
+
+export const loadContent = async (
+  state: ExtensionDetailState,
+  platform: number,
+  savedState: unknown,
+  isTest: boolean = false,
+): Promise<ExtensionDetailState> => {
+  try {
+    return await loadContentInternal(state, platform, savedState, isTest)
+  } catch (error) {
+    const extensionId = getExtensionIdFromUri(state.uri)
+    const errorMessage =
+      error instanceof ExtensionNotFoundError
+        ? ExtensionDetailStrings.extensionNotAvailable(extensionId)
+        : ExtensionDetailStrings.unableToLoadExtensionWithError(getErrorMessage(error))
+    return {
+      ...state,
+      errorMessage,
+      errorTitle: ExtensionDetailStrings.unableToLoadExtension(),
+      extensionId,
+      initial: false,
+    }
   }
 }

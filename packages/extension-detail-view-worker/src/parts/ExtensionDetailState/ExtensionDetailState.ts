@@ -31,6 +31,8 @@ export interface ExtensionDetailState {
   readonly disabled: boolean // TODO change to management status number or multiple properties: disabled, builtin, linked, fromMarketPlace, deprecated, malicious
   readonly displaySize: string
   readonly downloadCount: string
+  readonly errorMessage: string
+  readonly errorTitle: string
   readonly extension: any
   readonly extensionId: string
   readonly extensionUri: string
