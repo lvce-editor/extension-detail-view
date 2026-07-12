@@ -89,6 +89,10 @@ export const enable = (): string => {
   return I18nString.i18nString(UiStrings.Enable)
 }
 
+export const extensionNotAvailable = (extensionId: string): string => {
+  return I18nString.i18nString(UiStrings.ExtensionNotAvailable, { PH1: extensionId })
+}
+
 export const theme = (): string => {
   return I18nString.i18nString(UiStrings.Theme)
 }
@@ -159,6 +163,14 @@ export const notImplemented = (): string => {
 
 export const uninstall = (): string => {
   return I18nString.i18nString(UiStrings.Uninstall)
+}
+
+export const unableToLoadExtension = (): string => {
+  return I18nString.i18nString(UiStrings.UnableToLoadExtension)
+}
+
+export const unableToLoadExtensionWithError = (errorMessage: string): string => {
+  return I18nString.i18nString(UiStrings.UnableToLoadExtensionWithError, { PH1: errorMessage })
 }
 
 export const scrollToTop = (): string => {
