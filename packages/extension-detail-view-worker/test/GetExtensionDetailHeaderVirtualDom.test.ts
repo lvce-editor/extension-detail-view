@@ -1,11 +1,23 @@
 import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetExtensionDetailButtons from '../src/parts/GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../src/parts/GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
+
+test('adds a context menu listener to the extension detail header details', () => {
+  const result = GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom('name', 'icon.png', 'description', '', [], false)
+
+  expect(result[2]).toEqual({
+    childCount: 3,
+    className: ClassNames.ExtensionDetailHeaderDetails,
+    onContextMenu: DomEventListenerFunctions.HandleHeaderContextMenu,
+    type: VirtualDomElements.Div,
+  })
+})
 
 test.skip('extension detail header virtual dom', () => {
   const extensionDetail = {

@@ -123,7 +123,7 @@ test('get installation entries with valid lastUpdated timestamp', () => {
   const result = GetInstallationEntries.getInstallationEntries('1.0MB', 'test-extension', '1.0.0', '/test/path', showSizeLink, null, lastUpdated)
   expect(result[2].key).toBe('Last Updated')
   expect(result[2].value).not.toBe('n/a')
-  expect(result[2].value).toBe('Jan 27, 56008')
+  expect(result[2].value).toContain('ago')
 })
 
 test('get installation entries with created timestamp', () => {

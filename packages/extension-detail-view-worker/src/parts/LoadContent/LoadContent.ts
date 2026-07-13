@@ -11,9 +11,11 @@ import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
 import { getCommit } from '../GetCommit/GetCommit.ts'
 import { getCurrentColorTheme } from '../GetCurrentColorThemeId/GetCurrentColorThemeId.ts'
+import { getErrorMessage } from '../GetErrorMessage/GetErrorMessage.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
 import { getExtensionUri } from '../GetExtensionUri/GetExtensionUri.ts'
+import { getGithubRepository } from '../GetGithubRepository/GetGithubRepository.ts'
 import { getLinkProtectionEnabled } from '../GetLinkProtectionEnabled/GetLinkProtectionEnabled.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import { getPadding, getSideBarWidth } from '../GetPadding/GetPadding.ts'
@@ -35,7 +37,7 @@ const isEnabled = (tab: Tab): boolean => {
   return tab.enabled
 }
 
-export const loadContent = async (
+const loadContentInternal = async (
   state: ExtensionDetailState,
   platform: number,
   savedState: unknown,
@@ -95,7 +97,8 @@ export const loadContent = async (
   const { changelogScrollTop, readmeScrollTop, selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
   const hasFeatures = features.length > 0
-  const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog)
+  const hasGithubReleases = Boolean(getGithubRepository(extension))
+  const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog || hasGithubReleases)
   const enabledTabs = tabs.filter(isEnabled)
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
   const showSizeLink = platform !== PlatformType.Web
@@ -130,6 +133,8 @@ export const loadContent = async (
     disabled,
     displaySize,
     downloadCount,
+    errorMessage: '',
+    errorTitle: '',
     extension,
     extensionId,
     extensionUri,
@@ -164,5 +169,29 @@ export const loadContent = async (
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,
+  }
+}
+
+export const loadContent = async (
+  state: ExtensionDetailState,
+  platform: number,
+  savedState: unknown,
+  isTest: boolean = false,
+): Promise<ExtensionDetailState> => {
+  try {
+    return await loadContentInternal(state, platform, savedState, isTest)
+  } catch (error) {
+    const extensionId = getExtensionIdFromUri(state.uri)
+    const errorMessage =
+      error instanceof ExtensionNotFoundError
+        ? ExtensionDetailStrings.extensionNotAvailable(extensionId)
+        : ExtensionDetailStrings.unableToLoadExtensionWithError(getErrorMessage(error))
+    return {
+      ...state,
+      errorMessage,
+      errorTitle: ExtensionDetailStrings.unableToLoadExtension(),
+      extensionId,
+      initial: false,
+    }
   }
 }

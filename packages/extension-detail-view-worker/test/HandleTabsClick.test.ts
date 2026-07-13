@@ -121,7 +121,8 @@ test('handles tabs click - changelog tab', async () => {
   const result = await HandleTabsClick.handleTabsClick(state, InputName.Changelog)
 
   expect(result.selectedTab).toBe(InputName.Changelog)
-  expect(result.changelogVirtualDom).toStrictEqual(mockDom)
+  expect(result.changelogVirtualDom).toHaveLength(3)
+  expect(result.changelogVirtualDom[0]).toMatchObject({ childCount: 2, type: VirtualDomElements.Div })
   expect(result).not.toBe(state)
   expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)

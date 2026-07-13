@@ -22,6 +22,8 @@ export const createDefaultState = (): ExtensionDetailState => {
     disabled: false,
     displaySize: '',
     downloadCount: 'n/a',
+    errorMessage: '',
+    errorTitle: '',
     extension: {},
     extensionId: '',
     extensionUri: '',

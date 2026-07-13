@@ -3,12 +3,16 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetExtensionDetailContentVirtualDom from '../GetExtensionDetailContentVirtualDom/GetExtensionDetailContentVirtualDom.ts'
+import { getExtensionDetailErrorVirtualDom } from '../GetExtensionDetailErrorVirtualDom/GetExtensionDetailErrorVirtualDom.ts'
 import * as GetExtensionDetailHeaderVirtualDom from '../GetExtensionDetailHeaderVirtualDom/GetExtensionDetailHeaderVirtualDom.ts'
 import * as GetTabsVirtualDom from '../GetTabsVirtualDom/GetTabsVirtualDom.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import * as ViewletSizeMap from '../ViewletSizeMap/ViewletSizeMap.ts'
 
 export const getExtensionDetailVirtualDom = (newState: ExtensionDetailState, selectedTab: string): readonly VirtualDomNode[] => {
+  if (newState.errorMessage) {
+    return getExtensionDetailErrorVirtualDom(newState.errorTitle, newState.errorMessage)
+  }
   // TODO move this to view model so that rendering occurs like
   // 1. state
   // 2. view model
