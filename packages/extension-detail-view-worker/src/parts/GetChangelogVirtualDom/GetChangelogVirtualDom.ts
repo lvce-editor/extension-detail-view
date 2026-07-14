@@ -1,4 +1,4 @@
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 
@@ -8,7 +8,8 @@ export const getChangelogVirtualDom = (changelogDom: readonly VirtualDomNode[]):
   return [
     {
       childCount: 1,
-      className: ClassNames.Changelog,
+      className: `${ClassNames.ExtensionDetailPanel} ${ClassNames.Changelog}`,
+      role: AriaRoles.Panel,
       type: VirtualDomElements.Div,
     },
     ...changelogDom,

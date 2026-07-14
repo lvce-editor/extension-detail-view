@@ -5,6 +5,7 @@ import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/Extensi
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
 import type { Resource } from '../Resource/Resource.ts'
 import type { Row } from '../Row/Row.ts'
+import type { SyntaxLanguage } from '../SyntaxLanguage/SyntaxLanguage.ts'
 import type { Tab } from '../Tab/Tab.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import type { WebView } from '../WebView/WebView.ts'
@@ -23,12 +24,15 @@ export interface ExtensionDetailState {
   readonly changelogVirtualDom: readonly VirtualDomNode[]
   readonly commands: readonly Row[]
   readonly commit: string
+  readonly created: number | null
   readonly currentColorThemeId: string
   readonly description: string
   readonly detailsVirtualDom: readonly VirtualDomNode[]
   readonly disabled: boolean // TODO change to management status number or multiple properties: disabled, builtin, linked, fromMarketPlace, deprecated, malicious
   readonly displaySize: string
   readonly downloadCount: string
+  readonly errorMessage: string
+  readonly errorTitle: string
   readonly extension: any
   readonly extensionId: string
   readonly extensionUri: string
@@ -45,6 +49,7 @@ export interface ExtensionDetailState {
   readonly initial: boolean
   readonly installationEntries: readonly MoreInfoEntry[]
   readonly jsonValidation: readonly Row[]
+  readonly languages: readonly SyntaxLanguage[]
   readonly lastUpdated: number | null
   readonly linkProtectionEnabled: boolean
   readonly locationHost: string

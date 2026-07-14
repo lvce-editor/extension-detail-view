@@ -30,6 +30,8 @@ export const getExtensionDetailButtons = (
       label: ExtensionDetailStrings.enable(),
       name: InputName.Enable,
       onClick: DomEventListenerFunctions.HandleClickEnable,
+      onMouseEnter: DomEventListenerFunctions.HandleMouseEnterEnable,
+      onMouseLeave: DomEventListenerFunctions.HandleMouseLeaveEnable,
     },
     {
       enabled: !isDisabled,

@@ -3,6 +3,7 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { MoreInfoEntry } from '../src/parts/MoreInfoEntry/MoreInfoEntry.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetMoreInfoEntryValueVirtualDom from '../src/parts/GetMoreInfoEntryValueVirtualDom/GetMoreInfoEntryValueVirtualDom.ts'
+import * as MergeClassNames from '../src/parts/MergeClassNames/MergeClassNames.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('string value', () => {
@@ -33,6 +34,27 @@ test('get more info entry value virtual dom with title', () => {
       className: ClassNames.MoreInfoEntryValue,
       title: '/test/path',
       type: VirtualDomElements.Dd,
+    },
+    text('2.5MB'),
+  ])
+})
+
+test('clickable value has pointer cursor', () => {
+  const entry: MoreInfoEntry = {
+    key: 'Size',
+    onClick: 7,
+    title: '/test/path',
+    value: '2.5MB',
+  }
+  expect(GetMoreInfoEntryValueVirtualDom.getMoreInfoEntryValueVirtualDom(entry)).toEqual([
+    {
+      childCount: 1,
+      className: MergeClassNames.mergeClassNames(ClassNames.MoreInfoEntryValue, ClassNames.Link),
+      onClick: 7,
+      style: 'color: var(--vscode-textLink-foreground, #3794ff); cursor: pointer; text-decoration: none',
+      tabIndex: 0,
+      title: '/test/path',
+      type: VirtualDomElements.A,
     },
     text('2.5MB'),
   ])
