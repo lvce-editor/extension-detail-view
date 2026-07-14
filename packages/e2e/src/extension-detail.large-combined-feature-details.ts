@@ -14,13 +14,15 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   let heading = Locator('.FeatureContent h1')
   await expect(heading).toHaveText('Settings')
   let table = Locator('.FeatureContent .Table')
-  await expect(table.locator('tbody td').nth(0)).toHaveText('combined.setting.alpha')
+  let firstCell = table.locator('tbody td').nth(0)
+  await expect(firstCell).toHaveText('combined.setting.alpha')
 
   await ExtensionDetail.openFeature('JsonValidation')
   heading = Locator('.FeatureContent h1')
   await expect(heading).toHaveText('Json Validation')
   table = Locator('.FeatureContent .Table')
-  await expect(table.locator('tbody td').nth(0)).toHaveText('*.combined.json')
+  firstCell = table.locator('tbody td').nth(0)
+  await expect(firstCell).toHaveText('*.combined.json')
 
   await ExtensionDetail.openFeature('ActivationEvents')
   heading = Locator('.FeatureContent h1')
@@ -32,5 +34,6 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   heading = Locator('.FeatureContent h1')
   await expect(heading).toHaveText('Commands')
   table = Locator('.FeatureContent .Table')
-  await expect(table.locator('tbody td').nth(0)).toHaveText('combined.command.alpha')
+  firstCell = table.locator('tbody td').nth(0)
+  await expect(firstCell).toHaveText('combined.command.alpha')
 }

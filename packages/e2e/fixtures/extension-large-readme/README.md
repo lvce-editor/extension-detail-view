@@ -8,10 +8,10 @@ Content block 01 with an [external link](https://example.com/section-01), a [rel
 
 ![Missing fixture image](./media/missing-image-01.png)
 
-| Name | Value |
-| --- | --- |
-| Alpha | 1 |
-| Beta | 2 |
+| Name  | Value |
+| ----- | ----- |
+| Alpha | 1     |
+| Beta  | 2     |
 
 ```ts
 export const section01 = 'large-readme'
