@@ -9,6 +9,8 @@ import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 beforeAll(() => {
   // @ts-ignore
   globalThis.location = {
+    host: 'lvce-editor.github.io',
+    origin: 'https://lvce-editor.github.io',
     protocol: 'https:',
   }
 })
@@ -75,8 +77,9 @@ test('loadContent - successful load', async () => {
   expect(result.extensionId).toBe('test-extension')
   expect(result.extensionVersion).toBe('1.0.0')
   // expect(result.isBuiltin).toBe(false)
-  expect(result.folderSize).toBe(1024)
+  expect(result.folderSize).toBe(0)
   expect(result.baseUrl).toBe('/test/path')
+  expect(result.extensionUri).toBe('https://lvce-editor.github.io/test/uri')
   expect(result.iconSrc).toBeDefined()
   expect(result.detailsVirtualDom).toBeDefined()
   expect(result.features).toBeDefined()
@@ -95,7 +98,11 @@ test('loadContent - successful load', async () => {
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
-  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockFileSystemRpc.invocations).toEqual([
+    ['FileSystem.exists', 'https://lvce-editor.github.io/test/uri/README.md'],
+    ['FileSystem.exists', 'https://lvce-editor.github.io/test/uri/CHANGELOG.md'],
+    ['FileSystem.readFile', 'https://lvce-editor.github.io/test/uri/README.md'],
+  ])
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
@@ -111,8 +118,48 @@ test('loadContent - extension not found', async () => {
     uri: 'extension-detail://non-existent-extension',
   }
 
-  await expect(LoadContent.loadContent(state, 1, {})).rejects.toThrow('extension not found: non-existent-extension')
+  const result = await LoadContent.loadContent(state, 1, {})
+
+  expect(result).toMatchObject({
+    errorMessage: 'The extension "non-existent-extension" is not available in this version of LVCE Editor.',
+    errorTitle: 'Unable to load extension',
+    extensionId: 'non-existent-extension',
+    initial: false,
+  })
   expect(mockRpc.invocations).toEqual([['ExtensionManagement.getExtension', 'non-existent-extension']])
+})
+
+test('loadContent - unexpected load error', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'ExtensionManagement.getExtension': () => {
+      return {
+        id: 'test-extension',
+        name: 'Test Extension',
+        path: '/test/path',
+      }
+    },
+    'Preferences.get': () => {
+      throw new Error('Network request failed')
+    },
+  })
+
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    uri: 'extension-detail://test-extension',
+  }
+
+  const result = await LoadContent.loadContent(state, 1, {})
+
+  expect(result).toMatchObject({
+    errorMessage: 'The extension details could not be loaded: Network request failed',
+    errorTitle: 'Unable to load extension',
+    extensionId: 'test-extension',
+    initial: false,
+  })
+  expect(mockRpc.invocations).toEqual([
+    ['ExtensionManagement.getExtension', 'test-extension'],
+    ['Preferences.get', 'workbench.colorTheme'],
+  ])
 })
 
 test('loadContent - with builtin extension', async () => {
@@ -168,8 +215,8 @@ test('loadContent - with builtin extension', async () => {
 
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
-  // expect(result.isBuiltin).toBe(true)
   expect(result.extension).toEqual(mockExtension)
+  expect(result.marketplaceEntries).toEqual([])
   expect(mockRendererRpc.invocations).toEqual([
     ['ExtensionManagement.getExtension', 'builtin-extension'],
     ['Preferences.get', 'workbench.colorTheme'],

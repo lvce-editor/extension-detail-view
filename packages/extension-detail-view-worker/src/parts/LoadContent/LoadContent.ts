@@ -11,11 +11,15 @@ import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
 import { getCommit } from '../GetCommit/GetCommit.ts'
 import { getCurrentColorTheme } from '../GetCurrentColorThemeId/GetCurrentColorThemeId.ts'
+import { getErrorMessage } from '../GetErrorMessage/GetErrorMessage.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 import { getExtensionIdFromUri } from '../GetExtensionIdFromUri/GetExtensionIdFromUri.ts'
+import { getExtensionUri } from '../GetExtensionUri/GetExtensionUri.ts'
+import { getGithubRepository } from '../GetGithubRepository/GetGithubRepository.ts'
 import { getLinkProtectionEnabled } from '../GetLinkProtectionEnabled/GetLinkProtectionEnabled.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import { getPadding, getSideBarWidth } from '../GetPadding/GetPadding.ts'
+import { getSyntaxLanguages } from '../GetSyntaxLanguages/GetSyntaxLanguages.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
@@ -23,6 +27,7 @@ import * as InputSource from '../InputSource/InputSource.ts'
 import * as LoadHeaderContent from '../LoadHeaderContent/LoadHeaderContent.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import { loadSideBarContent } from '../LoadSideBarContent/LoadSideBarContent.ts'
+import * as ParseCreated from '../ParseCreated/ParseCreated.ts'
 import * as ParseLastUpdated from '../ParseLastUpdated/ParseLastUpdated.ts'
 import * as Path from '../Path/Path.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
@@ -32,7 +37,7 @@ const isEnabled = (tab: Tab): boolean => {
   return tab.enabled
 }
 
-export const loadContent = async (
+const loadContentInternal = async (
   state: ExtensionDetailState,
   platform: number,
   savedState: unknown,
@@ -49,8 +54,21 @@ export const loadContent = async (
   }
   const currentColorThemeId = await getCurrentColorTheme()
   const commit = await getCommit()
+  const languages = await getSyntaxLanguages(platform, state.assetDir)
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
-  const { badge, description, downloadCount, extensionId, extensionUri, extensionVersion, hasColorTheme, iconSrc, name, rating } = headerData
+  const {
+    badge,
+    description,
+    downloadCount,
+    extensionId,
+    extensionUri: unresolvedExtensionUri,
+    extensionVersion,
+    hasColorTheme,
+    iconSrc,
+    name,
+    rating,
+  } = headerData
+  const extensionUri = getExtensionUri(unresolvedExtensionUri, platform, location.origin)
   const readmeUrl = Path.join(extensionUri, 'README.md')
   const changelogUrl = Path.join(extensionUri, 'CHANGELOG.md')
   const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUrl), existsFile(changelogUrl)])
@@ -63,13 +81,14 @@ export const loadContent = async (
   const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
     baseUrl,
     commit,
+    languages,
     linksExternal: true,
     locationProtocol,
   })
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
   })
-  const isBuiltin = extension?.isBuiltin
+  const isBuiltin = extension?.isBuiltin || extension?.builtin || false
   const disabled = extension?.disabled
   const extensionColorThemeId = getColorThemeId(extension) || ''
   const extensionColorThemeLabel = getColorThemeLabel(extension) || ''
@@ -78,10 +97,12 @@ export const loadContent = async (
   const { changelogScrollTop, readmeScrollTop, selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
   const hasFeatures = features.length > 0
-  const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog)
+  const hasGithubReleases = Boolean(getGithubRepository(extension))
+  const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog || hasGithubReleases)
   const enabledTabs = tabs.filter(isEnabled)
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
   const showSizeLink = platform !== PlatformType.Web
+  const created = ParseCreated.parseCreated(extension)
   const lastUpdated = ParseLastUpdated.parseLastUpdated(extension)
   const { categories, displaySize, folderSize, installationEntries, marketplaceEntries, resources } = await loadSideBarContent(
     extensionId,
@@ -90,6 +111,7 @@ export const loadContent = async (
     isBuiltin,
     extension,
     showSizeLink,
+    created,
     lastUpdated,
   )
   const padding = getPadding(width)
@@ -104,12 +126,15 @@ export const loadContent = async (
     categories,
     changelogScrollTop,
     commit,
+    created,
     currentColorThemeId,
     description,
     detailsVirtualDom,
     disabled,
     displaySize,
     downloadCount,
+    errorMessage: '',
+    errorTitle: '',
     extension,
     extensionId,
     extensionUri,
@@ -121,6 +146,7 @@ export const loadContent = async (
     iconSrc,
     initial: false,
     installationEntries,
+    languages,
     lastUpdated,
     linkProtectionEnabled,
     locationHost,
@@ -143,5 +169,29 @@ export const loadContent = async (
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,
+  }
+}
+
+export const loadContent = async (
+  state: ExtensionDetailState,
+  platform: number,
+  savedState: unknown,
+  isTest: boolean = false,
+): Promise<ExtensionDetailState> => {
+  try {
+    return await loadContentInternal(state, platform, savedState, isTest)
+  } catch (error) {
+    const extensionId = getExtensionIdFromUri(state.uri)
+    const errorMessage =
+      error instanceof ExtensionNotFoundError
+        ? ExtensionDetailStrings.extensionNotAvailable(extensionId)
+        : ExtensionDetailStrings.unableToLoadExtensionWithError(getErrorMessage(error))
+    return {
+      ...state,
+      errorMessage,
+      errorTitle: ExtensionDetailStrings.unableToLoadExtension(),
+      extensionId,
+      initial: false,
+    }
   }
 }

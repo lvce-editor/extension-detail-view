@@ -1,18 +1,5 @@
-export const formatLastUpdated = (lastUpdated: number | null): string => {
-  if (lastUpdated === null) {
-    return 'n/a'
-  }
-  try {
-    const date = new Date(lastUpdated * 1000)
-    if (Number.isNaN(date.getTime())) {
-      return 'n/a'
-    }
-    return date.toLocaleDateString(undefined, {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    })
-  } catch {
-    return 'n/a'
-  }
+import * as FormatCreated from '../FormatCreated/FormatCreated.ts'
+
+export const formatLastUpdated = (lastUpdated: number | null, now: number = Date.now()): string => {
+  return FormatCreated.formatCreated(lastUpdated, now)
 }

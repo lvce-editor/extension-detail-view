@@ -1,0 +1,13 @@
+{
+  "id": "test.extension-created-valid",
+  "name": "Test",
+  "description": "Test Description",
+  "commands": [
+    {
+      "id": "test",
+      "label": "Test"
+    }
+  ],
+  "categories": ["Themes"],
+  "created": "2024-01-15"
+}

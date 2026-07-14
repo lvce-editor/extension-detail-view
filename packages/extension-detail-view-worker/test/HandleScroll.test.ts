@@ -20,3 +20,15 @@ test('handleWheel - handles negative scroll values', () => {
   const result = HandleScroll.handleScroll(state, -50)
   expect(result.readmeScrollTop).toBe(0)
 })
+
+test('handleWheel - updates changelogScrollTop when the changelog is selected', () => {
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    changelogScrollTop: 0,
+    readmeScrollTop: 20,
+    selectedTab: 'Changelog',
+  }
+  const result = HandleScroll.handleScroll(state, 100)
+  expect(result.changelogScrollTop).toBe(100)
+  expect(result.readmeScrollTop).toBe(20)
+})

@@ -1,3 +1,15 @@
+const secondsToMillisecondsThreshold = 10_000_000_000
+
+const normalizeTimestamp = (timestamp: number): number | null => {
+  if (!Number.isFinite(timestamp) || timestamp <= 0) {
+    return null
+  }
+  if (timestamp < secondsToMillisecondsThreshold) {
+    return timestamp * 1000
+  }
+  return timestamp
+}
+
 export const parseLastUpdated = (extension: unknown): number | null => {
   if (!extension || typeof extension !== 'object') {
     return null
@@ -7,16 +19,14 @@ export const parseLastUpdated = (extension: unknown): number | null => {
     return null
   }
   if (typeof lastUpdated === 'number') {
-    if (Number.isFinite(lastUpdated) && lastUpdated > 0) {
-      return lastUpdated
-    }
-    return null
+    return normalizeTimestamp(lastUpdated)
   }
   if (typeof lastUpdated === 'string') {
-    const parsed = Number.parseFloat(lastUpdated)
-    if (Number.isFinite(parsed) && parsed > 0) {
-      return parsed
+    const numericTimestamp = Number(lastUpdated)
+    if (Number.isFinite(numericTimestamp)) {
+      return normalizeTimestamp(numericTimestamp)
     }
+    return normalizeTimestamp(Date.parse(lastUpdated))
   }
   return null
 }

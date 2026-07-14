@@ -72,3 +72,16 @@ test('set color theme button is not shown when active theme matches extension la
   const setColorThemeButton = result.find((button) => button.name === InputName.SetColorTheme)
   expect(setColorThemeButton).toBeUndefined()
 })
+
+test('enable button previews color theme on hover', () => {
+  const result: readonly ExtensionDetailButton[] = getExtensionDetailButtons(true, false, true, 'slime-theme', 'Slime Theme', 'other-theme')
+  const enableButton = result.find((button) => button.name === InputName.Enable)
+  expect(enableButton).toEqual({
+    enabled: true,
+    label: ExtensionDetailStrings.enable(),
+    name: InputName.Enable,
+    onClick: 3,
+    onMouseEnter: 20,
+    onMouseLeave: 21,
+  })
+})
