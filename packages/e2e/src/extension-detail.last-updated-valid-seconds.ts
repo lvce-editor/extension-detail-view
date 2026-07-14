@@ -13,7 +13,9 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // assert
   const additionalDetails = Locator('.AdditionalDetailsEntry:nth-of-type(1)')
   await expect(additionalDetails).toBeVisible()
-  const lastUpdated = additionalDetails.locator('.MoreInfoEntry').nth(2)
-  await expect(lastUpdated.locator('.MoreInfoEntryKey')).toHaveText('Last Updated')
-  await expect(lastUpdated.locator('.MoreInfoEntryValue')).toContainText('2024')
+  const lastUpdated = additionalDetails.locator('.MoreInfoEntry:nth-of-type(3)')
+  const lastUpdatedKey = lastUpdated.locator('.MoreInfoEntryKey')
+  const lastUpdatedValue = lastUpdated.locator('.MoreInfoEntryValue')
+  await expect(lastUpdatedKey).toHaveText('Last Updated')
+  await expect(lastUpdatedValue).toHaveText('2 years ago')
 }
