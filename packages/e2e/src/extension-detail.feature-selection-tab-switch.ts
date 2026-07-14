@@ -9,7 +9,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await ExtensionDetail.open('test.extension-basics')
   await ExtensionDetail.selectFeatures()
   await ExtensionDetail.openFeature('Commands')
-  await expect(Locator('.FeaturesList .FeatureSelected')).toHaveText('Commands')
+  const initiallySelectedFeature = Locator('.FeaturesList .FeatureSelected')
+  await expect(initiallySelectedFeature).toHaveText('Commands')
 
   // act
   await ExtensionDetail.selectDetails()
