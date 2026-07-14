@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-invalid-icon-path",
+  "name": "Invalid Icon Path",
+  "description": "Extension with an icon path that does not exist",
+  "icon": "missing-icon.png"
+}

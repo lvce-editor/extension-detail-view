@@ -1,0 +1,107 @@
+{
+  "id": "test.extension-large-commands",
+  "name": "Large Commands Extension",
+  "description": "Extension with many commands",
+  "commands": [
+    {
+      "id": "large.command.001",
+      "label": "Large Command 001"
+    },
+    {
+      "id": "large.command.002",
+      "label": "Large Command 002"
+    },
+    {
+      "id": "large.command.003",
+      "label": "Large Command 003"
+    },
+    {
+      "id": "large.command.004",
+      "label": "Large Command 004"
+    },
+    {
+      "id": "large.command.005",
+      "label": "Large Command 005"
+    },
+    {
+      "id": "large.command.006",
+      "label": "Large Command 006"
+    },
+    {
+      "id": "large.command.007",
+      "label": "Large Command 007"
+    },
+    {
+      "id": "large.command.008",
+      "label": "Large Command 008"
+    },
+    {
+      "id": "large.command.009",
+      "label": "Large Command 009"
+    },
+    {
+      "id": "large.command.010",
+      "label": "Large Command 010"
+    },
+    {
+      "id": "large.command.011",
+      "label": "Large Command 011"
+    },
+    {
+      "id": "large.command.012",
+      "label": "Large Command 012"
+    },
+    {
+      "id": "large.command.013",
+      "label": "Large Command 013"
+    },
+    {
+      "id": "large.command.014",
+      "label": "Large Command 014"
+    },
+    {
+      "id": "large.command.015",
+      "label": "Large Command 015"
+    },
+    {
+      "id": "large.command.016",
+      "label": "Large Command 016"
+    },
+    {
+      "id": "large.command.017",
+      "label": "Large Command 017"
+    },
+    {
+      "id": "large.command.018",
+      "label": "Large Command 018"
+    },
+    {
+      "id": "large.command.019",
+      "label": "Large Command 019"
+    },
+    {
+      "id": "large.command.020",
+      "label": "Large Command 020"
+    },
+    {
+      "id": "large.command.021",
+      "label": "Large Command 021"
+    },
+    {
+      "id": "large.command.022",
+      "label": "Large Command 022"
+    },
+    {
+      "id": "large.command.023",
+      "label": "Large Command 023"
+    },
+    {
+      "id": "large.command.024",
+      "label": "Large Command 024"
+    },
+    {
+      "id": "large.command.025",
+      "label": "Large Command 025"
+    }
+  ]
+}

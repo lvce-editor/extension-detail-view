@@ -1,0 +1,62 @@
+{
+  "id": "test.extension-large-combined",
+  "name": "Large Combined Extension",
+  "description": "Extension with all feature groups enabled",
+  "main": "index.js",
+  "categories": ["Themes", "Formatters"],
+  "commands": [
+    {
+      "id": "combined.command.alpha",
+      "label": "Combined Command Alpha"
+    },
+    {
+      "id": "combined.command.beta",
+      "label": "Combined Command Beta"
+    }
+  ],
+  "settings": [
+    {
+      "id": "combined.setting.alpha",
+      "label": "Combined Setting Alpha"
+    },
+    {
+      "id": "combined.setting.beta",
+      "label": "Combined Setting Beta"
+    }
+  ],
+  "jsonValidation": [
+    {
+      "fileMatch": "*.combined.json",
+      "schema": "test://combined-schema.json"
+    }
+  ],
+  "languages": [
+    {
+      "id": "combined-language",
+      "extensions": [".combined"],
+      "tokenize": "src/tokenizeCombined.js",
+      "configuration": "languageConfiguration.json"
+    }
+  ],
+  "webViews": [
+    {
+      "id": "builtin.combined-webview",
+      "selector": [".combined-webview"],
+      "contentSecurityPolicy": ["default-src 'none'", "script-src 'self'"],
+      "elements": [
+        {
+          "type": "title",
+          "value": "Combined WebView"
+        }
+      ]
+    }
+  ],
+  "activation": ["onCommand:combined.command.alpha", "onWebview:builtin.combined-webview"],
+  "colorThemes": [
+    {
+      "id": "combined-theme",
+      "label": "Combined Theme",
+      "path": "color-theme.json"
+    }
+  ]
+}

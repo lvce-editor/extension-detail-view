@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-invalid-contributes-null",
+  "name": "Invalid Contributes Null",
+  "description": "Invalid nested contributes should not create features",
+  "contributes": null
+}
