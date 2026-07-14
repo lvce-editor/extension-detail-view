@@ -133,6 +133,10 @@ export const name = (): string => {
   return I18nString.i18nString(UiStrings.Name)
 }
 
+export const imageCannotBeLoaded = (): string => {
+  return I18nString.i18nString(UiStrings.ImageCannotBeLoaded)
+}
+
 export const fileExtensions = (): string => {
   return I18nString.i18nString(UiStrings.FileExtensions)
 }

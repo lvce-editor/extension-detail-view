@@ -1,4 +1,5 @@
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as AddMarkdownImageErrorHandlers from '../AddMarkdownImageErrorHandlers/AddMarkdownImageErrorHandlers.ts'
 import * as Assert from '../Assert/Assert.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { getScrollToTopVirtualDom } from '../GetScrollToTopVirtualDom/GetScrollToTopVirtualDom.ts'
@@ -26,7 +27,7 @@ export const addScrollToTopVirtualDom = (dom: readonly VirtualDomNode[]): readon
 
 export const getMarkdownVirtualDom = async (html: string, options?: MarkdownOptions): Promise<readonly VirtualDomNode[]> => {
   Assert.string(html)
-  const dom = await MarkdownWorker.getVirtualDom(html)
+  const dom = AddMarkdownImageErrorHandlers.addMarkdownImageErrorHandlers(await MarkdownWorker.getVirtualDom(html))
   if (options?.scrollToTopEnabled) {
     return addScrollToTopVirtualDom(dom)
   }
