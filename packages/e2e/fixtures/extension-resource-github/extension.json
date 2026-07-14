@@ -1,0 +1,13 @@
+{
+  "id": "test.extension-resource-github",
+  "name": "GitHub Resources",
+  "description": "Extension with a GitHub repository",
+  "repository": "https://github.com/lvce-editor/extension-detail-view",
+  "commands": [
+    {
+      "id": "github.resources.command",
+      "label": "GitHub Resources Command"
+    }
+  ],
+  "categories": ["Other"]
+}
