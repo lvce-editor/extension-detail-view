@@ -15,6 +15,7 @@ import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
 import * as GetMenuEntries from '../GetMenuEntries/GetMenuEntries.ts'
 import { getMenuIds } from '../GetMenuIds/GetMenuIds.ts'
 import * as GetMenus from '../GetMenus/GetMenus.ts'
+import * as GithubApiRequest from '../GithubApiRequest/GithubApiRequest.ts'
 import { handleAdditionalDetailContextMenu } from '../HandleAdditionalDetailContextMenu/HandleAdditionalDetailContextMenu.ts'
 import * as HandleClickCategory from '../HandleClickCategory/HandleClickCategory.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
@@ -27,9 +28,12 @@ import * as HandleClickSize from '../HandleClickSize/HandleClickSize.ts'
 import * as HandleClickUninstall from '../HandleClickUninstall/HandleClickUninstall.ts'
 import { handleExtensionsChanged } from '../HandleExtensionsChanged/HandleExtensionsChanged.ts'
 import * as HandleExtensionsStatusUpdate from '../HandleExtensionsStatusUpdate/HandleExtensionsStatusUpdate.ts'
+import { handleHeaderContextMenu } from '../HandleHeaderContextMenu/HandleHeaderContextMenu.ts'
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageContextMenu.ts'
 import * as HandleMarkdownImageError from '../HandleMarkdownImageError/HandleMarkdownImageError.ts'
+import * as HandleMouseEnterEnable from '../HandleMouseEnterEnable/HandleMouseEnterEnable.ts'
+import * as HandleMouseLeaveEnable from '../HandleMouseLeaveEnable/HandleMouseLeaveEnable.ts'
 import * as HandleReadmeClick from '../HandleReadmeClick/HandleReadmeClick.ts'
 import { handleReadmeContextMenu } from '../HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
 import { handleResourceLinkClick } from '../HandleResourceLinkClick/HandleResourceLinkClick.ts'
@@ -75,9 +79,12 @@ export const commandMap = {
   'ExtensionDetail.handleExtensionsChanged': WrapCommand.wrapCommand(handleExtensionsChanged),
   'ExtensionDetail.handleExtensionsStatusUpdate': WrapCommand.wrapCommand(HandleExtensionsStatusUpdate.handleExtensionsStatusUpdate),
   'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),
+  'ExtensionDetail.handleHeaderContextMenu': WrapCommand.wrapCommand(handleHeaderContextMenu),
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
   'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
   'ExtensionDetail.handleMarkdownImageError': WrapCommand.wrapCommand(HandleMarkdownImageError.handleMarkdownImageError),
+  'ExtensionDetail.handleMouseEnterEnable': WrapCommand.wrapCommand(HandleMouseEnterEnable.handleMouseEnterEnable),
+  'ExtensionDetail.handleMouseLeaveEnable': WrapCommand.wrapCommand(HandleMouseLeaveEnable.handleMouseLeaveEnable),
   'ExtensionDetail.handleReadmeClick': WrapCommand.wrapCommand(HandleReadmeClick.handleReadmeClick),
   'ExtensionDetail.handleReadmeContextMenu': WrapCommand.wrapCommand(handleReadmeContextMenu),
   'ExtensionDetail.handleResourceLinkClick': WrapCommand.wrapCommand(handleResourceLinkClick),
@@ -89,9 +96,11 @@ export const commandMap = {
   'ExtensionDetail.hideSizeLink': WrapCommand.wrapCommand(hideSizeLink),
   'ExtensionDetail.initialize': Initialize.initialize,
   'ExtensionDetail.loadContent2': WrapCommand.wrapCommand(LoadContent2.loadContent2),
+  'ExtensionDetail.mockGithubApi': WrapCommand.wrapCommand(GithubApiRequest.handleMockGithubApi),
   'ExtensionDetail.openImageInNewTab': WrapCommand.wrapCommand(OpenImageInNewTab.openImageInNewTab),
   'ExtensionDetail.render2': Render2.render2,
   'ExtensionDetail.renderEventListeners': RenderEventListeners.renderEventListeners,
+  'ExtensionDetail.resetGithubApiMock': WrapCommand.wrapCommand(GithubApiRequest.handleResetGithubApiMock),
   'ExtensionDetail.resize': WrapCommand.wrapCommand(Resize.resize),
   'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),

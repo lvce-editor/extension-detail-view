@@ -1,0 +1,13 @@
+{
+  "id": "test.theme-missing-test",
+  "name": "Missing Theme",
+  "description": "Missing Theme",
+  "categories": ["Themes"],
+  "colorThemes": [
+    {
+      "id": "missing-theme",
+      "label": "Missing Theme",
+      "path": "missing-color-theme.json"
+    }
+  ]
+}

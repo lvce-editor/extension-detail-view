@@ -34,6 +34,11 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       preventDefault: true,
     },
     {
+      name: DomEventListenerFunctions.HandleHeaderContextMenu,
+      params: ['handleHeaderContextMenu'],
+      preventDefault: true,
+    },
+    {
       name: DomEventListenerFunctions.HandleMarkdownImageError,
       params: ['handleMarkdownImageError', 'event.currentTarget.src'],
     },
@@ -61,6 +66,14 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     {
       name: DomEventListenerFunctions.HandleClickEnable,
       params: ['handleClickEnable'],
+    },
+    {
+      name: DomEventListenerFunctions.HandleMouseEnterEnable,
+      params: ['handleMouseEnterEnable'],
+    },
+    {
+      name: DomEventListenerFunctions.HandleMouseLeaveEnable,
+      params: ['handleMouseLeaveEnable'],
     },
     {
       name: DomEventListenerFunctions.HandleClickScrollToTop,

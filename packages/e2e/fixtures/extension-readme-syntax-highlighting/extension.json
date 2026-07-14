@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-readme-syntax-highlighting",
+  "name": "Extension README Syntax Highlighting",
+  "description": "Tests fenced code block syntax highlighting.",
+  "version": "1.0.0"
+}

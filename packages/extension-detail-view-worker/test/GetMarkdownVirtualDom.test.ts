@@ -56,9 +56,9 @@ test('getMarkdownVirtualDom - adds safe image error handler', async () => {
   const result = await GetMarkdownVirtualDom.getMarkdownVirtualDom(html)
   expect(result).toEqual([
     {
-      onError: DomEventListenerFunctions.HandleMarkdownImageError,
       alt: '',
       childCount: 0,
+      onError: DomEventListenerFunctions.HandleMarkdownImageError,
       src: '/test/image.png',
       type: VirtualDomElements.Img,
     },

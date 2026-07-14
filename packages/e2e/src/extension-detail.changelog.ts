@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.changelog'
 
-export const skip = 1
-
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-changelog')
@@ -16,5 +14,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // assert
   const changelog = Locator('.Changelog')
   await expect(changelog).toBeVisible()
-  await expect(changelog).toHaveText('Not Implemented')
+  await expect(changelog).toContainText('Changes')
+  await expect(changelog).toContainText('Change 1')
+  await expect(changelog).toContainText('Change 2')
 }
