@@ -12,11 +12,48 @@ test('adds a context menu listener to the extension detail header details', () =
   const result = GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom('name', 'icon.png', 'description', '', [], false)
 
   expect(result[2]).toEqual({
-    childCount: 3,
+    childCount: 4,
     className: ClassNames.ExtensionDetailHeaderDetails,
     onContextMenu: DomEventListenerFunctions.HandleHeaderContextMenu,
     type: VirtualDomElements.Div,
   })
+})
+
+test('renders download count and rating in the extension detail header', () => {
+  const result = GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom(
+    'name',
+    'icon.png',
+    'description',
+    '',
+    [],
+    false,
+    '98,765',
+    '4.8',
+  )
+
+  expect(result.slice(7, 12)).toEqual([
+    {
+      childCount: 2,
+      className: ClassNames.ExtensionDetailMetadata,
+      type: VirtualDomElements.Div,
+    },
+    {
+      ariaLabel: 'Downloads: 98,765',
+      childCount: 1,
+      className: `${ClassNames.ExtensionDetailStatistic} ${ClassNames.ExtensionDetailDownloadCount}`,
+      title: 'Downloads: 98,765',
+      type: VirtualDomElements.Span,
+    },
+    text('98,765'),
+    {
+      ariaLabel: 'Rating: 4.8',
+      childCount: 1,
+      className: `${ClassNames.ExtensionDetailStatistic} ${ClassNames.ExtensionDetailRating}`,
+      title: 'Rating: 4.8',
+      type: VirtualDomElements.Span,
+    },
+    text('4.8'),
+  ])
 })
 
 test.skip('extension detail header virtual dom', () => {
