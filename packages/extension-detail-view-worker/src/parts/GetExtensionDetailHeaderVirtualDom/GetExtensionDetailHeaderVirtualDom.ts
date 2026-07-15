@@ -19,6 +19,7 @@ export const getExtensionDetailHeaderVirtualDom = (
   downloadCount: string = 'n/a',
   rating: string = 'n/a',
 ): readonly VirtualDomNode[] => {
+  const metadataDom = getExtensionDetailMetadataVirtualDom(downloadCount, rating)
   const dom = [
     {
       childCount: 2,
@@ -27,14 +28,14 @@ export const getExtensionDetailHeaderVirtualDom = (
     },
     getExtensionDetailIconVirtualDom(iconSrc),
     {
-      childCount: 4,
+      childCount: metadataDom.length > 0 ? 4 : 3,
       className: ClassNames.ExtensionDetailHeaderDetails,
       onContextMenu: DomEventListenerFunctions.HandleHeaderContextMenu,
       type: VirtualDomElements.Div,
     },
     ...getExtensionDetailNameVirtualDom(name, badge),
     ...getExtensionDetailDescriptionVirtualDom(description),
-    ...getExtensionDetailMetadataVirtualDom(downloadCount, rating),
+    ...metadataDom,
     ...GetExtensionDetailHeaderActionsVirtualDom.getExtensionDetailHeaderActionsVirtualDom(buttonDefs, settingsButtonEnabled),
   ]
   return dom

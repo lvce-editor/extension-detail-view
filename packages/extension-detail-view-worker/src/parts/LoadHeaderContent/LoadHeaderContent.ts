@@ -13,10 +13,10 @@ export const loadHeaderContent = (state: ExtensionDetailState, platform: number,
   const extensionId = extension?.id || 'n/a'
   const extensionVersion = extension?.version || 'n/a'
   const hasColorTheme = HasColorThemes.hasColorThemes(extension)
-  const isBuiltin = extension?.builtin
+  const isBuiltin = extension?.isBuiltin || extension?.builtin || false
   const badge = GetBadge.getBadge(isBuiltin, builtinExtensionsBadgeEnabled)
-  const downloadCount = ExtensionDisplay.getDownloadCount(extension)
-  const rating = ExtensionDisplay.getRating(extension)
+  const downloadCount = isBuiltin ? 'n/a' : ExtensionDisplay.getDownloadCount(extension)
+  const rating = isBuiltin ? 'n/a' : ExtensionDisplay.getRating(extension)
   return {
     badge,
     description,

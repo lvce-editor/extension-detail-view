@@ -20,13 +20,22 @@ const getStatisticVirtualDom = (label: string, value: string, className: string)
 }
 
 export const getExtensionDetailMetadataVirtualDom = (downloadCount: string, rating: string): readonly VirtualDomNode[] => {
+  const hasDownloadCount = downloadCount !== 'n/a'
+  const hasRating = rating !== 'n/a'
+  if (!hasDownloadCount && !hasRating) {
+    return []
+  }
+  const downloadCountDom = hasDownloadCount
+    ? getStatisticVirtualDom(ExtensionDetailStrings.downloadCount(), downloadCount, ClassNames.ExtensionDetailDownloadCount)
+    : []
+  const ratingDom = hasRating ? getStatisticVirtualDom(ExtensionDetailStrings.rating(), rating, ClassNames.ExtensionDetailRating) : []
   return [
     {
-      childCount: 2,
+      childCount: Number(hasDownloadCount) + Number(hasRating),
       className: ClassNames.ExtensionDetailMetadata,
       type: VirtualDomElements.Div,
     },
-    ...getStatisticVirtualDom(ExtensionDetailStrings.downloadCount(), downloadCount, ClassNames.ExtensionDetailDownloadCount),
-    ...getStatisticVirtualDom(ExtensionDetailStrings.rating(), rating, ClassNames.ExtensionDetailRating),
+    ...downloadCountDom,
+    ...ratingDom,
   ]
 }

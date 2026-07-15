@@ -12,11 +12,41 @@ test('adds a context menu listener to the extension detail header details', () =
   const result = GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom('name', 'icon.png', 'description', '', [], false)
 
   expect(result[2]).toEqual({
-    childCount: 4,
+    childCount: 3,
     className: ClassNames.ExtensionDetailHeaderDetails,
     onContextMenu: DomEventListenerFunctions.HandleHeaderContextMenu,
     type: VirtualDomElements.Div,
   })
+})
+
+test('does not render extension metadata when values are unavailable', () => {
+  const result = GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom('name', 'icon.png', 'description', '', [], false)
+
+  expect(result).not.toContainEqual(
+    expect.objectContaining({
+      className: ClassNames.ExtensionDetailMetadata,
+    }),
+  )
+})
+
+test('renders only available extension metadata', () => {
+  const result = GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom('name', 'icon.png', 'description', '', [], false, '98,765')
+
+  expect(result.slice(7, 10)).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.ExtensionDetailMetadata,
+      type: VirtualDomElements.Div,
+    },
+    {
+      ariaLabel: 'Downloads: 98,765',
+      childCount: 1,
+      className: `${ClassNames.ExtensionDetailStatistic} ${ClassNames.ExtensionDetailDownloadCount}`,
+      title: 'Downloads: 98,765',
+      type: VirtualDomElements.Span,
+    },
+    text('98,765'),
+  ])
 })
 
 test('renders download count and rating in the extension detail header', () => {

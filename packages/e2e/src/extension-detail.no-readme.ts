@@ -14,4 +14,10 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const icon = Locator('.Markdown')
   await expect(icon).toBeVisible()
   await expect(icon).toHaveText('No Readme Found.')
+  const metadata = Locator('.ExtensionDetailMetadata')
+  await expect(metadata).toHaveCount(0)
+  const downloadCount = Locator('.ExtensionDetailDownloadCount')
+  await expect(downloadCount).toHaveCount(0)
+  const rating = Locator('.ExtensionDetailRating')
+  await expect(rating).toHaveCount(0)
 }
