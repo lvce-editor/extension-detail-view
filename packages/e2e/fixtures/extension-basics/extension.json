@@ -2,7 +2,9 @@
   "id": "test.extension-basics",
   "name": "Test",
   "description": "Test Description",
+  "downloadCount": 12345,
   "icon": "icon.svg",
+  "rating": 4.75,
   "commands": [
     {
       "id": "test",

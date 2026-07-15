@@ -6,6 +6,7 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 import { getExtensionDetailDescriptionVirtualDom } from '../GetExtensionDetailDescriptionVirtualDom/GetExtensionDetailDescriptionVirtualDom.ts'
 import * as GetExtensionDetailHeaderActionsVirtualDom from '../GetExtensionDetailHeaderActionsVirtualDom/GetExtensionDetailHeaderActionsVirtualDom.ts'
 import { getExtensionDetailIconVirtualDom } from '../GetExtensionDetailIconVirtualDom/GetExtensionDetailIconVirtualDom.ts'
+import { getExtensionDetailMetadataVirtualDom } from '../GetExtensionDetailMetadataVirtualDom/GetExtensionDetailMetadataVirtualDom.ts'
 import { getExtensionDetailNameVirtualDom } from '../GetExtensionDetailNameVirtualDom/GetExtensionDetailNameVirtualDom.ts'
 
 export const getExtensionDetailHeaderVirtualDom = (
@@ -15,6 +16,8 @@ export const getExtensionDetailHeaderVirtualDom = (
   badge: string,
   buttonDefs: readonly ExtensionDetailButton[],
   settingsButtonEnabled: boolean,
+  downloadCount: string = 'n/a',
+  rating: string = 'n/a',
 ): readonly VirtualDomNode[] => {
   const dom = [
     {
@@ -24,13 +27,14 @@ export const getExtensionDetailHeaderVirtualDom = (
     },
     getExtensionDetailIconVirtualDom(iconSrc),
     {
-      childCount: 3,
+      childCount: 4,
       className: ClassNames.ExtensionDetailHeaderDetails,
       onContextMenu: DomEventListenerFunctions.HandleHeaderContextMenu,
       type: VirtualDomElements.Div,
     },
     ...getExtensionDetailNameVirtualDom(name, badge),
     ...getExtensionDetailDescriptionVirtualDom(description),
+    ...getExtensionDetailMetadataVirtualDom(downloadCount, rating),
     ...GetExtensionDetailHeaderActionsVirtualDom.getExtensionDetailHeaderActionsVirtualDom(buttonDefs, settingsButtonEnabled),
   ]
   return dom
