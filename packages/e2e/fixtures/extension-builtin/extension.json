@@ -3,5 +3,7 @@
   "name": "Test Builtin Extension",
   "description": "Test Builtin Extension Description",
   "builtin": true,
+  "downloadCount": 12345,
+  "rating": 4.75,
   "categories": ["Themes"]
 }

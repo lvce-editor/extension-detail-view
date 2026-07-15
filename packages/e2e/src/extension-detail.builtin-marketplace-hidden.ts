@@ -9,6 +9,12 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await ExtensionDetail.open('test.extension-builtin')
 
   // assert
+  const metadata = Locator('.ExtensionDetailMetadata')
+  await expect(metadata).toHaveCount(0)
+  const downloadCount = Locator('.ExtensionDetailDownloadCount')
+  await expect(downloadCount).toHaveCount(0)
+  const rating = Locator('.ExtensionDetailRating')
+  await expect(rating).toHaveCount(0)
   const headings = Locator('.AdditionalDetailsTitle')
   await expect(headings).toHaveCount(3)
   const installationHeading = headings.nth(0)

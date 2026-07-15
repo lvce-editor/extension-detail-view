@@ -35,9 +35,11 @@ test('loadHeaderContent - with builtin extension', async () => {
   const mockExtension: any = {
     builtin: true,
     description: 'A builtin extension',
+    downloadCount: 12_345,
     id: 'builtin-extension',
     name: 'Builtin Extension',
     path: '/test/path',
+    rating: 4.75,
     version: '1.0.0',
   }
 
@@ -51,6 +53,8 @@ test('loadHeaderContent - with builtin extension', async () => {
   expect(result.extension).toEqual(mockExtension)
   expect(result.extensionId).toBe('builtin-extension')
   expect(result.name).toBe('Builtin Extension')
+  expect(result.downloadCount).toBe('n/a')
+  expect(result.rating).toBe('n/a')
 })
 
 test('loadHeaderContent - with fallback values', async () => {
