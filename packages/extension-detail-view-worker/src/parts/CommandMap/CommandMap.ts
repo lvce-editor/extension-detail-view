@@ -47,6 +47,7 @@ import * as LoadContent2 from '../LoadContent2/LoadContent2.ts'
 import * as OpenImageInNewTab from '../OpenImageInNewTab/OpenImageInNewTab.ts'
 import * as Render2 from '../Render2/Render2.ts'
 import * as RenderEventListeners from '../RenderEventListeners/RenderEventListeners.ts'
+import * as RenderTitle from '../RenderTitle/RenderTitle.ts'
 import * as Resize from '../Resize/Resize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
@@ -100,6 +101,7 @@ export const commandMap = {
   'ExtensionDetail.openImageInNewTab': WrapCommand.wrapCommand(OpenImageInNewTab.openImageInNewTab),
   'ExtensionDetail.render2': Render2.render2,
   'ExtensionDetail.renderEventListeners': RenderEventListeners.renderEventListeners,
+  'ExtensionDetail.renderTitle': WrapCommand.wrapGetter(RenderTitle.renderTitle),
   'ExtensionDetail.resetGithubApiMock': WrapCommand.wrapCommand(GithubApiRequest.handleResetGithubApiMock),
   'ExtensionDetail.resize': WrapCommand.wrapCommand(Resize.resize),
   'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
