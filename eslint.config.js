@@ -43,4 +43,10 @@ export default [
       'unicorn/prefer-number-coercion': 'off',
     },
   },
+  {
+    files: ['packages/e2e/**/*.ts'],
+    rules: {
+      'e2e/no-imports': 'off',
+    },
+  },
 ]
