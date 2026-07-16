@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-download-count-only",
+  "name": "Download Count Only",
+  "description": "Extension with a download count but no rating",
+  "downloadCount": 9876543
+}
