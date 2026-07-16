@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-rating-only",
+  "name": "Rating Only",
+  "description": "Extension with a rating but no download count",
+  "rating": 3.25
+}
