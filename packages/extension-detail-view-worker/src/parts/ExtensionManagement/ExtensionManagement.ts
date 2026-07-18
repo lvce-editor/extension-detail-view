@@ -4,7 +4,10 @@ import * as GetExtensionFallback from '../GetExtensionFallback/GetExtensionFallb
 const getExtensionNew = async (id: string): Promise<any> => {
   try {
     const rpc = get(RpcId.ExtensionManagementWorker)
-    return await rpc.invoke('Extensions.getExtension', id)
+    const extension = await rpc.invoke('Extensions.getExtension', id)
+    if (extension) {
+      return extension
+    }
   } catch {
     // ignore
   }
