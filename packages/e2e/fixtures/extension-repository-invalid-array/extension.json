@@ -1,0 +1,7 @@
+{
+  "id": "test.extension-repository-invalid-array",
+  "name": "Repository Invalid Array",
+  "description": "Extension with an invalid array repository",
+  "repository": [],
+  "categories": ["Other"]
+}

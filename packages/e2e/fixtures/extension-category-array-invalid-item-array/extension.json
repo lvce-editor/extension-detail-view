@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-category-array-invalid-item-array",
+  "name": "Category Array Invalid Item Array",
+  "description": "Extension with an invalid array category",
+  "categories": [["Themes"]]
+}

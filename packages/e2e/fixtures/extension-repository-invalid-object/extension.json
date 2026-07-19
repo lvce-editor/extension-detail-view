@@ -1,0 +1,9 @@
+{
+  "id": "test.extension-repository-invalid-object",
+  "name": "Repository Invalid Object",
+  "description": "Extension with an invalid object repository",
+  "repository": {
+    "url": "https://github.com/lvce-editor/extension-detail-view"
+  },
+  "categories": ["Other"]
+}

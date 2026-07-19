@@ -1,0 +1,7 @@
+{
+  "id": "test.extension-repository-invalid-boolean",
+  "name": "Repository Invalid Boolean",
+  "description": "Extension with an invalid boolean repository",
+  "repository": false,
+  "categories": ["Other"]
+}

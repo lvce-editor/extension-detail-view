@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-category-array-invalid-item-number",
+  "name": "Category Array Invalid Item Number",
+  "description": "Extension with an invalid number category",
+  "categories": [123]
+}
