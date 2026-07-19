@@ -1,0 +1,10 @@
+{
+  "id": "test.extension-category-array-invalid-item-object",
+  "name": "Category Array Invalid Item Object",
+  "description": "Extension with an invalid object category",
+  "categories": [
+    {
+      "name": "Themes"
+    }
+  ]
+}

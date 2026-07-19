@@ -1,0 +1,6 @@
+{
+  "id": "test.activation-events-invalid-item-boolean",
+  "name": "Activation Events Invalid Item Boolean",
+  "description": "Extension with an invalid boolean activation event",
+  "activation": [true]
+}

@@ -1,0 +1,6 @@
+{
+  "id": "test.activation-events-invalid-item-array",
+  "name": "Activation Events Invalid Item Array",
+  "description": "Extension with an invalid array activation event",
+  "activation": [["onStartup"]]
+}

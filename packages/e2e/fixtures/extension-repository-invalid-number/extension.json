@@ -1,0 +1,7 @@
+{
+  "id": "test.extension-repository-invalid-number",
+  "name": "Repository Invalid Number",
+  "description": "Extension with an invalid number repository",
+  "repository": 123,
+  "categories": ["Other"]
+}

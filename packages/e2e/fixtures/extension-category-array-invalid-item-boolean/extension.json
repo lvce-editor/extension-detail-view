@@ -1,0 +1,6 @@
+{
+  "id": "test.extension-category-array-invalid-item-boolean",
+  "name": "Category Array Invalid Item Boolean",
+  "description": "Extension with an invalid boolean category",
+  "categories": [false]
+}
