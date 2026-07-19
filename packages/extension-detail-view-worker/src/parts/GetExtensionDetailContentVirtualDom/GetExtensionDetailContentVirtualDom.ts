@@ -18,6 +18,7 @@ export const getExtensionDetailContentVirtualDom = (
   changelogDom: readonly VirtualDomNode[],
   state: ExtensionDetailState,
 ): readonly VirtualDomNode[] => {
+  const { features, hasReadme, installationEntries, marketplaceEntries, selectedFeature, showSideBar } = state
   switch (selectedTab) {
     case InputName.Changelog:
       return GetChangelogVirtualDom.getChangelogVirtualDom(changelogDom)
@@ -29,13 +30,13 @@ export const getExtensionDetailContentVirtualDom = (
         categories,
         resources,
         breakpoint,
-        state.installationEntries,
-        state.marketplaceEntries,
-        state.hasReadme,
-        state.showSideBar,
+        installationEntries,
+        marketplaceEntries,
+        hasReadme,
+        showSideBar,
       )
     case InputName.Features:
-      return GetFeaturesVirtualDom.getFeaturesVirtualDom(state.features, state.selectedFeature, state)
+      return GetFeaturesVirtualDom.getFeaturesVirtualDom(features, selectedFeature, state)
     default:
       return []
   }

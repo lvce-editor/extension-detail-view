@@ -1,4 +1,4 @@
-import { VirtualDomElements, text } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
@@ -13,7 +13,7 @@ export const getExtensionDetailErrorVirtualDom = (title: string, message: string
     {
       childCount: 3,
       className: ClassNames.ExtensionDetailErrorCard,
-      role: 'alert',
+      role: AriaRoles.Alert,
       type: VirtualDomElements.Div,
     },
     {
