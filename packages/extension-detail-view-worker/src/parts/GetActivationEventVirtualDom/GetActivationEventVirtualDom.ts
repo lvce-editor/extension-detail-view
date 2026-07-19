@@ -1,6 +1,7 @@
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ActivationEntry } from '../ActivationEntry/ActivationEntry.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 
 const li: VirtualDomNode = {
   childCount: 1,
@@ -18,7 +19,7 @@ export const getActivationEventVirtualDom = (event: ActivationEntry): readonly V
     return [
       {
         childCount: 1,
-        className: 'ListItem ListItemInvalid',
+        className: MergeClassNames.mergeClassNames('ListItem', 'ListItemInvalid'),
         title: errorMessage,
         type: VirtualDomElements.Li,
       },

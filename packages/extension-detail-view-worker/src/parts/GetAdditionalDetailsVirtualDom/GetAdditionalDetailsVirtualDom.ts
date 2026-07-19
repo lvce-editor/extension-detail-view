@@ -9,6 +9,7 @@ import * as GetAdditionalDetailsEntryVirtualDom from '../GetAdditionalDetailsEnt
 import * as GetCategoriesDom from '../GetCategoriesDom/GetCategoriesDom.ts'
 import * as GetMoreInfoVirtualDom from '../GetMoreInfoVirtualDom/GetMoreInfoVirtualDom.ts'
 import * as GetResourcesVirtualDom from '../GetResourcesVirtualDom/GetResourcesVirtualDom.ts'
+import * as TabIndex from '../TabIndex/TabIndex.ts'
 
 export const getAdditionalDetailsVirtualDom = (
   showAdditionalDetails: boolean,
@@ -53,7 +54,7 @@ export const getAdditionalDetailsVirtualDom = (
       childCount: childCount,
       className: ClassNames.AdditionalDetails,
       onContextMenu: DomEventListenerFunctions.HandleAdditionalDetailContextMenu,
-      tabIndex: 0,
+      tabIndex: TabIndex.Focusable,
       type: VirtualDomElements.Div,
     },
     ...sections,

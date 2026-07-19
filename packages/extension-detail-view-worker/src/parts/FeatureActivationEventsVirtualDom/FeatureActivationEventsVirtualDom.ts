@@ -3,5 +3,6 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as GetFeatureActivationEventsVirtualDom from '../GetFeatureActivationEventsVirtualDom/GetFeatureActivationEventsVirtualDom.ts'
 
 export const getActivationEventsVirtualDom = (state: FeatureActivationEventsState): readonly VirtualDomNode[] => {
-  return GetFeatureActivationEventsVirtualDom.getFeatureActivationEventsVirtualDom(state.activationEntries)
+  const { activationEntries } = state
+  return GetFeatureActivationEventsVirtualDom.getFeatureActivationEventsVirtualDom(activationEntries)
 }
