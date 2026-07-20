@@ -9,6 +9,12 @@ import { getExtensionDetailIconVirtualDom } from '../GetExtensionDetailIconVirtu
 import { getExtensionDetailMetadataVirtualDom } from '../GetExtensionDetailMetadataVirtualDom/GetExtensionDetailMetadataVirtualDom.ts'
 import { getExtensionDetailNameVirtualDom } from '../GetExtensionDetailNameVirtualDom/GetExtensionDetailNameVirtualDom.ts'
 
+const extensionDetailHeaderNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.ExtensionDetailHeader,
+  type: VirtualDomElements.Div,
+}
+
 export const getExtensionDetailHeaderVirtualDom = (
   name: string,
   iconSrc: string,
@@ -21,11 +27,7 @@ export const getExtensionDetailHeaderVirtualDom = (
 ): readonly VirtualDomNode[] => {
   const metadataDom = getExtensionDetailMetadataVirtualDom(downloadCount, rating)
   const dom = [
-    {
-      childCount: 2,
-      className: ClassNames.ExtensionDetailHeader,
-      type: VirtualDomElements.Div,
-    },
+    extensionDetailHeaderNode,
     getExtensionDetailIconVirtualDom(iconSrc),
     {
       childCount: metadataDom.length > 0 ? 4 : 3,

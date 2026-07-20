@@ -6,14 +6,16 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
 import * as GetWebViewVirtualDom from '../GetWebViewVirtualDom/GetWebViewVirtualDom.ts'
 
+const featureContentNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.FeatureContent,
+  type: VirtualDomElements.Div,
+}
+
 export const getFeatureWebViewsVirtualDom = (webViews: readonly WebView[]): readonly VirtualDomNode[] => {
   const heading = ExtensionDetailStrings.webViews()
   return [
-    {
-      childCount: 2,
-      className: ClassNames.FeatureContent,
-      type: VirtualDomElements.Div,
-    },
+    featureContentNode,
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
       childCount: webViews.length,

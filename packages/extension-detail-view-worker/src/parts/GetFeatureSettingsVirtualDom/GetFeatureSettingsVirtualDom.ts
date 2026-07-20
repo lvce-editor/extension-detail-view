@@ -7,15 +7,17 @@ import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeading
 import * as GetSettingsTableEntries from '../GetSettingsTableEntries/GetSettingsTableEntries.ts'
 import * as GetTableVirtualDom from '../GetTableVirtualDom/GetTableVirtualDom.ts'
 
+const featureContentNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.FeatureContent,
+  type: VirtualDomElements.Div,
+}
+
 export const getFeatureSettingsVirtualDom = (rows: readonly Row[]): readonly VirtualDomNode[] => {
   const heading = ExtensionDetailStrings.settings()
   const tableInfo = GetSettingsTableEntries.getSettingsTableEntries(rows)
   return [
-    {
-      childCount: 2,
-      className: ClassNames.FeatureContent,
-      type: VirtualDomElements.Div,
-    },
+    featureContentNode,
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     ...GetTableVirtualDom.getTableVirtualDom(tableInfo),
   ]

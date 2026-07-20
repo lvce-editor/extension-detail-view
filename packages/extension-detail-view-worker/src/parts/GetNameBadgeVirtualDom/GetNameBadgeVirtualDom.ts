@@ -2,16 +2,15 @@ import { VirtualDomElements, type VirtualDomNode } from '@lvce-editor/virtual-do
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
+const nameBadgeNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.ExtensionDetailNameBadge,
+  type: VirtualDomElements.Span,
+}
+
 export const getNameBadgeVirtualDom = (badge: string): readonly VirtualDomNode[] => {
   if (!badge) {
     return []
   }
-  return [
-    {
-      childCount: 1,
-      className: ClassNames.ExtensionDetailNameBadge,
-      type: VirtualDomElements.Span,
-    },
-    text(badge),
-  ]
+  return [nameBadgeNode, text(badge)]
 }

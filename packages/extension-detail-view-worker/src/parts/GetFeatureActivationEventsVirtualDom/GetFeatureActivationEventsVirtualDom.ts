@@ -6,14 +6,16 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 import * as GetActivationEventVirtualDom from '../GetActivationEventVirtualDom/GetActivationEventVirtualDom.ts'
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
 
+const featureContentNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.FeatureContent,
+  type: VirtualDomElements.Div,
+}
+
 export const getFeatureActivationEventsVirtualDom = (activationEvents: readonly ActivationEntry[]): readonly VirtualDomNode[] => {
   const heading = ExtensionDetailStrings.activationEvents()
   return [
-    {
-      childCount: 2,
-      className: ClassNames.FeatureContent,
-      type: VirtualDomElements.Div,
-    },
+    featureContentNode,
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
       childCount: activationEvents.length,

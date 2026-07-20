@@ -14,6 +14,12 @@ const sash: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
+const featuresNode: VirtualDomNode = {
+  childCount: 3,
+  className: ClassNames.Features,
+  type: VirtualDomElements.Div,
+}
+
 export const getFeaturesVirtualDom = (
   features: readonly Feature[],
   selectedFeature: string,
@@ -26,14 +32,5 @@ export const getFeaturesVirtualDom = (
   const fn = getFeatureVirtualDomHandler(selectedFeature)
   const featureVirtualDom = fn(state)
 
-  return [
-    {
-      childCount: 3,
-      className: ClassNames.Features,
-      type: VirtualDomElements.Div,
-    },
-    ...GetFeatureListVirtualDom.getFeatureListVirtualDom(features),
-    sash,
-    ...featureVirtualDom,
-  ]
+  return [featuresNode, ...GetFeatureListVirtualDom.getFeatureListVirtualDom(features), sash, ...featureVirtualDom]
 }

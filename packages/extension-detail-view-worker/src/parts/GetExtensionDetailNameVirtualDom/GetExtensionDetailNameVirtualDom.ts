@@ -3,31 +3,29 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { getNameBadgeVirtualDom } from '../GetNameBadgeVirtualDom/GetNameBadgeVirtualDom.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
+const extensionDetailNameWithBadgeNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.ExtensionDetailName,
+  type: VirtualDomElements.Div,
+}
+
+const extensionDetailNameTextNode: VirtualDomNode = {
+  childCount: 1,
+  type: VirtualDomElements.Span,
+}
+
+const extensionDetailNameNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.ExtensionDetailName,
+  type: VirtualDomElements.Div,
+}
+
 const getExtensionDetailNameWithBadgeVirtualDom = (name: string, badge: string): readonly VirtualDomNode[] => {
-  return [
-    {
-      childCount: 2,
-      className: ClassNames.ExtensionDetailName,
-      type: VirtualDomElements.Div,
-    },
-    {
-      childCount: 1,
-      type: VirtualDomElements.Span,
-    },
-    text(name),
-    ...getNameBadgeVirtualDom(badge),
-  ]
+  return [extensionDetailNameWithBadgeNode, extensionDetailNameTextNode, text(name), ...getNameBadgeVirtualDom(badge)]
 }
 
 const getExtensionDetailNameDefaultVirtualDom = (name: string): readonly VirtualDomNode[] => {
-  return [
-    {
-      childCount: 1,
-      className: ClassNames.ExtensionDetailName,
-      type: VirtualDomElements.Div,
-    },
-    text(name),
-  ]
+  return [extensionDetailNameNode, text(name)]
 }
 
 export const getExtensionDetailNameVirtualDom = (name: string, badge: string): readonly VirtualDomNode[] => {

@@ -11,6 +11,12 @@ import * as GetMoreInfoVirtualDom from '../GetMoreInfoVirtualDom/GetMoreInfoVirt
 import * as GetResourcesVirtualDom from '../GetResourcesVirtualDom/GetResourcesVirtualDom.ts'
 import * as TabIndex from '../TabIndex/TabIndex.ts'
 
+const asideNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.Aside,
+  type: VirtualDomElements.Aside,
+}
+
 export const getAdditionalDetailsVirtualDom = (
   showAdditionalDetails: boolean,
   firstHeading: string,
@@ -45,11 +51,7 @@ export const getAdditionalDetailsVirtualDom = (
   ]
   const childCount = 1 + (secondEntries.length > 0 ? 1 : 0) + (categories.length > 0 ? 1 : 0) + 1
   return [
-    {
-      childCount: 1,
-      className: ClassNames.Aside,
-      type: VirtualDomElements.Aside,
-    },
+    asideNode,
     {
       childCount: childCount,
       className: ClassNames.AdditionalDetails,

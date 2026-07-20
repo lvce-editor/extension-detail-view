@@ -5,16 +5,18 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
+const resourceIconNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.ResourceIcon,
+  type: VirtualDomElements.Div,
+}
+
 const getIconDom = (icon: string): readonly VirtualDomNode[] => {
   if (!icon) {
     return []
   }
   return [
-    {
-      childCount: 1,
-      className: ClassNames.ResourceIcon,
-      type: VirtualDomElements.Div,
-    },
+    resourceIconNode,
     {
       childCount: 0,
       className: mergeClassNames(ClassNames.MaskIcon, `MaskIcon${icon}`),

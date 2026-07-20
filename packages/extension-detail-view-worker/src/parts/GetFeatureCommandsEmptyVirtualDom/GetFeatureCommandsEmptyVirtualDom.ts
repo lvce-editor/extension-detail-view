@@ -4,20 +4,24 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
 
+const featureContentNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.FeatureContent,
+  type: VirtualDomElements.Div,
+}
+
+const emptyCommandsNode: VirtualDomNode = {
+  childCount: 1,
+  type: VirtualDomElements.P,
+}
+
 export const getFeatureCommandsEmptyVirtualDom = (): readonly VirtualDomNode[] => {
   const heading = ExtensionDetailStrings.commands()
   const emptyCommandsArray = ExtensionDetailStrings.emptyCommandsArray()
   return [
-    {
-      childCount: 2,
-      className: ClassNames.FeatureContent,
-      type: VirtualDomElements.Div,
-    },
+    featureContentNode,
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
-    {
-      childCount: 1,
-      type: VirtualDomElements.P,
-    },
+    emptyCommandsNode,
     text(emptyCommandsArray),
   ]
 }
