@@ -23,6 +23,12 @@ const item: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
+const featureWebViewNode: VirtualDomNode = {
+  childCount: 4,
+  className: ClassNames.FeatureWebView,
+  type: VirtualDomElements.Div,
+}
+
 export const getWebViewVirtualDom = (webView: WebView): readonly VirtualDomNode[] => {
   const { contentSecurityPolicyString, elementsString, id, selectorString } = webView
   const textId = ExtensionDetailStrings.id()
@@ -30,11 +36,7 @@ export const getWebViewVirtualDom = (webView: WebView): readonly VirtualDomNode[
   const textContentSecurityPolicy = ExtensionDetailStrings.contentSecurityPolicy()
   const textElements = ExtensionDetailStrings.elements()
   return [
-    {
-      childCount: 4,
-      className: ClassNames.FeatureWebView,
-      type: VirtualDomElements.Div,
-    },
+    featureWebViewNode,
     item,
     heading,
     text(textId),

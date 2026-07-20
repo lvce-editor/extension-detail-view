@@ -3,14 +3,13 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
+const codeNode: VirtualDomNode = {
+  childCount: 1,
+  type: VirtualDomElements.Code,
+}
+
 const getListItemDom = (item: string): readonly VirtualDomNode[] => {
-  return [
-    {
-      childCount: 1,
-      type: VirtualDomElements.Code,
-    },
-    text(item),
-  ]
+  return [codeNode, text(item)]
 }
 
 export const getCellCodeListVirtualDom = (value: string, props: { readonly listItems: readonly string[] }): readonly VirtualDomNode[] => {

@@ -8,6 +8,12 @@ import { getFeatureCommandsEmptyVirtualDom } from '../GetFeatureCommandsEmptyVir
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
 import * as GetTableVirtualDom from '../GetTableVirtualDom/GetTableVirtualDom.ts'
 
+const featureContentNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.FeatureContent,
+  type: VirtualDomElements.Div,
+}
+
 // TODO have typed view-model
 export const getFeatureCommandsVirtualDom = (commands: readonly Row[]): readonly VirtualDomNode[] => {
   if (commands.length === 0) {
@@ -16,11 +22,7 @@ export const getFeatureCommandsVirtualDom = (commands: readonly Row[]): readonly
   const heading = ExtensionDetailStrings.commands()
   const tableInfo = GetCommandTableEntries.getCommandTableEntries(commands)
   return [
-    {
-      childCount: 2,
-      className: ClassNames.FeatureContent,
-      type: VirtualDomElements.Div,
-    },
+    featureContentNode,
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     ...GetTableVirtualDom.getTableVirtualDom(tableInfo),
   ]

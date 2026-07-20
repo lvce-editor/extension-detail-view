@@ -7,6 +7,12 @@ import * as GetActivationTimeVirtualDom from '../GetActivationTimeVirtualDom/Get
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
 import * as GetStatusVirtualDom from '../GetStatusVirtualDom/GetStatusVirtualDom.ts'
 
+const featureContentNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.FeatureContent,
+  type: VirtualDomElements.Div,
+}
+
 const getChildCount = (status: number, activationTime: number, importTime: number): number => {
   let childCount = 0
   childCount += 2 // status
@@ -21,11 +27,7 @@ export const getRuntimeStatusVirtualDom = (state: FeatureRuntimeStatusState): re
   const heading = ExtensionDetailStrings.runtimeStatus()
   const childCount = getChildCount(status, displayedActivationTime, displayedImportTime)
   return [
-    {
-      childCount: 2,
-      className: ClassNames.FeatureContent,
-      type: VirtualDomElements.Div,
-    },
+    featureContentNode,
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
     {
       childCount,

@@ -3,13 +3,12 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 
+const markdownImageErrorNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.MarkdownImageError,
+  type: VirtualDomElements.Span,
+}
+
 export const getMarkdownImageErrorVirtualDom = (): readonly VirtualDomNode[] => {
-  return [
-    {
-      childCount: 1,
-      className: ClassNames.MarkdownImageError,
-      type: VirtualDomElements.Span,
-    },
-    text(ExtensionDetailStrings.imageCannotBeLoaded()),
-  ]
+  return [markdownImageErrorNode, text(ExtensionDetailStrings.imageCannotBeLoaded())]
 }

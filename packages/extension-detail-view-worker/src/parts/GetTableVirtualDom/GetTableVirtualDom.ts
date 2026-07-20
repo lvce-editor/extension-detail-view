@@ -5,18 +5,22 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetTableHeadingVirtualDom from '../GetTableHeadingVirtualDom/GetTableHeadingVirtualDom.ts'
 import * as GetTableRowVirtualDom from '../GetTableRowVirtualDom/GetTableRowVirtualDom.ts'
 
+const tableNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.Table,
+  type: VirtualDomElements.Table,
+}
+
+const tableHeadNode: VirtualDomNode = {
+  childCount: 1,
+  type: VirtualDomElements.THead,
+}
+
 export const getTableVirtualDom = (tableInfo: TableInfo): readonly VirtualDomNode[] => {
   const { headings, rows } = tableInfo
   return [
-    {
-      childCount: 2,
-      className: ClassNames.Table,
-      type: VirtualDomElements.Table,
-    },
-    {
-      childCount: 1,
-      type: VirtualDomElements.THead,
-    },
+    tableNode,
+    tableHeadNode,
     {
       childCount: headings.length,
       type: VirtualDomElements.Tr,

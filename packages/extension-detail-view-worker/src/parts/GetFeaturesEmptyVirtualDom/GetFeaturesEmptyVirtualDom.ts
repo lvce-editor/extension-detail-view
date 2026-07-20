@@ -4,14 +4,13 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
+const featuresNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.Features,
+  type: VirtualDomElements.Div,
+}
+
 export const getFeaturesEmptyVirtualDom = (): readonly VirtualDomNode[] => {
   const none = ExtensionDetailStrings.none()
-  return [
-    {
-      childCount: 1,
-      className: ClassNames.Features,
-      type: VirtualDomElements.Div,
-    },
-    text(none),
-  ]
+  return [featuresNode, text(none)]
 }

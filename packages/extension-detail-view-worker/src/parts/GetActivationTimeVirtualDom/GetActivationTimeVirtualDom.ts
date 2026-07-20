@@ -3,6 +3,16 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import { formatTime } from '../FormatTime/FormatTime.ts'
 
+const definitionTermNode: VirtualDomNode = {
+  childCount: 1,
+  type: VirtualDomElements.Dt,
+}
+
+const definitionDescriptionNode: VirtualDomNode = {
+  childCount: 1,
+  type: VirtualDomElements.Dd,
+}
+
 export const getActivationTimeVirtualDom = (importTime: number, activationTime: number): readonly VirtualDomNode[] => {
   if (!activationTime && !importTime) {
     return []
@@ -10,25 +20,13 @@ export const getActivationTimeVirtualDom = (importTime: number, activationTime: 
   const formattedImportTime = formatTime(importTime)
   const formattedTime = formatTime(activationTime)
   return [
-    {
-      childCount: 1,
-      type: VirtualDomElements.Dt,
-    },
+    definitionTermNode,
     text(ExtensionDetailStrings.importTime()),
-    {
-      childCount: 1,
-      type: VirtualDomElements.Dd,
-    },
+    definitionDescriptionNode,
     text(formattedImportTime),
-    {
-      childCount: 1,
-      type: VirtualDomElements.Dt,
-    },
+    definitionTermNode,
     text(ExtensionDetailStrings.activationTime()),
-    {
-      childCount: 1,
-      type: VirtualDomElements.Dd,
-    },
+    definitionDescriptionNode,
     text(formattedTime),
   ]
 }

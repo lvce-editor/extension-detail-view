@@ -1,10 +1,16 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
+const codeNode: VirtualDomNode = {
+  childCount: 1,
+  type: VirtualDomElements.Code,
+}
+
 export const getCellCodeVirtualDom = (value: string, props?: { readonly className?: string; readonly title?: string }): readonly VirtualDomNode[] => {
-  const tdClassName = props?.className ? `${ClassNames.TableCell} ${props.className}` : ClassNames.TableCell
+  const tdClassName = MergeClassNames.mergeClassNames(ClassNames.TableCell, props?.className || '')
   return [
     {
       childCount: 1,
@@ -12,10 +18,7 @@ export const getCellCodeVirtualDom = (value: string, props?: { readonly classNam
       type: VirtualDomElements.Td,
       ...(props?.title && { title: props.title }),
     },
-    {
-      childCount: 1,
-      type: VirtualDomElements.Code,
-    },
+    codeNode,
     text(value),
   ]
 }

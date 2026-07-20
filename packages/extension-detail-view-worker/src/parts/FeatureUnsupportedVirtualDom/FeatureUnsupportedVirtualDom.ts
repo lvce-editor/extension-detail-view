@@ -3,21 +3,27 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 
+const unsupportedFeatureNode: VirtualDomNode = {
+  childCount: 2,
+  type: VirtualDomElements.Div,
+}
+
+const unsupportedFeatureHeadingNode: VirtualDomNode = {
+  childCount: 1,
+  type: VirtualDomElements.H1,
+}
+
+const unsupportedFeatureMessageNode: VirtualDomNode = {
+  childCount: 1,
+  type: VirtualDomElements.P,
+}
+
 export const getFeatureUnsupportedVirtualDom = (state: ExtensionDetailState): readonly VirtualDomNode[] => {
   return [
-    {
-      childCount: 2,
-      type: VirtualDomElements.Div,
-    },
-    {
-      childCount: 1,
-      type: VirtualDomElements.H1,
-    },
+    unsupportedFeatureNode,
+    unsupportedFeatureHeadingNode,
     text(ExtensionDetailStrings.unsupportedFeature()),
-    {
-      childCount: 1,
-      type: VirtualDomElements.P,
-    },
+    unsupportedFeatureMessageNode,
     text(ExtensionDetailStrings.selectedFeatureUnknownOrUnsupported()),
   ]
 }

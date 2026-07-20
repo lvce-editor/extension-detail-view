@@ -7,19 +7,23 @@ import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeading
 import * as GetProgrammingLanguagesTableEntries from '../GetProgrammingLanguagesTableEntries/GetProgrammingLanguagesTableEntries.ts'
 import * as GetTableVirtualDom from '../GetTableVirtualDom/GetTableVirtualDom.ts'
 
+const featureContentNode: VirtualDomNode = {
+  childCount: 2,
+  className: ClassNames.FeatureContent,
+  type: VirtualDomElements.Div,
+}
+
+const emptyProgrammingLanguagesNode: VirtualDomNode = {
+  childCount: 1,
+  type: VirtualDomElements.P,
+}
+
 export const getFeatureProgrammingLanguagesVirtualDom = (programmingLanguages: readonly Row[]): readonly VirtualDomNode[] => {
   const heading = ExtensionDetailStrings.programmingLanguages()
-  const top: readonly VirtualDomNode[] = [
-    {
-      childCount: 2,
-      className: ClassNames.FeatureContent,
-      type: VirtualDomElements.Div,
-    },
-    ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
-  ]
+  const top: readonly VirtualDomNode[] = [featureContentNode, ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading)]
 
   if (programmingLanguages.length === 0) {
-    return [...top, { childCount: 1, type: VirtualDomElements.P }, text('Empty Array.')]
+    return [...top, emptyProgrammingLanguagesNode, text('Empty Array.')]
   }
 
   const tableInfo = GetProgrammingLanguagesTableEntries.getProgrammingLanguagesTableEntries(programmingLanguages)
