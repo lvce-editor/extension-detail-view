@@ -16,6 +16,44 @@ test('loadChangelogContent successfully loads changelog', async () => {
   expect(mockRpc.invocations).toEqual([['FileSystem.readFile', '/test/extension/CHANGELOG.md']])
 })
 
+test('loadChangelogContent uses cached content without reading the file', async () => {
+  const cache = {
+    get: jest.fn<(uri: string) => Promise<string | undefined>>().mockResolvedValue('# Cached changelog'),
+    set: jest.fn<(uri: string, value: string) => Promise<void>>(),
+  }
+  using mockRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.readFile': () => {
+      throw new Error('unexpected read')
+    },
+  })
+
+  const result = await LoadChangelogContent.loadChangelogContent('/test/extension', cache)
+
+  expect(result).toBe('# Cached changelog')
+  expect(cache.get).toHaveBeenCalledWith('/test/extension/CHANGELOG.md')
+  expect(cache.set).not.toHaveBeenCalled()
+  expect(mockRpc.invocations).toEqual([])
+})
+
+test('loadChangelogContent caches content after reading the file', async () => {
+  const cache = {
+    get: jest.fn<(uri: string) => Promise<string | undefined>>().mockResolvedValue(undefined),
+    set: jest.fn<(uri: string, value: string) => Promise<void>>().mockResolvedValue(undefined),
+  }
+  using mockRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.readFile': () => {
+      return '# Network changelog'
+    },
+  })
+
+  const result = await LoadChangelogContent.loadChangelogContent('/test/extension', cache)
+
+  expect(result).toBe('# Network changelog')
+  expect(cache.get).toHaveBeenCalledWith('/test/extension/CHANGELOG.md')
+  expect(cache.set).toHaveBeenCalledWith('/test/extension/CHANGELOG.md', '# Network changelog')
+  expect(mockRpc.invocations).toEqual([['FileSystem.readFile', '/test/extension/CHANGELOG.md']])
+})
+
 test('loadChangelogContent returns empty string when file not found', async () => {
   const enoentError = new Error('File not found')
   ;(enoentError as any).code = ErrorCodes.ENOENT
