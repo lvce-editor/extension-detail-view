@@ -201,6 +201,10 @@ test('activationTime returns correct i18n string', () => {
   expect(ExtensionDetailStrings.activationTime()).toBe('Activation Time: ')
 })
 
+test('activationEvent returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.activationEvent()).toBe('Activation Event')
+})
+
 test('unsupportedFeature returns correct i18n string', () => {
   expect(ExtensionDetailStrings.unsupportedFeature()).toBe('Unsupported Feature')
 })

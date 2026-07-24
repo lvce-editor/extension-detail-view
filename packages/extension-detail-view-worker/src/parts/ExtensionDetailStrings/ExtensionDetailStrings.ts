@@ -109,6 +109,10 @@ export const activationEvents = (): string => {
   return I18nString.i18nString(UiStrings.ActivationEvents)
 }
 
+export const activationEvent = (): string => {
+  return I18nString.i18nString(UiStrings.ActivationEvent)
+}
+
 export const runtimeStatus = (): string => {
   return I18nString.i18nString(UiStrings.RuntimeStatus)
 }

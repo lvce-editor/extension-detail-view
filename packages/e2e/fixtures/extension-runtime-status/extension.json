@@ -1,12 +1,13 @@
 {
-  "id": "test.commands-test",
-  "name": "Test Commands",
-  "description": "Test Commands",
-  "main": "index.js",
+  "id": "test.runtime-status",
+  "name": "Runtime Status Test",
+  "description": "Runtime Status Test",
+  "browser": "index.js",
+  "activation": ["onCommand:runtimeStatus.activate"],
   "commands": [
     {
-      "id": "test",
-      "label": "Test"
+      "id": "runtimeStatus.activate",
+      "label": "Activate Runtime Status Test"
     }
   ]
 }

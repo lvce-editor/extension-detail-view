@@ -1,6 +1,6 @@
-import { test, expect } from '@jest/globals'
+import { expect, test } from '@jest/globals'
+import { ExtensionManagementWorker } from '@lvce-editor/rpc-registry'
 import type { RuntimeStatus } from '../src/parts/RuntimeStatus/RuntimeStatus.ts'
-import * as ExtensionHostWorker from '../src/parts/ExtensionHostWorker/ExtensionHostWorker.ts'
 import { getRuntimeStatusDetails } from '../src/parts/FeatureRuntimeStatusDetails/FeatureRuntimeStatusDetails.ts'
 import * as RuntimeStatusType from '../src/parts/RuntimeStatusType/RuntimeStatusType.ts'
 
@@ -13,8 +13,8 @@ test('getRuntimeStatusDetails should return runtime status details for extension
     status: RuntimeStatusType.Activated,
   }
 
-  using mockRpc = ExtensionHostWorker.registerMockRpc({
-    'ExtensionHost.getRuntimeStatus': () => {
+  using mockRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.getRuntimeStatus': () => {
       return mockRuntimeStatus
     },
   })
@@ -32,7 +32,7 @@ test('getRuntimeStatusDetails should return runtime status details for extension
     status: RuntimeStatusType.Activated,
     wasActivatedByEvent: 'onStartupFinished',
   })
-  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'test-extension']])
+  expect(mockRpc.invocations).toEqual([['Extensions.getRuntimeStatus', 'test-extension']])
 })
 
 test('getRuntimeStatusDetails should handle different activation events', async () => {
@@ -44,8 +44,8 @@ test('getRuntimeStatusDetails should handle different activation events', async 
     status: RuntimeStatusType.Activating,
   }
 
-  using mockRpc = ExtensionHostWorker.registerMockRpc({
-    'ExtensionHost.getRuntimeStatus': () => {
+  using mockRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.getRuntimeStatus': () => {
       return mockRuntimeStatus
     },
   })
@@ -63,7 +63,7 @@ test('getRuntimeStatusDetails should handle different activation events', async 
     status: RuntimeStatusType.Activating,
     wasActivatedByEvent: 'onCommand:test.command',
   })
-  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'another-extension']])
+  expect(mockRpc.invocations).toEqual([['Extensions.getRuntimeStatus', 'another-extension']])
 })
 
 test('getRuntimeStatusDetails should handle error status', async () => {
@@ -75,8 +75,8 @@ test('getRuntimeStatusDetails should handle error status', async () => {
     status: RuntimeStatusType.Error,
   }
 
-  using mockRpc = ExtensionHostWorker.registerMockRpc({
-    'ExtensionHost.getRuntimeStatus': () => {
+  using mockRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.getRuntimeStatus': () => {
       return mockRuntimeStatus
     },
   })
@@ -94,12 +94,12 @@ test('getRuntimeStatusDetails should handle error status', async () => {
     status: RuntimeStatusType.Error,
     wasActivatedByEvent: '',
   })
-  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'error-extension']])
+  expect(mockRpc.invocations).toEqual([['Extensions.getRuntimeStatus', 'error-extension']])
 })
 
 test('getRuntimeStatusDetails should propagate errors from getRuntimeStatus', async () => {
-  using mockRpc = ExtensionHostWorker.registerMockRpc({
-    'ExtensionHost.getRuntimeStatus': () => {
+  using mockRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.getRuntimeStatus': () => {
       throw new Error('Runtime status error')
     },
   })
@@ -110,5 +110,5 @@ test('getRuntimeStatusDetails should propagate errors from getRuntimeStatus', as
   }
 
   await expect(getRuntimeStatusDetails(extension)).rejects.toThrow('Runtime status error')
-  expect(mockRpc.invocations).toEqual([['ExtensionHost.getRuntimeStatus', 'failing-extension']])
+  expect(mockRpc.invocations).toEqual([['Extensions.getRuntimeStatus', 'failing-extension']])
 })

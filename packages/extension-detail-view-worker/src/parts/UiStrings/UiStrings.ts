@@ -1,4 +1,5 @@
 export const ActivationEvents = 'Activation Events'
+export const ActivationEvent = 'Activation Event'
 export const ActivationTime = 'Activation Time: '
 export const Categories = 'Categories'
 export const Changelog = 'Changelog'
