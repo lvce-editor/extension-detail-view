@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.tabs-focus-next'
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
@@ -12,10 +12,10 @@ export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, 
   const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
   await expect(tabDetails).toBeVisible()
   await expect(tabDetails).toHaveAttribute('aria-selected', 'true')
-  await Command.execute('ExtensionDetail.handleTabFocus', 'Details')
+  await ExtensionDetail.handleTabFocus('Details')
 
   // act
-  await Command.execute('ExtensionDetail.focusNextTab')
+  await ExtensionDetail.focusNextTab()
 
   // assert
   await expect(tabFeatures).toBeFocused()

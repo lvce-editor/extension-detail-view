@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.tabs-rapid-switch'
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
@@ -16,9 +16,9 @@ export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, 
   // act
   const pending: Promise<unknown>[] = []
   for (let i = 0; i < 5; i++) {
-    pending.push(Command.execute('ExtensionDetail.selectTab', 'Features'))
-    pending.push(Command.execute('ExtensionDetail.selectTab', 'Changelog'))
-    pending.push(Command.execute('ExtensionDetail.selectTab', 'Details'))
+    pending.push(ExtensionDetail.selectFeatures())
+    pending.push(ExtensionDetail.selectChangelog())
+    pending.push(ExtensionDetail.selectDetails())
   }
   await Promise.all(pending)
   await ExtensionDetail.selectDetails()

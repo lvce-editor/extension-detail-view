@@ -1,13 +1,13 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-settings-menu')
   await Extension.addWebExtension(extensionUri)
   await ExtensionDetail.open('test.extension-settings-menu')
 
   // act
-  await Command.execute('ExtensionDetail.handleClickSettings', 100, 200)
+  await ExtensionDetail.handleClickSettings(100, 200)
 
   // assert
   const menu = Locator('.Menu')

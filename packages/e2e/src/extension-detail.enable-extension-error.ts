@@ -12,7 +12,6 @@ export const test: Test = async ({ Extension, ExtensionDetail }) => {
 
   // act
   await ExtensionDetail.handleClickDisable()
-  // await Command.execute('ExtensionDetail.handleClickSetColorTheme')
 
   // assert
   // const activityBar = Locator('.ActivityBar')

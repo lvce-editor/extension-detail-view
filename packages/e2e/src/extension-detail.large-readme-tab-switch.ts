@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.large-readme-tab-switch'
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-large-readme')
   await Extension.addWebExtension(extensionUri)
@@ -12,11 +12,7 @@ export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, 
   const tabChangelog = Locator('.ExtensionDetailTab[name="Changelog"]')
 
   // act
-  await Promise.all([
-    Command.execute('ExtensionDetail.selectTab', 'Features'),
-    Command.execute('ExtensionDetail.selectTab', 'Changelog'),
-    Command.execute('ExtensionDetail.selectTab', 'Details'),
-  ])
+  await Promise.all([ExtensionDetail.selectFeatures(), ExtensionDetail.selectChangelog(), ExtensionDetail.selectDetails()])
   await ExtensionDetail.selectDetails()
 
   // assert

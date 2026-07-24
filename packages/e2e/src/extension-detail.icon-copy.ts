@@ -1,12 +1,12 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const test: Test = async ({ BaseUrl, ClipBoard, Command, ContextMenu, Extension, ExtensionDetail }) => {
+export const test: Test = async ({ BaseUrl, ClipBoard, ContextMenu, Extension, ExtensionDetail }) => {
   // arrange
   await ClipBoard.enableMemoryClipBoard()
   const extensionUri = import.meta.resolve('../fixtures/extension-repository-link')
   await Extension.addWebExtension(extensionUri)
   await ExtensionDetail.open('test.extension-repository-link')
-  await Command.execute('ExtensionDetail.handleImageContextMenu', 0, 0)
+  await ExtensionDetail.handleImageContextMenu(0, 0)
 
   // act
   await ContextMenu.selectItem('Copy Image Url')
