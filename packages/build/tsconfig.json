@@ -7,7 +7,8 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "skipLibCheck": true,
-    "noEmit": true,
+    "noEmit": false,
+    "outDir": "dist",
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
     "assumeChangesOnlyAffectDirectDependencies": true,
@@ -15,10 +16,11 @@
     "noImplicitAny": false,
     "composite": true,
     "allowImportingTsExtensions": true,
-    "rootDir": ".",
+    "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "rewriteRelativeImportExtensions": true
   },
   "include": ["src", "test"]
 }
