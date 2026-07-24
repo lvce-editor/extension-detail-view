@@ -1,13 +1,11 @@
 import * as config from '@lvce-editor/eslint-config'
-import * as actions from '@lvce-editor/eslint-plugin-github-actions'
 
 export default [
   ...config.default,
   ...config.recommendedVirtualDom,
-  ...actions.default,
-  {
-    ignores: ['packages/extension-detail-view-worker/src/extensionDetailViewWorkerMain.ts'],
-  },
+  ...config.recommendedActions,
+  ...config.recommendedTsconfig,
+  ...config.recommendedRegex,
   {
     files: ['**/*.ts'],
     rules: {
@@ -61,13 +59,6 @@ export default [
       'virtual-dom/prefer-merge-class-names': 'off',
       'virtual-dom/prefer-state-destructuring': 'off',
       'virtual-dom/valid-child-count': 'off',
-    },
-  },
-  {
-    files: ['packages/extension-detail-view-worker/src/parts/**/*.ts'],
-    ignores: ['packages/extension-detail-view-worker/src/parts/**/*VirtualDom/**/*.ts'],
-    rules: {
-      'virtual-dom/prefer-state-destructuring': 'off',
     },
   },
 ]
