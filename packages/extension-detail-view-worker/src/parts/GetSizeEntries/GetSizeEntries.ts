@@ -8,7 +8,9 @@ export const getSizeEntries = (showSizeLink: boolean, displaySize: string, exten
   }
   return [
     {
+      code: undefined,
       key: ExtensionDetailStrings.size(),
+      odd: undefined,
       onClick: DomEventListenerFunctions.HandleClickSize,
       title: extensionUri,
       value: displaySize,

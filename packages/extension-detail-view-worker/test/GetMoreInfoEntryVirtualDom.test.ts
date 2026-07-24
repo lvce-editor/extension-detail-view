@@ -7,7 +7,11 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('more info entry virtual dom', () => {
   const entry: MoreInfoEntry = {
+    code: undefined,
     key: 'License',
+    odd: undefined,
+    onClick: undefined,
+    title: undefined,
     value: 'MIT',
   }
   expect(GetMoreInfoEntryVirtualDom.getMoreInfoEntryVirtualDom(entry)).toEqual([
@@ -33,8 +37,11 @@ test('more info entry virtual dom', () => {
 
 test('odd more info entry virtual dom', () => {
   const entry: MoreInfoEntry = {
+    code: undefined,
     key: 'License',
     odd: true,
+    onClick: undefined,
+    title: undefined,
     value: 'MIT',
   }
   const result = GetMoreInfoEntryVirtualDom.getMoreInfoEntryVirtualDom(entry)
