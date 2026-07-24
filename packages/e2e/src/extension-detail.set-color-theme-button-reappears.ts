@@ -4,9 +4,9 @@ export const name = 'extension-detail.set-color-theme-button-reappears'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, ExtensionDetail, Locator, QuickPick }) => {
+export const test: Test = async ({ ColorTheme, expect, ExtensionDetail, Locator, QuickPick }) => {
   // arrange
-  await Command.execute('ColorTheme.setColorTheme', 'slime')
+  await ColorTheme.setColorTheme('slime')
   await ExtensionDetail.open('builtin.theme-cobalt2')
   const setColorThemeButton = Locator('.Button[name="SetColorTheme"]')
   await expect(setColorThemeButton).toBeVisible()

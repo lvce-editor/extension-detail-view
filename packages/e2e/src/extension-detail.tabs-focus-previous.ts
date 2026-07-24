@@ -4,7 +4,7 @@ export const name = 'extension-detail.tabs-focus-previous'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
@@ -12,12 +12,12 @@ export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, 
   const tabDetails = Locator('.ExtensionDetailTab[name="Details"]')
   await expect(tabDetails).toBeVisible()
   await expect(tabDetails).toHaveAttribute('aria-selected', 'true')
-  await Command.execute('ExtensionDetail.handleTabFocus', 'Features')
+  await ExtensionDetail.handleTabFocus('Features')
   const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
   await expect(tabFeatures).toBeFocused()
 
   // act
-  await Command.execute('ExtensionDetail.focusPrevious')
+  await ExtensionDetail.focusPreviousTab()
 
   // assert
   await expect(tabDetails).toBeFocused()

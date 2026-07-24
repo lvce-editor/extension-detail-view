@@ -2,15 +2,7 @@
 
 /**
  * @typedef {import('@lvce-editor/test-with-playwright').TestApi} TestApi
- * @typedef {{
- *   body?: unknown,
- *   headers?: Readonly<Record<string, string>>,
- *   message?: string,
- *   releaseCount?: number,
- *   status?: number,
- *   statusText?: string,
- *   type: 'generated' | 'invalid-json' | 'network-error' | 'response' | 'success',
- * }} MockGithubApiOptions
+ * @typedef {Parameters<TestApi['ExtensionDetail']['mockGithubApi']>[0]} MockGithubApiOptions
  */
 
 /**
@@ -29,14 +21,6 @@ export const createRelease = (overrides = {}) => {
 }
 
 /**
- * @param {TestApi['Command']} Command
- * @param {MockGithubApiOptions} options
- */
-export const mockGithubApi = async (Command, options) => {
-  await Command.execute('ExtensionDetail.mockGithubApi', options)
-}
-
-/**
  * @param {TestApi} api
  * @param {MockGithubApiOptions} options
  * @param {string} [fixture]
@@ -46,6 +30,6 @@ export const openGithubChangelog = async (api, options, fixture = 'extension-git
   const extensionUri = import.meta.resolve(`../fixtures/${fixture}`)
   await api.Extension.addWebExtension(extensionUri)
   await api.ExtensionDetail.open(extensionId)
-  await mockGithubApi(api.Command, options)
+  await api.ExtensionDetail.mockGithubApi(options)
   await api.ExtensionDetail.selectChangelog()
 }

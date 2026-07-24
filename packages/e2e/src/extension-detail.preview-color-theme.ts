@@ -4,13 +4,13 @@ export const name = 'extension-detail.preview-color-theme'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ ColorTheme, expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const slimeExtensionUri = import.meta.resolve('../fixtures/extension-detail-slime-theme')
   const extensionUri = import.meta.resolve('../fixtures/extension-detail-theme')
   await Extension.addWebExtension(slimeExtensionUri)
   await Extension.addWebExtension(extensionUri)
-  await Command.execute('ColorTheme.setColorTheme', 'slime-theme')
+  await ColorTheme.setColorTheme('slime-theme')
   await ExtensionDetail.open('test.theme-test')
   await ExtensionDetail.handleClickDisable()
   const enableButton = Locator('.ExtensionDetail [name="Enable"]')

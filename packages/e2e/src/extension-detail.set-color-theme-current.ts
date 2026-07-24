@@ -4,13 +4,13 @@ export const name = 'extension-detail.set-color-theme-current'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-detail-slime-theme')
   await Extension.addWebExtension(extensionUri)
   await ExtensionDetail.open('test.slime-theme-test')
   await ExtensionDetail.selectFeatures()
-  await Command.execute('ExtensionDetail.handleClickSetColorTheme')
+  await ExtensionDetail.handleClickSetColorTheme()
 
   // assert
   const setColorThemeButton = Locator('.Button[name="SetColorTheme"]')

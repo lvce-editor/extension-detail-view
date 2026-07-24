@@ -4,14 +4,14 @@ export const name = 'extension-detail.uninstall-extension'
 
 export const skip = 1
 
-export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-disable')
   await Extension.addWebExtension(extensionUri)
   await ExtensionDetail.open('test.extension-enable-error')
 
   // act
-  await Command.execute('ExtensionDetail.handleClickUninstall')
+  await ExtensionDetail.handleClickUninstall()
 
   // assert
   const disableButton = Locator('.ExtensionDetail [name="Disable"]')
