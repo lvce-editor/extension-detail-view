@@ -2,6 +2,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import * as Clipboard from '../Clipboard/Clipboard.ts'
 
 export const copyExtensionId = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  await Clipboard.writeText(state.extensionId)
+  const { extensionId } = state
+  await Clipboard.writeText(extensionId)
   return state
 }

@@ -1,15 +1,19 @@
 import type { JsonToken } from '../JsonToken/JsonToken.ts'
 
+const digitRegex = /\d/
+const numberCharacterRegex = /[\d.]/
+const whitespaceRegex = /\s/
+
 const isDigit = (char: string): boolean => {
-  return /\d/.test(char)
+  return digitRegex.test(char)
 }
 
 const isNumberCharacter = (char: string): boolean => {
-  return /[\d.]/.test(char)
+  return numberCharacterRegex.test(char)
 }
 
 const isWhitespace = (char: string): boolean => {
-  return /\s/.test(char)
+  return whitespaceRegex.test(char)
 }
 
 const isPunctuation = (char: string): boolean => {

@@ -46,7 +46,7 @@ const loadContentInternal = async (
   if (isTest) {
     savedState = undefined
   }
-  const { uri, width } = state
+  const { assetDir, uri, width } = state
   const id = getExtensionIdFromUri(uri)
   const extension = await ExtensionManagement.getExtension(id, platform)
   if (!extension) {
@@ -54,7 +54,7 @@ const loadContentInternal = async (
   }
   const currentColorThemeId = await getCurrentColorTheme()
   const commit = await getCommit()
-  const languages = await getSyntaxLanguages(platform, state.assetDir)
+  const languages = await getSyntaxLanguages(platform, assetDir)
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
   const {
     badge,
@@ -179,10 +179,11 @@ export const loadContent = async (
   savedState: unknown,
   isTest: boolean = false,
 ): Promise<ExtensionDetailState> => {
+  const { uri } = state
   try {
     return await loadContentInternal(state, platform, savedState, isTest)
   } catch (error) {
-    const extensionId = getExtensionIdFromUri(state.uri)
+    const extensionId = getExtensionIdFromUri(uri)
     const errorMessage =
       error instanceof ExtensionNotFoundError
         ? ExtensionDetailStrings.extensionNotAvailable(extensionId)

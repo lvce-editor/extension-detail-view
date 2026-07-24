@@ -1,6 +1,8 @@
 import type { GithubRepository } from '../GithubRepository/GithubRepository.ts'
 import { hasProperty } from '../HasProperty/HasProperty.ts'
 
+const gitPrefixRegex = /^git\+/
+const gitSuffixRegex = /\.git$/i
 const segmentRegex = /^[\w.-]+$/
 
 const getRepositoryUrl = (extension: unknown): string => {
@@ -18,7 +20,7 @@ const getRepositoryUrl = (extension: unknown): string => {
 }
 
 export const getGithubRepository = (extension: unknown): GithubRepository | undefined => {
-  const rawUrl = getRepositoryUrl(extension).replace(/^git\+/, '')
+  const rawUrl = getRepositoryUrl(extension).replace(gitPrefixRegex, '')
   try {
     const url = new URL(rawUrl)
     if (url.protocol !== 'https:' || url.hostname.toLowerCase() !== 'github.com' || url.username || url.password || url.port) {
@@ -29,7 +31,7 @@ export const getGithubRepository = (extension: unknown): GithubRepository | unde
       return undefined
     }
     const owner = segments[0]
-    const repository = segments[1].replace(/\.git$/i, '')
+    const repository = segments[1].replace(gitSuffixRegex, '')
     if (!owner || !repository || !segmentRegex.test(owner) || !segmentRegex.test(repository)) {
       return undefined
     }

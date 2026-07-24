@@ -1,6 +1,8 @@
 import { test, expect } from '@jest/globals'
 import { hash } from '../src/parts/Hash/Hash.ts'
 
+const hashRegex = /^[0-9a-f]+$/
+
 test('hash returns correct SHA-256 hash for empty string', async () => {
   const result = await hash('')
   expect(result).toBe('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
@@ -32,5 +34,5 @@ test('hash returns different hash for different input', async () => {
 test('hash returns hex string of correct length', async () => {
   const result = await hash('test')
   expect(result).toHaveLength(64)
-  expect(result).toMatch(/^[0-9a-f]+$/)
+  expect(result).toMatch(hashRegex)
 })

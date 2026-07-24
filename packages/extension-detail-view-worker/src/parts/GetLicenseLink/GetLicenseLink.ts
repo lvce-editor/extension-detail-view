@@ -1,5 +1,7 @@
 import { getRepositoryLink } from '../GetRepositoryLink/GetRepositoryLink.ts'
 
+const trailingSlashRegex = /\/+$/
+
 const isGitHubRepository = (url: string): boolean => {
   return url.startsWith('https://github.com/')
 }
@@ -10,7 +12,7 @@ export const getLicenseLink = (extension: unknown): string => {
     return '#'
   }
   if (isGitHubRepository(repositoryLink)) {
-    const normalizedLink = repositoryLink.replace(/\/+$/, '')
+    const normalizedLink = repositoryLink.replace(trailingSlashRegex, '')
     return `${normalizedLink}/blob/main/LICENSE`
   }
   return '#'

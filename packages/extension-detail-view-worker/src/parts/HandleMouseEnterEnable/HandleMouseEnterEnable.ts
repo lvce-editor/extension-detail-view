@@ -3,7 +3,8 @@ import { getColorThemeId } from '../GetColorThemeId/GetColorThemeId.ts'
 import * as PreviewColorTheme from '../PreviewColorTheme/PreviewColorTheme.ts'
 
 export const handleMouseEnterEnable = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const colorThemeId = getColorThemeId(state.extension)
+  const { extension } = state
+  const colorThemeId = getColorThemeId(extension)
   if (!colorThemeId) {
     return state
   }
