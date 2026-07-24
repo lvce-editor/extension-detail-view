@@ -25,6 +25,10 @@ export const copy = (): string => {
   return I18nString.i18nString(UiStrings.Copy)
 }
 
+export const copyExtensionId = (): string => {
+  return I18nString.i18nString(UiStrings.CopyExtensionId)
+}
+
 export const copyImage = (): string => {
   return I18nString.i18nString(UiStrings.CopyImage)
 }
@@ -39,6 +43,10 @@ export const changelog = (): string => {
 
 export const details = (): string => {
   return I18nString.i18nString(UiStrings.Details)
+}
+
+export const description = (): string => {
+  return I18nString.i18nString(UiStrings.Description)
 }
 
 export const disable = (): string => {
@@ -87,6 +95,10 @@ export const setColorTheme = (): string => {
 
 export const enable = (): string => {
   return I18nString.i18nString(UiStrings.Enable)
+}
+
+export const extensionInfoId = (): string => {
+  return I18nString.i18nString(UiStrings.ExtensionInfoId)
 }
 
 export const extensionNotAvailable = (extensionId: string): string => {
@@ -233,8 +245,16 @@ export const published = (): string => {
   return I18nString.i18nString(UiStrings.Published)
 }
 
+export const publisher = (): string => {
+  return I18nString.i18nString(UiStrings.Publisher)
+}
+
 export const lastReleased = (): string => {
   return I18nString.i18nString(UiStrings.LastReleased)
+}
+
+export const vsMarketplaceLink = (): string => {
+  return I18nString.i18nString(UiStrings.VsMarketplaceLink)
 }
 
 export const issues = (): string => {
