@@ -163,8 +163,8 @@ test('getExtensionDetailContentVirtualDom - Details tab with different state val
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     hasReadme: true,
-    installationEntries: [{ key: 'Install', value: 'Test' }],
-    marketplaceEntries: [{ key: 'Marketplace', value: 'Test' }],
+    installationEntries: [{ code: undefined, key: 'Install', odd: undefined, onClick: undefined, title: undefined, value: 'Test' }],
+    marketplaceEntries: [{ code: undefined, key: 'Marketplace', odd: undefined, onClick: undefined, title: undefined, value: 'Test' }],
     showSideBar: false,
   }
 
