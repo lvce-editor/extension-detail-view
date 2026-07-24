@@ -2,13 +2,11 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-webviews'
 
-export const skip = 1
-
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-webviews')
   await Extension.addWebExtension(extensionUri)
-  await ExtensionDetail.open('test.webviews-test')
+  await ExtensionDetail.open('test.webviews-single')
   await ExtensionDetail.selectFeatures()
 
   // act
@@ -23,7 +21,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(item1Heading).toHaveText('ID')
   const item1Value = item1.locator('.DefinitionListItemValue')
   await expect(item1Value).toBeVisible()
-  await expect(item1Value).toHaveText('builtin.test-webviews')
+  await expect(item1Value).toHaveText('builtin.test-webviews-main')
   const item2 = items.nth(1)
   const item2Heading = item2.locator('.DefinitionListItemHeading')
   await expect(item2Heading).toBeVisible()

@@ -4,10 +4,8 @@
   "description": "Test WebViews",
   "webViews": [
     {
-      "id": "builtin.test-webviews",
-      "selector": {
-        "value": [".test-webviews"]
-      },
+      "id": "builtin.test-webviews-invalid-elements",
+      "selector": [".test-webviews"],
       "contentSecurityPolicy": ["default-src 'none'", "script-src 'self'"],
       "elements": {
         "value": [

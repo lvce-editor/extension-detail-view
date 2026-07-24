@@ -1,10 +1,10 @@
 {
-  "id": "test.webviews-test",
+  "id": "test.webviews-single",
   "name": "Test WebViews",
   "description": "Test WebViews",
   "webViews": [
     {
-      "id": "builtin.test-webviews",
+      "id": "builtin.test-webviews-main",
       "selector": [".test-webviews"],
       "contentSecurityPolicy": ["default-src 'none'", "script-src 'self'"],
       "elements": [

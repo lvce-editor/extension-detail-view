@@ -1,5 +1,5 @@
 {
-  "id": "test.extension-basics",
+  "id": "test.extension-no-readme",
   "name": "Test",
   "description": "Test Description",
   "commands": [

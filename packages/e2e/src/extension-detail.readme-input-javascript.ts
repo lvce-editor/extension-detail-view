@@ -1,7 +1,5 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const skip = 1
-
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-readme-input-javascript')
@@ -16,6 +14,6 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const markDown = Locator('.Markdown')
   await expect(markDown).toBeVisible()
   await expect(markDown).toHaveText('test readme\n\n')
-  const link = markDown.locator('img')
-  await expect(link).toHaveAttribute('onerror', null)
+  const input = markDown.locator('input')
+  await expect(input).toHaveCount(0)
 }
