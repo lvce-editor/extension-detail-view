@@ -16,7 +16,6 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(moreInfoEntryKey).toHaveText('Size')
   const moreInfoEntryValue = moreInfoEntry.locator('.MoreInfoEntryValue')
   await expect(moreInfoEntryValue).toHaveText('0 B')
+  await expect(moreInfoEntryValue).toHaveClass('Link')
   await expect(moreInfoEntryValue).toHaveAttribute('tabIndex', '0')
-  await expect(moreInfoEntryValue).toHaveCSS('cursor', 'pointer')
-  await expect(moreInfoEntryValue).toHaveCSS('text-decoration-line', 'none')
 }
