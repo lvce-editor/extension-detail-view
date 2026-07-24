@@ -26,3 +26,72 @@ test('returns copy actions for the extension management menu', () => {
     },
   ])
 })
+
+test('returns image actions for the extension icon menu', () => {
+  const state = createDefaultState()
+  expect(
+    getMenuEntries2(state, {
+      menuId: MenuEntryId.ExtensionDetailIconContextMenu,
+    }),
+  ).toEqual([
+    {
+      args: [],
+      command: 'ExtensionDetail.copyImage',
+      flags: MenuItemFlags.None,
+      id: 'copyImage',
+      label: 'Copy Image',
+    },
+    {
+      args: [],
+      command: 'ExtensionDetail.copyImageUrl',
+      flags: MenuItemFlags.None,
+      id: 'copyImage',
+      label: 'Copy Image Url',
+    },
+  ])
+})
+
+test('returns link and copy actions for a readme link', () => {
+  const state = createDefaultState()
+  expect(
+    getMenuEntries2(state, {
+      href: 'https://example.com',
+      menuId: MenuEntryId.ExtensionDetailReadme,
+      nodeName: 'A',
+    }),
+  ).toEqual([
+    {
+      args: ['https://example.com'],
+      command: 'ExtensionDetail.copyReadmeLink',
+      flags: MenuItemFlags.None,
+      id: 'copyLink',
+      label: 'Copy Link',
+    },
+    {
+      args: [],
+      command: 'ExtensionDetail.executeCopy',
+      flags: MenuItemFlags.None,
+      id: 'copy',
+      label: 'Copy',
+    },
+  ])
+})
+
+test('returns only the copy action when a readme context menu has no link', () => {
+  const state = createDefaultState()
+  expect(
+    getMenuEntries2(state, {
+      href: '',
+      menuId: MenuEntryId.ExtensionDetailReadme,
+      nodeName: 'P',
+    }),
+  ).toEqual([
+    {
+      args: [],
+      command: 'ExtensionDetail.executeCopy',
+      flags: MenuItemFlags.None,
+      id: 'copy',
+      label: 'Copy',
+    },
+  ])
+})

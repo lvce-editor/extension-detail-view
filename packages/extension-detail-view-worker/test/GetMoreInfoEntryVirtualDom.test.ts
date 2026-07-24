@@ -30,3 +30,17 @@ test('more info entry virtual dom', () => {
     text('MIT'),
   ])
 })
+
+test('odd more info entry virtual dom', () => {
+  const entry: MoreInfoEntry = {
+    key: 'License',
+    odd: true,
+    value: 'MIT',
+  }
+  const result = GetMoreInfoEntryVirtualDom.getMoreInfoEntryVirtualDom(entry)
+  expect(result[0]).toEqual({
+    childCount: 2,
+    className: `${ClassNames.MoreInfoEntry} ${ClassNames.MoreInfoEntryOdd}`,
+    type: VirtualDomElements.Div,
+  })
+})

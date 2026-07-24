@@ -73,3 +73,46 @@ test('returns invalid cells for array validation', () => {
   const row = GetJsonValidationTableEntry.getJsonValidationTableEntry(validation as any)
   expect(row).toEqual([{ type: TableCellType.Text }, { className: ClassNames.TableCellInvalid, type: TableCellType.Text }])
 })
+
+test('returns an invalid link cell when an invalid validation has a schema', () => {
+  const validation: JsonValidationInfo = {
+    errorMessage: 'Invalid package',
+    fileMatch: ['package.json'] as any,
+    isValid: false,
+    schemaUrl: 'https://example.com/schema.json',
+    stringValue: 'schema.json',
+  }
+  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(validation)).toEqual([
+    {
+      type: TableCellType.Code,
+      value: ['package.json'],
+    },
+    {
+      className: ClassNames.TableCellInvalid,
+      href: 'https://example.com/schema.json',
+      title: 'Invalid package',
+      type: TableCellType.Link,
+      value: 'schema.json',
+    },
+  ])
+})
+
+test('returns a text cell when a valid validation has no schema', () => {
+  const validation: JsonValidationInfo = {
+    errorMessage: '',
+    fileMatch: ['package.json'] as any,
+    isValid: true,
+    schemaUrl: '',
+    stringValue: '',
+  }
+  expect(GetJsonValidationTableEntry.getJsonValidationTableEntry(validation)).toEqual([
+    {
+      type: TableCellType.Code,
+      value: ['package.json'],
+    },
+    {
+      type: TableCellType.Text,
+      value: '',
+    },
+  ])
+})

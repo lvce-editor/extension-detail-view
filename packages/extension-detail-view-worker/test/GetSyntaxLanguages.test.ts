@@ -29,6 +29,27 @@ test('returns normalized extension-contributed languages', async () => {
   expect(mockRpc.invocations).toEqual([['Extensions.getLanguages', 1, '/assets']])
 })
 
+test('returns a language without optional aliases or extensions', async () => {
+  using mockRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.getLanguages': () => [
+      {
+        id: 'plaintext',
+        tokenize: '/extensions/plaintext/tokenize.js',
+      },
+    ],
+  })
+
+  await expect(getSyntaxLanguages(1, '/assets')).resolves.toEqual([
+    {
+      aliases: undefined,
+      extensions: undefined,
+      id: 'plaintext',
+      tokenize: '/extensions/plaintext/tokenize.js',
+    },
+  ])
+  expect(mockRpc.invocations).toEqual([['Extensions.getLanguages', 1, '/assets']])
+})
+
 test('returns empty languages for invalid response', async () => {
   using mockRpc = ExtensionManagementWorker.registerMockRpc({
     'Extensions.getLanguages': () => ({}),

@@ -50,6 +50,15 @@ test('applyRender with empty diff result', () => {
   expect(commands).toHaveLength(0)
 })
 
+test('applyRender omits empty renderer commands', () => {
+  const oldState = CreateDefaultState.createDefaultState()
+  const newState = CreateDefaultState.createDefaultState()
+
+  const commands = ApplyRender.applyRender(oldState, newState, [DiffType.RenderScrollTop])
+
+  expect(commands).toEqual([])
+})
+
 test('applyRender throws error for unknown diff type', () => {
   const oldState = CreateDefaultState.createDefaultState()
   const newState = CreateDefaultState.createDefaultState()

@@ -12,3 +12,15 @@ test('getCategories returns themes category', () => {
     },
   ])
 })
+
+test('getCategories stringifies non-string categories', () => {
+  const categories = getCategories({
+    categories: [{ name: 'Themes' }],
+  })
+  expect(categories).toEqual([
+    {
+      id: '{"name":"themes"}',
+      label: '{"name":"Themes"}',
+    },
+  ])
+})
