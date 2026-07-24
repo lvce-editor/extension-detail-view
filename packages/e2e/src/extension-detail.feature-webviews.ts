@@ -6,7 +6,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-webviews')
   await Extension.addWebExtension(extensionUri)
-  await ExtensionDetail.open('test.webviews-test')
+  await ExtensionDetail.open('test.webviews-single')
   await ExtensionDetail.selectFeatures()
 
   // act

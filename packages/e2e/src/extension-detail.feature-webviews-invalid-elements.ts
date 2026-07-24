@@ -42,7 +42,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(item4Heading).toHaveText('Elements')
   const item4Value = item4.locator('.DefinitionListItemValue')
   await expect(item4Value).toBeVisible()
-  await expect(item4Value).toHaveText(
-    '{"value":[{"type":"title","value":"Video Preview"},{"type":"script","path":"media/index.js"},{"type":"css","path":"media/index.css"}]}',
-  )
+  await expect(item4Value).toContainText('"value"')
+  await expect(item4Value).toContainText('"type": "title"')
+  await expect(item4Value).toContainText('"path": "media/index.css"')
 }

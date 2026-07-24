@@ -6,7 +6,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-commands')
   await Extension.addWebExtension(extensionUri)
-  await ExtensionDetail.open('test.commands-test')
+  await ExtensionDetail.open('test.commands-single')
   await ExtensionDetail.selectFeatures()
 
   // act
