@@ -5,7 +5,7 @@ import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExten
 import * as SetColorTheme from '../SetColorTheme/SetColorTheme.ts'
 
 export const handleClickSetColorTheme = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const { extension } = state
+  const { disabled, extension, hasColorTheme } = state
   const colorThemeId = getColorThemeId(extension)
   if (colorThemeId) {
     const error = await SetColorTheme.setColorTheme(colorThemeId)
@@ -14,7 +14,7 @@ export const handleClickSetColorTheme = async (state: ExtensionDetailState): Pro
     }
     const isBuiltin = extension?.isBuiltin || extension?.builtin || false
     const colorThemeLabel = getColorThemeLabel(extension) || ''
-    const buttons = getExtensionDetailButtons(state.hasColorTheme, isBuiltin, state.disabled, colorThemeId, colorThemeLabel, colorThemeId)
+    const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled, colorThemeId, colorThemeLabel, colorThemeId)
     return {
       ...state,
       buttons,

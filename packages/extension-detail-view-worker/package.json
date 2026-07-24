@@ -55,6 +55,7 @@
     "@lvce-editor/verror": "^1.7.0",
     "@lvce-editor/viewlet-registry": "^5.5.0",
     "@lvce-editor/virtual-dom-worker": "^11.8.1",
+    "@types/node": "^22.14.0",
     "jest": "^30.4.2",
     "pretty-bytes": "^7.1.1",
     "ts-jest": "^29.4.12"

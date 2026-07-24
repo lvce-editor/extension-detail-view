@@ -27,7 +27,7 @@ const getErrorMessage = async (response: Response): Promise<string> => {
 const getHttpError = async (response: Response): Promise<GithubReleasesError> => {
   const apiMessage = await getErrorMessage(response)
   const rateLimitRemaining = response.headers.get('x-ratelimit-remaining')
-  if (response.status === 429 || (response.status === 403 && (rateLimitRemaining === '0' || /rate limit/i.test(apiMessage)))) {
+  if (response.status === 429 || (response.status === 403 && (rateLimitRemaining === '0' || apiMessage.toLowerCase().includes('rate limit')))) {
     const resetValue = Number(response.headers.get('x-ratelimit-reset'))
     const retry =
       Number.isFinite(resetValue) && resetValue > 0 ? ` Try again after ${new Date(resetValue * 1000).toLocaleString()}.` : ' Please try again later.'

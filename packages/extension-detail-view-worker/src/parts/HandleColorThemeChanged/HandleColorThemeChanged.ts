@@ -3,10 +3,10 @@ import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColor
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
 
 export const handleColorThemeChanged = (state: ExtensionDetailState, colorThemeId: string): ExtensionDetailState => {
-  if (state.currentColorThemeId === colorThemeId) {
+  const { currentColorThemeId, disabled, extension, hasColorTheme } = state
+  if (currentColorThemeId === colorThemeId) {
     return state
   }
-  const { disabled, extension, hasColorTheme } = state
   const extensionColorThemeId = getColorThemeId(extension) || ''
   const extensionColorThemeLabel = getColorThemeLabel(extension) || ''
   const isBuiltin = extension?.isBuiltin || extension?.builtin || false

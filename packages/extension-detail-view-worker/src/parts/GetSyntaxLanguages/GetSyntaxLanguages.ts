@@ -16,9 +16,11 @@ const toSyntaxLanguage = (value: unknown): SyntaxLanguage | undefined => {
   if (typeof language.id !== 'string' || typeof language.tokenize !== 'string') {
     return undefined
   }
+  const aliases = getStringArray(language.aliases)
+  const extensions = getStringArray(language.extensions)
   return {
-    aliases: getStringArray(language.aliases),
-    extensions: getStringArray(language.extensions),
+    ...(aliases && { aliases }),
+    ...(extensions && { extensions }),
     id: language.id,
     tokenize: language.tokenize,
   }

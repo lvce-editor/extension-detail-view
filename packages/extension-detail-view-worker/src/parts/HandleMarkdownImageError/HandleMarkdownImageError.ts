@@ -2,9 +2,10 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import * as ReplaceMarkdownImageWithError from '../ReplaceMarkdownImageWithError/ReplaceMarkdownImageWithError.ts'
 
 export const handleMarkdownImageError = (state: ExtensionDetailState, failedSrc: string): ExtensionDetailState => {
-  const detailsVirtualDom = ReplaceMarkdownImageWithError.replaceMarkdownImageWithError(state.detailsVirtualDom, failedSrc)
-  const changelogVirtualDom = ReplaceMarkdownImageWithError.replaceMarkdownImageWithError(state.changelogVirtualDom, failedSrc)
-  if (detailsVirtualDom === state.detailsVirtualDom && changelogVirtualDom === state.changelogVirtualDom) {
+  const { changelogVirtualDom: oldChangelogVirtualDom, detailsVirtualDom: oldDetailsVirtualDom } = state
+  const detailsVirtualDom = ReplaceMarkdownImageWithError.replaceMarkdownImageWithError(oldDetailsVirtualDom, failedSrc)
+  const changelogVirtualDom = ReplaceMarkdownImageWithError.replaceMarkdownImageWithError(oldChangelogVirtualDom, failedSrc)
+  if (detailsVirtualDom === oldDetailsVirtualDom && changelogVirtualDom === oldChangelogVirtualDom) {
     return state
   }
   return {
