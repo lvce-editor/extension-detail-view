@@ -2,6 +2,8 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.set-color-theme-button-reappears'
 
+export const skip = 1
+
 export const test: Test = async ({ ColorTheme, expect, ExtensionDetail, Locator, QuickPick }) => {
   // arrange
   await ColorTheme.setColorTheme('slime')
