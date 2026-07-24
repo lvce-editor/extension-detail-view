@@ -10,8 +10,10 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   const entries = Locator('.AdditionalDetailsEntry').nth(1).locator('.MoreInfoEntry')
   await expect(entries).toHaveCount(2)
-  await expect(entries.nth(0).locator('.MoreInfoEntryKey')).toHaveText('Published')
-  await expect(entries.nth(0).locator('.MoreInfoEntryValue')).toHaveText('n/a')
-  await expect(entries.nth(1).locator('.MoreInfoEntryKey')).toHaveText('Last Released')
-  await expect(entries.nth(1).locator('.MoreInfoEntryValue')).toHaveText('n/a')
+  const publishedEntry = entries.nth(0)
+  const lastReleasedEntry = entries.nth(1)
+  await expect(publishedEntry.locator('.MoreInfoEntryKey')).toHaveText('Published')
+  await expect(publishedEntry.locator('.MoreInfoEntryValue')).toHaveText('n/a')
+  await expect(lastReleasedEntry.locator('.MoreInfoEntryKey')).toHaveText('Last Released')
+  await expect(lastReleasedEntry.locator('.MoreInfoEntryValue')).toHaveText('n/a')
 }

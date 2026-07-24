@@ -10,6 +10,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   const definitionLists = Locator('.AdditionalDetails dl.MoreInfo')
   await expect(definitionLists).toHaveCount(2)
-  await expect(definitionLists.nth(0).locator('dt')).toHaveCount(4)
-  await expect(definitionLists.nth(1).locator('dt')).toHaveCount(2)
+  const installation = definitionLists.nth(0)
+  const marketplace = definitionLists.nth(1)
+  await expect(installation.locator('dt')).toHaveCount(4)
+  await expect(marketplace.locator('dt')).toHaveCount(2)
 }

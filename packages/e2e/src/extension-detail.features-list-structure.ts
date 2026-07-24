@@ -13,6 +13,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(features).toHaveAttribute('role', 'none')
   const featureButtons = features.locator('button.Feature')
   await expect(featureButtons).toHaveCount(1)
-  await expect(featureButtons.nth(0)).toHaveAttribute('name', 'Commands')
-  await expect(featureButtons.nth(0)).toHaveText('Commands')
+  const commandsButton = featureButtons.nth(0)
+  await expect(commandsButton).toHaveAttribute('name', 'Commands')
+  await expect(commandsButton).toHaveText('Commands')
 }
