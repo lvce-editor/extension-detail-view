@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-commands'
 
-export const skip = 1
-
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-commands')
@@ -25,7 +23,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const heading2 = commandsTable.locator('th').nth(1)
   await expect(heading2).toHaveText('Label')
   const cell1 = commandsTable.locator('tbody td').nth(0)
-  await expect(cell1).toHaveText('test')
+  await expect(cell1).toHaveText('test.command')
   const cell2 = commandsTable.locator('tbody td').nth(1)
   await expect(cell2).toHaveText('Test')
 }

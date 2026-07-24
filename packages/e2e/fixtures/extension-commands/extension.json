@@ -4,7 +4,7 @@
   "description": "Test Commands",
   "commands": [
     {
-      "id": "test",
+      "id": "test.command",
       "label": "Test"
     }
   ]

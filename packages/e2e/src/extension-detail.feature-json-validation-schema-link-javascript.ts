@@ -2,13 +2,11 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-json-validation-link-javascript'
 
-export const skip = 1
-
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-json-validation-schema-link-javascript')
   await Extension.addWebExtension(extensionUri)
-  await ExtensionDetail.open('test.json-validation-schema-link-invalid')
+  await ExtensionDetail.open('test.json-validation-schema-link-javascript')
   await ExtensionDetail.selectFeatures()
 
   // act
@@ -21,9 +19,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const commandsTable = Locator('.FeatureContent .Table')
   await expect(commandsTable).toBeVisible()
   const cell2 = commandsTable.locator('tbody td').nth(1)
-  await expect(cell2).toHaveText('./schema.json')
+  await expect(cell2).toHaveText('...')
+  await expect(cell2).toHaveAttribute('title', 'Invalid link')
   const link = cell2.locator('a')
-  await expect(link).toBeVisible()
-  const { href } = new URL('schema.json', extensionUri)
-  await expect(link).toHaveAttribute('href', href)
+  await expect(link).toBeHidden()
 }

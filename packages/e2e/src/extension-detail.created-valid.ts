@@ -1,7 +1,5 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const skip = 1
-
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-created-valid')
@@ -17,5 +15,5 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const moreInfoEntryKey = moreInfoEntry.locator('.MoreInfoEntryKey')
   await expect(moreInfoEntryKey).toHaveText('Created')
   const moreInfoEntryValue = moreInfoEntry.locator('.MoreInfoEntryValue')
-  await expect(moreInfoEntryValue).not.toHaveText('n/a')
+  await expect(moreInfoEntryValue).toContainText('ago')
 }
