@@ -22,7 +22,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const webViewsFeature = features.nth(5)
   const activationEventsFeature = features.nth(6)
   const runtimeStatusFeature = features.nth(7)
-  await expect(themeFeature).toHaveText('Theme')
+  await expect(themeFeature).toHaveText('Themes')
   await expect(commandsFeature).toHaveText('Commands')
   await expect(settingsFeature).toHaveText('Settings')
   await expect(jsonValidationFeature).toHaveText('Json Validation')
