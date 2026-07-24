@@ -33,3 +33,22 @@ test('stateful mock commands preserve the view state', async () => {
   await expect(GithubApiRequest.request('https://api.github.com/test')).resolves.toBeInstanceOf(Response)
   expect(GithubApiRequest.handleResetGithubApiMock(state)).toBe(state)
 })
+
+test('uses explicit mock response values', async () => {
+  GithubApiRequest.mockGithubApi({
+    body: { message: 'custom body' },
+    status: 500,
+    statusText: 'Custom Server Error',
+    type: 'response',
+  })
+  const response = await GithubApiRequest.request('https://api.github.com/test')
+  expect(response.status).toBe(500)
+  expect(response.statusText).toBe('Custom Server Error')
+  await expect(response.json()).resolves.toEqual({ message: 'custom body' })
+})
+
+test('defaults an omitted mock body to an empty array', async () => {
+  GithubApiRequest.mockGithubApi({ type: 'success' })
+  const response = await GithubApiRequest.request('https://api.github.com/test')
+  await expect(response.json()).resolves.toEqual([])
+})

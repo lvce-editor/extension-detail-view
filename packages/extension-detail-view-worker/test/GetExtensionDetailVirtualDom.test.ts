@@ -298,3 +298,14 @@ test('getExtensionDetailVirtualDom - non-builtin extension shows no badge', () =
   // The badge should be empty for non-builtin extensions
   expect(result).toBeDefined()
 })
+
+test('getExtensionDetailVirtualDom uses the fallback width when width is zero', () => {
+  const extensionDetail = {
+    ...createDefaultState(),
+    width: 0,
+  }
+
+  const result = GetExtensionDetailVirtualDom.getExtensionDetailVirtualDom(extensionDetail, '')
+
+  expect(result).toBeDefined()
+})

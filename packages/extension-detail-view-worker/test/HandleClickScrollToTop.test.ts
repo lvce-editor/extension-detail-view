@@ -42,3 +42,11 @@ test('handleClickScrollToTop - returns unchanged state when changelog is already
   }
   expect(handleClickScrollToTop(state)).toBe(state)
 })
+
+test('handleClickScrollToTop - returns unchanged state when readme is already at top', () => {
+  const state = {
+    ...createDefaultState(),
+    readmeScrollTop: 0,
+  }
+  expect(handleClickScrollToTop(state)).toBe(state)
+})

@@ -41,3 +41,11 @@ test('omits an unavailable marketplace link and falls back to the publisher id',
     ['Name: Test Extension', 'Id: test.extension', 'Description: ', 'Version: n/a', 'Publisher: test-publisher'].join('\n'),
   )
 })
+
+test('falls back when publisher information is unavailable', () => {
+  const state = {
+    ...createDefaultState(),
+    extension: {},
+  }
+  expect(getExtensionInfoText(state)).toContain('Publisher: n/a')
+})
