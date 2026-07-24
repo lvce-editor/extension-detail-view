@@ -28,6 +28,10 @@ test('copy', () => {
   expect(result).toBe(I18nString.i18nString(UiStrings.Copy))
 })
 
+test('copyExtensionId', () => {
+  expect(ExtensionDetailStrings.copyExtensionId()).toBe('Copy Extension ID')
+})
+
 test('copyLink', () => {
   const result = ExtensionDetailStrings.copyLink()
   expect(result).toBe(I18nString.i18nString(UiStrings.CopyLink))
@@ -53,6 +57,10 @@ test('details', () => {
   expect(result).toBe(I18nString.i18nString(UiStrings.Details))
 })
 
+test('description', () => {
+  expect(ExtensionDetailStrings.description()).toBe('Description')
+})
+
 test('disable', () => {
   const result = ExtensionDetailStrings.disable()
   expect(result).toBe(I18nString.i18nString(UiStrings.Disable))
@@ -61,6 +69,10 @@ test('disable', () => {
 test('enable', () => {
   const result = ExtensionDetailStrings.enable()
   expect(result).toBe(I18nString.i18nString(UiStrings.Enable))
+})
+
+test('extensionInfoId', () => {
+  expect(ExtensionDetailStrings.extensionInfoId()).toBe('Id')
 })
 
 test('features', () => {
@@ -237,6 +249,10 @@ test('published returns correct i18n string', () => {
   expect(ExtensionDetailStrings.published()).toBe('Published')
 })
 
+test('publisher returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.publisher()).toBe('Publisher')
+})
+
 test('lastReleased returns correct i18n string', () => {
   expect(ExtensionDetailStrings.lastReleased()).toBe('Last Released')
 })
@@ -259,4 +275,8 @@ test('downloadCount returns correct i18n string', () => {
 
 test('rating returns correct i18n string', () => {
   expect(ExtensionDetailStrings.rating()).toBe('Rating')
+})
+
+test('vsMarketplaceLink returns correct i18n string', () => {
+  expect(ExtensionDetailStrings.vsMarketplaceLink()).toBe('VS Marketplace Link')
 })

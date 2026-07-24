@@ -163,6 +163,7 @@ const loadContentInternal = async (
     scrollSource: InputSource.Script,
     scrollToTopButtonEnabled: true,
     selectedTab,
+    settingsButtonEnabled: true,
     showSideBar,
     showSizeLink,
     sideBarWidth,
