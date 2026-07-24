@@ -2,11 +2,12 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-runtime-status'
 
-export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-runtime-status')
   await Extension.addWebExtension(extensionUri)
-  await ExtensionDetail.open('test.commands-test')
+  await Command.executeExtensionCommand('runtimeStatus.activate')
+  await ExtensionDetail.open('test.runtime-status')
   await ExtensionDetail.selectFeatures()
 
   // act
@@ -17,5 +18,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(heading).toBeVisible()
   await expect(heading).toHaveText('Runtime Status')
   const definitionList = Locator('.FeatureContent dl')
-  await expect(definitionList).toHaveText(`Status: none`)
+  await expect(definitionList).toContainText('Status: activated')
+  await expect(definitionList).toContainText('Activation Event: onCommand:runtimeStatus.activate')
+  await expect(definitionList).toContainText('Activation Time: ')
 }
