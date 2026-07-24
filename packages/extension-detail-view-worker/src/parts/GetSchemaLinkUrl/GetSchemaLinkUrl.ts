@@ -1,19 +1,29 @@
-const alphanumericRegex = /[A-Za-z0-9]/
-const onlyDotsRegex = /^\.*$/
-const relativePathRegex = /^[./]?[A-Za-z0-9._\-/]+$/
-const whitespaceRegex = /\s/
-
 const isExternalLink = (schema: string): boolean => {
   return schema.startsWith('http://') || schema.startsWith('https://')
 }
 
+const isAlphanumeric = (char: string): boolean => {
+  const code = char.codePointAt(0) || 0
+  return (code >= 48 && code <= 57) || (code >= 65 && code <= 90) || (code >= 97 && code <= 122)
+}
+
 const hasWhitespace = (value: string): boolean => {
-  return whitespaceRegex.test(value)
+  for (const char of value) {
+    if (char.trim() === '') {
+      return true
+    }
+  }
+  return false
 }
 
 const isOnlyDotsOrEmpty = (value: string): boolean => {
   const trimmed = value.trim()
-  return trimmed === '' || onlyDotsRegex.test(trimmed)
+  for (const char of trimmed) {
+    if (char !== '.') {
+      return false
+    }
+  }
+  return true
 }
 
 const isValidHttpUrl = (value: string): boolean => {
@@ -37,11 +47,17 @@ const isValidRelativePath = (value: string): boolean => {
     return false
   }
   // Allow paths like ./a.json, ../a.json, /a.json, schemas/a.json, a/b.json
-  if (!relativePathRegex.test(value)) {
-    return false
+  let hasAlphanumeric = false
+  for (const char of value) {
+    if (!isAlphanumeric(char) && char !== '.' && char !== '_' && char !== '-' && char !== '/') {
+      return false
+    }
+    if (isAlphanumeric(char)) {
+      hasAlphanumeric = true
+    }
   }
   // Must contain at least one alphanumeric character
-  return alphanumericRegex.test(value)
+  return hasAlphanumeric
 }
 
 export const getSchemaLinkUrl = (schema: string, extensionUri: string): string => {
