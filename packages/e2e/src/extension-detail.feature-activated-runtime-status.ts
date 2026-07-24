@@ -1,6 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'extension-detail.feature-runtime-status'
+export const name = 'extension-detail.feature-activated-runtime-status'
 
 export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
