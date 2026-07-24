@@ -94,7 +94,7 @@ export const extensionNotAvailable = (extensionId: string): string => {
 }
 
 export const theme = (): string => {
-  return I18nString.i18nString(UiStrings.Theme)
+  return I18nString.i18nString(UiStrings.Themes)
 }
 
 export const commands = (): string => {

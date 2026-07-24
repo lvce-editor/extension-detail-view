@@ -110,7 +110,7 @@ test('setColorTheme', () => {
 
 test('theme', () => {
   const result = ExtensionDetailStrings.theme()
-  expect(result).toBe(I18nString.i18nString(UiStrings.Theme))
+  expect(result).toBe('Themes')
 })
 
 test('commands', () => {
