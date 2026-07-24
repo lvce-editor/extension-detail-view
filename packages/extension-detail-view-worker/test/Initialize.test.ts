@@ -9,7 +9,7 @@ test.skip('should initialize both workers successfully', async () => {
     'SendMessagePortToExtensionHostWorker.sendMessagePortToFileSystemWorker': () => {},
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker': () => {},
   })
-  await initialize()
+  await initialize('test-app')
   expect(mockRpc.invocations.length).toBeGreaterThanOrEqual(3)
   expect(mockRpc.invocations).toContainEqual([
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker',
@@ -62,7 +62,7 @@ test.skip('should handle initialization errors', async () => {
     },
   })
 
-  await expect(initialize()).rejects.toThrow('Failed to create markdown worker rpc')
+  await expect(initialize('test-app')).rejects.toThrow('Failed to create markdown worker rpc')
   expect(mockRpc.invocations.length).toBeGreaterThanOrEqual(1)
   expect(mockRpc.invocations).toContainEqual([
     'SendMessagePortToExtensionHostWorker.sendMessagePortToMarkdownWorker',

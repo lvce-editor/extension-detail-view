@@ -3,8 +3,10 @@ import { initializeExtensionHostWorker } from '../InitializeExtensionHostWorker/
 import { initializeExtensionManagementWorker } from '../InitializeExtensionManagementWorker/InitializeExtensionManagementWorker.ts'
 import { initializeFileSystemWorker } from '../InitializeFileSystemWorker/InitializeFileSystemWorker.ts'
 import { initializeMarkdownWorker } from '../InitializeMarkdownWorker/InitializeMarkdownWorker.ts'
+import { setApplicationName } from '../MarkDownCache/MarkDownCache.ts'
 
-export const initialize = async (): Promise<void> => {
+export const initialize = async (applicationName: string): Promise<void> => {
+  setApplicationName(applicationName)
   // TODO load markdown worker only when needed
   await Promise.all([
     initializeMarkdownWorker(),

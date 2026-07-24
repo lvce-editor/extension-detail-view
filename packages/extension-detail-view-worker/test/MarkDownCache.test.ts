@@ -1,15 +1,37 @@
 import { expect, test, jest } from '@jest/globals'
+import type * as MarkDownCacheModule from '../src/parts/MarkDownCache/MarkDownCache.ts'
 
 const resetModules = (): void => {
   jest.resetModules()
 }
+
+const loadMarkDownCache = async (): Promise<typeof MarkDownCacheModule> => {
+  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  MarkDownCache.setApplicationName('lvce-editor')
+  return MarkDownCache
+}
+
+test('uses the application name for the markdown cache', async () => {
+  resetModules()
+  const cache = {
+    match: jest.fn<(request: RequestInfo | URL) => Promise<Response | undefined>>().mockResolvedValue(undefined),
+    put: jest.fn<(request: RequestInfo | URL, response: Response) => Promise<void>>().mockResolvedValue(undefined),
+  }
+  const getCache = jest.fn<(cacheName: string, bucketName: string) => Promise<typeof cache>>().mockResolvedValue(cache)
+  const MarkDownCache = await loadMarkDownCache()
+  MarkDownCache.setApplicationName('test-app')
+
+  await MarkDownCache.has('test-key', 'markdown-cache', getCache)
+
+  expect(getCache).toHaveBeenCalledWith('test-app/markdown-cache', 'markdown-cache')
+})
 
 test.skip('has - returns false when storageBuckets is not supported', async () => {
   resetModules()
   const originalNavigator = globalThis.navigator
   // @ts-ignore
   globalThis.navigator = {}
-  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const MarkDownCache = await loadMarkDownCache()
 
   const result = await MarkDownCache.has('test-key', 'markdown-cache')
 
@@ -41,7 +63,7 @@ test.skip('has - returns true when key exists in cache', async () => {
   globalThis.navigator = {
     storageBuckets: mockStorageBuckets,
   } as typeof globalThis.navigator
-  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const MarkDownCache = await loadMarkDownCache()
 
   const result = await MarkDownCache.has('test-key', 'markdown-cache')
 
@@ -73,7 +95,7 @@ test.skip('has - returns false when key does not exist in cache', async () => {
   globalThis.navigator = {
     storageBuckets: mockStorageBuckets,
   } as typeof globalThis.navigator
-  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const MarkDownCache = await loadMarkDownCache()
 
   const result = await MarkDownCache.has('non-existent-key', 'markdown-cache')
 
@@ -87,7 +109,7 @@ test.skip('get - returns empty string when storageBuckets is not supported', asy
   const originalNavigator = globalThis.navigator
   // @ts-ignore
   globalThis.navigator = {}
-  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const MarkDownCache = await loadMarkDownCache()
 
   const result = await MarkDownCache.get('test-key', 'markdown-cache')
 
@@ -120,7 +142,7 @@ test.skip('get - returns cached value when key exists', async () => {
   globalThis.navigator = {
     storageBuckets: mockStorageBuckets,
   } as typeof globalThis.navigator
-  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const MarkDownCache = await loadMarkDownCache()
 
   const result = await MarkDownCache.get('test-key', 'markdown-cache')
 
@@ -151,7 +173,7 @@ test.skip('get - returns empty string when key does not exist', async () => {
   globalThis.navigator = {
     storageBuckets: mockStorageBuckets,
   } as typeof globalThis.navigator
-  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const MarkDownCache = await loadMarkDownCache()
 
   const result = await MarkDownCache.get('non-existent-key', 'markdown-cache')
 
@@ -165,7 +187,7 @@ test.skip('set - does nothing when storageBuckets is not supported', async () =>
   const originalNavigator = globalThis.navigator
   // @ts-ignore
   globalThis.navigator = {}
-  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const MarkDownCache = await loadMarkDownCache()
 
   await MarkDownCache.set('test-key', 'markdown-cache', '<p>Hello</p>')
 
@@ -193,7 +215,7 @@ test.skip('set - stores value in cache with correct headers', async () => {
   globalThis.navigator = {
     storageBuckets: mockStorageBuckets,
   } as typeof globalThis.navigator
-  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const MarkDownCache = await loadMarkDownCache()
 
   const key = 'test-key'
   const value = '<p>Hello World</p>'
@@ -231,7 +253,7 @@ test.skip('set - stores value with correct Content-Length for empty string', asy
   globalThis.navigator = {
     storageBuckets: mockStorageBuckets,
   } as typeof globalThis.navigator
-  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const MarkDownCache = await loadMarkDownCache()
 
   const key = 'empty-key'
   const value = ''
@@ -268,7 +290,7 @@ test.skip('set - stores value with correct Content-Length for long string', asyn
   globalThis.navigator = {
     storageBuckets: mockStorageBuckets,
   } as typeof globalThis.navigator
-  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const MarkDownCache = await loadMarkDownCache()
 
   const key = 'long-key'
   const value = 'x'.repeat(1000)
