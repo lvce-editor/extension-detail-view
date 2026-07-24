@@ -1,5 +1,3 @@
-// TODO pass application name from renderer worker to not hardcode it
-
 export interface ICache {
   readonly match: (request: RequestInfo | URL, options?: CacheQueryOptions) => Promise<Response | undefined>
   readonly put: (request: RequestInfo | URL, response: Response) => Promise<void>
