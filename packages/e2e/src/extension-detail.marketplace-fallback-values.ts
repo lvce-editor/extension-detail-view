@@ -8,7 +8,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   await ExtensionDetail.open('test.extension-basics')
 
-  const entries = Locator('.AdditionalDetailsEntry').nth(1).locator('.MoreInfoEntry')
+  const entries = Locator('.AdditionalDetailsEntry:nth-of-type(2) .MoreInfoEntry')
   await expect(entries).toHaveCount(2)
   const publishedEntry = entries.nth(0)
   const lastReleasedEntry = entries.nth(1)

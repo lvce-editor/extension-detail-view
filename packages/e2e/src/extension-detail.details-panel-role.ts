@@ -10,5 +10,5 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   const panel = Locator('.ExtensionDetailPanel')
   await expect(panel).toBeVisible()
-  await expect(panel).toHaveAttribute('role', 'tabpanel')
+  await expect(panel).toHaveAttribute('role', 'panel')
 }
