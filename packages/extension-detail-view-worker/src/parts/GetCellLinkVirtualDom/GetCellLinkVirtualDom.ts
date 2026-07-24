@@ -31,6 +31,8 @@ export const getCellLinkVirtualDom = (
       childCount: 1,
       className: ClassNames.Link,
       href: props?.href,
+      rel: 'noopener noreferrer',
+      target: '_blank',
       type: VirtualDomElements.A,
     },
     text(value),

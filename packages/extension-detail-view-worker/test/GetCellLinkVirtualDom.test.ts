@@ -19,6 +19,8 @@ test('getCellLinkVirtualDom returns correct structure with href only', () => {
       childCount: 1,
       className: ClassNames.Link,
       href: 'https://example.com',
+      rel: 'noopener noreferrer',
+      target: '_blank',
       type: VirtualDomElements.A,
     },
     text('Click here'),
@@ -90,6 +92,8 @@ test('getCellLinkVirtualDom works without props', () => {
     childCount: 1,
     className: ClassNames.Link,
     href: undefined,
+    rel: 'noopener noreferrer',
+    target: '_blank',
     type: VirtualDomElements.A,
   })
   expect(result[2]).toEqual(text('Link text'))
@@ -104,6 +108,8 @@ test('getCellLinkVirtualDom uses correct href value', () => {
     childCount: 1,
     className: ClassNames.Link,
     href: 'https://github.com',
+    rel: 'noopener noreferrer',
+    target: '_blank',
     type: VirtualDomElements.A,
   })
 })
