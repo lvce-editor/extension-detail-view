@@ -2,8 +2,6 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.preview-color-theme'
 
-export const skip = 1
-
 export const test: Test = async ({ ColorTheme, expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
   const slimeExtensionUri = import.meta.resolve('../fixtures/extension-detail-slime-theme')
