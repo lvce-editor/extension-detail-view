@@ -6,7 +6,7 @@ export const test: Test = async ({ Command, expect, Extension, ExtensionDetail, 
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-runtime-status')
   await Extension.addWebExtension(extensionUri)
-  await Command.executeExtensionCommand('runtimeStatus.activate')
+  await Command.execute('ExtensionHostManagement.activateByEvent', 'onCommand:runtimeStatus.activate', '', 2)
   await ExtensionDetail.open('test.runtime-status')
   await ExtensionDetail.selectFeatures()
 

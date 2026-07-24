@@ -2,7 +2,7 @@
   "id": "test.runtime-status",
   "name": "Runtime Status Test",
   "description": "Runtime Status Test",
-  "main": "index.js",
+  "browser": "index.js",
   "activation": ["onCommand:runtimeStatus.activate"],
   "commands": [
     {
