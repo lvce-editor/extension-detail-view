@@ -24,3 +24,13 @@ test('copyImageUrl calls writeText with absolute URL and returns state unchanged
   expect(mockRpc.invocations).toEqual([['ClipBoard.writeText', 'https://example.com/test/icon.png']])
   expect(result).toBe(state)
 })
+
+test('copyImageUrl does not write when the icon source is empty', async () => {
+  using mockRpc = ClipBoardWorker.registerMockRpc({})
+  const state = createDefaultState()
+
+  const result = await CopyImageUrl.copyImageUrl(state)
+
+  expect(mockRpc.invocations).toEqual([])
+  expect(result).toBe(state)
+})

@@ -16,3 +16,16 @@ test('formatCreated returns relative time for future date', () => {
   const now = new Date('2024-01-15').getTime()
   expect(FormatCreated.formatCreated(created, now)).toBe('in 2 years')
 })
+
+test('formatCreated returns n/a for a non-finite timestamp', () => {
+  expect(FormatCreated.formatCreated(Number.NaN)).toBe('n/a')
+})
+
+test.each([
+  [45 * 24 * 60 * 60 * 1000, '1 month ago'],
+  [2 * 24 * 60 * 60 * 1000, '2 days ago'],
+  [2 * 60 * 60 * 1000, '2 hours ago'],
+  [2 * 60 * 1000, '2 minutes ago'],
+])('formatCreated selects the appropriate relative unit', (difference, expected) => {
+  expect(FormatCreated.formatCreated(0, difference)).toBe(expected)
+})

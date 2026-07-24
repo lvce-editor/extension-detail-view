@@ -81,3 +81,11 @@ test('getIcon prefers language basics over theme when both conditions match', ()
   const result = getIcon(extension, PlatformType.Web, assetDir)
   expect(result).toBe(`${assetDir}/icons/language-icon.svg`)
 })
+
+test('getIcon returns an empty string for an unknown platform', () => {
+  const extension = {
+    icon: 'icon.png',
+    path: '/path/to/extension',
+  }
+  expect(getIcon(extension, 999, assetDir)).toBe('')
+})

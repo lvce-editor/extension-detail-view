@@ -44,3 +44,12 @@ test('returns the same state when the color theme did not change', () => {
 
   expect(result).toBe(state)
 })
+
+test('updates the active theme when the extension has no color theme metadata', () => {
+  const state = CreateDefaultState.createDefaultState()
+
+  const result = handleColorThemeChanged(state, 'slime')
+
+  expect(result).not.toBe(state)
+  expect(result.currentColorThemeId).toBe('slime')
+})
