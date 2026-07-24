@@ -8,7 +8,11 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 
 test('string value', () => {
   const entry: MoreInfoEntry = {
+    code: undefined,
     key: 'License',
+    odd: undefined,
+    onClick: undefined,
+    title: undefined,
     value: 'MIT',
   }
   expect(GetMoreInfoEntryValueVirtualDom.getMoreInfoEntryValueVirtualDom(entry)).toEqual([
@@ -22,8 +26,11 @@ test('string value', () => {
 })
 
 test('get more info entry value virtual dom with title', () => {
-  const item = {
+  const item: MoreInfoEntry = {
+    code: undefined,
     key: 'Size',
+    odd: undefined,
+    onClick: undefined,
     title: '/test/path',
     value: '2.5MB',
   }
@@ -41,7 +48,9 @@ test('get more info entry value virtual dom with title', () => {
 
 test('clickable value is focusable', () => {
   const entry: MoreInfoEntry = {
+    code: undefined,
     key: 'Size',
+    odd: undefined,
     onClick: 7,
     title: '/test/path',
     value: '2.5MB',

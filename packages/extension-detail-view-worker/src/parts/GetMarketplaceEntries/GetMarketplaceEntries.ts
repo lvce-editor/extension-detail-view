@@ -7,12 +7,19 @@ export const getMarketplaceEntries = (isBuiltin: boolean): readonly MoreInfoEntr
   }
   return [
     {
+      code: undefined,
       key: ExtensionDetailStrings.published(),
       odd: true,
+      onClick: undefined,
+      title: undefined,
       value: 'n/a',
     },
     {
+      code: undefined,
       key: ExtensionDetailStrings.lastReleased(),
+      odd: undefined,
+      onClick: undefined,
+      title: undefined,
       value: 'n/a',
     },
   ]
