@@ -5,6 +5,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetActivationTimeVirtualDom from '../GetActivationTimeVirtualDom/GetActivationTimeVirtualDom.ts'
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
+import * as GetRuntimeActivationEventVirtualDom from '../GetRuntimeActivationEventVirtualDom/GetRuntimeActivationEventVirtualDom.ts'
 import * as GetStatusVirtualDom from '../GetStatusVirtualDom/GetStatusVirtualDom.ts'
 
 const featureContentNode: VirtualDomNode = {
@@ -13,9 +14,12 @@ const featureContentNode: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
-const getChildCount = (status: number, activationTime: number, importTime: number): number => {
+const getChildCount = (status: number, activationEvent: string, activationTime: number, importTime: number): number => {
   let childCount = 0
   childCount += 2 // status
+  if (activationEvent) {
+    childCount += 2
+  }
   if (importTime || activationTime) {
     childCount += 4
   }
@@ -23,9 +27,9 @@ const getChildCount = (status: number, activationTime: number, importTime: numbe
 }
 
 export const getRuntimeStatusVirtualDom = (state: FeatureRuntimeStatusState): readonly VirtualDomNode[] => {
-  const { activationTime: displayedImportTime, importTime: displayedActivationTime, status } = state
+  const { activationTime, importTime, status, wasActivatedByEvent } = state
   const heading = ExtensionDetailStrings.runtimeStatus()
-  const childCount = getChildCount(status, displayedActivationTime, displayedImportTime)
+  const childCount = getChildCount(status, wasActivatedByEvent, activationTime, importTime)
   return [
     featureContentNode,
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
@@ -35,6 +39,7 @@ export const getRuntimeStatusVirtualDom = (state: FeatureRuntimeStatusState): re
       type: VirtualDomElements.Dl,
     },
     ...GetStatusVirtualDom.getStatusVirtualDom(status),
-    ...GetActivationTimeVirtualDom.getActivationTimeVirtualDom(displayedImportTime, displayedActivationTime),
+    ...GetRuntimeActivationEventVirtualDom.getRuntimeActivationEventVirtualDom(wasActivatedByEvent),
+    ...GetActivationTimeVirtualDom.getActivationTimeVirtualDom(importTime, activationTime),
   ]
 }

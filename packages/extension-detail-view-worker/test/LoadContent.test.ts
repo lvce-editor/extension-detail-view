@@ -90,6 +90,7 @@ test('loadContent - successful load', async () => {
   expect(result.displaySize).toBeDefined()
   expect(result.sizeValue).toBeDefined()
   expect(result.hasColorTheme).toBeDefined()
+  expect(result.settingsButtonEnabled).toBe(true)
   expect(mockRendererRpc.invocations).toEqual([
     ['ExtensionManagement.getExtension', 'test-extension'],
     ['Preferences.get', 'workbench.colorTheme'],

@@ -2,11 +2,10 @@
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "workspaces": {
     ".": {
-      "project": ["*.js"],
-      "ignoreDependencies": ["@lerna/legacy-package-management"]
+      "project": ["*.js"]
     },
     "packages/build": {
-      "project": ["src/**/*.js"],
+      "project": ["src/**/*.ts"],
       "ignoreDependencies": ["esbuild"]
     },
     "packages/e2e": {

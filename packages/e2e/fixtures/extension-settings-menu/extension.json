@@ -1,0 +1,8 @@
+{
+  "id": "test.extension-settings-menu",
+  "name": "Settings Menu Extension",
+  "description": "An extension used to test the settings menu",
+  "version": "1.2.3",
+  "publisher": "Test Publisher",
+  "categories": ["Other"]
+}

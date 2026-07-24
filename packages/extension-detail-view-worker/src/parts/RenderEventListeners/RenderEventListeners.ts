@@ -82,7 +82,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleClickSettings,
-      params: ['handleClickSettings'],
+      params: ['handleClickSettings', EventExpression.ClientX, EventExpression.ClientY],
     },
     {
       name: DomEventListenerFunctions.HandleReadmeClick,

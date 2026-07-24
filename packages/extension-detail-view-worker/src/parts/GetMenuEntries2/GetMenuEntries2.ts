@@ -9,6 +9,24 @@ export const getMenuEntries2 = (state: ExtensionDetailState, props: ContextMenuP
   if (props.menuId === MenuEntryId.ExtensionDetailIconContextMenu) {
     return getMenuEntriesImage(state, props)
   }
+  if (props.menuId === MenuEntryId.ManageExtension) {
+    return [
+      {
+        args: [],
+        command: 'ExtensionDetail.copyExtensionInfo',
+        flags: MenuItemFlags.None,
+        id: 'copy',
+        label: ExtensionDetailStrings.copy(),
+      },
+      {
+        args: [],
+        command: 'ExtensionDetail.copyExtensionId',
+        flags: MenuItemFlags.None,
+        id: 'copyExtensionId',
+        label: ExtensionDetailStrings.copyExtensionId(),
+      },
+    ]
+  }
   if (props.menuId === MenuEntryId.ExtensionDetailReadme && props.href) {
     return [
       {

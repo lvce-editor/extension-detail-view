@@ -16,8 +16,10 @@ test('renders an empty releases message', () => {
 })
 
 test('renders release metadata and body markdown', () => {
-  const result = getGithubReleasesMarkdown([release], repository)
+  const now = new Date('2026-01-04T03:04:05Z').getTime()
+  const result = getGithubReleasesMarkdown([release], repository, now)
   expect(result).toContain('# [Version \\[1.0.0\\]](https://github.com/test-owner/test-repository/releases/tag/v1.0.0)')
+  expect(result).toContain('Published 2 days ago')
   expect(result).toContain('`v1.0.0`')
   expect(result).toContain('**Important** fix')
 })
