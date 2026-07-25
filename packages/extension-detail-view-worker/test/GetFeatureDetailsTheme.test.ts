@@ -20,7 +20,7 @@ test('getFeatureDetailsTheme - extension with themes', async () => {
   const baseUrl: string = 'https://example.com'
   const protocol = 'test:'
 
-  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol)
+  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol, 'test-app/markdown-cache')
   expect(result).toEqual({
     themesMarkdownDom: [{ children: ['Theme content'], tag: 'div' }],
   })
@@ -44,7 +44,7 @@ test('getFeatureDetailsTheme - extension without themes', async () => {
   const baseUrl: string = 'https://example.com'
   const protocol = 'test:'
 
-  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol)
+  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol, 'test-app/markdown-cache')
   expect(result).toEqual({
     themesMarkdownDom: [],
   })
@@ -72,7 +72,7 @@ test('getFeatureDetailsTheme - extension with null themes', async () => {
   const baseUrl: string = 'https://example.com'
   const protocol = 'test:'
 
-  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol)
+  const result: any = await GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol, 'test-app/markdown-cache')
   expect(result).toEqual({
     themesMarkdownDom: [],
   })
@@ -95,6 +95,6 @@ test('getFeatureDetailsTheme - error propagation', async () => {
   const baseUrl: string = 'https://example.com'
   const protocol = 'test:'
 
-  await expect(GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol)).rejects.toThrow('render error')
+  await expect(GetFeatureDetailsTheme.getFeatureDetailsTheme(extension, baseUrl, protocol, 'test-app/markdown-cache')).rejects.toThrow('render error')
   expect(mockRpc.invocations).toEqual([['Markdown.render', expect.any(String), expect.any(Object)]])
 })

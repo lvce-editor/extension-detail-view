@@ -7,6 +7,7 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import { ExtensionNotFoundError } from '../ExtensionNotFoundError/ExtensionNotFoundError.ts'
 import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
+import { getApplicationName } from '../GetApplicationName/GetApplicationName.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
 import { getCommit } from '../GetCommit/GetCommit.ts'
@@ -53,6 +54,8 @@ const loadContentInternal = async (
     throw new ExtensionNotFoundError(id)
   }
   const currentColorThemeId = await getCurrentColorTheme()
+  const applicationName = await getApplicationName()
+  const cacheName = `${applicationName}/markdown-cache`
   const commit = await getCommit()
   const languages = await getSyntaxLanguages(platform, assetDir)
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)
@@ -78,13 +81,17 @@ const loadContentInternal = async (
   const locationProtocol = location.protocol
   const locationHost = location.host
 
-  const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
-    baseUrl,
-    commit,
-    languages,
-    linksExternal: true,
-    locationProtocol,
-  })
+  const readmeHtml = await RenderMarkdown.renderMarkdown(
+    readmeContent,
+    {
+      baseUrl,
+      commit,
+      languages,
+      linksExternal: true,
+      locationProtocol,
+    },
+    cacheName,
+  )
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
   })
@@ -123,6 +130,7 @@ const loadContentInternal = async (
     badge,
     baseUrl,
     buttons,
+    cacheName,
     categories,
     changelogScrollTop,
     commit,

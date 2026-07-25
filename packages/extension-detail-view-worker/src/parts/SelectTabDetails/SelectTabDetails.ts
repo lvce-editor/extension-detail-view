@@ -5,14 +5,18 @@ import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
 export const selectTabDetails = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const { baseUrl, languages, locationProtocol, readmeUrl, tabs } = state
+  const { baseUrl, cacheName, languages, locationProtocol, readmeUrl, tabs } = state
   const readmeContent = await GetExtensionReadme.loadReadmeContent(readmeUrl)
-  const readmeHtml = await RenderMarkdown.renderMarkdown(readmeContent, {
-    baseUrl,
-    languages,
-    linksExternal: true,
-    locationProtocol,
-  })
+  const readmeHtml = await RenderMarkdown.renderMarkdown(
+    readmeContent,
+    {
+      baseUrl,
+      languages,
+      linksExternal: true,
+      locationProtocol,
+    },
+    cacheName,
+  )
   const detailsDom = await GetMarkdownVirtualDom.getMarkdownVirtualDom(readmeHtml)
   const newTabs = tabs.map((tab) => {
     return {

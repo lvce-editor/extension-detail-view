@@ -3,13 +3,13 @@ import * as FeatureRegistry from '../FeatureRegistry/FeatureRegistry.ts'
 import * as InputName from '../InputName/InputName.ts'
 
 export const selectTabFeatures = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const { baseUrl, extension, features, locationProtocol, selectedFeature, tabs } = state
+  const { baseUrl, cacheName, extension, features, locationProtocol, selectedFeature, tabs } = state
   if (features.length === 0) {
     return state
   }
   const actualSelectedFeature = selectedFeature || InputName.Theme
   const fn = FeatureRegistry.getFeatureDetailsHandler(actualSelectedFeature)
-  const partialNewState = await fn(extension, baseUrl, locationProtocol)
+  const partialNewState = await fn(extension, baseUrl, locationProtocol, cacheName)
   const newTabs = tabs.map((tab) => {
     return {
       ...tab,

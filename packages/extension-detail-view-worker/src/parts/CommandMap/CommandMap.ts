@@ -45,7 +45,6 @@ import { handleSelectionChange } from '../HandleSelectionChange/HandleSelectionC
 import { handleTabFocus } from '../HandleTabFocus/HandleTabFocus.ts'
 import * as HandleTabsClick from '../HandleTabsClick/HandleTabsClick.ts'
 import { hideSizeLink } from '../HideSizeLink/HideSizeLink.ts'
-import * as Initialize from '../Initialize/Initialize.ts'
 import * as LoadContent2 from '../LoadContent2/LoadContent2.ts'
 import * as OpenImageInNewTab from '../OpenImageInNewTab/OpenImageInNewTab.ts'
 import * as Render2 from '../Render2/Render2.ts'
@@ -101,7 +100,6 @@ export const commandMap = {
   'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
   'ExtensionDetail.handleWheel': WrapCommand.wrapCommand(HandleScroll.handleScroll), // deprecated
   'ExtensionDetail.hideSizeLink': WrapCommand.wrapCommand(hideSizeLink),
-  'ExtensionDetail.initialize': Initialize.initialize,
   'ExtensionDetail.loadContent2': WrapCommand.wrapCommand(LoadContent2.loadContent2),
   'ExtensionDetail.mockGithubApi': WrapCommand.wrapCommand(GithubApiRequest.handleMockGithubApi),
   'ExtensionDetail.openImageInNewTab': WrapCommand.wrapCommand(OpenImageInNewTab.openImageInNewTab),

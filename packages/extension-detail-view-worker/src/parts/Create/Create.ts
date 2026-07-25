@@ -11,6 +11,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     baseUrl: '',
     builtinExtensionsBadgeEnabled: true,
     buttons: [],
+    cacheName: '',
     categories: [],
     changelogScrollTop: 0,
     changelogVirtualDom: [],

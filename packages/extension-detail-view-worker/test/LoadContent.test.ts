@@ -30,6 +30,9 @@ test('loadContent - successful load', async () => {
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
+    'Layout.getApplicationName': () => {
+      return 'test-app'
+    },
     'Layout.getCommit': () => {
       return 'test-commit'
     },
@@ -76,6 +79,7 @@ test('loadContent - successful load', async () => {
   expect(result.description).toBe('A test extension')
   expect(result.extensionId).toBe('test-extension')
   expect(result.extensionVersion).toBe('1.0.0')
+  expect(result.cacheName).toBe('test-app/markdown-cache')
   // expect(result.isBuiltin).toBe(false)
   expect(result.folderSize).toBe(0)
   expect(result.baseUrl).toBe('/test/path')
@@ -96,6 +100,7 @@ test('loadContent - successful load', async () => {
     ['Preferences.get', 'workbench.colorTheme'],
     ['Preferences.getAll'],
     ['Preferences.get', 'workbnech.colorTheme'],
+    ['Layout.getApplicationName'],
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
@@ -177,6 +182,9 @@ test('loadContent - with builtin extension', async () => {
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
+    'Layout.getApplicationName': () => {
+      return 'test-app'
+    },
     'Layout.getCommit': () => {
       return 'test-commit'
     },
@@ -223,6 +231,7 @@ test('loadContent - with builtin extension', async () => {
     ['Preferences.get', 'workbench.colorTheme'],
     ['Preferences.getAll'],
     ['Preferences.get', 'workbnech.colorTheme'],
+    ['Layout.getApplicationName'],
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
@@ -243,6 +252,9 @@ test('loadContent - with saved state', async () => {
   using mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
+    },
+    'Layout.getApplicationName': () => {
+      return 'test-app'
     },
     'Layout.getCommit': () => {
       return 'test-commit'
@@ -295,6 +307,7 @@ test('loadContent - with saved state', async () => {
     ['Preferences.get', 'workbench.colorTheme'],
     ['Preferences.getAll'],
     ['Preferences.get', 'workbnech.colorTheme'],
+    ['Layout.getApplicationName'],
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
@@ -316,6 +329,9 @@ test('loadContent - with different platform', async () => {
   using mockRendererRpc = RendererWorker.registerMockRpc({
     'ExtensionManagement.getExtension': () => {
       return mockExtension
+    },
+    'Layout.getApplicationName': () => {
+      return 'test-app'
     },
     'Layout.getCommit': () => {
       return 'test-commit'
@@ -362,6 +378,7 @@ test('loadContent - with different platform', async () => {
     ['Preferences.get', 'workbench.colorTheme'],
     ['Preferences.getAll'],
     ['Preferences.get', 'workbnech.colorTheme'],
+    ['Layout.getApplicationName'],
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])

@@ -9,9 +9,13 @@ test.skip('renderMarkdown - basic markdown', async () => {
     },
   })
 
-  const result = await RenderMarkdown.renderMarkdown('# Hello World', {
-    locationProtocol: 'test:',
-  })
+  const result = await RenderMarkdown.renderMarkdown(
+    '# Hello World',
+    {
+      locationProtocol: 'test:',
+    },
+    'test-app/markdown-cache',
+  )
   expect(result).toBe('<p>Hello World</p>')
   expect(mockRpc.invocations).toEqual([['Markdown.renderMarkdown', '# Hello World', {}]])
 })
@@ -23,7 +27,11 @@ test.skip('renderMarkdown - with baseUrl option', async () => {
     },
   })
 
-  const result = await RenderMarkdown.renderMarkdown('# Test', { baseUrl: 'https://example.com', locationProtocol: 'test:' })
+  const result = await RenderMarkdown.renderMarkdown(
+    '# Test',
+    { baseUrl: 'https://example.com', locationProtocol: 'test:' },
+    'test-app/markdown-cache',
+  )
   expect(result).toBe('<p>Test with baseUrl</p>')
   expect(mockRpc.invocations).toEqual([['Markdown.renderMarkdown', '# Test', { baseUrl: 'https://example.com' }]])
 })
@@ -35,9 +43,13 @@ test.skip('renderMarkdown - empty markdown', async () => {
     },
   })
 
-  const result = await RenderMarkdown.renderMarkdown('', {
-    locationProtocol: 'test:',
-  })
+  const result = await RenderMarkdown.renderMarkdown(
+    '',
+    {
+      locationProtocol: 'test:',
+    },
+    'test-app/markdown-cache',
+  )
   expect(result).toBe('')
   expect(mockRpc.invocations).toEqual([['Markdown.renderMarkdown', '', {}]])
 })
@@ -49,9 +61,13 @@ test.skip('renderMarkdown - complex markdown', async () => {
     },
   })
 
-  const result = await RenderMarkdown.renderMarkdown('# Title\n\n**Bold text** and *italic text*', {
-    locationProtocol: 'test:',
-  })
+  const result = await RenderMarkdown.renderMarkdown(
+    '# Title\n\n**Bold text** and *italic text*',
+    {
+      locationProtocol: 'test:',
+    },
+    'test-app/markdown-cache',
+  )
   expect(result).toBe('<h1>Title</h1><p><strong>Bold text</strong> and <em>italic text</em></p>')
   expect(mockRpc.invocations).toEqual([['Markdown.renderMarkdown', '# Title\n\n**Bold text** and *italic text*', {}]])
 })
@@ -63,9 +79,13 @@ test.skip('renderMarkdown - without options', async () => {
     },
   })
 
-  const result = await RenderMarkdown.renderMarkdown('Simple text', {
-    locationProtocol: 'test:',
-  })
+  const result = await RenderMarkdown.renderMarkdown(
+    'Simple text',
+    {
+      locationProtocol: 'test:',
+    },
+    'test-app/markdown-cache',
+  )
   expect(result).toBe('<p>Simple text</p>')
   expect(mockRpc.invocations).toEqual([['Markdown.renderMarkdown', 'Simple text', {}]])
 })
