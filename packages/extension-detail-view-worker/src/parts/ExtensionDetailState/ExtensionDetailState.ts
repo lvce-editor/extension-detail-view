@@ -19,6 +19,7 @@ export interface ExtensionDetailState {
   readonly baseUrl: string
   readonly builtinExtensionsBadgeEnabled: boolean
   readonly buttons: readonly ExtensionDetailButton[]
+  readonly cacheName: string
   readonly categories: readonly Category[]
   readonly changelogScrollTop: number
   readonly changelogVirtualDom: readonly VirtualDomNode[]

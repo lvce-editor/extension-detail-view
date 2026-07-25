@@ -5,13 +5,17 @@ import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
 export type FeatureThemeState = FeatureState<'themesMarkdownDom'>
 
-export const getThemeDetails = async (extension: any, baseUrl: string, locationProtocol: string): Promise<FeatureThemeState> => {
+export const getThemeDetails = async (extension: any, baseUrl: string, locationProtocol: string, cacheName: string): Promise<FeatureThemeState> => {
   const { colorThemes, iconThemes, productIconThemes } = extension
   const markdown = GetThemeMarkdown.getThemeMarkdown(colorThemes || [], iconThemes || [], productIconThemes || [])
-  const rendered = await RenderMarkdown.renderMarkdown(markdown, {
-    baseUrl,
-    locationProtocol,
-  })
+  const rendered = await RenderMarkdown.renderMarkdown(
+    markdown,
+    {
+      baseUrl,
+      locationProtocol,
+    },
+    cacheName,
+  )
   const themesMarkdownDom = await GetMarkdownVirtualDom.getMarkdownVirtualDom(rendered)
   return {
     themesMarkdownDom,

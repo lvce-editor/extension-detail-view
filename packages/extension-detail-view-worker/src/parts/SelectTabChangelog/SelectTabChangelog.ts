@@ -28,6 +28,7 @@ const mergeMarkdownVirtualDoms = (chunks: readonly (readonly VirtualDomNode[])[]
 const renderGithubReleases = async (
   result: Awaited<ReturnType<typeof loadGithubReleases>>,
   githubRepository: NonNullable<ReturnType<typeof getGithubRepository>>,
+  cacheName: string,
   languages: ExtensionDetailState['languages'],
   locationProtocol: string,
 ): Promise<readonly VirtualDomNode[]> => {
@@ -46,28 +47,32 @@ const renderGithubReleases = async (
         ? `> Showing the newest ${releases.length} GitHub releases. Older releases are not displayed to keep the editor responsive.\n\n`
         : ''
     const markdown = limitMessage + getGithubReleasesMarkdown(releaseGroup, githubRepository)
-    const html = await RenderMarkdown.renderMarkdown(markdown, { baseUrl, languages, linksExternal: true, locationProtocol })
+    const html = await RenderMarkdown.renderMarkdown(markdown, { baseUrl, languages, linksExternal: true, locationProtocol }, cacheName)
     chunks.push([...(await getMarkdownVirtualDom(html))])
   }
   return addScrollToTopVirtualDom(mergeMarkdownVirtualDoms(chunks))
 }
 
 export const selectTabChangelog = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const { baseUrl, extension, extensionUri, languages, locationProtocol, tabs } = state
+  const { baseUrl, cacheName, extension, extensionUri, languages, locationProtocol, tabs } = state
   const githubRepository = getGithubRepository(extension)
   let changelogDom: readonly VirtualDomNode[]
   if (githubRepository) {
     try {
       const result = await loadGithubReleases(githubRepository)
-      changelogDom = await renderGithubReleases(result, githubRepository, languages, locationProtocol)
+      changelogDom = await renderGithubReleases(result, githubRepository, cacheName, languages, locationProtocol)
     } catch (error) {
       const message = error instanceof GithubReleasesError ? error.message : 'GitHub releases could not be loaded. Please try again later.'
-      const html = await RenderMarkdown.renderMarkdown(`# Changelog\n\n${message}`, { baseUrl, languages, linksExternal: true, locationProtocol })
+      const html = await RenderMarkdown.renderMarkdown(
+        `# Changelog\n\n${message}`,
+        { baseUrl, languages, linksExternal: true, locationProtocol },
+        cacheName,
+      )
       changelogDom = await getMarkdownVirtualDom(html, { scrollToTopEnabled: true })
     }
   } else {
     const changelogContent = await LoadChangelogContent.loadChangelogContent(extensionUri)
-    const html = await RenderMarkdown.renderMarkdown(changelogContent, { baseUrl, languages, linksExternal: true, locationProtocol })
+    const html = await RenderMarkdown.renderMarkdown(changelogContent, { baseUrl, languages, linksExternal: true, locationProtocol }, cacheName)
     changelogDom = await getMarkdownVirtualDom(html, { scrollToTopEnabled: true })
   }
   const newTabs = tabs.map((tab) => {

@@ -151,11 +151,13 @@ test('should call feature details handler and merge results', async () => {
       extension: any,
       baseUrl: string,
       locationProtocol: string,
+      cacheName: string,
     ): Promise<Pick<ExtensionDetailState, 'commands' | 'description'>> => {
       handlerCalled = true
       expect(extension).toBeDefined()
       expect(baseUrl).toBeDefined()
       expect(locationProtocol).toBeDefined()
+      expect(cacheName).toBeDefined()
       return {
         // @ts-ignore
         commands: [{ id: 'test.command', title: 'Test Command' }],

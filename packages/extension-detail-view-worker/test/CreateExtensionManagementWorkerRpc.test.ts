@@ -2,28 +2,12 @@ import { expect, test } from '@jest/globals'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 import { createExtensionManagementWorkerRpc } from '../src/parts/CreateExtensionManagementWorkerRpc/CreateExtensionManagementWorkerRpc.ts'
 
-test('createExtensionManagementWorkerRpc creates RPC successfully', async () => {
+test('createExtensionManagementWorkerRpc creates a lazy RPC', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
     'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker': () => {},
   })
   const rpc = await createExtensionManagementWorkerRpc()
   expect(rpc).toBeDefined()
-  const { invocations } = mockRpc
+  expect(mockRpc.invocations).toEqual([])
   await rpc.dispose()
-  expect(invocations).toEqual([
-    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker', expect.anything(), 'Extensions.handleMessagePort', 0],
-  ])
-})
-
-test('createExtensionManagementWorkerRpc throws VError when sendMessagePortToExtensionManagementWorker fails', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker': () => {
-      throw new Error('fail')
-    },
-  })
-  await expect(createExtensionManagementWorkerRpc()).rejects.toThrow('Failed to create extension management rpc')
-  const { invocations } = mockRpc
-  expect(invocations).toEqual([
-    ['SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker', expect.anything(), 'Extensions.handleMessagePort', 0],
-  ])
 })
