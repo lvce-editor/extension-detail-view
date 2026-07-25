@@ -9,7 +9,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await ExtensionDetail.open('test.extension-basics')
 
   const header = Locator('.ExtensionDetail > .ExtensionDetailHeader')
-  const tabs = Locator('.ExtensionDetail > .ExtensionDetailTabs')
+  const tabs = Locator('.ExtensionDetailTabs')
   const panel = Locator('.ExtensionDetail > .ExtensionDetailPanel')
   await expect(header).toHaveCount(1)
   await expect(tabs).toHaveCount(1)

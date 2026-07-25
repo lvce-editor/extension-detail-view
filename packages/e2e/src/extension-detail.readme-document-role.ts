@@ -1,6 +1,6 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const name = 'extension-detail.settings-button-hidden'
+export const name = 'extension-detail.readme-document-role'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
@@ -8,6 +8,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   await ExtensionDetail.open('test.extension-basics')
 
-  const settingsButton = Locator('.ExtensionDetailHeaderActions .SettingsButton')
-  await expect(settingsButton).toHaveCount(0)
+  const readme = Locator('.ExtensionDetailPanel .Markdown')
+  await expect(readme).toBeVisible()
+  await expect(readme).toHaveAttribute('role', 'document')
 }
