@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { DialogWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import * as CreateDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleClickSetColorTheme from '../src/parts/HandleClickSetColorTheme/HandleClickSetColorTheme.ts'
 
@@ -53,9 +53,6 @@ test('handleClickSetColorTheme - extension with color theme', async () => {
     'ColorTheme.setColorTheme': () => {
       return ''
     },
-    confirm: () => {
-      return ''
-    },
   })
 
   const state = {
@@ -107,6 +104,8 @@ test('handleClickSetColorTheme - reports a color theme error', async () => {
     'ColorTheme.setColorTheme': () => {
       return errorMessage
     },
+  })
+  using mockDialogRpc = DialogWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => {
       return ''
     },
@@ -122,8 +121,6 @@ test('handleClickSetColorTheme - reports a color theme error', async () => {
   const result = await HandleClickSetColorTheme.handleClickSetColorTheme(state)
   expect(result).not.toBe(state)
   expect(result.currentColorThemeId).toBe('theme1')
-  expect(mockRpc.invocations).toEqual([
-    ['ColorTheme.setColorTheme', 'theme1'],
-    ['ConfirmPrompt.prompt', errorMessage],
-  ])
+  expect(mockRpc.invocations).toEqual([['ColorTheme.setColorTheme', 'theme1']])
+  expect(mockDialogRpc.invocations).toEqual([['ConfirmPrompt.prompt', errorMessage]])
 })
