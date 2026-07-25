@@ -1,4 +1,4 @@
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { DialogWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
@@ -12,7 +12,7 @@ export const updateExtensionStatus = async (state: ExtensionDetailState, updateF
   const { currentColorThemeId, extensionId, hasColorTheme, platform } = state
   const error = await updateFunction(extensionId, platform)
   if (error) {
-    await RendererWorker.confirm(`${error}`)
+    await DialogWorker.invoke('ConfirmPrompt.prompt', `${error}`)
   }
   const extension = await ExtensionManagement.getExtension(extensionId, platform)
   const disabled = extension?.disabled

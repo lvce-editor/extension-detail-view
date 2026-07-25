@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { DialogWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleReadmeClick from '../src/parts/HandleReadmeClick/HandleReadmeClick.ts'
@@ -136,12 +136,12 @@ test('handleReadmeClick opens link when linkProtectionEnabled is false', async (
 
 test('handleReadmeClick calls confirm and opens link when linkProtectionEnabled is true and confirmed', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'ConfirmPrompt.prompt': () => {
-      return true
-    },
     'Open.openUrl': () => {
       /**/
     },
+  })
+  using mockDialogRpc = DialogWorker.registerMockRpc({
+    'ConfirmPrompt.prompt': () => true,
   })
 
   const state: ExtensionDetailState = {
@@ -152,21 +152,19 @@ test('handleReadmeClick calls confirm and opens link when linkProtectionEnabled 
 
   const result = await HandleReadmeClick.handleReadmeClick(state, 'A', href)
 
-  expect(mockRpc.invocations).toEqual([
-    ['ConfirmPrompt.prompt', `Do you want to open this external link?\n\n${href}`],
-    ['Open.openUrl', href],
-  ])
+  expect(mockDialogRpc.invocations).toEqual([['ConfirmPrompt.prompt', `Do you want to open this external link?\n\n${href}`]])
+  expect(mockRpc.invocations).toEqual([['Open.openUrl', href]])
   expect(result).toBe(state)
 })
 
 test('handleReadmeClick calls confirm and does not open link when linkProtectionEnabled is true and not confirmed', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'ConfirmPrompt.prompt': () => {
-      return false
-    },
     'Open.openUrl': () => {
       /**/
     },
+  })
+  using mockDialogRpc = DialogWorker.registerMockRpc({
+    'ConfirmPrompt.prompt': () => false,
   })
 
   const state: ExtensionDetailState = {
@@ -177,6 +175,7 @@ test('handleReadmeClick calls confirm and does not open link when linkProtection
 
   const result = await HandleReadmeClick.handleReadmeClick(state, 'A', href)
 
-  expect(mockRpc.invocations).toEqual([['ConfirmPrompt.prompt', `Do you want to open this external link?\n\n${href}`]])
+  expect(mockDialogRpc.invocations).toEqual([['ConfirmPrompt.prompt', `Do you want to open this external link?\n\n${href}`]])
+  expect(mockRpc.invocations).toEqual([])
   expect(result).toBe(state)
 })

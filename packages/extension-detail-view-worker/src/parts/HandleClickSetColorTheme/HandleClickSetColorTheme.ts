@@ -1,4 +1,4 @@
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { DialogWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
@@ -10,7 +10,7 @@ export const handleClickSetColorTheme = async (state: ExtensionDetailState): Pro
   if (colorThemeId) {
     const error = await SetColorTheme.setColorTheme(colorThemeId)
     if (error) {
-      await RendererWorker.confirm(`${error}`)
+      await DialogWorker.invoke('ConfirmPrompt.prompt', `${error}`)
     }
     const isBuiltin = extension?.isBuiltin || extension?.builtin || false
     const colorThemeLabel = getColorThemeLabel(extension) || ''
