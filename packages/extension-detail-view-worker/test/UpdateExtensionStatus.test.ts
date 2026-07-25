@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { DialogWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as PlatformType from '../src/parts/PlatformType/PlatformType.ts'
@@ -76,12 +76,12 @@ test('updateExtensionStatus - handles error from updateFunction', async () => {
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const errorMessage = 'Failed to update extension'
   using mockRpc = RendererWorker.registerMockRpc({
-    'ConfirmPrompt.prompt': () => {
-      /**/
-    },
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
+  })
+  using mockDialogRpc = DialogWorker.registerMockRpc({
+    'ConfirmPrompt.prompt': () => {},
   })
 
   const updateFunction: UpdateExtensionStatus.UpdateFunction = async () => {
@@ -92,7 +92,7 @@ test('updateExtensionStatus - handles error from updateFunction', async () => {
 
   expect(result.extensionId).toBe('test-extension-id')
   expect(result.disabled).toBe(false)
-  expect(mockRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', errorMessage])
+  expect(mockDialogRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', errorMessage])
   expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
 })
 
@@ -196,12 +196,12 @@ test('updateExtensionStatus - error with Error object', async () => {
   const mockExtension: any = { disabled: false, id: 'test-extension-id' }
   const error = new Error('Update failed')
   using mockRpc = RendererWorker.registerMockRpc({
-    'ConfirmPrompt.prompt': () => {
-      /**/
-    },
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
+  })
+  using mockDialogRpc = DialogWorker.registerMockRpc({
+    'ConfirmPrompt.prompt': () => {},
   })
 
   const updateFunction: UpdateExtensionStatus.UpdateFunction = async () => {
@@ -211,6 +211,6 @@ test('updateExtensionStatus - error with Error object', async () => {
   const result = await UpdateExtensionStatus.updateExtensionStatus(state, updateFunction)
 
   expect(result.extensionId).toBe('test-extension-id')
-  expect(mockRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', 'Error: Update failed'])
+  expect(mockDialogRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', 'Error: Update failed'])
   expect(mockRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
 })

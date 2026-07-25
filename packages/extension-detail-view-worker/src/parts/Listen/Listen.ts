@@ -1,5 +1,5 @@
-import { WebWorkerRpcClient } from '@lvce-editor/rpc'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { LazyTransferMessagePortRpcParent, WebWorkerRpcClient } from '@lvce-editor/rpc'
+import { DialogWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import * as CommandMap from '../CommandMap/CommandMap.ts'
 import { registerCommands } from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import { initializeClipBoardWorker } from '../InitializeClipBoardWorker/InitializeClipBoardWorker.ts'
@@ -14,11 +14,16 @@ export const listen = async (): Promise<void> => {
     commandMap: CommandMap.commandMap,
   })
   RendererWorker.set(rpc)
-  await Promise.all([
+  const [dialogRpc] = await Promise.all([
+    LazyTransferMessagePortRpcParent.create({
+      commandMap: {},
+      send: RendererWorker.sendMessagePortToDialogWorker,
+    }),
     initializeMarkdownWorker(),
     initializeFileSystemWorker(),
     initializeExtensionHostWorker(),
     initializeExtensionManagementWorker(),
     initializeClipBoardWorker(),
   ])
+  DialogWorker.set(dialogRpc)
 }

@@ -1,4 +1,4 @@
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { DialogWorker } from '@lvce-editor/rpc-registry'
 import { openExternal } from '../OpenExternal/OpenExternal.ts'
 
 export const handleReadmeLinkClick = async (linkProtectionEnabled: boolean, platform: number, href: string): Promise<void> => {
@@ -6,7 +6,7 @@ export const handleReadmeLinkClick = async (linkProtectionEnabled: boolean, plat
   // TODO what to do about mail links?
   if (linkProtectionEnabled) {
     const message = `Do you want to open this external link?\n\n${href}`
-    const confirmed = await RendererWorker.confirm(message)
+    const confirmed = await DialogWorker.invoke('ConfirmPrompt.prompt', message)
     if (!confirmed) {
       return
     }

@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { ExtensionManagementWorker, RendererWorker } from '@lvce-editor/rpc-registry'
+import { DialogWorker, ExtensionManagementWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { handleClickDisable } from '../src/parts/HandleClickDisable/HandleClickDisable.ts'
@@ -84,12 +84,12 @@ test('handleClickDisable - handles error from disableExtension', async () => {
     },
   })
   using mockRendererRpc = RendererWorker.registerMockRpc({
-    'ConfirmPrompt.prompt': () => {
-      /**/
-    },
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
+  })
+  using mockDialogRpc = DialogWorker.registerMockRpc({
+    'ConfirmPrompt.prompt': () => {},
   })
 
   const result = await handleClickDisable(state)
@@ -97,7 +97,7 @@ test('handleClickDisable - handles error from disableExtension', async () => {
   expect(result.extensionId).toBe('test-extension-id')
   expect(result.disabled).toBe(false)
   expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.disable2', 'test-extension-id', PlatformType.Electron])
-  expect(mockRendererRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', errorMessage])
+  expect(mockDialogRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', errorMessage])
   expect(mockRendererRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
 })
 
@@ -209,18 +209,18 @@ test('handleClickDisable - error with Error object', async () => {
     },
   })
   using mockRendererRpc = RendererWorker.registerMockRpc({
-    'ConfirmPrompt.prompt': () => {
-      /**/
-    },
     'ExtensionManagement.getExtension': () => {
       return mockExtension
     },
+  })
+  using mockDialogRpc = DialogWorker.registerMockRpc({
+    'ConfirmPrompt.prompt': () => {},
   })
 
   const result = await handleClickDisable(state)
 
   expect(result.extensionId).toBe('test-extension-id')
   expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.disable2', 'test-extension-id', PlatformType.Electron])
-  expect(mockRendererRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', 'Error: Disable failed'])
+  expect(mockDialogRpc.invocations).toContainEqual(['ConfirmPrompt.prompt', 'Error: Disable failed'])
   expect(mockRendererRpc.invocations).toContainEqual(['ExtensionManagement.getExtension', 'test-extension-id'])
 })
