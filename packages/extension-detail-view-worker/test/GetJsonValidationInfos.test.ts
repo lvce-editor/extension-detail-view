@@ -61,7 +61,7 @@ test('handles validation with invalid link', async () => {
   })
 })
 
-test('handles validation with valid external schema that exists', async () => {
+test('handles validation with valid https schema without checking whether it exists', async () => {
   const extensionUri: string = 'https://example.com/extension'
   const schemaUrl: string = 'https://json.schemastore.org/package.json'
   const validations: readonly any[] = [
@@ -70,10 +70,6 @@ test('handles validation with valid external schema that exists', async () => {
       schema: schemaUrl,
     },
   ]
-
-  mockFetch.mockResolvedValueOnce({
-    ok: true,
-  } as Response)
 
   const result: readonly JsonValidationInfo[] = await getJsonValidationInfos(extensionUri, validations)
 
@@ -85,12 +81,12 @@ test('handles validation with valid external schema that exists', async () => {
     schemaUrl: schemaUrl,
     stringValue: schemaUrl,
   })
-  expect(mockFetch).toHaveBeenCalledWith(schemaUrl, { method: 'HEAD' })
+  expect(mockFetch).not.toHaveBeenCalled()
 })
 
-test('handles validation with valid external schema that does not exist', async () => {
+test('handles validation with valid http schema that does not exist', async () => {
   const extensionUri: string = 'https://example.com/extension'
-  const schemaUrl: string = 'https://example.com/nonexistent.json'
+  const schemaUrl: string = 'http://example.com/nonexistent.json'
   const validations: readonly any[] = [
     {
       fileMatch: '*.json',
@@ -114,9 +110,9 @@ test('handles validation with valid external schema that does not exist', async 
   })
 })
 
-test('handles validation with valid external schema when fetch throws', async () => {
+test('handles validation with valid http schema when fetch throws', async () => {
   const extensionUri: string = 'https://example.com/extension'
-  const schemaUrl: string = 'https://example.com/schema.json'
+  const schemaUrl: string = 'http://example.com/schema.json'
   const validations: readonly any[] = [
     {
       fileMatch: '*.json',
