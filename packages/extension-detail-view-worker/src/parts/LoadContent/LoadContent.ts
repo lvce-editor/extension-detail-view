@@ -103,6 +103,7 @@ const loadContentInternal = async (
   const size = GetViewletSize.getViewletSize(width)
   const { changelogScrollTop, readmeScrollTop, selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)
+  const actualSelectedFeature = features.find((feature) => feature.selected)?.id || ''
   const hasFeatures = features.length > 0
   const hasGithubReleases = Boolean(getGithubRepository(extension))
   const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog || hasGithubReleases)
@@ -170,6 +171,7 @@ const loadContentInternal = async (
     resources,
     scrollSource: InputSource.Script,
     scrollToTopButtonEnabled: true,
+    selectedFeature: actualSelectedFeature,
     selectedTab,
     settingsButtonEnabled: true,
     showSideBar,

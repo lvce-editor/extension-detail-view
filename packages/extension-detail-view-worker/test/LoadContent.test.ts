@@ -1,7 +1,8 @@
-import { beforeAll, expect, test } from '@jest/globals'
+import { afterEach, beforeAll, expect, jest, test } from '@jest/globals'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import { clearRegistry, register } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
@@ -14,6 +15,8 @@ beforeAll(() => {
     protocol: 'https:',
   }
 })
+
+afterEach(clearRegistry)
 
 test('loadContent - successful load', async () => {
   const mockExtension: any = {
@@ -239,7 +242,7 @@ test('loadContent - with builtin extension', async () => {
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
-test('loadContent - with saved state', async () => {
+test('loadContent - selects first available feature when saved feature is unavailable', async () => {
   const mockExtension: any = {
     builtin: false,
     description: 'A test extension',
@@ -293,14 +296,41 @@ test('loadContent - with saved state', async () => {
     uri: 'extension-detail://test-extension',
   }
 
+  register({
+    getDetails: jest.fn(async (): Promise<object> => ({})),
+    getLabel: (): string => 'Feature 1',
+    getVirtualDom: jest.fn((): any[] => []),
+    id: 'feature-1',
+    isEnabled: jest.fn((): boolean => true),
+  })
+  register({
+    getDetails: jest.fn(async (): Promise<object> => ({})),
+    getLabel: (): string => 'Feature 2',
+    getVirtualDom: jest.fn((): any[] => []),
+    id: 'feature-2',
+    isEnabled: jest.fn((): boolean => true),
+  })
+
   const savedState: any = {
-    selectedFeature: 'commands',
+    selectedFeature: 'unavailable-feature',
     selectedTab: 'details',
   }
 
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, savedState)
 
-  expect(result.selectedFeature).toBe('')
+  expect(result.selectedFeature).toBe('feature-1')
+  expect(result.features).toEqual([
+    {
+      id: 'feature-1',
+      label: 'Feature 1',
+      selected: true,
+    },
+    {
+      id: 'feature-2',
+      label: 'Feature 2',
+      selected: false,
+    },
+  ])
   expect(result.selectedTab).toBe('details')
   expect(mockRendererRpc.invocations).toEqual([
     ['ExtensionManagement.getExtension', 'test-extension'],

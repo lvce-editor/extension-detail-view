@@ -82,6 +82,42 @@ test('getFeatures marks selected feature correctly', () => {
   expect(unselectedFeature?.selected).toBe(false)
 })
 
+test('getFeatures selects the first enabled feature when selected feature is unavailable', () => {
+  const feature1 = {
+    getDetails: jest.fn(async (): Promise<object> => ({})),
+    getLabel: (): string => 'Feature 1',
+    getVirtualDom: jest.fn((): any[] => []),
+    id: 'feature-1',
+    isEnabled: jest.fn((): boolean => true),
+  }
+
+  const feature2 = {
+    getDetails: jest.fn(async (): Promise<object> => ({})),
+    getLabel: (): string => 'Feature 2',
+    getVirtualDom: jest.fn((): any[] => []),
+    id: 'feature-2',
+    isEnabled: jest.fn((): boolean => true),
+  }
+
+  register(feature1)
+  register(feature2)
+
+  const features = getFeatures('unavailable-feature', {})
+
+  expect(features).toEqual([
+    {
+      id: 'feature-1',
+      label: 'Feature 1',
+      selected: true,
+    },
+    {
+      id: 'feature-2',
+      label: 'Feature 2',
+      selected: false,
+    },
+  ])
+})
+
 test('getFeatureDetailsHandler returns handler for existing feature', () => {
   const mockHandler = jest.fn(async (): Promise<object> => ({}))
   const mockFeature = {
