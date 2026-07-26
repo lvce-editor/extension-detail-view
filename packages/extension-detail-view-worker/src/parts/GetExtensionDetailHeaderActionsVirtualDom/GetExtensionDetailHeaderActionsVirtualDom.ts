@@ -4,6 +4,7 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetButtonVirtualDom from '../GetButtonVirtualDom/GetButtonVirtualDom.ts'
 import * as GetSettingsButtonVirtualDom from '../GetSettingsButtonVirtualDom/GetSettingsButtonVirtualDom.ts'
+import * as GetVirtualDomChildCount from '../GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 
 export const getExtensionDetailHeaderActionsVirtualDom = (
   buttonDefs: readonly ExtensionDetailButton[],
@@ -14,14 +15,14 @@ export const getExtensionDetailHeaderActionsVirtualDom = (
     GetButtonVirtualDom.getButtonVirtualDom(btn.label, btn.onClick, btn.name, btn.onMouseEnter, btn.onMouseLeave),
   )
   const settingsButton: readonly VirtualDomNode[] = GetSettingsButtonVirtualDom.getSettingsButtonVirtualDom(settingsButtonEnabled)
+  const children = [...buttons, ...settingsButton]
   const dom: readonly VirtualDomNode[] = [
     {
-      childCount: enabledButtons.length + settingsButton.length,
+      childCount: GetVirtualDomChildCount.getVirtualDomChildCount(children),
       className: ClassNames.ExtensionDetailHeaderActions,
       type: VirtualDomElements.Div,
     },
-    ...buttons,
-    ...settingsButton,
+    ...children,
   ]
   return dom
 }
