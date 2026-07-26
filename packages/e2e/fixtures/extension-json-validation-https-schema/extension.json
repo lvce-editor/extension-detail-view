@@ -1,0 +1,11 @@
+{
+  "id": "test.json-validation-https-schema",
+  "name": "Test Json Validation HTTPS Schema",
+  "description": "Test Json Validation HTTPS Schema",
+  "jsonValidation": [
+    {
+      "fileMatch": "*.test.json",
+      "schema": "https://json.schemastore.org/prettierrc"
+    }
+  ]
+}
