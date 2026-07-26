@@ -22,11 +22,13 @@ export const register = <Key extends keyof ExtensionDetailState>(feature: Featur
 export const getFeatures = (selectedFeature: string, extension: any): readonly Feature[] => {
   const allFeatures = Object.values(features)
   const enabledFeatures = allFeatures.filter((item) => item.isEnabled(extension))
+  const hasSelectedFeature = enabledFeatures.some((item) => item.id === selectedFeature)
+  const actualSelectedFeature = hasSelectedFeature ? selectedFeature : enabledFeatures[0]?.id
   const converted: readonly Feature[] = enabledFeatures.map((item) => {
     return {
       id: item.id,
       label: item.getLabel(),
-      selected: item.id === selectedFeature,
+      selected: item.id === actualSelectedFeature,
     }
   })
 
