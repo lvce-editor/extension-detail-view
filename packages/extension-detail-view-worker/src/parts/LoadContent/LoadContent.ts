@@ -19,7 +19,7 @@ import { getExtensionUri } from '../GetExtensionUri/GetExtensionUri.ts'
 import { getGithubRepository } from '../GetGithubRepository/GetGithubRepository.ts'
 import { getLinkProtectionEnabled } from '../GetLinkProtectionEnabled/GetLinkProtectionEnabled.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
-import { getPadding, getSideBarWidth } from '../GetPadding/GetPadding.ts'
+import { getResponsiveLayout } from '../GetResponsiveLayout/GetResponsiveLayout.ts'
 import { getSyntaxLanguages } from '../GetSyntaxLanguages/GetSyntaxLanguages.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
@@ -122,9 +122,6 @@ const loadContentInternal = async (
     created,
     lastUpdated,
   )
-  const padding = getPadding(width)
-  const sideBarWidth = getSideBarWidth(width)
-  const showSideBar = sideBarWidth > 0
   const linkProtectionEnabled = await getLinkProtectionEnabled()
   return {
     ...state,
@@ -162,8 +159,7 @@ const loadContentInternal = async (
     locationProtocol,
     marketplaceEntries,
     name,
-    paddingLeft: padding,
-    paddingRight: padding,
+    ...getResponsiveLayout(width),
     platform,
     rating,
     readmeScrollTop,
@@ -174,9 +170,7 @@ const loadContentInternal = async (
     selectedFeature: actualSelectedFeature,
     selectedTab,
     settingsButtonEnabled: true,
-    showSideBar,
     showSizeLink,
-    sideBarWidth,
     sizeOnDisk: size,
     sizeValue,
     tabs: enabledTabs,

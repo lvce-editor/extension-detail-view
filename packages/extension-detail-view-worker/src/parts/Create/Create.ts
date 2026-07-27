@@ -1,5 +1,6 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import * as ExtensionDetailStates from '../ExtensionDetailStates/ExtensionDetailStates.ts'
+import { getResponsiveLayout } from '../GetResponsiveLayout/GetResponsiveLayout.ts'
 
 export const create = (uid: number, uri: string, x: number, y: number, width: number, height: number, platform: number, assetDir: string): void => {
   const state: ExtensionDetailState = {
@@ -49,8 +50,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     locationProtocol: '',
     marketplaceEntries: [],
     name: '',
-    paddingLeft: 0,
-    paddingRight: 0,
+    ...getResponsiveLayout(width),
     platform,
     programmingLanguages: [],
     rating: 'n/a',
@@ -64,9 +64,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     settings: [],
     settingsButtonEnabled: false,
     showAdditionalDetailsBreakpoint: 700,
-    showSideBar: true,
     showSizeLink: false,
-    sideBarWidth: 0,
     sizeOnDisk: 0,
     sizeValue: 0,
     status: 0,
