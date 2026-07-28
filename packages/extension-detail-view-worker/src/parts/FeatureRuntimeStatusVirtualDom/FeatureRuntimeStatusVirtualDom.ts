@@ -7,6 +7,11 @@ import * as GetActivationTimeVirtualDom from '../GetActivationTimeVirtualDom/Get
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
 import * as GetRuntimeActivationEventVirtualDom from '../GetRuntimeActivationEventVirtualDom/GetRuntimeActivationEventVirtualDom.ts'
 import * as GetStatusVirtualDom from '../GetStatusVirtualDom/GetStatusVirtualDom.ts'
+import * as RuntimeStatusType from '../RuntimeStatusType/RuntimeStatusType.ts'
+
+interface FeatureRuntimeStatusViewState extends FeatureRuntimeStatusState {
+  readonly disabled?: boolean
+}
 
 const featureContentNode: VirtualDomNode = {
   childCount: 2,
@@ -26,8 +31,9 @@ const getChildCount = (status: number, activationEvent: string, activationTime: 
   return childCount
 }
 
-export const getRuntimeStatusVirtualDom = (state: FeatureRuntimeStatusState): readonly VirtualDomNode[] => {
-  const { activationTime, importTime, status, wasActivatedByEvent } = state
+export const getRuntimeStatusVirtualDom = (state: FeatureRuntimeStatusViewState): readonly VirtualDomNode[] => {
+  const { activationTime, disabled, importTime, status, wasActivatedByEvent } = state
+  const displayedStatus = disabled ? RuntimeStatusType.Disabled : status
   const heading = ExtensionDetailStrings.runtimeStatus()
   const childCount = getChildCount(status, wasActivatedByEvent, activationTime, importTime)
   return [
@@ -38,7 +44,7 @@ export const getRuntimeStatusVirtualDom = (state: FeatureRuntimeStatusState): re
       className: 'RuntimeStatusDefinitionList',
       type: VirtualDomElements.Dl,
     },
-    ...GetStatusVirtualDom.getStatusVirtualDom(status),
+    ...GetStatusVirtualDom.getStatusVirtualDom(displayedStatus),
     ...GetRuntimeActivationEventVirtualDom.getRuntimeActivationEventVirtualDom(wasActivatedByEvent),
     ...GetActivationTimeVirtualDom.getActivationTimeVirtualDom(importTime, activationTime),
   ]

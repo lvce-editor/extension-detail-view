@@ -6,6 +6,8 @@ export const getStatusMessage = (statusType: number): string => {
       return 'activated'
     case RuntimeStatusType.Activating:
       return 'Activating'
+    case RuntimeStatusType.Disabled:
+      return 'Disabled'
     case RuntimeStatusType.Error:
       return 'error'
     case RuntimeStatusType.Importing:
