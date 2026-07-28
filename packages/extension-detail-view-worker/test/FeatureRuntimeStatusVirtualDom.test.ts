@@ -219,6 +219,23 @@ test('getRuntimeStatusVirtualDom should handle none status', () => {
   })
 })
 
+test('getRuntimeStatusVirtualDom should show disabled when the extension is disabled', () => {
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    disabled: true,
+    status: RuntimeStatusType.None,
+  }
+
+  const result = getRuntimeStatusVirtualDom(state)
+
+  expect(result).toHaveLength(8)
+  expect(result[7]).toEqual({
+    childCount: 0,
+    text: 'Disabled',
+    type: VirtualDomElements.Text,
+  })
+})
+
 test('getRuntimeStatusVirtualDom should format activation time correctly', () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
