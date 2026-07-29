@@ -33,6 +33,7 @@ import * as ParseLastUpdated from '../ParseLastUpdated/ParseLastUpdated.ts'
 import * as Path from '../Path/Path.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
+import * as SelectFeature from '../SelectFeature/SelectFeature.ts'
 
 const isEnabled = (tab: Tab): boolean => {
   return tab.enabled
@@ -123,7 +124,7 @@ const loadContentInternal = async (
     lastUpdated,
   )
   const linkProtectionEnabled = await getLinkProtectionEnabled()
-  return {
+  const loadedState: ExtensionDetailState = {
     ...state,
     badge,
     baseUrl,
@@ -175,6 +176,10 @@ const loadContentInternal = async (
     sizeValue,
     tabs: enabledTabs,
   }
+  if (selectedTab === InputName.Features) {
+    return SelectFeature.selectFeature(loadedState, actualSelectedFeature)
+  }
+  return loadedState
 }
 
 export const loadContent = async (

@@ -4,6 +4,7 @@ import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/Ext
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { clearRegistry, register } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
+import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as LoadContent from '../src/parts/LoadContent/LoadContent.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
@@ -341,6 +342,92 @@ test('loadContent - selects first available feature when saved feature is unavai
     ['Layout.getCommit'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
+  expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
+  expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
+})
+
+test('loadContent - loads the selected feature details when restoring the features tab', async () => {
+  const mockExtension: any = {
+    builtin: false,
+    colorThemes: [{ id: 'test-theme', label: 'Test Theme' }],
+    description: 'A test theme extension',
+    id: 'test-extension',
+    name: 'Test Extension',
+    path: '/test/path',
+    version: '1.0.0',
+  }
+  const themesMarkdownDom: any[] = [{ children: ['Themes'], type: 'h1' }]
+  const getDetails = jest.fn(
+    async (_extension: any, _baseUrl: string, _locationProtocol: string, _cacheName: string): Promise<{ themesMarkdownDom: any[] }> => {
+      return {
+        themesMarkdownDom,
+      }
+    },
+  )
+
+  register({
+    getDetails,
+    getLabel: (): string => 'Themes',
+    getVirtualDom: jest.fn((): any[] => []),
+    id: InputName.Theme,
+    isEnabled: jest.fn((): boolean => true),
+  })
+
+  using mockRendererRpc = RendererWorker.registerMockRpc({
+    'ExtensionManagement.getExtension': () => {
+      return mockExtension
+    },
+    'Layout.getApplicationName': () => {
+      return 'test-app'
+    },
+    'Layout.getCommit': () => {
+      return 'test-commit'
+    },
+    'Preferences.get': () => {
+      return true
+    },
+  })
+
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.exists': () => {
+      return true
+    },
+    'FileSystem.getFolderSize': () => {
+      return 1024
+    },
+    'FileSystem.readFile': () => {
+      return '# Test README Content'
+    },
+  })
+
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getMarkdownDom': () => {
+      return [{ children: ['Test README Content'], type: 'h1' }]
+    },
+    'Markdown.getVirtualDom': () => {
+      return [{ children: ['Test README Content'], type: 'h1' }]
+    },
+    'Markdown.render': () => {
+      return '<h1>Test README Content</h1>'
+    },
+  })
+
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    uri: 'extension-detail://test-extension',
+  }
+  const savedState = {
+    selectedFeature: InputName.Theme,
+    selectedTab: InputName.Features,
+  }
+
+  const result = await LoadContent.loadContent(state, 1, savedState)
+
+  expect(result.selectedFeature).toBe(InputName.Theme)
+  expect(result.selectedTab).toBe(InputName.Features)
+  expect(result.themesMarkdownDom).toBe(themesMarkdownDom)
+  expect(getDetails).toHaveBeenCalledWith(mockExtension, '/test/path', 'https:', 'test-app/markdown-cache')
+  expect(mockRendererRpc.invocations.length).toBeGreaterThan(0)
   expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
