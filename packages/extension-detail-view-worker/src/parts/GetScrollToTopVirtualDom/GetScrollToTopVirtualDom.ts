@@ -5,6 +5,13 @@ import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEven
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as InputName from '../InputName/InputName.ts'
 
+const scrollToTopIconNode: VirtualDomNode = {
+  childCount: 0,
+  className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconChevronUp),
+  role: AriaRoles.None,
+  type: VirtualDomElements.Div,
+}
+
 export const getScrollToTopVirtualDom = (scrollToTopButtonEnabled: boolean): readonly VirtualDomNode[] => {
   if (!scrollToTopButtonEnabled) {
     return []
@@ -18,11 +25,6 @@ export const getScrollToTopVirtualDom = (scrollToTopButtonEnabled: boolean): rea
       onClick: DomEventListenerFunctions.HandleClickScrollToTop,
       type: VirtualDomElements.Button,
     },
-    {
-      childCount: 0,
-      className: mergeClassNames(ClassNames.MaskIcon, ClassNames.MaskIconChevronUp),
-      role: AriaRoles.None,
-      type: VirtualDomElements.Div,
-    },
+    scrollToTopIconNode,
   ]
 }
