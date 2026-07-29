@@ -2,7 +2,7 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.tabs-focus-next'
 
-export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ expect, Extension, ExtensionDetail, KeyBoard, Locator }) => {
   // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
@@ -10,15 +10,20 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   const tabDetails = Locator('.ExtensionDetailTab[name="Details"]')
   const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
+  const tabChangelog = Locator('.ExtensionDetailTab[name="Changelog"]')
   await expect(tabDetails).toBeVisible()
   await expect(tabDetails).toHaveAttribute('aria-selected', 'true')
   await ExtensionDetail.handleTabFocus('Details')
 
   // act
-  await ExtensionDetail.focusNextTab()
+  await KeyBoard.press('ArrowRight')
 
   // assert
   await expect(tabFeatures).toBeFocused()
 
-  // TODO also add e2e tests for focusnextTab and focusPreviousTab
+  // act
+  await KeyBoard.press('ArrowRight')
+
+  // assert
+  await expect(tabChangelog).toBeFocused()
 }
