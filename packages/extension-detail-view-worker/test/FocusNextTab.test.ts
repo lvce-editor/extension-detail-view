@@ -1,8 +1,8 @@
 import { expect, test } from '@jest/globals'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
+import type { Tab } from '../src/parts/Tab/Tab.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FocusNextTab from '../src/parts/FocusNextTab/FocusNextTab.ts'
-import type { Tab } from '../src/parts/Tab/Tab.ts'
 
 const tabs: readonly Tab[] = [
   {
