@@ -91,7 +91,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     },
     {
       name: DomEventListenerFunctions.HandleResourceLinkClick,
-      params: ['handleResourceLinkClick', EventExpression.TargetHref],
+      params: ['handleResourceLinkClick', EventExpression.TargetHref, EventExpression.TargetName],
       preventDefault: true,
     },
     {

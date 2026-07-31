@@ -23,4 +23,9 @@ test('renderEventListeners returns expected event listeners', () => {
     name: DomEventListenerFunctions.HandleClickSettings,
     params: ['handleClickSettings', EventExpression.ClientX, EventExpression.ClientY],
   })
+  expect(result).toContainEqual({
+    name: DomEventListenerFunctions.HandleResourceLinkClick,
+    params: ['handleResourceLinkClick', EventExpression.TargetHref, EventExpression.TargetName],
+    preventDefault: true,
+  })
 })

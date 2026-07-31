@@ -30,3 +30,20 @@ test.each(['http://example.com', 'https://example.com'])('opens an external reso
   expect(result).toBe(state)
   expect(mockRpc.invocations).toEqual([['Open.openUrl', href]])
 })
+
+test('opens color theme file in editor', async () => {
+  using mockRpc = RendererWorker.registerMockRpc({
+    'Main.openUri': () => {
+      /**/
+    },
+  })
+  const state = {
+    ...createDefaultState(),
+    extensionUri: 'file:///extensions/test-theme',
+  }
+
+  const result = await handleResourceLinkClick(state, '#', 'themes/color-theme.json')
+
+  expect(result).toBe(state)
+  expect(mockRpc.invocations).toEqual([['Main.openUri', '/extensions/test-theme/themes/color-theme.json']])
+})

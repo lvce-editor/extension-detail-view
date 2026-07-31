@@ -1,22 +1,16 @@
 import type { FeatureState } from '../FeatureState/FeatureState.ts'
-import * as GetMarkdownVirtualDom from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
-import * as GetThemeMarkdown from '../GetThemeMarkdown/GetThemeMarkdown.ts'
-import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
+import { getThemeDetailsVirtualDom } from '../GetThemeDetailsVirtualDom/GetThemeDetailsVirtualDom.ts'
 
 export type FeatureThemeState = FeatureState<'themesMarkdownDom'>
 
-export const getThemeDetails = async (extension: any, baseUrl: string, locationProtocol: string, cacheName: string): Promise<FeatureThemeState> => {
+export const getThemeDetails = async (
+  extension: any,
+  _baseUrl: string,
+  _locationProtocol: string,
+  _cacheName: string,
+): Promise<FeatureThemeState> => {
   const { colorThemes, iconThemes, productIconThemes } = extension
-  const markdown = GetThemeMarkdown.getThemeMarkdown(colorThemes || [], iconThemes || [], productIconThemes || [])
-  const rendered = await RenderMarkdown.renderMarkdown(
-    markdown,
-    {
-      baseUrl,
-      locationProtocol,
-    },
-    cacheName,
-  )
-  const themesMarkdownDom = await GetMarkdownVirtualDom.getMarkdownVirtualDom(rendered)
+  const themesMarkdownDom = getThemeDetailsVirtualDom(colorThemes || [], iconThemes || [], productIconThemes || [])
   return {
     themesMarkdownDom,
   }

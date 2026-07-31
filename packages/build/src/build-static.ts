@@ -37,6 +37,17 @@ const extensionDetailViewWorkerUrl = \`${remoteUrl}\``
   const newContent = content.replace(occurrence, replacement)
   await writeFile(rendererWorkerPath, newContent)
 
+  const extensionDetailViewWorkerPath = join(
+    root,
+    'dist',
+    commitHash,
+    'packages',
+    'extension-detail-view-worker',
+    'dist',
+    'extensionDetailViewWorkerMain.js',
+  )
+  await cp(workerPath, extensionDetailViewWorkerPath)
+
   await cp(join(root, 'dist'), join(root, '.tmp', 'static'), { recursive: true })
 }
 
