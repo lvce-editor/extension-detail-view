@@ -1,7 +1,9 @@
 import { expect, test } from '@jest/globals'
+import { AriaRoles } from '@lvce-editor/constants'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { VirtualDomNode } from '../src/parts/VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetFeatureThemesVirtualDom from '../src/parts/GetFeatureThemesVirtualDom/GetFeatureThemesVirtualDom.ts'
 import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
@@ -23,6 +25,8 @@ test('getFeatureThemesVirtualDom with empty themesDom', () => {
     {
       childCount: 0,
       className: ClassNames.DefaultMarkdown,
+      onClick: DomEventListenerFunctions.HandleResourceLinkClick,
+      role: AriaRoles.None,
       type: VirtualDomElements.Div,
     },
   ]
@@ -52,6 +56,8 @@ test('getFeatureThemesVirtualDom with single node themesDom', () => {
     {
       childCount: 1,
       className: ClassNames.DefaultMarkdown,
+      onClick: DomEventListenerFunctions.HandleResourceLinkClick,
+      role: AriaRoles.None,
       type: VirtualDomElements.Div,
     },
     {
@@ -91,6 +97,8 @@ test('getFeatureThemesVirtualDom with multiple nodes themesDom', () => {
     {
       childCount: 2,
       className: ClassNames.DefaultMarkdown,
+      onClick: DomEventListenerFunctions.HandleResourceLinkClick,
+      role: AriaRoles.None,
       type: VirtualDomElements.Div,
     },
     {
@@ -134,6 +142,8 @@ test('getFeatureThemesVirtualDom with nested nodes themesDom', () => {
     {
       childCount: 1,
       className: ClassNames.DefaultMarkdown,
+      onClick: DomEventListenerFunctions.HandleResourceLinkClick,
+      role: AriaRoles.None,
       type: VirtualDomElements.Div,
     },
     {
