@@ -1,6 +1,7 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
+import { isBuiltinExtension } from '../IsBuiltinExtension/IsBuiltinExtension.ts'
 
 export const handleColorThemeChanged = (state: ExtensionDetailState, colorThemeId: string): ExtensionDetailState => {
   const { currentColorThemeId, disabled, extension, hasColorTheme } = state
@@ -9,7 +10,7 @@ export const handleColorThemeChanged = (state: ExtensionDetailState, colorThemeI
   }
   const extensionColorThemeId = getColorThemeId(extension) || ''
   const extensionColorThemeLabel = getColorThemeLabel(extension) || ''
-  const isBuiltin = extension?.isBuiltin || extension?.builtin || false
+  const isBuiltin = isBuiltinExtension(extension)
   const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled, extensionColorThemeId, extensionColorThemeLabel, colorThemeId)
   return {
     ...state,

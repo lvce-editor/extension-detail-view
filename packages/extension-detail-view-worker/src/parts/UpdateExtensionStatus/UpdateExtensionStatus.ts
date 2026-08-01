@@ -3,6 +3,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import * as ExtensionManagement from '../ExtensionManagement/ExtensionManagement.ts'
 import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
+import { isBuiltinExtension } from '../IsBuiltinExtension/IsBuiltinExtension.ts'
 
 export interface UpdateFunction {
   (extensionId: string, platform: number): Promise<any>
@@ -18,7 +19,7 @@ export const updateExtensionStatus = async (state: ExtensionDetailState, updateF
   const disabled = extension?.disabled
   const extensionColorThemeId = getColorThemeId(extension) || ''
   const extensionColorThemeLabel = getColorThemeLabel(extension) || ''
-  const isBuiltin = extension?.isBuiltin || extension?.builtin || false
+  const isBuiltin = isBuiltinExtension(extension)
   const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled, extensionColorThemeId, extensionColorThemeLabel, currentColorThemeId)
   return {
     ...state,

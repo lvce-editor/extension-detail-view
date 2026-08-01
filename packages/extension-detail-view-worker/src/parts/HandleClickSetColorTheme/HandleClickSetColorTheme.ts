@@ -2,6 +2,7 @@ import { DialogWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
+import { isBuiltinExtension } from '../IsBuiltinExtension/IsBuiltinExtension.ts'
 import * as SetColorTheme from '../SetColorTheme/SetColorTheme.ts'
 
 export const handleClickSetColorTheme = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
@@ -12,7 +13,7 @@ export const handleClickSetColorTheme = async (state: ExtensionDetailState): Pro
     if (error) {
       await DialogWorker.invoke('ConfirmPrompt.prompt', `${error}`)
     }
-    const isBuiltin = extension?.isBuiltin || extension?.builtin || false
+    const isBuiltin = isBuiltinExtension(extension)
     const colorThemeLabel = getColorThemeLabel(extension) || ''
     const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled, colorThemeId, colorThemeLabel, colorThemeId)
     return {

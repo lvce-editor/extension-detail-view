@@ -25,6 +25,7 @@ import * as GetTabs from '../GetTabs/GetTabs.ts'
 import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as InputSource from '../InputSource/InputSource.ts'
+import { isBuiltinExtension } from '../IsBuiltinExtension/IsBuiltinExtension.ts'
 import * as LoadHeaderContent from '../LoadHeaderContent/LoadHeaderContent.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import { loadSideBarContent } from '../LoadSideBarContent/LoadSideBarContent.ts'
@@ -96,7 +97,7 @@ const loadContentInternal = async (
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
     scrollToTopEnabled: true,
   })
-  const isBuiltin = extension?.isBuiltin || extension?.builtin || false
+  const isBuiltin = isBuiltinExtension(extension)
   const disabled = extension?.disabled
   const extensionColorThemeId = getColorThemeId(extension) || ''
   const extensionColorThemeLabel = getColorThemeLabel(extension) || ''
