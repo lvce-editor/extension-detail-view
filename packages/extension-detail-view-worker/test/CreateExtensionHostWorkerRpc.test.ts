@@ -4,7 +4,7 @@ import { createExtensionHostWorkerRpc } from '../src/parts/CreateExtensionHostWo
 
 test('createExtensionHostWorkerRpc creates a lazy RPC', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionHostWorker': () => {},
+    'SendMessagePortToExtensionHostWorker.sendMessagePortToExtensionManagementWorker': () => {},
   })
   const rpc = await createExtensionHostWorkerRpc()
   expect(rpc).toBeDefined()
