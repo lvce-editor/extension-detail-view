@@ -3,6 +3,7 @@ import type { HeaderData } from '../HeaderData/HeaderData.ts'
 import * as ExtensionDisplay from '../ExtensionDisplay/ExtensionDisplay.ts'
 import * as GetBadge from '../GetBadge/GetBadge.ts'
 import * as HasColorThemes from '../HasColorThemes/HasColorThemes.ts'
+import { isBuiltinExtension } from '../IsBuiltinExtension/IsBuiltinExtension.ts'
 
 export const loadHeaderContent = (state: ExtensionDetailState, platform: number, extension: any): HeaderData => {
   const { assetDir, builtinExtensionsBadgeEnabled } = state
@@ -13,7 +14,7 @@ export const loadHeaderContent = (state: ExtensionDetailState, platform: number,
   const extensionId = extension?.id || 'n/a'
   const extensionVersion = extension?.version || 'n/a'
   const hasColorTheme = HasColorThemes.hasColorThemes(extension)
-  const isBuiltin = extension?.isBuiltin || extension?.builtin || false
+  const isBuiltin = isBuiltinExtension(extension)
   const badge = GetBadge.getBadge(isBuiltin, builtinExtensionsBadgeEnabled)
   const downloadCount = isBuiltin ? 'n/a' : ExtensionDisplay.getDownloadCount(extension)
   const rating = isBuiltin ? 'n/a' : ExtensionDisplay.getRating(extension)

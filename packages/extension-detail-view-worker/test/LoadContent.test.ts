@@ -174,9 +174,8 @@ test('loadContent - unexpected load error', async () => {
 
 test('loadContent - with builtin extension', async () => {
   const mockExtension: any = {
-    builtin: true,
     description: 'A builtin extension',
-    id: 'builtin-extension',
+    id: 'builtin.language-basics-java',
     name: 'Builtin Extension',
     path: '/test/path',
     version: '1.0.0',
@@ -223,15 +222,16 @@ test('loadContent - with builtin extension', async () => {
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
-    uri: 'extension-detail://builtin-extension',
+    uri: 'extension-detail://builtin.language-basics-java',
   }
 
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
   expect(result.extension).toEqual(mockExtension)
+  expect(result.badge).toBe('builtin')
   expect(result.marketplaceEntries).toEqual([])
   expect(mockRendererRpc.invocations).toEqual([
-    ['ExtensionManagement.getExtension', 'builtin-extension'],
+    ['ExtensionManagement.getExtension', 'builtin.language-basics-java'],
     ['Preferences.get', 'workbench.colorTheme'],
     ['Preferences.getAll'],
     ['Preferences.get', 'workbnech.colorTheme'],
