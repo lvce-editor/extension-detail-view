@@ -12,9 +12,9 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   const table = Locator('.FeatureContent > table.Table')
   await expect(table.locator('thead th.TableHeading')).toHaveCount(5)
-  await expect(table.locator('tbody tr')).toHaveCount(1)
+  await expect(table.locator('tbody tr')).toHaveCount(2)
   const cells = table.locator('tbody td.TableCell')
   const extension = cells.nth(2).locator('code')
-  await expect(cells).toHaveCount(5)
+  await expect(cells).toHaveCount(10)
   await expect(extension).toHaveText('.css')
 }
