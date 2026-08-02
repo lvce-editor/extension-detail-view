@@ -99,6 +99,20 @@ test('getProgrammingLanguageTableEntry with empty extensions array', () => {
   })
 })
 
+test('getProgrammingLanguageTableEntry without extensions', () => {
+  const programmingLanguage = {
+    fileNames: ['.nvmrc', '.node-version'],
+    id: 'nvmrc',
+  }
+  const result = getProgrammingLanguageTableEntry(programmingLanguage)
+
+  expect(result[2]).toEqual({
+    listItems: [],
+    type: TableCellType.CodeList,
+    value: '',
+  })
+})
+
 test('getProgrammingLanguageTableEntry with single extension', () => {
   const programmingLanguage = {
     configuration: {},
