@@ -40,4 +40,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(cell4).toHaveText('yes')
   const cell5 = tableCells.nth(4)
   await expect(cell5).toHaveText('no')
+  const cell6 = tableCells.nth(5)
+  await expect(cell6).toHaveText('nvmrc')
+  const cell8 = tableCells.nth(7)
+  await expect(cell8).toHaveText('')
 }

@@ -8,6 +8,11 @@
       "extensions": [".css"],
       "tokenize": "src/tokenizeCss.js",
       "configuration": "languageConfiguration.json"
+    },
+    {
+      "id": "nvmrc",
+      "fileNames": [".nvmrc", ".node-version"],
+      "tokenize": "src/tokenizeNvmrc.js"
     }
   ]
 }

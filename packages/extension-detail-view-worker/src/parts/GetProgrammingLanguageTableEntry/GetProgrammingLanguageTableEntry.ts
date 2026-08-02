@@ -2,7 +2,7 @@ import type { Row } from '../Row/Row.ts'
 import * as TableCellType from '../TableCellType/TableCellType.ts'
 
 export const getProgrammingLanguageTableEntry = (programmingLanguage: any): Row => {
-  const { configuration, extensions, id } = programmingLanguage
+  const { configuration, extensions = [], id } = programmingLanguage
   const name = '' // TODO
   const snippets = '' // TODO
   return [
