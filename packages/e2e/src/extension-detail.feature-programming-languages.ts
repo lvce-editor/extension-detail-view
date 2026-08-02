@@ -33,7 +33,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const cell1 = tableCells.nth(0)
   await expect(cell1).toHaveText('css')
   const cell2 = tableCells.nth(1)
-  await expect(cell2).toHaveText('')
+  await expect(cell2).toHaveText('-')
   const cell3 = tableCells.nth(2)
   await expect(cell3).toHaveText('.css')
   const cell4 = tableCells.nth(3)
@@ -42,6 +42,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(cell5).toHaveText('no')
   const cell6 = tableCells.nth(5)
   await expect(cell6).toHaveText('nvmrc')
+  const cell7 = tableCells.nth(6)
+  await expect(cell7).toHaveText('-')
   const cell8 = tableCells.nth(7)
-  await expect(cell8).toHaveText('')
+  await expect(cell8).toHaveText('-')
 }
