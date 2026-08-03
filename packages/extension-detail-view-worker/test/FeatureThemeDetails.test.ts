@@ -1,5 +1,6 @@
 import { expect, test } from '@jest/globals'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as FeatureThemeDetails from '../src/parts/FeatureThemeDetails/FeatureThemeDetails.ts'
 
 test('returns color theme details', async () => {
@@ -11,10 +12,10 @@ test('returns color theme details', async () => {
 
   expect(result.themesMarkdownDom).toContainEqual({
     childCount: 1,
+    className: ClassNames.ColorThemeLink,
     href: '#',
     name: 'themes/dark.json',
     rel: 'noopener noreferrer',
-    style: 'color: var(--LinkForeground, #3794ff)',
     target: '_blank',
     title: 'themes/dark.json',
     type: VirtualDomElements.A,

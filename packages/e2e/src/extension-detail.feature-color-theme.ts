@@ -47,7 +47,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(listItem1).toHaveText('Test')
   const themeLink = listItem1.locator('a')
   await expect(themeLink).toHaveAttribute('title', 'color-theme.json')
-  await expect(themeLink).toHaveAttribute('style', 'color: var(--LinkForeground, #3794ff)')
+  await expect(themeLink).toHaveClass('ColorThemeLink')
 
   // act
   await themeLink.dispatchEvent('click', { bubbles: true } as unknown as string)
