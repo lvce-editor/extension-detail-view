@@ -14,6 +14,7 @@ test('returns color theme details', async () => {
     href: '#',
     name: 'themes/dark.json',
     rel: 'noopener noreferrer',
+    style: 'color: var(--LinkForeground, #3794ff)',
     target: '_blank',
     title: 'themes/dark.json',
     type: VirtualDomElements.A,
