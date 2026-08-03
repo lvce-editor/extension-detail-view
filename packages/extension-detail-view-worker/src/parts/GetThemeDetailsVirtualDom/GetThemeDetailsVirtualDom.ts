@@ -1,6 +1,7 @@
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ElementWithLabel } from '../ElementWithLabel/ElementWithLabel.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const headingNode: VirtualDomNode = {
@@ -18,6 +19,7 @@ const getItemVirtualDom = (item: ElementWithLabel, linksEnabled: boolean): reado
     return [
       {
         childCount: 1,
+        className: ClassNames.ColorThemeLink,
         href: '#',
         name: item.path,
         rel: 'noopener noreferrer',
