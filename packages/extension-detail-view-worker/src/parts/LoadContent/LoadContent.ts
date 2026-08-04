@@ -58,7 +58,7 @@ const loadContentInternal = async (
   }
   const currentColorThemeId = await getCurrentColorTheme()
   const applicationName = await getApplicationName()
-  const cacheName = `${applicationName}/markdown-cache`
+  const cacheName = `${applicationName}/extension-readme-markdown-cache`
   const commit = await getCommit()
   const languages = await getSyntaxLanguages(platform, assetDir)
   const headerData: HeaderData = LoadHeaderContent.loadHeaderContent(state, platform, extension)

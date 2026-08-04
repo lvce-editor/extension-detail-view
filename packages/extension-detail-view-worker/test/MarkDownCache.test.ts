@@ -3,7 +3,7 @@ const resetModules = (): void => {
   jest.resetModules()
 }
 
-const cacheName = 'lvce-editor/markdown-cache'
+const cacheName = 'lvce-editor/extension-readme-markdown-cache'
 
 test('uses the application name for the markdown cache', async () => {
   resetModules()
@@ -14,9 +14,9 @@ test('uses the application name for the markdown cache', async () => {
   const getCache = jest.fn<(cacheName: string, bucketName: string) => Promise<typeof cache>>().mockResolvedValue(cache)
   const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
 
-  await MarkDownCache.has('test-app/markdown-cache', 'test-key', 'markdown-cache', getCache)
+  await MarkDownCache.has('test-app/extension-readme-markdown-cache', 'test-key', 'markdown-cache', getCache)
 
-  expect(getCache).toHaveBeenCalledWith('test-app/markdown-cache', 'markdown-cache')
+  expect(getCache).toHaveBeenCalledWith('test-app/extension-readme-markdown-cache', 'markdown-cache')
 })
 
 test.skip('has - returns false when storageBuckets is not supported', async () => {
@@ -62,7 +62,7 @@ test.skip('has - returns true when key exists in cache', async () => {
 
   expect(result).toBe(true)
   expect(mockStorageBuckets.open).toHaveBeenCalledWith('markdown-cache', expect.any(Object))
-  expect(mockCaches.open).toHaveBeenCalledWith('lvce-editor/markdown-cache')
+  expect(mockCaches.open).toHaveBeenCalledWith('lvce-editor/extension-readme-markdown-cache')
   expect(mockCache.match).toHaveBeenCalledWith('test-key')
   globalThis.navigator = originalNavigator
 })
