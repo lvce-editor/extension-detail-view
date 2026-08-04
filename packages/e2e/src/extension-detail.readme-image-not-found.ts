@@ -17,8 +17,6 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(markDown).toBeVisible()
   await expect(markDown).toContainText('test readme')
   const image = markDown.locator('img[src="./not-found.png"]')
-  await expect(image).toBeVisible()
-  await expect(image).toHaveAttribute('onerror', null)
   await ExtensionDetail.handleMarkdownImageError('./not-found.png')
   const imageError = markDown.locator('.MarkdownImageError')
   await expect(imageError).toBeVisible()

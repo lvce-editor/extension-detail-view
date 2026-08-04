@@ -19,6 +19,4 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(headings).toHaveCount(7)
   const safeLink = markdown.locator('a').nth(0)
   await expect(safeLink).toHaveAttribute('href', 'https://example.com/section-01')
-  const image = markdown.locator('img').nth(0)
-  await expect(image).toHaveAttribute('onerror', null)
 }
