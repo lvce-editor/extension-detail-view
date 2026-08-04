@@ -502,6 +502,7 @@ test('loadContent - loads changelog content when restoring the changelog tab', a
     changelogContent,
     expect.objectContaining({ baseUrl: '/test/path', locationProtocol: 'https:' }),
   ])
+  expect(mockRendererRpc.invocations.length).toBeGreaterThan(0)
 })
 
 test('loadContent - with different platform', async () => {
