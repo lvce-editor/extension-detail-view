@@ -35,6 +35,7 @@ import * as Path from '../Path/Path.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 import * as RestoreState from '../RestoreState/RestoreState.ts'
 import * as SelectFeature from '../SelectFeature/SelectFeature.ts'
+import * as SelectTabChangelog from '../SelectTabChangelog/SelectTabChangelog.ts'
 
 const isEnabled = (tab: Tab): boolean => {
   return tab.enabled
@@ -179,6 +180,9 @@ const loadContentInternal = async (
   }
   if (selectedTab === InputName.Features) {
     return SelectFeature.selectFeature(loadedState, actualSelectedFeature)
+  }
+  if (selectedTab === InputName.Changelog) {
+    return SelectTabChangelog.selectTabChangelog(loadedState)
   }
   return loadedState
 }

@@ -432,6 +432,78 @@ test('loadContent - loads the selected feature details when restoring the featur
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
 
+test('loadContent - loads changelog content when restoring the changelog tab', async () => {
+  const mockExtension: any = {
+    builtin: false,
+    description: 'A test extension',
+    id: 'test-extension',
+    name: 'Test Extension',
+    path: '/test/path',
+    uri: '/test/uri',
+    version: '1.0.0',
+  }
+  const changelogContent = '# Changelog\n\n## Version 1.0.0'
+  const changelogDom = [{ childCount: 1, type: 1 }]
+
+  using mockRendererRpc = RendererWorker.registerMockRpc({
+    'ExtensionManagement.getExtension': () => {
+      return mockExtension
+    },
+    'Layout.getApplicationName': () => {
+      return 'test-app'
+    },
+    'Layout.getCommit': () => {
+      return 'test-commit'
+    },
+    'Preferences.get': () => {
+      return true
+    },
+  })
+
+  using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.exists': () => {
+      return true
+    },
+    'FileSystem.getFolderSize': () => {
+      return 1024
+    },
+    'FileSystem.readFile': (uri: string) => {
+      return uri.endsWith('/CHANGELOG.md') ? changelogContent : '# Test README Content'
+    },
+  })
+
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getMarkdownDom': () => {
+      return changelogDom
+    },
+    'Markdown.getVirtualDom': () => {
+      return changelogDom
+    },
+    'Markdown.render': (markdown: string) => {
+      return markdown === changelogContent ? '<h1>Changelog</h1><h2>Version 1.0.0</h2>' : '<h1>Test README Content</h1>'
+    },
+  })
+
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    uri: 'extension-detail://test-extension',
+  }
+  const savedState = {
+    selectedTab: InputName.Changelog,
+  }
+
+  const result = await LoadContent.loadContent(state, 1, savedState)
+
+  expect(result.selectedTab).toBe(InputName.Changelog)
+  expect(result.changelogVirtualDom.length).toBeGreaterThan(0)
+  expect(mockFileSystemRpc.invocations).toContainEqual(['FileSystem.readFile', 'https://lvce-editor.github.io/test/uri/CHANGELOG.md'])
+  expect(mockMarkdownRpc.invocations).toContainEqual([
+    'Markdown.render',
+    changelogContent,
+    expect.objectContaining({ baseUrl: '/test/path', locationProtocol: 'https:' }),
+  ])
+})
+
 test('loadContent - with different platform', async () => {
   const mockExtension: any = {
     builtin: false,
