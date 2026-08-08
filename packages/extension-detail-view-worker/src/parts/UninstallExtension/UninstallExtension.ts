@@ -1,5 +1,5 @@
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { ExtensionManagementWorker } from '@lvce-editor/rpc-registry'
 
-export const uninstallExtension = (id: string): Promise<void> => {
-  return RendererWorker.uninstallExtension(id)
+export const uninstallExtension = async (id: string): Promise<void> => {
+  await ExtensionManagementWorker.uninstall(id)
 }
