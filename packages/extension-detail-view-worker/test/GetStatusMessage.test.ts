@@ -17,9 +17,9 @@ test('getStatusMessage should return "Activating" for RuntimeStatusType.Activati
   expect(result).toBe('Activating')
 })
 
-test('getStatusMessage should return "activated" for RuntimeStatusType.Activated', () => {
+test('getStatusMessage should return "Activated" for RuntimeStatusType.Activated', () => {
   const result = getStatusMessage(RuntimeStatusType.Activated)
-  expect(result).toBe('activated')
+  expect(result).toBe('Activated')
 })
 
 test('getStatusMessage should return "Disabled" for RuntimeStatusType.Disabled', () => {

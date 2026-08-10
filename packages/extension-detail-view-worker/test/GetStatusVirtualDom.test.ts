@@ -24,7 +24,7 @@ test('getStatusVirtualDom should return correct virtual DOM structure for activa
     },
     {
       childCount: 0,
-      text: 'activated',
+      text: 'Activated',
       type: VirtualDomElements.Text,
     },
   ]

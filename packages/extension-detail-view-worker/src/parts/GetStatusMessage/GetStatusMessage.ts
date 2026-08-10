@@ -3,7 +3,7 @@ import * as RuntimeStatusType from '../RuntimeStatusType/RuntimeStatusType.ts'
 export const getStatusMessage = (statusType: number): string => {
   switch (statusType) {
     case RuntimeStatusType.Activated:
-      return 'activated'
+      return 'Activated'
     case RuntimeStatusType.Activating:
       return 'Activating'
     case RuntimeStatusType.Disabled:

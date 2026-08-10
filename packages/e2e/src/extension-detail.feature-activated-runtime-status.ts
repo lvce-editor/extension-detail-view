@@ -18,7 +18,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(heading).toBeVisible()
   await expect(heading).toHaveText('Runtime Status')
   const definitionList = Locator('.FeatureContent dl')
-  await expect(definitionList).toContainText('Status: activated')
+  await expect(definitionList).toContainText('Status: Activated')
   await expect(definitionList).toContainText('Activation Event: onCommand:runtimeStatus.activate')
   await expect(definitionList).toContainText('Activation Time: ')
 }
