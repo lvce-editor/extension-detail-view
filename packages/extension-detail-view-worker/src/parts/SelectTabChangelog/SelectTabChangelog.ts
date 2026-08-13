@@ -1,6 +1,5 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
-import { compactGithubIssueLinks } from '../CompactGithubIssueLinks/CompactGithubIssueLinks.ts'
 import { getGithubReleasesMarkdown } from '../GetGithubReleasesMarkdown/GetGithubReleasesMarkdown.ts'
 import { getGithubRepository } from '../GetGithubRepository/GetGithubRepository.ts'
 import { addScrollToTopVirtualDom, getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
@@ -11,6 +10,7 @@ import { loadGithubReleases } from '../LoadGithubReleases/LoadGithubReleases.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
 
 const releaseBatchSize = 100
+const githubIssueLinkRegex = /<a([^>]*?)href="(https:\/\/github\.com\/[^/"\s]+\/[^/"\s]+\/(?:issues|pull)\/(\d+))"([^>]*)>\2<\/a>/g
 
 const renderChangelogMarkdown = async (
   markdown: string,
@@ -18,7 +18,7 @@ const renderChangelogMarkdown = async (
   cacheName: string,
 ): Promise<string> => {
   const html = await RenderMarkdown.renderMarkdown(markdown, options, cacheName)
-  return compactGithubIssueLinks(html)
+  return html.replaceAll(githubIssueLinkRegex, '<a$1href="$2"$4>#$3</a>')
 }
 
 const mergeMarkdownVirtualDoms = (chunks: readonly (readonly VirtualDomNode[])[]): readonly VirtualDomNode[] => {
