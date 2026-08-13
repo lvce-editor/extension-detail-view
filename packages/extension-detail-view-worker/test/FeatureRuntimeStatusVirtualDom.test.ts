@@ -117,6 +117,32 @@ test('getRuntimeStatusVirtualDom should render the activation event', () => {
   })
 })
 
+test('getRuntimeStatusVirtualDom should render extension worker memory usage', () => {
+  const state: ExtensionDetailState = {
+    ...createDefaultState(),
+    memoryUsage: 2 * 1024 ** 2,
+    status: RuntimeStatusType.Activated,
+  }
+
+  const result = getRuntimeStatusVirtualDom(state)
+
+  expect(result[3]).toEqual({
+    childCount: 4,
+    className: 'RuntimeStatusDefinitionList',
+    type: VirtualDomElements.Dl,
+  })
+  expect(result).toContainEqual({
+    childCount: 0,
+    text: 'Memory Usage: ',
+    type: VirtualDomElements.Text,
+  })
+  expect(result).toContainEqual({
+    childCount: 0,
+    text: '2 MB',
+    type: VirtualDomElements.Text,
+  })
+})
+
 test('getRuntimeStatusVirtualDom should return correct virtual DOM structure with error status and no activation time', () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),

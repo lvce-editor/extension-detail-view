@@ -203,6 +203,10 @@ test('runtimeStatus', () => {
   expect(result).toBe(I18nString.i18nString(UiStrings.RuntimeStatus))
 })
 
+test('memoryUsage', () => {
+  expect(ExtensionDetailStrings.memoryUsage()).toBe('Memory Usage: ')
+})
+
 test('noReadmeFound', () => {
   const result = ExtensionDetailStrings.noReadmeFound()
   expect(result).toBe(I18nString.i18nString(UiStrings.NoReadmeFound))

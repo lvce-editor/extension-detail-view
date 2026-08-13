@@ -49,6 +49,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     locationHost: '',
     locationProtocol: '',
     marketplaceEntries: [],
+    memoryUsage: 0,
     name: '',
     ...getResponsiveLayout(width),
     platform,

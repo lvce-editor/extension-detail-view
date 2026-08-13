@@ -137,6 +137,10 @@ export const runtimeStatus = (): string => {
   return I18nString.i18nString(UiStrings.RuntimeStatus)
 }
 
+export const memoryUsage = (): string => {
+  return I18nString.i18nString(UiStrings.MemoryUsage)
+}
+
 export const jsonValidation = (): string => {
   return I18nString.i18nString(UiStrings.JsonValidation)
 }

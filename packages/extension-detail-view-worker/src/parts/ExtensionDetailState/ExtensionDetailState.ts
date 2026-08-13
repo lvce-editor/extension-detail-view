@@ -56,6 +56,7 @@ export interface ExtensionDetailState {
   readonly locationHost: string
   readonly locationProtocol: string
   readonly marketplaceEntries: readonly MoreInfoEntry[]
+  readonly memoryUsage: number
   readonly name: string
   readonly paddingLeft: number
   readonly paddingRight: number

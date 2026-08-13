@@ -10,6 +10,7 @@ test('getRuntimeStatusDetails should return runtime status details for extension
     activationTime: 150.75,
     id: 'test-extension',
     importTime: 0,
+    memoryUsage: 4096,
     status: RuntimeStatusType.Activated,
   }
 
@@ -29,6 +30,7 @@ test('getRuntimeStatusDetails should return runtime status details for extension
   expect(result).toEqual({
     activationTime: 150.75,
     importTime: 0,
+    memoryUsage: 4096,
     status: RuntimeStatusType.Activated,
     wasActivatedByEvent: 'onStartupFinished',
   })
@@ -60,6 +62,7 @@ test('getRuntimeStatusDetails should handle different activation events', async 
   expect(result).toEqual({
     activationTime: 200,
     importTime: 0,
+    memoryUsage: 0,
     status: RuntimeStatusType.Activating,
     wasActivatedByEvent: 'onCommand:test.command',
   })
@@ -91,6 +94,7 @@ test('getRuntimeStatusDetails should handle error status', async () => {
   expect(result).toEqual({
     activationTime: 0,
     importTime: 0,
+    memoryUsage: 0,
     status: RuntimeStatusType.Error,
     wasActivatedByEvent: '',
   })

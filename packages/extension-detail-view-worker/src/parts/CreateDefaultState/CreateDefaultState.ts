@@ -47,6 +47,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     locationHost: '',
     locationProtocol: '',
     marketplaceEntries: [],
+    memoryUsage: 0,
     name: '',
     paddingLeft: 0,
     paddingRight: 0,
