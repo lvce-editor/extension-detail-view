@@ -14,9 +14,7 @@ globalThis.postMessage({ id, jsonrpc: '2.0', result: null })
 const port = params[1]
 port.addEventListener('message', (event) => {
   const { id, method } = event.data
-  if (method !== 'ExtensionApi.executeCommand' && method !== 'ExtensionApi.ping') {
-    return
-  }
-  port.postMessage({ id, jsonrpc: '2.0', result: true })
+  const result = method === 'ExtensionApi.executeCommand' || method === 'ExtensionApi.ping' ? true : []
+  port.postMessage({ id, jsonrpc: '2.0', result })
 })
 port.start()
