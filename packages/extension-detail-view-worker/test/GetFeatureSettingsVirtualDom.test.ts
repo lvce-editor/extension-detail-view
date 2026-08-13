@@ -76,7 +76,7 @@ test('getFeatureSettingsVirtualDom - returns correct structure with rows', () =>
 
   expect(virtualDom[6]).toEqual({
     childCount: 1,
-    className: ClassNames.TableHeading,
+    className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
     type: VirtualDomElements.Th,
   })
 
@@ -84,7 +84,7 @@ test('getFeatureSettingsVirtualDom - returns correct structure with rows', () =>
 
   expect(virtualDom[8]).toEqual({
     childCount: 1,
-    className: ClassNames.TableHeading,
+    className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
     type: VirtualDomElements.Th,
   })
 

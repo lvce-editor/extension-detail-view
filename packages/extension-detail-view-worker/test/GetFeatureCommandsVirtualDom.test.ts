@@ -45,13 +45,13 @@ test('feature commands virtual dom with commands', () => {
     },
     {
       childCount: 1,
-      className: ClassNames.TableHeading,
+      className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
       type: VirtualDomElements.Th,
     },
     text('ID'),
     {
       childCount: 1,
-      className: ClassNames.TableHeading,
+      className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
       type: VirtualDomElements.Th,
     },
     text('Label'),

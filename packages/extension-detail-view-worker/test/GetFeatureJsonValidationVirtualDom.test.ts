@@ -43,13 +43,13 @@ test('feature json validation virtual dom with validation entries', () => {
     },
     {
       childCount: 1,
-      className: ClassNames.TableHeading,
+      className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
       type: VirtualDomElements.Th,
     },
     text('File Match'),
     {
       childCount: 1,
-      className: ClassNames.TableHeading,
+      className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
       type: VirtualDomElements.Th,
     },
     text('Schema'),
@@ -120,13 +120,13 @@ test('feature json validation virtual dom with empty validation entries', () => 
     },
     {
       childCount: 1,
-      className: ClassNames.TableHeading,
+      className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
       type: VirtualDomElements.Th,
     },
     text('File Match'),
     {
       childCount: 1,
-      className: ClassNames.TableHeading,
+      className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
       type: VirtualDomElements.Th,
     },
     text('Schema'),

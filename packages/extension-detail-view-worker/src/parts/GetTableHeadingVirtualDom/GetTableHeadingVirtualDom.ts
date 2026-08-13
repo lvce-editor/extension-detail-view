@@ -5,7 +5,7 @@ import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const tableHeadingNode: VirtualDomNode = {
   childCount: 1,
-  className: ClassNames.TableHeading,
+  className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
   type: VirtualDomElements.Th,
 }
 
