@@ -1,6 +1,6 @@
 import { readFile, readdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { fileURLToPath, pathToFileURL } from 'node:url'
+import { pathToFileURL } from 'node:url'
 
 const __dirname = import.meta.dirname
 
@@ -15,9 +15,7 @@ const nodeModulesPath = join(root, 'node_modules')
 
 const workerPath = join(root, '.tmp', 'dist', 'dist', 'extensionDetailViewWorkerMain.js')
 
-const serverStaticPath = join(__dirname, '..', 'node_modules', '@lvce-editor', 'static-server', 'static')
-
-const markdownWorkerPath = fileURLToPath(import.meta.resolve('@lvce-editor/markdown-worker'))
+const serverStaticPath = join(nodeModulesPath, '@lvce-editor', 'static-server', 'static')
 
 const RE_COMMIT_HASH = /^[a-z\d]+$/
 const isCommitHash = (dirent) => {
@@ -26,10 +24,7 @@ const isCommitHash = (dirent) => {
 
 const dirents = await readdir(serverStaticPath)
 const commitHash = dirents.find(isCommitHash) || ''
-const serverMarkdownWorkerPath = join(serverStaticPath, commitHash, 'packages', 'markdown-worker', 'dist', 'markdownWorkerMain.js')
 const rendererWorkerMainPath = join(serverStaticPath, commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js')
-
-await writeFile(serverMarkdownWorkerPath, await readFile(markdownWorkerPath))
 
 const content = await readFile(rendererWorkerMainPath, 'utf-8')
 
