@@ -33,7 +33,7 @@ export const getJsonValidationInfos = async (extensionUri: string, validations: 
         stringValue: schema,
       })
     } else if (schemaLinkUrl) {
-      const isValid = await existsJson(schemaLinkUrl)
+      const isValid = schema.startsWith('https://') || (await existsJson(schemaLinkUrl))
       if (isValid) {
         validationInfos.push({
           errorMessage: '',
