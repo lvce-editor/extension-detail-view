@@ -5,6 +5,7 @@ import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as GetActivationTimeVirtualDom from '../GetActivationTimeVirtualDom/GetActivationTimeVirtualDom.ts'
 import * as GetFeatureContentHeadingVirtualDom from '../GetFeatureContentHeadingVirtualDom/GetFeatureContentHeadingVirtualDom.ts'
+import * as GetMemoryUsageVirtualDom from '../GetMemoryUsageVirtualDom/GetMemoryUsageVirtualDom.ts'
 import * as GetRuntimeActivationEventVirtualDom from '../GetRuntimeActivationEventVirtualDom/GetRuntimeActivationEventVirtualDom.ts'
 import * as GetStatusVirtualDom from '../GetStatusVirtualDom/GetStatusVirtualDom.ts'
 import * as RuntimeStatusType from '../RuntimeStatusType/RuntimeStatusType.ts'
@@ -19,7 +20,7 @@ const featureContentNode: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
-const getChildCount = (status: number, activationEvent: string, activationTime: number, importTime: number): number => {
+const getChildCount = (status: number, activationEvent: string, activationTime: number, importTime: number, memoryUsage: number): number => {
   let childCount = 0
   childCount += 2 // status
   if (activationEvent) {
@@ -28,14 +29,17 @@ const getChildCount = (status: number, activationEvent: string, activationTime: 
   if (importTime || activationTime) {
     childCount += 4
   }
+  if (memoryUsage > 0) {
+    childCount += 2
+  }
   return childCount
 }
 
 export const getRuntimeStatusVirtualDom = (state: FeatureRuntimeStatusViewState): readonly VirtualDomNode[] => {
-  const { activationTime, disabled, importTime, status, wasActivatedByEvent } = state
+  const { activationTime, disabled, importTime, memoryUsage, status, wasActivatedByEvent } = state
   const displayedStatus = disabled ? RuntimeStatusType.Disabled : status
   const heading = ExtensionDetailStrings.runtimeStatus()
-  const childCount = getChildCount(status, wasActivatedByEvent, activationTime, importTime)
+  const childCount = getChildCount(status, wasActivatedByEvent, activationTime, importTime, memoryUsage)
   return [
     featureContentNode,
     ...GetFeatureContentHeadingVirtualDom.getFeatureContentHeadingVirtualDom(heading),
@@ -47,5 +51,6 @@ export const getRuntimeStatusVirtualDom = (state: FeatureRuntimeStatusViewState)
     ...GetStatusVirtualDom.getStatusVirtualDom(displayedStatus),
     ...GetRuntimeActivationEventVirtualDom.getRuntimeActivationEventVirtualDom(wasActivatedByEvent),
     ...GetActivationTimeVirtualDom.getActivationTimeVirtualDom(importTime, activationTime),
+    ...GetMemoryUsageVirtualDom.getMemoryUsageVirtualDom(memoryUsage),
   ]
 }

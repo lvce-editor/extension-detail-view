@@ -12,6 +12,7 @@ test('handleExtensionsStatusUpdate should update state with runtime status detai
     activationTime: 150.75,
     id: 'test-extension',
     importTime: 10.5,
+    memoryUsage: 4096,
     status: RuntimeStatusType.Activated,
   }
 
@@ -33,6 +34,7 @@ test('handleExtensionsStatusUpdate should update state with runtime status detai
 
   expect(result.activationTime).toBe(150.75)
   expect(result.importTime).toBe(10.5)
+  expect(result.memoryUsage).toBe(4096)
   expect(result.status).toBe(RuntimeStatusType.Activated)
   expect(result.wasActivatedByEvent).toBe('onStartupFinished')
   expect(result.extension).toBe(state.extension)

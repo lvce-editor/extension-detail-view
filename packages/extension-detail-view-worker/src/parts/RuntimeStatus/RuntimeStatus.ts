@@ -3,5 +3,6 @@ export interface RuntimeStatus {
   readonly activationTime: number
   readonly id: string
   readonly importTime: number
+  readonly memoryUsage?: number
   readonly status: number
 }
