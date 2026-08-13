@@ -36,6 +36,7 @@ import { handleHeaderContextMenu } from '../HandleHeaderContextMenu/HandleHeader
 import * as HandleIconError from '../HandleIconError/HandleIconError.ts'
 import { handleImageContextMenu } from '../HandleImageContextMenu/HandleImageContextMenu.ts'
 import * as HandleMarkdownImageError from '../HandleMarkdownImageError/HandleMarkdownImageError.ts'
+import * as HandleMessagePort from '../HandleMessagePort/HandleMessagePort.ts'
 import * as HandleMouseEnterEnable from '../HandleMouseEnterEnable/HandleMouseEnterEnable.ts'
 import * as HandleMouseLeaveEnable from '../HandleMouseLeaveEnable/HandleMouseLeaveEnable.ts'
 import * as HandleReadmeClick from '../HandleReadmeClick/HandleReadmeClick.ts'
@@ -91,6 +92,7 @@ export const commandMap = {
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
   'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
   'ExtensionDetail.handleMarkdownImageError': WrapCommand.wrapCommand(HandleMarkdownImageError.handleMarkdownImageError),
+  'ExtensionDetail.handleMessagePort': HandleMessagePort.handleMessagePort,
   'ExtensionDetail.handleMouseEnterEnable': WrapCommand.wrapCommand(HandleMouseEnterEnable.handleMouseEnterEnable),
   'ExtensionDetail.handleMouseLeaveEnable': WrapCommand.wrapCommand(HandleMouseLeaveEnable.handleMouseLeaveEnable),
   'ExtensionDetail.handleReadmeClick': WrapCommand.wrapCommand(HandleReadmeClick.handleReadmeClick),
