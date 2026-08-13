@@ -20,8 +20,9 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(commandsTable).toBeVisible()
   const cell2 = commandsTable.locator('tbody td').nth(1)
   await expect(cell2).toHaveText('./schema.json')
+  await expect(cell2).not.toHaveClass('TableCellInvalid')
   const link = cell2.locator('a')
   await expect(link).toBeVisible()
-  const { href } = new URL('schema.json', extensionUri)
+  const { href } = new URL('schema.json', `${extensionUri}/`)
   await expect(link).toHaveAttribute('href', href)
 }

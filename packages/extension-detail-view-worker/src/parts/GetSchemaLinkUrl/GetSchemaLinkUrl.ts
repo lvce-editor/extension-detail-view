@@ -75,7 +75,8 @@ export const getSchemaLinkUrl = (schema: string, extensionUri: string): string =
     return ''
   }
   try {
-    return new URL(schema, extensionUri).href
+    const baseUrl = extensionUri.endsWith('/') ? extensionUri : `${extensionUri}/`
+    return new URL(schema, baseUrl).href
   } catch {
     return ''
   }

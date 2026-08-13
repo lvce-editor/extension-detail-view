@@ -61,7 +61,7 @@ test('handles validation with invalid link', async () => {
   })
 })
 
-test('handles validation with valid https schema without checking whether it exists', async () => {
+test('handles validation with valid https schema', async () => {
   const extensionUri: string = 'https://example.com/extension'
   const schemaUrl: string = 'https://json.schemastore.org/package.json'
   const validations: readonly any[] = [
@@ -70,6 +70,8 @@ test('handles validation with valid https schema without checking whether it exi
       schema: schemaUrl,
     },
   ]
+
+  mockFetch.mockResolvedValueOnce({ ok: true } as Response)
 
   const result: readonly JsonValidationInfo[] = await getJsonValidationInfos(extensionUri, validations)
 
@@ -81,7 +83,7 @@ test('handles validation with valid https schema without checking whether it exi
     schemaUrl: schemaUrl,
     stringValue: schemaUrl,
   })
-  expect(mockFetch).not.toHaveBeenCalled()
+  expect(mockFetch).toHaveBeenCalledWith(schemaUrl, { method: 'HEAD' })
 })
 
 test('handles validation with valid http schema that does not exist', async () => {
@@ -136,7 +138,7 @@ test('handles validation with valid http schema when fetch throws', async () => 
 
 test('handles validation with relative path schema', async () => {
   const extensionUri: string = 'https://example.com/extension'
-  const schemaUrl: string = 'https://example.com/schemas/schema.json'
+  const schemaUrl: string = 'https://example.com/extension/schemas/schema.json'
   const validations: readonly any[] = [
     {
       fileMatch: '*.json',

@@ -75,6 +75,13 @@ test('valid relative path resolves against extension uri', () => {
   expect(result).toBe('https://example.com/extensions/sample/schemas/package.json')
 })
 
+test('valid relative path resolves against extension uri without trailing slash', () => {
+  const schema: string = './schemas/tsconfig.schema.json'
+  const extensionUri = 'file:///usr/lib/lvce/resources/app/static/hash/extensions/builtin.language-features-typescript'
+  const result: string = GetSchemaLinkUrl.getSchemaLinkUrl(schema, extensionUri)
+  expect(result).toBe('file:///usr/lib/lvce/resources/app/static/hash/extensions/builtin.language-features-typescript/schemas/tsconfig.schema.json')
+})
+
 test('relative path with ./ prefix resolves correctly', () => {
   const schema: string = './schemas/config.json'
   const result: string = GetSchemaLinkUrl.getSchemaLinkUrl(schema, EXTENSION_URI)
