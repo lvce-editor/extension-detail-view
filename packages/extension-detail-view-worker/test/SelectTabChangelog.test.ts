@@ -62,8 +62,10 @@ test('selectTabChangelog should update state with changelog content', async () =
 })
 
 test('selectTabChangelog renders GitHub releases without reading a local changelog', async () => {
+  const issueUrl = 'https://github.com/test-owner/test-repository/pull/82'
   const release = {
-    body: '**Important** fix',
+    assets: [],
+    body: `**Important** fix in ${issueUrl}`,
     html_url: 'https://github.com/test-owner/test-repository/releases/tag/v1',
     name: 'Version 1',
     published_at: '2026-01-01T00:00:00Z',
@@ -72,7 +74,7 @@ test('selectTabChangelog renders GitHub releases without reading a local changel
   GithubApiRequest.mockGithubApi({ body: [release], type: 'success' })
   using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => [{ childCount: 0, type: VirtualDomElements.Div }],
-    'Markdown.render': () => '<h1>Version 1</h1>',
+    'Markdown.render': () => `<h1>Version 1</h1><a href="${issueUrl}">${issueUrl}</a>`,
   })
   const state = {
     ...createDefaultState.createDefaultState(),
@@ -84,9 +86,10 @@ test('selectTabChangelog renders GitHub releases without reading a local changel
   expect(result.selectedTab).toBe(InputName.Changelog)
   expect(mockMarkdownRpc.invocations[0]).toEqual([
     'Markdown.render',
-    expect.stringContaining('**Important** fix'),
+    expect.stringContaining(`**Important** fix in ${issueUrl}`),
     expect.objectContaining({ baseUrl: 'https://github.com/test-owner/test-repository/blob/HEAD/' }),
   ])
+  expect(mockMarkdownRpc.invocations[1]).toEqual(['Markdown.getVirtualDom', `<h1>Version 1</h1><a href="${issueUrl}">#82</a>`])
 })
 
 test('selectTabChangelog renders a friendly GitHub error', async () => {
