@@ -24,4 +24,5 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(cell2).toHaveAttribute('title', 'Schema not found')
   const link = cell2.locator('a')
   await expect(link).toBeVisible()
+  await expect(link).toHaveCSS('color', 'rgb(55, 148, 255)')
 }
