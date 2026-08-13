@@ -2,6 +2,78 @@ import { expect, test } from '@jest/globals'
 import { MenuEntryId, MenuItemFlags } from '@lvce-editor/constants'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { getMenuEntries2 } from '../src/parts/GetMenuEntries2/GetMenuEntries2.ts'
+import * as LocalMenuEntryId from '../src/parts/MenuEntryId/MenuEntryId.ts'
+
+test('returns read-only editing actions for the changelog menu', () => {
+  const state = createDefaultState()
+  expect(
+    getMenuEntries2(state, {
+      href: '',
+      menuId: LocalMenuEntryId.ExtensionDetailChangelogContextMenu,
+    }),
+  ).toEqual([
+    {
+      args: [],
+      command: '',
+      flags: MenuItemFlags.Disabled,
+      id: 'cut',
+      label: 'Cut',
+    },
+    {
+      args: [],
+      command: 'ClipBoard.execCopy',
+      flags: MenuItemFlags.None,
+      id: 'copy',
+      label: 'Copy',
+    },
+    {
+      args: [],
+      command: '',
+      flags: MenuItemFlags.Disabled,
+      id: 'paste',
+      label: 'Paste',
+    },
+  ])
+})
+
+test('adds copy link for a changelog link', () => {
+  const state = createDefaultState()
+  expect(
+    getMenuEntries2(state, {
+      href: 'https://example.com',
+      menuId: LocalMenuEntryId.ExtensionDetailChangelogContextMenu,
+    }),
+  ).toEqual([
+    {
+      args: [],
+      command: '',
+      flags: MenuItemFlags.Disabled,
+      id: 'cut',
+      label: 'Cut',
+    },
+    {
+      args: [],
+      command: 'ClipBoard.execCopy',
+      flags: MenuItemFlags.None,
+      id: 'copy',
+      label: 'Copy',
+    },
+    {
+      args: [],
+      command: '',
+      flags: MenuItemFlags.Disabled,
+      id: 'paste',
+      label: 'Paste',
+    },
+    {
+      args: ['https://example.com'],
+      command: 'ExtensionDetail.copyReadmeLink',
+      flags: MenuItemFlags.None,
+      id: 'copyLink',
+      label: 'Copy Link',
+    },
+  ])
+})
 
 test('returns copy actions for the extension management menu', () => {
   const state = createDefaultState()

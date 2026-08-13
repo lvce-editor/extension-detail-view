@@ -1,25 +1,32 @@
-import type { MenuEntryId } from '@lvce-editor/constants'
+import type { MenuEntryId as ConstantsMenuEntryId } from '@lvce-editor/constants'
+import type * as MenuEntryId from '../MenuEntryId/MenuEntryId.ts'
 
 interface ContextMenuPropsBase {
   readonly menuId: number
 }
 
 interface ContextMenuPropsExplorer extends ContextMenuPropsBase {
-  readonly menuId: typeof MenuEntryId.Explorer
+  readonly menuId: typeof ConstantsMenuEntryId.Explorer
 }
 
 interface ContextMenuPropsIcon extends ContextMenuPropsBase {
-  readonly menuId: typeof MenuEntryId.ExtensionDetailIconContextMenu
+  readonly menuId: typeof ConstantsMenuEntryId.ExtensionDetailIconContextMenu
 }
 
 interface ContextMenuPropsManageExtension extends ContextMenuPropsBase {
-  readonly menuId: typeof MenuEntryId.ManageExtension
+  readonly menuId: typeof ConstantsMenuEntryId.ManageExtension
 }
 
 interface ContextMenuPropsReadme extends ContextMenuPropsBase {
   readonly href: string
-  readonly menuId: typeof MenuEntryId.ExtensionDetailReadme
+  readonly menuId: typeof ConstantsMenuEntryId.ExtensionDetailReadme
   readonly nodeName: string
 }
 
-export type ContextMenuProps = ContextMenuPropsExplorer | ContextMenuPropsReadme | ContextMenuPropsIcon | ContextMenuPropsManageExtension
+interface ContextMenuPropsChangelog extends ContextMenuPropsBase {
+  readonly href: string
+  readonly menuId: typeof MenuEntryId.ExtensionDetailChangelogContextMenu
+}
+
+export type ContextMenuProps =
+  ContextMenuPropsExplorer | ContextMenuPropsReadme | ContextMenuPropsIcon | ContextMenuPropsManageExtension | ContextMenuPropsChangelog

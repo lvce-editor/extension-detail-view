@@ -28,6 +28,14 @@ test('copy', () => {
   expect(result).toBe(I18nString.i18nString(UiStrings.Copy))
 })
 
+test('cut', () => {
+  expect(ExtensionDetailStrings.cut()).toBe(I18nString.i18nString(UiStrings.Cut))
+})
+
+test('paste', () => {
+  expect(ExtensionDetailStrings.paste()).toBe(I18nString.i18nString(UiStrings.Paste))
+})
+
 test('copyExtensionId', () => {
   expect(ExtensionDetailStrings.copyExtensionId()).toBe('Copy Extension ID')
 })

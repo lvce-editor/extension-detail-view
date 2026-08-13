@@ -20,6 +20,11 @@ test('renderEventListeners returns expected event listeners', () => {
     preventDefault: true,
   })
   expect(result).toContainEqual({
+    name: DomEventListenerFunctions.HandleChangelogContextMenu,
+    params: ['handleChangelogContextMenu', EventExpression.ClientX, EventExpression.ClientY, EventExpression.TargetHref],
+    preventDefault: true,
+  })
+  expect(result).toContainEqual({
     name: DomEventListenerFunctions.HandleClickSettings,
     params: ['handleClickSettings', EventExpression.ClientX, EventExpression.ClientY],
   })

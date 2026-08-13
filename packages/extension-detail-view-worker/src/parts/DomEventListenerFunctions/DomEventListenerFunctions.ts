@@ -21,3 +21,4 @@ export const HandleMouseEnterEnable = 20
 export const HandleMouseLeaveEnable = 21
 export const HandleHeaderContextMenu = 22
 export const HandleMarkdownImageError = 23
+export const HandleChangelogContextMenu = 24
