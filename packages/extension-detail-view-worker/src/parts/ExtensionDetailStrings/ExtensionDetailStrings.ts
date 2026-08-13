@@ -300,3 +300,7 @@ export const schemaNotFound = (): string => {
 export const invalidLink = (): string => {
   return I18nString.i18nString(UiStrings.InvalidLink)
 }
+
+export const invalidActivationEventWithSuggestion = (activationEvent: string, suggestion: string): string => {
+  return I18nString.i18nString(UiStrings.InvalidActivationEventWithSuggestion, { PH1: activationEvent, PH2: suggestion })
+}
