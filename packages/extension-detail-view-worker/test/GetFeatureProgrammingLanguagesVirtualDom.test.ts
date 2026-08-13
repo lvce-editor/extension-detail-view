@@ -61,7 +61,7 @@ test('feature programming languages virtual dom', () => {
     },
     {
       childCount: 1,
-      className: 'TableHeading',
+      className: 'TableHeading TableCell',
       type: VirtualDomElements.Th,
     },
     {
@@ -72,7 +72,7 @@ test('feature programming languages virtual dom', () => {
 
     {
       childCount: 1,
-      className: 'TableHeading',
+      className: 'TableHeading TableCell',
       type: VirtualDomElements.Th,
     },
     {
@@ -82,7 +82,7 @@ test('feature programming languages virtual dom', () => {
     },
     {
       childCount: 1,
-      className: 'TableHeading',
+      className: 'TableHeading TableCell',
       type: VirtualDomElements.Th,
     },
     {
@@ -92,7 +92,7 @@ test('feature programming languages virtual dom', () => {
     },
     {
       childCount: 1,
-      className: 'TableHeading',
+      className: 'TableHeading TableCell',
       type: VirtualDomElements.Th,
     },
     {
@@ -102,7 +102,7 @@ test('feature programming languages virtual dom', () => {
     },
     {
       childCount: 1,
-      className: 'TableHeading',
+      className: 'TableHeading TableCell',
       type: VirtualDomElements.Th,
     },
     {

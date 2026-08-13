@@ -7,7 +7,7 @@ test('creates table heading virtual dom', () => {
   expect(GetTableHeadingVirtualDom.getTableHeadingVirtualDom('Name')).toEqual([
     {
       childCount: 1,
-      className: 'TableHeading',
+      className: 'TableHeading TableCell',
       type: VirtualDomElements.Th,
     },
     text('Name'),
