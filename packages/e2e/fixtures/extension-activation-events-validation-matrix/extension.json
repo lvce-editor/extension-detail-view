@@ -1,0 +1,19 @@
+{
+  "id": "test.activation-events-validation-matrix",
+  "name": "Activation Events Validation Matrix",
+  "description": "Extension with activation event names that exercise typo validation",
+  "activation": [
+    "onLangage:typescript",
+    "onLanguuage:javascript",
+    "onCommend:workbench.action.save",
+    "onSourceContorl:git",
+    "onStatusbarItem:sample.status",
+    "onComand:workbench.action.openFile",
+    "onLangague",
+    "onStartupFinised",
+    "onCustomActivation:test",
+    "onraeCompletion:test",
+    "*",
+    "onLanguage:typescript"
+  ]
+}
