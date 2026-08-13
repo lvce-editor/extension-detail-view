@@ -23,6 +23,7 @@ const createGeneratedReleases = (url: string, count: number): readonly unknown[]
   return Array.from({ length: Math.max(0, end - start) }, (_, index) => {
     const releaseNumber = count - start - index
     return {
+      assets: [],
       body: `Release notes for version ${releaseNumber}`,
       html_url: `https://github.com/test-owner/test-repository/releases/tag/v${releaseNumber}`,
       name: `Version ${releaseNumber}`,

@@ -1,4 +1,5 @@
 import type { GithubRelease } from '../GithubRelease/GithubRelease.ts'
+import type { GithubReleaseAsset } from '../GithubReleaseAsset/GithubReleaseAsset.ts'
 import type { GithubRepository } from '../GithubRepository/GithubRepository.ts'
 import * as GithubApiRequest from '../GithubApiRequest/GithubApiRequest.ts'
 import { GithubReleasesError } from '../GithubReleasesError/GithubReleasesError.ts'
@@ -56,9 +57,62 @@ const parseNullableString = (value: unknown): string | undefined => {
   return undefined
 }
 
+const parseGithubUrl = (value: unknown): string | undefined => {
+  if (typeof value !== 'string') {
+    return undefined
+  }
+  try {
+    const url = new URL(value)
+    if (url.protocol !== 'https:' || url.hostname !== 'github.com') {
+      return undefined
+    }
+  } catch {
+    return undefined
+  }
+  return value
+}
+
+const parseNonNegativeInteger = (value: unknown): number | undefined => {
+  if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0) {
+    return undefined
+  }
+  return value
+}
+
+const parseAsset = (value: unknown): GithubReleaseAsset | undefined => {
+  if (
+    !value ||
+    !hasProperty(value, 'browser_download_url') ||
+    !hasProperty(value, 'download_count') ||
+    !hasProperty(value, 'name') ||
+    !hasProperty(value, 'size')
+  ) {
+    return undefined
+  }
+  const downloadCount = parseNonNegativeInteger(value.download_count)
+  const downloadUrl = parseGithubUrl(value.browser_download_url)
+  const size = parseNonNegativeInteger(value.size)
+  if (downloadCount === undefined || downloadUrl === undefined || typeof value.name !== 'string' || size === undefined) {
+    return undefined
+  }
+  return { downloadCount, downloadUrl, name: value.name, size }
+}
+
+const parseAssets = (value: unknown): readonly GithubReleaseAsset[] | undefined => {
+  if (!Array.isArray(value)) {
+    return undefined
+  }
+  const assets = value.map(parseAsset)
+  if (assets.some((asset) => !asset)) {
+    return undefined
+  }
+  return assets as readonly GithubReleaseAsset[]
+}
+
 const parseRelease = (value: unknown): GithubRelease | undefined => {
   if (
     !value ||
+    !hasProperty(value, 'assets') ||
     !hasProperty(value, 'body') ||
     !hasProperty(value, 'html_url') ||
     !hasProperty(value, 'name') ||
@@ -67,10 +121,12 @@ const parseRelease = (value: unknown): GithubRelease | undefined => {
   ) {
     return undefined
   }
+  const assets = parseAssets(value.assets)
   const body = parseNullableString(value.body)
   const name = parseNullableString(value.name)
   const publishedAt = parseNullableString(value.published_at)
   if (
+    assets === undefined ||
     body === undefined ||
     name === undefined ||
     publishedAt === undefined ||
@@ -79,15 +135,11 @@ const parseRelease = (value: unknown): GithubRelease | undefined => {
   ) {
     return undefined
   }
-  try {
-    const htmlUrl = new URL(value.html_url)
-    if (htmlUrl.protocol !== 'https:' || htmlUrl.hostname !== 'github.com') {
-      return undefined
-    }
-  } catch {
+  const htmlUrl = parseGithubUrl(value.html_url)
+  if (htmlUrl === undefined) {
     return undefined
   }
-  return { body, htmlUrl: value.html_url, name, publishedAt, tagName: value.tag_name }
+  return { assets, body, htmlUrl, name, publishedAt, tagName: value.tag_name }
 }
 
 const parsePage = async (response: Response): Promise<readonly GithubRelease[]> => {
