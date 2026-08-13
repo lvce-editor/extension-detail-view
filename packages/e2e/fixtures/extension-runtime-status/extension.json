@@ -1,8 +1,10 @@
 {
   "id": "test.runtime-status",
   "name": "Runtime Status Test",
+  "version": "1.0.0",
   "description": "Runtime Status Test",
   "browser": "index.js",
+  "isolated": true,
   "activation": ["onCommand:runtimeStatus.activate"],
   "commands": [
     {
