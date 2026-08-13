@@ -1,11 +1,11 @@
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { mergeClassNames, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const tableHeadingNode: VirtualDomNode = {
   childCount: 1,
-  className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
+  className: mergeClassNames(ClassNames.TableHeading, ClassNames.TableCell),
   type: VirtualDomElements.Th,
 }
 
