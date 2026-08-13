@@ -1,5 +1,6 @@
 import type { ActivationEntry } from '../ActivationEntry/ActivationEntry.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import * as GetActivationEventSuggestion from '../GetActivationEventSuggestion/GetActivationEventSuggestion.ts'
 
 const getActivationEntry = (value: unknown): ActivationEntry => {
   if (typeof value !== 'string') {
@@ -14,6 +15,14 @@ const getActivationEntry = (value: unknown): ActivationEntry => {
       errorMessage: ExtensionDetailStrings.stringMustNotBeEmpty(),
       isValid: false,
       stringValue: '',
+    }
+  }
+  const suggestion = GetActivationEventSuggestion.getActivationEventSuggestion(value)
+  if (suggestion) {
+    return {
+      errorMessage: ExtensionDetailStrings.invalidActivationEventWithSuggestion(value, suggestion),
+      isValid: false,
+      stringValue: value,
     }
   }
   return {

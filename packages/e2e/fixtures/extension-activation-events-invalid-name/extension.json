@@ -1,0 +1,6 @@
+{
+  "id": "test.activation-events-invalid-name",
+  "name": "Activation Events Invalid Name",
+  "description": "Extension with a misspelled activation event name",
+  "activation": ["onLangague:typescript"]
+}

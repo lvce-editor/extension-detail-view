@@ -151,3 +151,87 @@ test('handles array activation event', () => {
     stringValue: 'onCommand:workbench.action.openFile',
   })
 })
+
+test('handles misspelled activation event name', () => {
+  const activation: readonly unknown[] = ['onLangague:typescript']
+
+  const result: readonly ActivationEntry[] = getActivationEntries(activation)
+
+  expect(result).toEqual([
+    {
+      errorMessage: 'Invalid activation event onLangague:typescript. Did you mean onLanguage:typescript?',
+      isValid: false,
+      stringValue: 'onLangague:typescript',
+    },
+  ])
+})
+
+test('handles misspelled activation event name without an argument', () => {
+  const activation: readonly unknown[] = ['onLangague']
+
+  const result: readonly ActivationEntry[] = getActivationEntries(activation)
+
+  expect(result).toEqual([
+    {
+      errorMessage: 'Invalid activation event onLangague. Did you mean onLanguage?',
+      isValid: false,
+      stringValue: 'onLangague',
+    },
+  ])
+})
+
+test('handles activation event name with incorrect casing', () => {
+  const activation: readonly unknown[] = ['onWebview:builtin.chat-view']
+
+  const result: readonly ActivationEntry[] = getActivationEntries(activation)
+
+  expect(result).toEqual([
+    {
+      errorMessage: 'Invalid activation event onWebview:builtin.chat-view. Did you mean onWebView:builtin.chat-view?',
+      isValid: false,
+      stringValue: 'onWebview:builtin.chat-view',
+    },
+  ])
+})
+
+test('keeps unfamiliar activation event valid when there is no clear suggestion', () => {
+  const activation: readonly unknown[] = ['onCustomActivation:test']
+
+  const result: readonly ActivationEntry[] = getActivationEntries(activation)
+
+  expect(result).toEqual([
+    {
+      errorMessage: '',
+      isValid: true,
+      stringValue: 'onCustomActivation:test',
+    },
+  ])
+})
+
+test('keeps ambiguous activation event spelling valid', () => {
+  const activation: readonly unknown[] = ['onraeCompletion:test']
+
+  const result: readonly ActivationEntry[] = getActivationEntries(activation)
+
+  expect(result).toEqual([
+    {
+      errorMessage: '',
+      isValid: true,
+      stringValue: 'onraeCompletion:test',
+    },
+  ])
+})
+
+test('keeps wildcard activation event valid', () => {
+  const activation: readonly unknown[] = ['*']
+
+  const result: readonly ActivationEntry[] = getActivationEntries(activation)
+
+  expect(result).toEqual([
+    {
+      errorMessage: '',
+      isValid: true,
+      stringValue: '*',
+    },
+  ])
+})
