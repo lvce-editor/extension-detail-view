@@ -1,6 +1,7 @@
 import { expect, jest, test, beforeEach } from '@jest/globals'
 import type { JsonValidationInfo } from '../src/parts/GetJsonValidationInfos/GetJsonValidationInfos.ts'
 import * as ExtensionDetailStrings from '../src/parts/ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import { getJsonValidationInfos } from '../src/parts/GetJsonValidationInfos/GetJsonValidationInfos.ts'
 
 let mockFetch: jest.MockedFunction<typeof fetch>
@@ -136,7 +137,7 @@ test('handles validation with valid http schema when fetch throws', async () => 
 
 test('handles validation with relative path schema', async () => {
   const extensionUri: string = 'https://example.com/extension'
-  const schemaUrl: string = 'https://example.com/schemas/schema.json'
+  const schemaUrl: string = 'https://example.com/extension/schemas/schema.json'
   const validations: readonly any[] = [
     {
       fileMatch: '*.json',
@@ -155,6 +156,34 @@ test('handles validation with relative path schema', async () => {
   expect(result[0].isValid).toBe(true)
   expect(result[0].errorMessage).toBe('')
   expect(mockFetch).toHaveBeenCalledWith(schemaUrl, { method: 'HEAD' })
+})
+
+test('handles validation with relative path schema for local extension', async () => {
+  const extensionUri = 'file:///usr/lib/lvce/resources/app/static/hash/extensions/builtin.language-features-typescript'
+  const schemaUrl = `${extensionUri}/schemas/tsconfig.schema.json`
+  const validations: readonly any[] = [
+    {
+      fileMatch: 'tsconfig.json',
+      schema: './schemas/tsconfig.schema.json',
+    },
+  ]
+  using mockRpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.exists': () => true,
+  })
+
+  const result: readonly JsonValidationInfo[] = await getJsonValidationInfos(extensionUri, validations)
+
+  expect(result).toEqual([
+    {
+      errorMessage: '',
+      fileMatch: 'tsconfig.json',
+      isValid: true,
+      schemaUrl,
+      stringValue: './schemas/tsconfig.schema.json',
+    },
+  ])
+  expect(mockRpc.invocations).toEqual([['FileSystem.exists', schemaUrl]])
+  expect(mockFetch).not.toHaveBeenCalled()
 })
 
 test('handles validation with url property instead of schema', async () => {
