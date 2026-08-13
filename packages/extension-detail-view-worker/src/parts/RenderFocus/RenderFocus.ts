@@ -7,5 +7,5 @@ export const renderFocus = (oldState: ExtensionDetailState, newState: ExtensionD
     const { name } = tabs[focusedTabIndex]
     return [ViewletCommand.FocusElementByName, uid, name]
   }
-  return [ViewletCommand.FocusElementByName, '']
+  return [ViewletCommand.FocusElementByName, uid, '']
 }

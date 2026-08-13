@@ -5,11 +5,11 @@ import * as RenderFocus from '../src/parts/RenderFocus/RenderFocus.ts'
 
 test('renderFocus - returns focus command', () => {
   const oldState: ExtensionDetailState = CreateDefaultState.createDefaultState()
-  const newState: ExtensionDetailState = CreateDefaultState.createDefaultState()
+  const newState: ExtensionDetailState = { ...CreateDefaultState.createDefaultState(), uid: 41 }
 
   const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+  expect(result).toEqual(['Viewlet.focusElementByName', 41, ''])
 })
 
 test('renderFocus - with different states', () => {
@@ -22,20 +22,21 @@ test('renderFocus - with different states', () => {
     ...CreateDefaultState.createDefaultState(),
     selectedFeature: 'General',
     selectedTab: 'Settings',
+    uid: 42,
   }
 
   const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+  expect(result).toEqual(['Viewlet.focusElementByName', 42, ''])
 })
 
 test('renderFocus - with empty states', () => {
   const oldState: ExtensionDetailState = CreateDefaultState.createDefaultState()
-  const newState: ExtensionDetailState = CreateDefaultState.createDefaultState()
+  const newState: ExtensionDetailState = { ...CreateDefaultState.createDefaultState(), uid: 43 }
 
   const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+  expect(result).toEqual(['Viewlet.focusElementByName', 43, ''])
 })
 
 test('renderFocus - with complex states', () => {
@@ -52,11 +53,12 @@ test('renderFocus - with complex states', () => {
     name: 'Test Extension',
     selectedFeature: 'Commands',
     selectedTab: 'Features',
+    uid: 44,
   }
 
   const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+  expect(result).toEqual(['Viewlet.focusElementByName', 44, ''])
 })
 
 test('renderFocus - when focus is 451 returns focus command with uid and tab name', () => {
@@ -150,7 +152,7 @@ test('renderFocus - when focus is not 451 returns empty name', () => {
 
   const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+  expect(result).toEqual(['Viewlet.focusElementByName', 123, ''])
 })
 
 test('renderFocus - when focus is not 451 even with tabs and uid', () => {
@@ -172,5 +174,5 @@ test('renderFocus - when focus is not 451 even with tabs and uid', () => {
 
   const result: readonly any[] = RenderFocus.renderFocus(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+  expect(result).toEqual(['Viewlet.focusElementByName', 999, ''])
 })

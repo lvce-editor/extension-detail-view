@@ -5,11 +5,11 @@ import * as RenderFocusContext from '../src/parts/RenderFocusContext/RenderFocus
 
 test('renderFocusContext - returns focus element by name command when focus is not 451', () => {
   const oldState: ExtensionDetailState = CreateDefaultState.createDefaultState()
-  const newState: ExtensionDetailState = CreateDefaultState.createDefaultState()
+  const newState: ExtensionDetailState = { ...CreateDefaultState.createDefaultState(), uid: 41 }
 
   const result: readonly any[] = RenderFocusContext.renderFocusContext(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+  expect(result).toEqual(['Viewlet.focusElementByName', 41, ''])
 })
 
 test('renderFocusContext - returns set focus context command when focus is 451', () => {
@@ -48,7 +48,7 @@ test('renderFocusContext - with different focus values not equal to 451', () => 
 
   const result: readonly any[] = RenderFocusContext.renderFocusContext(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+  expect(result).toEqual(['Viewlet.focusElementByName', 789, ''])
 })
 
 test('renderFocusContext - with focus 0', () => {
@@ -61,7 +61,7 @@ test('renderFocusContext - with focus 0', () => {
 
   const result: readonly any[] = RenderFocusContext.renderFocusContext(oldState, newState)
 
-  expect(result).toEqual(['Viewlet.focusElementByName', ''])
+  expect(result).toEqual(['Viewlet.focusElementByName', 999, ''])
 })
 
 test('renderFocusContext - with complex states', () => {

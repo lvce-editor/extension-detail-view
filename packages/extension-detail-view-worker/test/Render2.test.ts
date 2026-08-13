@@ -50,3 +50,20 @@ test('render2 leaves focus context management with the renderer worker', async (
     ['Viewlet.commitPending', uid, 23],
   ])
 })
+
+test('render2 queues fallback focus commands with the view id', async () => {
+  const queueCommands = jest.fn((_uid: number, _commands: readonly unknown[]) => 29)
+  RendererProcess.set(createMockRpc({ commandMap: { 'Viewlet.queueCommands': queueCommands } }))
+  const uid = 4
+  const oldState = createDefaultState.createDefaultState()
+  const newState = { ...oldState, focus: 0, uid }
+  ExtensionDetailStates.set(uid, oldState, newState)
+
+  const result = await Render2.render2(uid, [DiffType.RenderFocus, DiffType.RenderFocusContext])
+
+  expect(queueCommands).toHaveBeenCalledWith(uid, [
+    ['Viewlet.focusElementByName', uid, ''],
+    ['Viewlet.focusElementByName', uid, ''],
+  ])
+  expect(result).toEqual([['Viewlet.commitPending', uid, 29]])
+})
