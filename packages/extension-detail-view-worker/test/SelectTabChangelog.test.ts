@@ -63,6 +63,7 @@ test('selectTabChangelog should update state with changelog content', async () =
 
 test('selectTabChangelog renders GitHub releases without reading a local changelog', async () => {
   const release = {
+    assets: [],
     body: '**Important** fix',
     html_url: 'https://github.com/test-owner/test-repository/releases/tag/v1',
     name: 'Version 1',

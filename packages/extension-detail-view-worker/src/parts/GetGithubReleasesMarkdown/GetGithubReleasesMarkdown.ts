@@ -1,6 +1,7 @@
 import type { GithubRelease } from '../GithubRelease/GithubRelease.ts'
 import type { GithubRepository } from '../GithubRepository/GithubRepository.ts'
 import * as FormatCreated from '../FormatCreated/FormatCreated.ts'
+import * as GetDisplaySize from '../GetDisplaySize/GetDisplaySize.ts'
 
 const escapeMarkdown = (value: string): string => {
   return value.replaceAll('\\', '\\\\').replaceAll('[', '\\[').replaceAll(']', '\\]')
@@ -17,6 +18,17 @@ const getPublishedText = (publishedAt: string, now: number): string => {
   return `Published ${FormatCreated.formatCreated(date.getTime(), now)}`
 }
 
+const getAssetsMarkdown = (release: GithubRelease): string => {
+  if (release.assets.length === 0) {
+    return ''
+  }
+  const assets = release.assets.map((asset) => {
+    const downloadLabel = asset.downloadCount === 1 ? 'download' : 'downloads'
+    return `- [${escapeMarkdown(asset.name)}](${asset.downloadUrl}) · ${GetDisplaySize.getDisplaySize(asset.size)} · ${asset.downloadCount} ${downloadLabel}`
+  })
+  return `\n\n## Assets (${release.assets.length})\n\n${assets.join('\n')}`
+}
+
 export const getGithubReleasesMarkdown = (
   releases: readonly GithubRelease[],
   githubRepository: GithubRepository,
@@ -29,7 +41,7 @@ export const getGithubReleasesMarkdown = (
     .map((release) => {
       const title = release.name || release.tagName
       const body = release.body.trim() || '_No release notes were provided._'
-      return `# [${escapeMarkdown(title)}](${release.htmlUrl})\n\n${getPublishedText(release.publishedAt, now)} · \`${release.tagName}\`\n\n${body}`
+      return `# [${escapeMarkdown(title)}](${release.htmlUrl})\n\n${getPublishedText(release.publishedAt, now)} · \`${release.tagName}\`\n\n${body}${getAssetsMarkdown(release)}`
     })
     .join('\n\n---\n\n')
 }

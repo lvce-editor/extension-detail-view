@@ -4,6 +4,7 @@ import { getGithubReleasesMarkdown } from '../src/parts/GetGithubReleasesMarkdow
 
 const repository = { owner: 'test-owner', repository: 'test-repository' }
 const release: GithubRelease = {
+  assets: [],
   body: '**Important** fix',
   htmlUrl: 'https://github.com/test-owner/test-repository/releases/tag/v1.0.0',
   name: 'Version [1.0.0]',
@@ -37,4 +38,36 @@ test('handles an invalid publication date', () => {
 
 test('separates multiple releases', () => {
   expect(getGithubReleasesMarkdown([release, release], repository)).toContain('\n\n---\n\n')
+})
+
+test('renders release assets with download metadata', () => {
+  const result = getGithubReleasesMarkdown(
+    [
+      {
+        ...release,
+        assets: [
+          {
+            downloadCount: 1,
+            downloadUrl: 'https://github.com/test-owner/test-repository/releases/download/v1.0.0/extension-v1.0.0.tar.br',
+            name: 'extension-[v1.0.0].tar.br',
+            size: 535_000,
+          },
+          {
+            downloadCount: 12,
+            downloadUrl: 'https://github.com/test-owner/test-repository/releases/download/v1.0.0/extension-v1.0.0.zip',
+            name: 'extension-v1.0.0.zip',
+            size: 1024,
+          },
+        ],
+      },
+    ],
+    repository,
+  )
+  expect(result).toContain('## Assets (2)')
+  expect(result).toContain(
+    '- [extension-\\[v1.0.0\\].tar.br](https://github.com/test-owner/test-repository/releases/download/v1.0.0/extension-v1.0.0.tar.br) · 535 kB · 1 download',
+  )
+  expect(result).toContain(
+    '- [extension-v1.0.0.zip](https://github.com/test-owner/test-repository/releases/download/v1.0.0/extension-v1.0.0.zip) · 1 kB · 12 downloads',
+  )
 })

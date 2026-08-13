@@ -4,6 +4,7 @@ import { loadGithubReleases } from '../src/parts/LoadGithubReleases/LoadGithubRe
 
 const repository = { owner: 'test-owner', repository: 'test-repository' }
 const release = {
+  assets: [],
   body: 'Release notes',
   html_url: 'https://github.com/test-owner/test-repository/releases/tag/v1',
   name: 'Version 1',
@@ -19,7 +20,9 @@ test('loads and normalizes releases', async () => {
   GithubApiRequest.mockGithubApi({ body: [release], type: 'success' })
   await expect(loadGithubReleases(repository)).resolves.toEqual({
     isTruncated: false,
-    releases: [{ body: 'Release notes', htmlUrl: release.html_url, name: 'Version 1', publishedAt: '2026-01-01T00:00:00Z', tagName: 'v1' }],
+    releases: [
+      { assets: [], body: 'Release notes', htmlUrl: release.html_url, name: 'Version 1', publishedAt: '2026-01-01T00:00:00Z', tagName: 'v1' },
+    ],
   })
 })
 
@@ -27,7 +30,30 @@ test('accepts nullable GitHub fields', async () => {
   GithubApiRequest.mockGithubApi({ body: [{ ...release, body: null, name: null, published_at: null }], type: 'success' })
   await expect(loadGithubReleases(repository)).resolves.toEqual({
     isTruncated: false,
-    releases: [{ body: '', htmlUrl: release.html_url, name: '', publishedAt: '', tagName: 'v1' }],
+    releases: [{ assets: [], body: '', htmlUrl: release.html_url, name: '', publishedAt: '', tagName: 'v1' }],
+  })
+})
+
+test('loads and normalizes release assets', async () => {
+  const asset = {
+    browser_download_url: 'https://github.com/test-owner/test-repository/releases/download/v1/extension.tar.br',
+    download_count: 12,
+    name: 'extension.tar.br',
+    size: 535_000,
+  }
+  GithubApiRequest.mockGithubApi({ body: [{ ...release, assets: [asset] }], type: 'success' })
+  await expect(loadGithubReleases(repository)).resolves.toEqual({
+    isTruncated: false,
+    releases: [
+      {
+        assets: [{ downloadCount: 12, downloadUrl: asset.browser_download_url, name: 'extension.tar.br', size: 535_000 }],
+        body: 'Release notes',
+        htmlUrl: release.html_url,
+        name: 'Version 1',
+        publishedAt: '2026-01-01T00:00:00Z',
+        tagName: 'v1',
+      },
+    ],
   })
 })
 
@@ -67,11 +93,18 @@ test.each([
   {},
   [null],
   [{ ...release, body: 1 }],
+  [{ ...release, html_url: 1 }],
   [{ ...release, html_url: 'https://example.com/release' }],
   [{ ...release, html_url: 'not a url' }],
   [{ ...release, name: 1 }],
   [{ ...release, published_at: 1 }],
   [{ ...release, tag_name: 1 }],
+  [{ ...release, assets: null }],
+  [{ ...release, assets: [null] }],
+  [{ ...release, assets: [{ browser_download_url: 'https://example.com/asset', download_count: 1, name: 'asset', size: 1 }] }],
+  [{ ...release, assets: [{ browser_download_url: 'https://github.com/owner/repository/asset', download_count: -1, name: 'asset', size: 1 }] }],
+  [{ ...release, assets: [{ browser_download_url: 'https://github.com/owner/repository/asset', download_count: 1, name: 1, size: 1 }] }],
+  [{ ...release, assets: [{ browser_download_url: 'https://github.com/owner/repository/asset', download_count: 1, name: 'asset', size: -1 }] }],
 ])('reports invalid release data: %p', async (body) => {
   GithubApiRequest.mockGithubApi({ body, type: 'success' })
   await expect(loadGithubReleases(repository)).rejects.toThrow('invalid release data')
