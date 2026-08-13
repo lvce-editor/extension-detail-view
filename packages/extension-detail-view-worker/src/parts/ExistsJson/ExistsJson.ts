@@ -1,12 +1,13 @@
 import { existsFile } from '../ExistsFile/ExistsFile.ts'
 
 export const existsJson = async (schemaUrl: string): Promise<boolean> => {
-  let protocol: string
+  let url: URL
   try {
-    protocol = new URL(schemaUrl).protocol
+    url = new URL(schemaUrl)
   } catch {
     return false
   }
+  const { protocol } = url
   if (protocol === 'file:') {
     return existsFile(schemaUrl)
   }
