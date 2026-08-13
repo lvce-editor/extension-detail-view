@@ -7,5 +7,5 @@ export const renderFocusContext = (oldState: ExtensionDetailState, newState: Ext
     return [ViewletCommand.SetFocusContext, uid, focus]
   }
   // TODO set focus context
-  return [ViewletCommand.FocusElementByName, '']
+  return [ViewletCommand.FocusElementByName, uid, '']
 }
