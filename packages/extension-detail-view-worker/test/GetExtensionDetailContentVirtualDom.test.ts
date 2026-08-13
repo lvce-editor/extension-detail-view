@@ -6,6 +6,7 @@ import type { Resource } from '../src/parts/Resource/Resource.ts'
 import type { VirtualDomNode } from '../src/parts/VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as GetChangelogVirtualDom from '../src/parts/GetChangelogVirtualDom/GetChangelogVirtualDom.ts'
 import * as GetDetailsVirtualDom from '../src/parts/GetDetailsVirtualDom/GetDetailsVirtualDom.ts'
 import * as GetExtensionDetailContentVirtualDom from '../src/parts/GetExtensionDetailContentVirtualDom/GetExtensionDetailContentVirtualDom.ts'
@@ -45,6 +46,7 @@ test('getExtensionDetailContentVirtualDom - Changelog tab', () => {
   expect(result[0]).toEqual({
     childCount: 1,
     className: `${ClassNames.ExtensionDetailPanel} ${ClassNames.Changelog}`,
+    onContextMenu: DomEventListenerFunctions.HandleChangelogContextMenu,
     role: AriaRoles.Panel,
     type: VirtualDomElements.Div,
   })

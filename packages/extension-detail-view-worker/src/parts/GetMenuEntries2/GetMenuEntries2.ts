@@ -4,6 +4,43 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import { getMenuEntriesImage } from '../GetMenuEntriesImage/GetMenuEntriesImage.ts'
+import * as LocalMenuEntryId from '../MenuEntryId/MenuEntryId.ts'
+
+const getChangelogMenuEntries = (href: string): readonly MenuEntry[] => {
+  const entries: MenuEntry[] = [
+    {
+      args: [],
+      command: '',
+      flags: MenuItemFlags.Disabled,
+      id: 'cut',
+      label: ExtensionDetailStrings.cut(),
+    },
+    {
+      args: [],
+      command: 'ClipBoard.execCopy',
+      flags: MenuItemFlags.None,
+      id: 'copy',
+      label: ExtensionDetailStrings.copy(),
+    },
+    {
+      args: [],
+      command: '',
+      flags: MenuItemFlags.Disabled,
+      id: 'paste',
+      label: ExtensionDetailStrings.paste(),
+    },
+  ]
+  if (href) {
+    entries.push({
+      args: [href],
+      command: 'ExtensionDetail.copyReadmeLink',
+      flags: MenuItemFlags.None,
+      id: 'copyLink',
+      label: ExtensionDetailStrings.copyLink(),
+    })
+  }
+  return entries
+}
 
 export const getMenuEntries2 = (state: ExtensionDetailState, props: ContextMenuProps): readonly MenuEntry[] => {
   if (props.menuId === MenuEntryId.ExtensionDetailIconContextMenu) {
@@ -26,6 +63,9 @@ export const getMenuEntries2 = (state: ExtensionDetailState, props: ContextMenuP
         label: ExtensionDetailStrings.copyExtensionId(),
       },
     ]
+  }
+  if (props.menuId === LocalMenuEntryId.ExtensionDetailChangelogContextMenu) {
+    return getChangelogMenuEntries(props.href)
   }
   if (props.menuId === MenuEntryId.ExtensionDetailReadme && props.href) {
     return [

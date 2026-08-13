@@ -25,6 +25,14 @@ export const copy = (): string => {
   return I18nString.i18nString(UiStrings.Copy)
 }
 
+export const cut = (): string => {
+  return I18nString.i18nString(UiStrings.Cut)
+}
+
+export const paste = (): string => {
+  return I18nString.i18nString(UiStrings.Paste)
+}
+
 export const copyExtensionId = (): string => {
   return I18nString.i18nString(UiStrings.CopyExtensionId)
 }

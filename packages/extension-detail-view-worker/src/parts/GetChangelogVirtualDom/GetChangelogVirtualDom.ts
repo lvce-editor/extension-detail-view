@@ -1,11 +1,13 @@
 import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
+import * as DomEventListenerFunctions from '../DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as MergeClassNames from '../MergeClassNames/MergeClassNames.ts'
 
 const changelogNode: VirtualDomNode = {
   childCount: 1,
   className: MergeClassNames.mergeClassNames(ClassNames.ExtensionDetailPanel, ClassNames.Changelog),
+  onContextMenu: DomEventListenerFunctions.HandleChangelogContextMenu,
   role: AriaRoles.Panel,
   type: VirtualDomElements.Div,
 }
