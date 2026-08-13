@@ -11,6 +11,7 @@
  */
 export const createRelease = (overrides = {}) => {
   return {
+    assets: [],
     body: 'Fixed an important bug.',
     html_url: 'https://github.com/test-owner/test-repository/releases/tag/v1.0.0',
     name: 'Version 1.0.0',
