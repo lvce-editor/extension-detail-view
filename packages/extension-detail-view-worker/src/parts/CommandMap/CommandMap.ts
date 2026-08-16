@@ -56,6 +56,8 @@ import * as Resize from '../Resize/Resize.ts'
 import * as SaveState from '../SaveState/SaveState.ts'
 import * as SelectTab from '../SelectTab/SelectTab.ts'
 
+const handleDirectMessagePort = (port: MessagePort): Promise<void> => HandleMessagePort.handleMessagePort(port, commandMap)
+
 export const commandMap = {
   'ExtensionDetail.copyExtensionId': WrapCommand.wrapCommand(copyExtensionId),
   'ExtensionDetail.copyExtensionInfo': WrapCommand.wrapCommand(copyExtensionInfo),
@@ -92,7 +94,7 @@ export const commandMap = {
   'ExtensionDetail.handleIconError': WrapCommand.wrapCommand(HandleIconError.handleIconError),
   'ExtensionDetail.handleImageContextMenu': WrapCommand.wrapCommand(handleImageContextMenu),
   'ExtensionDetail.handleMarkdownImageError': WrapCommand.wrapCommand(HandleMarkdownImageError.handleMarkdownImageError),
-  'ExtensionDetail.handleMessagePort': HandleMessagePort.handleMessagePort,
+  'ExtensionDetail.handleMessagePort': handleDirectMessagePort,
   'ExtensionDetail.handleMouseEnterEnable': WrapCommand.wrapCommand(HandleMouseEnterEnable.handleMouseEnterEnable),
   'ExtensionDetail.handleMouseLeaveEnable': WrapCommand.wrapCommand(HandleMouseLeaveEnable.handleMouseLeaveEnable),
   'ExtensionDetail.handleReadmeClick': WrapCommand.wrapCommand(HandleReadmeClick.handleReadmeClick),
