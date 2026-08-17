@@ -4,7 +4,7 @@ const day = 24 * hour
 const month = 30 * day
 const year = 365 * day
 
-const relativeTimeFormat = new Intl.RelativeTimeFormat(undefined, {
+const relativeTimeFormat = new Intl.RelativeTimeFormat('en', {
   numeric: 'always',
 })
 
