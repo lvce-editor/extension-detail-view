@@ -24,6 +24,7 @@ export const ExtensionNotAvailable = 'The extension "{PH1}" is not available in 
 export const Features = 'Features'
 export const FileExtensions = 'File Extensions'
 export const FileMatch = 'File Match'
+export const GitpodImageFailedToLoad = 'Gitpod Image failed to load'
 export const Grammar = 'Grammar'
 export const Id = 'ID'
 export const Identifier = 'Identifier'

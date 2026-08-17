@@ -35,3 +35,23 @@ test('preserves image children when replacing image with error', () => {
     trailingText,
   ])
 })
+
+test('uses Gitpod-specific error text for a Gitpod image', () => {
+  const src = 'https://gitpod.io/button/open-in-gitpod.svg'
+  const dom = [
+    {
+      childCount: 0,
+      src,
+      type: VirtualDomElements.Img,
+    },
+  ]
+
+  expect(ReplaceMarkdownImageWithError.replaceMarkdownImageWithError(dom, src)).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.MarkdownImageError,
+      type: VirtualDomElements.Span,
+    },
+    text(ExtensionDetailStrings.gitpodImageFailedToLoad()),
+  ])
+})

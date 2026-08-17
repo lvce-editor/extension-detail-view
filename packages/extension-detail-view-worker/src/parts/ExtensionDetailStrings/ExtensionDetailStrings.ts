@@ -165,6 +165,10 @@ export const imageCannotBeLoaded = (): string => {
   return I18nString.i18nString(UiStrings.ImageCannotBeLoaded)
 }
 
+export const gitpodImageFailedToLoad = (): string => {
+  return I18nString.i18nString(UiStrings.GitpodImageFailedToLoad)
+}
+
 export const fileExtensions = (): string => {
   return I18nString.i18nString(UiStrings.FileExtensions)
 }
