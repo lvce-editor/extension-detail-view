@@ -8,7 +8,10 @@ test('formatCreated uses English when the runtime locale is German', async () =>
       super(locales ?? 'de', options)
     }
   }
-  Intl.RelativeTimeFormat = GermanDefaultRelativeTimeFormat
+  Object.defineProperty(Intl, 'RelativeTimeFormat', {
+    configurable: true,
+    value: GermanDefaultRelativeTimeFormat,
+  })
   try {
     jest.resetModules()
     const { formatCreated } = await import('../src/parts/FormatCreated/FormatCreated.ts')
@@ -16,7 +19,10 @@ test('formatCreated uses English when the runtime locale is German', async () =>
     const now = new Date('2026-07-09').getTime()
     expect(formatCreated(created, now)).toBe('2 years ago')
   } finally {
-    Intl.RelativeTimeFormat = OriginalRelativeTimeFormat
+    Object.defineProperty(Intl, 'RelativeTimeFormat', {
+      configurable: true,
+      value: OriginalRelativeTimeFormat,
+    })
     jest.resetModules()
   }
 })
