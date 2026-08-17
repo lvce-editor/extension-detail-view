@@ -1,5 +1,31 @@
-import { expect, test } from '@jest/globals'
+import { expect, jest, test } from '@jest/globals'
 import * as FormatCreated from '../src/parts/FormatCreated/FormatCreated.ts'
+
+test('formatCreated uses English when the runtime locale is German', async () => {
+  const OriginalRelativeTimeFormat = Intl.RelativeTimeFormat
+  class GermanDefaultRelativeTimeFormat extends OriginalRelativeTimeFormat {
+    constructor(locales?: Intl.LocalesArgument, options?: Intl.RelativeTimeFormatOptions) {
+      super(locales ?? 'de', options)
+    }
+  }
+  Object.defineProperty(Intl, 'RelativeTimeFormat', {
+    configurable: true,
+    value: GermanDefaultRelativeTimeFormat,
+  })
+  try {
+    jest.resetModules()
+    const { formatCreated } = await import('../src/parts/FormatCreated/FormatCreated.ts')
+    const created = new Date('2024-01-15').getTime()
+    const now = new Date('2026-07-09').getTime()
+    expect(formatCreated(created, now)).toBe('2 years ago')
+  } finally {
+    Object.defineProperty(Intl, 'RelativeTimeFormat', {
+      configurable: true,
+      value: OriginalRelativeTimeFormat,
+    })
+    jest.resetModules()
+  }
+})
 
 test('formatCreated returns n/a for null', () => {
   expect(FormatCreated.formatCreated(null)).toBe('n/a')
