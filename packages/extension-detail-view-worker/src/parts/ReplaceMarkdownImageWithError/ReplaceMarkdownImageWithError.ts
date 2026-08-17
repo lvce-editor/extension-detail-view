@@ -21,7 +21,7 @@ export const replaceMarkdownImageWithError = (dom: readonly VirtualDomNode[], fa
           type: VirtualDomElements.Span,
         })
       }
-      newDom.push(...GetMarkdownImageErrorVirtualDom.getMarkdownImageErrorVirtualDom())
+      newDom.push(...GetMarkdownImageErrorVirtualDom.getMarkdownImageErrorVirtualDom(node.src))
       replaced = true
     } else {
       newDom.push(node)
