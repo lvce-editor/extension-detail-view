@@ -66,6 +66,27 @@ test('diff2 should return DiffCss when DiffCss.isEqual returns false', () => {
   expect(result.length).toBeGreaterThanOrEqual(1)
 })
 
+test('diff2 should render css when initial content is shown after an earlier resize', () => {
+  const resizedState: ExtensionDetailState = {
+    ...CreateDefaultState.createDefaultState(),
+    initial: true,
+    paddingLeft: 30,
+    paddingRight: 30,
+    sideBarWidth: 465,
+    width: 1450,
+  }
+  const loadedState: ExtensionDetailState = {
+    ...resizedState,
+    initial: false,
+    name: 'test-extension',
+  }
+  ExtensionDetailStates.set(9, resizedState, loadedState)
+
+  const result = Diff2.diff2(9)
+
+  expect(result).toContain(DiffType.RenderCss)
+})
+
 test('diff2 should return multiple diff types when multiple modules return false', () => {
   const oldState: ExtensionDetailState = {
     ...CreateDefaultState.createDefaultState(),

@@ -9,6 +9,9 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await ExtensionDetail.open('test.extension-basics')
 
   const aside = Locator('aside.Aside')
+  const panel = Locator('.ExtensionDetailPanel')
   await expect(aside).toBeVisible()
+  await expect(aside).toHaveCSS('width', '373px')
   await expect(aside.locator('.AdditionalDetails')).toHaveCount(1)
+  await expect(panel).toHaveCSS('max-width', '1250px')
 }
