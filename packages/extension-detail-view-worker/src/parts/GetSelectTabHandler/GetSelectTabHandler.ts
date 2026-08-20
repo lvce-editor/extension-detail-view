@@ -4,6 +4,7 @@ import * as SelectTabChangelog from '../SelectTabChangelog/SelectTabChangelog.ts
 import * as SelectTabDefault from '../SelectTabDefault/SelectTabDefault.ts'
 import * as SelectTabDetails from '../SelectTabDetails/SelectTabDetails.ts'
 import * as SelectTabFeatures from '../SelectTabFeatures/SelectTabFeatures.ts'
+import * as SelectTabSecurity from '../SelectTabSecurity/SelectTabSecurity.ts'
 
 export const getSelectTabHandler = (name: string): SelectTabHandler => {
   switch (name) {
@@ -13,6 +14,8 @@ export const getSelectTabHandler = (name: string): SelectTabHandler => {
       return SelectTabDetails.selectTabDetails
     case InputName.Features:
       return SelectTabFeatures.selectTabFeatures
+    case InputName.Security:
+      return SelectTabSecurity.selectTabSecurity
     default:
       return SelectTabDefault.selectTabDefault
   }

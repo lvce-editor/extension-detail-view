@@ -1,0 +1,8 @@
+{
+  "id": "test.security-isolated",
+  "name": "Security Isolated Browser",
+  "description": "An isolated browser extension",
+  "browser": "index.js",
+  "isolated": true,
+  "contentSecurityPolicy": ["default-src 'none'", "script-src 'self'"]
+}

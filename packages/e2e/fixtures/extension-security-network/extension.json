@@ -1,0 +1,8 @@
+{
+  "id": "test.security-network",
+  "name": "Security Network",
+  "description": "An isolated extension with external services",
+  "browser": "index.js",
+  "isolated": true,
+  "contentSecurityPolicy": ["default-src 'none'", "connect-src https://api.example.com wss://socket.example.com", "script-src 'self' 'unsafe-eval'"]
+}
