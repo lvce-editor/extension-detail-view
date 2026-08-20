@@ -1,5 +1,5 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
-import { openSecurity } from './_SecurityTest.ts'
+import { openSecurity } from './_SecurityTest.js'
 
 export const name = 'extension-detail.security-tab'
 
