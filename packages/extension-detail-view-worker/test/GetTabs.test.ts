@@ -20,6 +20,12 @@ test('returns all tabs with details selected', () => {
     },
     {
       enabled: true,
+      label: ExtensionDetailStrings.security(),
+      name: InputName.Security,
+      selected: false,
+    },
+    {
+      enabled: true,
       label: ExtensionDetailStrings.changelog(),
       name: InputName.Changelog,
       selected: false,

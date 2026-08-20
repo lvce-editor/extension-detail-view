@@ -9,11 +9,13 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await ExtensionDetail.open('test.extension-basics')
 
   const tabs = Locator('.ExtensionDetailTab')
-  await expect(tabs).toHaveCount(3)
+  await expect(tabs).toHaveCount(4)
   const detailsTab = tabs.nth(0)
   const featuresTab = tabs.nth(1)
-  const changelogTab = tabs.nth(2)
+  const securityTab = tabs.nth(2)
+  const changelogTab = tabs.nth(3)
   await expect(detailsTab).toHaveAttribute('role', 'tab')
   await expect(featuresTab).toHaveAttribute('role', 'tab')
+  await expect(securityTab).toHaveAttribute('role', 'tab')
   await expect(changelogTab).toHaveAttribute('role', 'tab')
 }

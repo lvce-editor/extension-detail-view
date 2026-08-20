@@ -10,6 +10,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   const tabDetails = Locator('.ExtensionDetailTab[name="Details"]')
   const tabFeatures = Locator('.ExtensionDetailTab[name="Features"]')
+  const tabSecurity = Locator('.ExtensionDetailTab[name="Security"]')
   const tabChangelog = Locator('.ExtensionDetailTab[name="Changelog"]')
   await expect(tabDetails).toBeVisible()
   await expect(tabDetails).toHaveAttribute('aria-selected', 'true')
@@ -20,6 +21,12 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   await expect(tabFeatures).toBeFocused()
+
+  // act
+  await ExtensionDetail.focusNextTab()
+
+  // assert
+  await expect(tabSecurity).toBeFocused()
 
   // act
   await ExtensionDetail.focusNextTab()
