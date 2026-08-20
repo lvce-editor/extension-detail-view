@@ -1,0 +1,7 @@
+{
+  "id": "test.security-shared",
+  "name": "Security Shared Browser",
+  "description": "A shared browser extension",
+  "browser": "index.js",
+  "activation": ["onCommand:security.shared"]
+}

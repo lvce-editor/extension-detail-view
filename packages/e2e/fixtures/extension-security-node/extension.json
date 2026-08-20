@@ -1,0 +1,7 @@
+{
+  "id": "test.security-node",
+  "name": "Security Node",
+  "description": "A Node.js extension",
+  "main": "index.js",
+  "activation": ["*"]
+}
