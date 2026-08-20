@@ -47,6 +47,14 @@ jobs:
         run: npm run e2e:headless
         env:
           PLAYWRIGHT_BROWSERS_PATH: 0
+          XDG_CACHE_HOME: ${{ github.workspace }}/packages/e2e/renderer-worker-traces
+      - name: upload renderer worker traces
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: renderer-worker-traces-${{ matrix.os }}
+          path: packages/e2e/renderer-worker-traces/**
+          if-no-files-found: warn
       - name: measure
         working-directory: ./packages/memory
         run: npm run measure
