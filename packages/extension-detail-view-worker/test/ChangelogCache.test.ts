@@ -80,6 +80,7 @@ test('set stores the content and cache timestamp', async () => {
   expect(key).toBe(cacheKey)
   expect(response.headers.get('X-Lvce-Editor-Cached-At')).toBe(`${now}`)
   expect(response.headers.get('Content-Type')).toBe('application/markdown')
+  expect(response.headers.get('Expires')).toBe('Wed, 01 Apr 1970 02:46:40 GMT')
   expect(await response.text()).toBe('# Changelog')
 })
 

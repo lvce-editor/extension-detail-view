@@ -1,3 +1,4 @@
+import * as CacheExpiration from '../CacheExpiration/CacheExpiration.ts'
 import { getCache, type ICache } from '../GetCache/GetCache.ts'
 
 const bucketName = 'changelog-cache'
@@ -42,6 +43,7 @@ export const set = async (uri: string, value: string, now: number = Date.now(), 
           [cachedAtHeader]: `${now}`,
           'Content-Length': `${value.length}`,
           'Content-Type': 'application/markdown',
+          Expires: CacheExpiration.getExpirationDate(now),
         },
       }),
     )

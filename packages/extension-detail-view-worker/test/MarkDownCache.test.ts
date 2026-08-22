@@ -225,6 +225,21 @@ test.skip('set - stores value in cache with correct headers', async () => {
   globalThis.navigator = originalNavigator
 })
 
+test('set - stores a three-month expiration date', async () => {
+  const cache = {
+    match: jest.fn<(request: RequestInfo | URL) => Promise<Response | undefined>>().mockResolvedValue(undefined),
+    put: jest.fn<(request: RequestInfo | URL, response: Response) => Promise<void>>().mockResolvedValue(undefined),
+  }
+  const getCache = jest.fn<(cacheName: string, bucketName: string) => Promise<typeof cache>>().mockResolvedValue(cache)
+  const MarkDownCache = await import('../src/parts/MarkDownCache/MarkDownCache.ts')
+  const now = Date.UTC(2026, 7, 22, 12, 0, 0)
+
+  await MarkDownCache.set(cacheName, 'test-key', 'markdown-cache', '<p>Hello</p>', getCache, now)
+
+  const response = cache.put.mock.calls[0][1]
+  expect(response.headers.get('Expires')).toBe('Fri, 20 Nov 2026 12:00:00 GMT')
+})
+
 test.skip('set - stores value with correct Content-Length for empty string', async () => {
   resetModules()
   const mockCache = {

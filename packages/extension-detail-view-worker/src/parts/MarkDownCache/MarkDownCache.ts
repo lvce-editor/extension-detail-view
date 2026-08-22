@@ -1,3 +1,4 @@
+import * as CacheExpiration from '../CacheExpiration/CacheExpiration.ts'
 import { getCache, type ICache } from '../GetCache/GetCache.ts'
 
 type GetCache = (cacheName: string, bucketName: string) => Promise<ICache>
@@ -21,6 +22,7 @@ export const set = async (
   bucketName: string,
   value: string,
   getCacheFunction: GetCache = getCache,
+  now: number = Date.now(),
 ): Promise<void> => {
   const cache = await getCacheFunction(cacheName, bucketName)
   await cache.put(
@@ -29,6 +31,7 @@ export const set = async (
       headers: {
         'Content-Length': `${value.length}`,
         'Content-Type': 'application/markdown',
+        Expires: CacheExpiration.getExpirationDate(now),
       },
     }),
   )

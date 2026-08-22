@@ -1,3 +1,5 @@
+import * as CacheExpiration from '../CacheExpiration/CacheExpiration.ts'
+
 export interface ICache {
   readonly match: (request: RequestInfo | URL, options?: CacheQueryOptions) => Promise<Response | undefined>
   readonly put: (request: RequestInfo | URL, response: Response) => Promise<void>
@@ -21,10 +23,9 @@ const getCacheInternal = async (cacheName: string, bucketName: string): Promise<
   if (!supportsStorageBuckets()) {
     return noopCache
   }
-  const twoWeeks = 14 * 24 * 60 * 60 * 1000
   // @ts-ignore
   const bucket = await navigator.storageBuckets.open(bucketName, {
-    expires: Date.now() + twoWeeks,
+    expires: Date.now() + CacheExpiration.duration,
     quota: 100 * 1024 * 1024, // 100MB
   })
   const cache = await bucket.caches.open(cacheName)
