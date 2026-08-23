@@ -40,7 +40,5 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const tab2 = Locator('.ExtensionDetailTab').nth(1)
   await expect(tab2).toHaveText('Features')
   const tab3 = Locator('.ExtensionDetailTab').nth(2)
-  await expect(tab3).toHaveText('Security')
-  const tab4 = Locator('.ExtensionDetailTab').nth(3)
-  await expect(tab4).toHaveText('Changelog')
+  await expect(tab3).toHaveText('Changelog')
 }
