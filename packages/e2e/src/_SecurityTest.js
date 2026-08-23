@@ -13,5 +13,6 @@
 export const openSecurity = async (api, extensionUri, extensionId) => {
   await api.Extension.addWebExtension(extensionUri)
   await api.ExtensionDetail.open(extensionId)
-  await api.ExtensionDetail.selectTab('Security')
+  await api.ExtensionDetail.selectFeatures()
+  await api.ExtensionDetail.openFeature('Security')
 }

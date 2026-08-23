@@ -11,7 +11,6 @@ import * as GetChangelogVirtualDom from '../src/parts/GetChangelogVirtualDom/Get
 import * as GetDetailsVirtualDom from '../src/parts/GetDetailsVirtualDom/GetDetailsVirtualDom.ts'
 import * as GetExtensionDetailContentVirtualDom from '../src/parts/GetExtensionDetailContentVirtualDom/GetExtensionDetailContentVirtualDom.ts'
 import * as GetFeaturesVirtualDom from '../src/parts/GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
-import * as GetSecurityVirtualDom from '../src/parts/GetSecurityVirtualDom/GetSecurityVirtualDom.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 
 test('getExtensionDetailContentVirtualDom - Changelog tab', () => {
@@ -121,17 +120,6 @@ test('getExtensionDetailContentVirtualDom - Features tab', () => {
 
   const expected = GetFeaturesVirtualDom.getFeaturesVirtualDom(state.features, state.selectedFeature, state)
   expect(result).toEqual(expected)
-})
-
-test('getExtensionDetailContentVirtualDom - Security tab', () => {
-  const state: ExtensionDetailState = {
-    ...createDefaultState(),
-    extension: { browser: 'main.js', isolated: true },
-  }
-
-  const result = GetExtensionDetailContentVirtualDom.getExtensionDetailContentVirtualDom([], InputName.Security, 800, false, [], [], 600, [], state)
-
-  expect(result).toEqual(GetSecurityVirtualDom.getSecurityVirtualDom(state.extension))
 })
 
 test('getExtensionDetailContentVirtualDom - default case (unknown tab)', () => {

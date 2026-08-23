@@ -6,7 +6,9 @@ export const name = 'extension-detail.security-tab'
 export const test: Test = async (api) => {
   await openSecurity(api, import.meta.resolve('../fixtures/extension-basics'), 'test.extension-basics')
 
-  const tab = api.Locator('.ExtensionDetailTab[name="Security"]')
-  await api.expect(tab).toBeVisible()
-  await api.expect(tab).toHaveAttribute('aria-selected', 'true')
+  const topLevelTab = api.Locator('.ExtensionDetailTab[name="Security"]')
+  await api.expect(topLevelTab).toHaveCount(0)
+  const feature = api.Locator('.FeaturesList .Feature[name="Security"]')
+  await api.expect(feature).toBeVisible()
+  await api.expect(feature).toHaveClass('Feature FeatureSelected')
 }

@@ -22,6 +22,6 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await ExtensionDetail.selectFeatures()
   const features = Locator('.FeaturesList .Feature')
   const firstFeature = features.nth(0)
-  await expect(features).toHaveCount(1)
+  await expect(features).toHaveCount(2)
   await expect(firstFeature).toHaveText('Commands')
 }

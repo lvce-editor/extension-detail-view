@@ -8,7 +8,7 @@ import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const securityPanelNode: VirtualDomNode = {
   childCount: 3,
-  className: mergeClassNames(ClassNames.ExtensionDetailPanel, ClassNames.FeatureContent, ClassNames.Security),
+  className: mergeClassNames(ClassNames.FeatureContent, ClassNames.Security),
   role: AriaRoles.Panel,
   type: VirtualDomElements.Div,
 }

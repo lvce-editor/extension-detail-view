@@ -13,7 +13,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const features = Locator('.FeaturesList .Feature')
-  await expect(features).toHaveCount(8)
+  await expect(features).toHaveCount(9)
   const themeFeature = features.nth(0)
   const commandsFeature = features.nth(1)
   const settingsFeature = features.nth(2)
@@ -22,6 +22,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const webViewsFeature = features.nth(5)
   const activationEventsFeature = features.nth(6)
   const runtimeStatusFeature = features.nth(7)
+  const securityFeature = features.nth(8)
   await expect(themeFeature).toHaveText('Themes')
   await expect(commandsFeature).toHaveText('Commands')
   await expect(settingsFeature).toHaveText('Settings')
@@ -30,4 +31,5 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(webViewsFeature).toHaveText('WebViews')
   await expect(activationEventsFeature).toHaveText('Activation Events')
   await expect(runtimeStatusFeature).toHaveText('Runtime Status')
+  await expect(securityFeature).toHaveText('Security')
 }

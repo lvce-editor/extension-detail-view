@@ -5,7 +5,6 @@ import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as GetChangelogVirtualDom from '../GetChangelogVirtualDom/GetChangelogVirtualDom.ts'
 import * as GetDetailsVirtualDom from '../GetDetailsVirtualDom/GetDetailsVirtualDom.ts'
 import * as GetFeaturesVirtualDom from '../GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
-import * as GetSecurityVirtualDom from '../GetSecurityVirtualDom/GetSecurityVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
 
 export const getExtensionDetailContentVirtualDom = (
@@ -19,7 +18,7 @@ export const getExtensionDetailContentVirtualDom = (
   changelogDom: readonly VirtualDomNode[],
   state: ExtensionDetailState,
 ): readonly VirtualDomNode[] => {
-  const { extension, features, hasReadme, installationEntries, marketplaceEntries, selectedFeature, showSideBar } = state
+  const { features, hasReadme, installationEntries, marketplaceEntries, selectedFeature, showSideBar } = state
   switch (selectedTab) {
     case InputName.Changelog:
       return GetChangelogVirtualDom.getChangelogVirtualDom(changelogDom)
@@ -38,8 +37,6 @@ export const getExtensionDetailContentVirtualDom = (
       )
     case InputName.Features:
       return GetFeaturesVirtualDom.getFeaturesVirtualDom(features, selectedFeature, state)
-    case InputName.Security:
-      return GetSecurityVirtualDom.getSecurityVirtualDom(extension)
     default:
       return []
   }

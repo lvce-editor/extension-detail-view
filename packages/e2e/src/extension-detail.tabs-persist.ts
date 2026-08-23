@@ -12,5 +12,5 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   const tabs = Locator('.ExtensionDetailTabs')
   await expect(tabs).toBeVisible()
-  await expect(tabs.locator('.ExtensionDetailTab')).toHaveCount(4)
+  await expect(tabs.locator('.ExtensionDetailTab')).toHaveCount(3)
 }

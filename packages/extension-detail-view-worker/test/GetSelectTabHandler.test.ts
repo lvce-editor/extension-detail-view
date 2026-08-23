@@ -5,7 +5,6 @@ import * as SelectTabChangelog from '../src/parts/SelectTabChangelog/SelectTabCh
 import * as SelectTabDefault from '../src/parts/SelectTabDefault/SelectTabDefault.ts'
 import * as SelectTabDetails from '../src/parts/SelectTabDetails/SelectTabDetails.ts'
 import * as SelectTabFeatures from '../src/parts/SelectTabFeatures/SelectTabFeatures.ts'
-import * as SelectTabSecurity from '../src/parts/SelectTabSecurity/SelectTabSecurity.ts'
 
 test('returns details tab handler', () => {
   const handler = GetSelectTabHandler.getSelectTabHandler(InputName.Details)
@@ -22,9 +21,9 @@ test('returns changelog tab handler', () => {
   expect(handler).toBe(SelectTabChangelog.selectTabChangelog)
 })
 
-test('returns security tab handler', () => {
+test('returns default tab handler for security feature', () => {
   const handler = GetSelectTabHandler.getSelectTabHandler(InputName.Security)
-  expect(handler).toBe(SelectTabSecurity.selectTabSecurity)
+  expect(handler).toBe(SelectTabDefault.selectTabDefault)
 })
 
 test('returns default tab handler for unknown tab', () => {

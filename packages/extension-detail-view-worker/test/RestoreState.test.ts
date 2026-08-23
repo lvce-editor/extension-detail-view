@@ -31,6 +31,20 @@ test('restoreState - invalid saved state', () => {
   })
 })
 
+test('restoreState - migrates security tab to security feature', () => {
+  const savedState: unknown = {
+    selectedFeature: 'Commands',
+    selectedTab: InputName.Security,
+  }
+  const result: RestoredState = RestoreState.restoreState(savedState)
+  expect(result).toEqual({
+    changelogScrollTop: 0,
+    readmeScrollTop: 0,
+    selectedFeature: InputName.Security,
+    selectedTab: InputName.Features,
+  })
+})
+
 test('restoreState - null saved state', () => {
   const result: RestoredState = RestoreState.restoreState(null)
   expect(result).toEqual({

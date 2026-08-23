@@ -17,12 +17,6 @@ export const getTabs = (selectedTab: string, hasReadme: boolean, hasFeatures: bo
       selected: selectedTab === InputName.Features,
     },
     {
-      enabled: true,
-      label: ExtensionDetailStrings.security(),
-      name: InputName.Security,
-      selected: selectedTab === InputName.Security,
-    },
-    {
       enabled: hasChangelog,
       label: ExtensionDetailStrings.changelog(),
       name: InputName.Changelog,
