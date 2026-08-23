@@ -19,6 +19,10 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
     const detailView = Locator('.ExtensionDetail')
     await expect(detailView).toBeVisible()
     const featuresTab = Locator('.ExtensionDetailTab[name="Features"]')
-    await expect(featuresTab).toBeHidden()
+    await expect(featuresTab).toBeVisible()
+    await ExtensionDetail.selectFeatures()
+    const features = Locator('.FeaturesList > button.Feature')
+    await expect(features).toHaveCount(1)
+    await expect(features).toHaveText('Security')
   }
 }

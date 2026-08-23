@@ -10,5 +10,5 @@ export const test: Test = async (api) => {
   await api.expect(topLevelTab).toHaveCount(0)
   const feature = api.Locator('.FeaturesList .Feature[name="Security"]')
   await api.expect(feature).toBeVisible()
-  await api.expect(feature).toHaveClass('Feature FeatureSelected')
+  await api.expect(feature).toHaveClass('FeatureSelected')
 }
