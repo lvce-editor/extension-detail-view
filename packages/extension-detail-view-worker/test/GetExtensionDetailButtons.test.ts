@@ -85,3 +85,65 @@ test('enable button previews color theme on hover', () => {
     onMouseLeave: 21,
   })
 })
+
+test('globally disabled extension has an enable split button when a workspace is open', () => {
+  const result = getExtensionDetailButtons(false, false, true, '', '', '', true)
+
+  expect(result.find((button) => button.name === InputName.Enable)).toEqual({
+    enabled: true,
+    label: 'Enable',
+    menuId: 4093,
+    menuOnClick: 25,
+    name: InputName.Enable,
+    onClick: 3,
+    onMouseEnter: 20,
+    onMouseLeave: 21,
+  })
+})
+
+test('globally enabled extension has a disable split button when a workspace is open', () => {
+  const result = getExtensionDetailButtons(false, false, false, '', '', '', true)
+
+  expect(result.find((button) => button.name === InputName.Disable)).toEqual({
+    enabled: true,
+    label: 'Disable',
+    menuId: 4094,
+    menuOnClick: 26,
+    name: InputName.Disable,
+    onClick: 2,
+  })
+})
+
+test('workspace disabled extension still offers global and workspace enable choices', () => {
+  const result = getExtensionDetailButtons(false, false, true, '', '', '', true)
+
+  expect(result.find((button) => button.name === InputName.Enable)).toEqual({
+    enabled: true,
+    label: 'Enable',
+    menuId: 4093,
+    menuOnClick: 25,
+    name: InputName.Enable,
+    onClick: 3,
+    onMouseEnter: 20,
+    onMouseLeave: 21,
+  })
+})
+
+test('workspace enabled extension still offers global and workspace disable choices', () => {
+  const result = getExtensionDetailButtons(false, false, false, '', '', '', true)
+
+  expect(result.find((button) => button.name === InputName.Disable)).toEqual({
+    enabled: true,
+    label: 'Disable',
+    menuId: 4094,
+    menuOnClick: 26,
+    name: InputName.Disable,
+    onClick: 2,
+  })
+})
+
+test('enablement button stays a regular button without a workspace', () => {
+  const result = getExtensionDetailButtons(false, false, true, '', '', '', false)
+
+  expect(result.find((button) => button.name === InputName.Enable)?.menuId).toBeUndefined()
+})

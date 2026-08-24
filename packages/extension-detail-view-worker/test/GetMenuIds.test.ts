@@ -10,5 +10,7 @@ test('getMenuIds returns correct menu IDs', () => {
     MenuEntryId.ExtensionDetailIconContextMenu,
     MenuEntryId.ManageExtension,
     LocalMenuEntryId.ExtensionDetailChangelogContextMenu,
+    LocalMenuEntryId.ExtensionDetailEnableContextMenu,
+    LocalMenuEntryId.ExtensionDetailDisableContextMenu,
   ])
 })

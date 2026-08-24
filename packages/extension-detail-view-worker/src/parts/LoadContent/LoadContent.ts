@@ -102,7 +102,15 @@ const loadContentInternal = async (
   const disabled = extension?.disabled
   const extensionColorThemeId = getColorThemeId(extension) || ''
   const extensionColorThemeLabel = getColorThemeLabel(extension) || ''
-  const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled, extensionColorThemeId, extensionColorThemeLabel, currentColorThemeId)
+  const buttons = getExtensionDetailButtons(
+    hasColorTheme,
+    isBuiltin,
+    disabled,
+    extensionColorThemeId,
+    extensionColorThemeLabel,
+    currentColorThemeId,
+    extension.hasWorkspace === true,
+  )
   const size = GetViewletSize.getViewletSize(width)
   const { changelogScrollTop, readmeScrollTop, selectedFeature, selectedTab } = RestoreState.restoreState(savedState)
   const features = FeatureRegistry.getFeatures(selectedFeature || InputName.Theme, extension)

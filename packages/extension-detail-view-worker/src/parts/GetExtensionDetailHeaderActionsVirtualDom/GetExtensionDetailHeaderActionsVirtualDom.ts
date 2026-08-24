@@ -3,6 +3,7 @@ import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/Extensi
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as GetButtonVirtualDom from '../GetButtonVirtualDom/GetButtonVirtualDom.ts'
+import { getEnablementSplitButtonVirtualDom } from '../GetEnablementSplitButtonVirtualDom/GetEnablementSplitButtonVirtualDom.ts'
 import * as GetSettingsButtonVirtualDom from '../GetSettingsButtonVirtualDom/GetSettingsButtonVirtualDom.ts'
 import * as GetVirtualDomChildCount from '../GetVirtualDomChildCount/GetVirtualDomChildCount.ts'
 
@@ -11,9 +12,12 @@ export const getExtensionDetailHeaderActionsVirtualDom = (
   settingsButtonEnabled: boolean,
 ): readonly VirtualDomNode[] => {
   const enabledButtons = buttonDefs.filter((btn) => btn.enabled)
-  const buttons: readonly VirtualDomNode[] = enabledButtons.flatMap((btn: ExtensionDetailButton) =>
-    GetButtonVirtualDom.getButtonVirtualDom(btn.label, btn.onClick, btn.name, btn.onMouseEnter, btn.onMouseLeave),
-  )
+  const buttons: readonly VirtualDomNode[] = enabledButtons.flatMap((btn: ExtensionDetailButton) => {
+    if (btn.menuId) {
+      return getEnablementSplitButtonVirtualDom(btn)
+    }
+    return GetButtonVirtualDom.getButtonVirtualDom(btn.label, btn.onClick, btn.name, btn.onMouseEnter, btn.onMouseLeave)
+  })
   const settingsButton: readonly VirtualDomNode[] = GetSettingsButtonVirtualDom.getSettingsButtonVirtualDom(settingsButtonEnabled)
   const children = [...buttons, ...settingsButton]
   const dom: readonly VirtualDomNode[] = [

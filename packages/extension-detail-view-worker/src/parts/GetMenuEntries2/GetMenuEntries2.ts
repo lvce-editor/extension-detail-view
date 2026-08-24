@@ -3,6 +3,7 @@ import type { ContextMenuProps } from '../ContextMenuProps/ContextMenuProps.ts'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { MenuEntry } from '../MenuEntry/MenuEntry.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import { getDisableMenuEntries, getEnableMenuEntries } from '../GetExtensionEnablementMenuEntries/GetExtensionEnablementMenuEntries.ts'
 import { getMenuEntriesImage } from '../GetMenuEntriesImage/GetMenuEntriesImage.ts'
 import * as LocalMenuEntryId from '../MenuEntryId/MenuEntryId.ts'
 
@@ -66,6 +67,12 @@ export const getMenuEntries2 = (state: ExtensionDetailState, props: ContextMenuP
   }
   if (props.menuId === LocalMenuEntryId.ExtensionDetailChangelogContextMenu) {
     return getChangelogMenuEntries(props.href)
+  }
+  if (props.menuId === LocalMenuEntryId.ExtensionDetailEnableContextMenu) {
+    return getEnableMenuEntries()
+  }
+  if (props.menuId === LocalMenuEntryId.ExtensionDetailDisableContextMenu) {
+    return getDisableMenuEntries()
   }
   if (props.menuId === MenuEntryId.ExtensionDetailReadme && props.href) {
     return [

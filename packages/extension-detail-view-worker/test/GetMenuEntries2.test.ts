@@ -167,3 +167,37 @@ test('returns only the copy action when a readme context menu has no link', () =
     },
   ])
 })
+
+test('returns global and workspace enable actions', () => {
+  expect(
+    getMenuEntries2(createDefaultState(), {
+      menuId: LocalMenuEntryId.ExtensionDetailEnableContextMenu,
+    }),
+  ).toEqual([
+    { args: [], command: 'ExtensionDetail.handleClickEnable', flags: MenuItemFlags.None, id: 'enable', label: 'Enable' },
+    {
+      args: [],
+      command: 'ExtensionDetail.handleClickEnableWorkspace',
+      flags: MenuItemFlags.None,
+      id: 'enableWorkspace',
+      label: 'Enable (Workspace)',
+    },
+  ])
+})
+
+test('returns global and workspace disable actions', () => {
+  expect(
+    getMenuEntries2(createDefaultState(), {
+      menuId: LocalMenuEntryId.ExtensionDetailDisableContextMenu,
+    }),
+  ).toEqual([
+    { args: [], command: 'ExtensionDetail.handleClickDisable', flags: MenuItemFlags.None, id: 'disable', label: 'Disable' },
+    {
+      args: [],
+      command: 'ExtensionDetail.handleClickDisableWorkspace',
+      flags: MenuItemFlags.None,
+      id: 'disableWorkspace',
+      label: 'Disable (Workspace)',
+    },
+  ])
+})
