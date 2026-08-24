@@ -22,7 +22,11 @@ import { handleAdditionalDetailContextMenu } from '../HandleAdditionalDetailCont
 import { handleChangelogContextMenu } from '../HandleChangelogContextMenu/HandleChangelogContextMenu.ts'
 import * as HandleClickCategory from '../HandleClickCategory/HandleClickCategory.ts'
 import * as HandleClickDisable from '../HandleClickDisable/HandleClickDisable.ts'
+import { handleClickDisableOptions } from '../HandleClickDisableOptions/HandleClickDisableOptions.ts'
+import { handleClickDisableWorkspace } from '../HandleClickDisableWorkspace/HandleClickDisableWorkspace.ts'
 import { handleClickEnable } from '../HandleClickEnable/HandleClickEnable.ts'
+import { handleClickEnableOptions } from '../HandleClickEnableOptions/HandleClickEnableOptions.ts'
+import { handleClickEnableWorkspace } from '../HandleClickEnableWorkspace/HandleClickEnableWorkspace.ts'
 import * as HandleClickFeatures from '../HandleClickFeatures/HandleClickFeatures.ts'
 import * as HandleClickScrollToTop from '../HandleClickScrollToTop/HandleClickScrollToTop.ts'
 import * as HandleClickSetColorTheme from '../HandleClickSetColorTheme/HandleClickSetColorTheme.ts'
@@ -81,7 +85,11 @@ export const commandMap = {
   'ExtensionDetail.handleChangelogContextMenu': WrapCommand.wrapCommand(handleChangelogContextMenu),
   'ExtensionDetail.handleClickCategory': WrapCommand.wrapCommand(HandleClickCategory.handleClickCategory),
   'ExtensionDetail.handleClickDisable': WrapCommand.wrapCommand(HandleClickDisable.handleClickDisable),
+  'ExtensionDetail.handleClickDisableOptions': WrapCommand.wrapCommand(handleClickDisableOptions),
+  'ExtensionDetail.handleClickDisableWorkspace': WrapCommand.wrapCommand(handleClickDisableWorkspace),
   'ExtensionDetail.handleClickEnable': WrapCommand.wrapCommand(handleClickEnable),
+  'ExtensionDetail.handleClickEnableOptions': WrapCommand.wrapCommand(handleClickEnableOptions),
+  'ExtensionDetail.handleClickEnableWorkspace': WrapCommand.wrapCommand(handleClickEnableWorkspace),
   'ExtensionDetail.handleClickScrollToTop': WrapCommand.wrapCommand(HandleClickScrollToTop.handleClickScrollToTop),
   'ExtensionDetail.handleClickSetColorTheme': WrapCommand.wrapCommand(HandleClickSetColorTheme.handleClickSetColorTheme),
   'ExtensionDetail.handleClickSettings': WrapCommand.wrapCommand(HandleClickSettings.handleClickSettings),

@@ -11,7 +11,15 @@ export const handleColorThemeChanged = (state: ExtensionDetailState, colorThemeI
   const extensionColorThemeId = getColorThemeId(extension) || ''
   const extensionColorThemeLabel = getColorThemeLabel(extension) || ''
   const isBuiltin = isBuiltinExtension(extension)
-  const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled, extensionColorThemeId, extensionColorThemeLabel, colorThemeId)
+  const buttons = getExtensionDetailButtons(
+    hasColorTheme,
+    isBuiltin,
+    disabled,
+    extensionColorThemeId,
+    extensionColorThemeLabel,
+    colorThemeId,
+    extension?.hasWorkspace === true,
+  )
   return {
     ...state,
     buttons,

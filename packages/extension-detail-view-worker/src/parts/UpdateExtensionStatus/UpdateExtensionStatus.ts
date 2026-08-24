@@ -20,10 +20,19 @@ export const updateExtensionStatus = async (state: ExtensionDetailState, updateF
   const extensionColorThemeId = getColorThemeId(extension) || ''
   const extensionColorThemeLabel = getColorThemeLabel(extension) || ''
   const isBuiltin = isBuiltinExtension(extension)
-  const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled, extensionColorThemeId, extensionColorThemeLabel, currentColorThemeId)
+  const buttons = getExtensionDetailButtons(
+    hasColorTheme,
+    isBuiltin,
+    disabled,
+    extensionColorThemeId,
+    extensionColorThemeLabel,
+    currentColorThemeId,
+    extension?.hasWorkspace === true,
+  )
   return {
     ...state,
     buttons,
     disabled: extension?.disabled,
+    extension,
   }
 }

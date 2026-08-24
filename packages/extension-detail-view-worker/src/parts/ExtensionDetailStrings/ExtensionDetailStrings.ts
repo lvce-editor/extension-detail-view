@@ -61,6 +61,14 @@ export const disable = (): string => {
   return I18nString.i18nString(UiStrings.Disable)
 }
 
+export const disableOptions = (): string => {
+  return I18nString.i18nString(UiStrings.DisableOptions)
+}
+
+export const disableWorkspace = (): string => {
+  return I18nString.i18nString(UiStrings.DisableWorkspace)
+}
+
 export const features = (): string => {
   return I18nString.i18nString(UiStrings.Features)
 }
@@ -103,6 +111,14 @@ export const setColorTheme = (): string => {
 
 export const enable = (): string => {
   return I18nString.i18nString(UiStrings.Enable)
+}
+
+export const enableOptions = (): string => {
+  return I18nString.i18nString(UiStrings.EnableOptions)
+}
+
+export const enableWorkspace = (): string => {
+  return I18nString.i18nString(UiStrings.EnableWorkspace)
 }
 
 export const extensionInfoId = (): string => {

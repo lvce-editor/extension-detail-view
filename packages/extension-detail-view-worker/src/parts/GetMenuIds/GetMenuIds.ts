@@ -7,5 +7,7 @@ export const getMenuIds = (): readonly number[] => {
     MenuEntryId.ExtensionDetailIconContextMenu,
     MenuEntryId.ManageExtension,
     LocalMenuEntryId.ExtensionDetailChangelogContextMenu,
+    LocalMenuEntryId.ExtensionDetailEnableContextMenu,
+    LocalMenuEntryId.ExtensionDetailDisableContextMenu,
   ]
 }

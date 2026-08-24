@@ -15,7 +15,15 @@ export const handleClickSetColorTheme = async (state: ExtensionDetailState): Pro
     }
     const isBuiltin = isBuiltinExtension(extension)
     const colorThemeLabel = getColorThemeLabel(extension) || ''
-    const buttons = getExtensionDetailButtons(hasColorTheme, isBuiltin, disabled, colorThemeId, colorThemeLabel, colorThemeId)
+    const buttons = getExtensionDetailButtons(
+      hasColorTheme,
+      isBuiltin,
+      disabled,
+      colorThemeId,
+      colorThemeLabel,
+      colorThemeId,
+      extension?.hasWorkspace === true,
+    )
     return {
       ...state,
       buttons,

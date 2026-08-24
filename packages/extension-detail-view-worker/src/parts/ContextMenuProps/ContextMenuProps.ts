@@ -28,5 +28,19 @@ interface ContextMenuPropsChangelog extends ContextMenuPropsBase {
   readonly menuId: typeof MenuEntryId.ExtensionDetailChangelogContextMenu
 }
 
+interface ContextMenuPropsEnableExtension extends ContextMenuPropsBase {
+  readonly menuId: typeof MenuEntryId.ExtensionDetailEnableContextMenu
+}
+
+interface ContextMenuPropsDisableExtension extends ContextMenuPropsBase {
+  readonly menuId: typeof MenuEntryId.ExtensionDetailDisableContextMenu
+}
+
 export type ContextMenuProps =
-  ContextMenuPropsExplorer | ContextMenuPropsReadme | ContextMenuPropsIcon | ContextMenuPropsManageExtension | ContextMenuPropsChangelog
+  | ContextMenuPropsExplorer
+  | ContextMenuPropsReadme
+  | ContextMenuPropsIcon
+  | ContextMenuPropsManageExtension
+  | ContextMenuPropsChangelog
+  | ContextMenuPropsEnableExtension
+  | ContextMenuPropsDisableExtension

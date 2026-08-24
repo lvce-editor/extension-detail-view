@@ -73,6 +73,14 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       params: ['handleClickEnable'],
     },
     {
+      name: DomEventListenerFunctions.HandleClickEnableOptions,
+      params: ['handleClickEnableOptions', EventExpression.ClientX, EventExpression.ClientY],
+    },
+    {
+      name: DomEventListenerFunctions.HandleClickDisableOptions,
+      params: ['handleClickDisableOptions', EventExpression.ClientX, EventExpression.ClientY],
+    },
+    {
       name: DomEventListenerFunctions.HandleMouseEnterEnable,
       params: ['handleMouseEnterEnable'],
     },
