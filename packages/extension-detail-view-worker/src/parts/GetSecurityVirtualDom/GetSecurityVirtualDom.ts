@@ -7,7 +7,7 @@ import { getSecurityInfo } from '../GetSecurityInfo/GetSecurityInfo.ts'
 import { text } from '../VirtualDomHelpers/VirtualDomHelpers.ts'
 
 const securityPanelNode: VirtualDomNode = {
-  childCount: 3,
+  childCount: 2,
   className: mergeClassNames(ClassNames.FeatureContent, ClassNames.Security),
   role: AriaRoles.Panel,
   type: VirtualDomElements.Div,
@@ -18,60 +18,22 @@ const securityHeadingNode: VirtualDomNode = {
   type: VirtualDomElements.H1,
 }
 
-const securityDescriptionNode: VirtualDomNode = {
+const securityValueNode: VirtualDomNode = {
   childCount: 1,
-  className: ClassNames.SecurityDescription,
-  type: VirtualDomElements.P,
+  className: ClassNames.SecurityDefinitionListValue,
+  type: VirtualDomElements.Dd,
 }
 
-const securityTableNode: VirtualDomNode = {
-  childCount: 2,
-  className: mergeClassNames(ClassNames.Table, ClassNames.SecurityTable),
-  type: VirtualDomElements.Table,
-}
-
-const tableHeadNode: VirtualDomNode = {
-  childCount: 1,
-  type: VirtualDomElements.THead,
-}
-
-const tableHeadRowNode: VirtualDomNode = {
-  childCount: 3,
-  type: VirtualDomElements.Tr,
-}
-
-const tableHeadingNode: VirtualDomNode = {
-  childCount: 1,
-  className: mergeClassNames(ClassNames.TableHeading, ClassNames.TableCell),
-  type: VirtualDomElements.Th,
-}
-
-const getHeading = (value: string): readonly VirtualDomNode[] => {
-  return [tableHeadingNode, text(value)]
-}
-
-const getCell = (value: string): readonly VirtualDomNode[] => {
+const getEntry = (entry: SecurityEntry): readonly VirtualDomNode[] => {
   return [
     {
       childCount: 1,
-      className: ClassNames.TableCell,
-      title: value,
-      type: VirtualDomElements.Td,
+      className: mergeClassNames(ClassNames.SecurityDefinitionListKey, entry.id),
+      type: VirtualDomElements.Dt,
     },
-    text(value),
-  ]
-}
-
-const getRow = (entry: SecurityEntry): readonly VirtualDomNode[] => {
-  return [
-    {
-      childCount: 3,
-      className: mergeClassNames(ClassNames.SecurityRow, entry.id),
-      type: VirtualDomElements.Tr,
-    },
-    ...getCell(entry.label),
-    ...getCell(entry.access),
-    ...getCell(entry.details),
+    text(entry.label),
+    securityValueNode,
+    text(entry.value),
   ]
 }
 
@@ -81,18 +43,11 @@ export const getSecurityVirtualDom = (extension: any): readonly VirtualDomNode[]
     securityPanelNode,
     securityHeadingNode,
     text(ExtensionDetailStrings.security()),
-    securityDescriptionNode,
-    text(ExtensionDetailStrings.securityDisclaimer()),
-    securityTableNode,
-    tableHeadNode,
-    tableHeadRowNode,
-    ...getHeading(ExtensionDetailStrings.securityCapability()),
-    ...getHeading(ExtensionDetailStrings.securityAccess()),
-    ...getHeading(ExtensionDetailStrings.securityDetails()),
     {
-      childCount: entries.length,
-      type: VirtualDomElements.TBody,
+      childCount: entries.length * 2,
+      className: ClassNames.SecurityDefinitionList,
+      type: VirtualDomElements.Dl,
     },
-    ...entries.flatMap(getRow),
+    ...entries.flatMap(getEntry),
   ]
 }

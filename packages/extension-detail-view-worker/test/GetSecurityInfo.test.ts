@@ -13,36 +13,27 @@ const getEntry = (extension: any, id: string): SecurityEntry => {
 test('reports a declarative extension without executable capabilities', () => {
   const entries = getSecurityInfo({})
 
-  expect(entries).toHaveLength(9)
-  expect(getEntry({}, 'NodeJsCode').access).toBe('No')
-  expect(getEntry({}, 'BrowserCode').access).toBe('No')
-  expect(getEntry({}, 'ExecutionIsolation').access).toBe('Not applicable')
-  expect(getEntry({}, 'ExternalConnections').access).toBe('None declared')
-  expect(getEntry({}, 'WorkspaceFiles').access).toBe('Not available')
-  expect(getEntry({}, 'LocalProcesses').access).toBe('Not available')
-  expect(getEntry({}, 'AutomaticActivation').access).toBe('No')
-  expect(getEntry({}, 'Webviews').access).toBe('0')
-  expect(getEntry({}, 'DynamicCodeEvaluation').access).toBe('Blocked')
+  expect(entries).toEqual([
+    { id: 'NetworkRequests', label: 'Network Requests', value: 'No' },
+    { id: 'CodeExecution', label: 'Code Execution', value: 'No' },
+    { id: 'NodeJsCodeExecution', label: 'NodeJS Code Execution', value: 'No' },
+  ])
 })
 
-test('reports unrestricted Node.js capabilities', () => {
-  const extension = { activation: ['*'], main: 'index.js' }
+test('reports unrestricted network and NodeJS code execution', () => {
+  const extension = { main: 'index.js' }
 
-  expect(getEntry(extension, 'NodeJsCode')).toMatchObject({ access: 'Yes', details: 'Runs index.js with Node.js APIs.' })
-  expect(getEntry(extension, 'ExternalConnections').access).toBe('Unrestricted')
-  expect(getEntry(extension, 'WorkspaceFiles').access).toBe('Read and write')
-  expect(getEntry(extension, 'LocalProcesses').access).toBe('Allowed')
-  expect(getEntry(extension, 'AutomaticActivation').access).toBe('Yes')
-  expect(getEntry(extension, 'DynamicCodeEvaluation').access).toBe('Allowed')
+  expect(getEntry(extension, 'NetworkRequests').value).toBe('Yes')
+  expect(getEntry(extension, 'CodeExecution').value).toBe('No')
+  expect(getEntry(extension, 'NodeJsCodeExecution').value).toBe('Yes')
 })
 
-test('reports a shared browser extension', () => {
+test('reports unrestricted network and code execution for a shared browser extension', () => {
   const extension = { browser: 'worker.js', isolated: false }
 
-  expect(getEntry(extension, 'BrowserCode')).toMatchObject({ access: 'Yes', details: 'Runs worker.js in a browser worker.' })
-  expect(getEntry(extension, 'ExecutionIsolation').access).toBe('Shared extension host')
-  expect(getEntry(extension, 'ExternalConnections').access).toBe('Unrestricted')
-  expect(getEntry(extension, 'WorkspaceFiles').access).toBe('Read and write')
+  expect(getEntry(extension, 'NetworkRequests').value).toBe('Yes')
+  expect(getEntry(extension, 'CodeExecution').value).toBe('Yes')
+  expect(getEntry(extension, 'NodeJsCodeExecution').value).toBe('No')
 })
 
 test('reports restricted external services from all isolated content policies', () => {
@@ -55,28 +46,21 @@ test('reports restricted external services from all isolated content policies', 
     webViews: [{ contentSecurityPolicy: ['connect-src https://webview.example.com'] }, {}],
   }
 
-  expect(getEntry(extension, 'ExecutionIsolation').access).toBe('Isolated worker')
-  expect(getEntry(extension, 'ExternalConnections')).toMatchObject({
-    access: 'Restricted',
-    details: 'https://api.example.com, wss://socket.example.com, https://webview.example.com, https://iframe.example.com',
-  })
-  expect(getEntry(extension, 'Webviews').access).toBe('4')
-  expect(getEntry(extension, 'DynamicCodeEvaluation').access).toBe('Allowed')
+  expect(getEntry(extension, 'NetworkRequests').value).toBe(
+    'https://api.example.com, wss://socket.example.com, https://webview.example.com, https://iframe.example.com',
+  )
+  expect(getEntry(extension, 'CodeExecution').value).toBe('Yes')
+  expect(getEntry(extension, 'NodeJsCodeExecution').value).toBe('No')
 })
 
 test('reports wildcard network access from a manifest policy', () => {
   const extension = { browser: 'worker.js', contentSecurityPolicy: ['connect-src *'], isolated: true }
 
-  expect(getEntry(extension, 'ExternalConnections')).toMatchObject({ access: 'Unrestricted', details: 'The manifest declares connect-src *.' })
+  expect(getEntry(extension, 'NetworkRequests').value).toBe('Yes')
 })
 
-test.each(['onStartup', 'onStartupFinished'])('reports %s as automatic activation', (event) => {
-  expect(getEntry({ activation: [event] }, 'AutomaticActivation').access).toBe('Yes')
-})
-
-test('ignores invalid manifest collection shapes and non-startup activation events', () => {
+test('ignores invalid manifest collection shapes and entry points', () => {
   const extension = {
-    activation: ['onCommand:test', null],
     browser: '',
     contentSecurityPolicy: {},
     main: 42,
@@ -85,7 +69,7 @@ test('ignores invalid manifest collection shapes and non-startup activation even
     webViews: {},
   }
 
-  expect(getEntry(extension, 'AutomaticActivation').access).toBe('No')
-  expect(getEntry(extension, 'NodeJsCode').access).toBe('No')
-  expect(getEntry(extension, 'BrowserCode').access).toBe('No')
+  expect(getEntry(extension, 'NetworkRequests').value).toBe('No')
+  expect(getEntry(extension, 'CodeExecution').value).toBe('No')
+  expect(getEntry(extension, 'NodeJsCodeExecution').value).toBe('No')
 })

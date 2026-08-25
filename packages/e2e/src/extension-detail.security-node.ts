@@ -6,9 +6,8 @@ export const name = 'extension-detail.security-node'
 export const test: Test = async (api) => {
   await openSecurity(api, import.meta.resolve('../fixtures/extension-security-node'), 'test.security-node')
 
-  const table = api.Locator('.SecurityTable')
-  await api.expect(table.locator('tr.SecurityRow.NodeJsCode')).toContainText('Yes')
-  await api.expect(table.locator('tr.SecurityRow.ExternalConnections')).toContainText('Unrestricted')
-  await api.expect(table.locator('tr.SecurityRow.WorkspaceFiles')).toContainText('Read and write')
-  await api.expect(table.locator('tr.SecurityRow.LocalProcesses')).toContainText('Allowed')
+  const list = api.Locator('.SecurityDefinitionList')
+  await api.expect(list.locator('dt.NetworkRequests + dd')).toHaveText('Yes')
+  await api.expect(list.locator('dt.CodeExecution + dd')).toHaveText('No')
+  await api.expect(list.locator('dt.NodeJsCodeExecution + dd')).toHaveText('Yes')
 }

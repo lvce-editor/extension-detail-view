@@ -9,6 +9,10 @@ export const test: Test = async (api) => {
   const panel = api.Locator('.FeatureContent.Security')
   await api.expect(panel).toHaveAttribute('role', 'panel')
   await api.expect(panel.locator(':scope > h1')).toHaveText('Security')
-  await api.expect(panel.locator(':scope > .SecurityDescription')).toContainText('Source code is not inspected')
-  await api.expect(panel.locator(':scope > table.SecurityTable')).toHaveCount(1)
+  const definitionList = panel.locator(':scope > dl.SecurityDefinitionList')
+  await api.expect(definitionList).toHaveCount(1)
+  await api.expect(definitionList.locator(':scope > dt')).toHaveCount(3)
+  await api.expect(definitionList.locator(':scope > dd')).toHaveCount(3)
+  await api.expect(panel.locator(':scope > p')).toHaveCount(0)
+  await api.expect(panel.locator(':scope > table')).toHaveCount(0)
 }

@@ -6,9 +6,8 @@ export const name = 'extension-detail.security-shared-browser'
 export const test: Test = async (api) => {
   await openSecurity(api, import.meta.resolve('../fixtures/extension-security-shared'), 'test.security-shared')
 
-  const table = api.Locator('.SecurityTable')
-  await api.expect(table.locator('tr.SecurityRow.BrowserCode')).toContainText('Yes')
-  await api.expect(table.locator('tr.SecurityRow.ExecutionIsolation')).toContainText('Shared extension host')
-  await api.expect(table.locator('tr.SecurityRow.ExternalConnections')).toContainText('Unrestricted')
-  await api.expect(table.locator('tr.SecurityRow.AutomaticActivation')).toContainText('No')
+  const list = api.Locator('.SecurityDefinitionList')
+  await api.expect(list.locator('dt.NetworkRequests + dd')).toHaveText('Yes')
+  await api.expect(list.locator('dt.CodeExecution + dd')).toHaveText('Yes')
+  await api.expect(list.locator('dt.NodeJsCodeExecution + dd')).toHaveText('No')
 }
