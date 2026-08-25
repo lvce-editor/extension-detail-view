@@ -157,56 +157,16 @@ export const security = (): string => {
   return I18nString.i18nString(UiStrings.Security)
 }
 
-export const securityAccess = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityAccess)
+export const securityCodeExecution = (): string => {
+  return I18nString.i18nString(UiStrings.SecurityCodeExecution)
 }
 
-export const securityAutomaticActivation = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityAutomaticActivation)
+export const securityNetworkRequests = (): string => {
+  return I18nString.i18nString(UiStrings.SecurityNetworkRequests)
 }
 
-export const securityBrowserCode = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityBrowserCode)
-}
-
-export const securityCapability = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityCapability)
-}
-
-export const securityDetails = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityDetails)
-}
-
-export const securityDisclaimer = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityDisclaimer)
-}
-
-export const securityDynamicCodeEvaluation = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityDynamicCodeEvaluation)
-}
-
-export const securityExecutionIsolation = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityExecutionIsolation)
-}
-
-export const securityExternalConnections = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityExternalConnections)
-}
-
-export const securityLocalProcesses = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityLocalProcesses)
-}
-
-export const securityNodeJsCode = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityNodeJsCode)
-}
-
-export const securityWebviews = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityWebviews)
-}
-
-export const securityWorkspaceFiles = (): string => {
-  return I18nString.i18nString(UiStrings.SecurityWorkspaceFiles)
+export const securityNodeJsCodeExecution = (): string => {
+  return I18nString.i18nString(UiStrings.SecurityNodeJsCodeExecution)
 }
 
 export const memoryUsage = (): string => {

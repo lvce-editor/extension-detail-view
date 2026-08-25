@@ -6,8 +6,8 @@ export const name = 'extension-detail.security-network-services'
 export const test: Test = async (api) => {
   await openSecurity(api, import.meta.resolve('../fixtures/extension-security-network'), 'test.security-network')
 
-  const row = api.Locator('.SecurityTable tr.SecurityRow.ExternalConnections')
-  await api.expect(row).toContainText('Restricted')
-  await api.expect(row).toContainText('https://api.example.com')
-  await api.expect(row).toContainText('wss://socket.example.com')
+  const list = api.Locator('.SecurityDefinitionList')
+  await api.expect(list.locator('dt.NetworkRequests + dd')).toHaveText('https://api.example.com, wss://socket.example.com')
+  await api.expect(list.locator('dt.CodeExecution + dd')).toHaveText('Yes')
+  await api.expect(list.locator('dt.NodeJsCodeExecution + dd')).toHaveText('No')
 }
