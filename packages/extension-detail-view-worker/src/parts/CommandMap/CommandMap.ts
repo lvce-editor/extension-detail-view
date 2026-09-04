@@ -127,7 +127,7 @@ export const commandMap = {
   'ExtensionDetail.resetGithubApiMock': WrapCommand.wrapCommand(GithubApiRequest.handleResetGithubApiMock),
   'ExtensionDetail.resize': WrapCommand.wrapCommand(Resize.resize),
   'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
-  'ExtensionDetail.setComponentState': SetComponentState.setComponentState,
   'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
+  'ExtensionDetail.setComponentState': SetComponentState.setComponentState,
   'ExtensionDetail.terminate': terminate,
 }
