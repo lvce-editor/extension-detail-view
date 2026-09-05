@@ -12,6 +12,7 @@ import * as WrapCommand from '../ExtensionDetailStates/ExtensionDetailStates.ts'
 import * as FocusNextTab from '../FocusNextTab/FocusNextTab.ts'
 import * as FocusPreviousTab from '../FocusPreviousTab/FocusPreviousTab.ts'
 import * as GetCommandIds from '../GetCommandIds/GetCommandIds.ts'
+import { getComponentDom } from '../GetComponentDom/GetComponentDom.ts'
 import * as GetComponentState from '../GetComponentState/GetComponentState.ts'
 import { getKeyBindings } from '../GetKeyBindings/GetKeyBindings.ts'
 import { getMenuEntries2 } from '../GetMenuEntries2/GetMenuEntries2.ts'
@@ -78,6 +79,7 @@ export const commandMap = {
   'ExtensionDetail.focusNextTab': WrapCommand.wrapCommand(FocusNextTab.focusNextTab),
   'ExtensionDetail.focusPreviousTab': WrapCommand.wrapCommand(FocusPreviousTab.focusPreviousTab),
   'ExtensionDetail.getCommandIds': GetCommandIds.getCommandIds,
+  'ExtensionDetail.getComponentDom': getComponentDom,
   'ExtensionDetail.getComponentState': GetComponentState.getComponentState,
   'ExtensionDetail.getKeyBindings': getKeyBindings,
   'ExtensionDetail.getMenuEntries': GetMenuEntries.getMenuEntries,
