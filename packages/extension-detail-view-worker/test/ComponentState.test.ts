@@ -1,6 +1,7 @@
 import { expect, test } from '@jest/globals'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as ExtensionDetailStates from '../src/parts/ExtensionDetailStates/ExtensionDetailStates.ts'
+import { getComponentDom } from '../src/parts/GetComponentDom/GetComponentDom.ts'
 import { getComponentState } from '../src/parts/GetComponentState/GetComponentState.ts'
 import { setComponentState } from '../src/parts/SetComponentState/SetComponentState.ts'
 
@@ -23,4 +24,20 @@ test('rejects an invalid live component state', async () => {
 
   await expect(setComponentState(uid, { ...state, uid: 103 })).rejects.toThrow('Extension Detail state uid must remain 102')
   await expect(setComponentState(uid, [] as unknown)).rejects.toThrow('Extension Detail state must be an object')
+})
+
+test('inspects the current virtual DOM without advancing rendered state', () => {
+  const uid = 104
+  const oldState = { ...createDefaultState(), uid }
+  const newState = { ...oldState, initial: false }
+  ExtensionDetailStates.set(uid, oldState, newState)
+  const before = ExtensionDetailStates.get(uid)
+  const dom = getComponentDom(uid)
+
+  expect(Array.isArray(dom)).toBe(true)
+  expect(dom.length).toBeGreaterThan(0)
+  expect(dom[0]).toEqual(expect.objectContaining({ childCount: expect.any(Number), type: expect.any(Number) }))
+  expect(ExtensionDetailStates.get(uid)).toEqual(before)
+  expect(ExtensionDetailStates.get(uid).oldState).toBe(oldState)
+  expect(ExtensionDetailStates.get(uid).newState).toBe(newState)
 })
