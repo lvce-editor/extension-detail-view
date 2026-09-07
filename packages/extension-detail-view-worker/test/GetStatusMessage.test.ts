@@ -2,9 +2,9 @@ import { test, expect } from '@jest/globals'
 import { getStatusMessage } from '../src/parts/GetStatusMessage/GetStatusMessage.ts'
 import * as RuntimeStatusType from '../src/parts/RuntimeStatusType/RuntimeStatusType.ts'
 
-test('getStatusMessage should return "none" for RuntimeStatusType.None', () => {
+test('getStatusMessage should return "Not Running" for RuntimeStatusType.None', () => {
   const result = getStatusMessage(RuntimeStatusType.None)
-  expect(result).toBe('none')
+  expect(result).toBe('Not Running')
 })
 
 test('getStatusMessage should return "importing" for RuntimeStatusType.Importing', () => {

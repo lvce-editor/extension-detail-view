@@ -15,5 +15,5 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const statusValue = definitionList.locator('dd').nth(0)
   await expect(definitionList).toBeVisible()
   await expect(statusTerm).toContainText('Status:')
-  await expect(statusValue).toBeVisible()
+  await expect(statusValue).toHaveText('Not Running')
 }

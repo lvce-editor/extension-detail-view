@@ -13,7 +13,7 @@ export const getStatusMessage = (statusType: number): string => {
     case RuntimeStatusType.Importing:
       return 'importing'
     case RuntimeStatusType.None:
-      return 'none'
+      return 'Not Running'
     default:
       return 'unknown'
   }
