@@ -240,7 +240,7 @@ test('getRuntimeStatusVirtualDom should handle none status', () => {
   expect(result).toHaveLength(8)
   expect(result[7]).toEqual({
     childCount: 0,
-    text: 'none',
+    text: 'Not Running',
     type: VirtualDomElements.Text,
   })
 })

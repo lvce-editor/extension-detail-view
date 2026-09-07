@@ -1,0 +1,9 @@
+{
+  "id": "test.runtime-status-not-running",
+  "name": "Runtime Status Not Running Test",
+  "version": "1.0.0",
+  "description": "Runtime Status Not Running Test",
+  "browser": "index.js",
+  "isolated": true,
+  "activation": []
+}

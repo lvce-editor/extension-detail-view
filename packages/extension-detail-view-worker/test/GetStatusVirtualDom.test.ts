@@ -53,7 +53,7 @@ test('getStatusVirtualDom should return correct virtual DOM structure for none s
     },
     {
       childCount: 0,
-      text: 'none',
+      text: 'Not Running',
       type: VirtualDomElements.Text,
     },
   ]
