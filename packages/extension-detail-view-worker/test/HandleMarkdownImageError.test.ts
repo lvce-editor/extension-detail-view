@@ -15,11 +15,12 @@ const imageNode = {
 
 const errorDom = [
   {
-    childCount: 1,
+    childCount: 2,
     className: ClassNames.MarkdownImageError,
     type: VirtualDomElements.Span,
   },
-  text(ExtensionDetailStrings.imageCannotBeLoaded()),
+  { childCount: 0, className: 'MaskIcon MaskIconWarning', type: VirtualDomElements.Span },
+  text(ExtensionDetailStrings.imageCannotBeLoaded() + ': https://example.com/image.png'),
 ]
 
 test('handleMarkdownImageError replaces matching details image with error text', () => {
@@ -53,7 +54,7 @@ test('handleMarkdownImageError replaces relative image after browser src normali
   }
   expect(HandleMarkdownImageError.handleMarkdownImageError(state, 'http://localhost:3000/not-found.png')).toEqual({
     ...state,
-    detailsVirtualDom: errorDom,
+    detailsVirtualDom: [...errorDom.slice(0, 2), text(ExtensionDetailStrings.imageCannotBeLoaded() + ': ./not-found.png')],
   })
 })
 
