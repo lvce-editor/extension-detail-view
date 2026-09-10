@@ -75,10 +75,10 @@ const loadContentInternal = async (
     rating,
   } = headerData
   const extensionUri = getExtensionUri(unresolvedExtensionUri, platform, location.origin)
-  const readmeUrl = Path.join(extensionUri, 'README.md')
+  const readmeUri = Path.join(extensionUri, 'README.md')
   const changelogUrl = Path.join(extensionUri, 'CHANGELOG.md')
-  const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUrl), existsFile(changelogUrl)])
-  const readmeContent = hasReadme ? await GetExtensionReadme.loadReadmeContent(readmeUrl) : ExtensionDetailStrings.noReadmeFound()
+  const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUri), existsFile(changelogUrl)])
+  const readmeContent = hasReadme ? await GetExtensionReadme.loadReadmeContent(readmeUri) : ExtensionDetailStrings.noReadmeFound()
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   // TODO maybe pass these as arguments also
   const locationProtocol = location.protocol
@@ -174,7 +174,7 @@ const loadContentInternal = async (
     platform,
     rating,
     readmeScrollTop,
-    readmeUrl,
+    readmeUri,
     resources,
     scrollSource: InputSource.Script,
     scrollToTopButtonEnabled: true,

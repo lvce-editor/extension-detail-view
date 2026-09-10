@@ -54,7 +54,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     programmingLanguages: [],
     rating: 'n/a',
     readmeScrollTop: 0,
-    readmeUrl: '',
+    readmeUri: '',
     resources: [],
     scrollSource: 0,
     scrollToTopButtonEnabled: false,
