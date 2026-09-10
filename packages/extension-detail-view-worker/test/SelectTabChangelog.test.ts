@@ -1,4 +1,5 @@
 import { afterEach, expect, test } from '@jest/globals'
+import { ExtensionManagementWorker } from '@lvce-editor/rpc-registry'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import * as createDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
@@ -12,10 +13,13 @@ afterEach(() => {
 })
 
 test('selectTabChangelog should update state with changelog content', async () => {
+  using mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.getLanguages': () => [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
+  })
+
   const state = {
     ...createDefaultState.createDefaultState(),
     extensionUri: 'https://lvce-editor.github.io/extension-detail-view/hash/extensions/test.extension',
-    languages: [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
   }
   const changelogContent = '# Changelog\n\n## Version 1.0.0\n- Initial release'
   const renderedHtml = '<h1>Changelog</h1><h2>Version 1.0.0</h2><ul><li>Initial release</li></ul>'
@@ -38,6 +42,8 @@ test('selectTabChangelog should update state with changelog content', async () =
 
   const result = await SelectTabChangelog.selectTabChangelog(state)
 
+  expect(result).not.toHaveProperty('languages')
+  expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.getLanguages', state.platform, state.assetDir])
   expect(result.selectedTab).toBe(InputName.Changelog)
   expect(result.changelogVirtualDom).toHaveLength(3)
   expect(result.changelogVirtualDom[0]).toMatchObject({ childCount: 2, type: VirtualDomElements.Div })
