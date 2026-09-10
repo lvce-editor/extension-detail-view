@@ -55,7 +55,7 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     programmingLanguages: [],
     rating: 'n/a',
     readmeScrollTop: 0,
-    readmeUrl: '',
+    readmeUri: '',
     resources: [],
     scrollSource: 0,
     scrollToTopButtonEnabled: false,

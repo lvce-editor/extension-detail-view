@@ -62,7 +62,7 @@ export interface ExtensionDetailState {
   readonly programmingLanguages: readonly Row[]
   readonly rating: string
   readonly readmeScrollTop: number
-  readonly readmeUrl: string
+  readonly readmeUri: string
   readonly resources: readonly Resource[]
   readonly scrollSource: number
   readonly scrollToTopButtonEnabled: boolean
