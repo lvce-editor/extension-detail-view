@@ -27,11 +27,12 @@ test('preserves image children when replacing image with error', () => {
       type: VirtualDomElements.Span,
     },
     {
-      childCount: 1,
+      childCount: 2,
       className: ClassNames.MarkdownImageError,
       type: VirtualDomElements.Span,
     },
-    text(ExtensionDetailStrings.imageCannotBeLoaded()),
+    { childCount: 0, className: 'MaskIcon MaskIconWarning', type: VirtualDomElements.Span },
+    text(ExtensionDetailStrings.imageCannotBeLoaded() + ': ./not-found.png'),
     trailingText,
   ])
 })
@@ -48,10 +49,11 @@ test('uses Gitpod-specific error text for a Gitpod image', () => {
 
   expect(ReplaceMarkdownImageWithError.replaceMarkdownImageWithError(dom, src)).toEqual([
     {
-      childCount: 1,
+      childCount: 2,
       className: ClassNames.MarkdownImageError,
       type: VirtualDomElements.Span,
     },
-    text(ExtensionDetailStrings.gitpodImageFailedToLoad()),
+    { childCount: 0, className: 'MaskIcon MaskIconWarning', type: VirtualDomElements.Span },
+    text(ExtensionDetailStrings.gitpodImageFailedToLoad() + ': ' + src),
   ])
 })

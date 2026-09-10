@@ -20,6 +20,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await ExtensionDetail.handleMarkdownImageError('./not-found.png')
   const imageError = markDown.locator('.MarkdownImageError')
   await expect(imageError).toBeVisible()
-  await expect(imageError).toHaveText('Image cannot be loaded')
+  await expect(imageError.locator('.MaskIconWarning')).toBeVisible()
+  await expect(imageError).toHaveText('Image cannot be loaded: ./not-found.png')
   await expect(image).toHaveCount(0)
 }
