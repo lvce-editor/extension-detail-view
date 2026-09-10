@@ -164,7 +164,6 @@ const loadContentInternal = async (
     iconSrc,
     initial: false,
     installationEntries,
-    languages,
     lastUpdated,
     linkProtectionEnabled,
     locationHost,

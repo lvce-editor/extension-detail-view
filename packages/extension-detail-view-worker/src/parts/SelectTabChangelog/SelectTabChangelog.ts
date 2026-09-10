@@ -1,9 +1,11 @@
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
+import type { SyntaxLanguage } from '../SyntaxLanguage/SyntaxLanguage.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import { getGithubReleasesMarkdown } from '../GetGithubReleasesMarkdown/GetGithubReleasesMarkdown.ts'
 import { getGithubRepository } from '../GetGithubRepository/GetGithubRepository.ts'
 import { addScrollToTopVirtualDom, getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
 import { GithubReleasesError } from '../GithubReleasesError/GithubReleasesError.ts'
+import { getSyntaxLanguages } from '../GetSyntaxLanguages/GetSyntaxLanguages.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as LoadChangelogContent from '../LoadChangelogContent/LoadChangelogContent.ts'
 import { loadGithubReleases } from '../LoadGithubReleases/LoadGithubReleases.ts'
@@ -39,7 +41,7 @@ const renderGithubReleases = async (
   result: Awaited<ReturnType<typeof loadGithubReleases>>,
   githubRepository: NonNullable<ReturnType<typeof getGithubRepository>>,
   cacheName: string,
-  languages: ExtensionDetailState['languages'],
+  languages: readonly SyntaxLanguage[],
   locationProtocol: string,
 ): Promise<readonly VirtualDomNode[]> => {
   const chunks: VirtualDomNode[][] = []
@@ -64,7 +66,8 @@ const renderGithubReleases = async (
 }
 
 export const selectTabChangelog = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const { baseUrl, cacheName, extension, extensionUri, languages, locationProtocol, tabs } = state
+  const { assetDir, baseUrl, cacheName, extension, extensionUri, locationProtocol, platform, tabs } = state
+  const languages = await getSyntaxLanguages(platform, assetDir)
   const githubRepository = getGithubRepository(extension)
   let changelogDom: readonly VirtualDomNode[]
   if (githubRepository) {

@@ -1,5 +1,5 @@
 import { afterEach, beforeAll, expect, jest, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { ExtensionManagementWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { clearRegistry, register } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
@@ -20,6 +20,10 @@ beforeAll(() => {
 afterEach(clearRegistry)
 
 test('loadContent - successful load', async () => {
+  using mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.getLanguages': () => [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
+  })
+
   const mockExtension: any = {
     builtin: false,
     description: 'A test extension',
@@ -81,8 +85,13 @@ test('loadContent - successful load', async () => {
   expect(mockMarkdownRpc.invocations).toContainEqual([
     'Markdown.render',
     '# Test README Content',
-    expect.objectContaining({ extensionId: 'test-extension' }),
+    expect.objectContaining({
+      extensionId: 'test-extension',
+      languages: [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
+    }),
   ])
+  expect(result).not.toHaveProperty('languages')
+  expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.getLanguages', 1, '/test/assets'])
   expect(result.extension).toEqual(mockExtension)
   expect(result.name).toBe('Test Extension')
   expect(result.description).toBe('A test extension')

@@ -41,7 +41,6 @@ export const createDefaultState = (): ExtensionDetailState => {
     initial: false,
     installationEntries: [],
     jsonValidation: [],
-    languages: [],
     lastUpdated: null,
     linkProtectionEnabled: false,
     locationHost: '',

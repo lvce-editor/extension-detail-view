@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { ExtensionManagementWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
@@ -8,6 +8,10 @@ import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 import * as SelectTabDetails from '../src/parts/SelectTabDetails/SelectTabDetails.ts'
 
 test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
+  using mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.getLanguages': () => [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
+  })
+
   const expectedDom = [{ children: [], tag: 'h1', type: 'element' }]
   using mockRendererRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
@@ -40,12 +44,13 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
       version: '1.0.0',
     },
     extensionId: 'test-extension',
-    languages: [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
     platform: 0,
   }
 
   const result = await SelectTabDetails.selectTabDetails(state)
 
+  expect(result).not.toHaveProperty('languages')
+  expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.getLanguages', state.platform, state.assetDir])
   expect(result.selectedTab).toBe(InputName.Details)
   expect(result.detailsVirtualDom).toEqual(expectedDom)
   expect(mockRendererRpc.invocations).toEqual([])
