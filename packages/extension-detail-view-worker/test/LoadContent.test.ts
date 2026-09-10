@@ -78,6 +78,11 @@ test('loadContent - successful load', async () => {
 
   const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
 
+  expect(mockMarkdownRpc.invocations).toContainEqual([
+    'Markdown.render',
+    '# Test README Content',
+    expect.objectContaining({ extensionId: 'test-extension' }),
+  ])
   expect(result.extension).toEqual(mockExtension)
   expect(result.name).toBe('Test Extension')
   expect(result.description).toBe('A test extension')
