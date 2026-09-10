@@ -43,7 +43,6 @@ export const create = (uid: number, uri: string, x: number, y: number, width: nu
     initial: true,
     installationEntries: [],
     jsonValidation: [],
-    languages: [],
     lastUpdated: null,
     linkProtectionEnabled: false,
     locationHost: '',
