@@ -2,6 +2,8 @@ import { expect, test } from '@jest/globals'
 import type { MarkdownOptions } from '../src/parts/MarkdownOptions/MarkdownOptions.ts'
 import { getMarkdownCacheKey } from '../src/parts/GetMarkdownCacheKey/GetMarkdownCacheKey.ts'
 
+const encodedExtensionKey = /^https:\/\/-\/markdown\/publisher%2Fname%3F%23\/[a-f0-9]{64}$/
+
 test('getMarkdownCacheKey - empty string - electron', async () => {
   const markdown = ''
   const options: MarkdownOptions = {
@@ -31,5 +33,5 @@ test.each(['http:', 'https:', 'app:'])('includes the extension id for %s', async
 
 test('encodes extension ids as a single cache path segment', async () => {
   const key = await getMarkdownCacheKey('', { extensionId: 'publisher/name?#', locationProtocol: 'app:' })
-  expect(key).toMatch(/^https:\/\/-\/markdown\/publisher%2Fname%3F%23\/[a-f0-9]{64}$/)
+  expect(key).toMatch(encodedExtensionKey)
 })
