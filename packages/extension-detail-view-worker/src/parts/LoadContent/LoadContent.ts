@@ -89,6 +89,7 @@ const loadContentInternal = async (
     {
       baseUrl,
       commit,
+      extensionId,
       languages,
       linksExternal: true,
       locationProtocol,

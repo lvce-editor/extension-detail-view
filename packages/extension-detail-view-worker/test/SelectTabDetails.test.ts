@@ -39,6 +39,7 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
       path: '/test/path',
       version: '1.0.0',
     },
+    extensionId: 'test-extension',
     languages: [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
     platform: 0,
   }
@@ -55,6 +56,7 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
       'README CONTENT',
       {
         baseUrl: '/test/baseUrl',
+        extensionId: 'test-extension',
         languages: [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
         linksExternal: true,
         locationProtocol: '',

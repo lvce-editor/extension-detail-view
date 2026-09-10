@@ -10,9 +10,10 @@ const getMarkdownCacheHash = async (markdown: string, options: MarkdownOptions):
 
 export const getMarkdownCacheKey = async (markdown: string, options: MarkdownOptions): Promise<string> => {
   const hash = await getMarkdownCacheHash(markdown, options)
+  const path = options.extensionId ? `/markdown/${encodeURIComponent(options.extensionId)}/${hash}` : `/markdown/${hash}`
   if (supportsNormalCacheKey(options.locationProtocol)) {
-    return `/markdown/${hash}`
+    return path
   }
   // workaround for electron bug
-  return `https://-/markdown/${hash}`
+  return `https://-${path}`
 }
