@@ -25,7 +25,7 @@ const appendAfter = async (previous: Promise<void>, message: string): Promise<vo
 }
 
 export const error = (error: Error): Promise<void> => {
-  const message = error.stack || String(error)
+  const message = `${error}\n${error.stack || ''}`
   pending = appendAfter(pending, message)
   return pending
 }

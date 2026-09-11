@@ -22,7 +22,7 @@ test('creates the channel on the first error and serializes concurrent logs', as
   const first = new Error('first')
   const second = new Error('second')
   await Promise.all([Logger.error(first), Logger.error(second)])
-  expect(content).toBe(`${first.stack}\n${second.stack}\n`)
+  expect(content).toBe(`${first}\n${first.stack}\n${second}\n${second.stack}\n`)
   expect(rpc.invocations.map((call) => call.slice(0, 2))).toEqual([
     ['FileSystem.readFile', uri],
     ['FileSystem.writeFile', uri],
@@ -43,7 +43,7 @@ test('bounds retained output and preserves the newest error', async () => {
   Object.defineProperty(error, 'stack', { value: '' })
   await Logger.error(error)
   expect(content).toHaveLength(1024 * 1024)
-  expect(content.endsWith('Error: latest\n')).toBe(true)
+  expect(content.endsWith('Error: latest\n\n')).toBe(true)
 })
 
 test('a failed log write does not reject or prevent subsequent logging', async () => {
@@ -74,5 +74,20 @@ test('cleared logs are not restored by subsequent errors', async () => {
   content = ''
   const error = new Error('after clear')
   await Logger.error(error)
-  expect(content).toBe(`${error.stack}\n`)
+  expect(content).toBe(`${error}\n${error.stack}\n`)
+})
+
+test('includes the error message when the browser stack contains only frames', async () => {
+  let content = ''
+  using _rpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.readFile': () => '',
+    'FileSystem.writeFile': (_uri: string, value: string) => {
+      content = value
+    },
+  })
+  const error = new Error('Failed to load Changelog content')
+  Object.defineProperty(error, 'stack', { value: 'loadChangelogContent@https://example.com/worker.js:42:1' })
+  await Logger.error(error)
+  expect(content).toContain('Error: Failed to load Changelog content')
+  expect(content).toContain('loadChangelogContent@https://example.com/worker.js:42:1')
 })
