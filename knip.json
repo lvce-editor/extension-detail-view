@@ -16,11 +16,6 @@
       "entry": ["test/**/*.test.ts"],
       "project": ["src/**/*.ts", "test/**/*.ts"]
     },
-    "packages/memory": {
-      "entry": ["src/measureMemory.ts"],
-      "project": ["src/**/*.ts"],
-      "ignoreDependencies": ["playwright"]
-    },
     "packages/server": {
       "project": ["src/**/*.js"]
     }

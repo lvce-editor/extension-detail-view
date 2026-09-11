@@ -18,10 +18,11 @@
     "e2e:headless": "npm run e2e:headless --workspace=packages/e2e",
     "format": "prettier --write .",
     "lint": "eslint . && prettier --check . && knip --no-config-hints",
-    "measure": "npm run measure --workspace=packages/memory",
+    "measure": "npm run measure --workspace=packages/build",
     "test": "npm test --workspaces --if-present",
     "test-integration": "npm run test-integration --workspaces --if-present",
-    "type-check": "tsc -b"
+    "type-check": "tsc -b",
+    "measure:visible": "npm run measure:visible --workspace=packages/build"
   },
   "prettier": {
     "semi": false,
