@@ -72,7 +72,7 @@ export const createDefaultState = (): ExtensionDetailState => {
     tabs: [],
     themesMarkdownDom: [],
     uid: 0,
-    uri: 'extension-detail://test-extension',
+    uri: 'extension-detail:///test-extension',
     wasActivatedByEvent: '',
     webViews: [],
     width: 500,
