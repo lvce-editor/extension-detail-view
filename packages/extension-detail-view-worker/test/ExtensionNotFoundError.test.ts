@@ -6,6 +6,7 @@ test('ExtensionNotFoundError - creates error with correct message', () => {
   const error = new ExtensionNotFoundError(extensionId)
 
   expect(error.message).toBe('extension not found: test-extension')
+  expect(error.code).toBe('E_EXTENSION_NOT_FOUND')
   expect(error.name).toBe('ExtensionNotFoundError')
   expect(error).toBeInstanceOf(Error)
   expect(error).toBeInstanceOf(ExtensionNotFoundError)

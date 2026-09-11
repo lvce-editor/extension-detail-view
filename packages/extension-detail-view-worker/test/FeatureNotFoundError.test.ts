@@ -6,6 +6,7 @@ test('FeatureNotFoundError should set correct message and name', () => {
   expect(error).toBeInstanceOf(Error)
   expect(error).toBeInstanceOf(FeatureNotFoundError)
   expect(error.message).toBe('unknown feature: my-feature')
+  expect(error.code).toBe('E_FEATURE_NOT_FOUND')
   expect(error.name).toBe('FeatureNotFoundError')
 })
 
