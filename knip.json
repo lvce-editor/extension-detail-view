@@ -6,7 +6,7 @@
     },
     "packages/build": {
       "project": ["src/**/*.ts"],
-      "ignoreDependencies": ["esbuild"]
+      "ignoreDependencies": ["esbuild", "playwright"]
     },
     "packages/e2e": {
       "entry": ["src/**/*.ts", "scripts/*.js", "fixtures/**/main.js", "fixtures/**/index.js"],
