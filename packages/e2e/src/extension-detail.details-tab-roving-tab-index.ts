@@ -3,11 +3,14 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.details-tab-roving-tab-index'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
 
+  // act
   await ExtensionDetail.open('test.extension-basics')
 
+  // assert
   const tabs = Locator('.ExtensionDetailTab')
   const detailsTab = tabs.nth(0)
   const featuresTab = tabs.nth(1)

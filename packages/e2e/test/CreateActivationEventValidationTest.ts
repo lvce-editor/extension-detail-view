@@ -11,11 +11,15 @@ const extensionUri = import.meta.resolve('../fixtures/extension-activation-event
 
 export const createActivationEventValidationTest = ({ index, title = '', value }: ActivationEventValidationTestOptions): Test => {
   return async ({ expect, Extension, ExtensionDetail, Locator }) => {
+    // arrange
     await Extension.addWebExtension(extensionUri)
+
+    // act
     await ExtensionDetail.open(extensionId)
     await ExtensionDetail.selectFeatures()
     await ExtensionDetail.openFeature('ActivationEvents')
 
+    // assert
     const item = Locator('.FeatureContent li').nth(index)
     await expect(item).toHaveText(value)
     if (title) {

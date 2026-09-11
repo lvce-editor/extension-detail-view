@@ -3,11 +3,14 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.header-builtin-badge'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-builtin')
   await Extension.addWebExtension(extensionUri)
 
+  // act
   await ExtensionDetail.open('test.extension-builtin')
 
+  // assert
   const nameElement = Locator('.ExtensionDetailName')
   const name = nameElement.locator(':scope > span').nth(0)
   await expect(name).toHaveText('Test Builtin Extension')

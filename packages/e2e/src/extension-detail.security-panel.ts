@@ -4,8 +4,10 @@ import { openSecurity } from './_SecurityTest.js'
 export const name = 'extension-detail.security-panel'
 
 export const test: Test = async (api) => {
+  // act
   await openSecurity(api, import.meta.resolve('../fixtures/extension-security-declarative'), 'test.security-declarative')
 
+  // assert
   const panel = api.Locator('.FeatureContent.Security')
   await api.expect(panel).toHaveAttribute('role', 'panel')
   await api.expect(panel.locator(':scope > h1')).toHaveText('Security')

@@ -4,12 +4,14 @@ export const name = 'extension-detail.invalid-contributes-shapes'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
+  // arrange
   const fixtures = [
     ['../fixtures/extension-invalid-contributes-null', 'test.extension-invalid-contributes-null'],
     ['../fixtures/extension-invalid-contributes-array', 'test.extension-invalid-contributes-array'],
     ['../fixtures/extension-invalid-contributes-string', 'test.extension-invalid-contributes-string'],
   ] as const
 
+  // assert
   for (const [fixture, extensionId] of fixtures) {
     const extensionUri = import.meta.resolve(fixture)
     await Extension.addWebExtension(extensionUri)

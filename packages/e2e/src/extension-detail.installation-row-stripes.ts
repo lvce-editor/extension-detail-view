@@ -3,11 +3,14 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.installation-row-stripes'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
 
+  // act
   await ExtensionDetail.open('test.extension-basics')
 
+  // assert
   const rows = Locator('.AdditionalDetailsEntry:nth-of-type(1) .MoreInfoEntry')
   const first = rows.nth(0)
   const second = rows.nth(1)

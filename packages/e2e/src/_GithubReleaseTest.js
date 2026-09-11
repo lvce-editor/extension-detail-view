@@ -28,9 +28,12 @@ export const createRelease = (overrides = {}) => {
  * @param {string} [extensionId]
  */
 export const openGithubChangelog = async (api, options, fixture = 'extension-github-releases', extensionId = 'test.extension-github-releases') => {
+  // arrange
   const extensionUri = import.meta.resolve(`../fixtures/${fixture}`)
   await api.Extension.addWebExtension(extensionUri)
   await api.ExtensionDetail.open(extensionId)
   await api.ExtensionDetail.mockGithubApi(options)
+
+  // act
   await api.ExtensionDetail.selectChangelog()
 }
