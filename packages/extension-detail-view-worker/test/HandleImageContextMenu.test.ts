@@ -1,16 +1,20 @@
 import { expect, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { createMockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleImageContextMenu from '../src/parts/HandleImageContextMenu/HandleImageContextMenu.ts'
 import * as MenuEntryId from '../src/parts/MenuEntryId/MenuEntryId.ts'
+import * as MenuWorker from '../src/parts/MenuWorker/MenuWorker.ts'
 
-test('handleImageContextMenu calls ContextMenu.show2 with correct parameters and returns state unchanged', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show2': () => {
-      /**/
+test('handleImageContextMenu calls Menu.show2 with correct parameters and returns state unchanged', async () => {
+  using mockRpc = createMockRpc({
+    commandMap: {
+      'Menu.show2': () => {
+        /**/
+      },
     },
   })
+  MenuWorker.set(mockRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -23,7 +27,7 @@ test('handleImageContextMenu calls ContextMenu.show2 with correct parameters and
 
   expect(mockRpc.invocations).toEqual([
     [
-      'ContextMenu.show2',
+      'Menu.show2',
       state.uid,
       MenuEntryId.ExtensionDetailIconContextMenu,
       eventX,
@@ -36,12 +40,15 @@ test('handleImageContextMenu calls ContextMenu.show2 with correct parameters and
   expect(result).toBe(state)
 })
 
-test('handleImageContextMenu passes correct coordinates to ContextMenu.show2', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show2': () => {
-      /**/
+test('handleImageContextMenu passes correct coordinates to Menu.show2', async () => {
+  using mockRpc = createMockRpc({
+    commandMap: {
+      'Menu.show2': () => {
+        /**/
+      },
     },
   })
+  MenuWorker.set(mockRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -54,7 +61,7 @@ test('handleImageContextMenu passes correct coordinates to ContextMenu.show2', a
 
   expect(mockRpc.invocations).toEqual([
     [
-      'ContextMenu.show2',
+      'Menu.show2',
       state.uid,
       MenuEntryId.ExtensionDetailIconContextMenu,
       eventX,
@@ -67,11 +74,14 @@ test('handleImageContextMenu passes correct coordinates to ContextMenu.show2', a
 })
 
 test('handleImageContextMenu returns state regardless of coordinates', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show2': () => {
-      /**/
+  using mockRpc = createMockRpc({
+    commandMap: {
+      'Menu.show2': () => {
+        /**/
+      },
     },
   })
+  MenuWorker.set(mockRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -86,7 +96,7 @@ test('handleImageContextMenu returns state regardless of coordinates', async () 
   expect(result2).toBe(state)
   expect(mockRpc.invocations).toEqual([
     [
-      'ContextMenu.show2',
+      'Menu.show2',
       state.uid,
       MenuEntryId.ExtensionDetailIconContextMenu,
       50,
@@ -96,7 +106,7 @@ test('handleImageContextMenu returns state regardless of coordinates', async () 
       },
     ],
     [
-      'ContextMenu.show2',
+      'Menu.show2',
       state.uid,
       MenuEntryId.ExtensionDetailIconContextMenu,
       500,

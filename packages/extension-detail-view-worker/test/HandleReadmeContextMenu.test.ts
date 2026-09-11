@@ -1,16 +1,20 @@
 import { expect, test } from '@jest/globals'
 import { MenuEntryId } from '@lvce-editor/constants'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { createMockRpc } from '@lvce-editor/rpc'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as HandleReadmeContextMenu from '../src/parts/HandleReadmeContextMenu/HandleReadmeContextMenu.ts'
+import * as MenuWorker from '../src/parts/MenuWorker/MenuWorker.ts'
 
-test('handleReadmeContextMenu calls ContextMenu.show2 and returns state unchanged', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show2': () => {
-      /**/
+test('handleReadmeContextMenu calls Menu.show2 and returns state unchanged', async () => {
+  using mockRpc = createMockRpc({
+    commandMap: {
+      'Menu.show2': () => {
+        /**/
+      },
     },
   })
+  MenuWorker.set(mockRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -25,7 +29,7 @@ test('handleReadmeContextMenu calls ContextMenu.show2 and returns state unchange
 
   expect(mockRpc.invocations).toEqual([
     [
-      'ContextMenu.show2',
+      'Menu.show2',
       state.uid,
       MenuEntryId.ExtensionDetailReadme,
       x,
@@ -40,12 +44,15 @@ test('handleReadmeContextMenu calls ContextMenu.show2 and returns state unchange
   expect(result).toBe(state)
 })
 
-test('handleReadmeContextMenu passes correct coordinates to ContextMenu.show2', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show2': () => {
-      /**/
+test('handleReadmeContextMenu passes correct coordinates to Menu.show2', async () => {
+  using mockRpc = createMockRpc({
+    commandMap: {
+      'Menu.show2': () => {
+        /**/
+      },
     },
   })
+  MenuWorker.set(mockRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -60,7 +67,7 @@ test('handleReadmeContextMenu passes correct coordinates to ContextMenu.show2', 
 
   expect(mockRpc.invocations).toEqual([
     [
-      'ContextMenu.show2',
+      'Menu.show2',
       state.uid,
       MenuEntryId.ExtensionDetailReadme,
       x,
@@ -75,11 +82,14 @@ test('handleReadmeContextMenu passes correct coordinates to ContextMenu.show2', 
 })
 
 test('handleReadmeContextMenu returns state regardless of nodeName and href', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show2': () => {
-      /**/
+  using mockRpc = createMockRpc({
+    commandMap: {
+      'Menu.show2': () => {
+        /**/
+      },
     },
   })
+  MenuWorker.set(mockRpc)
 
   const state: ExtensionDetailState = {
     ...createDefaultState(),
@@ -94,7 +104,7 @@ test('handleReadmeContextMenu returns state regardless of nodeName and href', as
   expect(result2).toBe(state)
   expect(mockRpc.invocations).toEqual([
     [
-      'ContextMenu.show2',
+      'Menu.show2',
       state.uid,
       MenuEntryId.ExtensionDetailReadme,
       100,
@@ -106,7 +116,7 @@ test('handleReadmeContextMenu returns state regardless of nodeName and href', as
       },
     ],
     [
-      'ContextMenu.show2',
+      'Menu.show2',
       state.uid,
       MenuEntryId.ExtensionDetailReadme,
       100,

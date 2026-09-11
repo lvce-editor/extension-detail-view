@@ -7,6 +7,7 @@ import { initializeExtensionHostWorker } from '../InitializeExtensionHostWorker/
 import { initializeExtensionManagementWorker } from '../InitializeExtensionManagementWorker/InitializeExtensionManagementWorker.ts'
 import { initializeFileSystemWorker } from '../InitializeFileSystemWorker/InitializeFileSystemWorker.ts'
 import { initializeMarkdownWorker } from '../InitializeMarkdownWorker/InitializeMarkdownWorker.ts'
+import * as MenuWorker from '../MenuWorker/MenuWorker.ts'
 
 export const listen = async (): Promise<void> => {
   registerCommands(CommandMap.commandMap)
@@ -14,10 +15,16 @@ export const listen = async (): Promise<void> => {
     commandMap: CommandMap.commandMap,
   })
   RendererWorker.set(rpc)
-  const [dialogRpc] = await Promise.all([
+  const [dialogRpc, menuRpc] = await Promise.all([
     LazyTransferMessagePortRpcParent.create({
       commandMap: {},
       send: RendererWorker.sendMessagePortToDialogWorker,
+    }),
+    LazyTransferMessagePortRpcParent.create({
+      commandMap: {},
+      send: async (port: MessagePort): Promise<void> => {
+        await RendererWorker.invokeAndTransfer('SendMessagePortToExtensionHostWorker.sendMessagePortToMenuWorker', port)
+      },
     }),
     initializeMarkdownWorker(),
     initializeFileSystemWorker(),
@@ -26,4 +33,5 @@ export const listen = async (): Promise<void> => {
     initializeClipBoardWorker(),
   ])
   DialogWorker.set(dialogRpc)
+  MenuWorker.set(menuRpc)
 }
