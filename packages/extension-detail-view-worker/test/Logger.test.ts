@@ -1,0 +1,78 @@
+import { expect, test } from '@jest/globals'
+import { FileSystemWorker } from '@lvce-editor/rpc-registry'
+import * as Logger from '../src/parts/Logger/Logger.ts'
+
+const uri = 'memfs:///extension-detail-output.txt'
+
+test('creates the channel on the first error and serializes concurrent logs', async () => {
+  let content: string | undefined
+  using rpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.readFile': () => {
+      if (content === undefined) {
+        throw new Error('file not found')
+      }
+      return content
+    },
+    'FileSystem.writeFile': async (_uri: string, value: string) => {
+      await Promise.resolve()
+      content = value
+    },
+  })
+  expect(rpc.invocations).toEqual([])
+  const first = new Error('first')
+  const second = new Error('second')
+  await Promise.all([Logger.error(first), Logger.error(second)])
+  expect(content).toBe(`${first.stack}\n${second.stack}\n`)
+  expect(rpc.invocations.map((call) => call.slice(0, 2))).toEqual([
+    ['FileSystem.readFile', uri],
+    ['FileSystem.writeFile', uri],
+    ['FileSystem.readFile', uri],
+    ['FileSystem.writeFile', uri],
+  ])
+})
+
+test('bounds retained output and preserves the newest error', async () => {
+  let content = 'x'.repeat(1024 * 1024)
+  using rpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.readFile': () => content,
+    'FileSystem.writeFile': (_uri: string, value: string) => {
+      content = value
+    },
+  })
+  const error = new Error('latest')
+  error.stack = ''
+  await Logger.error(error)
+  expect(content).toHaveLength(1024 * 1024)
+  expect(content.endsWith('Error: latest\n')).toBe(true)
+})
+
+test('a failed log write does not reject or prevent subsequent logging', async () => {
+  let calls = 0
+  using rpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.readFile': () => '',
+    'FileSystem.writeFile': () => {
+      calls++
+      if (calls === 1) {
+        throw new Error('unavailable')
+      }
+    },
+  })
+  await expect(Logger.error(new Error('first'))).resolves.toBeUndefined()
+  await expect(Logger.error(new Error('second'))).resolves.toBeUndefined()
+  expect(calls).toBe(2)
+})
+
+test('cleared logs are not restored by subsequent errors', async () => {
+  let content = 'old error\n'
+  using rpc = FileSystemWorker.registerMockRpc({
+    'FileSystem.readFile': () => content,
+    'FileSystem.writeFile': (_uri: string, value: string) => {
+      content = value
+    },
+  })
+  await Logger.error(new Error('before clear'))
+  content = ''
+  const error = new Error('after clear')
+  await Logger.error(error)
+  expect(content).toBe(`${error.stack}\n`)
+})
