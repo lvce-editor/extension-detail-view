@@ -3,11 +3,14 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.resources-entries'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
 
+  // act
   await ExtensionDetail.open('test.extension-basics')
 
+  // assert
   const resources = Locator('.AdditionalDetailsEntry').nth(3).locator('.Resource')
   await expect(resources).toHaveCount(4)
   const marketplace = resources.nth(0)

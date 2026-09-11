@@ -3,11 +3,14 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.marketplace-value-elements'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
 
+  // act
   await ExtensionDetail.open('test.extension-basics')
 
+  // assert
   const marketplace = Locator('.AdditionalDetailsEntry:nth-of-type(2)')
   const values = marketplace.locator('dd.MoreInfoEntryValue')
   const published = values.nth(0)

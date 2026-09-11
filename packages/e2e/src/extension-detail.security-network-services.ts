@@ -4,8 +4,10 @@ import { openSecurity } from './_SecurityTest.js'
 export const name = 'extension-detail.security-network-services'
 
 export const test: Test = async (api) => {
+  // act
   await openSecurity(api, import.meta.resolve('../fixtures/extension-security-network'), 'test.security-network')
 
+  // assert
   const list = api.Locator('.SecurityDefinitionList')
   await api.expect(list.locator('dt.NetworkRequests + dd')).toHaveText('https://api.example.com, wss://socket.example.com')
   await api.expect(list.locator('dt.CodeExecution + dd')).toHaveText('Yes')

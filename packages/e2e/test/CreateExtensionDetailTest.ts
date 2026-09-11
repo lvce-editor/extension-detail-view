@@ -52,10 +52,14 @@ export const createExtensionDetailTest = ({
   selector,
 }: ExtensionDetailTestOptions): Test => {
   return async (api) => {
+    // arrange
     await api.Extension.addWebExtension(extensionUri)
+
+    // act
     await api.ExtensionDetail.open(extensionId)
     await prepareView(api, action)
 
+    // assert
     const locator = api.Locator(selector)
     await applyExpectation(api.expect(locator), expectation)
   }

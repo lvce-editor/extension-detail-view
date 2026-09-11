@@ -11,7 +11,10 @@
  * @returns {Promise<void>}
  */
 export const openSecurity = async (api, extensionUri, extensionId) => {
+  // arrange
   await api.Extension.addWebExtension(extensionUri)
+
+  // act
   await api.ExtensionDetail.open(extensionId)
   await api.ExtensionDetail.selectFeatures()
   await api.ExtensionDetail.openFeature('Security')

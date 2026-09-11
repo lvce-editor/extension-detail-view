@@ -3,13 +3,17 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.feature-runtime-status-structure'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-runtime-status-not-running')
   await Extension.addWebExtension(extensionUri)
+
+  // act
   await ExtensionDetail.open('test.runtime-status-not-running')
   await ExtensionDetail.selectFeatures()
 
   await ExtensionDetail.openFeature('RuntimeStatus')
 
+  // assert
   const definitionList = Locator('.FeatureContent > dl.RuntimeStatusDefinitionList')
   const statusTerm = definitionList.locator('dt').nth(0)
   const statusValue = definitionList.locator('dd').nth(0)

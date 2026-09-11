@@ -3,12 +3,16 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.changelog-markdown-structure'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-changelog')
   await Extension.addWebExtension(extensionUri)
+
+  // act
   await ExtensionDetail.open('test.extension-changelog')
 
   await ExtensionDetail.selectChangelog()
 
+  // assert
   const changelog = Locator('.ExtensionDetailPanel.Changelog')
   await expect(changelog.locator('h1')).toHaveText('Changes')
   const changes = changelog.locator('li')

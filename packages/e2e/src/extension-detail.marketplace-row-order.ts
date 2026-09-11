@@ -3,11 +3,14 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.marketplace-row-order'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
 
+  // act
   await ExtensionDetail.open('test.extension-basics')
 
+  // assert
   const keys = Locator('.AdditionalDetailsEntry:nth-of-type(2) .MoreInfoEntryKey')
   const published = keys.nth(0)
   const lastReleased = keys.nth(1)
