@@ -15,12 +15,17 @@ const append = async (message: string): Promise<void> => {
   await FileSystemWorker.writeFile(logUri, content)
 }
 
+const appendAfter = async (previous: Promise<void>, message: string): Promise<void> => {
+  try {
+    await previous
+    await append(message)
+  } catch {
+    // Logging must not prevent the detail view from displaying its error state.
+  }
+}
+
 export const error = (error: Error): Promise<void> => {
   const message = error.stack || String(error)
-  pending = pending
-    .then(() => append(message))
-    .catch(() => {
-      // Logging must not prevent the detail view from displaying its error state.
-    })
+  pending = appendAfter(pending, message)
   return pending
 }

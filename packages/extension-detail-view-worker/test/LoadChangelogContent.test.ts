@@ -71,10 +71,10 @@ test('loadChangelogContent returns empty string when file not found', async () =
 test('loadChangelogContent returns error message for other errors', async () => {
   const error = new Error('Permission denied')
   using mockRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.writeFile': () => {},
     'FileSystem.readFile': () => {
       throw error
     },
+    'FileSystem.writeFile': () => {},
   })
 
   const result = await LoadChangelogContent.loadChangelogContent('/test/extension')

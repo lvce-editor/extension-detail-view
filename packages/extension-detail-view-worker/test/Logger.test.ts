@@ -40,7 +40,7 @@ test('bounds retained output and preserves the newest error', async () => {
     },
   })
   const error = new Error('latest')
-  error.stack = ''
+  Object.defineProperty(error, 'stack', { value: '' })
   await Logger.error(error)
   expect(content).toHaveLength(1024 * 1024)
   expect(content.endsWith('Error: latest\n')).toBe(true)

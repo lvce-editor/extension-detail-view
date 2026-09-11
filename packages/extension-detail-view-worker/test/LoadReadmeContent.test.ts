@@ -29,10 +29,10 @@ test('handles missing readme file', async () => {
 test('returns error message for other errors', async () => {
   const error = new Error('permission denied')
   using mockRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.writeFile': () => {},
     'FileSystem.readFile': () => {
       throw error
     },
+    'FileSystem.writeFile': () => {},
   })
 
   const result = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
