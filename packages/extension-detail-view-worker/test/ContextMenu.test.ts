@@ -4,7 +4,7 @@ import * as ContextMenu from '../src/parts/ContextMenu/ContextMenu.ts'
 import * as MenuWorker from '../src/parts/MenuWorker/MenuWorker.ts'
 
 test('show2 calls invoke with correct parameters', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => {
         /**/

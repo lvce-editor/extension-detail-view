@@ -6,7 +6,7 @@ import { handleClickSettings } from '../src/parts/HandleClickSettings/HandleClic
 import * as MenuWorker from '../src/parts/MenuWorker/MenuWorker.ts'
 
 test('handleClickSettings shows the extension management menu at the click coordinates', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2'() {},
     },

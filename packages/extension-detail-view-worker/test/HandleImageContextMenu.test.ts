@@ -7,7 +7,7 @@ import * as MenuEntryId from '../src/parts/MenuEntryId/MenuEntryId.ts'
 import * as MenuWorker from '../src/parts/MenuWorker/MenuWorker.ts'
 
 test('handleImageContextMenu calls Menu.show2 with correct parameters and returns state unchanged', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => {
         /**/
@@ -41,7 +41,7 @@ test('handleImageContextMenu calls Menu.show2 with correct parameters and return
 })
 
 test('handleImageContextMenu passes correct coordinates to Menu.show2', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => {
         /**/
@@ -74,7 +74,7 @@ test('handleImageContextMenu passes correct coordinates to Menu.show2', async ()
 })
 
 test('handleImageContextMenu returns state regardless of coordinates', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => {
         /**/

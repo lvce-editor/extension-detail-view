@@ -7,7 +7,7 @@ import * as HandleAdditionalDetailContextMenu from '../src/parts/HandleAdditiona
 import * as MenuWorker from '../src/parts/MenuWorker/MenuWorker.ts'
 
 test('handleAdditionalDetailContextMenu calls Menu.show2 and returns state unchanged', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => {
         /**/
@@ -45,7 +45,7 @@ test('handleAdditionalDetailContextMenu calls Menu.show2 and returns state uncha
 })
 
 test('handleAdditionalDetailContextMenu passes correct coordinates to Menu.show2', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => {
         /**/
@@ -82,7 +82,7 @@ test('handleAdditionalDetailContextMenu passes correct coordinates to Menu.show2
 })
 
 test('handleAdditionalDetailContextMenu returns state regardless of nodeName and href', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => {
         /**/

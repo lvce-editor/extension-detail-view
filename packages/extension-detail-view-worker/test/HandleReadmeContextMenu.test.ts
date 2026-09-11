@@ -7,7 +7,7 @@ import * as HandleReadmeContextMenu from '../src/parts/HandleReadmeContextMenu/H
 import * as MenuWorker from '../src/parts/MenuWorker/MenuWorker.ts'
 
 test('handleReadmeContextMenu calls Menu.show2 and returns state unchanged', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => {
         /**/
@@ -45,7 +45,7 @@ test('handleReadmeContextMenu calls Menu.show2 and returns state unchanged', asy
 })
 
 test('handleReadmeContextMenu passes correct coordinates to Menu.show2', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => {
         /**/
@@ -82,7 +82,7 @@ test('handleReadmeContextMenu passes correct coordinates to Menu.show2', async (
 })
 
 test('handleReadmeContextMenu returns state regardless of nodeName and href', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => {
         /**/

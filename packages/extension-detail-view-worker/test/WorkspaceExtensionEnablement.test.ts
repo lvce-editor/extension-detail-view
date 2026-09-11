@@ -31,7 +31,7 @@ test('disableWorkspaceExtension invokes the workspace command', async () => {
 })
 
 test('enable options opens the enablement menu at the click coordinates', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2'() {},
     },
@@ -46,7 +46,7 @@ test('enable options opens the enablement menu at the click coordinates', async 
 })
 
 test('disable options opens the disablement menu at the click coordinates', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2'() {},
     },

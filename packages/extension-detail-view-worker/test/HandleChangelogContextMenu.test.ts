@@ -7,7 +7,7 @@ import * as MenuEntryId from '../src/parts/MenuEntryId/MenuEntryId.ts'
 import * as MenuWorker from '../src/parts/MenuWorker/MenuWorker.ts'
 
 test('opens the changelog context menu with the clicked link', async () => {
-  using mockRpc = createMockRpc({
+  const mockRpc = createMockRpc({
     commandMap: {
       'Menu.show2': () => undefined,
     },
