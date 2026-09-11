@@ -1,0 +1,5 @@
+{
+  "id": "test.extension-changelog-error",
+  "name": "Changelog Error",
+  "description": "Changelog is a directory instead of a file"
+}

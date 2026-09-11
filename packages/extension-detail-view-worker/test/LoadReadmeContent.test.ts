@@ -1,4 +1,4 @@
-import { expect, test, jest } from '@jest/globals'
+import { expect, test } from '@jest/globals'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as LoadReadmeContent from '../src/parts/LoadReadmeContent/LoadReadmeContent.ts'
 
@@ -32,18 +32,16 @@ test('returns error message for other errors', async () => {
     'FileSystem.readFile': () => {
       throw error
     },
+    'FileSystem.writeFile': () => {},
   })
 
-  // @ts-ignore TODO
-  const spy = jest.spyOn(console, 'error').mockImplementation(() => {})
-  try {
-    const content = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
-    expect(content).toBe('Error: permission denied')
-    expect(mockRpc.invocations).toEqual([['FileSystem.readFile', '/test/path/README.md']])
-    expect(spy).toHaveBeenCalledTimes(1)
-  } finally {
-    spy.mockRestore()
-  }
+  const result = await LoadReadmeContent.loadReadmeContent('/test/path/README.md')
+  expect(result).toBe('Error: permission denied')
+  expect(mockRpc.invocations).toContainEqual([
+    'FileSystem.writeFile',
+    'memfs:///extension-detail-output.txt',
+    expect.stringContaining('Failed to load Readme content'),
+  ])
 })
 
 test('handles empty readme file', async () => {
