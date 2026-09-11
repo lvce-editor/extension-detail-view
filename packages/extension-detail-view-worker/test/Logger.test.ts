@@ -33,7 +33,7 @@ test('creates the channel on the first error and serializes concurrent logs', as
 
 test('bounds retained output and preserves the newest error', async () => {
   let content = 'x'.repeat(1024 * 1024)
-  using rpc = FileSystemWorker.registerMockRpc({
+  using _rpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => content,
     'FileSystem.writeFile': (_uri: string, value: string) => {
       content = value
@@ -48,7 +48,7 @@ test('bounds retained output and preserves the newest error', async () => {
 
 test('a failed log write does not reject or prevent subsequent logging', async () => {
   let calls = 0
-  using rpc = FileSystemWorker.registerMockRpc({
+  using _rpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => '',
     'FileSystem.writeFile': () => {
       calls++
@@ -64,7 +64,7 @@ test('a failed log write does not reject or prevent subsequent logging', async (
 
 test('cleared logs are not restored by subsequent errors', async () => {
   let content = 'old error\n'
-  using rpc = FileSystemWorker.registerMockRpc({
+  using _rpc = FileSystemWorker.registerMockRpc({
     'FileSystem.readFile': () => content,
     'FileSystem.writeFile': (_uri: string, value: string) => {
       content = value
