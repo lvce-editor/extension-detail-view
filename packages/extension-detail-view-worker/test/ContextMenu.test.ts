@@ -1,13 +1,17 @@
 import { expect, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import { createMockRpc } from '@lvce-editor/rpc'
 import * as ContextMenu from '../src/parts/ContextMenu/ContextMenu.ts'
+import * as MenuWorker from '../src/parts/MenuWorker/MenuWorker.ts'
 
 test('show2 calls invoke with correct parameters', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show2': () => {
-      /**/
+  const mockRpc = createMockRpc({
+    commandMap: {
+      'Menu.show2': () => {
+        /**/
+      },
     },
   })
+  MenuWorker.set(mockRpc)
 
   const uid = 123
   const menuId = 4091
@@ -17,5 +21,5 @@ test('show2 calls invoke with correct parameters', async () => {
 
   await ContextMenu.show2(uid, menuId, x, y, args)
 
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', uid, menuId, x, y, args]])
+  expect(mockRpc.invocations).toEqual([['Menu.show2', uid, menuId, x, y, args]])
 })

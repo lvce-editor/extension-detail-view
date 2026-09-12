@@ -1,5 +1,6 @@
 import { expect, test } from '@jest/globals'
-import { ExtensionManagementWorker, RendererWorker } from '@lvce-editor/rpc-registry'
+import { createMockRpc } from '@lvce-editor/rpc'
+import { ExtensionManagementWorker } from '@lvce-editor/rpc-registry'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import { disableWorkspaceExtension } from '../src/parts/DisableWorkspaceExtension/DisableWorkspaceExtension.ts'
 import { enableWorkspaceExtension } from '../src/parts/EnableWorkspaceExtension/EnableWorkspaceExtension.ts'
@@ -7,6 +8,7 @@ import { handleClickDisableOptions } from '../src/parts/HandleClickDisableOption
 import { handleClickDisableWorkspace } from '../src/parts/HandleClickDisableWorkspace/HandleClickDisableWorkspace.ts'
 import { handleClickEnableOptions } from '../src/parts/HandleClickEnableOptions/HandleClickEnableOptions.ts'
 import { handleClickEnableWorkspace } from '../src/parts/HandleClickEnableWorkspace/HandleClickEnableWorkspace.ts'
+import * as MenuWorker from '../src/parts/MenuWorker/MenuWorker.ts'
 
 test('enableWorkspaceExtension invokes the workspace command', async () => {
   using mockRpc = ExtensionManagementWorker.registerMockRpc({
@@ -29,27 +31,33 @@ test('disableWorkspaceExtension invokes the workspace command', async () => {
 })
 
 test('enable options opens the enablement menu at the click coordinates', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show2'() {},
+  const mockRpc = createMockRpc({
+    commandMap: {
+      'Menu.show2'() {},
+    },
   })
+  MenuWorker.set(mockRpc)
   const state = { ...createDefaultState(), uid: 42 }
 
   const result = await handleClickEnableOptions(state, 100, 200)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 42, 4093, 100, 200, { menuId: 4093 }]])
+  expect(mockRpc.invocations).toEqual([['Menu.show2', 42, 4093, 100, 200, { menuId: 4093 }]])
 })
 
 test('disable options opens the disablement menu at the click coordinates', async () => {
-  using mockRpc = RendererWorker.registerMockRpc({
-    'ContextMenu.show2'() {},
+  const mockRpc = createMockRpc({
+    commandMap: {
+      'Menu.show2'() {},
+    },
   })
+  MenuWorker.set(mockRpc)
   const state = { ...createDefaultState(), uid: 42 }
 
   const result = await handleClickDisableOptions(state, 300, 400)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['ContextMenu.show2', 42, 4094, 300, 400, { menuId: 4094 }]])
+  expect(mockRpc.invocations).toEqual([['Menu.show2', 42, 4094, 300, 400, { menuId: 4094 }]])
 })
 
 test('handleClickEnableWorkspace updates the detail to workspace-enabled state', async () => {
