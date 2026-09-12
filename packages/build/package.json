@@ -13,6 +13,11 @@
     "@types/node": "^22.14.0",
     "esbuild": "^0.28.1",
     "execa": "^10.0.0",
-    "rollup": "^4.39.0"
+    "rollup": "^4.39.0",
+    "@lvce-editor/measure-memory": "^3.5.0"
+  },
+  "scripts": {
+    "measure": "node --experimental-strip-types src/measureMemory.ts",
+    "measure:visible": "node --experimental-strip-types src/measureMemory.ts --no-headless"
   }
 }

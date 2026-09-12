@@ -74,18 +74,16 @@ test('loadChangelogContent returns error message for other errors', async () => 
     'FileSystem.readFile': () => {
       throw error
     },
+    'FileSystem.writeFile': () => {},
   })
 
-  // @ts-ignore TODO
-  const spy = jest.spyOn(console, 'error').mockImplementation(() => {})
-  try {
-    const result = await LoadChangelogContent.loadChangelogContent('/test/extension')
-    expect(result).toBe('Error: Permission denied')
-    expect(mockRpc.invocations).toEqual([['FileSystem.readFile', '/test/extension/CHANGELOG.md']])
-    expect(spy).toHaveBeenCalledTimes(1)
-  } finally {
-    spy.mockRestore()
-  }
+  const result = await LoadChangelogContent.loadChangelogContent('/test/extension')
+  expect(result).toBe('Error: Permission denied')
+  expect(mockRpc.invocations).toContainEqual([
+    'FileSystem.writeFile',
+    'memfs:///extension-detail-output.txt',
+    expect.stringContaining('Failed to load Changelog content'),
+  ])
 })
 
 test('loadChangelogContent handles different path formats', async () => {

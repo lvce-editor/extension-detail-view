@@ -3,13 +3,17 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.feature-theme-markdown-structure'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-detail-theme')
   await Extension.addWebExtension(extensionUri)
+
+  // act
   await ExtensionDetail.open('test.theme-test')
   await ExtensionDetail.selectFeatures()
 
   await ExtensionDetail.openFeature('Theme')
 
+  // assert
   const content = Locator('.FeatureContent')
   await expect(content.locator(':scope > h1')).toHaveText('Themes')
   const markdown = content.locator(':scope > .DefaultMarkdown')

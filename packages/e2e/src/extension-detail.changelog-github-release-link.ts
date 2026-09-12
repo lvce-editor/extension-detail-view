@@ -2,7 +2,10 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 import { createRelease, openGithubChangelog } from './_GithubReleaseTest.js'
 
 export const test: Test = async (api) => {
+  // act
   await openGithubChangelog(api, { body: [createRelease()], type: 'success' })
+
+  // assert
   const link = api.Locator('.Changelog h1 a')
   await api.expect(link).toHaveAttribute('href', 'https://github.com/test-owner/test-repository/releases/tag/v1.0.0')
   await api.expect(link).toHaveAttribute('target', '_blank')

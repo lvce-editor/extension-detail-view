@@ -3,13 +3,17 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.feature-commands-cell-semantics'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
+
+  // act
   await ExtensionDetail.open('test.extension-basics')
   await ExtensionDetail.selectFeatures()
 
   await ExtensionDetail.openFeature('Commands')
 
+  // assert
   const cells = Locator('.FeatureContent tbody td.TableCell')
   const id = cells.nth(0)
   const idCode = id.locator('code')

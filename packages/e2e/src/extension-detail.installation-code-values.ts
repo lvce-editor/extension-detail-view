@@ -3,11 +3,14 @@ import type { Test } from '@lvce-editor/test-with-playwright'
 export const name = 'extension-detail.installation-code-values'
 
 export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+  // arrange
   const extensionUri = import.meta.resolve('../fixtures/extension-basics')
   await Extension.addWebExtension(extensionUri)
 
+  // act
   await ExtensionDetail.open('test.extension-basics')
 
+  // assert
   const installation = Locator('.AdditionalDetailsEntry:nth-of-type(1)')
   const codeValues = installation.locator('code.MoreInfoEntryValue')
   const identifier = codeValues.nth(0)

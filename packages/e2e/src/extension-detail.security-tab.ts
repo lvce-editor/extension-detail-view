@@ -4,8 +4,10 @@ import { openSecurity } from './_SecurityTest.js'
 export const name = 'extension-detail.security-tab'
 
 export const test: Test = async (api) => {
+  // act
   await openSecurity(api, import.meta.resolve('../fixtures/extension-basics'), 'test.extension-basics')
 
+  // assert
   const topLevelTab = api.Locator('.ExtensionDetailTab[name="Security"]')
   await api.expect(topLevelTab).toHaveCount(0)
   const feature = api.Locator('.FeaturesList .Feature[name="Security"]')

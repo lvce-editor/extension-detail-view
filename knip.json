@@ -6,7 +6,7 @@
     },
     "packages/build": {
       "project": ["src/**/*.ts"],
-      "ignoreDependencies": ["esbuild"]
+      "ignoreDependencies": ["esbuild", "playwright"]
     },
     "packages/e2e": {
       "entry": ["src/**/*.ts", "scripts/*.js", "fixtures/**/main.js", "fixtures/**/index.js"],
@@ -15,11 +15,6 @@
     "packages/extension-detail-view-worker": {
       "entry": ["test/**/*.test.ts"],
       "project": ["src/**/*.ts", "test/**/*.ts"]
-    },
-    "packages/memory": {
-      "entry": ["src/measureMemory.ts"],
-      "project": ["src/**/*.ts"],
-      "ignoreDependencies": ["playwright"]
     },
     "packages/server": {
       "project": ["src/**/*.js"]
