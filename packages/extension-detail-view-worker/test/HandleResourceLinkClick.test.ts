@@ -16,6 +16,7 @@ test.each(['', 'README.md'])('ignores an invalid resource link: %p', async (href
 
 test.each(['http://example.com', 'https://example.com'])('opens an external resource link: %p', async (href) => {
   using mockRpc = RendererWorker.registerMockRpc({
+    'Preferences.get': () => undefined,
     'Open.openUrl': () => {
       /**/
     },
@@ -28,7 +29,10 @@ test.each(['http://example.com', 'https://example.com'])('opens an external reso
   const result = await handleResourceLinkClick(state, href)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['Open.openUrl', href]])
+  expect(mockRpc.invocations).toEqual([
+    ['Preferences.get', 'extensions.linkBrowser'],
+    ['Open.openUrl', href],
+  ])
 })
 
 test('opens color theme file in editor', async () => {

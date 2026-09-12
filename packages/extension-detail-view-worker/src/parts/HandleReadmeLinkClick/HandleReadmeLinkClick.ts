@@ -1,4 +1,4 @@
-import { DialogWorker } from '@lvce-editor/rpc-registry'
+import { DialogWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import { openExternal } from '../OpenExternal/OpenExternal.ts'
 
 export const handleReadmeLinkClick = async (linkProtectionEnabled: boolean, platform: number, href: string): Promise<void> => {
@@ -10,6 +10,12 @@ export const handleReadmeLinkClick = async (linkProtectionEnabled: boolean, plat
     if (!confirmed) {
       return
     }
+  }
+  const browser = await RendererWorker.getPreference('extensions.linkBrowser')
+  if (browser === 'simpleBrowser') {
+    await RendererWorker.invoke('Layout.showPreview', 'simple-browser://')
+    await RendererWorker.invoke('SimpleBrowser.setUrl', href)
+    return
   }
   await openExternal(href, platform)
 }

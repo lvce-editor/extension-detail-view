@@ -2,6 +2,13 @@
 
 Webworker for the extension detail view in Lvce Editor.
 
+## Link browser
+
+Set `"extensions.linkBrowser": "simpleBrowser"` in your settings to open extension
+sidebar, README, and changelog web links in the integrated Simple Browser preview.
+The default is `"external"`, which opens links in your external browser. Changes
+apply to the next click. Link protection confirmation remains enabled when configured.
+
 ## Contributing
 
 ```sh
