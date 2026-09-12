@@ -23,6 +23,12 @@ The server links `.tmp/dist` with `--link`, so it uses your local worker without
 
 Run `npm run build && npm run e2e:headless` to test the local worker.
 
+The Electron link-browser regression lives in `packages/e2e-electron`. CI extracts
+LVCE 0.115.4 into an isolated directory and replaces its extension detail worker
+with `.tmp/dist/dist/extensionDetailViewWorkerMain.js` before running the test with isolated XDG configuration, data, state, and cache directories.
+This tests the packaged worker because production Electron ignores development
+worker-path preferences. The installed application is left untouched.
+
 ## Credits
 
 The extension detail view is based on VSCode's extension detail view.

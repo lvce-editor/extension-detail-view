@@ -38,10 +38,10 @@ test('handleReadmeClick returns state without calling openUrl when href is not e
 
 test('handleReadmeClick calls openUrl with http:// links and returns state', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Preferences.get': () => undefined,
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
 
   const state: ExtensionDetailState = {
@@ -60,10 +60,10 @@ test('handleReadmeClick calls openUrl with http:// links and returns state', asy
 
 test('handleReadmeClick calls openUrl with https:// links and returns state', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Preferences.get': () => undefined,
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
 
   const state: ExtensionDetailState = {
@@ -82,10 +82,10 @@ test('handleReadmeClick calls openUrl with https:// links and returns state', as
 
 test('handleReadmeClick works with different nodeName values', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Preferences.get': () => undefined,
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
 
   const state: ExtensionDetailState = {
@@ -109,10 +109,10 @@ test('handleReadmeClick works with different nodeName values', async () => {
 
 test('handleReadmeClick handles http:// and https:// prefixes correctly', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Preferences.get': () => undefined,
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
 
   const state: ExtensionDetailState = {
@@ -132,10 +132,10 @@ test('handleReadmeClick handles http:// and https:// prefixes correctly', async 
 
 test('handleReadmeClick opens link when linkProtectionEnabled is false', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Preferences.get': () => undefined,
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
 
   const state: ExtensionDetailState = {
@@ -155,10 +155,10 @@ test('handleReadmeClick opens link when linkProtectionEnabled is false', async (
 
 test('handleReadmeClick calls confirm and opens link when linkProtectionEnabled is true and confirmed', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Preferences.get': () => undefined,
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
   using mockDialogRpc = DialogWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => true,
@@ -182,10 +182,10 @@ test('handleReadmeClick calls confirm and opens link when linkProtectionEnabled 
 
 test('handleReadmeClick calls confirm and does not open link when linkProtectionEnabled is true and not confirmed', async () => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Preferences.get': () => undefined,
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
   using mockDialogRpc = DialogWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => false,

@@ -16,10 +16,10 @@ test.each(['', 'README.md'])('ignores an invalid resource link: %p', async (href
 
 test.each(['http://example.com', 'https://example.com'])('opens an external resource link: %p', async (href) => {
   using mockRpc = RendererWorker.registerMockRpc({
-    'Preferences.get': () => undefined,
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
   const state = {
     ...createDefaultState(),
