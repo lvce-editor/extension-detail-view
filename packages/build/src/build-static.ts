@@ -1,4 +1,4 @@
-import { cp, readFile, writeFile } from 'node:fs/promises'
+import { cp } from 'node:fs/promises'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { root } from './root.ts'
@@ -17,25 +17,7 @@ const main = async (): Promise<void> => {
     testPath: 'packages/e2e',
   })
 
-  const rendererWorkerPath = join(root, 'dist', commitHash, 'packages', 'renderer-worker', 'dist', 'rendererWorkerMain.js')
-
-  const getRemoteUrl = (path: string): string => {
-    const url = pathToFileURL(path).toString().slice(8)
-    return `/remote/${url}`
-  }
-
-  const content = await readFile(rendererWorkerPath, 'utf8')
   const workerPath = join(root, '.tmp/dist/dist/extensionDetailViewWorkerMain.js')
-  const remoteUrl = getRemoteUrl(workerPath)
-
-  const occurrence = `// const extensionDetailViewWorkerUrl = \`\${assetDir}/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js\`
-const extensionDetailViewWorkerUrl = \`${remoteUrl}\``
-  const replacement = `const extensionDetailViewWorkerUrl = \`\${assetDir}/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js\``
-  if (!content.includes(occurrence)) {
-    throw new Error('occurrence not found')
-  }
-  const newContent = content.replace(occurrence, replacement)
-  await writeFile(rendererWorkerPath, newContent)
 
   const extensionDetailViewWorkerPath = join(
     root,

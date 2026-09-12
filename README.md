@@ -2,6 +2,13 @@
 
 Webworker for the extension detail view in Lvce Editor.
 
+## Link browser
+
+Set `"extensions.linkBrowser": "simpleBrowser"` in your settings to open extension
+sidebar, README, and changelog web links in the integrated Simple Browser preview.
+The default is `"external"`, which opens links in your external browser. Changes
+apply to the next click. Link protection confirmation remains enabled when configured.
+
 ## Contributing
 
 ```sh
@@ -10,6 +17,17 @@ cd extension-detail-view &&
 npm ci &&
 npm test
 ```
+
+Run `npm run dev` to build and watch the local worker and start the development server.
+The server links `.tmp/dist` with `--link`, so it uses your local worker without modifying installed packages.
+
+Run `npm run build && npm run e2e:headless` to test the local worker.
+
+The Electron link-browser regression lives in `packages/e2e-electron`. CI extracts
+LVCE 0.115.4 into an isolated directory and replaces its extension detail worker
+with `.tmp/dist/dist/extensionDetailViewWorkerMain.js` before running the test with isolated XDG configuration, data, state, and cache directories.
+This tests the packaged worker because production Electron ignores development
+worker-path preferences. The installed application is left untouched.
 
 ## Credits
 

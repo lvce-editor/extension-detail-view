@@ -19,6 +19,7 @@ test.each(['http://example.com', 'https://example.com'])('opens an external reso
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
   const state = {
     ...createDefaultState(),
@@ -28,7 +29,10 @@ test.each(['http://example.com', 'https://example.com'])('opens an external reso
   const result = await handleResourceLinkClick(state, href)
 
   expect(result).toBe(state)
-  expect(mockRpc.invocations).toEqual([['Open.openUrl', href]])
+  expect(mockRpc.invocations).toEqual([
+    ['Preferences.get', 'extensions.linkBrowser'],
+    ['Open.openUrl', href],
+  ])
 })
 
 test('opens color theme file in editor', async () => {

@@ -13,10 +13,10 @@ test('getExtensionIdFromUri - empty id', () => {
   expect(result).toBe('')
 })
 
-test('getExtensionIdFromUri - uri with extra slashes', () => {
+test('getExtensionIdFromUri - canonical uri', () => {
   const uri = 'extension-detail:///extra-slash'
   const result = GetExtensionIdFromUri.getExtensionIdFromUri(uri)
-  expect(result).toBe('/extra-slash')
+  expect(result).toBe('extra-slash')
 })
 
 test('getExtensionIdFromUri - uri with path', () => {
@@ -29,4 +29,8 @@ test('getExtensionIdFromUri - malformed uri', () => {
   const uri = 'not-an-extension-uri'
   const result = GetExtensionIdFromUri.getExtensionIdFromUri(uri)
   expect(result).toBe('i')
+})
+
+test('getExtensionIdFromUri - encoded canonical id', () => {
+  expect(GetExtensionIdFromUri.getExtensionIdFromUri('extension-detail:///publisher.name%23test')).toBe('publisher.name#test')
 })
