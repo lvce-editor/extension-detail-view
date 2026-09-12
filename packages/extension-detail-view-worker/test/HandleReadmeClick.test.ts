@@ -41,6 +41,7 @@ test('handleReadmeClick calls openUrl with http:// links and returns state', asy
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
 
   const state: ExtensionDetailState = {
@@ -50,7 +51,10 @@ test('handleReadmeClick calls openUrl with http:// links and returns state', asy
 
   const result = await HandleReadmeClick.handleReadmeClick(state, 'A', href)
 
-  expect(mockRpc.invocations).toEqual([['Open.openUrl', href]])
+  expect(mockRpc.invocations).toEqual([
+    ['Preferences.get', 'extensions.linkBrowser'],
+    ['Open.openUrl', href],
+  ])
   expect(result).toBe(state)
 })
 
@@ -59,6 +63,7 @@ test('handleReadmeClick calls openUrl with https:// links and returns state', as
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
 
   const state: ExtensionDetailState = {
@@ -68,7 +73,10 @@ test('handleReadmeClick calls openUrl with https:// links and returns state', as
 
   const result = await HandleReadmeClick.handleReadmeClick(state, 'A', href)
 
-  expect(mockRpc.invocations).toEqual([['Open.openUrl', href]])
+  expect(mockRpc.invocations).toEqual([
+    ['Preferences.get', 'extensions.linkBrowser'],
+    ['Open.openUrl', href],
+  ])
   expect(result).toBe(state)
 })
 
@@ -77,6 +85,7 @@ test('handleReadmeClick works with different nodeName values', async () => {
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
 
   const state: ExtensionDetailState = {
@@ -89,8 +98,11 @@ test('handleReadmeClick works with different nodeName values', async () => {
   await HandleReadmeClick.handleReadmeClick(state, 'BUTTON', href)
 
   expect(mockRpc.invocations).toEqual([
+    ['Preferences.get', 'extensions.linkBrowser'],
     ['Open.openUrl', href],
+    ['Preferences.get', 'extensions.linkBrowser'],
     ['Open.openUrl', href],
+    ['Preferences.get', 'extensions.linkBrowser'],
     ['Open.openUrl', href],
   ])
 })
@@ -100,6 +112,7 @@ test('handleReadmeClick handles http:// and https:// prefixes correctly', async 
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
 
   const state: ExtensionDetailState = {
@@ -110,7 +123,9 @@ test('handleReadmeClick handles http:// and https:// prefixes correctly', async 
   await HandleReadmeClick.handleReadmeClick(state, 'A', 'https://example.com/page?query=1')
 
   expect(mockRpc.invocations).toEqual([
+    ['Preferences.get', 'extensions.linkBrowser'],
     ['Open.openUrl', 'http://example.com/page'],
+    ['Preferences.get', 'extensions.linkBrowser'],
     ['Open.openUrl', 'https://example.com/page?query=1'],
   ])
 })
@@ -120,6 +135,7 @@ test('handleReadmeClick opens link when linkProtectionEnabled is false', async (
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
 
   const state: ExtensionDetailState = {
@@ -130,7 +146,10 @@ test('handleReadmeClick opens link when linkProtectionEnabled is false', async (
 
   const result = await HandleReadmeClick.handleReadmeClick(state, 'A', href)
 
-  expect(mockRpc.invocations).toEqual([['Open.openUrl', href]])
+  expect(mockRpc.invocations).toEqual([
+    ['Preferences.get', 'extensions.linkBrowser'],
+    ['Open.openUrl', href],
+  ])
   expect(result).toBe(state)
 })
 
@@ -139,6 +158,7 @@ test('handleReadmeClick calls confirm and opens link when linkProtectionEnabled 
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
   using mockDialogRpc = DialogWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => true,
@@ -153,7 +173,10 @@ test('handleReadmeClick calls confirm and opens link when linkProtectionEnabled 
   const result = await HandleReadmeClick.handleReadmeClick(state, 'A', href)
 
   expect(mockDialogRpc.invocations).toEqual([['ConfirmPrompt.prompt', `Do you want to open this external link?\n\n${href}`]])
-  expect(mockRpc.invocations).toEqual([['Open.openUrl', href]])
+  expect(mockRpc.invocations).toEqual([
+    ['Preferences.get', 'extensions.linkBrowser'],
+    ['Open.openUrl', href],
+  ])
   expect(result).toBe(state)
 })
 
@@ -162,6 +185,7 @@ test('handleReadmeClick calls confirm and does not open link when linkProtection
     'Open.openUrl': () => {
       /**/
     },
+    'Preferences.get': () => undefined,
   })
   using mockDialogRpc = DialogWorker.registerMockRpc({
     'ConfirmPrompt.prompt': () => false,

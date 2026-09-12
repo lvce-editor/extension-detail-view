@@ -70,3 +70,23 @@ jobs:
       - run: npm run e2e:firefox:headless
         env:
           PLAYWRIGHT_BROWSERS_PATH: 0
+
+  electron:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm ci
+      - run: npm run build
+      - name: Prepare Electron app with candidate worker
+        run: |
+          curl --fail --location https://github.com/lvce-editor/lvce-editor/releases/download/v0.115.4/lvce-v0.115.4_amd64.deb --output .tmp/lvce.deb
+          dpkg-deb --extract .tmp/lvce.deb .tmp/electron
+          cp .tmp/dist/dist/extensionDetailViewWorkerMain.js .tmp/electron/usr/lib/lvce/resources/app/static/*/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js
+      - name: Electron link browser regression
+        run: |
+          task_profile=$(mktemp -d "$RUNNER_TEMP/extension-link-browser-XXXXXX")
+          xvfb-run --auto-servernum npm exec --workspace=packages/e2e -- test-with-playwright --electron --electron-path="$PWD/.tmp/electron/usr/lib/lvce/lvce" --electron-env="XDG_CONFIG_HOME=$task_profile/config" --electron-env="XDG_DATA_HOME=$task_profile/data" --electron-env="XDG_STATE_HOME=$task_profile/state" --electron-env="XDG_CACHE_HOME=$task_profile/cache" --only-extension=. --test-path=../e2e-electron
