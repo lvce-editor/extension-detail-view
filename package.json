@@ -35,5 +35,8 @@
     "knip": "^6.29.0",
     "prettier": "^3.9.6",
     "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "@lvce-editor/file-system-process": "5.17.1"
   }
 }
