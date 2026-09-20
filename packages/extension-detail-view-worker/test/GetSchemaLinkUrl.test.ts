@@ -183,3 +183,8 @@ test('valid relative path with numbers resolves correctly', () => {
   const result: string = GetSchemaLinkUrl.getSchemaLinkUrl(schema, EXTENSION_URI)
   expect(result).toBe('https://example.com/extensions/sample/schemas/v2.json')
 })
+
+test('invalid extension uri returns an empty string', () => {
+  const result = GetSchemaLinkUrl.getSchemaLinkUrl('schema.json', 'not a url')
+  expect(result).toBe('')
+})

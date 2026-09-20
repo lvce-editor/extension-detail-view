@@ -139,3 +139,7 @@ test('parseJsonTokens - whitespace handling', () => {
     { type: 'punctuation', value: '}' },
   ])
 })
+
+test('parseJsonTokens - preserves unknown characters as strings', () => {
+  expect(ParseJsonTokens.parseJsonTokens('@')).toEqual([{ type: 'string', value: '@' }])
+})

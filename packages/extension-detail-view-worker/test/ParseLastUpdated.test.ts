@@ -57,3 +57,8 @@ test('parseLastUpdated returns null when lastUpdated is negative', () => {
   const extension = { lastUpdated: -1 }
   expect(ParseLastUpdated.parseLastUpdated(extension)).toBe(null)
 })
+
+test('parseLastUpdated returns null for unsupported lastUpdated values', () => {
+  const extension = { lastUpdated: true }
+  expect(ParseLastUpdated.parseLastUpdated(extension)).toBe(null)
+})

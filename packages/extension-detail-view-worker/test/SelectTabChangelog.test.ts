@@ -133,3 +133,20 @@ test('selectTabChangelog handles 5000 GitHub releases with a responsive display 
   expect(renderInvocations[0][1]).toContain('Version 5000')
   expect(renderInvocations.at(-1)?.[1]).toContain('Version 4901')
 })
+
+test('selectTabChangelog renders an empty GitHub release list', async () => {
+  GithubApiRequest.mockGithubApi({ releaseCount: 0, type: 'generated' })
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => [{ childCount: 0, type: VirtualDomElements.Div }],
+    'Markdown.render': () => '<h1>Releases</h1>',
+  })
+  const state = {
+    ...createDefaultState.createDefaultState(),
+    extension: { repository: 'https://github.com/test-owner/test-repository' },
+  }
+
+  await SelectTabChangelog.selectTabChangelog(state)
+
+  expect(mockMarkdownRpc.invocations).toHaveLength(2)
+  expect(mockMarkdownRpc.invocations[0][1]).not.toContain('Showing the newest')
+})

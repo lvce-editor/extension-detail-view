@@ -52,3 +52,9 @@ test('defaults an omitted mock body to an empty array', async () => {
   const response = await GithubApiRequest.request('https://api.github.com/test')
   await expect(response.json()).resolves.toEqual([])
 })
+
+test('defaults a missing page query parameter when generating releases', async () => {
+  GithubApiRequest.mockGithubApi({ releaseCount: 1, type: 'generated' })
+  const response = await GithubApiRequest.request('https://api.github.com/test')
+  await expect(response.json()).resolves.toHaveLength(1)
+})
