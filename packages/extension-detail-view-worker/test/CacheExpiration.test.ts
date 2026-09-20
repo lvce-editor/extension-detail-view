@@ -6,3 +6,12 @@ test('getExpirationDate returns an HTTP date three months in the future', () => 
 
   expect(CacheExpiration.getExpirationDate(now)).toBe('Fri, 20 Nov 2026 12:00:00 GMT')
 })
+
+test('getExpirationDate uses the current time by default', () => {
+  const before = Date.now()
+  const result = CacheExpiration.getExpirationDate()
+  const after = Date.now()
+
+  expect(new Date(result).getTime()).toBeGreaterThanOrEqual(before + CacheExpiration.duration - 1000)
+  expect(new Date(result).getTime()).toBeLessThanOrEqual(after + CacheExpiration.duration)
+})

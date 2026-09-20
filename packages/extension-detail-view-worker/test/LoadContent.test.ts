@@ -80,7 +80,7 @@ test('loadContent - successful load', async () => {
     width: 800,
   }
 
-  const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
+  const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, { selectedTab: InputName.Changelog }, true)
 
   expect(mockMarkdownRpc.invocations).toContainEqual([
     'Markdown.render',
@@ -93,6 +93,7 @@ test('loadContent - successful load', async () => {
   expect(result).not.toHaveProperty('languages')
   expect(mockExtensionManagementRpc.invocations).toContainEqual(['Extensions.getLanguages', 1, '/test/assets'])
   expect(result.extension).toEqual(mockExtension)
+  expect(result.selectedTab).toBe('Details')
   expect(result.name).toBe('Test Extension')
   expect(result.description).toBe('A test extension')
   expect(result.extensionId).toBe('test-extension')

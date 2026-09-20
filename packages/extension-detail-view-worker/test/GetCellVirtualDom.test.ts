@@ -36,3 +36,14 @@ test('renders check mark cells normally', () => {
     text('no'),
   ])
 })
+
+test('renders a populated text cell normally', () => {
+  expect(GetCellVirtualDom.getCellVirtualDom({ type: TableCellType.Text, value: 'value' })).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
+    },
+    text('value'),
+  ])
+})

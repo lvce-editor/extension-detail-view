@@ -57,3 +57,15 @@ test('uses Gitpod-specific error text for a Gitpod image', () => {
     text(ExtensionDetailStrings.gitpodImageFailedToLoad() + ': ' + src),
   ])
 })
+
+test('returns the original DOM when no image matches', () => {
+  const dom = [{ childCount: 0, src: './image.png', type: VirtualDomElements.Img }]
+
+  expect(ReplaceMarkdownImageWithError.replaceMarkdownImageWithError(dom, './other-image.png')).toBe(dom)
+})
+
+test('returns the original DOM when an image has no source', () => {
+  const dom = [{ childCount: 0, type: VirtualDomElements.Img }]
+
+  expect(ReplaceMarkdownImageWithError.replaceMarkdownImageWithError(dom, './image.png')).toBe(dom)
+})

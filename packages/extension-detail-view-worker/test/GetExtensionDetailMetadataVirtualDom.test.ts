@@ -23,3 +23,25 @@ test('renders only the download count when the rating is unavailable', () => {
     },
   ])
 })
+
+test('renders only the rating when the download count is unavailable', () => {
+  expect(getExtensionDetailMetadataVirtualDom('n/a', '4.5')).toEqual([
+    {
+      childCount: 1,
+      className: 'ExtensionDetailMetadata',
+      type: VirtualDomElements.Div,
+    },
+    {
+      ariaLabel: 'Rating: 4.5',
+      childCount: 1,
+      className: 'ExtensionDetailStatistic ExtensionDetailRating',
+      title: 'Rating: 4.5',
+      type: VirtualDomElements.Span,
+    },
+    {
+      childCount: 0,
+      text: '4.5',
+      type: VirtualDomElements.Text,
+    },
+  ])
+})

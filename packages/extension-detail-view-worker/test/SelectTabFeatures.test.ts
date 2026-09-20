@@ -323,3 +323,27 @@ test('should correctly update tabs selection to Features tab', async () => {
   })
   expect(mockRpc.invocations).toEqual([])
 })
+
+test('uses an empty selected feature when the first feature has no id', async () => {
+  const themeFeature = {
+    getDetails: async (): Promise<{ detailsVirtualDom: any[]; commands: any[] }> => ({
+      commands: [],
+      detailsVirtualDom: [],
+    }),
+    getLabel: (): string => 'Theme',
+    getVirtualDom: (): any[] => [],
+    id: 'Theme',
+    isEnabled: (): boolean => true,
+  }
+  register(themeFeature)
+
+  const initialState: ExtensionDetailState = {
+    ...createDefaultState(),
+    features: [{ id: '', label: 'Unnamed', selected: false }],
+    selectedFeature: 'Theme',
+  }
+
+  const result = await selectTabFeatures(initialState)
+
+  expect(result.selectedFeature).toBe('')
+})
