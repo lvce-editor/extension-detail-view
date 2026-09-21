@@ -49,6 +49,18 @@ export const changelog = (): string => {
   return I18nString.i18nString(UiStrings.Changelog)
 }
 
+export const contents = (): string => {
+  return I18nString.i18nString(UiStrings.Contents)
+}
+
+export const noExtensionContents = (): string => {
+  return I18nString.i18nString(UiStrings.NoExtensionContents)
+}
+
+export const unableToLoadExtensionContents = (errorMessage: string): string => {
+  return I18nString.i18nString(UiStrings.UnableToLoadExtensionContents, { PH1: errorMessage })
+}
+
 export const details = (): string => {
   return I18nString.i18nString(UiStrings.Details)
 }

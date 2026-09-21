@@ -3,6 +3,7 @@ import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDeta
 import type { Resource } from '../Resource/Resource.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as GetChangelogVirtualDom from '../GetChangelogVirtualDom/GetChangelogVirtualDom.ts'
+import * as GetContentsVirtualDom from '../GetContentsVirtualDom/GetContentsVirtualDom.ts'
 import * as GetDetailsVirtualDom from '../GetDetailsVirtualDom/GetDetailsVirtualDom.ts'
 import * as GetFeaturesVirtualDom from '../GetFeaturesVirtualDom/GetFeaturesVirtualDom.ts'
 import * as InputName from '../InputName/InputName.ts'
@@ -22,6 +23,8 @@ export const getExtensionDetailContentVirtualDom = (
   switch (selectedTab) {
     case InputName.Changelog:
       return GetChangelogVirtualDom.getChangelogVirtualDom(changelogDom)
+    case InputName.Contents:
+      return GetContentsVirtualDom.getContentsVirtualDom(state)
     case InputName.Details:
       return GetDetailsVirtualDom.getDetailsVirtualDom(
         sanitizedReadmeHtml,

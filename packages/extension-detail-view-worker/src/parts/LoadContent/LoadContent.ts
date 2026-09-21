@@ -1,4 +1,5 @@
 import { PlatformType } from '@lvce-editor/constants'
+import type { ContentEntry } from '../ContentEntry/ContentEntry.ts'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { HeaderData } from '../HeaderData/HeaderData.ts'
 import type { Tab } from '../Tab/Tab.ts'
@@ -11,6 +12,7 @@ import { getApplicationName } from '../GetApplicationName/GetApplicationName.ts'
 import * as GetBaseUrl from '../GetBaseUrl/GetBaseUrl.ts'
 import { getColorThemeId, getColorThemeLabel } from '../GetColorThemeId/GetColorThemeId.ts'
 import { getCommit } from '../GetCommit/GetCommit.ts'
+import { getContentsEnabled } from '../GetContentsEnabled/GetContentsEnabled.ts'
 import { getCurrentColorTheme } from '../GetCurrentColorThemeId/GetCurrentColorThemeId.ts'
 import { getErrorMessage } from '../GetErrorMessage/GetErrorMessage.ts'
 import { getExtensionDetailButtons } from '../GetExtensionDetailButtons/GetExtensionDetailButtons.ts'
@@ -19,6 +21,7 @@ import { getExtensionUri } from '../GetExtensionUri/GetExtensionUri.ts'
 import { getGithubRepository } from '../GetGithubRepository/GetGithubRepository.ts'
 import { getLinkProtectionEnabled } from '../GetLinkProtectionEnabled/GetLinkProtectionEnabled.ts'
 import { getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
+import { getOpenUri } from '../GetOpenUri/GetOpenUri.ts'
 import { getResponsiveLayout } from '../GetResponsiveLayout/GetResponsiveLayout.ts'
 import { getSyntaxLanguages } from '../GetSyntaxLanguages/GetSyntaxLanguages.ts'
 import * as GetTabs from '../GetTabs/GetTabs.ts'
@@ -26,6 +29,7 @@ import * as GetViewletSize from '../GetViewletSize/GetViewletSize.ts'
 import * as InputName from '../InputName/InputName.ts'
 import * as InputSource from '../InputSource/InputSource.ts'
 import { isBuiltinExtension } from '../IsBuiltinExtension/IsBuiltinExtension.ts'
+import * as LoadContentEntries from '../LoadContentEntries/LoadContentEntries.ts'
 import * as LoadHeaderContent from '../LoadHeaderContent/LoadHeaderContent.ts'
 import * as GetExtensionReadme from '../LoadReadmeContent/LoadReadmeContent.ts'
 import { loadSideBarContent } from '../LoadSideBarContent/LoadSideBarContent.ts'
@@ -39,6 +43,14 @@ import * as SelectTabChangelog from '../SelectTabChangelog/SelectTabChangelog.ts
 
 const isEnabled = (tab: Tab): boolean => {
   return tab.enabled
+}
+
+const getContentUri = (uri: string): string => {
+  if (!uri.startsWith('http://') && !uri.startsWith('https://')) {
+    return uri
+  }
+  const openUri = getOpenUri(uri)
+  return openUri.startsWith('/') ? `file://${encodeURI(openUri)}` : uri
 }
 
 const loadContentInternal = async (
@@ -79,6 +91,17 @@ const loadContentInternal = async (
   const changelogUrl = Path.join(extensionUri, 'CHANGELOG.md')
   const [hasReadme, hasChangelog] = await Promise.all([existsFile(readmeUri), existsFile(changelogUrl)])
   const readmeContent = hasReadme ? await GetExtensionReadme.loadReadmeContent(readmeUri) : ExtensionDetailStrings.noReadmeFound()
+  const contentsEnabled = await getContentsEnabled()
+  const contentUri = getContentUri(unresolvedExtensionUri)
+  let contentEntries: readonly ContentEntry[] = []
+  let contentError = ''
+  if (contentsEnabled) {
+    try {
+      contentEntries = await LoadContentEntries.loadContentEntries(contentUri)
+    } catch (error) {
+      contentError = String(error)
+    }
+  }
   const baseUrl = GetBaseUrl.getBaseUrl(extension.path, platform)
   // TODO maybe pass these as arguments also
   const locationProtocol = location.protocol
@@ -118,8 +141,10 @@ const loadContentInternal = async (
   const actualSelectedFeature = features.find((feature) => feature.selected)?.id || ''
   const hasFeatures = features.length > 0
   const hasGithubReleases = Boolean(getGithubRepository(extension))
-  const tabs: readonly Tab[] = GetTabs.getTabs(selectedTab, hasReadme, hasFeatures, hasChangelog || hasGithubReleases)
+  const normalizedSelectedTab = selectedTab === InputName.Contents && !contentsEnabled ? InputName.Details : selectedTab
+  const tabs: readonly Tab[] = GetTabs.getTabs(normalizedSelectedTab, hasReadme, hasFeatures, hasChangelog || hasGithubReleases, contentsEnabled)
   const enabledTabs = tabs.filter(isEnabled)
+  const contentReadmeUri = contentEntries.find((entry) => entry.name === 'README.md')?.uri || ''
   const sizeValue = GetViewletSize.getViewletSize(width || 0)
   const showSizeLink = platform !== PlatformType.Web
   const created = ParseCreated.parseCreated(extension)
@@ -144,6 +169,11 @@ const loadContentInternal = async (
     categories,
     changelogScrollTop,
     commit,
+    contentEntries,
+    contentError,
+    contentFileContent: hasReadme ? readmeContent : '',
+    contentSelectedUri: hasReadme ? contentReadmeUri : '',
+    contentsEnabled,
     created,
     currentColorThemeId,
     description,
@@ -179,7 +209,7 @@ const loadContentInternal = async (
     scrollSource: InputSource.Script,
     scrollToTopButtonEnabled: true,
     selectedFeature: actualSelectedFeature,
-    selectedTab,
+    selectedTab: normalizedSelectedTab,
     settingsButtonEnabled: true,
     showSizeLink,
     sizeOnDisk: size,

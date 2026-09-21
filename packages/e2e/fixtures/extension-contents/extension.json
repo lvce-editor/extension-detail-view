@@ -1,0 +1,8 @@
+{
+  "id": "test.extension-contents",
+  "name": "Extension Contents",
+  "displayName": "Extension Contents",
+  "description": "Extension contents test fixture",
+  "version": "1.0.0",
+  "publisher": "test"
+}

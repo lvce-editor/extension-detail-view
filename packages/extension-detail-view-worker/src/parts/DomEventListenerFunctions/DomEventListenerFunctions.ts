@@ -24,3 +24,4 @@ export const HandleMarkdownImageError = 23
 export const HandleChangelogContextMenu = 24
 export const HandleClickEnableOptions = 25
 export const HandleClickDisableOptions = 26
+export const HandleContentsClick = 27

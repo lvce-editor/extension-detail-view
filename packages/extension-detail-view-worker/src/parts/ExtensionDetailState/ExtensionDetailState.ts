@@ -1,5 +1,6 @@
 import type { ActivationEntry } from '../ActivationEntry/ActivationEntry.ts'
 import type { Category } from '../Category/Category.ts'
+import type { ContentEntry } from '../ContentEntry/ContentEntry.ts'
 import type { Feature } from '../Feature/Feature.ts'
 import type { ExtensionDetailButton } from '../GetExtensionDetailButtons/ExtensionDetailButton.ts'
 import type { MoreInfoEntry } from '../MoreInfoEntry/MoreInfoEntry.ts'
@@ -24,6 +25,12 @@ export interface ExtensionDetailState {
   readonly changelogVirtualDom: readonly VirtualDomNode[]
   readonly commands: readonly Row[]
   readonly commit: string
+  readonly contentEntries: readonly ContentEntry[]
+  readonly contentError: string
+  readonly contentExpandedUris: readonly string[]
+  readonly contentFileContent: string
+  readonly contentSelectedUri: string
+  readonly contentsEnabled: boolean
   readonly created: number | null
   readonly currentColorThemeId: string
   readonly description: string

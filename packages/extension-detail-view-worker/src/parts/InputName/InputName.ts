@@ -1,5 +1,6 @@
 export const ActivationEvents = 'ActivationEvents'
 export const Changelog = 'Changelog'
+export const Contents = 'Contents'
 export const Commands = 'Commands'
 export const Details = 'Details'
 export const Enable = 'Enable'

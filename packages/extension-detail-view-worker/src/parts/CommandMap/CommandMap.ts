@@ -36,6 +36,7 @@ import * as HandleClickSettings from '../HandleClickSettings/HandleClickSettings
 import * as HandleClickSize from '../HandleClickSize/HandleClickSize.ts'
 import * as HandleClickUninstall from '../HandleClickUninstall/HandleClickUninstall.ts'
 import { handleColorThemeChanged } from '../HandleColorThemeChanged/HandleColorThemeChanged.ts'
+import * as HandleContentsClick from '../HandleContentsClick/HandleContentsClick.ts'
 import { handleExtensionsChanged } from '../HandleExtensionsChanged/HandleExtensionsChanged.ts'
 import * as HandleExtensionsStatusUpdate from '../HandleExtensionsStatusUpdate/HandleExtensionsStatusUpdate.ts'
 import { handleHeaderContextMenu } from '../HandleHeaderContextMenu/HandleHeaderContextMenu.ts'
@@ -101,6 +102,7 @@ export const commandMap = {
   'ExtensionDetail.handleClickSize': WrapCommand.wrapCommand(HandleClickSize.handleClickSize),
   'ExtensionDetail.handleClickUninstall': WrapCommand.wrapCommand(HandleClickUninstall.handleClickUninstall),
   'ExtensionDetail.handleColorThemeChanged': WrapCommand.wrapCommand(handleColorThemeChanged),
+  'ExtensionDetail.handleContentsClick': WrapCommand.wrapSerialCommand(HandleContentsClick.handleContentsClick),
   'ExtensionDetail.handleExtensionsChanged': WrapCommand.wrapCommand(handleExtensionsChanged),
   'ExtensionDetail.handleExtensionsStatusUpdate': WrapCommand.wrapCommand(HandleExtensionsStatusUpdate.handleExtensionsStatusUpdate),
   'ExtensionDetail.handleFeaturesClick': WrapCommand.wrapCommand(HandleClickFeatures.handleClickFeatures),

@@ -8,6 +8,11 @@ export const isEqual = (oldState: ExtensionDetailState, newState: ExtensionDetai
     oldState.categories === newState.categories &&
     oldState.changelogVirtualDom === newState.changelogVirtualDom &&
     oldState.commands === newState.commands &&
+    oldState.contentEntries === newState.contentEntries &&
+    oldState.contentError === newState.contentError &&
+    oldState.contentExpandedUris === newState.contentExpandedUris &&
+    oldState.contentFileContent === newState.contentFileContent &&
+    oldState.contentSelectedUri === newState.contentSelectedUri &&
     oldState.description === newState.description &&
     oldState.detailsVirtualDom === newState.detailsVirtualDom &&
     oldState.disabled === newState.disabled &&
