@@ -123,5 +123,9 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
       name: DomEventListenerFunctions.HandleTabFocus,
       params: ['handleTabFocus', EventExpression.TargetName],
     },
+    {
+      name: DomEventListenerFunctions.HandleContentsClick,
+      params: ['handleContentsClick', EventExpression.TargetName],
+    },
   ]
 }

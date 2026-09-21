@@ -56,6 +56,7 @@ test('loadContent - successful load', async () => {
     'FileSystem.getFolderSize': () => {
       return 1024
     },
+    'FileSystem.readDirWithFileTypes': () => [],
     'FileSystem.readFile': () => {
       return '# Test README Content'
     },
@@ -121,12 +122,14 @@ test('loadContent - successful load', async () => {
     ['Preferences.get', 'workbnech.colorTheme'],
     ['Layout.getApplicationName'],
     ['Layout.getCommit'],
+    ['Preferences.get', 'extensionsShowContents'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
   expect(mockFileSystemRpc.invocations).toEqual([
     ['FileSystem.exists', 'https://lvce-editor.github.io/test/uri/README.md'],
     ['FileSystem.exists', 'https://lvce-editor.github.io/test/uri/CHANGELOG.md'],
     ['FileSystem.readFile', 'https://lvce-editor.github.io/test/uri/README.md'],
+    ['FileSystem.readDirWithFileTypes', '/test/uri'],
   ])
   expect(mockMarkdownRpc.invocations.length).toBeGreaterThan(0)
 })
@@ -252,6 +255,7 @@ test('loadContent - with builtin extension', async () => {
     ['Preferences.get', 'workbnech.colorTheme'],
     ['Layout.getApplicationName'],
     ['Layout.getCommit'],
+    ['Preferences.get', 'extensionsShowContents'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
   expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
@@ -355,6 +359,7 @@ test('loadContent - selects first available feature when saved feature is unavai
     ['Preferences.get', 'workbnech.colorTheme'],
     ['Layout.getApplicationName'],
     ['Layout.getCommit'],
+    ['Preferences.get', 'extensionsShowContents'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
   expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)
@@ -454,7 +459,7 @@ test('loadContent - loads changelog content when restoring the changelog tab', a
     id: 'test-extension',
     name: 'Test Extension',
     path: '/test/path',
-    uri: '/test/uri',
+    uri: 'https://example.com/test/uri',
     version: '1.0.0',
   }
   const changelogContent = '# Changelog\n\n## Version 1.0.0'
@@ -511,7 +516,7 @@ test('loadContent - loads changelog content when restoring the changelog tab', a
 
   expect(result.selectedTab).toBe(InputName.Changelog)
   expect(result.changelogVirtualDom.length).toBeGreaterThan(0)
-  expect(mockFileSystemRpc.invocations).toContainEqual(['FileSystem.readFile', 'https://lvce-editor.github.io/test/uri/CHANGELOG.md'])
+  expect(mockFileSystemRpc.invocations).toContainEqual(['FileSystem.readFile', 'https://example.com/test/uri/CHANGELOG.md'])
   expect(mockMarkdownRpc.invocations).toContainEqual([
     'Markdown.render',
     changelogContent,
@@ -527,7 +532,7 @@ test('loadContent - with different platform', async () => {
     id: 'test-extension',
     name: 'Test Extension',
     path: '/test/path',
-    uri: '/test/uri',
+    uri: 'https://lvce-editor.github.io/remote/test/uri',
     version: '1.0.0',
   }
 
@@ -541,14 +546,14 @@ test('loadContent - with different platform', async () => {
     'Layout.getCommit': () => {
       return 'test-commit'
     },
-    'Preferences.get': () => {
-      return true
+    'Preferences.get': (key: string) => {
+      return key !== 'extensionsShowContents'
     },
   })
 
   using mockFileSystemRpc = FileSystemWorker.registerMockRpc({
-    'FileSystem.exists': () => {
-      return true
+    'FileSystem.exists': (uri: string) => {
+      return !uri.endsWith('/README.md') && !uri.endsWith('/CHANGELOG.md')
     },
     'FileSystem.getFolderSize': () => {
       return 1024
@@ -573,9 +578,10 @@ test('loadContent - with different platform', async () => {
   const state: ExtensionDetailState = {
     ...createDefaultState(),
     uri: 'extension-detail://test-extension',
+    width: 0,
   }
 
-  const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, {})
+  const result: ExtensionDetailState = await LoadContent.loadContent(state, 1, { selectedTab: InputName.Contents })
 
   expect(result.extension).toEqual(mockExtension)
   expect(mockRendererRpc.invocations).toEqual([
@@ -585,6 +591,7 @@ test('loadContent - with different platform', async () => {
     ['Preferences.get', 'workbnech.colorTheme'],
     ['Layout.getApplicationName'],
     ['Layout.getCommit'],
+    ['Preferences.get', 'extensionsShowContents'],
     ['Preferences.get', 'application.linkProtectionEnabled'],
   ])
   expect(mockFileSystemRpc.invocations.length).toBeGreaterThan(0)

@@ -26,3 +26,13 @@ test('returns all tabs with details selected', () => {
     },
   ])
 })
+
+test('returns contents tab when enabled', () => {
+  const tabs = GetTabs.getTabs(InputName.Contents, true, false, false, true)
+  expect(tabs.at(-1)).toEqual({
+    enabled: true,
+    label: ExtensionDetailStrings.contents(),
+    name: InputName.Contents,
+    selected: true,
+  })
+})

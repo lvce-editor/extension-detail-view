@@ -2,7 +2,13 @@ import type { Tab } from '../Tab/Tab.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 import * as InputName from '../InputName/InputName.ts'
 
-export const getTabs = (selectedTab: string, hasReadme: boolean, hasFeatures: boolean, hasChangelog: boolean): readonly Tab[] => {
+export const getTabs = (
+  selectedTab: string,
+  hasReadme: boolean,
+  hasFeatures: boolean,
+  hasChangelog: boolean,
+  contentsEnabled = false,
+): readonly Tab[] => {
   const tabs: readonly Tab[] = [
     {
       enabled: hasReadme,
@@ -23,5 +29,16 @@ export const getTabs = (selectedTab: string, hasReadme: boolean, hasFeatures: bo
       selected: selectedTab === InputName.Changelog,
     },
   ]
-  return tabs
+  if (!contentsEnabled) {
+    return tabs
+  }
+  return [
+    ...tabs,
+    {
+      enabled: true,
+      label: ExtensionDetailStrings.contents(),
+      name: InputName.Contents,
+      selected: selectedTab === InputName.Contents,
+    },
+  ]
 }
