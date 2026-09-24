@@ -74,16 +74,25 @@ jobs:
   electron:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    env:
+      LVCE_VERSION: 0.115.4
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
+      - uses: actions/cache@v6
+        id: electron-cache
+        with:
+          path: .tmp/lvce.deb
+          key: ${{ runner.os }}-${{ runner.arch }}-cacheElectronApp-v1-${{ env.LVCE_VERSION }}
       - run: npm ci
       - run: npm run build
       - name: Prepare Electron app with candidate worker
         run: |
-          curl --fail --location https://github.com/lvce-editor/lvce-editor/releases/download/v0.115.4/lvce-v0.115.4_amd64.deb --output .tmp/lvce.deb
+          if [ "${{ steps.electron-cache.outputs.cache-hit }}" != 'true' ]; then
+            curl --fail --location "https://github.com/lvce-editor/lvce-editor/releases/download/v${LVCE_VERSION}/lvce-v${LVCE_VERSION}_amd64.deb" --output .tmp/lvce.deb
+          fi
           dpkg-deb --extract .tmp/lvce.deb .tmp/electron
           cp .tmp/dist/dist/extensionDetailViewWorkerMain.js .tmp/electron/usr/lib/lvce/resources/app/static/*/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js
       - name: Electron link browser regression
