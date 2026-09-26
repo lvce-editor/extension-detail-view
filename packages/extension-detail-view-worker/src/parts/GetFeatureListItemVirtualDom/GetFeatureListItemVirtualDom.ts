@@ -9,9 +9,9 @@ export const getFeatureListItemVirtualDom = (feature: Feature): readonly Virtual
   const className = selected ? 'Feature FeatureSelected' : ClassNames.Feature
   return [
     {
+      ariaSelected: selected,
       childCount: 1,
       className,
-      ariaSelected: selected,
       name: id,
       role: AriaRoles.Tab,
       type: VirtualDomElements.Button,

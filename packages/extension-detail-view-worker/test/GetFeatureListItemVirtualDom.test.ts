@@ -13,9 +13,9 @@ test('unselected feature', () => {
   }
   expect(GetFeatureListItemVirtualDom.getFeatureListItemVirtualDom(feature)).toEqual([
     {
+      ariaSelected: false,
       childCount: 1,
       className: ClassNames.Feature,
-      ariaSelected: false,
       name: 'test-feature',
       role: AriaRoles.Tab,
       type: VirtualDomElements.Button,
@@ -32,9 +32,9 @@ test('selected feature', () => {
   }
   expect(GetFeatureListItemVirtualDom.getFeatureListItemVirtualDom(feature)).toEqual([
     {
+      ariaSelected: true,
       childCount: 1,
       className: 'Feature FeatureSelected',
-      ariaSelected: true,
       name: 'selected-feature',
       role: AriaRoles.Tab,
       type: VirtualDomElements.Button,
