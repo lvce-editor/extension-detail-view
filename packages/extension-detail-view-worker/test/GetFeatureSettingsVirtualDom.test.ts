@@ -18,6 +18,7 @@ test('getFeatureSettingsVirtualDom - returns correct structure with empty rows',
 
   expect(virtualDom[1]).toEqual({
     childCount: 1,
+    className: 'FeatureContentHeading',
     type: VirtualDomElements.H1,
   })
 
@@ -53,6 +54,7 @@ test('getFeatureSettingsVirtualDom - returns correct structure with rows', () =>
 
   expect(virtualDom[1]).toEqual({
     childCount: 1,
+    className: 'FeatureContentHeading',
     type: VirtualDomElements.H1,
   })
 

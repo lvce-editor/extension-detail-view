@@ -36,6 +36,7 @@ test('getActivationEventsVirtualDom with events', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text('Activation Events'),
@@ -87,6 +88,7 @@ test('getActivationEventsVirtualDom with empty events', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text('Activation Events'),

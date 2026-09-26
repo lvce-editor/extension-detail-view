@@ -12,6 +12,7 @@ test('feature not implemented virtual dom', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text('Not Implemented'),

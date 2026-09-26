@@ -27,6 +27,7 @@ test('feature commands virtual dom with commands', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text('Commands'),

@@ -25,6 +25,7 @@ test('feature json validation virtual dom with validation entries', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text('Json Validation'),
@@ -102,6 +103,7 @@ test('feature json validation virtual dom with empty validation entries', () => 
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text('Json Validation'),
