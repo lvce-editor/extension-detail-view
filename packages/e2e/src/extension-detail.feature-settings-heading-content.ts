@@ -7,5 +7,5 @@ export const test = createExtensionDetailTest({
   expectation: { kind: 'text', value: 'Settings' },
   extensionId: 'test.settings-test',
   extensionUri: import.meta.resolve('../fixtures/extension-settings'),
-  selector: '.FeatureContent > h1',
+  selector: '.FeatureContent > h1.FeatureContentHeading',
 })

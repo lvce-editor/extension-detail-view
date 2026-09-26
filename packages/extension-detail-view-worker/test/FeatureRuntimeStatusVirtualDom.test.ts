@@ -24,6 +24,7 @@ test('getRuntimeStatusVirtualDom should return correct virtual DOM structure wit
   })
   expect(result[1]).toEqual({
     childCount: 1,
+    className: ClassNames.FeatureContentHeading,
     type: VirtualDomElements.H1,
   })
   expect(result[2]).toEqual({
@@ -160,6 +161,7 @@ test('getRuntimeStatusVirtualDom should return correct virtual DOM structure wit
   })
   expect(result[1]).toEqual({
     childCount: 1,
+    className: 'FeatureContentHeading',
     type: VirtualDomElements.H1,
   })
   expect(result[2]).toEqual({

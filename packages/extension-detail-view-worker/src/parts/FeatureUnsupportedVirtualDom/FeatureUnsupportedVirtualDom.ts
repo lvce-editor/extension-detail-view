@@ -1,6 +1,7 @@
 import { text, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ClassNames from '../ClassNames/ClassNames.ts'
 import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
 
 const unsupportedFeatureNode: VirtualDomNode = {
@@ -10,6 +11,7 @@ const unsupportedFeatureNode: VirtualDomNode = {
 
 const unsupportedFeatureHeadingNode: VirtualDomNode = {
   childCount: 1,
+  className: ClassNames.FeatureContentHeading,
   type: VirtualDomElements.H1,
 }
 

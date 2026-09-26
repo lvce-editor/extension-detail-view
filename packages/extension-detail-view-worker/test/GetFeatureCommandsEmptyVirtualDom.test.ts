@@ -15,6 +15,7 @@ test('getFeatureCommandsEmptyVirtualDom returns expected structure', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.commands()),

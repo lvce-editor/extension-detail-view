@@ -12,6 +12,7 @@ const featureContentNode: VirtualDomNode = {
 
 const notImplementedHeadingNode: VirtualDomNode = {
   childCount: 1,
+  className: ClassNames.FeatureContentHeading,
   type: VirtualDomElements.H1,
 }
 

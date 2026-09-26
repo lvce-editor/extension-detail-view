@@ -18,6 +18,7 @@ test('getFeatureWebViewsVirtualDom with empty webViews array', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text(heading),
@@ -52,6 +53,7 @@ test('getFeatureWebViewsVirtualDom with single webView', () => {
   })
   expect(result[1]).toEqual({
     childCount: 1,
+    className: 'FeatureContentHeading',
     type: VirtualDomElements.H1,
   })
   expect(result[2]).toEqual(text(heading))

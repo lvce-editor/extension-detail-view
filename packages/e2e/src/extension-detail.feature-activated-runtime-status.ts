@@ -15,7 +15,7 @@ export const test: Test = async ({ BaseUrl, expect, Extension, ExtensionDetail, 
   await ExtensionDetail.openFeature('RuntimeStatus')
 
   // assert
-  const heading = Locator('.FeatureContent h1')
+  const heading = Locator('.FeatureContent > h1.FeatureContentHeading')
   await expect(heading).toBeVisible()
   await expect(heading).toHaveText('Runtime Status')
   const definitionList = Locator('.FeatureContent dl')

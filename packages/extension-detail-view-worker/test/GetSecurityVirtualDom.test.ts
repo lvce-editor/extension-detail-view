@@ -7,6 +7,7 @@ test('renders an accessible security definition list', () => {
   const result = getSecurityVirtualDom({ browser: 'worker.js', isolated: true })
 
   expect(result[0]).toMatchObject({ className: expect.stringContaining(ClassNames.Security), role: AriaRoles.Panel, type: VirtualDomElements.Div })
+  expect(result[1]).toMatchObject({ className: ClassNames.FeatureContentHeading, type: VirtualDomElements.H1 })
   expect(result).toContainEqual(expect.objectContaining({ childCount: 6, className: ClassNames.SecurityDefinitionList, type: VirtualDomElements.Dl }))
   expect(result.filter((node) => node.type === VirtualDomElements.Dt)).toHaveLength(3)
   expect(result.filter((node) => node.type === VirtualDomElements.Dd)).toHaveLength(3)

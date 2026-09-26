@@ -15,6 +15,7 @@ const securityPanelNode: VirtualDomNode = {
 
 const securityHeadingNode: VirtualDomNode = {
   childCount: 1,
+  className: ClassNames.FeatureContentHeading,
   type: VirtualDomElements.H1,
 }
 

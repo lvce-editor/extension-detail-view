@@ -19,6 +19,7 @@ test('getFeatureThemesVirtualDom with empty themesDom', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.theme()),
@@ -50,6 +51,7 @@ test('getFeatureThemesVirtualDom with single node themesDom', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.theme()),
@@ -91,6 +93,7 @@ test('getFeatureThemesVirtualDom with multiple nodes themesDom', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.theme()),
@@ -136,6 +139,7 @@ test('getFeatureThemesVirtualDom with nested nodes themesDom', () => {
     },
     {
       childCount: 1,
+      className: 'FeatureContentHeading',
       type: VirtualDomElements.H1,
     },
     text(ExtensionDetailStrings.theme()),
