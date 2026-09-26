@@ -11,8 +11,7 @@ export const getFeatureListVirtualDom = (features: readonly Feature[]): readonly
       childCount: features.length,
       className: ClassNames.FeaturesList,
       onClick: DomEventListenerFunctions.HandleFeaturesClick,
-      role: AriaRoles.None,
-      // TODO use either list or tabs role
+      role: AriaRoles.TabList,
       type: VirtualDomElements.Div,
     },
     ...features.flatMap(GetFeatureListItemVirtualDom.getFeatureListItemVirtualDom),

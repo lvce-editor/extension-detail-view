@@ -1,5 +1,5 @@
 import { expect, test } from '@jest/globals'
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Feature } from '../src/parts/Feature/Feature.ts'
 import * as ClassNames from '../src/parts/ClassNames/ClassNames.ts'
 import * as GetFeatureListItemVirtualDom from '../src/parts/GetFeatureListItemVirtualDom/GetFeatureListItemVirtualDom.ts'
@@ -13,9 +13,11 @@ test('unselected feature', () => {
   }
   expect(GetFeatureListItemVirtualDom.getFeatureListItemVirtualDom(feature)).toEqual([
     {
+      ariaSelected: false,
       childCount: 1,
       className: ClassNames.Feature,
       name: 'test-feature',
+      role: AriaRoles.Tab,
       type: VirtualDomElements.Button,
     },
     text('Test Feature'),
@@ -30,9 +32,11 @@ test('selected feature', () => {
   }
   expect(GetFeatureListItemVirtualDom.getFeatureListItemVirtualDom(feature)).toEqual([
     {
+      ariaSelected: true,
       childCount: 1,
       className: 'Feature FeatureSelected',
       name: 'selected-feature',
+      role: AriaRoles.Tab,
       type: VirtualDomElements.Button,
     },
     text('Selected Feature'),

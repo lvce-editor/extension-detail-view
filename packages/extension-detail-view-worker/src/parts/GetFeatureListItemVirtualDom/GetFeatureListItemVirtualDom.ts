@@ -1,4 +1,4 @@
-import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import { AriaRoles, VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { Feature } from '../Feature/Feature.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
 import * as ClassNames from '../ClassNames/ClassNames.ts'
@@ -9,10 +9,11 @@ export const getFeatureListItemVirtualDom = (feature: Feature): readonly Virtual
   const className = selected ? 'Feature FeatureSelected' : ClassNames.Feature
   return [
     {
+      ariaSelected: selected,
       childCount: 1,
       className,
       name: id,
-      // TODO use role list item or tab
+      role: AriaRoles.Tab,
       type: VirtualDomElements.Button,
     },
     text(label),
