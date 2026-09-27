@@ -39,6 +39,7 @@ export const ExtensionEnablementSplitButtonDropDown = 'ExtensionEnablementSplitB
 export const ExtensionEnablementSplitButtonPrimary = 'ExtensionEnablementSplitButtonPrimary'
 export const ExtensionDetailHeaderDetails = 'ExtensionDetailHeaderDetails'
 export const ExtensionDetailIcon = 'ExtensionDetailIcon'
+export const ExtensionDetailIconWrapper = 'ExtensionDetailIconWrapper'
 export const ExtensionDetailMetadata = 'ExtensionDetailMetadata'
 export const ExtensionDetailName = 'ExtensionDetailName'
 export const ExtensionDetailNameBadge = 'ExtensionDetailNameBadge'
