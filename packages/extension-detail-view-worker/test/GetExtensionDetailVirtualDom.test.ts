@@ -66,6 +66,11 @@ test.skip('extension detail virtual dom with content', () => {
       type: VirtualDomElements.Div,
     },
     {
+      childCount: 1,
+      className: ClassNames.ExtensionDetailIconWrapper,
+      type: VirtualDomElements.Div,
+    },
+    {
       alt: '',
       childCount: 0,
       className: ClassNames.ExtensionDetailIcon,
@@ -174,6 +179,11 @@ test.skip('extension detail virtual dom with empty content', () => {
     {
       childCount: 2,
       className: ClassNames.ExtensionDetailHeader,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: ClassNames.ExtensionDetailIconWrapper,
       type: VirtualDomElements.Div,
     },
     {

@@ -11,7 +11,21 @@ import { text } from '../src/parts/VirtualDomHelpers/VirtualDomHelpers.ts'
 test('adds a context menu listener to the extension detail header details', () => {
   const result = GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom('name', 'icon.png', 'description', '', [], false)
 
+  expect(result[1]).toEqual({
+    childCount: 1,
+    className: ClassNames.ExtensionDetailIconWrapper,
+    type: VirtualDomElements.Div,
+  })
   expect(result[2]).toEqual({
+    alt: '',
+    childCount: 0,
+    className: ClassNames.ExtensionDetailIcon,
+    draggable: false,
+    onContextMenu: DomEventListenerFunctions.HandleImageContextMenu,
+    src: 'icon.png',
+    type: VirtualDomElements.Img,
+  })
+  expect(result[3]).toEqual({
     childCount: 3,
     className: ClassNames.ExtensionDetailHeaderDetails,
     onContextMenu: DomEventListenerFunctions.HandleHeaderContextMenu,
@@ -32,7 +46,7 @@ test('does not render extension metadata when values are unavailable', () => {
 test('renders only available extension metadata', () => {
   const result = GetExtensionDetailHeaderVirtualDom.getExtensionDetailHeaderVirtualDom('name', 'icon.png', 'description', '', [], false, '98,765')
 
-  expect(result.slice(7, 10)).toEqual([
+  expect(result.slice(8, 11)).toEqual([
     {
       childCount: 1,
       className: ClassNames.ExtensionDetailMetadata,
@@ -61,7 +75,7 @@ test('renders download count and rating in the extension detail header', () => {
     '4.8',
   )
 
-  expect(result.slice(7, 12)).toEqual([
+  expect(result.slice(8, 13)).toEqual([
     {
       childCount: 2,
       className: ClassNames.ExtensionDetailMetadata,
@@ -106,6 +120,11 @@ test.skip('extension detail header virtual dom', () => {
     {
       childCount: 2,
       className: ClassNames.ExtensionDetailHeader,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: ClassNames.ExtensionDetailIconWrapper,
       type: VirtualDomElements.Div,
     },
     {
@@ -156,6 +175,11 @@ test.skip('handles missing extension details', () => {
     {
       childCount: 2,
       className: ClassNames.ExtensionDetailHeader,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: ClassNames.ExtensionDetailIconWrapper,
       type: VirtualDomElements.Div,
     },
     {
@@ -250,6 +274,11 @@ test.skip('handles builtin extension - shows only disable button', () => {
     {
       childCount: 2,
       className: ClassNames.ExtensionDetailHeader,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 1,
+      className: ClassNames.ExtensionDetailIconWrapper,
       type: VirtualDomElements.Div,
     },
     {

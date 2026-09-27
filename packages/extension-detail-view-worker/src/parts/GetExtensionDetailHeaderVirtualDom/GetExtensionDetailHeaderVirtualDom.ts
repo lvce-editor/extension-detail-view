@@ -15,6 +15,12 @@ const extensionDetailHeaderNode: VirtualDomNode = {
   type: VirtualDomElements.Div,
 }
 
+const extensionDetailIconWrapperNode: VirtualDomNode = {
+  childCount: 1,
+  className: ClassNames.ExtensionDetailIconWrapper,
+  type: VirtualDomElements.Div,
+}
+
 export const getExtensionDetailHeaderVirtualDom = (
   name: string,
   iconSrc: string,
@@ -28,6 +34,7 @@ export const getExtensionDetailHeaderVirtualDom = (
   const metadataDom = getExtensionDetailMetadataVirtualDom(downloadCount, rating)
   const dom = [
     extensionDetailHeaderNode,
+    extensionDetailIconWrapperNode,
     getExtensionDetailIconVirtualDom(iconSrc),
     {
       childCount: metadataDom.length > 0 ? 4 : 3,
