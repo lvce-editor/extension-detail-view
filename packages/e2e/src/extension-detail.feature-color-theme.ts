@@ -50,6 +50,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(themeLink).toHaveClass('ColorThemeLink')
 
   // act
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Preserve this legacy Locator action until e2e commands replace it.
   await themeLink.dispatchEvent('click', { bubbles: true } as unknown as string)
 
   // assert

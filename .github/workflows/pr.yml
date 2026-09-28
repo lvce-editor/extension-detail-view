@@ -98,4 +98,4 @@ jobs:
       - name: Electron link browser regression
         run: |
           task_profile=$(mktemp -d "$RUNNER_TEMP/extension-link-browser-XXXXXX")
-          xvfb-run --auto-servernum npm exec --workspace=packages/e2e -- test-with-playwright --electron --electron-path="$PWD/.tmp/electron/usr/lib/lvce/lvce" --electron-env="XDG_CONFIG_HOME=$task_profile/config" --electron-env="XDG_DATA_HOME=$task_profile/data" --electron-env="XDG_STATE_HOME=$task_profile/state" --electron-env="XDG_CACHE_HOME=$task_profile/cache" --only-extension=. --test-path=../e2e-electron
+          xvfb-run --auto-servernum npm exec --workspace=packages/e2e -- test-with-playwright --electron --no-reuse-page --electron-path="$PWD/.tmp/electron/usr/lib/lvce/lvce" --electron-env="XDG_CONFIG_HOME=$task_profile/config" --electron-env="XDG_DATA_HOME=$task_profile/data" --electron-env="XDG_STATE_HOME=$task_profile/state" --electron-env="XDG_CACHE_HOME=$task_profile/cache" --only-extension=. --test-path=../e2e-electron
