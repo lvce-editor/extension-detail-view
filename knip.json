@@ -9,8 +9,8 @@
       "ignoreDependencies": ["esbuild", "playwright"]
     },
     "packages/e2e": {
-      "entry": ["src/**/*.ts", "scripts/*.js", "fixtures/**/main.js", "fixtures/**/index.js"],
-      "project": ["src/**/*.ts", "scripts/*.js", "fixtures/**/*.js"]
+      "entry": ["e2e.config.js", "src/**/*.ts", "scripts/*.js", "fixtures/**/main.js", "fixtures/**/index.js"],
+      "project": ["src/**/*.ts", "scripts/*.js", "fixtures/**/*.js", "e2e.config.js"]
     },
     "packages/extension-detail-view-worker": {
       "entry": ["test/**/*.test.ts"],
