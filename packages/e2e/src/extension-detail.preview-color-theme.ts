@@ -19,12 +19,14 @@ export const test: Test = async ({ ColorTheme, expect, Extension, ExtensionDetai
   await expect(activityBar).toHaveCSS('background-color', 'rgb(132, 204, 22)')
 
   // act
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Preserve this legacy Locator action until e2e commands replace it.
   await enableButton.hover()
 
   // assert
   await expect(activityBar).toHaveCSS('background-color', 'rgb(255, 165, 0)')
 
   // act
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Preserve this legacy Locator action until e2e commands replace it.
   await Locator('.ExtensionDetail').hover()
 
   // assert

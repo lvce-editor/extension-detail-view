@@ -18,20 +18,26 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator, 
     const contentFile = Locator('.ExtensionDetailContentFile')
     const panel = Locator('.ExtensionDetailPanel')
     await expect(contentsTab).toHaveCount(1)
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- Preserve this legacy Locator action until e2e commands replace it.
     await contentsTab.click()
 
     await expect(treeItems).toHaveCount(3)
     await expect(contentFile).toHaveText('# Contents README\n\nThis is the default contents file.\n')
 
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- Preserve this legacy Locator action until e2e commands replace it.
     await treeItems.nth(0).click()
     await expect(treeItems).toHaveCount(5)
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- Preserve this legacy Locator action until e2e commands replace it.
     await treeItems.nth(1).click()
     await expect(treeItems).toHaveCount(6)
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- Preserve this legacy Locator action until e2e commands replace it.
     await treeItems.nth(2).click()
     await expect(contentFile).toHaveText('<main>nested literal html</main>\n')
 
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- Preserve this legacy Locator action until e2e commands replace it.
     await detailsTab.click()
     await expect(panel).toHaveCount(1)
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- Preserve this legacy Locator action until e2e commands replace it.
     await contentsTab.click()
     await expect(contentFile).toHaveText('<main>nested literal html</main>\n')
   } finally {
