@@ -7,7 +7,7 @@ import { getDisableMenuEntries, getEnableMenuEntries } from '../GetExtensionEnab
 import { getMenuEntriesImage } from '../GetMenuEntriesImage/GetMenuEntriesImage.ts'
 import * as LocalMenuEntryId from '../MenuEntryId/MenuEntryId.ts'
 
-const getChangelogMenuEntries = (href: string): readonly MenuEntry[] => {
+const getReadOnlyTextMenuEntries = (href: string): readonly MenuEntry[] => {
   const entries: MenuEntry[] = [
     {
       args: [],
@@ -66,7 +66,7 @@ export const getMenuEntries2 = (state: ExtensionDetailState, props: ContextMenuP
     ]
   }
   if (props.menuId === LocalMenuEntryId.ExtensionDetailChangelogContextMenu) {
-    return getChangelogMenuEntries(props.href)
+    return getReadOnlyTextMenuEntries(props.href)
   }
   if (props.menuId === LocalMenuEntryId.ExtensionDetailEnableContextMenu) {
     return getEnableMenuEntries()
@@ -74,23 +74,8 @@ export const getMenuEntries2 = (state: ExtensionDetailState, props: ContextMenuP
   if (props.menuId === LocalMenuEntryId.ExtensionDetailDisableContextMenu) {
     return getDisableMenuEntries()
   }
-  if (props.menuId === MenuEntryId.ExtensionDetailReadme && props.href) {
-    return [
-      {
-        args: [props.href],
-        command: 'ExtensionDetail.copyReadmeLink',
-        flags: MenuItemFlags.None,
-        id: 'copyLink',
-        label: ExtensionDetailStrings.copyLink(),
-      },
-      {
-        args: [],
-        command: 'ExtensionDetail.executeCopy',
-        flags: MenuItemFlags.None,
-        id: 'copy',
-        label: ExtensionDetailStrings.copy(),
-      },
-    ]
+  if (props.menuId === MenuEntryId.ExtensionDetailReadme) {
+    return getReadOnlyTextMenuEntries(props.href)
   }
   return [
     {

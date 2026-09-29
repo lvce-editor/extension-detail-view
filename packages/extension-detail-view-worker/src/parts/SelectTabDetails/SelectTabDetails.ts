@@ -20,7 +20,9 @@ export const selectTabDetails = async (state: ExtensionDetailState): Promise<Ext
     },
     cacheName,
   )
-  const detailsDom = await GetMarkdownVirtualDom.getMarkdownVirtualDom(readmeHtml)
+  const detailsDom = await GetMarkdownVirtualDom.getMarkdownVirtualDom(readmeHtml, {
+    readmeContextMenuEnabled: true,
+  })
   const newTabs = tabs.map((tab) => {
     return {
       ...tab,

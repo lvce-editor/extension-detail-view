@@ -11,15 +11,20 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(markDown).toBeVisible()
 
   // act
-  await ExtensionDetail.handleReadmeContextMenu(0, 0, 'a', 'https://example.com')
+  await ExtensionDetail.handleReadmeContextMenu(0, 0, 'P', '')
 
   // assert
   const menu = Locator('.Menu')
   await expect(menu).toBeVisible()
   const menuItems = menu.locator('.MenuItem')
-  await expect(menuItems).toHaveCount(2)
-  const first = menuItems.nth(0)
-  await expect(first).toHaveText('Copy Link')
-  const second = menuItems.nth(1)
-  await expect(second).toHaveText('Copy')
+  await expect(menuItems).toHaveCount(3)
+  const cut = menuItems.nth(0)
+  const copy = menuItems.nth(1)
+  const paste = menuItems.nth(2)
+  await expect(cut).toHaveText('Cut')
+  await expect(cut).toHaveAttribute('aria-disabled', 'true')
+  await expect(copy).toHaveText('Copy')
+  await expect(copy).toHaveAttribute('aria-disabled', null)
+  await expect(paste).toHaveText('Paste')
+  await expect(paste).toHaveAttribute('aria-disabled', 'true')
 }

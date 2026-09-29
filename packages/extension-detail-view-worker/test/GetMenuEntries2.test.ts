@@ -123,7 +123,40 @@ test('returns image actions for the extension icon menu', () => {
   ])
 })
 
-test('returns link and copy actions for a readme link', () => {
+test('returns read-only editing actions for README text', () => {
+  const state = createDefaultState()
+  expect(
+    getMenuEntries2(state, {
+      href: '',
+      menuId: MenuEntryId.ExtensionDetailReadme,
+      nodeName: 'P',
+    }),
+  ).toEqual([
+    {
+      args: [],
+      command: '',
+      flags: MenuItemFlags.Disabled,
+      id: 'cut',
+      label: 'Cut',
+    },
+    {
+      args: [],
+      command: 'ClipBoard.execCopy',
+      flags: MenuItemFlags.None,
+      id: 'copy',
+      label: 'Copy',
+    },
+    {
+      args: [],
+      command: '',
+      flags: MenuItemFlags.Disabled,
+      id: 'paste',
+      label: 'Paste',
+    },
+  ])
+})
+
+test('adds copy link to README editing actions for a link', () => {
   const state = createDefaultState()
   expect(
     getMenuEntries2(state, {
@@ -133,29 +166,40 @@ test('returns link and copy actions for a readme link', () => {
     }),
   ).toEqual([
     {
+      args: [],
+      command: '',
+      flags: MenuItemFlags.Disabled,
+      id: 'cut',
+      label: 'Cut',
+    },
+    {
+      args: [],
+      command: 'ClipBoard.execCopy',
+      flags: MenuItemFlags.None,
+      id: 'copy',
+      label: 'Copy',
+    },
+    {
+      args: [],
+      command: '',
+      flags: MenuItemFlags.Disabled,
+      id: 'paste',
+      label: 'Paste',
+    },
+    {
       args: ['https://example.com'],
       command: 'ExtensionDetail.copyReadmeLink',
       flags: MenuItemFlags.None,
       id: 'copyLink',
       label: 'Copy Link',
     },
-    {
-      args: [],
-      command: 'ExtensionDetail.executeCopy',
-      flags: MenuItemFlags.None,
-      id: 'copy',
-      label: 'Copy',
-    },
   ])
 })
 
-test('returns only the copy action when a readme context menu has no link', () => {
-  const state = createDefaultState()
+test('returns the fallback copy action for an unhandled menu', () => {
   expect(
-    getMenuEntries2(state, {
-      href: '',
-      menuId: MenuEntryId.ExtensionDetailReadme,
-      nodeName: 'P',
+    getMenuEntries2(createDefaultState(), {
+      menuId: MenuEntryId.Explorer,
     }),
   ).toEqual([
     {

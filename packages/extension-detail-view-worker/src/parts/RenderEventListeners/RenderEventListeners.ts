@@ -27,6 +27,7 @@ export const renderEventListeners = (): readonly DomEventListener[] => {
     {
       name: DomEventListenerFunctions.HandleReadmeContextMenu,
       params: ['handleReadmeContextMenu', EventExpression.ClientX, EventExpression.ClientY, 'event.target.nodeName', EventExpression.TargetHref],
+      preventDefault: true,
     },
     {
       name: DomEventListenerFunctions.HandleChangelogContextMenu,

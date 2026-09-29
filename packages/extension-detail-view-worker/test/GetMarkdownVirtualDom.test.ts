@@ -85,6 +85,66 @@ test('getMarkdownVirtualDom - keeps non-image nodes unchanged', async () => {
   expect(mockRpc.invocations).toEqual([['Markdown.getVirtualDom', html]])
 })
 
+test('getMarkdownVirtualDom - adds README context menu handler when enabled', async () => {
+  const markdownDom = [
+    {
+      childCount: 0,
+      type: VirtualDomElements.H1,
+    },
+    {
+      childCount: 0,
+      type: VirtualDomElements.P,
+    },
+    {
+      childCount: 1,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 0,
+      type: VirtualDomElements.A,
+    },
+  ]
+  using mockRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => markdownDom,
+  })
+  const result = await GetMarkdownVirtualDom.getMarkdownVirtualDom('<p>text</p>', {
+    readmeContextMenuEnabled: true,
+  })
+  expect(result).toEqual([
+    {
+      childCount: 0,
+      onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
+      type: VirtualDomElements.H1,
+    },
+    {
+      childCount: 0,
+      onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
+      type: VirtualDomElements.P,
+    },
+    {
+      childCount: 1,
+      onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
+      type: VirtualDomElements.Div,
+    },
+    {
+      childCount: 0,
+      type: VirtualDomElements.A,
+    },
+  ])
+  expect(mockRpc.invocations).toEqual([['Markdown.getVirtualDom', '<p>text</p>']])
+})
+
+test('getMarkdownVirtualDom - keeps empty README without context menu handler', async () => {
+  using mockRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => [],
+  })
+  const result = await GetMarkdownVirtualDom.getMarkdownVirtualDom('', {
+    readmeContextMenuEnabled: true,
+  })
+  expect(result).toEqual([])
+  expect(mockRpc.invocations).toEqual([['Markdown.getVirtualDom', '']])
+})
+
 test('getMarkdownVirtualDom - does not restore inline onerror attribute', async () => {
   const imageDom = [
     {

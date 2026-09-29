@@ -6,7 +6,23 @@ import { getScrollToTopVirtualDom } from '../GetScrollToTopVirtualDom/GetScrollT
 import * as MarkdownWorker from '../MarkdownWorker/MarkdownWorker.ts'
 
 interface MarkdownOptions {
+  readonly readmeContextMenuEnabled?: boolean
   readonly scrollToTopEnabled?: boolean
+}
+
+const addReadmeContextMenu = (dom: readonly VirtualDomNode[]): readonly VirtualDomNode[] => {
+  let pendingChildren = 0
+  return dom.map((node) => {
+    const isTopLevelNode = pendingChildren === 0
+    pendingChildren = Math.max(0, pendingChildren - 1) + node.childCount
+    if (!isTopLevelNode) {
+      return node
+    }
+    return {
+      ...node,
+      onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
+    }
+  })
 }
 
 export const addScrollToTopVirtualDom = (dom: readonly VirtualDomNode[]): readonly VirtualDomNode[] => {
@@ -27,9 +43,12 @@ export const addScrollToTopVirtualDom = (dom: readonly VirtualDomNode[]): readon
 
 export const getMarkdownVirtualDom = async (html: string, options?: MarkdownOptions): Promise<readonly VirtualDomNode[]> => {
   Assert.string(html)
-  const dom = AddMarkdownImageErrorHandlers.addMarkdownImageErrorHandlers(await MarkdownWorker.getVirtualDom(html))
+  let dom = AddMarkdownImageErrorHandlers.addMarkdownImageErrorHandlers(await MarkdownWorker.getVirtualDom(html))
   if (options?.scrollToTopEnabled) {
-    return addScrollToTopVirtualDom(dom)
+    dom = addScrollToTopVirtualDom(dom)
+  }
+  if (options?.readmeContextMenuEnabled) {
+    dom = addReadmeContextMenu(dom)
   }
   return dom
 }
