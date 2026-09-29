@@ -44,7 +44,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['packages/e2e/**/*.ts'],
+    files: ['packages/{e2e,e2e-integration}/**/*.ts'],
     rules: {
       'e2e/no-imports': 'off',
       'virtual-dom/no-object-attribute-values': 'off',
@@ -61,5 +61,15 @@ export default defineConfig([
       'virtual-dom/prefer-state-destructuring': 'off',
       'virtual-dom/valid-child-count': 'off',
     },
+  },
+  {
+    // The pinned application supplies its own Node runtime.
+    files: ['.github/workflows/integration.yml'],
+    rules: { 'github-actions/node-version-file': 'off', 'github-actions/on': 'off' },
+  },
+  {
+    // Preserve real DOM input events covered by the migrated application scenarios.
+    files: ['packages/e2e-integration/src/viewlet.extension-detail-security-layout.ts'],
+    rules: { '@typescript-eslint/no-deprecated': 'off' },
   },
 ])
