@@ -88,12 +88,20 @@ test('getMarkdownVirtualDom - keeps non-image nodes unchanged', async () => {
 test('getMarkdownVirtualDom - adds README context menu handler when enabled', async () => {
   const markdownDom = [
     {
+      childCount: 0,
+      type: VirtualDomElements.H1,
+    },
+    {
+      childCount: 0,
+      type: VirtualDomElements.P,
+    },
+    {
       childCount: 1,
       type: VirtualDomElements.Div,
     },
     {
       childCount: 0,
-      type: VirtualDomElements.P,
+      type: VirtualDomElements.A,
     },
   ]
   using mockRpc = MarkdownWorker.registerMockRpc({
@@ -104,13 +112,23 @@ test('getMarkdownVirtualDom - adds README context menu handler when enabled', as
   })
   expect(result).toEqual([
     {
+      childCount: 0,
+      onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
+      type: VirtualDomElements.H1,
+    },
+    {
+      childCount: 0,
+      onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
+      type: VirtualDomElements.P,
+    },
+    {
       childCount: 1,
       onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
       type: VirtualDomElements.Div,
     },
     {
       childCount: 0,
-      type: VirtualDomElements.P,
+      type: VirtualDomElements.A,
     },
   ])
   expect(mockRpc.invocations).toEqual([['Markdown.getVirtualDom', '<p>text</p>']])

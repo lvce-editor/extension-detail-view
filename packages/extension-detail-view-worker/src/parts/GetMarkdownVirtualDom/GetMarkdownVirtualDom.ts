@@ -11,17 +11,18 @@ interface MarkdownOptions {
 }
 
 const addReadmeContextMenu = (dom: readonly VirtualDomNode[]): readonly VirtualDomNode[] => {
-  const [firstNode, ...rest] = dom
-  if (!firstNode) {
-    return dom
-  }
-  return [
-    {
-      ...firstNode,
+  let pendingChildren = 0
+  return dom.map((node) => {
+    const isTopLevelNode = pendingChildren === 0
+    pendingChildren = Math.max(0, pendingChildren - 1) + node.childCount
+    if (!isTopLevelNode) {
+      return node
+    }
+    return {
+      ...node,
       onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu,
-    },
-    ...rest,
-  ]
+    }
+  })
 }
 
 export const addScrollToTopVirtualDom = (dom: readonly VirtualDomNode[]): readonly VirtualDomNode[] => {
