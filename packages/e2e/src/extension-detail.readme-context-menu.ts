@@ -13,7 +13,9 @@ export const test: Test = async ({ ClipBoard, ContextMenu, expect, Extension, Ex
 
   // act
   const paragraph = markDown.locator('p').first()
-  await paragraph.selectText()
+  await paragraph.click()
+  await paragraph.click()
+  await paragraph.click()
   await paragraph.click({ button: 'right' })
 
   // assert
