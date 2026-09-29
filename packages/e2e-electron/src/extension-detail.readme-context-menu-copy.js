@@ -4,6 +4,7 @@ export const test = async ({ page, expect }) => {
   await page.evaluate(async () => {
     const { executeCommand } = await import(document.querySelector('script[src*="rendererProcessMain"]').src)
     await executeCommand('Preferences.update', { 'window.titleBarStyle': 'custom' })
+    await executeCommand('Layout.hideSideBar')
     await executeCommand('Main.openUri', 'extension-detail:///builtin.theme-gruvbox')
   })
 
