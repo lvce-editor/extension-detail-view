@@ -120,6 +120,7 @@ const loadContentInternal = async (
     cacheName,
   )
   const detailsVirtualDom = await getMarkdownVirtualDom(readmeHtml, {
+    readmeContextMenuEnabled: true,
     scrollToTopEnabled: true,
   })
   const isBuiltin = isBuiltinExtension(extension)

@@ -3,6 +3,7 @@ import { RendererWorker } from '@lvce-editor/rpc-registry'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { clearRegistry, register } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as HandleTabsClick from '../src/parts/HandleTabsClick/HandleTabsClick.ts'
@@ -10,7 +11,8 @@ import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
 
 test('handles tabs click - details tab', async () => {
-  const expectedDom = [{ children: [], tag: 'h1', type: 'element' }]
+  const markdownDom = [{ children: [], tag: 'h1', type: 'element' }]
+  const expectedDom = [{ children: [], onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu, tag: 'h1', type: 'element' }]
   using mockRendererRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'README CONTENT'
@@ -25,7 +27,7 @@ test('handles tabs click - details tab', async () => {
 
   using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
-      return expectedDom
+      return markdownDom
     },
     'Markdown.render': () => {
       return '<h1>README CONTENT</h1>'

@@ -4,6 +4,7 @@ import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import type { FeatureDefinition } from '../src/parts/FeatureDefinition/FeatureDefinition.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import { register, clearRegistry } from '../src/parts/FeatureRegistry/FeatureRegistry.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
@@ -42,7 +43,8 @@ test('selectTab with Changelog name calls selectTabChangelog handler', async () 
 })
 
 test('selectTab with Details name calls selectTabDetails handler', async () => {
-  const expectedDom = [{ children: [], tag: 'h1', type: 'element' }]
+  const markdownDom = [{ children: [], tag: 'h1', type: 'element' }]
+  const expectedDom = [{ children: [], onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu, tag: 'h1', type: 'element' }]
   using mockRendererRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'README CONTENT'
@@ -57,7 +59,7 @@ test('selectTab with Details name calls selectTabDetails handler', async () => {
 
   using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
-      return expectedDom
+      return markdownDom
     },
     'Markdown.render': () => {
       return '<h1>README CONTENT</h1>'

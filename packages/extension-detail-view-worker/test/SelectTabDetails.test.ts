@@ -2,6 +2,7 @@ import { expect, test } from '@jest/globals'
 import { ExtensionManagementWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import { createDefaultState } from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
+import * as DomEventListenerFunctions from '../src/parts/DomEventListenerFunctions/DomEventListenerFunctions.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
@@ -12,7 +13,8 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
     'Extensions.getLanguages': () => [{ extensions: ['.js'], id: 'javascript', tokenize: '/extensions/javascript/tokenize.js' }],
   })
 
-  const expectedDom = [{ children: [], tag: 'h1', type: 'element' }]
+  const markdownDom = [{ children: [], tag: 'h1', type: 'element' }]
+  const expectedDom = [{ children: [], onContextMenu: DomEventListenerFunctions.HandleReadmeContextMenu, tag: 'h1', type: 'element' }]
   using mockRendererRpc = RendererWorker.registerMockRpc({
     'FileSystem.readFile': () => {
       return 'README CONTENT'
@@ -27,7 +29,7 @@ test('selectTabDetails sets selectedTab and detailsVirtualDom', async () => {
 
   using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
     'Markdown.getVirtualDom': () => {
-      return expectedDom
+      return markdownDom
     },
     'Markdown.render': () => {
       return '<h1>README CONTENT</h1>'
