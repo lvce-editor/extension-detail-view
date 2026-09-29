@@ -1,7 +1,8 @@
 import type { Test } from '@lvce-editor/test-with-playwright'
 
-export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }) => {
+export const test: Test = async ({ ClipBoard, ContextMenu, expect, Extension, ExtensionDetail, Locator }) => {
   // arrange
+  await ClipBoard.enableMemoryClipBoard()
   const extensionUri = import.meta.resolve('../fixtures/extension-readme-context-menu')
   await Extension.addWebExtension(extensionUri)
   await ExtensionDetail.open('test.extension-readme-context-menu')
@@ -11,15 +12,28 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(markDown).toBeVisible()
 
   // act
-  await ExtensionDetail.handleReadmeContextMenu(0, 0, 'a', 'https://example.com')
+  const paragraph = markDown.locator('p').first()
+  await paragraph.selectText()
+  await paragraph.click({ button: 'right' })
 
   // assert
   const menu = Locator('.Menu')
   await expect(menu).toBeVisible()
   const menuItems = menu.locator('.MenuItem')
-  await expect(menuItems).toHaveCount(2)
-  const first = menuItems.nth(0)
-  await expect(first).toHaveText('Copy Link')
-  const second = menuItems.nth(1)
-  await expect(second).toHaveText('Copy')
+  await expect(menuItems).toHaveCount(3)
+  const cut = menuItems.nth(0)
+  const copy = menuItems.nth(1)
+  const paste = menuItems.nth(2)
+  await expect(cut).toHaveText('Cut')
+  await expect(cut).toHaveAttribute('aria-disabled', 'true')
+  await expect(copy).toHaveText('Copy')
+  await expect(copy).toHaveAttribute('aria-disabled', null)
+  await expect(paste).toHaveText('Paste')
+  await expect(paste).toHaveAttribute('aria-disabled', 'true')
+
+  // act
+  await ContextMenu.selectItem('Copy')
+
+  // assert
+  await ClipBoard.shouldHaveText('test readme')
 }
