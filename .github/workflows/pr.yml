@@ -101,7 +101,7 @@ jobs:
           - 19
           - 20
     env:
-      LVCE_VERSION: 0.115.4
+      LVCE_VERSION: 0.118.24
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
@@ -121,15 +121,10 @@ jobs:
           fi
           dpkg-deb --extract .tmp/lvce.deb .tmp/electron
           cp .tmp/dist/dist/extensionDetailViewWorkerMain.js .tmp/electron/usr/lib/lvce/resources/app/static/*/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js
-          node packages/e2e-electron/trace-startup.js .tmp/electron/usr/lib/lvce/resources/app/static/*/packages/renderer-process/dist/rendererProcessMain.js
-          node packages/e2e-electron/trace-worker-startup.js .tmp/electron/usr/lib/lvce/resources/app/static/*/packages/renderer-worker/dist/rendererWorkerMain.js
       - name: Electron link browser regression
         run: |
           task_profile=$(mktemp -d "$RUNNER_TEMP/extension-link-browser-XXXXXX")
-          diagnostics_dir="$GITHUB_WORKSPACE/packages/e2e/electron-diagnostics"
-          mkdir -p "$diagnostics_dir"
-          E2E_ATTEMPT="${{ matrix.attempt }}" E2E_DIAGNOSTICS_DIR="$diagnostics_dir" \
-            xvfb-run --auto-servernum npm exec --workspace=packages/e2e -- test-with-playwright \
+          xvfb-run --auto-servernum npm exec --workspace=packages/e2e -- test-with-playwright \
               --electron \
               --no-reuse-page \
               --electron-path="$PWD/.tmp/electron/usr/lib/lvce/lvce" \
@@ -139,9 +134,3 @@ jobs:
               --electron-env="XDG_CACHE_HOME=$task_profile/cache" \
               --only-extension=. \
               --test-path=../e2e-electron
-      - uses: actions/upload-artifact@v7
-        if: always()
-        with:
-          name: electron-diagnostics-attempt-${{ matrix.attempt }}
-          path: packages/e2e/electron-diagnostics/
-          if-no-files-found: ignore
