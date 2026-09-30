@@ -121,6 +121,8 @@ jobs:
           fi
           dpkg-deb --extract .tmp/lvce.deb .tmp/electron
           cp .tmp/dist/dist/extensionDetailViewWorkerMain.js .tmp/electron/usr/lib/lvce/resources/app/static/*/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js
+      - name: Trace Electron shutdown
+        run: node packages/e2e-electron/trace-teardown.js
       - name: Electron link browser regression
         run: |
           task_profile=$(mktemp -d "$RUNNER_TEMP/extension-link-browser-XXXXXX")
