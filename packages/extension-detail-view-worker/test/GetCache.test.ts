@@ -49,12 +49,12 @@ test('cache operations use cache-worker with serializable text and headers', asy
         throw new Error('cache worker unavailable')
       }
       return {
-        success: false,
         errorCode: 'CACHE_STORAGE_WRITE_FAILED',
         errorMessage: 'quota exceeded',
+        success: false,
       }
     })
-  const mockRpc = RendererWorker.registerMockRpc({
+  using mockRpc = RendererWorker.registerMockRpc({
     'CacheWorker.getCacheStorageItem': getCacheStorageItem,
     'CacheWorker.setCacheStorageItem': setCacheStorageItem,
   })
@@ -87,6 +87,14 @@ test('cache operations use cache-worker with serializable text and headers', asy
     expect(await unsupportedBucket.match('/readme')).toBeUndefined()
     await unsupportedBucket.put('/readme', new Response('ignored'))
     expect(setCacheStorageItem).toHaveBeenCalledTimes(2)
+    expect(mockRpc.invocations.map(([method]) => method)).toEqual([
+      'CacheWorker.setCacheStorageItem',
+      'CacheWorker.getCacheStorageItem',
+      'CacheWorker.getCacheStorageItem',
+      'CacheWorker.getCacheStorageItem',
+      'CacheWorker.setCacheStorageItem',
+      'CacheWorker.getCacheStorageItem',
+    ])
     expect(getCacheStorageItem).toHaveBeenCalledWith(
       '/readme',
       'readme-cache',
@@ -94,7 +102,6 @@ test('cache operations use cache-worker with serializable text and headers', asy
       expect.objectContaining({ expires: expect.any(Number), quota: 100 * 1024 * 1024 }),
     )
   } finally {
-    mockRpc[Symbol.dispose]()
     globalThis.navigator = originalNavigator
   }
 })

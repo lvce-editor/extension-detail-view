@@ -1,5 +1,5 @@
-import * as CacheExpiration from '../CacheExpiration/CacheExpiration.ts'
 import { RendererWorker } from '@lvce-editor/rpc-registry'
+import * as CacheExpiration from '../CacheExpiration/CacheExpiration.ts'
 
 export interface ICache {
   readonly match: (request: RequestInfo | URL, options?: CacheQueryOptions) => Promise<Response | undefined>
@@ -36,7 +36,7 @@ const getCacheInternal = async (cacheName: string, bucketName: string): Promise<
     quota: 100 * 1024 * 1024, // 100MB
   }
   return {
-    async match(request) {
+    async match(request): Promise<Response | undefined> {
       try {
         const cached = await RendererWorker.invoke('CacheWorker.getCacheStorageItem', getRequestUrl(request), cacheName, bucketName, bucketOptions)
         if (!cached) {
@@ -51,7 +51,7 @@ const getCacheInternal = async (cacheName: string, bucketName: string): Promise<
         return undefined
       }
     },
-    async put(request, response) {
+    async put(request, response): Promise<void> {
       const body = await response.text()
       const headers = Object.fromEntries(response.headers.entries())
       try {
@@ -64,7 +64,7 @@ const getCacheInternal = async (cacheName: string, bucketName: string): Promise<
 }
 
 export const getCache = (cacheName: string, bucketName: string): Promise<ICache> => {
-  const cacheKey = `${bucketName}\u0000${cacheName}`
+  const cacheKey = `${bucketName}\u{0}${cacheName}`
   if (!(cacheKey in cachedCaches)) {
     cachedCaches[cacheKey] = getCacheInternal(cacheName, bucketName)
   }
