@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
-      LVCE_VERSION: 0.115.4
+      LVCE_VERSION: 0.118.24
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
