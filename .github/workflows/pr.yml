@@ -124,13 +124,12 @@ jobs:
       - name: Electron link browser regression
         run: |
           task_profile=$(mktemp -d "$RUNNER_TEMP/extension-link-browser-XXXXXX")
-          diagnostics_dir="$GITHUB_WORKSPACE/packages/e2e/renderer-worker-traces"
+          diagnostics_dir="$GITHUB_WORKSPACE/packages/e2e/electron-diagnostics"
           mkdir -p "$diagnostics_dir"
           E2E_ATTEMPT="${{ matrix.attempt }}" E2E_DIAGNOSTICS_DIR="$diagnostics_dir" \
             xvfb-run --auto-servernum npm exec --workspace=packages/e2e -- test-with-playwright \
               --electron \
               --no-reuse-page \
-              --trace-renderer-worker \
               --electron-path="$PWD/.tmp/electron/usr/lib/lvce/lvce" \
               --electron-env="XDG_CONFIG_HOME=$task_profile/config" \
               --electron-env="XDG_DATA_HOME=$task_profile/data" \
@@ -142,5 +141,5 @@ jobs:
         if: always()
         with:
           name: electron-diagnostics-attempt-${{ matrix.attempt }}
-          path: packages/e2e/renderer-worker-traces/
+          path: packages/e2e/electron-diagnostics/
           if-no-files-found: ignore
