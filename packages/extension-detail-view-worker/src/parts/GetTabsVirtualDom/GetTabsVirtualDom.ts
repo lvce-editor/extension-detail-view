@@ -11,6 +11,7 @@ export const getTabsVirtualDom = (tabs: readonly Tab[], focusedTabIndex: number)
       childCount: tabs.length,
       className: ClassNames.ExtensionDetailTabs,
       onClick: DomEventListenerFunctions.HandleTabsClick,
+      onContextMenu: DomEventListenerFunctions.HandleHeaderContextMenu,
       role: AriaRoles.TabList,
       type: VirtualDomElements.Div,
     },
