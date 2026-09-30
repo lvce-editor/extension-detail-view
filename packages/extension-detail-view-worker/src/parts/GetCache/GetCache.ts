@@ -1,3 +1,4 @@
+import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as CacheExpiration from '../CacheExpiration/CacheExpiration.ts'
 
 export interface ICache {
@@ -19,22 +20,53 @@ const supportsStorageBuckets = (): boolean => {
   return Boolean(navigator.storageBuckets)
 }
 
+const getRequestUrl = (request: RequestInfo | URL): string => {
+  if (request instanceof Request) {
+    return request.url
+  }
+  return request.toString()
+}
+
 const getCacheInternal = async (cacheName: string, bucketName: string): Promise<ICache> => {
   if (!supportsStorageBuckets()) {
     return noopCache
   }
-  // @ts-ignore
-  const bucket = await navigator.storageBuckets.open(bucketName, {
+  const bucketOptions = {
     expires: Date.now() + CacheExpiration.duration,
     quota: 100 * 1024 * 1024, // 100MB
-  })
-  const cache = await bucket.caches.open(cacheName)
-  return cache
+  }
+  return {
+    async match(request): Promise<Response | undefined> {
+      try {
+        const cached = await RendererWorker.invoke('CacheWorker.getCacheStorageItem', getRequestUrl(request), cacheName, bucketName, bucketOptions)
+        if (!cached) {
+          return undefined
+        }
+        return new Response(cached.body, {
+          headers: cached.headers,
+          status: cached.status,
+          statusText: cached.statusText,
+        })
+      } catch {
+        return undefined
+      }
+    },
+    async put(request, response): Promise<void> {
+      const body = await response.text()
+      const headers = Object.fromEntries(response.headers.entries())
+      try {
+        await RendererWorker.invoke('CacheWorker.setCacheStorageItem', getRequestUrl(request), body, cacheName, headers, bucketName, bucketOptions)
+      } catch {
+        return
+      }
+    },
+  }
 }
 
 export const getCache = (cacheName: string, bucketName: string): Promise<ICache> => {
-  if (!(cacheName in cachedCaches)) {
-    cachedCaches[cacheName] = getCacheInternal(cacheName, bucketName)
+  const cacheKey = `${bucketName}\u{0}${cacheName}`
+  if (!(cacheKey in cachedCaches)) {
+    cachedCaches[cacheKey] = getCacheInternal(cacheName, bucketName)
   }
-  return cachedCaches[cacheName]
+  return cachedCaches[cacheKey]
 }
