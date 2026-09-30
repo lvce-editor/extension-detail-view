@@ -37,20 +37,28 @@ const getCacheInternal = async (cacheName: string, bucketName: string): Promise<
   }
   return {
     async match(request) {
-      const cached = await RendererWorker.invoke('CacheWorker.getCacheStorageItem', getRequestUrl(request), cacheName, bucketName, bucketOptions)
-      if (!cached) {
+      try {
+        const cached = await RendererWorker.invoke('CacheWorker.getCacheStorageItem', getRequestUrl(request), cacheName, bucketName, bucketOptions)
+        if (!cached) {
+          return undefined
+        }
+        return new Response(cached.body, {
+          headers: cached.headers,
+          status: cached.status,
+          statusText: cached.statusText,
+        })
+      } catch {
         return undefined
       }
-      return new Response(cached.body, {
-        headers: cached.headers,
-        status: cached.status,
-        statusText: cached.statusText,
-      })
     },
     async put(request, response) {
       const body = await response.text()
       const headers = Object.fromEntries(response.headers.entries())
-      await RendererWorker.invoke('CacheWorker.setCacheStorageItem', getRequestUrl(request), body, cacheName, headers, bucketName, bucketOptions)
+      try {
+        await RendererWorker.invoke('CacheWorker.setCacheStorageItem', getRequestUrl(request), body, cacheName, headers, bucketName, bucketOptions)
+      } catch {
+        return
+      }
     },
   }
 }

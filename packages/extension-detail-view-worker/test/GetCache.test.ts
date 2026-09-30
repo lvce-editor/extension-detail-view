@@ -20,6 +20,9 @@ test('cache operations use cache-worker with serializable text and headers', asy
       } | null>
     >()
     .mockImplementation(async (url) => {
+      if (url.endsWith('/offline')) {
+        throw new Error('cache worker unavailable')
+      }
       if (url.endsWith('/missing')) {
         return null
       }
@@ -41,10 +44,15 @@ test('cache operations use cache-worker with serializable text and headers', asy
         bucketOptions: { expires: number; quota: number },
       ) => Promise<{ success: boolean; errorCode: string; errorMessage: string }>
     >()
-    .mockResolvedValue({
-      success: false,
-      errorCode: 'CACHE_STORAGE_WRITE_FAILED',
-      errorMessage: 'quota exceeded',
+    .mockImplementation(async (request) => {
+      if (request.endsWith('/offline')) {
+        throw new Error('cache worker unavailable')
+      }
+      return {
+        success: false,
+        errorCode: 'CACHE_STORAGE_WRITE_FAILED',
+        errorMessage: 'quota exceeded',
+      }
     })
   const mockRpc = RendererWorker.registerMockRpc({
     'CacheWorker.getCacheStorageItem': getCacheStorageItem,
@@ -69,6 +77,8 @@ test('cache operations use cache-worker with serializable text and headers', asy
       expect.objectContaining({ expires: expect.any(Number), quota: 100 * 1024 * 1024 }),
     )
     expect(await firstBucket.match('/missing')).toBeUndefined()
+    expect(await firstBucket.match('/offline')).toBeUndefined()
+    await firstBucket.put('/offline', new Response('ignored'))
     const requestCache = await firstBucket.match(new Request('https://example.com/readme'))
     expect(await requestCache?.text()).toBe('# Cached markdown')
     expect(getCacheStorageItem).toHaveBeenLastCalledWith('https://example.com/readme', 'readme-cache', 'markdown-cache', expect.any(Object))
@@ -76,7 +86,7 @@ test('cache operations use cache-worker with serializable text and headers', asy
     const unsupportedBucket = await getCache('unsupported-cache', 'unsupported-bucket')
     expect(await unsupportedBucket.match('/readme')).toBeUndefined()
     await unsupportedBucket.put('/readme', new Response('ignored'))
-    expect(setCacheStorageItem).toHaveBeenCalledTimes(1)
+    expect(setCacheStorageItem).toHaveBeenCalledTimes(2)
     expect(getCacheStorageItem).toHaveBeenCalledWith(
       '/readme',
       'readme-cache',
