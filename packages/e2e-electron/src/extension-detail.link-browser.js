@@ -85,7 +85,7 @@ const captureStartupDiagnostics = async (page, electronApp, events) => {
               () => ({ status: 'resolved' }),
               (error) => ({ status: 'rejected', error: String(error) }),
             ),
-            new Promise((resolve) => setTimeout(() => resolve({ status: 'pending-after-100ms' }), 100)),
+            new Promise((resolve) => setTimeout(resolve, 100, { status: 'pending-after-100ms' })),
           ])
         } catch (error) {
           return { status: 'import-failed', error: String(error) }
