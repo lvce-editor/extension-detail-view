@@ -148,8 +148,16 @@ export const test = async ({ electronApp, page, expect }) => {
     throw error
   } finally {
     const trace = await page.evaluate(() => globalThis.__startupTrace ?? { missing: true })
+    const workerTrace = await page.evaluate(async () => {
+      const { executeCommand } = await import(document.querySelector('script[src*="rendererProcessMain"]').src)
+      return Promise.race([
+        executeCommand('Diagnostics.getStartupTrace'),
+        new Promise((resolve) => setTimeout(resolve, 1000, { captureTimedOut: true })),
+      ])
+    })
     const directory = process.env.E2E_DIAGNOSTICS_DIR
     if (directory) {
+      await writeFile(join(directory, `worker-startup-attempt-${process.env.E2E_ATTEMPT ?? 'unknown'}.json`), JSON.stringify(workerTrace, null, 2))
       await writeFile(join(directory, `rpc-startup-attempt-${process.env.E2E_ATTEMPT ?? 'unknown'}.json`), JSON.stringify(trace, null, 2))
     }
   }

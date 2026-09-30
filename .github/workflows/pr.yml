@@ -122,6 +122,7 @@ jobs:
           dpkg-deb --extract .tmp/lvce.deb .tmp/electron
           cp .tmp/dist/dist/extensionDetailViewWorkerMain.js .tmp/electron/usr/lib/lvce/resources/app/static/*/packages/extension-detail-view-worker/dist/extensionDetailViewWorkerMain.js
           node packages/e2e-electron/trace-startup.js .tmp/electron/usr/lib/lvce/resources/app/static/*/packages/renderer-process/dist/rendererProcessMain.js
+          node packages/e2e-electron/trace-worker-startup.js .tmp/electron/usr/lib/lvce/resources/app/static/*/packages/renderer-worker/dist/rendererWorkerMain.js
       - name: Electron link browser regression
         run: |
           task_profile=$(mktemp -d "$RUNNER_TEMP/extension-link-browser-XXXXXX")
