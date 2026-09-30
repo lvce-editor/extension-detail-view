@@ -1,5 +1,5 @@
-import { RendererWorker } from '@lvce-editor/rpc-registry'
 import * as CacheExpiration from '../CacheExpiration/CacheExpiration.ts'
+import * as CacheWorker from '../CacheWorker/CacheWorker.ts'
 
 export interface ICache {
   readonly match: (request: RequestInfo | URL, options?: CacheQueryOptions) => Promise<Response | undefined>
@@ -38,7 +38,7 @@ const getCacheInternal = async (cacheName: string, bucketName: string): Promise<
   return {
     async match(request): Promise<Response | undefined> {
       try {
-        const cached = await RendererWorker.invoke('CacheWorker.getCacheStorageItem', getRequestUrl(request), cacheName, bucketName, bucketOptions)
+        const cached = await CacheWorker.invoke('Cache.getCacheStorageItem', getRequestUrl(request), cacheName, bucketName, bucketOptions)
         if (!cached) {
           return undefined
         }
@@ -55,7 +55,7 @@ const getCacheInternal = async (cacheName: string, bucketName: string): Promise<
       const body = await response.text()
       const headers = Object.fromEntries(response.headers.entries())
       try {
-        await RendererWorker.invoke('CacheWorker.setCacheStorageItem', getRequestUrl(request), body, cacheName, headers, bucketName, bucketOptions)
+        await CacheWorker.invoke('Cache.setCacheStorageItem', getRequestUrl(request), body, cacheName, headers, bucketName, bucketOptions)
       } catch {
         return
       }

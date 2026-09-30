@@ -2,6 +2,7 @@ import { LazyTransferMessagePortRpcParent, WebWorkerRpcClient } from '@lvce-edit
 import { DialogWorker, RendererWorker } from '@lvce-editor/rpc-registry'
 import * as CommandMap from '../CommandMap/CommandMap.ts'
 import { registerCommands } from '../ExtensionDetailStates/ExtensionDetailStates.ts'
+import { initializeCacheWorker } from '../InitializeCacheWorker/InitializeCacheWorker.ts'
 import { initializeClipBoardWorker } from '../InitializeClipBoardWorker/InitializeClipBoardWorker.ts'
 import { initializeExtensionHostWorker } from '../InitializeExtensionHostWorker/InitializeExtensionHostWorker.ts'
 import { initializeExtensionManagementWorker } from '../InitializeExtensionManagementWorker/InitializeExtensionManagementWorker.ts'
@@ -31,6 +32,7 @@ export const listen = async (): Promise<void> => {
     initializeExtensionHostWorker(),
     initializeExtensionManagementWorker(),
     initializeClipBoardWorker(),
+    initializeCacheWorker(),
   ])
   DialogWorker.set(dialogRpc)
   MenuWorker.set(menuRpc)
