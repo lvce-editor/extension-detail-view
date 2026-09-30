@@ -25,6 +25,17 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await expect(tabFeatures).toHaveAttribute('aria-selected', 'true')
 
   // act
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Dispatch an actual DOM contextmenu event for browser coverage.
+  await tabDetails.dispatchEvent('contextmenu', { bubbles: true, cancelable: true } as unknown as string)
+
+  // assert
+  await expect(tabFeatures).toHaveAttribute('aria-selected', 'true')
+  const tabs = Locator('.ExtensionDetailTabs')
+  // eslint-disable-next-line @typescript-eslint/no-deprecated -- Dispatch an actual DOM contextmenu event for browser coverage.
+  await tabs.dispatchEvent('contextmenu', { bubbles: true, cancelable: true } as unknown as string)
+  await expect(tabFeatures).toHaveAttribute('aria-selected', 'true')
+
+  // act
   await ExtensionDetail.selectChangelog()
 
   // assert
