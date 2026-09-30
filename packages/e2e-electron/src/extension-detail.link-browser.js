@@ -1,7 +1,7 @@
 import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
-const captureStartupDiagnostics = async (page, events) => {
+const captureStartupDiagnostics = async (page, electronApp, events) => {
   const pageState = await page
     .evaluate(() => {
       let remainingNodes = 300
@@ -39,16 +39,68 @@ const captureStartupDiagnostics = async (page, events) => {
         fontsStatus: document.fonts?.status,
         fontsCount: document.fonts?.size,
         scripts: Array.from(document.scripts, (script) => script.src).slice(0, 100),
-        domTree: document.body ? snapshotNode(document.body) : null,
+        domTree: document.documentElement ? snapshotNode(document.documentElement) : null,
       }
     })
     .catch((error) => ({ evaluateError: String(error) }))
+
+  const browserWindows = await Promise.all(
+    electronApp.windows().map(async (window, index) => ({
+      index,
+      url: window.url(),
+      pageState: await window
+        .evaluate(() => ({
+          readyState: document.readyState,
+          title: document.title,
+          bodyHtml: document.body?.innerHTML.slice(0, 5000) ?? '',
+          documentHtml: document.documentElement?.innerHTML.slice(0, 5000) ?? '',
+          scripts: Array.from(document.scripts, (script) => script.src).slice(0, 100),
+        }))
+        .catch((error) => ({ evaluateError: String(error) })),
+    })),
+  )
+
+  const frames = await Promise.all(
+    page.frames().map(async (frame, index) => ({
+      index,
+      url: frame.url(),
+      pageState: await frame
+        .evaluate(() => ({
+          readyState: document.readyState,
+          title: document.title,
+          bodyHtml: document.body?.innerHTML.slice(0, 5000) ?? '',
+        }))
+        .catch((error) => ({ evaluateError: String(error) })),
+    })),
+  )
+
+  const rendererMainUrl = pageState.scripts?.find((url) => url.includes('rendererProcessMain'))
+  if (rendererMainUrl) {
+    pageState.rendererMainReady = await page
+      .evaluate(async (url) => {
+        try {
+          const rendererMain = await import(url)
+          return await Promise.race([
+            rendererMain.ready.then(
+              () => ({ status: 'resolved' }),
+              (error) => ({ status: 'rejected', error: String(error) }),
+            ),
+            new Promise((resolve) => setTimeout(() => resolve({ status: 'pending-after-100ms' }), 100)),
+          ])
+        } catch (error) {
+          return { status: 'import-failed', error: String(error) }
+        }
+      }, rendererMainUrl)
+      .catch((error) => ({ status: 'evaluate-failed', error: String(error) }))
+  }
 
   const diagnostics = {
     attempt: process.env.E2E_ATTEMPT ?? 'unknown',
     capturedAt: new Date().toISOString(),
     pageUrl: page.url(),
     pageState,
+    browserWindows,
+    frames,
     events,
   }
 
@@ -73,7 +125,7 @@ const captureStartupDiagnostics = async (page, events) => {
   }
 }
 
-export const test = async ({ page, expect }) => {
+export const test = async ({ electronApp, page, expect }) => {
   const events = []
   const recordEvent = (name, data = {}) => {
     if (events.length < 100) {
@@ -92,7 +144,7 @@ export const test = async ({ page, expect }) => {
   try {
     await expect(page.locator('.Main')).toBeVisible()
   } catch (error) {
-    await captureStartupDiagnostics(page, events)
+    await captureStartupDiagnostics(page, electronApp, events)
     throw error
   }
 
