@@ -146,6 +146,12 @@ export const test = async ({ electronApp, page, expect }) => {
   } catch (error) {
     await captureStartupDiagnostics(page, electronApp, events)
     throw error
+  } finally {
+    const trace = await page.evaluate(() => globalThis.__startupTrace ?? { missing: true })
+    const directory = process.env.E2E_DIAGNOSTICS_DIR
+    if (directory) {
+      await writeFile(join(directory, `rpc-startup-attempt-${process.env.E2E_ATTEMPT ?? 'unknown'}.json`), JSON.stringify(trace, null, 2))
+    }
   }
 
   await page.evaluate(async () => {
