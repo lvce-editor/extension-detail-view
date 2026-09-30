@@ -1,5 +1,5 @@
 import { expect, jest, test } from '@jest/globals'
-import { RendererWorker } from '@lvce-editor/rpc-registry'
+import * as CacheWorker from '../src/parts/CacheWorker/CacheWorker.ts'
 
 test('cache operations use cache-worker with serializable text and headers', async () => {
   const originalNavigator = globalThis.navigator
@@ -54,10 +54,19 @@ test('cache operations use cache-worker with serializable text and headers', asy
         success: false,
       }
     })
-  using mockRpc = RendererWorker.registerMockRpc({
-    'CacheWorker.getCacheStorageItem': getCacheStorageItem,
-    'CacheWorker.setCacheStorageItem': setCacheStorageItem,
-  })
+  const invocations: Array<[string, ...any[]]> = []
+  CacheWorker.set({
+    invoke: async (command: string, ...args: any[]) => {
+      invocations.push([command, ...args])
+      if (command === 'Cache.getCacheStorageItem') {
+        return getCacheStorageItem(...(args as Parameters<typeof getCacheStorageItem>))
+      }
+      if (command === 'Cache.setCacheStorageItem') {
+        return setCacheStorageItem(...(args as Parameters<typeof setCacheStorageItem>))
+      }
+      throw new Error(`Unexpected cache worker command: ${command}`)
+    },
+  } as any)
   try {
     const { getCache } = await import('../src/parts/GetCache/GetCache.ts')
     const firstBucket = await getCache('readme-cache', 'markdown-cache')
@@ -87,13 +96,13 @@ test('cache operations use cache-worker with serializable text and headers', asy
     expect(await unsupportedBucket.match('/readme')).toBeUndefined()
     await unsupportedBucket.put('/readme', new Response('ignored'))
     expect(setCacheStorageItem).toHaveBeenCalledTimes(2)
-    expect(mockRpc.invocations.map(([method]) => method)).toEqual([
-      'CacheWorker.setCacheStorageItem',
-      'CacheWorker.getCacheStorageItem',
-      'CacheWorker.getCacheStorageItem',
-      'CacheWorker.getCacheStorageItem',
-      'CacheWorker.setCacheStorageItem',
-      'CacheWorker.getCacheStorageItem',
+    expect(invocations.map(([method]) => method)).toEqual([
+      'Cache.setCacheStorageItem',
+      'Cache.getCacheStorageItem',
+      'Cache.getCacheStorageItem',
+      'Cache.getCacheStorageItem',
+      'Cache.setCacheStorageItem',
+      'Cache.getCacheStorageItem',
     ])
     expect(getCacheStorageItem).toHaveBeenCalledWith(
       '/readme',
