@@ -3,13 +3,45 @@ import { join } from 'node:path'
 
 const captureStartupDiagnostics = async (page, events) => {
   const pageState = await page
-    .evaluate(() => ({
-      url: location.href,
-      readyState: document.readyState,
-      title: document.title,
-      bodyText: document.body?.innerText.slice(0, 3000) ?? '',
-      bodyHtml: document.body?.innerHTML.slice(0, 5000) ?? '',
-    }))
+    .evaluate(() => {
+      let remainingNodes = 300
+      const snapshotNode = (node, depth = 0) => {
+        if (remainingNodes <= 0 || depth > 12) {
+          return '[snapshot limit]'
+        }
+        remainingNodes--
+        if (node.nodeType === Node.TEXT_NODE) {
+          return node.textContent?.trim().slice(0, 200) ?? ''
+        }
+        if (node.nodeType !== Node.ELEMENT_NODE) {
+          return node.nodeName
+        }
+        const element = node
+        const result = {
+          tagName: element.tagName,
+          id: element.id,
+          className: String(element.className).slice(0, 300),
+        }
+        if (element.shadowRoot) {
+          result.shadowRoot = Array.from(element.shadowRoot.childNodes, (child) => snapshotNode(child, depth + 1))
+        }
+        if (element.childNodes.length > 0) {
+          result.children = Array.from(element.childNodes, (child) => snapshotNode(child, depth + 1))
+        }
+        return result
+      }
+      return {
+        url: location.href,
+        readyState: document.readyState,
+        title: document.title,
+        bodyText: document.body?.innerText.slice(0, 3000) ?? '',
+        bodyHtml: document.body?.innerHTML.slice(0, 5000) ?? '',
+        fontsStatus: document.fonts?.status,
+        fontsCount: document.fonts?.size,
+        scripts: Array.from(document.scripts, (script) => script.src).slice(0, 100),
+        domTree: document.body ? snapshotNode(document.body) : null,
+      }
+    })
     .catch((error) => ({ evaluateError: String(error) }))
 
   const diagnostics = {
@@ -35,7 +67,7 @@ const captureStartupDiagnostics = async (page, events) => {
   }
 
   try {
-    await page.screenshot({ path: join(directory, `startup-attempt-${attempt}.png`), timeout: 2000 })
+    await page.screenshot({ path: join(directory, `startup-attempt-${attempt}.png`), timeout: 5000 })
   } catch (error) {
     console.log(`[electron startup diagnostics] failed to save screenshot: ${String(error)}`)
   }
