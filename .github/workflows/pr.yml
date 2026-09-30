@@ -72,34 +72,8 @@ jobs:
           PLAYWRIGHT_BROWSERS_PATH: 0
 
   electron:
-    name: electron (attempt ${{ matrix.attempt }}/20)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      max-parallel: 1
-      matrix:
-        attempt:
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          - 10
-          - 11
-          - 12
-          - 13
-          - 14
-          - 15
-          - 16
-          - 17
-          - 18
-          - 19
-          - 20
     env:
       LVCE_VERSION: 0.118.24
     steps:
@@ -124,13 +98,4 @@ jobs:
       - name: Electron link browser regression
         run: |
           task_profile=$(mktemp -d "$RUNNER_TEMP/extension-link-browser-XXXXXX")
-          xvfb-run --auto-servernum npm exec --workspace=packages/e2e -- test-with-playwright \
-              --electron \
-              --no-reuse-page \
-              --electron-path="$PWD/.tmp/electron/usr/lib/lvce/lvce" \
-              --electron-env="XDG_CONFIG_HOME=$task_profile/config" \
-              --electron-env="XDG_DATA_HOME=$task_profile/data" \
-              --electron-env="XDG_STATE_HOME=$task_profile/state" \
-              --electron-env="XDG_CACHE_HOME=$task_profile/cache" \
-              --only-extension=. \
-              --test-path=../e2e-electron
+          xvfb-run --auto-servernum npm exec --workspace=packages/e2e -- test-with-playwright --electron --no-reuse-page --electron-path="$PWD/.tmp/electron/usr/lib/lvce/lvce" --electron-env="XDG_CONFIG_HOME=$task_profile/config" --electron-env="XDG_DATA_HOME=$task_profile/data" --electron-env="XDG_STATE_HOME=$task_profile/state" --electron-env="XDG_CACHE_HOME=$task_profile/cache" --only-extension=. --test-path=../e2e-electron
