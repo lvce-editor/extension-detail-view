@@ -72,8 +72,34 @@ jobs:
           PLAYWRIGHT_BROWSERS_PATH: 0
 
   electron:
+    name: electron (attempt ${{ matrix.attempt }}/20)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        attempt:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+          - 13
+          - 14
+          - 15
+          - 16
+          - 17
+          - 18
+          - 19
+          - 20
     env:
       LVCE_VERSION: 0.115.4
     steps:
