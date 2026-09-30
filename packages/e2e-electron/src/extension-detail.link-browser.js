@@ -49,15 +49,9 @@ export const test = async ({ page, expect }) => {
     }
   }
 
-  page.on('console', (message) =>
-    recordEvent('console', { type: message.type(), text: message.text().slice(0, 1000) }),
-  )
-  page.on('pageerror', (error) =>
-    recordEvent('pageerror', { message: error.message, stack: error.stack?.slice(0, 2000) }),
-  )
-  page.on('requestfailed', (request) =>
-    recordEvent('requestfailed', { url: request.url(), error: request.failure()?.errorText }),
-  )
+  page.on('console', (message) => recordEvent('console', { type: message.type(), text: message.text().slice(0, 1000) }))
+  page.on('pageerror', (error) => recordEvent('pageerror', { message: error.message, stack: error.stack?.slice(0, 2000) }))
+  page.on('requestfailed', (request) => recordEvent('requestfailed', { url: request.url(), error: request.failure()?.errorText }))
   page.on('framenavigated', (frame) => recordEvent('framenavigated', { url: frame.url() }))
   page.on('domcontentloaded', () => recordEvent('domcontentloaded'))
   page.on('load', () => recordEvent('load'))
