@@ -10,7 +10,10 @@ export const test: Test = async ({ expect, ExtensionDetail, Locator }) => {
   const errorCard = Locator('.ExtensionDetailErrorCard')
   await expect(errorCard).toBeVisible()
   await expect(errorCard).toHaveAttribute('role', 'alert')
-  await expect(errorCard.locator('h1.ExtensionDetailErrorTitle')).toHaveCount(1)
-  await expect(errorCard.locator('p.ExtensionDetailErrorMessage')).toHaveCount(1)
-  await expect(errorCard.locator('.ExtensionDetailErrorIcon.MaskIconWarning')).toHaveCount(1)
+  const extensiondetailerrortitleLocator = errorCard.locator('h1.ExtensionDetailErrorTitle')
+  await expect(extensiondetailerrortitleLocator).toHaveCount(1)
+  const extensiondetailerrormessageLocator = errorCard.locator('p.ExtensionDetailErrorMessage')
+  await expect(extensiondetailerrormessageLocator).toHaveCount(1)
+  const maskiconwarningLocator = errorCard.locator('.ExtensionDetailErrorIcon.MaskIconWarning')
+  await expect(maskiconwarningLocator).toHaveCount(1)
 }

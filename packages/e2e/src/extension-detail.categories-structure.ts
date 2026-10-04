@@ -12,6 +12,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const categoriesSection = Locator('.AdditionalDetailsEntry:nth-of-type(3)')
-  await expect(categoriesSection.locator(':scope > .Categories')).toHaveCount(1)
-  await expect(categoriesSection.locator('.Categories > button.Category')).toHaveCount(1)
+  const categoriesLocator = categoriesSection.locator(':scope > .Categories')
+  await expect(categoriesLocator).toHaveCount(1)
+  const categoryLocator = categoriesSection.locator('.Categories > button.Category')
+  await expect(categoryLocator).toHaveCount(1)
 }

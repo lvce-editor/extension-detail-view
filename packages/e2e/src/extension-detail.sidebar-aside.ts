@@ -13,5 +13,6 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // assert
   const aside = Locator('aside.Aside')
   await expect(aside).toBeVisible()
-  await expect(aside.locator('.AdditionalDetails')).toHaveCount(1)
+  const additionaldetailsLocator = aside.locator('.AdditionalDetails')
+  await expect(additionaldetailsLocator).toHaveCount(1)
 }

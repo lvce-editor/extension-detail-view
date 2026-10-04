@@ -16,7 +16,10 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // assert
   const webView = Locator('.FeatureWebView')
   await expect(webView).toHaveCount(1)
-  await expect(webView.locator(':scope > .DefinitionListItem')).toHaveCount(4)
-  await expect(webView.locator('.DefinitionListItem > h2.DefinitionListItemHeading')).toHaveCount(4)
-  await expect(webView.locator('.DefinitionListItem > pre.DefinitionListItemValue')).toHaveCount(4)
+  const definitionlistitemLocator = webView.locator(':scope > .DefinitionListItem')
+  await expect(definitionlistitemLocator).toHaveCount(4)
+  const definitionlistitemheadingLocator = webView.locator('.DefinitionListItem > h2.DefinitionListItemHeading')
+  await expect(definitionlistitemheadingLocator).toHaveCount(4)
+  const definitionlistitemvalueLocator = webView.locator('.DefinitionListItem > pre.DefinitionListItemValue')
+  await expect(definitionlistitemvalueLocator).toHaveCount(4)
 }

@@ -27,12 +27,11 @@ const isOnlyDotsOrEmpty = (value: string): boolean => {
 }
 
 const isValidHttpUrl = (value: string): boolean => {
-  try {
-    const url = new URL(value)
-    return (url.protocol === 'http:' || url.protocol === 'https:') && !!url.hostname
-  } catch {
+  if (!URL.canParse(value)) {
     return false
   }
+  const url = new URL(value)
+  return (url.protocol === 'http:' || url.protocol === 'https:') && !!url.hostname
 }
 
 const isValidRelativePath = (value: string): boolean => {
@@ -74,10 +73,9 @@ export const getSchemaLinkUrl = (schema: string, extensionUri: string): string =
   if (!isValidRelativePath(schema)) {
     return ''
   }
-  try {
-    const baseUrl = extensionUri.endsWith('/') ? extensionUri : `${extensionUri}/`
-    return new URL(schema, baseUrl).href
-  } catch {
+  const baseUrl = extensionUri.endsWith('/') ? extensionUri : `${extensionUri}/`
+  if (!URL.canParse(schema, baseUrl)) {
     return ''
   }
+  return new URL(schema, baseUrl).href
 }

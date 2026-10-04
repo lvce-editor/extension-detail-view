@@ -12,6 +12,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const panel = Locator('.ExtensionDetailPanel')
-  await expect(panel.locator(':scope > .Markdown')).toHaveCount(1)
-  await expect(panel.locator(':scope > aside.Aside')).toHaveCount(1)
+  const markdownLocator = panel.locator(':scope > .Markdown')
+  await expect(markdownLocator).toHaveCount(1)
+  const asideLocator = panel.locator(':scope > aside.Aside')
+  await expect(asideLocator).toHaveCount(1)
 }

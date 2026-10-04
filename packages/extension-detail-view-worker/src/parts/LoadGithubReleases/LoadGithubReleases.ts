@@ -61,12 +61,11 @@ const parseGithubUrl = (value: unknown): string | undefined => {
   if (typeof value !== 'string') {
     return undefined
   }
-  try {
-    const url = new URL(value)
-    if (url.protocol !== 'https:' || url.hostname !== 'github.com') {
-      return undefined
-    }
-  } catch {
+  if (!URL.canParse(value)) {
+    return undefined
+  }
+  const url = new URL(value)
+  if (url.protocol !== 'https:' || url.hostname !== 'github.com') {
     return undefined
   }
   return value

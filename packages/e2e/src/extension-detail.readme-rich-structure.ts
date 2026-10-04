@@ -12,9 +12,12 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const markdown = Locator('.Markdown')
-  await expect(markdown.locator('h1')).toHaveText('Rich Readme')
-  await expect(markdown.locator('h2')).toHaveText('Settings')
-  await expect(markdown.locator('li')).toHaveCount(3)
+  const locatorLocator = markdown.locator('h1')
+  await expect(locatorLocator).toHaveText('Rich Readme')
+  const locatorLocator2 = markdown.locator('h2')
+  await expect(locatorLocator2).toHaveText('Settings')
+  const locatorLocator3 = markdown.locator('li')
+  await expect(locatorLocator3).toHaveCount(3)
   const link = markdown.locator('a')
   await expect(link).toHaveAttribute('href', 'https://example.com/rich-readme')
 }

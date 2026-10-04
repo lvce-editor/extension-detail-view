@@ -12,6 +12,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const entry = Locator('.AdditionalDetailsEntry').nth(0).locator('.MoreInfoEntry').nth(1)
-  await expect(entry.locator('.MoreInfoEntryKey')).toHaveText('Version')
-  await expect(entry.locator('.MoreInfoEntryValue')).toHaveText('n/a')
+  const moreinfoentrykeyLocator = entry.locator('.MoreInfoEntryKey')
+  await expect(moreinfoentrykeyLocator).toHaveText('Version')
+  const moreinfoentryvalueLocator = entry.locator('.MoreInfoEntryValue')
+  await expect(moreinfoentryvalueLocator).toHaveText('n/a')
 }
