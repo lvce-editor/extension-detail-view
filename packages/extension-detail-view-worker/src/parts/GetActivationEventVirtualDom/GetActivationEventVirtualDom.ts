@@ -13,13 +13,15 @@ const code = {
   type: VirtualDomElements.Code,
 }
 
+const invalidListItemClassName = MergeClassNames.mergeClassNames('ListItem', 'ListItemInvalid')
+
 export const getActivationEventVirtualDom = (event: ActivationEntry): readonly VirtualDomNode[] => {
   const { errorMessage, isValid, stringValue } = event
   if (!isValid) {
     return [
       {
         childCount: 1,
-        className: MergeClassNames.mergeClassNames('ListItem', 'ListItemInvalid'),
+        className: invalidListItemClassName,
         title: errorMessage,
         type: VirtualDomElements.Li,
       },

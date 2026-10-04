@@ -12,8 +12,12 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const details = Locator('.ExtensionDetailHeaderDetails')
-  await expect(details.locator(':scope > .ExtensionDetailName')).toHaveCount(1)
-  await expect(details.locator(':scope > .ExtensionDetailDescription')).toHaveCount(1)
-  await expect(details.locator(':scope > .ExtensionDetailMetadata')).toHaveCount(1)
-  await expect(details.locator(':scope > .ExtensionDetailHeaderActions')).toHaveCount(1)
+  const extensiondetailnameLocator = details.locator(':scope > .ExtensionDetailName')
+  await expect(extensiondetailnameLocator).toHaveCount(1)
+  const extensiondetaildescriptionLocator = details.locator(':scope > .ExtensionDetailDescription')
+  await expect(extensiondetaildescriptionLocator).toHaveCount(1)
+  const extensiondetailmetadataLocator = details.locator(':scope > .ExtensionDetailMetadata')
+  await expect(extensiondetailmetadataLocator).toHaveCount(1)
+  const extensiondetailheaderactionsLocator = details.locator(':scope > .ExtensionDetailHeaderActions')
+  await expect(extensiondetailheaderactionsLocator).toHaveCount(1)
 }

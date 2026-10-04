@@ -15,8 +15,12 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const table = Locator('.FeatureContent > table.Table')
-  await expect(table.locator('thead tr')).toHaveCount(1)
-  await expect(table.locator('thead th.TableHeading')).toHaveCount(2)
-  await expect(table.locator('tbody tr')).toHaveCount(1)
-  await expect(table.locator('tbody td.TableCell')).toHaveCount(2)
+  const locatorLocator = table.locator('thead tr')
+  await expect(locatorLocator).toHaveCount(1)
+  const tableheadingLocator = table.locator('thead th.TableHeading')
+  await expect(tableheadingLocator).toHaveCount(2)
+  const locatorLocator2 = table.locator('tbody tr')
+  await expect(locatorLocator2).toHaveCount(1)
+  const tablecellLocator = table.locator('tbody td.TableCell')
+  await expect(tablecellLocator).toHaveCount(2)
 }

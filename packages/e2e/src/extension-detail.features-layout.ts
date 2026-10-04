@@ -15,7 +15,10 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // assert
   const features = Locator('.Features')
   await expect(features).toBeVisible()
-  await expect(features.locator('.FeaturesList')).toHaveCount(1)
-  await expect(features.locator('.Sash.SashVertical')).toHaveCount(1)
-  await expect(features.locator('.FeatureContent')).toHaveCount(1)
+  const featureslistLocator = features.locator('.FeaturesList')
+  await expect(featureslistLocator).toHaveCount(1)
+  const sashverticalLocator = features.locator('.Sash.SashVertical')
+  await expect(sashverticalLocator).toHaveCount(1)
+  const featurecontentLocator = features.locator('.FeatureContent')
+  await expect(featurecontentLocator).toHaveCount(1)
 }

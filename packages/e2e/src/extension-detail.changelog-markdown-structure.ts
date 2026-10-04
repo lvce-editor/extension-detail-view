@@ -14,7 +14,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const changelog = Locator('.ExtensionDetailPanel.Changelog')
-  await expect(changelog.locator('h1')).toHaveText('Changes')
+  const locatorLocator = changelog.locator('h1')
+  await expect(locatorLocator).toHaveText('Changes')
   const changes = changelog.locator('li')
   const first = changes.nth(0)
   const second = changes.nth(1)

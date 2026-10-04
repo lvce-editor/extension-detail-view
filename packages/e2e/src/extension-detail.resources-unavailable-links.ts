@@ -12,6 +12,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const resources = Locator('.AdditionalDetailsEntry').nth(3)
-  await expect(resources.locator('.Resource')).toHaveCount(4)
-  await expect(resources.locator('a.Resource')).toHaveCount(0)
+  const resourceLocator = resources.locator('.Resource')
+  await expect(resourceLocator).toHaveCount(4)
+  const resourceLocator2 = resources.locator('a.Resource')
+  await expect(resourceLocator2).toHaveCount(0)
 }

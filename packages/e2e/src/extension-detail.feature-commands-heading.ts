@@ -15,6 +15,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const content = Locator('.FeatureContent')
-  await expect(content.locator(':scope > h1')).toHaveCount(1)
-  await expect(content.locator(':scope > h1')).toHaveText('Commands')
+  const locatorLocator = content.locator(':scope > h1')
+  await expect(locatorLocator).toHaveCount(1)
+  await expect(locatorLocator).toHaveText('Commands')
 }

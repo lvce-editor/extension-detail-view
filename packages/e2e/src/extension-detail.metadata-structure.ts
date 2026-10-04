@@ -12,7 +12,10 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const metadata = Locator('.ExtensionDetailMetadata')
-  await expect(metadata.locator(':scope > .ExtensionDetailStatistic')).toHaveCount(2)
-  await expect(metadata.locator(':scope > .ExtensionDetailDownloadCount')).toHaveCount(1)
-  await expect(metadata.locator(':scope > .ExtensionDetailRating')).toHaveCount(1)
+  const extensiondetailstatisticLocator = metadata.locator(':scope > .ExtensionDetailStatistic')
+  await expect(extensiondetailstatisticLocator).toHaveCount(2)
+  const extensiondetaildownloadcountLocator = metadata.locator(':scope > .ExtensionDetailDownloadCount')
+  await expect(extensiondetaildownloadcountLocator).toHaveCount(1)
+  const extensiondetailratingLocator = metadata.locator(':scope > .ExtensionDetailRating')
+  await expect(extensiondetailratingLocator).toHaveCount(1)
 }

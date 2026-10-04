@@ -15,9 +15,12 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const content = Locator('.FeatureContent')
-  await expect(content.locator(':scope > h1')).toHaveText('Themes')
+  const locatorLocator = content.locator(':scope > h1')
+  await expect(locatorLocator).toHaveText('Themes')
   const markdown = content.locator(':scope > .DefaultMarkdown')
   await expect(markdown).toBeVisible()
-  await expect(markdown.locator('h3')).toHaveText('Color Themes')
-  await expect(markdown.locator('li')).toHaveText('Test')
+  const locatorLocator2 = markdown.locator('h3')
+  await expect(locatorLocator2).toHaveText('Color Themes')
+  const locatorLocator3 = markdown.locator('li')
+  await expect(locatorLocator3).toHaveText('Test')
 }

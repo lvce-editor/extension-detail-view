@@ -15,6 +15,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const list = Locator('.FeatureContent > ul')
-  await expect(list.locator(':scope > li')).toHaveCount(1)
-  await expect(list.locator(':scope > li > code')).toHaveText('onWebview:builtin.chat-view')
+  const locatorLocator = list.locator(':scope > li')
+  await expect(locatorLocator).toHaveCount(1)
+  const locatorLocator2 = list.locator(':scope > li > code')
+  await expect(locatorLocator2).toHaveText('onWebview:builtin.chat-view')
 }

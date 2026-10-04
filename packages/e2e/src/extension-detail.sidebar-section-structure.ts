@@ -13,5 +13,6 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // assert
   const sections = Locator('.AdditionalDetails > .AdditionalDetailsEntry')
   await expect(sections).toHaveCount(4)
-  await expect(sections.locator(':scope > .AdditionalDetailsTitle')).toHaveCount(4)
+  const additionaldetailstitleLocator = sections.locator(':scope > .AdditionalDetailsTitle')
+  await expect(additionaldetailstitleLocator).toHaveCount(4)
 }

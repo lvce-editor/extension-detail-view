@@ -12,6 +12,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
 
   // assert
   const markdown = Locator('.ExtensionDetailPanel > .Markdown')
-  await expect(markdown.locator(':scope > h1')).toHaveCount(1)
-  await expect(markdown.locator(':scope > h1')).toHaveText('test readme')
+  const locatorLocator = markdown.locator(':scope > h1')
+  await expect(locatorLocator).toHaveCount(1)
+  await expect(locatorLocator).toHaveText('test readme')
 }

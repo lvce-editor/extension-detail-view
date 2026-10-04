@@ -13,5 +13,6 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   // assert
   const nameElement = Locator('.ExtensionDetailName')
   await expect(nameElement).toHaveText('Test')
-  await expect(nameElement.locator('.ExtensionDetailNameBadge')).toHaveCount(0)
+  const extensiondetailnamebadgeLocator = nameElement.locator('.ExtensionDetailNameBadge')
+  await expect(extensiondetailnamebadgeLocator).toHaveCount(0)
 }

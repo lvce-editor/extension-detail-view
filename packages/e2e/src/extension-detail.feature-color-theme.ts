@@ -1,27 +1,4 @@
-import type { Test, TestApi } from '@lvce-editor/test-with-playwright'
-
-const wait = (ms: number): Promise<void> => {
-  return new Promise((resolve) => {
-    const { setTimeout } = globalThis as any
-    setTimeout(resolve, ms)
-  })
-}
-
-const waitForSelectedThemeTab = async (expect: TestApi['expect'], Locator: TestApi['Locator']): Promise<void> => {
-  let lastError: unknown
-  for (let i = 0; i < 20; i++) {
-    const themeEditorTab = Locator('.MainTab.MainTabSelected[title$="color-theme.json"]')
-    try {
-      await expect(themeEditorTab).toBeVisible()
-      await expect(themeEditorTab).toHaveText('color-theme.json')
-      return
-    } catch (error) {
-      lastError = error
-      await wait(50)
-    }
-  }
-  throw lastError
-}
+import type { Test } from '@lvce-editor/test-with-playwright'
 
 export const name = 'extension-detail.feature-color-theme'
 
@@ -54,5 +31,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await themeLink.dispatchEvent('click', { bubbles: true } as unknown as string)
 
   // assert
-  await waitForSelectedThemeTab(expect, Locator)
+  const selectedThemeTab = Locator('.MainTab.MainTabSelected[title$="color-theme.json"]')
+  await expect(selectedThemeTab).toBeVisible()
+  await expect(selectedThemeTab).toHaveText('color-theme.json')
 }

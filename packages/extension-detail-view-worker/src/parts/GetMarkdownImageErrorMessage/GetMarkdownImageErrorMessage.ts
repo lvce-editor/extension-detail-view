@@ -7,12 +7,11 @@ const isGitpodImage = (src: unknown): boolean => {
   if (typeof src !== 'string') {
     return false
   }
-  try {
-    const { hostname } = new URL(src, fallbackBaseUrl)
-    return hostname === gitpodHost || hostname.endsWith(`.${gitpodHost}`)
-  } catch {
+  if (!URL.canParse(src, fallbackBaseUrl)) {
     return false
   }
+  const { hostname } = new URL(src, fallbackBaseUrl)
+  return hostname === gitpodHost || hostname.endsWith(`.${gitpodHost}`)
 }
 
 export const getMarkdownImageErrorMessage = (src: unknown): string => {

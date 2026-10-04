@@ -65,13 +65,13 @@ const getExternalSources = (policies: readonly unknown[]): readonly string[] => 
       externalSources.add(source)
       continue
     }
-    try {
-      const url = new URL(source)
-      if (externalProtocols.has(url.protocol)) {
-        externalSources.add(source)
-      }
-    } catch {
+    if (!URL.canParse(source)) {
       // CSP keywords and relative sources are not external services.
+      continue
+    }
+    const url = new URL(source)
+    if (externalProtocols.has(url.protocol)) {
+      externalSources.add(source)
     }
   }
   return [...externalSources]

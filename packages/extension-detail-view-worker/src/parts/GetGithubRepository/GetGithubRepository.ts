@@ -27,22 +27,21 @@ const getRepositoryUrl = (extension: unknown): string => {
 
 export const getGithubRepository = (extension: unknown): GithubRepository | undefined => {
   const rawUrl = removeGitPrefix(getRepositoryUrl(extension))
-  try {
-    const url = new URL(rawUrl)
-    if (url.protocol !== 'https:' || url.hostname.toLowerCase() !== 'github.com' || url.username || url.password || url.port) {
-      return undefined
-    }
-    const segments = url.pathname.split('/').filter(Boolean)
-    if (segments.length !== 2) {
-      return undefined
-    }
-    const owner = segments[0]
-    const repository = removeGitSuffix(segments[1])
-    if (!owner || !repository || !segmentRegex.test(owner) || !segmentRegex.test(repository)) {
-      return undefined
-    }
-    return { owner, repository }
-  } catch {
+  if (!URL.canParse(rawUrl)) {
     return undefined
   }
+  const url = new URL(rawUrl)
+  if (url.protocol !== 'https:' || url.hostname.toLowerCase() !== 'github.com' || url.username || url.password || url.port) {
+    return undefined
+  }
+  const segments = url.pathname.split('/').filter(Boolean)
+  if (segments.length !== 2) {
+    return undefined
+  }
+  const owner = segments[0]
+  const repository = removeGitSuffix(segments[1])
+  if (!owner || !repository || !segmentRegex.test(owner) || !segmentRegex.test(repository)) {
+    return undefined
+  }
+  return { owner, repository }
 }

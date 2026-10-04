@@ -18,7 +18,8 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   await ExtensionDetail.handleMarkdownImageError(src)
   const imageError = markDown.locator('.MarkdownImageError')
   await expect(imageError).toBeVisible()
-  await expect(imageError.locator('.MaskIconWarning')).toBeVisible()
+  const maskiconwarningLocator = imageError.locator('.MaskIconWarning')
+  await expect(maskiconwarningLocator).toBeVisible()
   await expect(imageError).toHaveText('Gitpod Image failed to load: https://gitpod.io/button/open-in-gitpod.svg')
   await expect(image).toHaveCount(0)
 }
