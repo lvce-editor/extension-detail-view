@@ -1,6 +1,7 @@
 import { expect, jest, test } from '@jest/globals'
 import { MessagePortRpcClient } from '@lvce-editor/rpc'
 
+/* eslint-disable jest/no-restricted-jest-methods -- This test keeps the RPC implementation real while simulating the renderer port transfer. */
 let cacheWorkerRpc: Awaited<ReturnType<typeof MessagePortRpcClient.create>> | undefined
 
 jest.unstable_mockModule('@lvce-editor/rpc-registry', () => ({
