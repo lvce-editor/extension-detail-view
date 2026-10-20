@@ -13,8 +13,8 @@ export const test: Test = async (api) => {
   await api.expect(panel.locator(':scope > h1')).toHaveText('Security')
   const definitionList = panel.locator(':scope > dl.SecurityDefinitionList')
   await api.expect(definitionList).toHaveCount(1)
-  await api.expect(definitionList.locator(':scope > dt')).toHaveCount(3)
-  await api.expect(definitionList.locator(':scope > dd')).toHaveCount(3)
+  await api.expect(definitionList.locator(':scope > dt')).toHaveCount(4)
+  await api.expect(definitionList.locator(':scope > dd')).toHaveCount(4)
   await api.expect(panel.locator(':scope > p')).toHaveCount(0)
   await api.expect(panel.locator(':scope > table')).toHaveCount(0)
 }
