@@ -356,3 +356,7 @@ export const invalidLink = (): string => {
 export const invalidActivationEventWithSuggestion = (activationEvent: string, suggestion: string): string => {
   return I18nString.i18nString(UiStrings.InvalidActivationEventWithSuggestion, { PH1: activationEvent, PH2: suggestion })
 }
+
+export const securityTerminalExecution = (): string => {
+  return I18nString.i18nString(UiStrings.SecurityTerminalExecution)
+}

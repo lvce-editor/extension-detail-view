@@ -9,6 +9,7 @@ export const test: Test = async (api) => {
 
   // assert
   const list = api.Locator('.SecurityDefinitionList')
+  await api.expect(list.locator('dt.TerminalExecution + dd')).toHaveText('No')
   await api.expect(list.locator('dt.NetworkRequests + dd')).toHaveText('No')
   await api.expect(list.locator('dt.CodeExecution + dd')).toHaveText('No')
   await api.expect(list.locator('dt.NodeJsCodeExecution + dd')).toHaveText('No')
