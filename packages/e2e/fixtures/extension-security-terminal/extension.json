@@ -1,0 +1,5 @@
+{
+  "id": "test.security-terminal",
+  "name": "Terminal Runner",
+  "permissions": ["terminal.execute"]
+}

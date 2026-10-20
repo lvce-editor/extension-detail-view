@@ -16,6 +16,7 @@ test('reports a declarative extension without executable capabilities', () => {
   expect(entries).toEqual([
     { id: 'NetworkRequests', label: 'Network Requests', value: 'No' },
     { id: 'CodeExecution', label: 'Code Execution', value: 'No' },
+    { id: 'TerminalExecution', label: 'Terminal Command Execution', value: 'No' },
     { id: 'NodeJsCodeExecution', label: 'NodeJS Code Execution', value: 'No' },
   ])
 })
@@ -73,3 +74,14 @@ test('ignores invalid manifest collection shapes and entry points', () => {
   expect(getEntry(extension, 'CodeExecution').value).toBe('No')
   expect(getEntry(extension, 'NodeJsCodeExecution').value).toBe('No')
 })
+
+test('shows terminal execution capability from a manifest before activation', () => {
+  expect(getEntry({ permissions: ['terminal.execute'] }, 'TerminalExecution').value).toBe('Yes')
+})
+
+test.each([undefined, [], 'terminal.execute', [true], ['terminal.execute', null], ['terminal.write']])(
+  'does not grant terminal capability for %j',
+  (permissions) => {
+    expect(getEntry({ permissions }, 'TerminalExecution').value).toBe('No')
+  },
+)

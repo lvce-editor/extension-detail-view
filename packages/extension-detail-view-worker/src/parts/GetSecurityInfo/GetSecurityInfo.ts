@@ -106,6 +106,16 @@ export const getSecurityInfo = (extension: any): readonly SecurityEntry[] => {
       value: hasBrowserCode ? 'Yes' : 'No',
     },
     {
+      id: 'TerminalExecution',
+      label: ExtensionDetailStrings.securityTerminalExecution(),
+      value:
+        Array.isArray(extension?.permissions) &&
+        extension.permissions.every((permission: unknown) => typeof permission === 'string') &&
+        extension.permissions.includes('terminal.execute')
+          ? 'Yes'
+          : 'No',
+    },
+    {
       id: 'NodeJsCodeExecution',
       label: ExtensionDetailStrings.securityNodeJsCodeExecution(),
       value: hasNodeCode ? 'Yes' : 'No',
