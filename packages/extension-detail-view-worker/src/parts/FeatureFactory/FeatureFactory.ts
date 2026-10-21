@@ -8,6 +8,7 @@ import * as FeatureCommandsVirtualDom from '../FeatureCommandsVirtualDom/Feature
 import * as FeatureJsonValidationDetails from '../FeatureJsonValidationDetails/FeatureJsonValidationDetails.ts'
 import * as FeatureJsonValidationEnabled from '../FeatureJsonValidationEnabled/FeatureJsonValidationEnabled.ts'
 import * as FeatureJsonValidationVirtualDom from '../FeatureJsonValidationVirtualDom/FeatureJsonValidationVirtualDom.ts'
+import * as FeatureKeymaps from '../FeatureKeymaps/FeatureKeymaps.ts'
 import * as FeatureProgrammingLanguagesDetails from '../FeatureProgrammingLanguagesDetails/FeatureProgrammingLanguagesDetails.ts'
 import * as FeatureProgrammingLanguagesEnabled from '../FeatureProgrammingLanguagesEnabled/FeatureProgrammingLanguagesEnabled.ts'
 import * as FeatureProgrammingLanguagesVirtualDom from '../FeatureProgrammingLanguagesVirtualDom/FeatureProgrammingLanguagesVirtualDom.ts'
@@ -30,6 +31,13 @@ import * as FeatureWebViewsVirtualDom from '../FeatureWebViewsVirtualDom/Feature
 import * as InputName from '../InputName/InputName.ts'
 
 export const registerAllFeatures = (): void => {
+  register({
+    getDetails: FeatureKeymaps.getDetails,
+    getLabel: ExtensionDetailStrings.keymaps,
+    getVirtualDom: FeatureKeymaps.getVirtualDom,
+    id: InputName.Keymaps,
+    isEnabled: FeatureKeymaps.isEnabled,
+  })
   register({
     getDetails: FeatureThemeDetails.getThemeDetails,
     getLabel: ExtensionDetailStrings.theme,

@@ -1,0 +1,12 @@
+{
+  "id": "test.keymap",
+  "name": "Test Keymap",
+  "version": "0.0.0",
+  "keyMap": {
+    "initialMode": "normal",
+    "modes": {
+      "normal": { "bindings": { "i": { "command": "vim.handleKey", "args": ["i"], "mode": "insert" } }, "captureText": true },
+      "insert": { "bindings": { "Escape": { "command": "vim.handleKey", "args": ["Escape"], "mode": "normal" } } }
+    }
+  }
+}
