@@ -15,9 +15,9 @@ const isEmptyCell = (entry: Cell): boolean => {
 }
 
 export const getCellVirtualDom = (entry: Cell): readonly VirtualDomNode[] => {
-  const { type, value, ...props } = entry
+  const { preserveEmptyValue, type, value, ...props } = entry
   const fn = GetCellRenderer.getCellRenderer(type)
-  if (isEmptyCell(entry)) {
+  if (isEmptyCell(entry) && !preserveEmptyValue) {
     return GetCellTextVirtualDom.getCellTextVirtualDom('-', props)
   }
   return fn(value, props)

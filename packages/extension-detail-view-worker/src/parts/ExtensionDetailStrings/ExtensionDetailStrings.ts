@@ -69,6 +69,10 @@ export const description = (): string => {
   return I18nString.i18nString(UiStrings.Description)
 }
 
+export const defaultValue = (): string => {
+  return I18nString.i18nString(UiStrings.Default)
+}
+
 export const disable = (): string => {
   return I18nString.i18nString(UiStrings.Disable)
 }

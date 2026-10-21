@@ -21,7 +21,7 @@ export const test: Test = async ({ expect, Extension, ExtensionDetail, Locator }
   const heading1 = commandsTable.locator('th').nth(0)
   await expect(heading1).toHaveText('ID')
   const heading2 = commandsTable.locator('th').nth(1)
-  await expect(heading2).toHaveText('Label')
+  await expect(heading2).toHaveText('Description')
   const cell1 = commandsTable.locator('tbody td').nth(0)
   await expect(cell1).toHaveText('test')
   const cell2 = commandsTable.locator('tbody td').nth(1)

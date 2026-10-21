@@ -42,6 +42,10 @@ test('getFeatureSettingsVirtualDom - returns correct structure with rows', () =>
         type: 1,
         value: 'Test Label',
       },
+      {
+        type: 1,
+        value: 'false',
+      },
     ],
   ]
   const virtualDom = GetFeatureSettingsVirtualDom.getFeatureSettingsVirtualDom(rows)
@@ -72,7 +76,7 @@ test('getFeatureSettingsVirtualDom - returns correct structure with rows', () =>
   })
 
   expect(virtualDom[5]).toEqual({
-    childCount: 2,
+    childCount: 3,
     type: VirtualDomElements.Tr,
   })
 
@@ -90,12 +94,20 @@ test('getFeatureSettingsVirtualDom - returns correct structure with rows', () =>
     type: VirtualDomElements.Th,
   })
 
-  expect(virtualDom[9]).toEqual(text(ExtensionDetailStrings.label()))
+  expect(virtualDom[9]).toEqual(text(ExtensionDetailStrings.description()))
 
   expect(virtualDom[10]).toEqual({
+    childCount: 1,
+    className: `${ClassNames.TableHeading} ${ClassNames.TableCell}`,
+    type: VirtualDomElements.Th,
+  })
+
+  expect(virtualDom[11]).toEqual(text(ExtensionDetailStrings.defaultValue()))
+
+  expect(virtualDom[12]).toEqual({
     childCount: 1,
     type: VirtualDomElements.TBody,
   })
 
-  expect(virtualDom.length).toBeGreaterThan(10)
+  expect(virtualDom.length).toBeGreaterThan(12)
 })

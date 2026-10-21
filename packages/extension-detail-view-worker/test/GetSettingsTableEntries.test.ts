@@ -22,15 +22,17 @@ test('get settings table entries with settings', () => {
   }
   const { settings } = getFeatureDetailsSettings(extension)
   expect(GetSettingsTableEntries.getSettingsTableEntries(settings || [])).toEqual({
-    headings: ['ID', 'Label'],
+    headings: ['ID', 'Description', 'Default'],
     rows: [
       [
         { type: TableCellType.Text, value: 'editor.fontSize' },
-        { type: TableCellType.Text, value: undefined },
+        { type: TableCellType.Text, value: 'Controls the font size in pixels' },
+        { type: TableCellType.Text, value: '14' },
       ],
       [
         { type: TableCellType.Text, value: 'editor.fontFamily' },
-        { type: TableCellType.Text, value: undefined },
+        { type: TableCellType.Text, value: 'Controls the font family' },
+        { type: TableCellType.Text, value: 'monospace' },
       ],
     ],
   })
