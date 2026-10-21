@@ -47,3 +47,14 @@ test('renders a populated text cell normally', () => {
     text('value'),
   ])
 })
+
+test('renders an explicitly empty default value without a placeholder', () => {
+  expect(GetCellVirtualDom.getCellVirtualDom({ preserveEmptyValue: true, type: TableCellType.Text, value: '' })).toEqual([
+    {
+      childCount: 1,
+      className: ClassNames.TableCell,
+      type: VirtualDomElements.Td,
+    },
+    text(''),
+  ])
+})

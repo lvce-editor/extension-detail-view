@@ -5,7 +5,23 @@
   "settings": [
     {
       "id": "test",
-      "label": "Test"
+      "label": "Test",
+      "default": false
+    },
+    {
+      "id": "test.zero",
+      "description": "A zero default",
+      "default": 0
+    },
+    {
+      "id": "test.empty",
+      "description": "An empty default",
+      "default": ""
+    },
+    {
+      "id": "test.null",
+      "description": "A null default",
+      "default": null
     }
   ]
 }

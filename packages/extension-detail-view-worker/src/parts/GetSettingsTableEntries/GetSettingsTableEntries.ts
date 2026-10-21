@@ -4,9 +4,10 @@ import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDeta
 
 export const getSettingsTableEntries = (rows: readonly Row[]): TableInfo => {
   const textId = ExtensionDetailStrings.id()
-  const textLabel = ExtensionDetailStrings.label()
+  const textDescription = ExtensionDetailStrings.description()
+  const textDefault = ExtensionDetailStrings.defaultValue()
   return {
-    headings: [textId, textLabel],
+    headings: [textId, textDescription, textDefault],
     rows,
   }
 }
