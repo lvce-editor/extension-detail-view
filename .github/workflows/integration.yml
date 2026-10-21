@@ -21,18 +21,18 @@ jobs:
     env:
       PLAYWRIGHT_BROWSERS_PATH: 0
     steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-node@v6.5.0
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
       - run: npm ci
       - run: npm run build
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v7
         with:
           repository: lvce-editor/lvce-editor
           ref: 236de223cab8f9eeb72dc68a260b63f0db3b4ef9
           path: .tmp/lvce-integration
-      - uses: actions/setup-node@v6.5.0
+      - uses: actions/setup-node@v6
         with:
           node-version-file: .tmp/lvce-integration/.nvmrc
       - name: Install application dependencies
