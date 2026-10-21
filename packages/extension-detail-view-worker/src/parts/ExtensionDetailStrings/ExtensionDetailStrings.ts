@@ -364,3 +364,13 @@ export const invalidActivationEventWithSuggestion = (activationEvent: string, su
 export const securityTerminalExecution = (): string => {
   return I18nString.i18nString(UiStrings.SecurityTerminalExecution)
 }
+
+export const keymaps = (): string => I18nString.i18nString(UiStrings.Keymaps)
+
+export const mode = (): string => I18nString.i18nString(UiStrings.Mode)
+
+export const key = (): string => I18nString.i18nString(UiStrings.Key)
+
+export const command = (): string => I18nString.i18nString(UiStrings.Command)
+
+export const nextMode = (): string => I18nString.i18nString(UiStrings.NextMode)
