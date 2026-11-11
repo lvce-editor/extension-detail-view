@@ -1,6 +1,10 @@
+import type { AsyncCommandContext } from '@lvce-editor/viewlet-registry'
+import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
 import type { ExtensionDetailState } from '../ExtensionDetailState/ExtensionDetailState.ts'
 import type { SyntaxLanguage } from '../SyntaxLanguage/SyntaxLanguage.ts'
 import type { VirtualDomNode } from '../VirtualDomNode/VirtualDomNode.ts'
+import * as ExtensionDetailStrings from '../ExtensionDetailStrings/ExtensionDetailStrings.ts'
+import * as GetChangelogVirtualDom from '../GetChangelogVirtualDom/GetChangelogVirtualDom.ts'
 import { getGithubReleasesMarkdown } from '../GetGithubReleasesMarkdown/GetGithubReleasesMarkdown.ts'
 import { getGithubRepository } from '../GetGithubRepository/GetGithubRepository.ts'
 import { addScrollToTopVirtualDom, getMarkdownVirtualDom } from '../GetMarkdownVirtualDom/GetMarkdownVirtualDom.ts'
@@ -10,6 +14,55 @@ import * as InputName from '../InputName/InputName.ts'
 import * as LoadChangelogContent from '../LoadChangelogContent/LoadChangelogContent.ts'
 import { loadGithubReleases } from '../LoadGithubReleases/LoadGithubReleases.ts'
 import * as RenderMarkdown from '../RenderMarkdown/RenderMarkdown.ts'
+
+const getTabsForChangelog = ({ tabs }: ExtensionDetailState): ExtensionDetailState['tabs'] => {
+  return tabs.map((tab) => ({
+    ...tab,
+    selected: tab.name === InputName.Changelog,
+  }))
+}
+
+const getLoadingChangelogDom = (): readonly VirtualDomNode[] => {
+  return GetChangelogVirtualDom.getChangelogVirtualDom([
+    {
+      childCount: 0,
+      text: ExtensionDetailStrings.loading(),
+      type: VirtualDomElements.Text,
+    },
+  ])
+}
+
+const hasLoadedChangelog = ({ changelogVirtualDom }: ExtensionDetailState): boolean => {
+  return changelogVirtualDom.length > 1 && changelogVirtualDom.every((node) => node.text !== ExtensionDetailStrings.loading())
+}
+
+export const selectTabChangelogWithContext = async (context: AsyncCommandContext<ExtensionDetailState>): Promise<void> => {
+  const state = context.getState()
+  const { changelogVirtualDom, selectedTab } = state
+  if (selectedTab === InputName.Changelog && changelogVirtualDom.length > 1) {
+    return
+  }
+  const isChangelogCachedInState = hasLoadedChangelog(state)
+  const loadingState = await context.updateState((currentState) => ({
+    ...currentState,
+    changelogVirtualDom: isChangelogCachedInState ? currentState.changelogVirtualDom : getLoadingChangelogDom(),
+    selectedTab: InputName.Changelog,
+    tabs: getTabsForChangelog(currentState),
+  }))
+  if (isChangelogCachedInState) {
+    return
+  }
+  const result = await selectTabChangelog(loadingState)
+  await context.updateState((currentState) => {
+    if (currentState.selectedTab !== InputName.Changelog) {
+      return currentState
+    }
+    return {
+      ...currentState,
+      changelogVirtualDom: result.changelogVirtualDom,
+    }
+  })
+}
 
 const releaseBatchSize = 100
 const githubIssueLinkRegex = /<a([^>]*?)href="(https:\/\/github\.com\/[^/"\s]+\/[^/"\s]+\/(?:issues|pull)\/(\d+))"([^>]*)>\2<\/a>/g
@@ -66,7 +119,7 @@ const renderGithubReleases = async (
 }
 
 export const selectTabChangelog = async (state: ExtensionDetailState): Promise<ExtensionDetailState> => {
-  const { assetDir, baseUrl, cacheName, extension, extensionUri, locationProtocol, platform, tabs } = state
+  const { assetDir, baseUrl, cacheName, extension, extensionUri, locationProtocol, platform } = state
   const languages = await getSyntaxLanguages(platform, assetDir)
   const githubRepository = getGithubRepository(extension)
   let changelogDom: readonly VirtualDomNode[]
@@ -88,12 +141,7 @@ export const selectTabChangelog = async (state: ExtensionDetailState): Promise<E
     const html = await renderChangelogMarkdown(changelogContent, { baseUrl, languages, linksExternal: true, locationProtocol }, cacheName)
     changelogDom = await getMarkdownVirtualDom(html, { scrollToTopEnabled: true })
   }
-  const newTabs = tabs.map((tab) => {
-    return {
-      ...tab,
-      selected: tab.name === InputName.Changelog,
-    }
-  })
+  const newTabs = getTabsForChangelog(state)
   return {
     ...state,
     changelogVirtualDom: changelogDom,

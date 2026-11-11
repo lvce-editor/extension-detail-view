@@ -119,7 +119,7 @@ export const commandMap = {
   'ExtensionDetail.handleScroll': WrapCommand.wrapCommand(HandleScroll.handleScroll),
   'ExtensionDetail.handleSelectionChange': WrapCommand.wrapCommand(handleSelectionChange),
   'ExtensionDetail.handleTabFocus': WrapCommand.wrapCommand(handleTabFocus),
-  'ExtensionDetail.handleTabsClick': WrapCommand.wrapCommand(HandleTabsClick.handleTabsClick),
+  'ExtensionDetail.handleTabsClick': WrapCommand.wrapAsyncCommand(HandleTabsClick.handleTabsClickWithContext),
   'ExtensionDetail.handleWheel': WrapCommand.wrapCommand(HandleScroll.handleScroll), // deprecated
   'ExtensionDetail.hideSizeLink': WrapCommand.wrapCommand(hideSizeLink),
   'ExtensionDetail.loadContent2': WrapCommand.wrapCommand(LoadContent2.loadContent2),
@@ -131,7 +131,7 @@ export const commandMap = {
   'ExtensionDetail.resetGithubApiMock': WrapCommand.wrapCommand(GithubApiRequest.handleResetGithubApiMock),
   'ExtensionDetail.resize': WrapCommand.wrapCommand(Resize.resize),
   'ExtensionDetail.saveState': WrapCommand.wrapGetter(SaveState.saveState),
-  'ExtensionDetail.selectTab': WrapCommand.wrapCommand(SelectTab.selectTab),
+  'ExtensionDetail.selectTab': WrapCommand.wrapAsyncCommand(SelectTab.selectTabWithContext),
   'ExtensionDetail.setComponentState': SetComponentState.setComponentState,
   'ExtensionDetail.terminate': terminate,
 }

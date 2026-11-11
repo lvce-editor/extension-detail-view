@@ -49,6 +49,8 @@ export const changelog = (): string => {
   return I18nString.i18nString(UiStrings.Changelog)
 }
 
+export const loading = (): string => 'Loading…'
+
 export const contents = (): string => {
   return I18nString.i18nString(UiStrings.Contents)
 }
