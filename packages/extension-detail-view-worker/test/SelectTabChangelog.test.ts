@@ -82,6 +82,10 @@ test('selectTabChangelog shows a loading state before reading uncached content',
   })
   let currentState: ExtensionDetailState = {
     ...createDefaultState.createDefaultState(),
+    changelogVirtualDom: [
+      { childCount: 1, type: VirtualDomElements.Div },
+      { childCount: 0, text: 'Loading…', type: VirtualDomElements.Text },
+    ],
     extensionUri: 'https://lvce-editor.github.io/extension-detail-view/hash/extensions/test.extension',
     tabs: [{ enabled: true, label: 'Details', name: InputName.Details, selected: true }],
   }
@@ -182,6 +186,32 @@ test('selectTabChangelog immediately reuses content already loaded in the view s
   expect(mockExtensionManagementRpc.invocations).toEqual([])
 })
 
+test('selectTabChangelog does not reload content when the selected changelog is already populated', async () => {
+  using mockExtensionManagementRpc = ExtensionManagementWorker.registerMockRpc({
+    'Extensions.getLanguages': () => {
+      throw new Error('unexpected language lookup')
+    },
+  })
+  const state: ExtensionDetailState = {
+    ...createDefaultState.createDefaultState(),
+    changelogVirtualDom: [
+      { childCount: 1, type: VirtualDomElements.Div },
+      { childCount: 0, text: 'Loaded changelog', type: VirtualDomElements.Text },
+    ],
+    selectedTab: InputName.Changelog,
+  }
+  const context = {
+    getState: (): ExtensionDetailState => state,
+    updateState: async (): Promise<ExtensionDetailState> => {
+      throw new Error('unexpected state update')
+    },
+  }
+
+  await SelectTabChangelog.selectTabChangelogWithContext(context)
+
+  expect(mockExtensionManagementRpc.invocations).toEqual([])
+})
+
 test('selectTabChangelog renders GitHub releases without reading a local changelog', async () => {
   const issueUrl = 'https://github.com/test-owner/test-repository/pull/82'
   const release = {
@@ -227,6 +257,30 @@ test('selectTabChangelog renders a friendly GitHub error', async () => {
   await SelectTabChangelog.selectTabChangelog(state)
 
   expect(mockMarkdownRpc.invocations[0]).toEqual(['Markdown.render', expect.stringContaining('GitHub is not reachable'), expect.any(Object)])
+})
+
+test('selectTabChangelog shows a generic message for unexpected rendering errors', async () => {
+  GithubApiRequest.mockGithubApi({ body: [], type: 'success' })
+  let renderCount = 0
+  using mockMarkdownRpc = MarkdownWorker.registerMockRpc({
+    'Markdown.getVirtualDom': () => [{ childCount: 0, type: VirtualDomElements.Div }],
+    'Markdown.render': () => {
+      renderCount++
+      if (renderCount === 1) {
+        throw new Error('unexpected render failure')
+      }
+      return '<h1>Changelog</h1>'
+    },
+  })
+  const state = {
+    ...createDefaultState.createDefaultState(),
+    extension: { repository: 'https://github.com/test-owner/test-repository' },
+  }
+
+  await SelectTabChangelog.selectTabChangelog(state)
+
+  expect(mockMarkdownRpc.invocations[0][1]).toContain('No GitHub releases were found')
+  expect(mockMarkdownRpc.invocations[1][1]).toContain('GitHub releases could not be loaded. Please try again later.')
 })
 
 test('selectTabChangelog handles 5000 GitHub releases with a responsive display limit', async () => {
