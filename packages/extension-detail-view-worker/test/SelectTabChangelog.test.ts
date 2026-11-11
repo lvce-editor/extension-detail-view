@@ -1,12 +1,12 @@
 import { afterEach, expect, test } from '@jest/globals'
 import { ExtensionManagementWorker } from '@lvce-editor/rpc-registry'
 import { VirtualDomElements } from '@lvce-editor/virtual-dom-worker'
+import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import * as createDefaultState from '../src/parts/CreateDefaultState/CreateDefaultState.ts'
 import * as FileSystemWorker from '../src/parts/FileSystemWorker/FileSystemWorker.ts'
 import * as GithubApiRequest from '../src/parts/GithubApiRequest/GithubApiRequest.ts'
 import * as InputName from '../src/parts/InputName/InputName.ts'
 import * as MarkdownWorker from '../src/parts/MarkdownWorker/MarkdownWorker.ts'
-import type { ExtensionDetailState } from '../src/parts/ExtensionDetailState/ExtensionDetailState.ts'
 import * as SelectTabChangelog from '../src/parts/SelectTabChangelog/SelectTabChangelog.ts'
 
 afterEach(() => {
